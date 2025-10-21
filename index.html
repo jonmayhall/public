@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>myKaarma – Onsite Trainer Checklist (Compact)</title>
+  <style>
+  :root{
+    --bg:#fff; --ink:#111; --muted:#6b7280;
+    --orange:#F36F21; --green:#B7D33B; --field:#FAFAFA;
+    --border:#e3e7eb; --radius:14px; --w:1100px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;line-height:1.45}
+  .app{max-width:var(--w);margin:0 auto;padding:20px}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+  .tab{padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer;background:#fff;font-size:12px}
+  .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .page{display:none;page-break-after:always}
+  .page.active{display:block}
+
+  .page-header{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:12px}
+  .logo{height:38px}
+  .header-text{flex:1;font-weight:700;font-size:18px;outline:none;opacity:.95}
+  .header-text.empty::before{content:attr(data-ph);color:#999}
+
+  .page-title{text-align:center;font-weight:700;font-size:16px;margin:10px 0 14px;color:#2b2b2b}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
+  .btn{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px}
+  .btn.outline{background:transparent}
+  .btn.file input{display:none}
+
+  .section{border:1.5px solid var(--orange);border-radius:var(--radius);padding:10px 12px;margin:10px 0;background:#fff}
+  .section-title{font-size:14px;font-weight:700;letter-spacing:.2px}
+
+  .fields{display:grid;gap:8px}
+  .control{border:1px solid var(--green);border-radius:12px;padding:10px;background:#fff}
+  .label{display:block;font-weight:600;font-size:12px;margin-bottom:0;color:#222}
+
+  /* Two-column row: label left, input right */
+  .field-row{
+    display:grid;
+    grid-template-columns: 1fr 280px;
+    gap:12px;
+    align-items:start;
+    margin-top:6px;
+  }
+  .select,.textarea{
+    width:100%;
+    font-size:12px;
+    padding:8px 10px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--field);
+  }
+  .select{height:34px}
+  .textarea{min-height:60px;resize:vertical}
+
+  .indent-0{padding-left:0}
+  .indent-1{padding-left:12px}
+  .indent-2{padding-left:24px}
+  .indent-3{padding-left:36px}
+  .indent-4{padding-left:48px}
+
+  @media (max-width: 820px){
+    .field-row{grid-template-columns: 1fr}
+  }
+  @media print{
+    .tabs,.toolbar{display:none !important}
+    .page{display:block !important;page-break-after:always}
+    body{background:#fff}
+    .control{break-inside:avoid}
+  }
+  .warn{background:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:10px;border-radius:8px;margin:10px 0;font-size:13px}
+  </style>
+</head>
+<body>
+  <noscript><div class="warn">This app needs JavaScript enabled.</div></noscript>
+  <div class="app">
+    <div class="tabs"></div>
+  </div>
+
+  <script>
+  // Visible error reporting (no more silent white screens)
+  window.onerror = function(msg, src, line, col){
+    const warn = document.createElement('div');
+    warn.className = 'warn';
+    warn.textContent = 'Error: ' + msg + ' at ' + line + ':' + col;
+    document.querySelector('.app').prepend(warn);
+  };
+
+  // ======= DATA (inline object; no JSON.parse) =======
+  const SEED = {
+    "logo": "",  // optional: I can embed your logo here later
+    "pages": [
+      {
+        "name": "Handoff & Review",
+        "rows": [
+          {"section": true, "label": "Handoff Notes"},
+          {"label":"Did you review the handoff notes in Salesforce?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Deployment handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"ServiceCart handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Scheduler handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Did you review the Salesforce contract and notes?","type":"dropdown","options":["","Yes","No","N/A"]},
+
+          {"section": true, "label": "Dealership Personnel"},
+          {"label":"Does the personnel count in the admin tool appear accurate?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Are all of the managers active?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Number of active/pending advisors?","type":"text","placeholder":"Enter count…"},
+          {"label":"Number of active/pending parts reps?","type":"text","placeholder":"Enter count…"},
+          {"label":"Number of active/pending techs?","type":"text","placeholder":"Enter count…"},
+          {"label":"Number of active/pending BDC reps?","type":"text","placeholder":"Enter count…"},
+          {"label":"Is the BDC onsite?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Do all of the users have DMS IDs in the admin tool?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"Do all of the advisors have direct dial numbers in the admin tool?","type":"dropdown","options":["","Yes","No","N/A"]},
+
+          {"section": true, "label": "Location"},
+          {"label":"How many buildings does Google Maps show?","type":"text"},
+          {"label":"Were the correct numbers of buildings needing training accurately relayed in the handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"label":"How many service drives does Google Maps show?","type":"text"},
+          {"label":"Were the correct numbers of buildings needing training accurately relayed in the handoff? (Service drives)","type":"dropdown","options":["","Yes","No","N/A"]}
+        ]
+      },
+
+      {
+        "name": "Contacts & WiFi",
+        "rows": [
+          {"section": true, "label": "Header"},
+          {"label":"Dealership Name - DID","type":"text"},
+          {"label":"Date","type":"text"},
+          {"section": true, "label": "WiFi Information"},
+          {"label":"WiFi Name","type":"text"},
+          {"label":"WiFi Password","type":"text"},
+          {"section": true, "label": "Dealership Contacts"},
+          {"label":"Primary Point Of Contact and Role","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+          {"label":"Primary POC Cell","type":"text"},
+          {"label":"Primary POC Email","type":"text"},
+          {"label":"Additional POC and Role","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+          {"label":"Additional POC Email","type":"text"},
+          {"label":"Include in communications?","type":"dropdown","options":["","Yes","No","N/A"]},
+          {"section": true, "label": "Training Team"},
+          {"label":"Lead Trainer","type":"text"},
+          {"label":"Additional Trainers","type":"text"},
+          {"section": true, "label": "Additional Comments"},
+          {"label":"Additional Comments","type":"text"}
+        ]
+      },
+
+      {
+        "name": "Pre/Post Training Notes",
+        "rows": [
+          {"section": true, "label": "Pre-Training & Monday Visit Notes"},
+          {"label":"Notes","type":"text"},
+          {"section": true, "label": "Additional Comments"},
+          {"label":"Additional Comments","type":"text"},
+          {"section": true, "label": "Post Training Notes – Tuesday"},
+          {"label":"Notes","type":"text"},
+          {"section": true, "label": "Additional Comments – Tuesday"},
+          {"label":"Additional Comments","type":"text"},
+          {"section": true, "label": "Post Training Notes – Wednesday"},
+          {"label":"Notes","type":"text"},
+          {"section": true, "label": "Additional Comments – Wednesday"},
+          {"label":"Additional Comments","type":"text"},
+          {"section": true, "label": "Post Training Notes – Thursday"},
+          {"label":"Notes","type":"text"},
+          {"section": true, "label": "Additional Comments – Thursday"},
+          {"label":"Additional Comments","type":"text"}
+        ]
+      }
+    ]
+  };
+
+  // ======= App logic (compact, with autosave & print) =======
+  function indentLevelFromLabel(label){
+    if(!label) return 0;
+    let level = 0;
+    const m = label.match(/^([\ \t]+)/);
+    if(m){ level = Math.min(4, Math.floor(m[1].length / 2)); }
+    if (/^[ \t]*[-–—•>|»]\s+/.test(label)) level = Math.min(4, level + 1);
+    return level;
+  }
+  function cleanLabel(label){
+    if(!label) return "";
+    return label.replace(/^[ \t]*[-–—•>|»]\s+/, "").trimStart();
+  }
+
+  const tabs = document.querySelector('.tabs');
+  const app = document.querySelector('.app');
+
+  function buildPage(pg){
+    const page = document.createElement('section');
+    page.className = 'page';
+    page.dataset.page = pg.name;
+
+    const header = document.createElement('header');
+    header.className = 'page-header';
+    const img = document.createElement('img');
+    img.className = 'logo';
+    img.src = SEED.logo || '';
+    img.alt = 'myKaarma logo';
+    const htext = document.createElement('div');
+    htext.className = 'header-text';
+    htext.contentEditable = 'true';
+    htext.dataset.ph = 'myKaarma Onsite Training Checklist 2026 – Enter Dealership Name Here';
+    htext.textContent = 'myKaarma Onsite Training Checklist 2026 – Enter Dealership Name Here';
+    header.appendChild(img);
+    header.appendChild(htext);
+    page.appendChild(header);
+
+    const title = document.createElement('div');
+    title.className = 'page-title';
+    title.textContent = 'Page – ' + pg.name;
+    page.appendChild(title);
+
+    const toolbar = document.createElement('div');
+    toolbar.className = 'toolbar';
+    toolbar.innerHTML = `
+      <button class="btn" data-action="savePage">Save page</button>
+      <button class="btn" data-action="loadPage">Load page</button>
+      <button class="btn" data-action="exportAll">Export all</button>
+      <label class="btn file">Import <input type="file" class="import" accept="application/json"></label>
+      <button class="btn outline" data-action="print">Save as PDF</button>
+    `;
+    page.appendChild(toolbar);
+
+    const fields = document.createElement('div');
+    fields.className = 'fields';
+    (pg.rows || []).forEach((row, i) => {
+      if(row.section){
+        const sec = document.createElement('div');
+        sec.className = 'section';
+        const st = document.createElement('div');
+        st.className = 'section-title';
+        st.textContent = row.label || '';
+        sec.appendChild(st);
+        fields.appendChild(sec);
+        return;
+      }
+      const indent = (row.indent ?? indentLevelFromLabel(row.label || ''));
+      const labelText = cleanLabel(row.label || '');
+      const ctrl = document.createElement('div');
+      ctrl.className = 'control indent-'+Math.max(0, Math.min(4, indent));
+
+      const rowWrap = document.createElement('div');
+      rowWrap.className = 'field-row';
+
+      const lab = document.createElement('label');
+      lab.className = 'label';
+      const id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+      lab.setAttribute('for', id);
+      lab.textContent = labelText || 'Field';
+      rowWrap.appendChild(lab);
+
+      if ((row.type === 'dropdown') && Array.isArray(row.options)) {
+        const sel = document.createElement('select');
+        sel.className = 'select';
+        sel.id = id;
+        const opts = (row.options.length && row.options[0] === '') ? row.options : [''].concat(row.options);
+        opts.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; sel.appendChild(opt); });
+        rowWrap.appendChild(sel);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.className = 'textarea';
+        ta.id = id;
+        ta.placeholder = row.placeholder || 'Type here…';
+        rowWrap.appendChild(ta);
+      }
+
+      ctrl.appendChild(rowWrap);
+      fields.appendChild(ctrl);
+    });
+    page.appendChild(fields);
+
+    const key = () => 'mkChecklist:'+pg.name;
+    const collect = () => {
+      const data = { header: htext.textContent || '', fields: {} };
+      page.querySelectorAll('select, textarea').forEach(el => data.fields[el.id] = el.value);
+      return data;
+    };
+    const apply = (data) => {
+      if(!data) return;
+      if(data.header !== undefined) htext.textContent = data.header;
+      Object.entries(data.fields || {}).forEach(([id,val]) => {
+        const el = page.querySelector('#'+CSS.escape(id));
+        if(el) el.value = val;
+      });
+    };
+    const save = () => { localStorage.setItem(key(), JSON.stringify(collect())); };
+    const load = () => { const raw = localStorage.getItem(key()); if(raw) apply(JSON.parse(raw)); };
+
+    page.addEventListener('input', (e) => { if(e.target.matches('select, textarea, .header-text')) save(); });
+    toolbar.querySelector('[data-action="savePage"]').addEventListener('click', () => { save(); alert('Page saved.'); });
+    toolbar.querySelector('[data-action="loadPage"]').addEventListener('click', () => { load(); alert('Page loaded.'); });
+    toolbar.querySelector('[data-action="exportAll"]').addEventListener('click', exportAll);
+    toolbar.querySelector('.import').addEventListener('change', importAll);
+    toolbar.querySelector('[data-action="print"]').addEventListener('click', () => window.print());
+
+    function exportAll(){
+      const all = {};
+      document.querySelectorAll('.page').forEach(pgEl => {
+        const h = pgEl.querySelector('.header-text')?.textContent || '';
+        const fields = {};
+        pgEl.querySelectorAll('select, textarea').forEach(el => fields[el.id] = el.value);
+        all[pgEl.dataset.page] = { header: h, fields };
+      });
+      const blob = new Blob([JSON.stringify(all, null, 2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'onsite_checklist_data.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function importAll(e){
+      const file = e.target.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try{
+          const data = JSON.parse(reader.result);
+          document.querySelectorAll('.page').forEach(pgEl => {
+            const d = data[pgEl.dataset.page]; if(!d) return;
+            const h = pgEl.querySelector('.header-text');
+            if(h && d.header!==undefined) h.textContent = d.header;
+            Object.entries(d.fields || {}).forEach(([id,val]) => {
+              const el = pgEl.querySelector('#'+CSS.escape(id));
+              if(el) el.value = val;
+            });
+          });
+          alert('Imported data applied.');
+        }catch(err){ alert('Invalid JSON.'); }
+      };
+      reader.readAsText(file);
+    }
+    function checkHeader(){ htext.classList.toggle('empty', !htext.textContent.trim()); }
+    htext.addEventListener('input', checkHeader); checkHeader();
+
+    return page;
+  }
+
+  const pages = (SEED.pages || []).map(buildPage);
+  const tabsBar = document.querySelector('.tabs');
+  pages.forEach((pg,i) => {
+    app.appendChild(pg);
+    const t = document.createElement('button');
+    t.className = 'tab';
+    t.textContent = pg.dataset.page;
+    t.addEventListener('click', () => setActive(i));
+    tabsBar.appendChild(t);
+  });
+  function setActive(i){
+    pages.forEach((p,j)=>p.classList.toggle('active', i===j));
+    [...tabsBar.children].forEach((t,j)=>t.classList.toggle('active', i===j));
+    const raw = localStorage.getItem('mkChecklist:'+pages[i].dataset.page);
+    if(raw){
+      try{
+        const data = JSON.parse(raw);
+        const header = pages[i].querySelector('.header-text');
+        if(header && data.header!==undefined) header.textContent = data.header;
+        Object.entries(data.fields || {}).forEach(([id,val])=>{
+          const el = pages[i].querySelector('#'+CSS.escape(id));
+          if(el) el.value = val;
+        });
+      }catch(_e){}
+    }
+  }
+  setActive(0);
+  </script>
+</body>
+</html>
