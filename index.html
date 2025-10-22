@@ -1,4 +1,117 @@
-<script id="mk-data" type="application/json">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>myKaarma – Onsite Training Checklist (Branded)</title>
+  <style>
+  :root{
+    --bg:#fff; --ink:#111;
+    --orange:#F36F21; --green:#B7D33B; --field:#FAFAFA;
+    --border:#e3e7eb; --radius:16px; --w:1100px;
+    --header:#333333;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;line-height:1.45}
+  .app{max-width:var(--w);margin:0 auto;padding:20px}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+  .tab{padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer;background:#fff;font-size:12px}
+  .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .page{display:none;page-break-after:always}
+  .page.active{display:block}
+
+  .page-header{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap:14px; row-gap:4px;
+    align-items:center;
+    background:var(--header); color:#fff;
+    border:2px solid var(--header);
+    border-radius:16px; padding:12px 16px; margin-bottom:14px;
+  }
+  .logo{height:40px; grid-row:1 / span 2}
+  .header-title{font-weight:900; font-size:24px; letter-spacing:.2px; margin:0}
+  .header-subline{
+    font-weight:600; font-size:14px; opacity:.95;
+    outline:none; border-radius:8px; padding:2px 6px;
+    background:transparent; color:#fff;
+  }
+  .header-subline[contenteditable]:empty:before{content: attr(data-ph); color:#ffffffcc}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+  .btn{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px}
+  .btn.outline{background:transparent}
+  .btn.file input{display:none}
+
+  .section{margin:20px 0; border:1px solid var(--orange); border-radius:16px; background:#fff; overflow:hidden}
+  .section-title{
+    display:block; background:var(--orange); color:#fff;
+    border-bottom:1px solid var(--orange);
+    padding:10px 16px; font-size:16px; font-weight:800; letter-spacing:.2px;
+  }
+  .section-body{
+    border:2px solid var(--green);
+    border-radius:14px;
+    margin:12px;
+    padding:14px;
+    background:#fff;
+  }
+  .subsection-title{
+    display:block;
+    background:#fff5ef;
+    color:#5a2d0f;
+    border:1px solid var(--orange);
+    border-radius:10px;
+    padding:6px 10px;
+    font-size:13px; font-weight:800;
+    margin:6px 0 8px;
+  }
+
+  .q{margin:10px 0}
+  .q-row{display:grid;grid-template-columns: 1fr 300px;gap:14px;align-items:start}
+  .q-row.wide{grid-template-columns: 1fr}
+  .q .label{font-weight:600;font-size:12px;color:#222;margin-top:2px}
+  .select,.textarea,.textinput{
+    width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)
+  }
+  .select{height:34px}
+  .textarea{min-height:100px;resize:none}
+  .textinput{height:34px}
+
+  .indent-1{margin-left:28px}
+  .indent-2{margin-left:48px}
+  .indent-3{margin-left:72px}
+  .indent-4{margin-left:96px}
+
+  .footer{display:flex;gap:24px;align-items:center;justify-content:flex-end;margin-top:14px;color:#333;font-size:12px}
+  .footer .fblock{display:flex;align-items:center;gap:8px}
+  .footer .line{display:inline-block;min-width:180px;border-bottom:1px solid #333;height:16px}
+
+  @media (max-width: 840px){
+    .q-row{grid-template-columns: 1fr}
+    .footer{flex-direction:column;align-items:flex-start;gap:8px}
+    .footer .line{min-width:220px}
+  }
+  @media print{
+    .tabs,.toolbar{display:none !important}
+    .page{display:block !important;page-break-after:always}
+    .section-body{break-inside:avoid}
+  }
+  .warn{background:#fff3cd;border:1px solid #ffeeba;color:#856404;padding:10px;border-radius:8px;margin:10px 0;font-size:13px}
+  </style>
+</head>
+<body>
+  <noscript><div class="warn">This app needs JavaScript enabled.</div></noscript>
+  <div class="app">
+    <div class="tabs"></div>
+
+    <!-- VALID JSON ONLY—no comments, no trailing commas -->
+    <script id="mk-data" type="application/json">
 {
   "logo": "logo.png",
   "pages": [
@@ -88,7 +201,6 @@
         { "label": "Additional Comments", "type": "text", "placeholder": "Type here…", "wide": true }
       ]
     },
-
     {
       "name": "Contacts & WiFi",
       "rows": [
@@ -129,7 +241,6 @@
         { "label": "Additional Comments", "type": "text", "wide": true }
       ]
     },
-
     {
       "name": "Training Readiness – Roles",
       "rows": [
@@ -200,7 +311,6 @@
         { "label": "Notes (PU&D)", "type": "text", "wide": true }
       ]
     },
-
     {
       "name": "Creation Opcodes",
       "rows": [
@@ -235,7 +345,6 @@
         { "label": "Front Differential Service", "type": "text", "placeholder": "$0.00" }
       ]
     },
-
     {
       "name": "Creation Opcodes (cont.)",
       "rows": [
@@ -270,7 +379,6 @@
         { "label": "Tire Plug", "type": "text", "placeholder": "$0.00" }
       ]
     },
-
     {
       "name": "Creation Opcodes (final)",
       "rows": [
@@ -317,7 +425,6 @@
         { "label": "32", "type": "text" }
       ]
     },
-
     {
       "name": "DMS Integration",
       "rows": [
@@ -327,7 +434,6 @@
         { "label": "Additional Integration Notes", "type": "text", "wide": true }
       ]
     },
-
     {
       "name": "Workflow Notifications",
       "rows": [
@@ -349,7 +455,6 @@
         { "label": "Notes", "type": "text", "wide": true }
       ]
     },
-
     {
       "name": "Training Summary Notes",
       "rows": [
@@ -371,4 +476,271 @@
     }
   ]
 }
-</script>
+    </script>
+  </div>
+
+  <script>
+  // Catch any errors up front and show them visibly
+  window.onerror = function(msg, src, line, col){
+    const app = document.querySelector('.app'); if(!app) return;
+    const warn = document.createElement('div'); warn.className = 'warn';
+    warn.textContent = 'Error: ' + msg + ' at ' + (line||'?') + ':' + (col||'?'); app.prepend(warn);
+  };
+
+  // CSS.escape polyfill for older Safari
+  if (typeof CSS === 'undefined' || typeof CSS.escape !== 'function') {
+    window.CSS = window.CSS || {};
+    window.CSS.escape = function(v){
+      return String(v)
+        .replace(/[^a-zA-Z0-9_\-]/g, '\\$&');
+    };
+  }
+
+  // Parse JSON safely
+  let SEED = null;
+  (function(){
+    try{
+      const raw = document.getElementById('mk-data').textContent;
+      SEED = JSON.parse(raw);
+    }catch(e){
+      const app = document.querySelector('.app');
+      const warn = document.createElement('div'); warn.className='warn';
+      warn.textContent = 'Could not parse mk-data JSON: ' + e.message;
+      app.prepend(warn);
+      throw e;
+    }
+  })();
+
+  function indentLevelFromLabel(label){
+    if(!label) return 0; let level = 0;
+    const m = label.match(/^([ \\t]+)/); if(m){ level = Math.min(4, Math.floor(m[1].length / 2)); }
+    if (/^[ \\t]*[-–—•>|»]\\s+/.test(label)) level = Math.min(4, level + 1);
+    return level;
+  }
+  function cleanLabel(label){ if(!label) return ""; return label.replace(/^[ \\t]*[-–—•>|»]\\s+/, "").trimStart(); }
+
+  const tabs = document.querySelector('.tabs');
+
+  // Global dealership subline sync
+  const SUBLINE_KEY = 'mkChecklist:dealershipSubline';
+  function getSubline(){ return localStorage.getItem(SUBLINE_KEY) || ''; }
+  function setSubline(val){
+    localStorage.setItem(SUBLINE_KEY, val || '');
+    document.querySelectorAll('.header-subline').forEach(el => el.textContent = val || '');
+  }
+
+  function buildPage(pg){
+    const page = document.createElement('section'); page.className = 'page'; page.dataset.page = pg.name;
+
+    // Header
+    const header = document.createElement('div'); header.className = 'page-header';
+    const img = document.createElement('img'); img.className = 'logo'; img.alt = 'myKaarma logo';
+    if(SEED.logo){ img.src = SEED.logo; } else { img.style.display = 'none'; }
+
+    const title = document.createElement('h1'); title.className = 'header-title';
+    title.textContent = 'Onsite Training Checklist';
+
+    const sub = document.createElement('div');
+    sub.className = 'header-subline';
+    sub.setAttribute('contenteditable','true');
+    sub.setAttribute('data-ph','Enter the dealership name and DID');
+    sub.textContent = getSubline();
+
+    header.appendChild(img);
+    header.appendChild(title);
+    header.appendChild(document.createElement('div'));
+    header.appendChild(sub);
+    page.appendChild(header);
+
+    // Toolbar
+    const toolbar = document.createElement('div');
+    toolbar.className = 'toolbar';
+    toolbar.innerHTML = `
+      <button class="btn" data-action="savePage">Save page</button>
+      <button class="btn" data-action="loadPage">Load page</button>
+      <button class="btn" data-action="exportAll">Export all</button>
+      <label class="btn file">Import <input type="file" class="import" accept="application/json"></label>
+      <button class="btn outline" data-action="print">Save as PDF</button>
+    `;
+    page.appendChild(toolbar);
+
+    // Sections
+    const rows = pg.rows || [];
+    let sectionBody = null;
+
+    function startSection(titleText){
+      const sec = document.createElement('div'); sec.className = 'section';
+      const st = document.createElement('div'); st.className = 'section-title'; st.textContent = titleText || '';
+      sec.appendChild(st);
+      sectionBody = document.createElement('div'); sectionBody.className = 'section-body';
+      sec.appendChild(sectionBody);
+      page.appendChild(sec);
+    }
+    function addSubsection(titleText){
+      const sst = document.createElement('div'); sst.className = 'subsection-title'; sst.textContent = titleText || '';
+      if(!sectionBody){ startSection(''); }
+      sectionBody.appendChild(sst);
+    }
+
+    rows.forEach((row, i) => {
+      if(row.section){ startSection(row.label || ''); return; }
+      if(row.subsection){ addSubsection(row.label || ''); return; }
+      if(!sectionBody){ startSection(''); }
+
+      // Combined Name/Role
+      if(row.type === 'nameRole'){
+        const q = document.createElement('div'); q.className = 'q';
+        const wrap = document.createElement('div'); wrap.className = 'q-row';
+        const left = document.createElement('input'); left.className = 'textinput'; left.placeholder = 'Name';
+        left.id = (pg.name + '__name_role_left__' + i).replace(/\s+/g,'_');
+        const right = document.createElement('select'); right.className = 'select';
+        right.id = (pg.name + '__name_role_right__' + i).replace(/\s+/g,'_');
+        (row.roleOptions || ["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"])
+          .forEach(o => { const opt=document.createElement('option'); opt.value=o; opt.textContent=o; right.appendChild(opt); });
+        wrap.appendChild(left); wrap.appendChild(right);
+        q.appendChild(wrap); sectionBody.appendChild(q);
+        return;
+      }
+
+      const indent = (row.indent ?? indentLevelFromLabel(row.label || ''));
+      const labelText = cleanLabel(row.label || '');
+      const q = document.createElement('div'); q.className = 'q indent-'+Math.max(0, Math.min(4, indent));
+      const rowWrap = document.createElement('div'); rowWrap.className = 'q-row';
+
+      const isNotes = row.wide || /additional comments|notes/i.test(labelText);
+      if(isNotes) rowWrap.classList.add('wide');
+
+      const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = labelText || 'Field';
+
+      let fieldEl;
+      if (row.type === 'dropdown' && Array.isArray(row.options)){
+        fieldEl = document.createElement('select'); fieldEl.className = 'select';
+        fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+        const opts = (row.options.length && row.options[0] === '') ? row.options : [''].concat(row.options);
+        opts.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; fieldEl.appendChild(opt); });
+      } else if (row.type === 'text') {
+        if(isNotes){
+          fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
+          fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+          fieldEl.placeholder = row.placeholder || 'Type here…';
+        } else {
+          fieldEl = document.createElement('input'); fieldEl.type='text'; fieldEl.className='textinput';
+          fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+          fieldEl.placeholder = row.placeholder || 'Type here…';
+        }
+      } else {
+        fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
+        fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+        fieldEl.placeholder = row.placeholder || 'Type here…';
+      }
+
+      if(isNotes){
+        rowWrap.appendChild(fieldEl);
+      }else{
+        rowWrap.appendChild(lab);
+        rowWrap.appendChild(fieldEl);
+      }
+
+      q.appendChild(rowWrap);
+      sectionBody.appendChild(q);
+    });
+
+    // Footer
+    const footer = document.createElement('div'); footer.className = 'footer';
+    footer.innerHTML = `
+      <div class="fblock"><span>Trainer Name:</span> <span class="line"></span></div>
+      <div class="fblock"><span>Date:</span> <span class="line"></span></div>
+      <div class="fblock"><span>Dealership:</span> <span class="line"></span></div>
+    `;
+    page.appendChild(footer);
+
+    // Save/Load/Export/Import
+    const key = () => 'mkChecklist:'+pg.name;
+    const collect = () => { const data = { fields: {} }; page.querySelectorAll('select, textarea, input.textinput').forEach(el => data.fields[el.id] = el.value); return data; };
+    const apply = (data) => { if(!data) return; Object.entries(data.fields || {}).forEach(([id,val]) => { const el = page.querySelector('#'+CSS.escape(id)); if(el) { el.value = val; autoGrow(el);} }); };
+    const save = () => { localStorage.setItem(key(), JSON.stringify(collect())); };
+    const load = () => { const raw = localStorage.getItem(key()); if(raw) apply(JSON.parse(raw)); };
+
+    page.addEventListener('input', (e) => {
+      if(e.target.classList.contains('header-subline')){
+        setSubline(e.target.textContent.trim());
+      } else if(e.target.matches('select, textarea, input.textinput')){
+        autoGrow(e.target);
+        save();
+      }
+    });
+
+    setTimeout(()=>page.querySelectorAll('textarea').forEach(autoGrow), 0);
+
+    toolbar.querySelector('[data-action="savePage"]').addEventListener('click', () => { save(); alert('Page saved.'); });
+    toolbar.querySelector('[data-action="loadPage"]').addEventListener('click', () => { load(); alert('Page loaded.'); });
+    toolbar.querySelector('[data-action="exportAll"]').addEventListener('click', exportAll);
+    toolbar.querySelector('.import').addEventListener('change', importAll);
+    toolbar.querySelector('[data-action="print"]').addEventListener('click', () => window.print());
+
+    function exportAll(){
+      const all = { dealershipSubline: getSubline() };
+      document.querySelectorAll('.page').forEach(pgEl => {
+        const fields = {};
+        pgEl.querySelectorAll('select, textarea, input.textinput').forEach(el => fields[el.id] = el.value);
+        all[pgEl.dataset.page] = { fields };
+      });
+      const blob = new Blob([JSON.stringify(all, null, 2)], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'onsite_checklist_data.json'; a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function importAll(e){
+      const file = e.target.files[0]; if(!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try{
+          const data = JSON.parse(reader.result);
+          if(typeof data.dealershipSubline === 'string'){ setSubline(data.dealershipSubline); }
+          document.querySelectorAll('.page').forEach(pgEl => {
+            const d = data[pgEl.dataset.page]; if(!d) return;
+            Object.entries(d.fields || {}).forEach(([id,val]) => {
+              const el = pgEl.querySelector('#'+CSS.escape(id)); if(el){ el.value = val; autoGrow(el); }
+            });
+          });
+          alert('Imported data applied.');
+        }catch(err){ alert('Invalid JSON.'); }
+      };
+      reader.readAsText(file);
+    }
+
+    return page;
+  }
+
+  function autoGrow(el){
+    if(el && el.tagName === 'TEXTAREA'){
+      el.style.height = 'auto';
+      el.style.height = (el.scrollHeight + 2) + 'px';
+    }
+  }
+
+  const pages = (SEED.pages || []).map(buildPage);
+  const tabsBar = document.querySelector('.tabs');
+  pages.forEach((pg,i) => {
+    document.querySelector('.app').appendChild(pg);
+    const t = document.createElement('button'); t.className = 'tab'; t.textContent = pg.dataset.page;
+    t.addEventListener('click', () => setActive(i)); tabsBar.appendChild(t);
+  });
+  function setActive(i){
+    pages.forEach((p,j)=>p.classList.toggle('active', i===j));
+    [...tabsBar.children].forEach((t,j)=>t.classList.toggle('active', i===j));
+    const raw = localStorage.getItem('mkChecklist:'+pages[i].dataset.page);
+    if(raw){
+      try{
+        const data = JSON.parse(raw);
+        Object.entries(data.fields || {}).forEach(([id,val])=>{
+          const el = pages[i].querySelector('#'+CSS.escape(id));
+          if(el){ el.value = val; autoGrow(el); }
+        });
+      }catch(_e){}
+    }
+    document.querySelectorAll('.header-subline').forEach(el => el.textContent = getSubline());
+  }
+  setActive(0);
+  </script>
+</body>
+</html>
