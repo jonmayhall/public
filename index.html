@@ -17,13 +17,16 @@
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;line-height:1.45}
   .app{max-width:var(--w);margin:0 auto;padding:20px}
 
+  /* Tabs */
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
   .tab{padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer;background:#fff;font-size:12px}
   .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
+  /* Page show/hide */
   .page{display:none;page-break-after:always}
   .page.active{display:block}
 
+  /* MAIN HEADER */
   .page-header{
     display:grid;
     grid-template-columns: auto 1fr;
@@ -43,17 +46,20 @@
   }
   .header-subline[contenteditable]:empty:before{content: attr(data-ph); color:#ffffffcc}
 
+  /* Toolbar */
   .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
   .btn{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px}
   .btn.outline{background:transparent}
   .btn.file input{display:none}
 
+  /* SECTION: full-width orange subheader + thin orange outline around whole section */
   .section{margin:20px 0; border:1px solid var(--orange); border-radius:16px; background:#fff; overflow:hidden}
   .section-title{
     display:block; background:var(--orange); color:#fff;
     border-bottom:1px solid var(--orange);
     padding:10px 16px; font-size:16px; font-weight:800; letter-spacing:.2px;
   }
+  /* One green outlined box per section, inset so both borders show */
   .section-body{
     border:2px solid var(--green);
     border-radius:14px;
@@ -61,6 +67,8 @@
     padding:14px;
     background:#fff;
   }
+
+  /* Secondary sub-tab (inside green box) */
   .subsection-title{
     display:block;
     background:#fff5ef;
@@ -71,23 +79,35 @@
     font-size:13px; font-weight:800;
     margin:6px 0 8px;
   }
+  /* Sub-sub-section (level 2) */
+  .subsection-title.level-2{
+    background:#fff;
+    color:#333;
+    border:1px dashed var(--orange);
+    font-weight:700;
+    font-size:12px;
+    margin-top:2px;
+  }
 
+  /* Questions inside green box */
   .q{margin:10px 0}
   .q-row{display:grid;grid-template-columns: 1fr 300px;gap:14px;align-items:start}
-  .q-row.wide{grid-template-columns: 1fr}
+  .q-row.wide{grid-template-columns: 1fr} /* notes/comments full width */
   .q .label{font-weight:600;font-size:12px;color:#222;margin-top:2px}
   .select,.textarea,.textinput{
     width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)
   }
   .select{height:34px}
-  .textarea{min-height:100px;resize:none}
+  .textarea{min-height:100px;resize:none} /* we auto-grow via JS */
   .textinput{height:34px}
 
+  /* Deeper indentation inside green boxes */
   .indent-1{margin-left:28px}
   .indent-2{margin-left:48px}
   .indent-3{margin-left:72px}
   .indent-4{margin-left:96px}
 
+  /* Footer (static lines) */
   .footer{display:flex;gap:24px;align-items:center;justify-content:flex-end;margin-top:14px;color:#333;font-size:12px}
   .footer .fblock{display:flex;align-items:center;gap:8px}
   .footer .line{display:inline-block;min-width:180px;border-bottom:1px solid #333;height:16px}
@@ -110,7 +130,7 @@
   <div class="app">
     <div class="tabs"></div>
 
-    <!-- VALID JSON ONLY—no comments, no trailing commas -->
+    <!-- DATA (valid JSON only) -->
     <script id="mk-data" type="application/json">
 {
   "logo": "logo.png",
@@ -153,15 +173,22 @@
         { "label": "Do the invoices sent to the customer appear correctly?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
 
         { "subsection": true, "label": "ServiceCart" },
+
+        { "subsection": true, "label": "Workflow", "depth": 2 },
         { "label": "Does integration appear to be working correctly? (RO's pull, parts, etc.)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
         { "label": "How many workflows were created?", "type": "text", "indent": 1 },
         { "label": "Do the workflows seem sensible?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-        { "label": "How many PMI forms were created?", "type": "text", "indent": 1 },
+
+        { "subsection": true, "label": "MPI", "depth": 2 },
+        { "label": "How many MPI forms were created?", "type": "text", "indent": 1 },
+
+        { "subsection": true, "label": "Rules and Preventions", "depth": 2 },
         { "label": "Do the MPI forms appear accurate and reasonable?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
         { "label": "Are the creation and prevention rules in place and correct for each inspection type?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-        { "label": "Are there assignment rules?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
+
+        { "subsection": true, "label": "Parts and Pricing", "depth": 2 },
         { "label": "Have parts been uploaded for DMS types without integration?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-        { "label": "Has a parts process been created for DMS types without integration?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
+        { "label": "Has a parts process been created for DMS types without integration?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 2 },
         { "label": "Sales Tax %", "type": "text", "indent": 1 },
         { "label": "Shop Fees %", "type": "text", "indent": 1 },
         { "label": "Minimum Shop Fees %", "type": "text", "indent": 1 },
@@ -180,12 +207,13 @@
         { "section": true, "label": "Monday Visit – iOS Devices" },
         { "label": "Do the techs have iOS devices?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
         { "label": "How many techs are using Android devices?", "type": "text", "indent": 1 },
-        { "label": "Do the advisors have iOS devices?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
+        { "label": "Do all of the advisors have iOS devices?", "type": "dropdown",
+          "options": ["", "Yes", "0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%"] },
         { "label": "Were all of the devices set up and on the correct WiFi prior to your arrival?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
 
         { "section": true, "label": "Monday Visit – WiFi" },
         { "label": "Did the shop and drive pass the myKaarma WiFi speed test? (Focus on common dead spots)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-        { "label": "What areas failed?", "type": "text" },
+        { "label": "What areas failed?", "type": "text", "indent": 1 },
 
         { "section": true, "label": "Dealership Expectations" },
         { "label": "Was the dealership aware of MCI prior to arrival?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
@@ -201,13 +229,10 @@
         { "label": "Additional Comments", "type": "text", "placeholder": "Type here…", "wide": true }
       ]
     },
+
     {
       "name": "Contacts & WiFi",
       "rows": [
-        { "section": true, "label": "Header" },
-        { "label": "Dealership Name - DID", "type": "text" },
-        { "label": "Date", "type": "text" },
-
         { "section": true, "label": "WiFi Information" },
         { "label": "WiFi Name", "type": "text" },
         { "label": "WiFi Password", "type": "text" },
@@ -216,19 +241,24 @@
         { "label": "Primary Point Of Contact and Role", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "label": "Primary POC Cell", "type": "text", "indent": 1 },
         { "label": "Primary POC Email", "type": "text", "indent": 1 },
+
         { "label": "Additional POC and Role", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "label": "Additional POC Email", "type": "text", "indent": 1 },
         { "label": "Include in communications?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
 
+        { "label": "Additional POC and Role (2)", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
+        { "label": "Additional POC Email (2)", "type": "text", "indent": 1 },
+        { "label": "Include in communications? (2)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
+
         { "subsection": true, "label": "CEM" },
         { "label": "Customer Engagement Manager (CEM) Assigned to Store", "type": "text" },
 
-        { "subsection": true, "label": "Dealership Champions" },
+        { "subsection": true, "label": "Dealership Champions", "depth": 2 },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
 
-        { "subsection": true, "label": "Blockers/Needs Work" },
+        { "subsection": true, "label": "Blockers/Needs Work", "depth": 2 },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
         { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
@@ -241,6 +271,7 @@
         { "label": "Additional Comments", "type": "text", "wide": true }
       ]
     },
+
     {
       "name": "Training Readiness – Roles",
       "rows": [
@@ -311,6 +342,7 @@
         { "label": "Notes (PU&D)", "type": "text", "wide": true }
       ]
     },
+
     {
       "name": "Creation Opcodes",
       "rows": [
@@ -345,6 +377,7 @@
         { "label": "Front Differential Service", "type": "text", "placeholder": "$0.00" }
       ]
     },
+
     {
       "name": "Creation Opcodes (cont.)",
       "rows": [
@@ -379,6 +412,7 @@
         { "label": "Tire Plug", "type": "text", "placeholder": "$0.00" }
       ]
     },
+
     {
       "name": "Creation Opcodes (final)",
       "rows": [
@@ -425,6 +459,7 @@
         { "label": "32", "type": "text" }
       ]
     },
+
     {
       "name": "DMS Integration",
       "rows": [
@@ -434,6 +469,7 @@
         { "label": "Additional Integration Notes", "type": "text", "wide": true }
       ]
     },
+
     {
       "name": "Workflow Notifications",
       "rows": [
@@ -455,6 +491,7 @@
         { "label": "Notes", "type": "text", "wide": true }
       ]
     },
+
     {
       "name": "Training Summary Notes",
       "rows": [
@@ -480,7 +517,7 @@
   </div>
 
   <script>
-  // Catch any errors up front and show them visibly
+  // Visible error reporting
   window.onerror = function(msg, src, line, col){
     const app = document.querySelector('.app'); if(!app) return;
     const warn = document.createElement('div'); warn.className = 'warn';
@@ -491,8 +528,7 @@
   if (typeof CSS === 'undefined' || typeof CSS.escape !== 'function') {
     window.CSS = window.CSS || {};
     window.CSS.escape = function(v){
-      return String(v)
-        .replace(/[^a-zA-Z0-9_\-]/g, '\\$&');
+      return String(v).replace(/[^a-zA-Z0-9_\-]/g, '\\$&');
     };
   }
 
@@ -513,11 +549,11 @@
 
   function indentLevelFromLabel(label){
     if(!label) return 0; let level = 0;
-    const m = label.match(/^([ \\t]+)/); if(m){ level = Math.min(4, Math.floor(m[1].length / 2)); }
-    if (/^[ \\t]*[-–—•>|»]\\s+/.test(label)) level = Math.min(4, level + 1);
+    const m = label.match(/^([ \t]+)/); if(m){ level = Math.min(4, Math.floor(m[1].length / 2)); }
+    if (/^[ \t]*[-–—•>|»]\s+/.test(label)) level = Math.min(4, level + 1);
     return level;
   }
-  function cleanLabel(label){ if(!label) return ""; return label.replace(/^[ \\t]*[-–—•>|»]\\s+/, "").trimStart(); }
+  function cleanLabel(label){ if(!label) return ""; return label.replace(/^[ \t]*[-–—•>|»]\s+/, "").trimStart(); }
 
   const tabs = document.querySelector('.tabs');
 
@@ -564,9 +600,9 @@
     `;
     page.appendChild(toolbar);
 
-    // Sections
+    // Build sections
     const rows = pg.rows || [];
-    let sectionBody = null;
+    let sectionBody = null;     // .section-body container
 
     function startSection(titleText){
       const sec = document.createElement('div'); sec.className = 'section';
@@ -576,18 +612,20 @@
       sec.appendChild(sectionBody);
       page.appendChild(sec);
     }
-    function addSubsection(titleText){
-      const sst = document.createElement('div'); sst.className = 'subsection-title'; sst.textContent = titleText || '';
+    function addSubsection(titleText, depth){
+      const sst = document.createElement('div'); sst.className = 'subsection-title';
+      if (depth === 2) sst.classList.add('level-2');
+      sst.textContent = titleText || '';
       if(!sectionBody){ startSection(''); }
       sectionBody.appendChild(sst);
     }
 
     rows.forEach((row, i) => {
       if(row.section){ startSection(row.label || ''); return; }
-      if(row.subsection){ addSubsection(row.label || ''); return; }
+      if(row.subsection){ addSubsection(row.label || '', row.depth || 1); return; }
       if(!sectionBody){ startSection(''); }
 
-      // Combined Name/Role
+      // Special combined row: Name (left input) + Role (right dropdown)
       if(row.type === 'nameRole'){
         const q = document.createElement('div'); q.className = 'q';
         const wrap = document.createElement('div'); wrap.className = 'q-row';
@@ -607,11 +645,14 @@
       const q = document.createElement('div'); q.className = 'q indent-'+Math.max(0, Math.min(4, indent));
       const rowWrap = document.createElement('div'); rowWrap.className = 'q-row';
 
+      // Wide notes/comments go full width and auto-expand
       const isNotes = row.wide || /additional comments|notes/i.test(labelText);
       if(isNotes) rowWrap.classList.add('wide');
 
+      // Label
       const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = labelText || 'Field';
 
+      // Field
       let fieldEl;
       if (row.type === 'dropdown' && Array.isArray(row.options)){
         fieldEl = document.createElement('select'); fieldEl.className = 'select';
@@ -629,12 +670,14 @@
           fieldEl.placeholder = row.placeholder || 'Type here…';
         }
       } else {
+        // default textarea
         fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
         fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
         fieldEl.placeholder = row.placeholder || 'Type here…';
       }
 
       if(isNotes){
+        // full width: hide label, single column
         rowWrap.appendChild(fieldEl);
       }else{
         rowWrap.appendChild(lab);
@@ -645,7 +688,7 @@
       sectionBody.appendChild(q);
     });
 
-    // Footer
+    // Footer (static lines)
     const footer = document.createElement('div'); footer.className = 'footer';
     footer.innerHTML = `
       <div class="fblock"><span>Trainer Name:</span> <span class="line"></span></div>
@@ -670,6 +713,7 @@
       }
     });
 
+    // Auto-grow all textareas initially
     setTimeout(()=>page.querySelectorAll('textarea').forEach(autoGrow), 0);
 
     toolbar.querySelector('[data-action="savePage"]').addEventListener('click', () => { save(); alert('Page saved.'); });
@@ -728,6 +772,7 @@
   function setActive(i){
     pages.forEach((p,j)=>p.classList.toggle('active', i===j));
     [...tabsBar.children].forEach((t,j)=>t.classList.toggle('active', i===j));
+    // load per-page fields
     const raw = localStorage.getItem('mkChecklist:'+pages[i].dataset.page);
     if(raw){
       try{
@@ -738,6 +783,7 @@
         });
       }catch(_e){}
     }
+    // sync the dealership subline across headers
     document.querySelectorAll('.header-subline').forEach(el => el.textContent = getSubline());
   }
   setActive(0);
