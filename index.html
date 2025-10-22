@@ -26,7 +26,7 @@
   .page{display:none;page-break-after:always}
   .page.active{display:block}
 
-  /* MAIN HEADER: dark gray fill, white text; title + subline */
+  /* MAIN HEADER */
   .page-header{
     display:grid;
     grid-template-columns: auto 1fr;
@@ -68,13 +68,29 @@
     background:#fff;
   }
 
+  /* Secondary sub-tab (inside green box) */
+  .subsection-title{
+    display:block;
+    background:#fff5ef;
+    color:#5a2d0f;
+    border:1px solid var(--orange);
+    border-radius:10px;
+    padding:6px 10px;
+    font-size:13px; font-weight:800;
+    margin:6px 0 8px;
+  }
+
   /* Questions inside green box */
   .q{margin:10px 0}
   .q-row{display:grid;grid-template-columns: 1fr 300px;gap:14px;align-items:start}
+  .q-row.wide{grid-template-columns: 1fr} /* notes/comments full width */
   .q .label{font-weight:600;font-size:12px;color:#222;margin-top:2px}
-  .select,.textarea{width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)}
+  .select,.textarea,.textinput{
+    width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)
+  }
   .select{height:34px}
-  .textarea{min-height:60px;resize:vertical}
+  .textarea{min-height:100px;resize:none} /* we auto-grow via JS */
+  .textinput{height:34px}
 
   /* MUCH deeper indentation inside green boxes */
   .indent-1{margin-left:28px}
@@ -115,19 +131,19 @@
       "rows": [
         {"section": true, "label": "Handoff Notes"},
         {"label":"Did you review the handoff notes in Salesforce?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Deployment handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"ServiceCart handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Scheduler handoff?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Did you review the Salesforce contract and notes?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"label":"Deployment handoff?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"ServiceCart handoff?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Scheduler handoff?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Did you review the Salesforce contract and notes?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
 
         {"section": true, "label": "Dealership Personnel"},
         {"label":"Does the personnel count in the admin tool appear accurate?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are all of the managers active?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Number of active/pending advisors?","type":"text","placeholder":"Enter count…"},
-        {"label":"Number of active/pending parts reps?","type":"text","placeholder":"Enter count…"},
-        {"label":"Number of active/pending techs?","type":"text","placeholder":"Enter count…"},
-        {"label":"Number of active/pending BDC reps?","type":"text","placeholder":"Enter count…"},
-        {"label":"Is the BDC onsite?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"label":"Are all of the managers active?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Number of active/pending advisors?","type":"text","placeholder":"Enter count…", "indent":1},
+        {"label":"Number of active/pending parts reps?","type":"text","placeholder":"Enter count…", "indent":1},
+        {"label":"Number of active/pending techs?","type":"text","placeholder":"Enter count…", "indent":1},
+        {"label":"Number of active/pending BDC reps?","type":"text","placeholder":"Enter count…", "indent":1},
+        {"label":"Is the BDC onsite?","type":"dropdown","options":["","Yes","No","N/A"], "indent":2},
         {"label":"Do all of the users have DMS IDs in the admin tool?","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"Do all of the advisors have direct dial numbers in the admin tool?","type":"dropdown","options":["","Yes","No","N/A"]},
 
@@ -137,42 +153,45 @@
         {"label":"How many service drives does Google Maps show?","type":"text"},
         {"label":"Were the correct numbers of buildings needing training accurately relayed in the handoff? (Service drives)","type":"dropdown","options":["","Yes","No","N/A"]},
 
-        {"section": true, "label": "Products – Communication"},
-        {"label":"Is the integration functioning properly? (historic pull, customer information, etc.)","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are texts and calls reaching the end user? (no errors)","type":"dropdown","options":["","Yes","No","N/A"]},
+        /* PRODUCTS parent with secondary subtabs */
+        {"section": true, "label": "Products"},
 
-        {"section": true, "label": "Products – Payments"},
-        {"label":"Is integration working correctly? (Dollar amount, descriptions, etc.)","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Do the invoices sent to the customer appear correctly?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"subsection": true, "label": "Communication"},
+        {"label":"Is the integration functioning properly? (historic pull, customer information, etc.)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Are texts and calls reaching the end user? (no errors)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
 
-        {"section": true, "label": "Products – ServiceCart"},
-        {"label":"Does integration appear to be working correctly? (RO's pull, parts, etc.)","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"How many workflows were created?","type":"text"},
-        {"label":"Do the workflows seem sensible?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"How many PMI forms were created?","type":"text"},
-        {"label":"Do the MPI forms appear accurate and reasonable?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are the creation and prevention rules in place and correct for each inspection type?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are there assignment rules?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Have parts been uploaded for DMS types without integration?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Has a parts process been created for DMS types without integration?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Sales Tax %","type":"text"},
-        {"label":"Shop Fees %","type":"text"},
-        {"label":"Minimum Shop Fees %","type":"text"},
-        {"label":"Maximum Shop Fees %","type":"text"},
-        {"label":"Tax Shop Fees?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"subsection": true, "label": "Payments"},
+        {"label":"Is integration working correctly? (Dollar amount, descriptions, etc.)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Do the invoices sent to the customer appear correctly?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
 
-        {"section": true, "label": "Products – Scheduler"},
-        {"label":"Are the correct opcodes uploaded to correspond with the inspection questions?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are there different teams in the shop? (Quicklane, repair, Sprinter, etc.)","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Does the scheduler setup look correct? (hours, capacity, opcodes, labor codes, etc.)","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Are there capacity rules?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"subsection": true, "label": "ServiceCart"},
+        {"label":"Does integration appear to be working correctly? (RO's pull, parts, etc.)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"How many workflows were created?","type":"text", "indent":1},
+        {"label":"Do the workflows seem sensible?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"How many PMI forms were created?","type":"text", "indent":1},
+        {"label":"Do the MPI forms appear accurate and reasonable?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Are the creation and prevention rules in place and correct for each inspection type?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Are there assignment rules?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Have parts been uploaded for DMS types without integration?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Has a parts process been created for DMS types without integration?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Sales Tax %","type":"text", "indent":1},
+        {"label":"Shop Fees %","type":"text", "indent":1},
+        {"label":"Minimum Shop Fees %","type":"text", "indent":1},
+        {"label":"Maximum Shop Fees %","type":"text", "indent":1},
+        {"label":"Tax Shop Fees?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
 
-        {"section": true, "label": "Products – ServiceConnect"},
-        {"label":"Are the automation rules set up and activated?","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"subsection": true, "label": "Scheduler"},
+        {"label":"Are the correct opcodes uploaded to correspond with the inspection questions?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Are there different teams in the shop? (Quicklane, repair, Sprinter, etc.)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Does the scheduler setup look correct? (hours, capacity, opcodes, labor codes, etc.)","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+        {"label":"Are there capacity rules?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
+
+        {"subsection": true, "label": "ServiceConnect"},
+        {"label":"Are the automation rules set up and activated?","type":"dropdown","options":["","Yes","No","N/A"], "indent":1},
 
         {"section": true, "label": "Monday Visit – iOS Devices"},
         {"label":"Do the techs have iOS devices?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"How many techs are using Android devices?","type":"text"},
+        {"label":"How many techs are using Android devices?","type":"text","indent":1},
         {"label":"Do the advisors have iOS devices?","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"Were all of the devices set up and on the correct WiFi prior to your arrival?","type":"dropdown","options":["","Yes","No","N/A"]},
 
@@ -191,7 +210,7 @@
         {"label":"What time will the Service Manager arrive at work each day?","type":"text"},
 
         {"section": true, "label": "Additional Comments"},
-        {"label":"Additional Comments","type":"text","placeholder":"Type here…"}
+        {"label":"Additional Comments","type":"text","placeholder":"Type here…", "wide": true}
       ]
     },
 
@@ -201,31 +220,38 @@
         {"section": true, "label": "Header"},
         {"label":"Dealership Name - DID","type":"text"},
         {"label":"Date","type":"text"},
+
         {"section": true, "label": "WiFi Information"},
         {"label":"WiFi Name","type":"text"},
         {"label":"WiFi Password","type":"text"},
+
         {"section": true, "label": "Dealership Contacts"},
         {"label":"Primary Point Of Contact and Role","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Primary POC Cell","type":"text"},
-        {"label":"Primary POC Email","type":"text"},
+        {"label":"Primary POC Cell","type":"text","indent":1},
+        {"label":"Primary POC Email","type":"text","indent":1},
         {"label":"Additional POC and Role","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Additional POC Email","type":"text"},
-        {"label":"Include in communications?","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Additional POC and Role (2)","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Additional POC Email (2)","type":"text"},
-        {"label":"Include in communications? (2)","type":"dropdown","options":["","Yes","No","N/A"]},
+        {"label":"Additional POC Email","type":"text","indent":1},
+        {"label":"Include in communications?","type":"dropdown","options":["","Yes","No","N/A"],"indent":1},
+
+        {"subsection": true, "label": "CEM"},
         {"label":"Customer Engagement Manager (CEM) Assigned to Store","type":"text"},
-        {"label":"Name and Role of Product Champion 1","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Name and Role of Product Champion 2","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Name and Role of Product Champion 3","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
-        {"label":"Name and Role of Product Champion 4","type":"dropdown","options":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+
+        {"subsection": true, "label": "Dealership Champions"},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+
+        {"subsection": true, "label": "Blockers/Needs Work"},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
+        {"type":"nameRole","roleOptions":["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"]},
 
         {"section": true, "label": "Training Team"},
         {"label":"Lead Trainer","type":"text"},
         {"label":"Additional Trainers","type":"text"},
 
         {"section": true, "label": "Additional Comments"},
-        {"label":"Additional Comments","type":"text"}
+        {"label":"Additional Comments","type":"text","wide": true}
       ]
     },
 
@@ -289,14 +315,14 @@
         {"label":"Declined Services","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"ServiceConnect","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"Routing","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Notes (BDC)","type":"text"},
+        {"label":"Notes (BDC)","type":"text","wide": true},
 
         {"section": true, "label": "Pick Up & Delivery Drivers – Checklist"},
         {"label":"DMS ID","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"Login","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"PU&D","type":"dropdown","options":["","Yes","No","N/A"]},
         {"label":"Notifications","type":"dropdown","options":["","Yes","No","N/A"]},
-        {"label":"Notes (PU&D)","type":"text"}
+        {"label":"Notes (PU&D)","type":"text","wide": true}
       ]
     },
 
@@ -421,9 +447,9 @@
       "name": "DMS Integration",
       "rows": [
         {"section": true, "label": "Push-Based DMS – Reference Matrix Notes"},
-        {"label":"Product Integration Notes","type":"text"},
+        {"label":"Product Integration Notes","type":"text","wide": true},
         {"section": true, "label": "Pull-Based DMS – Reference Matrix Notes"},
-        {"label":"Additional Integration Notes","type":"text"}
+        {"label":"Additional Integration Notes","type":"text","wide": true}
       ]
     },
 
@@ -445,33 +471,27 @@
         {"label":"Not Needed","type":"dropdown","options":["","Yes","No","N/A"]},
 
         {"section": true, "label": "Notes"},
-        {"label":"Notes","type":"text"}
+        {"label":"Notes","type":"text","wide": true}
       ]
     },
 
     {
-      "name": "Pre/Post Training Notes",
+      "name": "Training Summary Notes",
       "rows": [
         {"section": true, "label": "Pre-Training & Monday Visit Notes"},
-        {"label":"Notes","type":"text"},
-        {"section": true, "label": "Additional Comments"},
-        {"label":"Additional Comments","type":"text"},
-        {"section": true, "label": "Post Training Notes – Tuesday"},
-        {"label":"Notes","type":"text"},
-        {"section": true, "label": "Additional Comments – Tuesday"},
-        {"label":"Additional Comments","type":"text"},
-        {"section": true, "label": "Post Training Notes – Wednesday"},
-        {"label":"Notes","type":"text"},
-        {"section": true, "label": "Additional Comments – Wednesday"},
-        {"label":"Additional Comments","type":"text"},
-        {"section": true, "label": "Post Training Notes – Thursday"},
-        {"label":"Notes","type":"text"},
-        {"section": true, "label": "Additional Comments – Thursday"},
-        {"label":"Additional Comments","type":"text"},
-        {"section": true, "label": "Post Training Notes (General)"},
-        {"label":"Notes","type":"text"},
-        {"section": true, "label": "Additional Comments (General)"},
-        {"label":"Additional Comments","type":"text"}
+        {"label":"Notes","type":"text","wide": true},
+
+        {"section": true, "label": "Tuesday Training Notes"},
+        {"label":"Notes","type":"text","wide": true},
+
+        {"section": true, "label": "Wednesday Training Notes"},
+        {"label":"Notes","type":"text","wide": true},
+
+        {"section": true, "label": "Thursday Training Notes"},
+        {"label":"Notes","type":"text","wide": true},
+
+        {"section": true, "label": "Training Note Summary"},
+        {"label":"Notes","type":"text","wide": true}
       ]
     }
   ]
@@ -525,10 +545,10 @@
     sub.setAttribute('data-ph','Enter the dealership name and DID');
     sub.textContent = getSubline();
 
-    // Layout grid cells: [logo | title], [logo | subline]
+    // Grid: [logo | title], [logo | subline]
     header.appendChild(img);
     header.appendChild(title);
-    header.appendChild(document.createElement('div')); // grid filler
+    header.appendChild(document.createElement('div'));
     header.appendChild(sub);
     page.appendChild(header);
 
@@ -544,9 +564,10 @@
     `;
     page.appendChild(toolbar);
 
-    // Sections: orange title + one green body for its questions
+    // Build sections
     const rows = pg.rows || [];
-    let sectionBody = null;
+    let sectionWrap = null;     // .section container
+    let sectionBody = null;     // .section-body container
 
     function startSection(titleText){
       const sec = document.createElement('div'); sec.className = 'section';
@@ -555,31 +576,81 @@
       sectionBody = document.createElement('div'); sectionBody.className = 'section-body';
       sec.appendChild(sectionBody);
       page.appendChild(sec);
+      sectionWrap = sec;
+    }
+    function addSubsection(titleText){
+      const sst = document.createElement('div'); sst.className = 'subsection-title'; sst.textContent = titleText || '';
+      if(!sectionBody){ startSection(''); }
+      sectionBody.appendChild(sst);
     }
 
     rows.forEach((row, i) => {
       if(row.section){ startSection(row.label || ''); return; }
+      if(row.subsection){ addSubsection(row.label || ''); return; }
       if(!sectionBody){ startSection(''); }
+
+      // Special combined row: Name (left input) + Role (right dropdown)
+      if(row.type === 'nameRole'){
+        const q = document.createElement('div'); q.className = 'q';
+        const wrap = document.createElement('div'); wrap.className = 'q-row';
+        const left = document.createElement('input'); left.className = 'textinput'; left.placeholder = 'Name';
+        left.id = (pg.name + '__name_role_left__' + i).replace(/\s+/g,'_');
+        const right = document.createElement('select'); right.className = 'select';
+        right.id = (pg.name + '__name_role_right__' + i).replace(/\s+/g,'_');
+        (row.roleOptions || ["","Service Advisor","Parts Rep","Technician","BDC Rep","Manager","Trainer","CEM","Product Champion"])
+          .forEach(o => { const opt=document.createElement('option'); opt.value=o; opt.textContent=o; right.appendChild(opt); });
+        // Place input in left column, dropdown in right (no text label)
+        const labelHolder = document.createElement('div'); labelHolder.className='label'; labelHolder.style.display='none';
+        wrap.appendChild(labelHolder);
+        wrap.appendChild(document.createElement('div')); // ensure grid columns
+        wrap.replaceChildren(left, right);  // actually place elements as 2-column
+        q.appendChild(wrap); sectionBody.appendChild(q);
+        return;
+      }
 
       const indent = (row.indent ?? indentLevelFromLabel(row.label || ''));
       const labelText = cleanLabel(row.label || '');
       const q = document.createElement('div'); q.className = 'q indent-'+Math.max(0, Math.min(4, indent));
       const rowWrap = document.createElement('div'); rowWrap.className = 'q-row';
 
+      // Wide notes/comments go full width and auto-expand
+      const isNotes = row.wide || /additional comments|notes/i.test(labelText);
+      if(isNotes) rowWrap.classList.add('wide');
+
+      // Label (unless nameRole handled above)
       const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = labelText || 'Field';
-      rowWrap.appendChild(lab);
 
-      const id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
-
+      // Field
+      let fieldEl;
       if (row.type === 'dropdown' && Array.isArray(row.options)){
-        const sel = document.createElement('select'); sel.className = 'select'; sel.id = id;
+        fieldEl = document.createElement('select'); fieldEl.className = 'select';
+        fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
         const opts = (row.options.length && row.options[0] === '') ? row.options : [''].concat(row.options);
-        opts.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; sel.appendChild(opt); });
-        rowWrap.appendChild(sel);
+        opts.forEach(o => { const opt = document.createElement('option'); opt.value = o; opt.textContent = o; fieldEl.appendChild(opt); });
+      } else if (row.type === 'text') {
+        // Notes/comments use textarea
+        if(isNotes){
+          fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
+          fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+          fieldEl.placeholder = row.placeholder || 'Type here…';
+        } else {
+          fieldEl = document.createElement('input'); fieldEl.type='text'; fieldEl.className='textinput';
+          fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+          fieldEl.placeholder = row.placeholder || 'Type here…';
+        }
       } else {
-        const ta = document.createElement('textarea'); ta.className = 'textarea'; ta.id = id;
-        ta.placeholder = row.placeholder || 'Type here…';
-        rowWrap.appendChild(ta);
+        // default textarea
+        fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
+        fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
+        fieldEl.placeholder = row.placeholder || 'Type here…';
+      }
+
+      if(isNotes){
+        // full width: hide label, single column
+        rowWrap.appendChild(fieldEl);
+      }else{
+        rowWrap.appendChild(lab);
+        rowWrap.appendChild(fieldEl);
       }
 
       q.appendChild(rowWrap);
@@ -597,18 +668,22 @@
 
     // Save/Load/Export/Import
     const key = () => 'mkChecklist:'+pg.name;
-    const collect = () => { const data = { fields: {} }; page.querySelectorAll('select, textarea').forEach(el => data.fields[el.id] = el.value); return data; };
-    const apply = (data) => { if(!data) return; Object.entries(data.fields || {}).forEach(([id,val]) => { const el = page.querySelector('#'+CSS.escape(id)); if(el) el.value = val; }); };
+    const collect = () => { const data = { fields: {} }; page.querySelectorAll('select, textarea, input.textinput').forEach(el => data.fields[el.id] = el.value); return data; };
+    const apply = (data) => { if(!data) return; Object.entries(data.fields || {}).forEach(([id,val]) => { const el = page.querySelector('#'+CSS.escape(id)); if(el) el.value = val; autoGrow(el); }); };
     const save = () => { localStorage.setItem(key(), JSON.stringify(collect())); };
     const load = () => { const raw = localStorage.getItem(key()); if(raw) apply(JSON.parse(raw)); };
 
     page.addEventListener('input', (e) => {
       if(e.target === sub){
         setSubline(sub.textContent.trim());
-      } else if(e.target.matches('select, textarea')){
+      } else if(e.target.matches('select, textarea, input.textinput')){
+        autoGrow(e.target);
         save();
       }
     });
+
+    // Auto-grow all textareas initially
+    setTimeout(()=>page.querySelectorAll('textarea').forEach(autoGrow), 0);
 
     toolbar.querySelector('[data-action="savePage"]').addEventListener('click', () => { save(); alert('Page saved.'); });
     toolbar.querySelector('[data-action="loadPage"]').addEventListener('click', () => { load(); alert('Page loaded.'); });
@@ -620,7 +695,7 @@
       const all = { dealershipSubline: getSubline() };
       document.querySelectorAll('.page').forEach(pgEl => {
         const fields = {};
-        pgEl.querySelectorAll('select, textarea').forEach(el => fields[el.id] = el.value);
+        pgEl.querySelectorAll('select, textarea, input.textinput').forEach(el => fields[el.id] = el.value);
         all[pgEl.dataset.page] = { fields };
       });
       const blob = new Blob([JSON.stringify(all, null, 2)], {type:'application/json'});
@@ -637,7 +712,7 @@
           document.querySelectorAll('.page').forEach(pgEl => {
             const d = data[pgEl.dataset.page]; if(!d) return;
             Object.entries(d.fields || {}).forEach(([id,val]) => {
-              const el = pgEl.querySelector('#'+CSS.escape(id)); if(el) el.value = val;
+              const el = pgEl.querySelector('#'+CSS.escape(id)); if(el){ el.value = val; autoGrow(el); }
             });
           });
           alert('Imported data applied.');
@@ -647,6 +722,13 @@
     }
 
     return page;
+  }
+
+  function autoGrow(el){
+    if(el && el.tagName === 'TEXTAREA'){
+      el.style.height = 'auto';
+      el.style.height = (el.scrollHeight + 2) + 'px';
+    }
   }
 
   const pages = (SEED.pages || []).map(buildPage);
@@ -666,14 +748,15 @@
         const data = JSON.parse(raw);
         Object.entries(data.fields || {}).forEach(([id,val])=>{
           const el = pages[i].querySelector('#'+CSS.escape(id));
-          if(el) el.value = val;
+          if(el){ el.value = val; autoGrow(el); }
         });
       }catch(_e){}
     }
-    // sync subline across headers
+    // sync the dealership subline across headers
     document.querySelectorAll('.header-subline').forEach(el => el.textContent = getSubline());
   }
   setActive(0);
   </script>
 </body>
 </html>
+
