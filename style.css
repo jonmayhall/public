@@ -248,3 +248,51 @@ header {
     font-size: 14px;
   }
 }
+/* === Custom Page Layout for Pre-Training Checklist === */
+.page-section.active {
+  display: block;
+}
+.section-block {
+  margin-bottom: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  padding: 10px 14px;
+  margin: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 14px;
+}
+.checklist-row:last-child { border-bottom: none; }
+.checklist-row label {
+  flex: 1;
+  font-size: 15px;
+  padding-right: 20px;
+}
+.checklist-row select,
+.checklist-row input,
+.section-block textarea {
+  width: 250px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.section-block textarea {
+  width: calc(100% - 30px);
+  margin: 14px;
+  min-height: 100px;
+  resize: vertical;
+}
