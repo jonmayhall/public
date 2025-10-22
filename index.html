@@ -17,16 +17,13 @@
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;line-height:1.45}
   .app{max-width:var(--w);margin:0 auto;padding:20px}
 
-  /* Tabs */
   .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
   .tab{padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer;background:#fff;font-size:12px}
   .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  /* Page show/hide */
   .page{display:none;page-break-after:always}
   .page.active{display:block}
 
-  /* MAIN HEADER */
   .page-header{
     display:grid;
     grid-template-columns: auto 1fr;
@@ -46,20 +43,17 @@
   }
   .header-subline[contenteditable]:empty:before{content: attr(data-ph); color:#ffffffcc}
 
-  /* Toolbar */
   .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
   .btn{padding:6px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px}
   .btn.outline{background:transparent}
   .btn.file input{display:none}
 
-  /* SECTION: full-width orange subheader + thin orange outline around whole section */
   .section{margin:20px 0; border:1px solid var(--orange); border-radius:16px; background:#fff; overflow:hidden}
   .section-title{
     display:block; background:var(--orange); color:#fff;
     border-bottom:1px solid var(--orange);
     padding:10px 16px; font-size:16px; font-weight:800; letter-spacing:.2px;
   }
-  /* One green outlined box per section, inset so both borders show */
   .section-body{
     border:2px solid var(--green);
     border-radius:14px;
@@ -68,7 +62,6 @@
     background:#fff;
   }
 
-  /* Secondary sub-tab (inside green box) */
   .subsection-title{
     display:block;
     background:#fff5ef;
@@ -79,35 +72,50 @@
     font-size:13px; font-weight:800;
     margin:6px 0 8px;
   }
-  /* Sub-sub-section (level 2) */
+  /* Sub-sub-section (level 2) — filled light green and indented */
   .subsection-title.level-2{
-    background:#fff;
-    color:#333;
+    background:#f7faed;
     border:1px dashed var(--orange);
+    color:#222;
     font-weight:700;
     font-size:12px;
-    margin-top:2px;
+    margin-top:6px;
+    margin-left:30px;
+    margin-right:30px;
+    padding:8px 12px;
+    border-radius:8px;
   }
 
-  /* Questions inside green box */
   .q{margin:10px 0}
   .q-row{display:grid;grid-template-columns: 1fr 300px;gap:14px;align-items:start}
-  .q-row.wide{grid-template-columns: 1fr} /* notes/comments full width */
+  .q-row.wide{grid-template-columns: 1fr}
   .q .label{font-weight:600;font-size:12px;color:#222;margin-top:2px}
   .select,.textarea,.textinput{
     width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)
   }
   .select{height:34px}
-  .textarea{min-height:100px;resize:none} /* we auto-grow via JS */
+  .textarea{min-height:100px;resize:none}
   .textinput{height:34px}
 
-  /* Deeper indentation inside green boxes */
+  /* Base indent classes (global) */
   .indent-1{margin-left:28px}
   .indent-2{margin-left:48px}
   .indent-3{margin-left:72px}
   .indent-4{margin-left:96px}
 
-  /* Footer (static lines) */
+  /* Override: default indentation for these two pages */
+  .page[data-page="Handoff & Review"] .q,
+  .page[data-page="Contacts & WiFi"] .q { margin-left:30px; }
+  /* Deeper for child items on those pages */
+  .page[data-page="Handoff & Review"] .q.indent-1,
+  .page[data-page="Contacts & WiFi"] .q.indent-1 { margin-left:60px; }
+  .page[data-page="Handoff & Review"] .q.indent-2,
+  .page[data-page="Contacts & WiFi"] .q.indent-2 { margin-left:90px; }
+  .page[data-page="Handoff & Review"] .q.indent-3,
+  .page[data-page="Contacts & WiFi"] .q.indent-3 { margin-left:120px; }
+  .page[data-page="Handoff & WiFi"] .q.indent-4,
+  .page[data-page="Contacts & WiFi"] .q.indent-4 { margin-left:150px; }
+
   .footer{display:flex;gap:24px;align-items:center;justify-content:flex-end;margin-top:14px;color:#333;font-size:12px}
   .footer .fblock{display:flex;align-items:center;gap:8px}
   .footer .line{display:inline-block;min-width:180px;border-bottom:1px solid #333;height:16px}
@@ -130,7 +138,6 @@
   <div class="app">
     <div class="tabs"></div>
 
-    <!-- DATA (valid JSON only) -->
     <script id="mk-data" type="application/json">
 {
   "logo": "logo.png",
@@ -517,14 +524,12 @@
   </div>
 
   <script>
-  // Visible error reporting
   window.onerror = function(msg, src, line, col){
     const app = document.querySelector('.app'); if(!app) return;
     const warn = document.createElement('div'); warn.className = 'warn';
     warn.textContent = 'Error: ' + msg + ' at ' + (line||'?') + ':' + (col||'?'); app.prepend(warn);
   };
 
-  // CSS.escape polyfill for older Safari
   if (typeof CSS === 'undefined' || typeof CSS.escape !== 'function') {
     window.CSS = window.CSS || {};
     window.CSS.escape = function(v){
@@ -532,7 +537,6 @@
     };
   }
 
-  // Parse JSON safely
   let SEED = null;
   (function(){
     try{
@@ -557,7 +561,6 @@
 
   const tabs = document.querySelector('.tabs');
 
-  // Global dealership subline sync
   const SUBLINE_KEY = 'mkChecklist:dealershipSubline';
   function getSubline(){ return localStorage.getItem(SUBLINE_KEY) || ''; }
   function setSubline(val){
@@ -568,7 +571,6 @@
   function buildPage(pg){
     const page = document.createElement('section'); page.className = 'page'; page.dataset.page = pg.name;
 
-    // Header
     const header = document.createElement('div'); header.className = 'page-header';
     const img = document.createElement('img'); img.className = 'logo'; img.alt = 'myKaarma logo';
     if(SEED.logo){ img.src = SEED.logo; } else { img.style.display = 'none'; }
@@ -588,7 +590,6 @@
     header.appendChild(sub);
     page.appendChild(header);
 
-    // Toolbar
     const toolbar = document.createElement('div');
     toolbar.className = 'toolbar';
     toolbar.innerHTML = `
@@ -600,9 +601,8 @@
     `;
     page.appendChild(toolbar);
 
-    // Build sections
     const rows = pg.rows || [];
-    let sectionBody = null;     // .section-body container
+    let sectionBody = null;
 
     function startSection(titleText){
       const sec = document.createElement('div'); sec.className = 'section';
@@ -625,7 +625,6 @@
       if(row.subsection){ addSubsection(row.label || '', row.depth || 1); return; }
       if(!sectionBody){ startSection(''); }
 
-      // Special combined row: Name (left input) + Role (right dropdown)
       if(row.type === 'nameRole'){
         const q = document.createElement('div'); q.className = 'q';
         const wrap = document.createElement('div'); wrap.className = 'q-row';
@@ -645,14 +644,11 @@
       const q = document.createElement('div'); q.className = 'q indent-'+Math.max(0, Math.min(4, indent));
       const rowWrap = document.createElement('div'); rowWrap.className = 'q-row';
 
-      // Wide notes/comments go full width and auto-expand
       const isNotes = row.wide || /additional comments|notes/i.test(labelText);
       if(isNotes) rowWrap.classList.add('wide');
 
-      // Label
       const lab = document.createElement('div'); lab.className = 'label'; lab.textContent = labelText || 'Field';
 
-      // Field
       let fieldEl;
       if (row.type === 'dropdown' && Array.isArray(row.options)){
         fieldEl = document.createElement('select'); fieldEl.className = 'select';
@@ -670,14 +666,12 @@
           fieldEl.placeholder = row.placeholder || 'Type here…';
         }
       } else {
-        // default textarea
         fieldEl = document.createElement('textarea'); fieldEl.className = 'textarea';
         fieldEl.id = (pg.name + '__' + (labelText || ('row'+i))).replace(/\s+/g, '_');
         fieldEl.placeholder = row.placeholder || 'Type here…';
       }
 
       if(isNotes){
-        // full width: hide label, single column
         rowWrap.appendChild(fieldEl);
       }else{
         rowWrap.appendChild(lab);
@@ -688,7 +682,6 @@
       sectionBody.appendChild(q);
     });
 
-    // Footer (static lines)
     const footer = document.createElement('div'); footer.className = 'footer';
     footer.innerHTML = `
       <div class="fblock"><span>Trainer Name:</span> <span class="line"></span></div>
@@ -697,7 +690,6 @@
     `;
     page.appendChild(footer);
 
-    // Save/Load/Export/Import
     const key = () => 'mkChecklist:'+pg.name;
     const collect = () => { const data = { fields: {} }; page.querySelectorAll('select, textarea, input.textinput').forEach(el => data.fields[el.id] = el.value); return data; };
     const apply = (data) => { if(!data) return; Object.entries(data.fields || {}).forEach(([id,val]) => { const el = page.querySelector('#'+CSS.escape(id)); if(el) { el.value = val; autoGrow(el);} }); };
@@ -713,7 +705,6 @@
       }
     });
 
-    // Auto-grow all textareas initially
     setTimeout(()=>page.querySelectorAll('textarea').forEach(autoGrow), 0);
 
     toolbar.querySelector('[data-action="savePage"]').addEventListener('click', () => { save(); alert('Page saved.'); });
@@ -772,7 +763,6 @@
   function setActive(i){
     pages.forEach((p,j)=>p.classList.toggle('active', i===j));
     [...tabsBar.children].forEach((t,j)=>t.classList.toggle('active', i===j));
-    // load per-page fields
     const raw = localStorage.getItem('mkChecklist:'+pages[i].dataset.page);
     if(raw){
       try{
@@ -783,7 +773,6 @@
         });
       }catch(_e){}
     }
-    // sync the dealership subline across headers
     document.querySelectorAll('.header-subline').forEach(el => el.textContent = getSubline());
   }
   setActive(0);
