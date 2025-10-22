@@ -38,17 +38,13 @@
     border-radius:16px; padding:12px 16px; margin-bottom:14px;
   }
   .logo{height:40px; grid-row:1 / span 2}
-  .header-title{
-    font-weight:900; font-size:24px; letter-spacing:.2px; margin:0;
-  }
+  .header-title{font-weight:900; font-size:24px; letter-spacing:.2px; margin:0}
   .header-subline{
     font-weight:600; font-size:14px; opacity:.95;
     outline:none; border-radius:8px; padding:2px 6px;
     background:transparent; color:#fff;
   }
-  .header-subline[contenteditable]:empty:before{
-    content: attr(data-ph); color:#ffffffcc;
-  }
+  .header-subline[contenteditable]:empty:before{content: attr(data-ph); color:#ffffffcc}
 
   /* Toolbar */
   .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
@@ -56,38 +52,35 @@
   .btn.outline{background:transparent}
   .btn.file input{display:none}
 
-  /* SECTION: orange subheader bar + one green outlined body per section */
-  .section{margin:16px 0}
+  /* SECTION: full-width orange subheader + thin orange outline around whole section */
+  .section{margin:20px 0; border:1px solid var(--orange); border-radius:16px; background:#fff; overflow:hidden}
   .section-title{
-    display:inline-block;
-    background:var(--orange);
-    color:#fff;
-    border:2px solid var(--orange);
-    border-radius:12px;
-    padding:6px 12px;
-    font-size:16px; font-weight:800; letter-spacing:.2px;
-    margin-bottom:8px;
+    display:block; background:var(--orange); color:#fff;
+    border-bottom:1px solid var(--orange);
+    padding:10px 16px; font-size:16px; font-weight:800; letter-spacing:.2px;
   }
+  /* One green outlined box per section, inset so both borders show */
   .section-body{
     border:2px solid var(--green);
-    border-radius:var(--radius);
-    padding:12px;
+    border-radius:14px;
+    margin:12px;
+    padding:14px;
     background:#fff;
   }
 
-  /* Questions inside green box: label left, compact control right; no inner borders */
-  .q{margin:8px 0}
-  .q-row{display:grid;grid-template-columns: 1fr 280px;gap:12px;align-items:start}
+  /* Questions inside green box */
+  .q{margin:10px 0}
+  .q-row{display:grid;grid-template-columns: 1fr 300px;gap:14px;align-items:start}
   .q .label{font-weight:600;font-size:12px;color:#222;margin-top:2px}
   .select,.textarea{width:100%;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--field)}
   .select{height:34px}
   .textarea{min-height:60px;resize:vertical}
 
-  /* Indentation for sub-items */
-  .indent-1{margin-left:12px}
-  .indent-2{margin-left:24px}
-  .indent-3{margin-left:36px}
-  .indent-4{margin-left:48px}
+  /* MUCH deeper indentation inside green boxes */
+  .indent-1{margin-left:28px}
+  .indent-2{margin-left:48px}
+  .indent-3{margin-left:72px}
+  .indent-4{margin-left:96px}
 
   /* Footer (static lines) */
   .footer{display:flex;gap:24px;align-items:center;justify-content:flex-end;margin-top:14px;color:#333;font-size:12px}
@@ -532,10 +525,10 @@
     sub.setAttribute('data-ph','Enter the dealership name and DID');
     sub.textContent = getSubline();
 
-    // Layout in grid: [logo | title], [logo | subline]
+    // Layout grid cells: [logo | title], [logo | subline]
     header.appendChild(img);
     header.appendChild(title);
-    header.appendChild(document.createElement('div')); // grid filler (keeps layout predictable)
+    header.appendChild(document.createElement('div')); // grid filler
     header.appendChild(sub);
     page.appendChild(header);
 
@@ -551,7 +544,7 @@
     `;
     page.appendChild(toolbar);
 
-    // Sections: orange title + one green body for all its questions
+    // Sections: orange title + one green body for its questions
     const rows = pg.rows || [];
     let sectionBody = null;
 
@@ -677,7 +670,7 @@
         });
       }catch(_e){}
     }
-    // sync subline across all headers
+    // sync subline across headers
     document.querySelectorAll('.header-subline').forEach(el => el.textContent = getSubline());
   }
   setActive(0);
