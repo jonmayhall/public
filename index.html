@@ -1,507 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>myKaarma – Onsite Training Checklist</title>
+  <title>myKaarma – Interactive Training Checklist</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
-
 <body>
-  <!-- === Loading Spinner === -->
-  <div id="loader">
-    <div class="spinner"></div>
-    <p>Loading checklist…</p>
-  </div>
-
-  <!-- === Main App Wrapper === -->
-  <div id="app" class="hidden">
-
-    <!-- === Sidebar === -->
-    <aside id="sidebar" class="sidebar">
+  <div id="app">
+    <aside id="sidebar">
       <div class="sidebar-header">
-        <img src="mykaarma_logo.png" alt="myKaarma Logo" class="logo" />
-        <h2>Training Checklist</h2>
-        <button id="toggleSidebar" class="toggle-btn">☰</button>
+        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
       </div>
-      <nav id="nav"></nav>
+      <nav>
+        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
+        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
+        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      </nav>
     </aside>
 
-    <!-- === Main Content === -->
     <main id="content">
-      <header>
-        <h1>myKaarma Onsite Training Checklist</h1>
-        <div class="dealership-inputs">
-          <input id="dealershipName" type="text" placeholder="Enter Dealership Name" />
-          <input id="dealershipDID" type="text" placeholder="Enter DID" />
+      <!-- === PRE-TRAINING CHECKLIST === -->
+      <section id="pretraining" class="page-section active">
+        <h1>Pre-Training Checklist</h1>
+
+        <div class="section-block">
+          <h2>Handoff Notes</h2>
+          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
-      </header>
 
-      <!-- Container where each page renders -->
-    <!-- === PRE-TRAINING CHECKLIST === -->
-<section id="pretraining" class="page-section active">
-  <h1>Pre-Training Checklist</h1>
+        <div class="section-block">
+          <h2>Dealership Personnel</h2>
+          <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Are all of the managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
 
-  <!-- HANDOFF NOTES -->
-  <div class="section-block">
-    <h2>Handoff Notes</h2>
-    <div class="checklist-row">
-      <label>Deployment handoff?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>ServiceCart handoff?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Scheduler handoff?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-  </div>
+        <div class="section-block">
+          <h2>Location</h2>
+          <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
 
-  <!-- DEALERSHIP PERSONNEL -->
-  <div class="section-block">
-    <h2>Dealership Personnel</h2>
-    <div class="checklist-row">
-      <label>Does the personnel count in the admin tool appear accurate?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Are all of the managers active?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Number of active/pending advisors?</label>
-      <input type="text" placeholder="Enter count..." />
-    </div>
-    <div class="checklist-row">
-      <label>Number of active/pending parts reps?</label>
-      <input type="text" placeholder="Enter count..." />
-    </div>
-    <div class="checklist-row">
-      <label>Number of active/pending techs?</label>
-      <input type="text" placeholder="Enter count..." />
-    </div>
-    <div class="checklist-row">
-      <label>Number of active/pending BDC reps?</label>
-      <input type="text" placeholder="Enter count..." />
-    </div>
-    <div class="checklist-row">
-      <label>Is the BDC onsite?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Do all users have DMS IDs in the admin tool?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-  </div>
+        <div class="section-block">
+          <h2>Products</h2>
+          <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
 
-  <!-- LOCATION -->
-  <div class="section-block">
-    <h2>Location</h2>
-    <div class="checklist-row">
-      <label>How many buildings does Google Maps show?</label>
-      <input type="text" placeholder="Enter number..." />
-    </div>
-    <div class="checklist-row">
-      <label>Were the correct number of buildings needing training accurately relayed?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-  </div>
+        <div class="section-block">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      </section>
 
-  <!-- PRODUCTS -->
-  <div class="section-block">
-    <h2>Products</h2>
-    <div class="checklist-row">
-      <label>Communication – Integration functioning properly?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Payments – Integration working correctly?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-    </div>
-  </div>
-
-  <!-- ADDITIONAL COMMENTS -->
-  <div class="section-block">
-    <h2>Additional Comments</h2>
-    <textarea placeholder="Type here…"></textarea>
-  </div>
-</section>
+      <!-- === PLACEHOLDER FOR OTHER PAGES === -->
+      <section id="dealership-info" class="page-section"><h1>Dealership Information</h1><p>Coming next section…</p></section>
+      <section id="training-checklist" class="page-section"><h1>Training Checklist</h1></section>
+      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
+      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
+      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
+      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
     </main>
-
-    <!-- === Floating Buttons === -->
-    <button id="pdfButton" class="floating-btn">💾 PDF</button>
-    <button id="exportButton" class="floating-btn secondary">⬇ JSON</button>
-    <button id="scrollTop" class="scroll-top">↑</button>
-
-    <div id="popup" class="popup hidden">✅ Checklist saved as PDF successfully!</div>
   </div>
 
-  <!-- === Embedded JSON START === -->
-  <script>
-  const mkData = {
-    "logo": "mykaarma_logo.png",
-    "pages": [
-      {
-        "name": "Pre-Training Checklist",
-        "rows": [
-          { "section": true, "label": "Handoff Notes" },
-          { "label": "Deployment handoff?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-          { "label": "ServiceCart handoff?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-          { "label": "Scheduler handoff?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
+  <div id="floating-buttons">
+    <button id="pdfButton" class="floating-btn">Save as PDF</button>
+    <button id="exportButton" class="floating-btn secondary">Export JSON</button>
+  </div>
 
-          { "section": true, "label": "Dealership Personnel" },
-          { "label": "Does the personnel count in the admin tool appear accurate?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Are all of the managers active?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-          { "label": "Number of active/pending advisors?", "type": "text", "placeholder": "Enter count…", "indent": 1 },
-          { "label": "Number of active/pending parts reps?", "type": "text", "placeholder": "Enter count…", "indent": 1 },
-          { "label": "Number of active/pending techs?", "type": "text", "placeholder": "Enter count…", "indent": 1 },
-          { "label": "Number of active/pending BDC reps?", "type": "text", "placeholder": "Enter count…", "indent": 1 },
-          { "label": "Is the BDC onsite?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 2 },
-          { "label": "Do all of the users have DMS IDs in the admin tool?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Do all of the advisors have direct dial numbers in the admin tool?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-
-          { "section": true, "label": "Location" },
-          { "label": "How many buildings does Google Maps show?", "type": "text" },
-          { "label": "Were the correct numbers of buildings needing training accurately relayed in the handoff?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "How many service drives does Google Maps show?", "type": "text" },
-          { "label": "Were the correct numbers of buildings needing training accurately relayed in the handoff? (Service drives)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-
-          { "section": true, "label": "Products" },
-          { "subsection": true, "label": "Communication" },
-          { "label": "Is the integration functioning properly? (historic pull, customer information, etc.)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-          { "label": "Are texts and calls reaching the end user? (no errors)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 }
-        ]
-      },
-      {
-        "name": "Dealership Information",
-        "rows": [
-          { "section": true, "label": "WiFi Information" },
-          { "label": "WiFi Name", "type": "text" },
-          { "label": "WiFi Password", "type": "text" },
-
-          { "section": true, "label": "Dealership Contacts" },
-          { "label": "Primary Point Of Contact and Role", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
-          { "label": "Primary POC Cell", "type": "text", "indent": 1 },
-          { "label": "Primary POC Email", "type": "text", "indent": 1 },
-
-          { "label": "Additional POC and Role", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
-          { "label": "Additional POC Email", "type": "text", "indent": 1 },
-          { "label": "Include in communications?", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-
-          { "label": "Additional POC and Role (2)", "type": "dropdown", "options": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
-          { "label": "Additional POC Email (2)", "type": "text", "indent": 1 },
-          { "label": "Include in communications? (2)", "type": "dropdown", "options": ["", "Yes", "No", "N/A"], "indent": 1 },
-
-          { "subsection": true, "label": "CEM" },
-          { "label": "Customer Engagement Manager (CEM) Assigned to Store", "type": "text" },
-
-          { "subsection": true, "label": "Dealership Champions", "depth": 2 },
-          { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
-          { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] },
-          { "type": "nameRole", "roleOptions": ["", "Service Advisor", "Parts Rep", "Technician", "BDC Rep", "Manager", "Trainer", "CEM", "Product Champion"] }
-        ]
-      },
-      {
-        "name": "Training Checklist",
-        "rows": [
-          { "section": true, "label": "Technicians – Checklist" },
-          { "label": "DMS ID", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Login", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Mobile App Menu", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Search Bar", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "RO Assignment", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Dispatch", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "RO History", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Prev. Declines", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Workflow", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "OCR", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Edit ASR", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "ShopChat / Parts", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Adding Media", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Status Change", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Notifications", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Filters", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-
-          { "section": true, "label": "Parts Representatives – Checklist" },
-          { "label": "DMS ID", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Login", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Web App Search Bar", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "\"Take\" Function", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "DMS History", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Prev. Declines", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Parts Tab", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Edit ASR", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Shopchat / Parts", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Status Change", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Notifications", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] },
-          { "label": "Filters", "type": "dropdown", "options": ["", "Yes", "No", "N/A"] }
-        ]
-      },
-      {
-        "name": "Opcodes & Pricing",
-        "rows": [
-          { "section": true, "label": "Opcode Creation" },
-          { "label": "Creation Opcode", "type": "text" },
-          { "label": "Creation Opcode for Customer MPI", "type": "text" },
-          { "label": "Creation Opcode for (enter info)", "type": "text" },
-          { "label": "Creation Opcode for (enter info)", "type": "text" },
-
-          { "section": true, "label": "Labor & Parts Setup" },
-          { "label": "Updated Service / Opcode / Hours / Customer Pay Labor Rate", "type": "text" },
-          { "label": "Fixed Customer Pay Labor Rate", "type": "text" },
-          { "label": "Labor Charged – Set Parts Charged – Parts Retail – Service Cart", "type": "text" },
-
-          { "section": true, "label": "Common Services (enter pricing / notes)" },
-          { "label": "2 Wheel Alignment", "type": "text", "placeholder": "$0.00" },
-          { "label": "4 Spark Plug Replacement", "type": "text", "placeholder": "$0.00" },
-          { "label": "6 Spark Plug Replacement", "type": "text", "placeholder": "$0.00" },
-          { "label": "8 Spark Plug Replacement", "type": "text", "placeholder": "$0.00" },
-          { "label": "Alignment", "type": "text", "placeholder": "$0.00" },
-          { "label": "Battery Terminal Service", "type": "text", "placeholder": "$0.00" },
-          { "label": "Brake Fluid Exchange", "type": "text", "placeholder": "$0.00" },
-          { "label": "Cabin Air Filter", "type": "text", "placeholder": "$0.00" },
-          { "label": "Conventional Oil Change", "type": "text", "placeholder": "$0.00" },
-          { "label": "Conventional Oil Change with Tire Rotation", "type": "text", "placeholder": "$0.00" },
-          { "label": "Coolant Fluid Exchange", "type": "text", "placeholder": "$0.00" },
-          { "label": "Diagnosis", "type": "text", "placeholder": "$0.00" },
-          { "label": "Diesel Oil Change", "type": "text", "placeholder": "$0.00" },
-          { "label": "Engine Air Filter", "type": "text", "placeholder": "$0.00" },
-          { "label": "Front Brake Pads and Machine Rotors", "type": "text", "placeholder": "$0.00" },
-          { "label": "Front Brake Pads and New Rotors", "type": "text", "placeholder": "$0.00" },
-          { "label": "Front Differential Service", "type": "text", "placeholder": "$0.00" },
-          { "label": "Front Wiper Blades", "type": "text", "placeholder": "$0.00" },
-          { "label": "Fuel Additive", "type": "text", "placeholder": "$0.00" },
-          { "label": "Fuel Filter", "type": "text", "placeholder": "$0.00" }
-        ]
-      },
-      {
-        "name": "Opcodes & Pricing (cont.)",
-        "rows": [
-          { "label": "Fuel Injection/Induction Service", "type": "text", "placeholder": "$0.00" },
-          { "label": "Left Headlight Bulb", "type": "text", "placeholder": "$0.00" },
-          { "label": "Light Bulb Replacement", "type": "text", "placeholder": "$0.00" },
-          { "label": "Miscellaneous", "type": "text", "placeholder": "$0.00" },
-          { "label": "Mount & Balance 1 Tire", "type": "text", "placeholder": "$0.00" },
-          { "label": "Mount & Balance 2 Tires", "type": "text", "placeholder": "$0.00" },
-          { "label": "Mount & Balance 3 Tires", "type": "text", "placeholder": "$0.00" },
-          { "label": "Mount & Balance 4 Tires", "type": "text", "placeholder": "$0.00" },
-          { "label": "Power Steering Fluid Exchange", "type": "text", "placeholder": "$0.00" },
-          { "label": "Rear Brake Pads and Machine Rotors", "type": "text", "placeholder": "$0.00" },
-          { "label": "Rear Brake Pads and New Rotors", "type": "text", "placeholder": "$0.00" },
-          { "label": "Rear Differential Service 3 Qts", "type": "text", "placeholder": "$0.00" },
-          { "label": "Rear Differential Service 4 Qts", "type": "text", "placeholder": "$0.00" },
-          { "label": "Rear Wiper Blade", "type": "text", "placeholder": "$0.00" },
-          { "label": "Recall/Campaign", "type": "text", "placeholder": "$0.00" },
-          { "label": "Replace 12V Battery", "type": "text", "placeholder": "$0.00" },
-          { "label": "Replace Key FOB Battery", "type": "text", "placeholder": "$0.00" },
-          { "label": "Right Headlight Bulb", "type": "text", "placeholder": "$0.00" },
-          { "label": "Serpentine Drive Belt", "type": "text", "placeholder": "$0.00" },
-          { "label": "State Inspection", "type": "text", "placeholder": "$0.00" },
-          { "label": "State Inspection Emissions", "type": "text", "placeholder": "$0.00" },
-          { "label": "Synthetic Oil Change", "type": "text", "placeholder": "$0.00" },
-          { "label": "Synthetic Oil Change with Tire Rotation", "type": "text", "placeholder": "$0.00" },
-          { "label": "Tire Balance", "type": "text", "placeholder": "$0.00" },
-          { "label": "Tire Patch", "type": "text", "placeholder": "$0.00" },
-          { "label": "Tire Plug", "type": "text", "placeholder": "$0.00" },
-          { "label": "Tire Rotation", "type": "text", "placeholder": "$0.00" },
-          { "label": "Tire Rotation & Balance", "type": "text", "placeholder": "$0.00" },
-          { "label": "Transfer Case Service", "type": "text", "placeholder": "$0.00" },
-          { "label": "Transmission Fluid Exchange", "type": "text", "placeholder": "$0.00" },
-
-          { "section": true, "label": "Verified Customers" },
-          { "label": "MPI Opcode – MPI Line – MPI Preselected Opcode", "type": "text" }
-        ]
-      },
-      {
-        "name": "DMS Integration",
-        "rows": [
-          { "section": true, "label": "Push-Based DMS – Reference Matrix Notes" },
-          { "label": "Product Integration Notes", "type": "text", "wide": true },
-          { "section": true, "label": "Pull-Based DMS – Reference Matrix Notes" },
-          { "label": "Additional Integration Notes", "type": "text", "wide": true }
-        ]
-      },
-      {
-        "name": "Workflow Notifications",
-        "rows": [
-          { "section": true, "label": "MPI Customer Pay Workflow – Status Notifications" },
-          { "label": "Unassigned", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Dispatched/Not Started", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "MPI & Diag in Progress", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Quote Parts", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Advisor Review", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Pending Customer Approval", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Approved - Pull/Order Parts", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Ready for Tech - Parts Here/Pulled", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Ordered Parts", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Working in Shop", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Vehicle Complete", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "label": "Not Needed", "type": "dropdown", "options": ["", "Trained on Both", "Trained on Desktop", "Trained on Mobile App", "Not Trained"] },
-          { "section": true, "label": "Notes" },
-          { "label": "Notes", "type": "text", "wide": true }
-        ]
-      },
-      {
-        "name": "Training Summary",
-        "rows": [
-          { "section": true, "label": "Pre-Training & Monday Visit Notes" },
-          { "label": "Notes", "type": "text", "wide": true },
-          { "section": true, "label": "Tuesday Training Notes" },
-          { "label": "Notes", "type": "text", "wide": true },
-          { "section": true, "label": "Wednesday Training Notes" },
-          { "label": "Notes", "type": "text", "wide": true },
-          { "section": true, "label": "Thursday Training Notes" },
-          { "label": "Notes", "type": "text", "wide": true },
-          { "section": true, "label": "Training Note Summary" },
-          { "label": "Notes", "type": "text", "wide": true }
-        ]
-      }
-    ]
-  };
-  /* === App State and Rendering === */
-  const app = document.getElementById("app");
-  const loader = document.getElementById("loader");
-  const nav = document.getElementById("nav");
-  const pageContainer = document.getElementById("pageContainer");
-  let currentPage = 0;
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      loader.style.display = "none";
-      app.classList.remove("hidden");
-      initApp();
-    }, 600);
-  });
-
-  function initApp() {
-    buildSidebar();
-    renderPage(0);
-    setupButtons();
-  }
-
-  function buildSidebar() {
-    mkData.pages.forEach((p, i) => {
-      const btn = document.createElement("button");
-      btn.textContent = p.name;
-      btn.className = "nav-btn";
-      btn.onclick = () => renderPage(i);
-      nav.appendChild(btn);
-    });
-  }
-
-  function renderPage(index) {
-    currentPage = index;
-    pageContainer.innerHTML = "";
-    const page = mkData.pages[index];
-    const section = document.createElement("div");
-    section.className = "page-section fade";
-
-    page.rows.forEach((row) => {
-      if (row.section) {
-        const h2 = document.createElement("h2");
-        h2.textContent = row.label;
-        section.appendChild(h2);
-      } else if (row.label) {
-        const div = document.createElement("div");
-        div.className = "form-row";
-        const label = document.createElement("label");
-        label.textContent = row.label;
-        div.appendChild(label);
-
-        let input;
-        if (row.type === "dropdown") {
-          input = document.createElement("select");
-          row.options.forEach((opt) => {
-            const o = document.createElement("option");
-            o.value = opt;
-            o.textContent = opt;
-            input.appendChild(o);
-          });
-        } else {
-          input = document.createElement("input");
-          input.type = "text";
-          if (row.placeholder) input.placeholder = row.placeholder;
-        }
-        input.className = "input-field";
-
-        const key = `${page.name}_${row.label}`;
-        input.value = localStorage.getItem(key) || "";
-        input.addEventListener("input", () => {
-          localStorage.setItem(key, input.value);
-        });
-
-        // === Workflow color cycling ===
-        if (page.name === "Workflow Notifications" && row.type === "dropdown") {
-          input.addEventListener("change", () => {
-            const value = input.value;
-            if (value.includes("Both")) input.style.background = "#c7f5c1"; // light green
-            else if (value.includes("Desktop")) input.style.background = "#ffe68a"; // amber
-            else if (value.includes("Mobile")) input.style.background = "#fff59d"; // yellow
-            else if (value.includes("Not")) input.style.background = "#f8b2b2"; // red
-            else input.style.background = "white";
-          });
-        }
-
-        div.appendChild(input);
-        section.appendChild(div);
-      }
-    });
-    pageContainer.appendChild(section);
-    window.scrollTo(0, 0);
-  }
-
-  function setupButtons() {
-    document.getElementById("toggleSidebar").onclick = () => {
-      document.getElementById("sidebar").classList.toggle("collapsed");
-    };
-    document.getElementById("pdfButton").onclick = saveAsPDF;
-    document.getElementById("exportButton").onclick = exportJSON;
-    document.getElementById("scrollTop").onclick = () =>
-      window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  /* === Save as PDF === */
-  function saveAsPDF() {
-    const element = document.getElementById("content");
-    const opt = {
-      margin: 0.3,
-      filename: "myKaarma-Training-Checklist.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    };
-    html2pdf().from(element).set(opt).save().then(() => showPopup());
-  }
-
-  /* === Export JSON === */
-  function exportJSON() {
-    const data = {};
-    mkData.pages.forEach((p) => {
-      p.rows.forEach((r) => {
-        if (r.label) {
-          const key = `${p.name}_${r.label}`;
-          data[key] = localStorage.getItem(key) || "";
-        }
-      });
-    });
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: "application/json",
-    });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "myKaarma-training-data.json";
-    a.click();
-  }
-
-  /* === Success Popup === */
-  function showPopup() {
-    const popup = document.getElementById("popup");
-    popup.classList.remove("hidden");
-    setTimeout(() => popup.classList.add("hidden"), 2500);
-  }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
