@@ -135,54 +135,60 @@
       
 <!-- ===== TRAINING CHECKLIST SECTION ===== -->
 <style>
-#training-checklist {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 30px;
+body {
+  margin: 0;
   font-family: system-ui, sans-serif;
+  background: #fff;
+}
+
+/* overall wrapper */
+#training-checklist {
+  width: 100%;
+  padding: 30px;
   overflow-x: hidden;
 }
 
-/* scrollable card */
+/* each table card */
 .training-section {
   background: #fff;
   border: 1px solid #e3e7eb;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   margin-bottom: 40px;
-  overflow-x: auto;              /* allows side-scroll on narrow screens */
+  overflow-x: auto;              /* enables horizontal scroll */
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
-/* table layout */
+/* tables */
 .training-table {
-  width: 1800px;                 /* forces horizontal scroll */
+  width: max-content;            /* fits all columns naturally */
+  min-width: 100%;
   border-collapse: collapse;
-  min-width: 1200px;
+  table-layout: auto;
 }
 
-/* headers + cells */
 .training-table th,
 .training-table td {
   border: 1px solid #e3e7eb;
-  padding: 8px 10px;
+  padding: 8px 12px;
   text-align: center;
   font-size: 0.9rem;
-  white-space: nowrap;           /* keep dropdown text visible in one line */
+  white-space: nowrap;
 }
 
 .training-table th {
   background: #fafafa;
   font-weight: 600;
   position: sticky;
-  top: 48px;
+  top: 0;
   z-index: 1;
 }
 
-/* inputs + dropdowns */
+/* input + dropdowns */
 .training-table td input[type="text"] {
   width: 100%;
-  min-width: 160px;
+  min-width: 180px;
   padding: 6px 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -191,41 +197,41 @@
 
 .training-table select {
   width: 100%;
-  min-width: 140px;              /* enough to read full value */
+  min-width: 160px;
   padding: 6px 8px;
-  border-radius: 6px;
   border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align-last: center;
   background: #fff;
-  text-align-last: center;       /* centers the selected text */
 }
 
-/* wider first two columns */
-.training-table td:nth-child(1){min-width:260px;}
-.training-table td:nth-child(2){min-width:180px;}
-
-/* buttons */
-.add-row-btn{
-  background:#F36F21;
-  color:#fff;
-  border:none;
-  border-radius:24px;
-  padding:10px 20px;
-  margin:20px auto 30px;
-  display:block;
-  cursor:pointer;
-  font-weight:600;
-  transition:background .2s;
-}
-.add-row-btn:hover{background:#d85f1d;}
+/* wider first columns */
+.training-table td:nth-child(1) { min-width: 260px; }
+.training-table td:nth-child(2) { min-width: 200px; }
 
 /* color states */
-select.green{background:#c7f5c1!important;}
-select.yellow{background:#fff59d!important;}
-select.red{background:#f7b2b2!important;}
-select.gray{background:#e0e0e0!important;}
+select.green  { background: #c7f5c1 !important; }
+select.yellow { background: #fff59d !important; }
+select.red    { background: #f7b2b2 !important; }
+select.gray   { background: #e0e0e0 !important; }
 
-/* hover row highlight */
-.training-table tr:hover{background:#f8f8f8;}
+/* buttons */
+.add-row-btn {
+  background: #F36F21;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 20px;
+  margin: 20px auto 30px;
+  display: block;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.add-row-btn:hover { background: #d85f1d; }
+
+/* hover rows */
+.training-table tr:hover { background: #f8f8f8; }
 </style>
 
 <section id="training-checklist" class="page-section">
