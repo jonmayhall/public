@@ -133,7 +133,7 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST ===== -->
+<!-- ===== TRAINING CHECKLIST FIXED ===== -->
 <style>
   .training-section {
     background: #fff;
@@ -142,6 +142,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     margin: 25px 0;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     padding: 10px 0 20px;
   }
@@ -154,9 +155,8 @@
 
   .training-table {
     width: max-content;
-    min-width: 100%;
+    min-width: 1200px;
     border-collapse: collapse;
-    table-layout: auto;
   }
 
   .training-table th,
@@ -169,16 +169,17 @@
   }
 
   .training-table th {
-    background: #fafafa;
+    background: #F36F21;
+    color: #fff;
     font-weight: 600;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
   }
 
   .training-table td input[type="text"] {
     width: 100%;
-    min-width: 170px;
+    min-width: 150px;
     padding: 5px 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -187,29 +188,19 @@
 
   .training-table select {
     width: 100%;
-    min-width: 150px;
+    min-width: 130px;
     padding: 5px 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
     text-align-last: center;
+    -moz-text-align-last: center;
     background: #fff;
   }
 
-  select.green {
-    background: #c7f5c1 !important;
-  }
-
-  select.yellow {
-    background: #fff59d !important;
-  }
-
-  select.red {
-    background: #f7b2b2 !important;
-  }
-
-  select.gray {
-    background: #e0e0e0 !important;
-  }
+  select.green { background: #c7f5c1 !important; }
+  select.yellow { background: #fff59d !important; }
+  select.red { background: #f7b2b2 !important; }
+  select.gray { background: #e0e0e0 !important; }
 
   .add-row-btn {
     background: #F36F21;
@@ -217,19 +208,17 @@
     border: none;
     border-radius: 20px;
     padding: 6px 14px;
-    margin: 10px auto 0;
+    margin: 12px auto 0;
     display: block;
     cursor: pointer;
     font-weight: 600;
     transition: background 0.2s;
   }
 
-  .add-row-btn:hover {
-    background: #d85f1d;
-  }
+  .add-row-btn:hover { background: #d85f1d; }
 </style>
 
-<section id="training-checklist" class="page-section">
+<section id="training-checklist">
 
   <!-- TECHNICIANS -->
   <div class="training-section" id="technicians-section">
@@ -237,211 +226,39 @@
     <table class="training-table" id="technicians-table">
       <thead>
         <tr>
-          <th>Technician Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Workflow</th>
-          <th>Mobile App Menu</th>
-          <th>Search Bar</th>
-          <th>RO Assignment</th>
-          <th>Dispatch</th>
-          <th>RO History</th>
-          <th>Prev. Declines</th>
-          <th>OCR</th>
-          <th>Edit ASR</th>
-          <th>ShopChat / Parts</th>
-          <th>Adding Media</th>
-          <th>Status Change</th>
-          <th>Notifications</th>
-          <th>Filters</th>
+          <th>Technician Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th>
+          <th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th>
+          <th>Dispatch</th><th>RO History</th><th>Prev. Declines</th>
+          <th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+          <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- Repeat dropdown 15x -->
-          <!-- (simplified for clarity) -->
-          <td colspan="15">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
+          <!-- Each dropdown is its own cell -->
+          ${Array.from({ length: 15 }).map(() => `
+            <td>
+              <select>
+                <option></option>
+                <option>Yes</option>
+                <option>Web Only</option>
+                <option>Mobile Only</option>
+                <option>No</option>
+                <option>N/A</option>
+              </select>
+            </td>`).join('')}
         </tr>
       </tbody>
     </table>
     <button class="add-row-btn" data-target="technicians-table">+ Add Row</button>
   </div>
 
-  <!-- PARTS REPRESENTATIVES -->
-  <div class="training-section" id="parts-section">
-    <h2>Parts Representatives – Checklist</h2>
-    <table class="training-table" id="parts-table">
-      <thead>
-        <tr>
-          <th>Parts Rep Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Web App</th>
-          <th>Workflow</th>
-          <th>Search Bar</th>
-          <th>"Take" Function</th>
-          <th>DMS History</th>
-          <th>Prev. Declines</th>
-          <th>Parts Tab</th>
-          <th>SOP</th>
-          <th>Edit ASR</th>
-          <th>Shopchat / Parts</th>
-          <th>Status Change</th>
-          <th>Notifications</th>
-          <th>Filters</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- Repeat dropdown 14x -->
-          <td colspan="14">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="parts-table">+ Add Row</button>
-  </div>
-
-  <!-- SERVICE ADVISORS -->
-  <div class="training-section" id="advisors-section">
-    <h2>Service Advisors – Checklist</h2>
-    <table class="training-table" id="advisors-table">
-      <thead>
-        <tr>
-          <th>Advisor Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Mobile App Menu</th>
-          <th>MCI</th>
-          <th>Workflow</th>
-          <th>Search Bar</th>
-          <th>RO Assignment</th>
-          <th>DMS History</th>
-          <th>Prev. Declines</th>
-          <th>OCR</th>
-          <th>Edit ASR</th>
-          <th>Shopchat</th>
-          <th>Status Change</th>
-          <th>MPI Send</th>
-          <th>SOP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 14 dropdown columns -->
-          <td colspan="14">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="advisors-table">+ Add Row</button>
-  </div>
-
-  <!-- BDC REPRESENTATIVES -->
-  <div class="training-section" id="bdc-section">
-    <h2>BDC Representatives – Checklist</h2>
-    <table class="training-table" id="bdc-table">
-      <thead>
-        <tr>
-          <th>BDC Rep Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Scheduler</th>
-          <th>Declined Services</th>
-          <th>ServiceConnect</th>
-          <th>Call Routing</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 5 dropdowns -->
-          <td colspan="5">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="bdc-table">+ Add Row</button>
-  </div>
-
-  <!-- PICKUP & DELIVERY -->
-  <div class="training-section" id="pud-section">
-    <h2>Pick Up & Delivery Drivers – Checklist</h2>
-    <table class="training-table" id="pud-table">
-      <thead>
-        <tr>
-          <th>Driver Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>PU&D</th>
-          <th>Notifications</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 3 dropdowns -->
-          <td colspan="3">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="pud-table">+ Add Row</button>
-  </div>
-
 </section>
 
-<!-- ===== SCRIPT SECTION ===== -->
 <script>
+  // Color change
   document.querySelectorAll('select').forEach(sel => {
     sel.addEventListener('change', () => {
       sel.classList.remove('green', 'yellow', 'red', 'gray');
@@ -453,12 +270,11 @@
     });
   });
 
-  // Add-row feature
+  // Add new rows
   document.querySelectorAll('.add-row-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const table = document.getElementById(btn.dataset.target);
-      const row = table.querySelector('tbody tr');
-      const clone = row.cloneNode(true);
+      const clone = table.querySelector('tbody tr').cloneNode(true);
       clone.querySelectorAll('input').forEach(i => i.value = '');
       clone.querySelectorAll('select').forEach(s => {
         s.selectedIndex = 0;
