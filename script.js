@@ -81,21 +81,33 @@ document.addEventListener("change", (e) => {
     else if (v === "N/A") e.target.classList.add("gray");
   }
 });
-// Add-row functionality for all tables in the Training Checklist
+// === TRAINING CHECKLIST INTERACTIONS ===
+
+// Color coding for dropdowns in all checklist tables
+document.addEventListener("change", (e) => {
+  if (e.target.tagName === "SELECT" && e.target.closest(".training-table")) {
+    const v = e.target.value;
+    e.target.classList.remove("green", "yellow", "red", "gray");
+
+    if (v === "Yes") e.target.classList.add("green");
+    else if (v === "Web Only" || v === "Mobile Only") e.target.classList.add("yellow");
+    else if (v === "No") e.target.classList.add("red");
+    else if (v === "N/A") e.target.classList.add("gray");
+  }
+});
+
+// Add Row button for each table
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-row-btn")) {
     const table = document.getElementById(e.target.dataset.target);
     if (!table) return;
-
     const row = table.querySelector("tbody tr");
     const clone = row.cloneNode(true);
-
-    clone.querySelectorAll("input").forEach((i) => (i.value = ""));
-    clone.querySelectorAll("select").forEach((s) => {
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => {
       s.selectedIndex = 0;
       s.className = "";
     });
-
     table.querySelector("tbody").appendChild(clone);
   }
 });
