@@ -133,13 +133,14 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST SECTION (PART 1 OF 4) ===== -->
+<!-- ===== TRAINING CHECKLIST SECTION (PART 1 OF 2) ===== -->
 <style>
-/* === Layout + Color Scheme === */
+/* ===== MyKaarma Theme Styling ===== */
 #training-checklist {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px;
+  font-family: system-ui, sans-serif;
 }
 .training-section {
   background: #fff;
@@ -179,6 +180,9 @@
   top: 48px;
   z-index: 1;
 }
+.training-table tr:hover {
+  background-color: #f8f8f8;
+}
 .training-table td input[type="text"] {
   width: 95%;
   padding: 4px 6px;
@@ -192,6 +196,10 @@
   border: 1px solid #ccc;
   background: #fff;
 }
+/* widen name + DMS columns */
+.training-table td:nth-child(1) { min-width: 260px; }
+.training-table td:nth-child(2) { min-width: 160px; }
+.training-table td:nth-child(3) { min-width: 120px; }
 .add-row-btn {
   background: #F36F21;
   color: #fff;
@@ -204,10 +212,8 @@
   font-weight: 600;
   transition: background 0.2s;
 }
-.add-row-btn:hover {
-  background: #d85f1d;
-}
-/* === Dropdown Color States === */
+.add-row-btn:hover { background: #d85f1d; }
+/* dropdown colors */
 select.green { background: #c7f5c1 !important; }
 select.yellow { background: #fff59d !important; }
 select.red { background: #f7b2b2 !important; }
@@ -215,6 +221,7 @@ select.gray { background: #e0e0e0 !important; }
 </style>
 
 <section id="training-checklist" class="page-section">
+
   <!-- TECHNICIANS TABLE -->
   <div class="training-section" id="technicians-section">
     <h2>Technicians – Checklist</h2>
@@ -242,129 +249,35 @@ select.gray { background: #e0e0e0 !important; }
       </thead>
       <tbody>
         <!-- 5 Starter Rows -->
+        <!-- row template -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><input type="text" placeholder="Enter login"></td>
-          <td><select>
+          <td>
+            <select>
+              <option value="">Select...</option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
+          <!-- repeat 14 dropdowns -->
+          ${Array(14).fill(`<td><select>
             <option value="">Select...</option>
             <option>Yes</option>
             <option>Web Only</option>
             <option>Mobile Only</option>
-            <option>Not Trained</option>
+            <option>No</option>
             <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
+          </select></td>`).join('')}
         </tr>
-        <!-- (Repeat similar 4 more rows; will duplicate easily via JS) -->
       </tbody>
     </table>
     <button class="add-row-btn" data-target="technicians-table">+ Add Row</button>
   </div>
-  
+
   <!-- PARTS REPRESENTATIVES TABLE -->
   <div class="training-section" id="parts-section">
     <h2>Parts Representatives – Checklist</h2>
@@ -390,29 +303,33 @@ select.gray { background: #e0e0e0 !important; }
         </tr>
       </thead>
       <tbody>
-        <!-- 5 Starter Rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><input type="text" placeholder="Enter login"></td>
-          <!-- Dropdowns for rest -->
-          <td colspan="13">
-            <table style="width:100%; border-collapse:collapse;"><tr>
-              ${Array(13).fill(`<td style='border:none;'><select>
+          <td>
+            <select>
               <option value="">Select...</option>
               <option>Yes</option>
               <option>Web Only</option>
               <option>Mobile Only</option>
-              <option>Not Trained</option>
+              <option>No</option>
               <option>N/A</option>
-              </select></td>`).join('')}
-            </tr></table>
+            </select>
           </td>
+          ${Array(13).fill(`<td><select>
+            <option value="">Select...</option>
+            <option>Yes</option>
+            <option>Web Only</option>
+            <option>Mobile Only</option>
+            <option>No</option>
+            <option>N/A</option>
+          </select></td>`).join('')}
         </tr>
       </tbody>
     </table>
     <button class="add-row-btn" data-target="parts-table">+ Add Row</button>
   </div>
+
   <!-- SERVICE ADVISORS TABLE -->
   <div class="training-section" id="advisors-section">
     <h2>Service Advisors – Checklist</h2>
@@ -438,29 +355,34 @@ select.gray { background: #e0e0e0 !important; }
         </tr>
       </thead>
       <tbody>
-        <!-- 5 Starter Rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><input type="text" placeholder="Enter login"></td>
-          <td colspan="13">
-            <table style="width:100%; border-collapse:collapse;"><tr>
-              ${Array(13).fill(`<td style='border:none;'><select>
+          <td>
+            <select>
               <option value="">Select...</option>
               <option>Yes</option>
               <option>Web Only</option>
               <option>Mobile Only</option>
-              <option>Not Trained</option>
+              <option>No</option>
               <option>N/A</option>
-              </select></td>`).join('')}
-            </tr></table>
+            </select>
           </td>
+          ${Array(13).fill(`<td><select>
+            <option value="">Select...</option>
+            <option>Yes</option>
+            <option>Web Only</option>
+            <option>Mobile Only</option>
+            <option>No</option>
+            <option>N/A</option>
+          </select></td>`).join('')}
         </tr>
       </tbody>
     </table>
     <button class="add-row-btn" data-target="advisors-table">+ Add Row</button>
   </div>
-  
+
+<!-- END OF PART 1 -->
   <!-- BDC REPRESENTATIVES TABLE -->
   <div class="training-section" id="bdc-section">
     <h2>BDC Representatives – Checklist</h2>
@@ -477,158 +399,126 @@ select.gray { background: #e0e0e0 !important; }
         </tr>
       </thead>
       <tbody>
-        <!-- 5 Starter Rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><input type="text" placeholder="Enter login"></td>
-          <td><select>
+          ${Array(5).fill(`<td><select>
             <option value="">Select...</option>
             <option>Yes</option>
             <option>Web Only</option>
             <option>Mobile Only</option>
-            <option>Not Trained</option>
+            <option>No</option>
             <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
+          </select></td>`).join('')}
         </tr>
       </tbody>
     </table>
     <button class="add-row-btn" data-target="bdc-table">+ Add Row</button>
   </div>
-  
-  <!-- PICK-UP & DELIVERY DRIVERS TABLE -->
+
+  <!-- PICK UP & DELIVERY TABLE -->
   <div class="training-section" id="pud-section">
-    <h2>Pick-Up & Delivery Drivers – Checklist</h2>
+    <h2>Pick Up & Delivery Drivers – Checklist</h2>
     <table class="training-table" id="pud-table">
       <thead>
         <tr>
           <th>Driver Name</th>
+          <th>DMS ID</th>
           <th>Login</th>
-          <th>Mobile App</th>
-          <th>PU&D</th>
+          <th>Mobile App PU&D</th>
           <th>Notifications</th>
         </tr>
       </thead>
       <tbody>
-        <!-- 5 Starter Rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter login"></td>
-          <td><select>
+          <td><input type="text" placeholder="Enter DMS ID"></td>
+          ${Array(3).fill(`<td><select>
             <option value="">Select...</option>
             <option>Yes</option>
             <option>Web Only</option>
             <option>Mobile Only</option>
-            <option>Not Trained</option>
+            <option>No</option>
             <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
-          <td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>Not Trained</option>
-            <option>N/A</option>
-          </select></td>
+          </select></td>`).join('')}
         </tr>
       </tbody>
     </table>
     <button class="add-row-btn" data-target="pud-table">+ Add Row</button>
   </div>
+</section>
 
-    <!-- === INLINE SCRIPT FOR COLOR + STORAGE === -->
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const colorMap = {
-      "Yes": "green",
-      "Web Only": "yellow",
-      "Mobile Only": "yellow",
-      "Not Trained": "red",
-      "N/A": "gray"
-    };
+<!-- ===== TRAINING CHECKLIST SCRIPT ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const colorMap = {
+    "Yes": "green",
+    "Web Only": "yellow",
+    "Mobile Only": "yellow",
+    "No": "red",
+    "N/A": "gray"
+  };
 
-    // --- Restore saved data ---
-    Object.keys(localStorage).forEach(key => {
-      if (key.startsWith("training_")) {
-        const el = document.querySelector('[data-key="'+key+'"]');
-        if (el) el.value = localStorage.getItem(key);
-        if (el && el.tagName === "SELECT") updateColor(el);
-      }
-    });
-
-    // --- Watch for changes ---
-    document.querySelectorAll("#training-checklist select, #training-checklist input").forEach((el, i) => {
-      const dataKey = "training_"+i;
-      el.setAttribute("data-key", dataKey);
-
-      el.addEventListener("change", e => {
-        localStorage.setItem(dataKey, el.value);
-        if (el.tagName === "SELECT") updateColor(el);
-      });
-    });
-
-    // --- Dropdown color logic ---
-    function updateColor(sel) {
-      sel.classList.remove("green","yellow","red","gray");
-      const val = sel.value;
-      if (colorMap[val]) sel.classList.add(colorMap[val]);
+  // Clean up invalid entries
+  for (let key in localStorage) {
+    if (key.startsWith("tc_") && localStorage[key] === "") {
+      localStorage.removeItem(key);
     }
+  }
 
-    // --- Add Row Button Logic ---
-    document.querySelectorAll(".add-row-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const tableId = btn.dataset.target;
-        const table = document.getElementById(tableId).querySelector("tbody");
-        const rows = table.querySelectorAll("tr");
-        const lastFive = Array.from(rows).slice(-5);
-        lastFive.forEach(r => {
-          const clone = r.cloneNode(true);
-          clone.querySelectorAll("input").forEach(i => i.value = "");
-          clone.querySelectorAll("select").forEach(s => {
-            s.value = "";
-            s.className = "";
-            s.addEventListener("change", () => updateColor(s));
-          });
-          table.appendChild(clone);
+  // Restore saved data
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith("tc_")) {
+      const el = document.querySelector('[data-key="'+key+'"]');
+      if (el) {
+        el.value = localStorage.getItem(key);
+        if (el.tagName === "SELECT") updateColor(el);
+      }
+    }
+  });
+
+  // Assign data keys and listeners
+  document.querySelectorAll("#training-checklist select, #training-checklist input").forEach((el, i) => {
+    const parentTable = el.closest("table")?.id || "global";
+    const dataKey = "tc_" + parentTable + "_" + i;
+    el.setAttribute("data-key", dataKey);
+
+    el.addEventListener("change", () => {
+      localStorage.setItem(dataKey, el.value);
+      if (el.tagName === "SELECT") updateColor(el);
+    });
+  });
+
+  // Color update logic
+  function updateColor(sel) {
+    sel.classList.remove("green","yellow","red","gray");
+    const val = sel.value;
+    if (colorMap[val]) sel.classList.add(colorMap[val]);
+  }
+
+  // Add-row buttons
+  document.querySelectorAll(".add-row-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tableId = btn.dataset.target;
+      const table = document.getElementById(tableId)?.querySelector("tbody");
+      if (!table) return;
+      const rows = table.querySelectorAll("tr");
+      const lastFive = Array.from(rows).slice(-5);
+      lastFive.forEach(r => {
+        const clone = r.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i => i.value = "");
+        clone.querySelectorAll("select").forEach(s => {
+          s.value = "";
+          s.className = "";
+          s.addEventListener("change", () => updateColor(s));
         });
+        table.appendChild(clone);
       });
     });
   });
-  </script>
-</section>
-<!-- ===== END TRAINING CHECKLIST SECTION ===== -->
+});
+</script>
+<!-- ===== END TRAINING CHECKLIST SECTION (PART 2 OF 2) ===== -->
 
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
