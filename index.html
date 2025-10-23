@@ -133,138 +133,176 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST (FINAL FIXED VERSION) ===== -->
+<!-- ===== TRAINING CHECKLIST ===== -->
 <style>
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #fff;
-}
-
-/* main wrapper */
-#training-checklist {
-  width: 100%;
-  padding: 30px;
-  overflow-x: hidden;
-}
-
-/* scrollable cards */
 .training-section {
-  background: #fff;
-  border: 1px solid #e3e7eb;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 40px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  background:#fff;
+  border:1px solid #e3e7eb;
+  border-radius:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  margin:25px 0;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  padding:10px 0 20px;
 }
-
-/* table styling */
-.training-table {
-  width: max-content;
-  min-width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
+.training-section h2{
+  font-size:1.1rem;
+  font-weight:600;
+  margin:10px 20px;
 }
-
+.training-table{
+  width:max-content;
+  min-width:100%;
+  border-collapse:collapse;
+  table-layout:auto;
+}
 .training-table th,
-.training-table td {
-  border: 1px solid #e3e7eb;
-  padding: 8px 12px;
-  text-align: center;
-  font-size: 0.9rem;
-  white-space: nowrap;
+.training-table td{
+  border:1px solid #e3e7eb;
+  padding:6px 10px;
+  text-align:center;
+  font-size:.9rem;
+  white-space:nowrap;
 }
-
-.training-table th {
-  background: #fafafa;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.training-table th{
+  background:#fafafa;
+  font-weight:600;
+  position:sticky;
+  top:0;
+  z-index:1;
 }
-
-.training-table td input[type="text"] {
-  width: 100%;
-  min-width: 180px;
-  padding: 6px 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-align: center;
+.training-table td input[type="text"]{
+  width:100%;
+  min-width:170px;
+  padding:5px 6px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  text-align:center;
 }
-
-.training-table select {
-  width: 100%;
-  min-width: 160px;
-  padding: 6px 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-align-last: center;
-  background: #fff;
+.training-table select{
+  width:100%;
+  min-width:150px;
+  padding:5px 6px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  text-align-last:center;
+  background:#fff;
 }
-
-/* wider columns */
-.training-table td:nth-child(1){min-width:260px;}
-.training-table td:nth-child(2){min-width:200px;}
-
-/* color states */
-select.green  { background: #c7f5c1 !important; }
-select.yellow { background: #fff59d !important; }
-select.red    { background: #f7b2b2 !important; }
-select.gray   { background: #e0e0e0 !important; }
-
-/* buttons */
-.add-row-btn {
-  background: #F36F21;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 10px 20px;
-  margin: 20px auto 30px;
-  display: block;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s;
+select.green{background:#c7f5c1!important;}
+select.yellow{background:#fff59d!important;}
+select.red{background:#f7b2b2!important;}
+select.gray{background:#e0e0e0!important;}
+.add-row-btn{
+  background:#F36F21;
+  color:#fff;
+  border:none;
+  border-radius:20px;
+  padding:6px 14px;
+  margin:10px auto 0;
+  display:block;
+  cursor:pointer;
+  font-weight:600;
+  transition:background .2s;
 }
-.add-row-btn:hover { background: #d85f1d; }
-
-/* hover effect */
-.training-table tr:hover { background: #f8f8f8; }
+.add-row-btn:hover{background:#d85f1d;}
 </style>
 
 <section id="training-checklist" class="page-section">
+<!-- TECHNICIANS -->
+<div class="training-section" id="technicians-section">
+<h2>Technicians – Checklist</h2>
+<table class="training-table" id="technicians-table">
+<thead>
+<tr>
+<th>Technician Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th>
+<th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th>
+<th>RO History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th>
+<th>ShopChat / Parts</th><th>Adding Media</th><th>Status Change</th>
+<th>Notifications</th><th>Filters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><input type="text" placeholder="Enter name"></td>
+<td><input type="text" placeholder="Enter DMS ID"></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table>
+<button class="add-row-btn" data-target="technicians-table">+ Add Row</button>
+</div>
 
-  <!-- TECHNICIANS TABLE -->
-  <div class="training-section" id="technicians-section">
-    <h2>Technicians – Checklist</h2>
-    <table class="training-table" id="technicians-table">
-      <thead>
-        <tr>
-          <th>Technician Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Workflow</th>
-          <th>Mobile App Menu</th>
-          <th>Search Bar</th>
-          <th>RO Assignment</th>
-          <th>Dispatch</th>
-          <th>RO History</th>
-          <th>Prev. Declines</th>
-          <th>OCR</th>
-          <th>Edit ASR</th>
-          <th>ShopChat / Parts</th>
-          <th>Adding Media</th>
-          <th>Status Change</th>
-          <th>Notifications</th>
-          <th>Filters</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- dropdowns -->
-          <td colspan="15">
+<!-- PARTS REPS -->
+<div class="training-section" id="parts-section">
+<h2>Parts Representatives – Checklist</h2>
+<table class="training-table" id="parts-table">
+<thead>
+<tr>
+<th>Parts Rep Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
+<th>Search Bar</th><th>"Take" Function</th><th>DMS History</th><th>Prev. Declines</th>
+<th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>Shopchat / Parts</th>
+<th>Status Change</th><th>Notifications</th><th>Filters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><input type="text" placeholder="Enter name"></td>
+<td><input type="text" placeholder="Enter DMS ID"></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table>
+<button class="add-row-btn" data-target="parts-table">+ Add Row</button>
+</div>
+
+<!-- ===== TRAINING CHECKLIST (PART 2 / 2) ===== -->
+
+<!-- SERVICE ADVISORS -->
+<div class="training-section" id="advisors-section">
+  <h2>Service Advisors – Checklist</h2>
+  <table class="training-table" id="advisors-table">
+    <thead>
+      <tr>
+        <th>Advisor Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th>
+        <th>MCI</th><th>Workflow</th><th>Search Bar</th><th>RO Assignment</th>
+        <th>DMS History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th>
+        <th>Shopchat</th><th>Status Change</th><th>MPI Send</th><th>SOP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Enter name"></td>
+        <td><input type="text" placeholder="Enter DMS ID"></td>
+        <!-- 14 dropdown columns -->
+        ${Array.from({ length: 14 }).map(() => `
+          <td>
             <select>
               <option></option>
               <option>Yes</option>
@@ -273,43 +311,29 @@ select.gray   { background: #e0e0e0 !important; }
               <option>No</option>
               <option>N/A</option>
             </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="technicians-table">+ Add Row</button>
-  </div>
+          </td>`).join('')}
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-row-btn" data-target="advisors-table">+ Add Row</button>
+</div>
 
-  <!-- PARTS REPRESENTATIVES TABLE -->
-  <div class="training-section" id="parts-section">
-    <h2>Parts Representatives – Checklist</h2>
-    <table class="training-table" id="parts-table">
-      <thead>
-        <tr>
-          <th>Parts Rep Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Web App</th>
-          <th>Workflow</th>
-          <th>Search Bar</th>
-          <th>"Take" Function</th>
-          <th>DMS History</th>
-          <th>Prev. Declines</th>
-          <th>Parts Tab</th>
-          <th>SOP</th>
-          <th>Edit ASR</th>
-          <th>Shopchat / Parts</th>
-          <th>Status Change</th>
-          <th>Notifications</th>
-          <th>Filters</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- dropdowns -->
-          <td colspan="14">
+<!-- BDC REPRESENTATIVES -->
+<div class="training-section" id="bdc-section">
+  <h2>BDC Representatives – Checklist</h2>
+  <table class="training-table" id="bdc-table">
+    <thead>
+      <tr>
+        <th>BDC Rep Name</th><th>DMS ID</th><th>Login</th>
+        <th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Enter name"></td>
+        <td><input type="text" placeholder="Enter DMS ID"></td>
+        ${Array.from({ length: 5 }).map(() => `
+          <td>
             <select>
               <option></option>
               <option>Yes</option>
@@ -318,42 +342,28 @@ select.gray   { background: #e0e0e0 !important; }
               <option>No</option>
               <option>N/A</option>
             </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="parts-table">+ Add Row</button>
-  </div>
+          </td>`).join('')}
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-row-btn" data-target="bdc-table">+ Add Row</button>
+</div>
 
-  <!-- SERVICE ADVISORS TABLE -->
-  <div class="training-section" id="advisors-section">
-    <h2>Service Advisors – Checklist</h2>
-    <table class="training-table" id="advisors-table">
-      <thead>
-        <tr>
-          <th>Advisor Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Mobile App Menu</th>
-          <th>MCI</th>
-          <th>Workflow</th>
-          <th>Search Bar</th>
-          <th>RO Assignment</th>
-          <th>DMS History</th>
-          <th>Prev. Declines</th>
-          <th>OCR</th>
-          <th>Edit ASR</th>
-          <th>Shopchat</th>
-          <th>Status Change</th>
-          <th>MPI Send</th>
-          <th>SOP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td colspan="14">
+<!-- PICK UP & DELIVERY DRIVERS -->
+<div class="training-section" id="pud-section">
+  <h2>Pick Up & Delivery Drivers – Checklist</h2>
+  <table class="training-table" id="pud-table">
+    <thead>
+      <tr>
+        <th>Driver Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" placeholder="Enter name"></td>
+        <td><input type="text" placeholder="Enter DMS ID"></td>
+        ${Array.from({ length: 3 }).map(() => `
+          <td>
             <select>
               <option></option>
               <option>Yes</option>
@@ -362,143 +372,40 @@ select.gray   { background: #e0e0e0 !important; }
               <option>No</option>
               <option>N/A</option>
             </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="advisors-table">+ Add Row</button>
-  </div>
+          </td>`).join('')}
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-row-btn" data-target="pud-table">+ Add Row</button>
+</div>
 
-  <!-- BDC REPRESENTATIVES TABLE -->
-  <div class="training-section" id="bdc-section">
-    <h2>BDC Representatives – Checklist</h2>
-    <table class="training-table" id="bdc-table">
-      <thead>
-        <tr>
-          <th>BDC Rep Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Scheduler</th>
-          <th>Declined Services</th>
-          <th>ServiceConnect</th>
-          <th>Call Routing</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td colspan="5">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="bdc-table">+ Add Row</button>
-  </div>
-
-  <!-- PICK UP & DELIVERY TABLE -->
-  <div class="training-section" id="pud-section">
-    <h2>Pick Up & Delivery Drivers – Checklist</h2>
-    <table class="training-table" id="pud-table">
-      <thead>
-        <tr>
-          <th>Driver Name</th>
-          <th>DMS ID</th>
-          <th>Login</th>
-          <th>Mobile App PU&D</th>
-          <th>Notifications</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" placeholder="Enter name"></td>
-          <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td colspan="3">
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="add-row-btn" data-target="pud-table">+ Add Row</button>
-  </div>
-</section>
-
-<!-- ===== TRAINING CHECKLIST SCRIPT ===== -->
+<!-- ===== SCRIPT SECTION ===== -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const colorMap = {
-    "Yes": "green",
-    "Web Only": "yellow",
-    "Mobile Only": "yellow",
-    "No": "red",
-    "N/A": "gray"
-  };
-
-  // clean & restore local storage
-  for (let key in localStorage) {
-    if (key.startsWith("tc_") && localStorage[key] === "") localStorage.removeItem(key);
-  }
-
-  Object.keys(localStorage).forEach(key => {
-    if (key.startsWith("tc_")) {
-      const el = document.querySelector('[data-key="'+key+'"]');
-      if (el) {
-        el.value = localStorage.getItem(key);
-        if (el.tagName === "SELECT") updateColor(el);
-      }
-    }
+document.querySelectorAll('select').forEach(sel=>{
+  sel.addEventListener('change',()=>{
+    sel.classList.remove('green','yellow','red','gray');
+    const v=sel.value;
+    if(v==='Yes') sel.classList.add('green');
+    else if(v==='Web Only'||v==='Mobile Only') sel.classList.add('yellow');
+    else if(v==='No') sel.classList.add('red');
+    else if(v==='N/A') sel.classList.add('gray');
   });
+});
 
-  document.querySelectorAll("#training-checklist select, #training-checklist input").forEach((el, i) => {
-    const parentTable = el.closest("table")?.id || "global";
-    const dataKey = "tc_" + parentTable + "_" + i;
-    el.setAttribute("data-key", dataKey);
-    el.addEventListener("change", () => {
-      localStorage.setItem(dataKey, el.value);
-      if (el.tagName === "SELECT") updateColor(el);
-    });
-  });
-
-  function updateColor(sel) {
-    sel.classList.remove("green","yellow","red","gray");
-    const val = sel.value;
-    if (colorMap[val]) sel.classList.add(colorMap[val]);
-  }
-
-  // add new row
-  document.querySelectorAll(".add-row-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tableId = btn.dataset.target;
-      const tbody = document.getElementById(tableId)?.querySelector("tbody");
-      if (!tbody) return;
-      const clone = tbody.querySelector("tr").cloneNode(true);
-      clone.querySelectorAll("input").forEach(i => i.value = "");
-      clone.querySelectorAll("select").forEach(s => {
-        s.value = "";
-        s.className = "";
-        s.addEventListener("change", () => updateColor(s));
-      });
-      tbody.appendChild(clone);
-    });
+// add-row feature
+document.querySelectorAll('.add-row-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const table=document.getElementById(btn.dataset.target);
+    const row=table.querySelector('tbody tr');
+    const clone=row.cloneNode(true);
+    clone.querySelectorAll('input').forEach(i=>i.value='');
+    clone.querySelectorAll('select').forEach(s=>{s.selectedIndex=0; s.className='';});
+    table.querySelector('tbody').appendChild(clone);
   });
 });
 </script>
 <!-- ===== END TRAINING CHECKLIST ===== -->
+
       
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
