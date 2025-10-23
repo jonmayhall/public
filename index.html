@@ -133,7 +133,7 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST SECTION ===== -->
+<!-- ===== TRAINING CHECKLIST (FINAL FIXED VERSION) ===== -->
 <style>
 body {
   margin: 0;
@@ -141,28 +141,27 @@ body {
   background: #fff;
 }
 
-/* overall wrapper */
+/* main wrapper */
 #training-checklist {
   width: 100%;
   padding: 30px;
   overflow-x: hidden;
 }
 
-/* each table card */
+/* scrollable cards */
 .training-section {
   background: #fff;
   border: 1px solid #e3e7eb;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   margin-bottom: 40px;
-  overflow-x: auto;              /* enables horizontal scroll */
-  overflow-y: hidden;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* tables */
+/* table styling */
 .training-table {
-  width: max-content;            /* fits all columns naturally */
+  width: max-content;
   min-width: 100%;
   border-collapse: collapse;
   table-layout: auto;
@@ -185,7 +184,6 @@ body {
   z-index: 1;
 }
 
-/* input + dropdowns */
 .training-table td input[type="text"] {
   width: 100%;
   min-width: 180px;
@@ -205,9 +203,9 @@ body {
   background: #fff;
 }
 
-/* wider first columns */
-.training-table td:nth-child(1) { min-width: 260px; }
-.training-table td:nth-child(2) { min-width: 200px; }
+/* wider columns */
+.training-table td:nth-child(1){min-width:260px;}
+.training-table td:nth-child(2){min-width:200px;}
 
 /* color states */
 select.green  { background: #c7f5c1 !important; }
@@ -230,7 +228,7 @@ select.gray   { background: #e0e0e0 !important; }
 }
 .add-row-btn:hover { background: #d85f1d; }
 
-/* hover rows */
+/* hover effect */
 .training-table tr:hover { background: #f8f8f8; }
 </style>
 
@@ -262,26 +260,20 @@ select.gray   { background: #e0e0e0 !important; }
         </tr>
       </thead>
       <tbody>
-        <!-- Five starter rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 15 dropdown columns -->
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <!-- dropdowns -->
+          <td colspan="15">
+            <select>
+              <option></option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -316,21 +308,17 @@ select.gray   { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 14 dropdown columns -->
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <!-- dropdowns -->
+          <td colspan="14">
+            <select>
+              <option></option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -365,21 +353,16 @@ select.gray   { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <!-- 14 dropdowns -->
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td colspan="14">
+            <select>
+              <option></option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -405,11 +388,16 @@ select.gray   { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td colspan="5">
+            <select>
+              <option></option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -433,9 +421,16 @@ select.gray   { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td colspan="3">
+            <select>
+              <option></option>
+              <option>Yes</option>
+              <option>Web Only</option>
+              <option>Mobile Only</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -454,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function() {
     "N/A": "gray"
   };
 
-  // Restore and clean local storage
+  // clean & restore local storage
   for (let key in localStorage) {
     if (key.startsWith("tc_") && localStorage[key] === "") localStorage.removeItem(key);
   }
@@ -485,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (colorMap[val]) sel.classList.add(colorMap[val]);
   }
 
-  // Add-row duplication
+  // add new row
   document.querySelectorAll(".add-row-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const tableId = btn.dataset.target;
@@ -504,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <!-- ===== END TRAINING CHECKLIST ===== -->
-
+      
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
       <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
