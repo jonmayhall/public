@@ -133,9 +133,8 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST SECTION (PART 1 OF 2) ===== -->
+<!-- ===== TRAINING CHECKLIST SECTION ===== -->
 <style>
-/* ===== MyKaarma Theme Styling ===== */
 #training-checklist {
   max-width: 1200px;
   margin: 0 auto;
@@ -180,9 +179,7 @@
   top: 48px;
   z-index: 1;
 }
-.training-table tr:hover {
-  background-color: #f8f8f8;
-}
+.training-table tr:hover { background-color: #f8f8f8; }
 .training-table td input[type="text"] {
   width: 95%;
   padding: 4px 6px;
@@ -196,28 +193,18 @@
   border: 1px solid #ccc;
   background: #fff;
 }
-/* widen name + DMS columns */
-.training-table td:nth-child(1) { min-width: 260px; }
-.training-table td:nth-child(2) { min-width: 160px; }
-.training-table td:nth-child(3) { min-width: 120px; }
-.add-row-btn {
-  background: #F36F21;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 10px 20px;
-  margin: 20px auto 30px;
-  display: block;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s;
+.training-table td:nth-child(1){min-width:260px;}
+.training-table td:nth-child(2){min-width:160px;}
+.add-row-btn{
+  background:#F36F21;color:#fff;border:none;border-radius:24px;
+  padding:10px 20px;margin:20px auto 30px;display:block;
+  cursor:pointer;font-weight:600;transition:background .2s;
 }
-.add-row-btn:hover { background: #d85f1d; }
-/* dropdown colors */
-select.green { background: #c7f5c1 !important; }
-select.yellow { background: #fff59d !important; }
-select.red { background: #f7b2b2 !important; }
-select.gray { background: #e0e0e0 !important; }
+.add-row-btn:hover{background:#d85f1d;}
+select.green{background:#c7f5c1!important;}
+select.yellow{background:#fff59d!important;}
+select.red{background:#f7b2b2!important;}
+select.gray{background:#e0e0e0!important;}
 </style>
 
 <section id="training-checklist" class="page-section">
@@ -248,30 +235,26 @@ select.gray { background: #e0e0e0 !important; }
         </tr>
       </thead>
       <tbody>
-        <!-- 5 Starter Rows -->
-        <!-- row template -->
+        <!-- Five starter rows -->
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td>
-            <select>
-              <option value="">Select...</option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-          <!-- repeat 14 dropdowns -->
-          ${Array(14).fill(`<td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>No</option>
-            <option>N/A</option>
-          </select></td>`).join('')}
+          <!-- 15 dropdown columns -->
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
         </tr>
       </tbody>
     </table>
@@ -306,24 +289,21 @@ select.gray { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td>
-            <select>
-              <option value="">Select...</option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-          ${Array(13).fill(`<td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>No</option>
-            <option>N/A</option>
-          </select></td>`).join('')}
+          <!-- 14 dropdown columns -->
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
         </tr>
       </tbody>
     </table>
@@ -358,24 +338,21 @@ select.gray { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          <td>
-            <select>
-              <option value="">Select...</option>
-              <option>Yes</option>
-              <option>Web Only</option>
-              <option>Mobile Only</option>
-              <option>No</option>
-              <option>N/A</option>
-            </select>
-          </td>
-          ${Array(13).fill(`<td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>No</option>
-            <option>N/A</option>
-          </select></td>`).join('')}
+          <!-- 14 dropdowns -->
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
         </tr>
       </tbody>
     </table>
@@ -401,14 +378,11 @@ select.gray { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          ${Array(5).fill(`<td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>No</option>
-            <option>N/A</option>
-          </select></td>`).join('')}
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
         </tr>
       </tbody>
     </table>
@@ -432,14 +406,9 @@ select.gray { background: #e0e0e0 !important; }
         <tr>
           <td><input type="text" placeholder="Enter name"></td>
           <td><input type="text" placeholder="Enter DMS ID"></td>
-          ${Array(3).fill(`<td><select>
-            <option value="">Select...</option>
-            <option>Yes</option>
-            <option>Web Only</option>
-            <option>Mobile Only</option>
-            <option>No</option>
-            <option>N/A</option>
-          </select></td>`).join('')}
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
+          <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
         </tr>
       </tbody>
     </table>
@@ -458,14 +427,11 @@ document.addEventListener("DOMContentLoaded", function() {
     "N/A": "gray"
   };
 
-  // Clean up invalid entries
+  // Restore and clean local storage
   for (let key in localStorage) {
-    if (key.startsWith("tc_") && localStorage[key] === "") {
-      localStorage.removeItem(key);
-    }
+    if (key.startsWith("tc_") && localStorage[key] === "") localStorage.removeItem(key);
   }
 
-  // Restore saved data
   Object.keys(localStorage).forEach(key => {
     if (key.startsWith("tc_")) {
       const el = document.querySelector('[data-key="'+key+'"]');
@@ -476,48 +442,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // Assign data keys and listeners
   document.querySelectorAll("#training-checklist select, #training-checklist input").forEach((el, i) => {
     const parentTable = el.closest("table")?.id || "global";
     const dataKey = "tc_" + parentTable + "_" + i;
     el.setAttribute("data-key", dataKey);
-
     el.addEventListener("change", () => {
       localStorage.setItem(dataKey, el.value);
       if (el.tagName === "SELECT") updateColor(el);
     });
   });
 
-  // Color update logic
   function updateColor(sel) {
     sel.classList.remove("green","yellow","red","gray");
     const val = sel.value;
     if (colorMap[val]) sel.classList.add(colorMap[val]);
   }
 
-  // Add-row buttons
+  // Add-row duplication
   document.querySelectorAll(".add-row-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const tableId = btn.dataset.target;
-      const table = document.getElementById(tableId)?.querySelector("tbody");
-      if (!table) return;
-      const rows = table.querySelectorAll("tr");
-      const lastFive = Array.from(rows).slice(-5);
-      lastFive.forEach(r => {
-        const clone = r.cloneNode(true);
-        clone.querySelectorAll("input").forEach(i => i.value = "");
-        clone.querySelectorAll("select").forEach(s => {
-          s.value = "";
-          s.className = "";
-          s.addEventListener("change", () => updateColor(s));
-        });
-        table.appendChild(clone);
+      const tbody = document.getElementById(tableId)?.querySelector("tbody");
+      if (!tbody) return;
+      const clone = tbody.querySelector("tr").cloneNode(true);
+      clone.querySelectorAll("input").forEach(i => i.value = "");
+      clone.querySelectorAll("select").forEach(s => {
+        s.value = "";
+        s.className = "";
+        s.addEventListener("change", () => updateColor(s));
       });
+      tbody.appendChild(clone);
     });
   });
 });
 </script>
 <!-- ===== END TRAINING CHECKLIST ===== -->
+
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
       <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
