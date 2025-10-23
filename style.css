@@ -225,3 +225,83 @@ h1 {
     flex-direction: column;
   }
 }
+/* === TRAINING CHECKLIST FINAL FIX === */
+#training-checklist {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.training-section {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 30px 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 75vh;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+}
+
+/* Sticky orange headers */
+.training-table th {
+  background: var(--orange) !important;
+  color: #fff !important;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+/* Table and cell layout */
+.training-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 1100px;
+  margin: 0 auto;
+}
+
+.training-table th,
+.training-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  min-width: 140px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align-last: center;
+  -moz-text-align-last: center;
+  background: #fff;
+}
+/* Dropdown color states */
+select.green { background: #c7f5c1 !important; }
+select.yellow { background: #fff59d !important; }
+select.red { background: #f7b2b2 !important; }
+select.gray { background: #e0e0e0 !important; }
+
+/* Add Row Button */
+.add-row-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  margin: 14px auto;
+  display: block;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.add-row-btn:hover {
+  background: #d85f1d;
+}
