@@ -1,20 +1,18 @@
-/* === Base Variables === */
 :root {
   --orange: #f36f21;
+  --light-orange: #f78f4b;
   --gray: #f6f6f6;
   --border: #e3e7eb;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 6px rgba(0,0,0,0.08);
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* === Base Layout === */
-html, body {
+body {
   margin: 0;
-  padding: 0;
   font-family: "Inter", system-ui, sans-serif;
-  color: var(--ink);
   background: var(--gray);
+  color: var(--ink);
   overflow-x: hidden;
 }
 
@@ -23,59 +21,45 @@ html, body {
   min-height: 100vh;
 }
 
-/* === Sidebar === */
+/* Sidebar */
 #sidebar {
   background: white;
   border-right: 1px solid var(--border);
   width: 260px;
   padding: 20px 10px;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   top: 0;
   bottom: 0;
 }
 
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
+.logo { width: 120px; margin-bottom: 20px; }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+nav { width: 100%; display: flex; flex-direction: column; gap: 6px; }
 
 .nav-btn {
-  width: 100%;
   background: none;
   border: none;
-  text-align: left;
-  font-size: 15px;
   padding: 10px 14px;
+  font-size: 15px;
+  text-align: left;
   border-radius: var(--radius);
   cursor: pointer;
   transition: 0.2s;
 }
-.nav-btn:hover {
-  background: #ffe3d0;
-  color: var(--orange);
-}
 
-/* === Main Content === */
+.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
+
+/* Main Content */
 main {
   flex: 1;
   margin-left: 260px;
   padding: 30px 50px;
-  overflow-x: hidden;
 }
 
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-}
-
-/* === Section Cards (Pretraining + Dealership) === */
 .page-section {
   display: none;
   background: white;
@@ -83,16 +67,14 @@ h1 {
   box-shadow: var(--shadow);
   padding: 20px 24px 30px;
   margin-bottom: 40px;
-  width: 100%;
-  max-width: 100%;
 }
-.page-section.active {
-  display: block;
-}
+
+.page-section.active { display: block; }
+
+h1 { color: var(--orange); margin-bottom: 20px; }
 
 .section-block {
   border-radius: var(--radius);
-  overflow: hidden;
   margin-bottom: 25px;
   background: white;
   box-shadow: var(--shadow);
@@ -104,7 +86,6 @@ h1 {
   margin: 0;
   padding: 10px 16px;
   font-size: 16px;
-  font-weight: 600;
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
@@ -115,22 +96,20 @@ h1 {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.checklist-row:last-child {
-  border-bottom: none;
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 15px;
-  padding-right: 20px;
-}
+
+.checklist-row:last-child { border-bottom: none; }
+
+.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
+
 .checklist-row select,
 .checklist-row input {
   width: 250px;
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  font-size: 14px;
 }
+
+/* Comments */
 .section-block textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -141,165 +120,86 @@ h1 {
   font-family: inherit;
 }
 
-/* === TRAINING CHECKLIST PAGE === */
-#training-checklist {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  width: 100%;
-}
-
-/* === Each Section/Table === */
-.section {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin: 30px 0;
-  overflow: hidden;
-}
-
-/* Sticky orange header bar for each table group */
+/* Training Tables */
 .section-header {
-  position: sticky;
-  top: 0;
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 15px;
-  z-index: 10;
-  border-radius: 6px 6px 0 0;
-}
-
-/* Table container with independent scrolling */
-.table-container {
-  position: relative;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 320px;
-  border-top: none;
-  border: 1px solid var(--border);
-  border-radius: 0 0 6px 6px;
-  background: #fff;
-}
-
-/* Add a subtle fade on the right edge */
-.table-container::after {
-  content: "";
-  position: sticky;
-  right: 0;
-  top: 0;
-  width: 40px;
-  height: 100%;
-  background: linear-gradient(to left, rgba(255,255,255,0.9) 10%, rgba(255,255,255,0));
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* Table styles */
-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 1100px;
-  font-size: 14px;
-}
-
-th, td {
-  border: 1px solid #e0e0e0;
-  padding: 6px 8px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Sticky column and header */
-th {
   background: var(--orange);
   color: white;
+  padding: 10px 16px;
   font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
   position: sticky;
   top: 0;
   z-index: 3;
 }
 
-th:first-child, td:first-child {
+.table-container {
+  overflow: auto;
+  max-height: 400px;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.training-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 1200px;
+}
+
+.training-table th {
+  background: var(--light-orange);
+  color: #fff;
+  padding: 8px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.training-table th:first-child {
+  background: var(--light-orange);
   position: sticky;
   left: 0;
-  background: #fff;
-  z-index: 4;
-  box-shadow: 2px 0 3px rgba(0,0,0,0.08);
+  z-index: 3;
 }
 
-/* Alternating row colors */
-tbody tr:nth-child(odd) { background: #fff; }
-tbody tr:nth-child(even) { background: #fafafa; }
-
-/* Inputs and dropdowns inside table */
-input[type="text"], select {
-  width: 130px;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 999px;
+.training-table td,
+.training-table input,
+.training-table select {
+  border: 1px solid var(--border);
+  padding: 6px 8px;
   text-align: center;
-  background: #fff;
-  transition: border-color 0.2s ease;
-}
-select:focus, input[type="text"]:focus {
-  border-color: var(--orange);
-  outline: none;
+  font-size: 14px;
 }
 
-/* Add row button */
-.add-row {
-  display: inline-block;
-  background: none;
-  border: none;
-  color: var(--orange);
-  font-size: 22px;
-  cursor: pointer;
-  margin: 5px 0 20px 12px;
+.training-table input[type="text"] {
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  padding: 6px;
 }
-.add-row:hover { color: #d45e1c; }
 
-/* === Floating Buttons === */
-#floating-buttons {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  display: flex;
-  gap: 10px;
+.training-table select {
+  min-width: 150px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
 }
+
+/* Row Styling */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
+/* Floating Button */
 .floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
   background: var(--orange);
   color: white;
   border: none;
   border-radius: var(--radius);
   padding: 12px 20px;
-  font-size: 15px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.3s;
-}
-.floating-btn:hover {
-  background: #ff8848;
-}
-.floating-btn.secondary {
-  background: #333;
-}
-.floating-btn.secondary:hover {
-  background: #111;
 }
 
-/* === Responsive === */
-@media (max-width: 900px) {
-  #sidebar { width: 200px; }
-  main { margin-left: 200px; padding: 20px; }
-  .checklist-row select, .checklist-row input { width: 180px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-  #floating-buttons {
-    right: 12px;
-    bottom: 12px;
-    flex-direction: column;
-  }
-}
+.floating-btn:hover { background: #ff8848; }
