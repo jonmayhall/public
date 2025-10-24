@@ -81,3 +81,21 @@ document.addEventListener("change", (e) => {
     else if (v === "N/A") e.target.classList.add("gray");
   }
 });
+
+// === Add Row Logic ===
+document.querySelectorAll(".add-row").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.getAttribute("data-target");
+    const table = document.getElementById(id);
+    if (!table) return;
+    const first = table.querySelector("tbody tr");
+    const clone = first.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => {
+      s.selectedIndex = 0;
+      s.style.backgroundColor = "white";
+    });
+    table.querySelector("tbody").appendChild(clone);
+  });
+});
+
