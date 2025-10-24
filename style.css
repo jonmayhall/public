@@ -225,83 +225,109 @@ h1 {
     flex-direction: column;
   }
 }
-/* === TRAINING CHECKLIST FINAL FIX === */
-#training-checklist {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-}
 
-.training-section {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin: 30px 0;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 75vh;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 16px;
-}
-
-/* Sticky orange headers */
-.training-table th {
-  background: var(--orange) !important;
-  color: #fff !important;
+/* === TRAINING CHECKLIST TABLES === */
+.section-header {
+  background: #f36f21;
+  color: #fff;
   font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 0;
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 10;
 }
 
-/* Table and cell layout */
-.training-table {
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 250px; /* fits 3 rows comfortably */
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: 0;
+}
+
+.table-container.small {
+  max-height: 180px; /* fits 2 rows comfortably */
+}
+
+/* === Table Styling === */
+table {
   border-collapse: collapse;
-  width: max-content;
+  width: 100%;
   min-width: 1100px;
-  margin: 0 auto;
+  font-size: 14px;
 }
 
-.training-table th,
-.training-table td {
-  border: 1px solid var(--border);
-  padding: 6px 10px;
+th, td {
+  border: 1px solid #e0e0e0;
+  padding: 6px 8px;
   text-align: center;
-  font-size: 0.9rem;
   white-space: nowrap;
 }
 
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  min-width: 140px;
-  padding: 6px 8px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-align-last: center;
-  -moz-text-align-last: center;
-  background: #fff;
-}
-/* Dropdown color states */
-select.green { background: #c7f5c1 !important; }
-select.yellow { background: #fff59d !important; }
-select.red { background: #f7b2b2 !important; }
-select.gray { background: #e0e0e0 !important; }
-
-/* Add Row Button */
-.add-row-btn {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 18px;
-  margin: 14px auto;
-  display: block;
+th {
+  background: #fff5ef;
+  color: #333;
   font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+tbody tr:nth-child(odd) { background: #fff; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* === Inputs & Dropdowns === */
+input[type="text"] {
+  width: 130px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Dropdowns styled as pills */
+select {
+  width: 130px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: border 0.2s ease, background 0.2s ease;
 }
-.add-row-btn:hover {
-  background: #d85f1d;
+
+select:focus {
+  border-color: #f36f21;
+  outline: none;
+  box-shadow: 0 0 4px rgba(243, 111, 33, 0.4);
 }
+
+/* Dropdown color backgrounds */
+select option[value="Yes"] { background: #c9f7c0; }
+select option[value="Web Only"],
+select option[value="Mobile Only"] { background: #fff8b3; }
+select option[value="No"],
+select option[value="Not Trained"] { background: #ffb3b3; }
+select option[value="N/A"] { background: #f2f2f2; }
+
+/* Add-row button */
+.add-row {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #f36f21;
+  font-size: 22px;
+  cursor: pointer;
+  margin: 5px 0 20px 12px;
+  transition: color 0.2s ease;
+}
+
+.add-row:hover { color: #d45e1c; }
