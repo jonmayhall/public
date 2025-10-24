@@ -4,68 +4,42 @@
   --border: #e3e7eb;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --table-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  --shadow: 0 2px 6px rgba(0,0,0,0.08);
   --dropdown-gray: #e0e0e0;
 }
 
+/* Layout */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
   background: var(--gray);
   color: var(--ink);
-  overflow-x: hidden;
 }
-
-#app {
-  display: flex;
-  min-height: 100vh;
-}
+#app { display: flex; min-height: 100vh; }
 
 /* Sidebar */
 #sidebar {
-  background: white;
-  border-right: 1px solid var(--border);
   width: 260px;
-  padding: 20px 10px;
+  background: #fff;
+  border-right: 1px solid var(--border);
   box-shadow: var(--shadow);
+  position: fixed;
+  top: 0; bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
 }
-
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
-
+.logo { width: 120px; margin-bottom: 20px; }
 .nav-btn {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  padding: 10px 14px;
+  width: 100%; border: none; background: none;
+  text-align: left; padding: 10px 14px;
   border-radius: var(--radius);
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
+  font-size: 15px; cursor: pointer;
 }
-.nav-btn:hover {
-  background: #ffe3d0;
-  color: var(--orange);
-}
+.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
 
 /* Main */
-main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 30px 50px;
-}
-
-/* Pages */
+main { flex: 1; margin-left: 260px; padding: 30px 50px; }
 .page-section {
   display: none;
   background: white;
@@ -74,85 +48,48 @@ main {
   padding: 20px 24px 30px;
   margin-bottom: 40px;
 }
-.page-section.active {
-  display: block;
-}
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-}
+.page-section.active { display: block; }
 
-/* Section blocks */
-.section-block {
-  border-radius: var(--radius);
-  margin-bottom: 25px;
-  background: white;
-  box-shadow: var(--shadow);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
+h1 { color: var(--orange); margin-bottom: 20px; }
 
-/* Checklist rows */
+/* Checklist */
 .checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
 }
-.checklist-row:last-child {
-  border-bottom: none;
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 15px;
-  padding-right: 20px;
-}
-.checklist-row select,
-.checklist-row input {
-  width: 250px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+.checklist-row:last-child { border-bottom: none; }
+.checklist-row label { flex: 1; padding-right: 20px; }
+.checklist-row select, .checklist-row input {
+  width: 250px; padding: 8px 10px;
+  border-radius: 10px; border: 1px solid var(--border);
   background: var(--dropdown-gray);
 }
 
 /* Notes */
 .section-block textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  resize: none;
-  overflow: hidden;
+  width: calc(100% - 32px); margin: 16px; padding: 12px;
+  border-radius: 12px; border: 1px solid var(--border);
+  resize: none; overflow: hidden;
   font-family: inherit;
 }
 
-/* === TRAINING TABLES === */
+/* Training Tables */
 .section-header {
-  background: var(--orange);
-  color: white;
-  padding: 10px 16px;
-  font-weight: 600;
+  background: var(--orange); color: white;
+  padding: 10px 16px; font-weight: 600;
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Scroll container */
+/* Table container */
 .table-container {
+  display: block;
   overflow-x: auto;
   overflow-y: auto;
   max-height: 420px;
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--table-shadow);
+  box-shadow: var(--shadow);
 }
 
 /* Table */
@@ -162,7 +99,7 @@ h1 {
   min-width: 1200px;
 }
 
-/* Header Row */
+/* Sticky orange header */
 .training-table th {
   background: var(--orange);
   color: #fff;
@@ -189,57 +126,37 @@ h1 {
   font-size: 14px;
 }
 .training-table input[type="text"] {
-  width: 240px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  padding: 6px;
+  width: 240px; border-radius: 6px;
+  border: 1px solid var(--border); padding: 6px;
 }
 .training-table select {
-  min-width: 150px;
-  border-radius: 10px;
+  min-width: 150px; border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--dropdown-gray);
-  text-align-last: center;
 }
 
-/* Alternating rows */
+/* Row striping */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
 /* Add Row */
 .add-row {
   display: block;
-  position: relative;
   margin: 10px 0 10px 10px;
-  background: #ccc;
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  font-size: 20px;
-  line-height: 30px;
+  background: #ccc; color: #333;
+  border: none; border-radius: 50%;
+  width: 34px; height: 34px;
+  font-size: 20px; line-height: 30px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
-.add-row:hover {
-  background: var(--orange);
-  color: #fff;
-}
+.add-row:hover { background: var(--orange); color: #fff; }
 
-/* Floating button */
+/* Floating Button */
 .floating-btn {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  background: var(--orange);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  padding: 12px 20px;
-  cursor: pointer;
+  position: fixed; top: 20px; right: 30px;
+  background: var(--orange); color: #fff;
+  border: none; border-radius: var(--radius);
+  padding: 12px 20px; cursor: pointer;
   box-shadow: var(--shadow);
 }
-.floating-btn:hover {
-  background: #ff8848;
-}
+.floating-btn:hover { background: #ff8848; }
