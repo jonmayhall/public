@@ -107,43 +107,92 @@
 
         <!-- TECHNICIANS -->
         <div class="section">
-          <div class="section-header">Technicians – Checklist</div>
-          <div class="table-scroll">
-            <div class="fade-right"></div>
+          <div class="section-header" style="border-bottom:1px solid #fff;">Technicians – Checklist</div>
+          <div class="table-container">
             <table id="technicians">
               <thead>
                 <tr>
-                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
-                  <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
-                  <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
-                  <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
                 </tr>
               </thead>
               <tbody>
-                <script>
-                  const techCols = 17;
-                  for (let i = 0; i < 3; i++) {
-                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-                    for (let j = 0; j < techCols - 2; j++) {
-                      document.write(`<td><select>
-                        <option></option><option value='Yes'>Yes</option>
-                        <option value='Web Only'>Web Only</option>
-                        <option value='Mobile Only'>Mobile Only</option>
-                        <option value='No'>No</option>
-                        <option value='Not Trained'>Not Trained</option>
-                        <option value='N/A'>N/A</option></select></td>`);
-                    }
-                    document.write("</tr>");
-                  }
-                </script>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="technicians">+</button>
         </div>
 
-        <!-- (Repeat your other tables here – Parts, Advisors, BDC, PU&D exactly as above) -->
+        <!-- PARTS -->
+        <div class="section">
+          <div class="section-header" style="border-bottom:1px solid #fff;">Parts Representatives – Checklist</div>
+          <div class="table-container">
+            <table id="parts">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Parts Tab</th><th>DMS History</th><th>ShopChat</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="parts">+</button>
+        </div>
 
+        <!-- ADVISORS -->
+        <div class="section">
+          <div class="section-header" style="border-bottom:1px solid #fff;">Service Advisors – Checklist</div>
+          <div class="table-container">
+            <table id="advisors">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>MCI</th><th>Search Bar</th><th>RO Assignment</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="advisors">+</button>
+        </div>
+
+        <!-- BDC -->
+        <div class="section">
+          <div class="section-header" style="border-bottom:1px solid #fff;">BDC Representatives – Checklist</div>
+          <div class="table-container">
+            <table id="bdc">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="bdc">+</button>
+        </div>
+
+        <!-- PICKUP & DELIVERY -->
+        <div class="section">
+          <div class="section-header" style="border-bottom:1px solid #fff;">Pick Up & Delivery Drivers – Checklist</div>
+          <div class="table-container">
+            <table id="pickup">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="pickup">+</button>
+        </div>
       </section>
 
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
@@ -158,6 +207,73 @@
     <button id="exportButton" class="floating-btn secondary">Export JSON</button>
   </div>
 
-  <script src="script.js"></script>
+  <!-- === SCRIPT (formerly script.js) === -->
+  <script>
+    // === Sidebar Navigation ===
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const sections = document.querySelectorAll(".page-section");
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        sections.forEach(sec => sec.classList.remove("active"));
+        document.getElementById(target).classList.add("active");
+        window.scrollTo({ top: 0 });
+      });
+    });
+
+    // === Add Row Logic ===
+    document.querySelectorAll(".add-row").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const table = document.getElementById(btn.dataset.target);
+        const firstRow = table.querySelector("tbody tr");
+        const clone = firstRow.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i => (i.value = ""));
+        table.querySelector("tbody").appendChild(clone);
+      });
+    });
+
+    // === Dropdown Color Coding ===
+    function colorSelect(sel) {
+      const v = sel.value;
+      const map = {
+        "Yes": "#c9f7c0",
+        "Web Only": "#fff8b3",
+        "Mobile Only": "#ffe0b3",
+        "No": "#ffb3b3",
+        "Not Trained": "#ffb3b3",
+        "N/A": "#f2f2f2"
+      };
+      sel.style.backgroundColor = map[v] || "white";
+    }
+    document.querySelectorAll("select").forEach(s => {
+      colorSelect(s);
+      s.addEventListener("change", () => colorSelect(s));
+    });
+
+    // === PDF Export ===
+    document.getElementById("pdfButton").addEventListener("click", () => {
+      const active = document.querySelector(".page-section.active");
+      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+        .then(html2pdf => {
+          html2pdf.default().from(active).save(`${active.id}.pdf`);
+          alert("✅ PDF saved successfully!");
+        });
+    });
+
+    // === JSON Export ===
+    document.getElementById("exportButton").addEventListener("click", () => {
+      const data = {};
+      document.querySelectorAll("input, select, textarea").forEach(el => {
+        const key = `${el.closest("section")?.id || "global"}_${el.placeholder || el.previousElementSibling?.textContent || "field"}`;
+        data[key] = el.value;
+      });
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "mykaarma-training-data.json";
+      a.click();
+      alert("✅ Data exported successfully!");
+    });
+  </script>
 </body>
 </html>
