@@ -1,13 +1,13 @@
 :root {
   --orange: #f36f21;
-  --light-orange: #f78f4b;
   --gray: #f6f6f6;
   --border: #e3e7eb;
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --table-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --table-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   --header-gray: #f2f5f7;
+  --dropdown-gray: #e0e0e0;
 }
 
 body {
@@ -60,7 +60,6 @@ nav {
   cursor: pointer;
   transition: 0.2s;
 }
-
 .nav-btn:hover {
   background: #ffe3d0;
   color: var(--orange);
@@ -81,11 +80,9 @@ main {
   padding: 20px 24px 30px;
   margin-bottom: 40px;
 }
-
 .page-section.active {
   display: block;
 }
-
 h1 {
   color: var(--orange);
   margin-bottom: 20px;
@@ -97,7 +94,6 @@ h1 {
   background: white;
   box-shadow: var(--shadow);
 }
-
 .section-block h2 {
   background: var(--orange);
   color: white;
@@ -107,6 +103,7 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+/* Checklist Rows */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -114,34 +111,33 @@ h1 {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-
 .checklist-row:last-child {
   border-bottom: none;
 }
-
 .checklist-row label {
   flex: 1;
   font-size: 15px;
   padding-right: 20px;
 }
-
 .checklist-row select,
 .checklist-row input {
   width: 250px;
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid var(--border);
+  background: var(--dropdown-gray);
 }
 
-/* Comments */
+/* Comments (Auto-expand notes) */
 .section-block textarea {
   width: calc(100% - 32px);
   margin: 16px;
   padding: 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  resize: vertical;
   font-family: inherit;
+  resize: none;
+  overflow: hidden;
 }
 
 /* === TRAINING TABLES === */
@@ -156,12 +152,12 @@ h1 {
   z-index: 3;
 }
 
-/* Table Container (scrollable inside) */
+/* Scrollable Table Container */
 .table-container {
   overflow-x: auto;
   overflow-y: auto;
   max-height: 420px; /* scroll starts after ~5 rows */
-  border: 1px solid var(--border);
+  border: 2px solid var(--orange);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--table-shadow);
@@ -183,14 +179,14 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 2;
-  font-weight: 600;
+  border-bottom: 2px solid var(--orange);
 }
-
 .training-table th:first-child {
   background: var(--header-gray);
   position: sticky;
   left: 0;
   z-index: 3;
+  border-left: 2px solid var(--orange);
 }
 
 /* Table Cells */
@@ -202,23 +198,21 @@ h1 {
   text-align: center;
   font-size: 14px;
 }
-
 .training-table input[type="text"] {
   width: 240px;
   border-radius: 6px;
   border: 1px solid var(--border);
   padding: 6px;
 }
-
 .training-table select {
   min-width: 150px;
-  border-radius: 16px;
+  border-radius: 10px;
   border: 1px solid var(--border);
   text-align-last: center;
-  background-color: white;
+  background: var(--dropdown-gray);
 }
 
-/* Row Striping */
+/* Alternating Rows */
 .training-table tr:nth-child(odd) {
   background: #fff;
 }
@@ -231,7 +225,7 @@ h1 {
   position: relative;
   display: block;
   margin: 10px 0 0 10px;
-  background: #e0e0e0;
+  background: #ddd;
   color: #333;
   border: none;
   border-radius: 50%;
