@@ -142,9 +142,9 @@
 <style>
   body {
     font-family: "Inter", sans-serif;
-    margin: 0;
     background: #fff;
     color: #333;
+    margin: 0;
   }
 
   .page-wrapper {
@@ -153,22 +153,23 @@
     margin: 0 auto;
   }
 
-  /* Section Header */
+  /* Section title bar */
   .section-header {
     position: sticky;
     top: 0;
-    z-index: 3;
     background: #f36f21;
     color: #fff;
-    padding: 10px 15px;
     font-weight: 600;
+    padding: 10px 15px;
     border-radius: 6px 6px 0 0;
+    z-index: 4;
   }
 
+  /* Table wrapper */
   .table-container {
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 400px;
+    max-height: 500px; /* fits about 5 rows */
     border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 6px 6px;
@@ -190,28 +191,27 @@
 
   th {
     position: sticky;
-    top: 40px;
+    top: 38px;
     background: #fff5ef;
-    color: #333;
-    z-index: 2;
+    z-index: 3;
   }
 
   input[type="text"] {
-    width: 120px;
+    width: 130px;
     padding: 4px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
   select {
-    width: 120px;
+    width: 130px;
     padding: 4px;
     border-radius: 4px;
     border: 1px solid #ccc;
     text-align: center;
   }
 
-  /* Dropdown color states */
+  /* Dropdown colors */
   select option[value="Yes"] { background: #c9f7c0; }
   select option[value="Web Only"] { background: #fff8b3; }
   select option[value="Mobile Only"] { background: #ffe0b3; }
@@ -219,17 +219,21 @@
   select option[value="Not Trained"] { background: #ffb3b3; }
   select option[value="N/A"] { background: #f2f2f2; }
 
+  /* Add-row button */
   .add-row {
+    display: inline-block;
     background: none;
     border: none;
     color: #f36f21;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
-    margin-top: 4px;
+    margin: 5px 0 20px 12px;
   }
-
   .add-row:hover { color: #d45e1c; }
 
+  /* Alternating rows */
+  tbody tr:nth-child(odd) { background: #fff; }
+  tbody tr:nth-child(even) { background: #fafafa; }
 </style>
 </head>
 <body>
@@ -249,27 +253,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" placeholder="Name"></td>
-            <td><input type="text" placeholder="DMS ID"></td>
-            <td colspan="14">
-              <select>
+          <!-- 5 starter rows -->
+          <script>
+          const techCols = 17;
+          for(let i=0;i<5;i++){
+            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+            for(let j=0;j<techCols-2;j++){
+              document.write(`<td><select>
                 <option></option>
-                <option value="Yes">Yes</option>
-                <option value="Web Only">Web Only</option>
-                <option value="Mobile Only">Mobile Only</option>
-                <option value="No">No</option>
-                <option value="Not Trained">Not Trained</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </td>
-          </tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+                <option value='Yes'>Yes</option>
+                <option value='Web Only'>Web Only</option>
+                <option value='Mobile Only'>Mobile Only</option>
+                <option value='No'>No</option>
+                <option value='Not Trained'>Not Trained</option>
+                <option value='N/A'>N/A</option>
+              </select></td>`);
+            }
+            document.write("</tr>");
+          }
+          </script>
         </tbody>
       </table>
     </div>
-    <button class="add-row" data-target="technicians">➕</button>
+    <button class="add-row" data-target="technicians">+</button>
   </div>
 
   <!-- PARTS REPRESENTATIVES -->
@@ -280,36 +286,37 @@
         <thead>
           <tr>
             <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
-            <th>Search Bar</th><th>Take Function</th><th>DMS History</th><th>Prev. Declines</th>
+            <th>Search Bar</th><th>"Take" Function</th><th>DMS History</th><th>Prev. Declines</th>
             <th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th>
             <th>Status Change</th><th>Notifications</th><th>Filters</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" placeholder="Name"></td>
-            <td><input type="text" placeholder="DMS ID"></td>
-            <td colspan="13">
-              <select>
+          <script>
+          const partsCols = 16;
+          for(let i=0;i<5;i++){
+            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+            for(let j=0;j<partsCols-2;j++){
+              document.write(`<td><select>
                 <option></option>
-                <option value="Yes">Yes</option>
-                <option value="Web Only">Web Only</option>
-                <option value="Mobile Only">Mobile Only</option>
-                <option value="No">No</option>
-                <option value="Not Trained">Not Trained</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </td>
-          </tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="13"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="13"></td></tr>
+                <option value='Yes'>Yes</option>
+                <option value='Web Only'>Web Only</option>
+                <option value='Mobile Only'>Mobile Only</option>
+                <option value='No'>No</option>
+                <option value='Not Trained'>Not Trained</option>
+                <option value='N/A'>N/A</option>
+              </select></td>`);
+            }
+            document.write("</tr>");
+          }
+          </script>
         </tbody>
       </table>
     </div>
-    <button class="add-row" data-target="parts">➕</button>
+    <button class="add-row" data-target="parts">+</button>
   </div>
 
-    <!-- SERVICE ADVISORS -->
+  <!-- SERVICE ADVISORS -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -323,30 +330,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" placeholder="Name"></td>
-            <td><input type="text" placeholder="DMS ID"></td>
-            <td colspan="14">
-              <select>
+          <script>
+          const advCols = 16;
+          for(let i=0;i<5;i++){
+            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+            for(let j=0;j<advCols-2;j++){
+              document.write(`<td><select>
                 <option></option>
-                <option value="Yes">Yes</option>
-                <option value="Web Only">Web Only</option>
-                <option value="Mobile Only">Mobile Only</option>
-                <option value="No">No</option>
-                <option value="Not Trained">Not Trained</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </td>
-          </tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+                <option value='Yes'>Yes</option>
+                <option value='Web Only'>Web Only</option>
+                <option value='Mobile Only'>Mobile Only</option>
+                <option value='No'>No</option>
+                <option value='Not Trained'>Not Trained</option>
+                <option value='N/A'>N/A</option>
+              </select></td>`);
+            }
+            document.write("</tr>");
+          }
+          </script>
         </tbody>
       </table>
     </div>
-    <button class="add-row" data-target="advisors">➕</button>
+    <button class="add-row" data-target="advisors">+</button>
   </div>
 
-  <!-- BDC REPRESENTATIVES -->
+    <!-- BDC REPRESENTATIVES -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -359,27 +367,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" placeholder="Name"></td>
-            <td><input type="text" placeholder="DMS ID"></td>
-            <td colspan="5">
-              <select>
+          <script>
+          const bdcCols = 7;
+          for(let i=0;i<5;i++){
+            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+            for(let j=0;j<bdcCols-2;j++){
+              document.write(`<td><select>
                 <option></option>
-                <option value="Yes">Yes</option>
-                <option value="Web Only">Web Only</option>
-                <option value="Mobile Only">Mobile Only</option>
-                <option value="No">No</option>
-                <option value="Not Trained">Not Trained</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </td>
-          </tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="5"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="5"></td></tr>
+                <option value='Yes'>Yes</option>
+                <option value='Web Only'>Web Only</option>
+                <option value='Mobile Only'>Mobile Only</option>
+                <option value='No'>No</option>
+                <option value='Not Trained'>Not Trained</option>
+                <option value='N/A'>N/A</option>
+              </select></td>`);
+            }
+            document.write("</tr>");
+          }
+          </script>
         </tbody>
       </table>
     </div>
-    <button class="add-row" data-target="bdc">➕</button>
+    <button class="add-row" data-target="bdc">+</button>
   </div>
 
   <!-- PICK UP & DELIVERY -->
@@ -393,47 +402,52 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="text" placeholder="Name"></td>
-            <td><input type="text" placeholder="DMS ID"></td>
-            <td colspan="3">
-              <select>
+          <script>
+          const pudCols = 5;
+          for(let i=0;i<5;i++){
+            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+            for(let j=0;j<pudCols-2;j++){
+              document.write(`<td><select>
                 <option></option>
-                <option value="Yes">Yes</option>
-                <option value="Web Only">Web Only</option>
-                <option value="Mobile Only">Mobile Only</option>
-                <option value="No">No</option>
-                <option value="Not Trained">Not Trained</option>
-                <option value="N/A">N/A</option>
-              </select>
-            </td>
-          </tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="3"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="3"></td></tr>
+                <option value='Yes'>Yes</option>
+                <option value='Web Only'>Web Only</option>
+                <option value='Mobile Only'>Mobile Only</option>
+                <option value='No'>No</option>
+                <option value='Not Trained'>Not Trained</option>
+                <option value='N/A'>N/A</option>
+              </select></td>`);
+            }
+            document.write("</tr>");
+          }
+          </script>
         </tbody>
       </table>
     </div>
-    <button class="add-row" data-target="pickup">➕</button>
+    <button class="add-row" data-target="pickup">+</button>
   </div>
 
 </div>
 
 <script>
-/* Add-row logic */
+/* ----- Add-row logic ----- */
 document.querySelectorAll(".add-row").forEach(btn=>{
   btn.addEventListener("click",()=>{
     const id = btn.getAttribute("data-target");
     const table = document.getElementById(id);
     if(!table) return;
-    const firstRow = table.querySelector("tbody tr");
-    const newRow = firstRow.cloneNode(true);
-    newRow.querySelectorAll("input").forEach(i=>i.value="");
-    newRow.querySelectorAll("select").forEach(s=>s.selectedIndex=0);
-    table.querySelector("tbody").appendChild(newRow);
+    const first = table.querySelector("tbody tr");
+    const clone = first.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i=>i.value="");
+    clone.querySelectorAll("select").forEach(s=>{
+      s.selectedIndex=0;
+      s.style.backgroundColor="white";
+    });
+    table.querySelector("tbody").appendChild(clone);
   });
 });
-/* Color selected option background */
-function updateSelectColor(sel){
+
+/* ----- Dropdown color logic ----- */
+function colorSelect(sel){
   const val = sel.value;
   const colors = {
     "Yes":"#c9f7c0",
@@ -446,8 +460,8 @@ function updateSelectColor(sel){
   sel.style.backgroundColor = colors[val] || "white";
 }
 document.querySelectorAll("select").forEach(s=>{
-  updateSelectColor(s);
-  s.addEventListener("change",()=>updateSelectColor(s));
+  colorSelect(s);
+  s.addEventListener("change",()=>colorSelect(s));
 });
 </script>
 </body>
