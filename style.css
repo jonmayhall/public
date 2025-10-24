@@ -1,31 +1,31 @@
-/* === myKaarma Branded Rounded Design === */
+/* === Base variables === */
 :root {
   --orange: #f36f21;
-  --green: #b7d33b;
   --gray: #f6f6f6;
   --border: #e3e7eb;
+  --shadow: 0 2px 6px rgba(0,0,0,0.08);
+  --radius: 12px;
   --ink: #222;
-  --radius: 16px;
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-/* === Base Layout === */
+/* === Reset === */
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
   height: 100%;
-  font-family: "Inter", system-ui, sans-serif;
-  color: var(--ink);
-  background: var(--gray);
-  overflow-x: auto; /* <-- allow horizontal scrolling for entire page */
+  overflow-x: auto;  /* allow page scroll */
   overflow-y: auto;
+  background: var(--gray);
+  color: var(--ink);
 }
 
+/* === Layout === */
 #app {
   display: flex;
+  align-items: flex-start;
   min-height: 100vh;
-  width: max-content; /* <-- let page content extend horizontally */
+  width: max-content; /* key: allows full horizontal scroll */
 }
 
 /* === Sidebar === */
@@ -35,14 +35,9 @@ html, body {
   width: 260px;
   padding: 20px 10px;
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: sticky;
-  left: 0;
   top: 0;
   height: 100vh;
-  z-index: 20;
 }
 
 .logo {
@@ -51,22 +46,20 @@ html, body {
 }
 
 nav {
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
 .nav-btn {
-  width: 100%;
   background: none;
   border: none;
   text-align: left;
-  font-size: 15px;
   padding: 10px 14px;
   border-radius: var(--radius);
   cursor: pointer;
   transition: 0.2s;
+  font-size: 15px;
 }
 
 .nav-btn:hover {
@@ -74,100 +67,134 @@ nav {
   color: var(--orange);
 }
 
-/* === Main Content === */
+/* === Main === */
 main {
   flex: 1;
   padding: 30px 50px;
-  min-width: 1200px; /* ensures page scrolls if wider */
+  min-width: 1000px;
 }
 
 h1 {
   color: var(--orange);
-  margin-bottom: 20px;
 }
 
-/* === Section Cards === */
+/* === Page sections === */
 .page-section {
   display: none;
   background: white;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 20px 24px 30px;
+  padding: 20px;
   margin-bottom: 40px;
-  width: max-content; /* <-- allows horizontal expansion */
+  width: max-content; /* key: allows horizontal scroll for page */
 }
 
 .page-section.active {
   display: block;
 }
 
-/* === Section Headers === */
-.section-block {
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 25px;
-  background: white;
-  box-shadow: var(--shadow);
+/* === Table wrapper === */
+.table-scroll {
+  display: block;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
 }
 
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
+/* Make sure scrollbars appear */
+.table-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.table-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 8px;
+}
+.table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
 
-/* === Checklist Rows === */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.checklist-row:last-child {
-  border-bottom: none;
-}
-
-.checklist-row label {
-  flex: 1;
-  font-size: 15px;
-  padding-right: 20px;
-}
-
-.checklist-row select,
-.checklist-row input {
-  width: 250px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+/* === Tables === */
+table {
+  border-collapse: collapse;
+  width: max-content; /* key: forces scroll when too wide */
+  min-width: 1400px;
   font-size: 14px;
-  transition: 0.2s;
 }
 
-.checklist-row select:focus,
-.checklist-row input:focus,
-.section-block textarea:focus {
+/* Sticky headers */
+th {
+  background: var(--orange);
+  color: #fff;
+  padding: 6px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border: 1px solid #e0e0e0;
+}
+
+/* Freeze first column */
+th:first-child, td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 6;
+  box-shadow: 2px 0 3px rgba(0,0,0,0.05);
+}
+
+td {
+  border: 1px solid #e0e0e0;
+  padding: 6px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Alternating rows */
+tbody tr:nth-child(odd) { background: #fff; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* Inputs and selects */
+input[type="text"], select {
+  width: 130px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+  background: #fff;
+}
+
+select:focus, input[type="text"]:focus {
   border-color: var(--orange);
   outline: none;
 }
 
-/* === Text Areas === */
-.section-block textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  resize: vertical;
-  font-family: inherit;
-}
+/* Dropdown colors */
+select option[value="Yes"] { background: #c9f7c0; }
+select option[value="Web Only"],
+select option[value="Mobile Only"] { background: #fff8b3; }
+select option[value="No"],
+select option[value="Not Trained"] { background: #ffb3b3; }
+select option[value="N/A"] { background: #f2f2f2; }
 
-/* === Floating Buttons === */
+/* === Add-row button === */
+.add-row {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 22px;
+  cursor: pointer;
+  margin: 10px 0 20px 12px;
+  transition: color 0.2s;
+}
+.add-row:hover { color: #d45e1c; }
+
+/* === Floating buttons === */
 #floating-buttons {
   position: fixed;
   bottom: 24px;
@@ -178,205 +205,20 @@ h1 {
 
 .floating-btn {
   background: var(--orange);
-  color: white;
+  color: #fff;
   border: none;
   border-radius: var(--radius);
   padding: 12px 20px;
-  font-size: 15px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.3s;
 }
 
-.floating-btn:hover {
-  background: #ff8848;
-}
-
-.floating-btn.secondary {
-  background: #333;
-}
-
-.floating-btn.secondary:hover {
-  background: #111;
-}
+.floating-btn.secondary { background: #333; }
+.floating-btn.secondary:hover { background: #111; }
 
 /* === Responsive === */
-@media (max-width: 900px) {
-  #sidebar {
-    width: 200px;
-  }
-
-  main {
-    margin-left: 200px;
-    padding: 20px;
-  }
-
-  .checklist-row select,
-  .checklist-row input {
-    width: 180px;
-  }
+@media (max-width: 800px) {
+  #sidebar { display: none; }
+  #app { flex-direction: column; }
+  main { margin: 0; padding: 20px; min-width: auto; }
 }
-
-@media (max-width: 600px) {
-  #sidebar {
-    display: none;
-  }
-
-  main {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  #floating-buttons {
-    right: 12px;
-    bottom: 12px;
-    flex-direction: column;
-  }
-}
-
-/* === TRAINING CHECKLIST TABLES (SCROLL + FROZEN NAME COLUMN) === */
-.section {
-  margin-bottom: 40px;
-}
-
-.section-header {
-  background: #f36f21;
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 15px;
-  border-radius: 6px 6px 0 0;
-  margin-bottom: 0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.table-container {
-  display: block;
-  width: max-content; /* ensures full width table is scrollable */
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 260px;
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 6px 6px;
-  background: #fff;
-  position: relative;
-  scrollbar-width: thin;
-  scrollbar-color: #ccc #f9f9f9;
-}
-
-/* Shorter containers (BDC & PU&D) */
-.table-container.small {
-  max-height: 180px;
-}
-
-/* Scrollbar Styling */
-.table-container::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
-}
-.table-container::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-.table-container::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-.table-container::-webkit-scrollbar-track {
-  background: #f9f9f9;
-  border-radius: 10px;
-}
-
-/* === Table Structure === */
-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 1300px;
-  font-size: 14px;
-  position: relative;
-}
-
-/* Sticky Header + Frozen Name */
-th {
-  background: #fff5ef;
-  color: #333;
-  font-weight: 600;
-  border: 1px solid #e0e0e0;
-  padding: 6px 8px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-}
-
-th:first-child,
-td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 4;
-  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.05);
-}
-
-td {
-  border: 1px solid #e0e0e0;
-  padding: 6px 8px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-tbody tr:nth-child(odd) { background: #fff; }
-tbody tr:nth-child(even) { background: #fafafa; }
-
-/* === Inputs & Dropdowns === */
-input[type="text"] {
-  width: 130px;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: center;
-}
-
-/* Dropdown styling (pills) */
-select {
-  width: 130px;
-  padding: 6px;
-  border-radius: 999px;
-  border: 1px solid #ccc;
-  background: #fff;
-  text-align: center;
-  appearance: none;
-  cursor: pointer;
-  transition: border 0.2s ease, background 0.2s ease;
-}
-
-select:focus {
-  border-color: #f36f21;
-  outline: none;
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
-}
-
-/* Dropdown color backgrounds */
-select option[value="Yes"] { background: #c9f7c0; }
-select option[value="Web Only"],
-select option[value="Mobile Only"] { background: #fff8b3; }
-select option[value="No"],
-select option[value="Not Trained"] { background: #ffb3b3; }
-select option[value="N/A"] { background: #f2f2f2; }
-
-/* === Add Row Button === */
-.add-row {
-  display: inline-block;
-  background: none;
-  border: none;
-  color: #f36f21;
-  font-size: 22px;
-  cursor: pointer;
-  margin: 5px 0 20px 12px;
-  transition: color 0.2s ease;
-}
-
-.add-row:hover { color: #d45e1c; }
-
-/* === End of File === */
