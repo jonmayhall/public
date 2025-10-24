@@ -133,277 +133,325 @@
   </div>
 </section>
       
-<!-- ===== TRAINING CHECKLIST – PART 1 / 2 ===== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Training Checklist</title>
 <style>
-#training-checklist {
-  width: 100%;
-  padding: 25px;
-  font-family: system-ui, sans-serif;
-  color: #333;
-}
+  body {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #333;
+  }
 
-/* white card */
-.training-section {
-  background: #fff;
-  border: 1px solid #e3e7eb;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 32px;
-  overflow-x: auto;
-}
+  .page-wrapper {
+    padding: 20px;
+    max-width: 98%;
+    margin: 0 auto;
+  }
 
-/* sticky orange headers */
-.training-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
-}
-.training-table th {
-  background: #F36F21;
-  color: #fff;
-  font-weight: 600;
-  padding: 8px 14px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  white-space: nowrap;
-}
-.training-table td {
-  border: 1px solid #e3e7eb;
-  padding: 6px 10px;
-  text-align: center;
-  white-space: nowrap;
-}
+  /* Section Header */
+  .section-header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: #f36f21;
+    color: #fff;
+    padding: 10px 15px;
+    font-weight: 600;
+    border-radius: 6px 6px 0 0;
+  }
 
-/* inputs & selects */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  min-width: 150px;
-  padding: 5px 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-align-last: center;
-  transition: box-shadow 0.2s, border 0.2s;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border: 1px solid #F36F21;
-  box-shadow: 0 0 6px rgba(243,111,33,0.4);
-  outline: none;
-}
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 400px;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+  }
 
-/* dropdown color states */
-select.green  { background: #c7f5c1 !important; }
-select.yellow { background: #fff59d !important; }
-select.red    { background: #f7b2b2 !important; }
-select.gray   { background: #e0e0e0 !important; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 1200px;
+    font-size: 14px;
+  }
 
-/* subtle orange plus */
-.add-row-btn {
-  background: none;
-  border: 2px solid #F36F21;
-  color: #F36F21;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 8px 0 12px 12px;
-  transition: background 0.2s, color 0.2s;
-}
-.add-row-btn:hover {
-  background: #F36F21;
-  color: #fff;
-}
+  th, td {
+    border: 1px solid #e0e0e0;
+    padding: 6px 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  th {
+    position: sticky;
+    top: 40px;
+    background: #fff5ef;
+    color: #333;
+    z-index: 2;
+  }
+
+  input[type="text"] {
+    width: 120px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  select {
+    width: 120px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  /* Dropdown color states */
+  select option[value="Yes"] { background: #c9f7c0; }
+  select option[value="Web Only"] { background: #fff8b3; }
+  select option[value="Mobile Only"] { background: #ffe0b3; }
+  select option[value="No"] { background: #ffb3b3; }
+  select option[value="Not Trained"] { background: #ffb3b3; }
+  select option[value="N/A"] { background: #f2f2f2; }
+
+  .add-row {
+    background: none;
+    border: none;
+    color: #f36f21;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .add-row:hover { color: #d45e1c; }
+
 </style>
+</head>
+<body>
+<div class="page-wrapper">
 
-<section id="training-checklist">
+  <!-- TECHNICIANS -->
+  <div class="section">
+    <div class="section-header">Technicians – Checklist</div>
+    <div class="table-container">
+      <table id="technicians">
+        <thead>
+          <tr>
+            <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
+            <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
+            <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+            <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="DMS ID"></td>
+            <td colspan="14">
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row" data-target="technicians">➕</button>
+  </div>
 
-<!-- ===== TECHNICIANS ===== -->
-<div class="training-section">
-  <h2 style="padding:10px 15px 0;margin:0;">Technicians – Checklist</h2>
-  <table class="training-table" id="technicians-table">
-    <thead>
-      <tr>
-        <th>Technician Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th>
-        <th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th>
-        <th>Dispatch</th><th>RO History</th><th>Prev. Declines</th>
-        <th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
-        <th>Adding Media</th><th>Status Change</th>
-        <th>Notifications</th><th>Filters</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 3 starter rows -->
-      <tr>
-        <td><input type="text" placeholder="Name"></td>
-        <td><input type="text" placeholder="DMS ID"></td>
-        <!-- repeat 15 selects -->
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-      </tr>
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <td colspan="15"></td>
-      </tr>
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <td colspan="15"></td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="add-row-btn" data-target="technicians-table">➕</button>
+  <!-- PARTS REPRESENTATIVES -->
+  <div class="section">
+    <div class="section-header">Parts Representatives – Checklist</div>
+    <div class="table-container">
+      <table id="parts">
+        <thead>
+          <tr>
+            <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
+            <th>Search Bar</th><th>Take Function</th><th>DMS History</th><th>Prev. Declines</th>
+            <th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+            <th>Status Change</th><th>Notifications</th><th>Filters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="DMS ID"></td>
+            <td colspan="13">
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="13"></td></tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="13"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row" data-target="parts">➕</button>
+  </div>
+
+    <!-- SERVICE ADVISORS -->
+  <div class="section">
+    <div class="section-header">Service Advisors – Checklist</div>
+    <div class="table-container">
+      <table id="advisors">
+        <thead>
+          <tr>
+            <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
+            <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th>
+            <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th>
+            <th>Status Change</th><th>MPI Send</th><th>SOP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="DMS ID"></td>
+            <td colspan="14">
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="14"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row" data-target="advisors">➕</button>
+  </div>
+
+  <!-- BDC REPRESENTATIVES -->
+  <div class="section">
+    <div class="section-header">BDC Representatives – Checklist</div>
+    <div class="table-container">
+      <table id="bdc">
+        <thead>
+          <tr>
+            <th>Name</th><th>DMS ID</th><th>Login</th>
+            <th>Scheduler</th><th>Declined Services</th>
+            <th>ServiceConnect</th><th>Call Routing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="DMS ID"></td>
+            <td colspan="5">
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="5"></td></tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="5"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row" data-target="bdc">➕</button>
+  </div>
+
+  <!-- PICK UP & DELIVERY -->
+  <div class="section">
+    <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
+    <div class="table-container">
+      <table id="pickup">
+        <thead>
+          <tr>
+            <th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Name"></td>
+            <td><input type="text" placeholder="DMS ID"></td>
+            <td colspan="3">
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="3"></td></tr>
+          <tr><td><input type="text"></td><td><input type="text"></td><td colspan="3"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row" data-target="pickup">➕</button>
+  </div>
+
 </div>
 
-<!-- ===== PARTS REPRESENTATIVES ===== -->
-<div class="training-section">
-  <h2 style="padding:10px 15px 0;margin:0;">Parts Representatives – Checklist</h2>
-  <table class="training-table" id="parts-table">
-    <thead>
-      <tr>
-        <th>Parts Rep Name</th><th>DMS ID</th><th>Login</th><th>Web App</th>
-        <th>Workflow</th><th>Search Bar</th><th>"Take" Function</th>
-        <th>DMS History</th><th>Prev. Declines</th><th>Parts Tab</th>
-        <th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th>
-        <th>Status Change</th><th>Notifications</th><th>Filters</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 3 starter rows -->
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <!-- 14 selects -->
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-      </tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="14"></td></tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="14"></td></tr>
-    </tbody>
-  </table>
-  <button class="add-row-btn" data-target="parts-table">➕</button>
-</div>
-
-  <!-- ===== SERVICE ADVISORS ===== -->
-<div class="training-section">
-  <h2 style="padding:10px 15px 0;margin:0;">Service Advisors – Checklist</h2>
-  <table class="training-table" id="advisors-table">
-    <thead>
-      <tr>
-        <th>Advisor Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th>
-        <th>MCI</th><th>Workflow</th><th>Search Bar</th><th>RO Assignment</th>
-        <th>DMS History</th><th>Prev. Declines</th><th>OCR</th>
-        <th>Edit ASR</th><th>ShopChat</th><th>Status Change</th>
-        <th>MPI Send</th><th>SOP</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 3 starter rows -->
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-      </tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="14"></td></tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="14"></td></tr>
-    </tbody>
-  </table>
-  <button class="add-row-btn" data-target="advisors-table">➕</button>
-</div>
-
-<!-- ===== BDC REPRESENTATIVES ===== -->
-<div class="training-section">
-  <h2 style="padding:10px 15px 0;margin:0;">BDC Representatives – Checklist</h2>
-  <table class="training-table" id="bdc-table">
-    <thead>
-      <tr>
-        <th>BDC Rep Name</th><th>DMS ID</th><th>Login</th>
-        <th>Scheduler</th><th>Declined Services</th>
-        <th>ServiceConnect</th><th>Call Routing</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 3 starter rows -->
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-      </tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
-    </tbody>
-  </table>
-  <button class="add-row-btn" data-target="bdc-table">➕</button>
-</div>
-
-<!-- ===== PICK UP & DELIVERY ===== -->
-<div class="training-section">
-  <h2 style="padding:10px 15px 0;margin:0;">Pick Up & Delivery Drivers – Checklist</h2>
-  <table class="training-table" id="pud-table">
-    <thead>
-      <tr>
-        <th>Driver Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- 3 starter rows -->
-      <tr>
-        <td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-        <td><select><option></option><option>Yes</option><option>Web Only</option><option>Mobile Only</option><option>No</option><option>N/A</option></select></td>
-      </tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
-      <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
-    </tbody>
-  </table>
-  <button class="add-row-btn" data-target="pud-table">➕</button>
-</div>
-
-</section>
-<!-- ===== END TRAINING CHECKLIST – PART 2 / 2 ===== -->
+<script>
+/* Add-row logic */
+document.querySelectorAll(".add-row").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const id = btn.getAttribute("data-target");
+    const table = document.getElementById(id);
+    if(!table) return;
+    const firstRow = table.querySelector("tbody tr");
+    const newRow = firstRow.cloneNode(true);
+    newRow.querySelectorAll("input").forEach(i=>i.value="");
+    newRow.querySelectorAll("select").forEach(s=>s.selectedIndex=0);
+    table.querySelector("tbody").appendChild(newRow);
+  });
+});
+/* Color selected option background */
+function updateSelectColor(sel){
+  const val = sel.value;
+  const colors = {
+    "Yes":"#c9f7c0",
+    "Web Only":"#fff8b3",
+    "Mobile Only":"#ffe0b3",
+    "No":"#ffb3b3",
+    "Not Trained":"#ffb3b3",
+    "N/A":"#f2f2f2"
+  };
+  sel.style.backgroundColor = colors[val] || "white";
+}
+document.querySelectorAll("select").forEach(s=>{
+  updateSelectColor(s);
+  s.addEventListener("change",()=>updateSelectColor(s));
+});
+</script>
+</body>
+</html>
 
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
