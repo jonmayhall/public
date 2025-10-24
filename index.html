@@ -136,334 +136,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Training Checklist</title>
-<style>
-  body {
-    font-family: "Inter", sans-serif;
-    background: #fff;
-    color: #333;
-    margin: 0;
-  }
-
-  .page-wrapper {
-    padding: 20px;
-    max-width: 98%;
-    margin: 0 auto;
-  }
-
-  /* Section title bar */
-  .section-header {
-    position: sticky;
-    top: 0;
-    background: #f36f21;
-    color: #fff;
-    font-weight: 600;
-    padding: 10px 15px;
-    border-radius: 6px 6px 0 0;
-    z-index: 4;
-  }
-
-  /* Table wrapper */
-  .table-container {
-    overflow-x: auto;
-    overflow-y: auto;
-    max-height: 500px; /* fits about 5 rows */
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 1200px;
-    font-size: 14px;
-  }
-
-  th, td {
-    border: 1px solid #e0e0e0;
-    padding: 6px 8px;
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  th {
-    position: sticky;
-    top: 38px;
-    background: #fff5ef;
-    z-index: 3;
-  }
-
-  input[type="text"] {
-    width: 130px;
-    padding: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  select {
-    width: 130px;
-    padding: 4px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
-
-  /* Dropdown colors */
-  select option[value="Yes"] { background: #c9f7c0; }
-  select option[value="Web Only"] { background: #fff8b3; }
-  select option[value="Mobile Only"] { background: #ffe0b3; }
-  select option[value="No"] { background: #ffb3b3; }
-  select option[value="Not Trained"] { background: #ffb3b3; }
-  select option[value="N/A"] { background: #f2f2f2; }
-
-  /* Add-row button */
-  .add-row {
-    display: inline-block;
-    background: none;
-    border: none;
-    color: #f36f21;
-    font-size: 22px;
-    cursor: pointer;
-    margin: 5px 0 20px 12px;
-  }
-  .add-row:hover { color: #d45e1c; }
-
-  /* Alternating rows */
-  tbody tr:nth-child(odd) { background: #fff; }
-  tbody tr:nth-child(even) { background: #fafafa; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myKaarma – Interactive Training Checklist</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<div class="page-wrapper">
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
+      </div>
+      <nav>
+        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
+        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
+        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      </nav>
+    </aside>
 
-  <!-- TECHNICIANS -->
-  <div class="section">
-    <div class="section-header">Technicians – Checklist</div>
-    <div class="table-container">
-      <table id="technicians">
-        <thead>
-          <tr>
-            <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
-            <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
-            <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
-            <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- 5 starter rows -->
-          <script>
-          const techCols = 17;
-          for(let i=0;i<5;i++){
-            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-            for(let j=0;j<techCols-2;j++){
-              document.write(`<td><select>
-                <option></option>
-                <option value='Yes'>Yes</option>
-                <option value='Web Only'>Web Only</option>
-                <option value='Mobile Only'>Mobile Only</option>
-                <option value='No'>No</option>
-                <option value='Not Trained'>Not Trained</option>
-                <option value='N/A'>N/A</option>
-              </select></td>`);
-            }
-            document.write("</tr>");
-          }
-          </script>
-        </tbody>
-      </table>
-    </div>
-    <button class="add-row" data-target="technicians">+</button>
+    <main id="content">
+
+      <!-- === PRE-TRAINING CHECKLIST === -->
+      <section id="pretraining" class="page-section active">
+        <h1>Pre-Training Checklist</h1>
+        <div class="section-block">
+          <h2>Handoff Notes</h2>
+          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+      </section>
+
+      <!-- === DEALERSHIP INFO === -->
+      <section id="dealership-info" class="page-section">
+        <h1>Dealership Information</h1>
+        <div class="section-block">
+          <h2>Wi-Fi Information</h2>
+          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
+          <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" placeholder="Enter password…" /></div>
+        </div>
+      </section>
+
+      <!-- === TRAINING CHECKLIST === -->
+      <section id="training-checklist" class="page-section">
+        <h1>Training Checklist</h1>
+
+        <!-- TECHNICIANS -->
+        <div class="section">
+          <div class="section-header">Technicians – Checklist</div>
+          <div class="table-container">
+            <table id="technicians">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
+                  <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
+                  <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+                  <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const techCols = 17;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < techCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="technicians">+</button>
+        </div>
+
+        <!-- PARTS REPS -->
+        <div class="section">
+          <div class="section-header">Parts Representatives – Checklist</div>
+          <div class="table-container">
+            <table id="parts">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
+                  <th>Search Bar</th><th>"Take" Function</th><th>DMS History</th>
+                  <th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th>
+                  <th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th>
+                  <th>Notifications</th><th>Filters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const partsCols = 16;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < partsCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="parts">+</button>
+        </div>
+
+        <!-- SERVICE ADVISORS -->
+        <div class="section">
+          <div class="section-header">Service Advisors – Checklist</div>
+          <div class="table-container">
+            <table id="advisors">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
+                  <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th>
+                  <th>DMS History</th><th>Prev. Declines</th><th>OCR</th>
+                  <th>Edit ASR</th><th>ShopChat</th><th>Status Change</th>
+                  <th>MPI Send</th><th>SOP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const advCols = 16;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < advCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="advisors">+</button>
+        </div>
+
+        <!-- BDC REPS -->
+        <div class="section">
+          <div class="section-header">BDC Representatives – Checklist</div>
+          <div class="table-container small">
+            <table id="bdc">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th>
+                  <th>Scheduler</th><th>Declined Services</th>
+                  <th>ServiceConnect</th><th>Call Routing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const bdcCols = 7;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < bdcCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="bdc">+</button>
+        </div>
+
+        <!-- PICKUP & DELIVERY -->
+        <div class="section">
+          <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
+          <div class="table-container small">
+            <table id="pickup">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
+              </thead>
+              <tbody>
+                <script>
+                  const pudCols = 5;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < pudCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="pickup">+</button>
+        </div>
+      </section>
+
+      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
+      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
+      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
+      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
+    </main>
   </div>
 
-  <!-- PARTS REPRESENTATIVES -->
-  <div class="section">
-    <div class="section-header">Parts Representatives – Checklist</div>
-    <div class="table-container">
-      <table id="parts">
-        <thead>
-          <tr>
-            <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
-            <th>Search Bar</th><th>"Take" Function</th><th>DMS History</th><th>Prev. Declines</th>
-            <th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th>
-            <th>Status Change</th><th>Notifications</th><th>Filters</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script>
-          const partsCols = 16;
-          for(let i=0;i<5;i++){
-            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-            for(let j=0;j<partsCols-2;j++){
-              document.write(`<td><select>
-                <option></option>
-                <option value='Yes'>Yes</option>
-                <option value='Web Only'>Web Only</option>
-                <option value='Mobile Only'>Mobile Only</option>
-                <option value='No'>No</option>
-                <option value='Not Trained'>Not Trained</option>
-                <option value='N/A'>N/A</option>
-              </select></td>`);
-            }
-            document.write("</tr>");
-          }
-          </script>
-        </tbody>
-      </table>
-    </div>
-    <button class="add-row" data-target="parts">+</button>
+  <div id="floating-buttons">
+    <button id="pdfButton" class="floating-btn">Save as PDF</button>
+    <button id="exportButton" class="floating-btn secondary">Export JSON</button>
   </div>
 
-  <!-- SERVICE ADVISORS -->
-  <div class="section">
-    <div class="section-header">Service Advisors – Checklist</div>
-    <div class="table-container">
-      <table id="advisors">
-        <thead>
-          <tr>
-            <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
-            <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th>
-            <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th>
-            <th>Status Change</th><th>MPI Send</th><th>SOP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script>
-          const advCols = 16;
-          for(let i=0;i<5;i++){
-            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-            for(let j=0;j<advCols-2;j++){
-              document.write(`<td><select>
-                <option></option>
-                <option value='Yes'>Yes</option>
-                <option value='Web Only'>Web Only</option>
-                <option value='Mobile Only'>Mobile Only</option>
-                <option value='No'>No</option>
-                <option value='Not Trained'>Not Trained</option>
-                <option value='N/A'>N/A</option>
-              </select></td>`);
-            }
-            document.write("</tr>");
-          }
-          </script>
-        </tbody>
-      </table>
-    </div>
-    <button class="add-row" data-target="advisors">+</button>
-  </div>
-
-    <!-- BDC REPRESENTATIVES -->
-  <div class="section">
-    <div class="section-header">BDC Representatives – Checklist</div>
-    <div class="table-container">
-      <table id="bdc">
-        <thead>
-          <tr>
-            <th>Name</th><th>DMS ID</th><th>Login</th>
-            <th>Scheduler</th><th>Declined Services</th>
-            <th>ServiceConnect</th><th>Call Routing</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script>
-          const bdcCols = 7;
-          for(let i=0;i<5;i++){
-            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-            for(let j=0;j<bdcCols-2;j++){
-              document.write(`<td><select>
-                <option></option>
-                <option value='Yes'>Yes</option>
-                <option value='Web Only'>Web Only</option>
-                <option value='Mobile Only'>Mobile Only</option>
-                <option value='No'>No</option>
-                <option value='Not Trained'>Not Trained</option>
-                <option value='N/A'>N/A</option>
-              </select></td>`);
-            }
-            document.write("</tr>");
-          }
-          </script>
-        </tbody>
-      </table>
-    </div>
-    <button class="add-row" data-target="bdc">+</button>
-  </div>
-
-  <!-- PICK UP & DELIVERY -->
-  <div class="section">
-    <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
-    <div class="table-container">
-      <table id="pickup">
-        <thead>
-          <tr>
-            <th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script>
-          const pudCols = 5;
-          for(let i=0;i<5;i++){
-            document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
-            for(let j=0;j<pudCols-2;j++){
-              document.write(`<td><select>
-                <option></option>
-                <option value='Yes'>Yes</option>
-                <option value='Web Only'>Web Only</option>
-                <option value='Mobile Only'>Mobile Only</option>
-                <option value='No'>No</option>
-                <option value='Not Trained'>Not Trained</option>
-                <option value='N/A'>N/A</option>
-              </select></td>`);
-            }
-            document.write("</tr>");
-          }
-          </script>
-        </tbody>
-      </table>
-    </div>
-    <button class="add-row" data-target="pickup">+</button>
-  </div>
-
-</div>
-
-<script>
-/* ----- Add-row logic ----- */
-document.querySelectorAll(".add-row").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const id = btn.getAttribute("data-target");
-    const table = document.getElementById(id);
-    if(!table) return;
-    const first = table.querySelector("tbody tr");
-    const clone = first.cloneNode(true);
-    clone.querySelectorAll("input").forEach(i=>i.value="");
-    clone.querySelectorAll("select").forEach(s=>{
-      s.selectedIndex=0;
-      s.style.backgroundColor="white";
-    });
-    table.querySelector("tbody").appendChild(clone);
-  });
-});
-
-/* ----- Dropdown color logic ----- */
-function colorSelect(sel){
-  const val = sel.value;
-  const colors = {
-    "Yes":"#c9f7c0",
-    "Web Only":"#fff8b3",
-    "Mobile Only":"#ffe0b3",
-    "No":"#ffb3b3",
-    "Not Trained":"#ffb3b3",
-    "N/A":"#f2f2f2"
-  };
-  sel.style.backgroundColor = colors[val] || "white";
-}
-document.querySelectorAll("select").forEach(s=>{
-  colorSelect(s);
-  s.addEventListener("change",()=>colorSelect(s));
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
 
