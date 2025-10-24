@@ -77,7 +77,7 @@
         </div>
 
         <div class="section-block">
-          <h2>Dealership Contacts</h2>
+          <h2>Dealership Contacts</h></h2>
           <div class="checklist-row"><label>Primary Point of Contact and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
           <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter cell…" /></div>
           <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter email…" /></div>
@@ -101,29 +101,25 @@
       <!-- === TRAINING CHECKLIST === -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
-
-        <!-- TABLES -->
         <div id="tables-container"></div>
       </section>
     </main>
   </div>
 
-  <!-- Floating PDF Button -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- Scripts -->
   <script>
     // Sidebar Navigation
-    document.querySelectorAll(".nav-btn").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const target=btn.getAttribute("data-target");
-        document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        document.querySelectorAll(".page-section").forEach(s => s.classList.remove("active"));
         document.getElementById(target).classList.add("active");
-        window.scrollTo({top:0});
+        window.scrollTo({ top: 0 });
       });
     });
 
-    // Generate all tables dynamically for cleaner HTML
+    // Generate all tables dynamically
     const roles = [
       {id:"technicians", title:"Technicians – Checklist", rows:3, cols:["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"]},
       {id:"advisors", title:"Service Advisors – Checklist", rows:3, cols:["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"]},
@@ -132,20 +128,20 @@
       {id:"pickup", title:"Pick Up & Delivery Drivers – Checklist", rows:2, cols:["DMS ID","Login","PU&D","Notifications"]}
     ];
 
-    const tablesContainer=document.getElementById("tables-container");
-    roles.forEach(role=>{
-      const div=document.createElement("div");
+    const tablesContainer = document.getElementById("tables-container");
+    roles.forEach(role => {
+      const div = document.createElement("div");
       div.classList.add("section");
-      div.innerHTML=`
+      div.innerHTML = `
         <div class="section-header">${role.title}</div>
         <div class="table-container">
           <table id="${role.id}" class="training-table">
-            <thead><tr><th style="width:260px;">Name</th>${role.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+            <thead><tr><th style="width:260px;">Name</th>${role.cols.map(c => `<th>${c}</th>`).join("")}</tr></thead>
             <tbody>
-              ${Array.from({length:role.rows}).map(()=>`
+              ${Array.from({ length: role.rows }).map(() => `
                 <tr>
                   <td><input type="text" placeholder="${role.title.split('–')[0].trim()} Name"></td>
-                  ${role.cols.map(()=>`
+                  ${role.cols.map(() => `
                     <td>
                       <select>
                         <option></option>
@@ -168,33 +164,36 @@
     });
 
     // Dropdown color coding
-    function colorSelect(sel){
-      const v=sel.value;
-      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
-      sel.style.backgroundColor=colors[v]||"white";
-    }
-    document.addEventListener("change",e=>{
-      if(e.target.tagName==="SELECT")colorSelect(e.target);
+    document.addEventListener("change", e => {
+      if (e.target.tagName === "SELECT") e.target.style.backgroundColor = "#e0e0e0";
     });
 
     // Add-row function
-    document.addEventListener("click",e=>{
-      if(e.target.classList.contains("add-row")){
-        const id=e.target.dataset.target;
-        const table=document.getElementById(id);
-        const first=table.querySelector("tbody tr");
-        const clone=first.cloneNode(true);
-        clone.querySelectorAll("input").forEach(i=>i.value="");
-        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="white";});
+    document.addEventListener("click", e => {
+      if (e.target.classList.contains("add-row")) {
+        const id = e.target.dataset.target;
+        const table = document.getElementById(id);
+        const first = table.querySelector("tbody tr");
+        const clone = first.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i => i.value = "");
+        clone.querySelectorAll("select").forEach(s => { s.selectedIndex = 0; s.style.backgroundColor = "#e0e0e0"; });
         table.querySelector("tbody").appendChild(clone);
       }
     });
 
+    // Auto-expand notes
+    document.addEventListener("input", e => {
+      if (e.target.tagName === "TEXTAREA") {
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+      }
+    });
+
     // PDF Export
-    document.getElementById("pdfButton").addEventListener("click",()=>{
-      const active=document.querySelector(".page-section.active");
+    document.getElementById("pdfButton").addEventListener("click", () => {
+      const active = document.querySelector(".page-section.active");
       import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
+        .then(html2pdf => html2pdf.default().from(active).save(`${active.id}.pdf`));
     });
   </script>
 </body>
