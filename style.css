@@ -6,6 +6,8 @@
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --table-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --header-gray: #f2f5f7;
 }
 
 body {
@@ -36,9 +38,17 @@ body {
   bottom: 0;
 }
 
-.logo { width: 120px; margin-bottom: 20px; }
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
 
-nav { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
 .nav-btn {
   background: none;
@@ -51,7 +61,10 @@ nav { width: 100%; display: flex; flex-direction: column; gap: 6px; }
   transition: 0.2s;
 }
 
-.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
+.nav-btn:hover {
+  background: #ffe3d0;
+  color: var(--orange);
+}
 
 /* Main Content */
 main {
@@ -69,9 +82,14 @@ main {
   margin-bottom: 40px;
 }
 
-.page-section.active { display: block; }
+.page-section.active {
+  display: block;
+}
 
-h1 { color: var(--orange); margin-bottom: 20px; }
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
 
 .section-block {
   border-radius: var(--radius);
@@ -97,9 +115,15 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   border-bottom: 1px solid var(--border);
 }
 
-.checklist-row:last-child { border-bottom: none; }
+.checklist-row:last-child {
+  border-bottom: none;
+}
 
-.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
+.checklist-row label {
+  flex: 1;
+  font-size: 15px;
+  padding-right: 20px;
+}
 
 .checklist-row select,
 .checklist-row input {
@@ -120,7 +144,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   font-family: inherit;
 }
 
-/* Training Tables */
+/* === TRAINING TABLES === */
 .section-header {
   background: var(--orange);
   color: white;
@@ -132,36 +156,44 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   z-index: 3;
 }
 
+/* Table Container (scrollable inside) */
 .table-container {
-  overflow: auto;
-  max-height: 400px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 420px; /* scroll starts after ~5 rows */
   border: 1px solid var(--border);
   border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--table-shadow);
 }
 
+/* Table */
 .training-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 1200px;
 }
 
+/* Header Row */
 .training-table th {
-  background: var(--light-orange);
-  color: #fff;
+  background: var(--header-gray);
+  color: #000;
   padding: 8px 10px;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 2;
+  font-weight: 600;
 }
 
 .training-table th:first-child {
-  background: var(--light-orange);
+  background: var(--header-gray);
   position: sticky;
   left: 0;
   z-index: 3;
 }
 
+/* Table Cells */
 .training-table td,
 .training-table input,
 .training-table select {
@@ -182,13 +214,40 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   min-width: 150px;
   border-radius: 16px;
   border: 1px solid var(--border);
+  text-align-last: center;
+  background-color: white;
 }
 
-/* Row Styling */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+/* Row Striping */
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
 
-/* Floating Button */
+/* + Add Row Button */
+.add-row {
+  position: relative;
+  display: block;
+  margin: 10px 0 0 10px;
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.add-row:hover {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* Floating Save as PDF Button */
 .floating-btn {
   position: fixed;
   top: 20px;
@@ -201,5 +260,6 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   cursor: pointer;
   box-shadow: var(--shadow);
 }
-
-.floating-btn:hover { background: #ff8848; }
+.floating-btn:hover {
+  background: #ff8848;
+}
