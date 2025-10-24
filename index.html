@@ -9,7 +9,7 @@
 
 <body>
   <div id="app">
-    <!-- === SIDEBAR === -->
+    <!-- Sidebar -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -25,89 +25,37 @@
       </nav>
     </aside>
 
-    <!-- === MAIN CONTENT === -->
+    <!-- Main content -->
     <main id="content">
 
-      <!-- === PRE-TRAINING CHECKLIST === -->
+      <!-- Pre-Training -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
-
-        <div class="section-block">
-          <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Are all of the managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Location</h2>
-          <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Products</h2>
-          <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
       </section>
 
-      <!-- === DEALERSHIP INFO === -->
+      <!-- Dealership Info -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
-
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
           <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" placeholder="Enter password…" /></div>
         </div>
-
-        <div class="section-block">
-          <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary Point of Contact and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
-          <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter cell…" /></div>
-          <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter email…" /></div>
-
-          <div class="checklist-row"><label>Additional POC and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
-          <div class="checklist-row"><label>Additional POC Email</label><input type="text" placeholder="Enter email…" /></div>
-          <div class="checklist-row"><label>Include in communications?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Training Team</h2>
-          <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter name…" /></div>
-          <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter names…" /></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
       </section>
 
-      <!-- === TRAINING CHECKLIST === -->
+      <!-- Training Checklist -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
-        <!-- TECHNICIANS -->
+        <!-- ===== TECHNICIANS ===== -->
         <div class="section">
-          <div class="section-header" style="border-bottom:1px solid #fff;">Technicians – Checklist</div>
+          <div class="section-header">Technicians – Checklist</div>
           <div class="table-container">
             <table id="technicians">
               <thead>
@@ -116,78 +64,84 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="15"></td></tr>
+                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="technicians">+</button>
         </div>
 
-        <!-- PARTS -->
+        <!-- ===== PARTS ===== -->
         <div class="section">
-          <div class="section-header" style="border-bottom:1px solid #fff;">Parts Representatives – Checklist</div>
+          <div class="section-header">Parts Representatives – Checklist</div>
           <div class="table-container">
             <table id="parts">
               <thead>
-                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Parts Tab</th><th>DMS History</th><th>ShopChat</th></tr>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th><th>Search Bar</th><th>Take Function</th><th>DMS History</th><th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+                <tr><td><input type="text" placeholder="Parts Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Parts Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="parts">+</button>
         </div>
 
-        <!-- ADVISORS -->
+        <!-- ===== ADVISORS ===== -->
         <div class="section">
-          <div class="section-header" style="border-bottom:1px solid #fff;">Service Advisors – Checklist</div>
+          <div class="section-header">Service Advisors – Checklist</div>
           <div class="table-container">
             <table id="advisors">
               <thead>
-                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>MCI</th><th>Search Bar</th><th>RO Assignment</th></tr>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th><th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th><th>Status Change</th><th>MPI Send</th><th>SOP</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="5"></td></tr>
+                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="advisors">+</button>
         </div>
 
-        <!-- BDC -->
+        <!-- ===== BDC ===== -->
         <div class="section">
-          <div class="section-header" style="border-bottom:1px solid #fff;">BDC Representatives – Checklist</div>
+          <div class="section-header">BDC Representatives – Checklist</div>
           <div class="table-container">
             <table id="bdc">
               <thead>
-                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th></tr>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+                <tr><td><input type="text" placeholder="BDC Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="BDC Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="bdc">+</button>
         </div>
 
-        <!-- PICKUP & DELIVERY -->
+        <!-- ===== PICKUP & DELIVERY ===== -->
         <div class="section">
-          <div class="section-header" style="border-bottom:1px solid #fff;">Pick Up & Delivery Drivers – Checklist</div>
+          <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
           <div class="table-container">
             <table id="pickup">
               <thead>
                 <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
-                <tr><td><input type="text" placeholder="Name"></td><td><input type="text" placeholder="DMS ID"></td><td colspan="3"></td></tr>
+                <tr><td><input type="text" placeholder="Driver Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <tr><td><input type="text" placeholder="Driver Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
               </tbody>
             </table>
           </div>
@@ -202,75 +156,67 @@
     </main>
   </div>
 
+  <!-- Floating buttons -->
   <div id="floating-buttons">
     <button id="pdfButton" class="floating-btn">Save as PDF</button>
     <button id="exportButton" class="floating-btn secondary">Export JSON</button>
   </div>
 
-  <!-- === SCRIPT (formerly script.js) === -->
+  <!-- Inline Script -->
   <script>
-    // === Sidebar Navigation ===
-    const navButtons = document.querySelectorAll(".nav-btn");
-    const sections = document.querySelectorAll(".page-section");
-    navButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.getAttribute("data-target");
-        sections.forEach(sec => sec.classList.remove("active"));
+    // Sidebar Navigation
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const target=btn.getAttribute("data-target");
+        document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
         document.getElementById(target).classList.add("active");
-        window.scrollTo({ top: 0 });
+        window.scrollTo({top:0});
       });
     });
 
-    // === Add Row Logic ===
-    document.querySelectorAll(".add-row").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const table = document.getElementById(btn.dataset.target);
-        const firstRow = table.querySelector("tbody tr");
-        const clone = firstRow.cloneNode(true);
-        clone.querySelectorAll("input").forEach(i => (i.value = ""));
+    // Add-Row Logic
+    document.querySelectorAll(".add-row").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const table=document.getElementById(btn.dataset.target);
+        const firstRow=table.querySelector("tbody tr");
+        const clone=firstRow.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i=>i.value="");
+        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0; s.style.backgroundColor="white";});
         table.querySelector("tbody").appendChild(clone);
       });
     });
 
-    // === Dropdown Color Coding ===
-    function colorSelect(sel) {
-      const v = sel.value;
-      const map = {
-        "Yes": "#c9f7c0",
-        "Web Only": "#fff8b3",
-        "Mobile Only": "#ffe0b3",
-        "No": "#ffb3b3",
-        "Not Trained": "#ffb3b3",
-        "N/A": "#f2f2f2"
-      };
-      sel.style.backgroundColor = map[v] || "white";
+    // Dropdown Color Coding
+    function colorSelect(sel){
+      const v=sel.value;
+      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
+      sel.style.backgroundColor=colors[v]||"white";
     }
-    document.querySelectorAll("select").forEach(s => {
-      colorSelect(s);
-      s.addEventListener("change", () => colorSelect(s));
+    document.addEventListener("change",e=>{
+      if(e.target.tagName==="SELECT"){colorSelect(e.target);}
     });
 
-    // === PDF Export ===
-    document.getElementById("pdfButton").addEventListener("click", () => {
-      const active = document.querySelector(".page-section.active");
+    // PDF Export
+    document.getElementById("pdfButton").addEventListener("click",()=>{
+      const active=document.querySelector(".page-section.active");
       import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then(html2pdf => {
+        .then(html2pdf=>{
           html2pdf.default().from(active).save(`${active.id}.pdf`);
           alert("✅ PDF saved successfully!");
         });
     });
 
-    // === JSON Export ===
-    document.getElementById("exportButton").addEventListener("click", () => {
-      const data = {};
-      document.querySelectorAll("input, select, textarea").forEach(el => {
-        const key = `${el.closest("section")?.id || "global"}_${el.placeholder || el.previousElementSibling?.textContent || "field"}`;
-        data[key] = el.value;
+    // JSON Export
+    document.getElementById("exportButton").addEventListener("click",()=>{
+      const data={};
+      document.querySelectorAll("input,select,textarea").forEach(el=>{
+        const key=`${el.closest("section")?.id||"global"}_${el.placeholder||el.previousElementSibling?.textContent||"field"}`;
+        data[key]=el.value;
       });
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "mykaarma-training-data.json";
+      const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(blob);
+      a.download="mykaarma-training-data.json";
       a.click();
       alert("✅ Data exported successfully!");
     });
