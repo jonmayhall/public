@@ -25,10 +25,10 @@
       </nav>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main id="content">
 
-      <!-- Pre-Training -->
+      <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
         <div class="section-block">
@@ -39,7 +39,7 @@
         </div>
       </section>
 
-      <!-- Dealership Info -->
+      <!-- === DEALERSHIP INFO === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
         <div class="section-block">
@@ -49,122 +49,189 @@
         </div>
       </section>
 
-      <!-- Training Checklist -->
+      <!-- === TRAINING CHECKLIST === -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
-        <!-- ===== TECHNICIANS ===== -->
+        <!-- Function to generate dropdown cells -->
+        <script>
+          function dropdownCell() {
+            return `<select>
+              <option></option>
+              <option value='Yes'>Yes</option>
+              <option value='Web Only'>Web Only</option>
+              <option value='Mobile Only'>Mobile Only</option>
+              <option value='No'>No</option>
+              <option value='Not Trained'>Not Trained</option>
+              <option value='N/A'>N/A</option>
+            </select>`;
+          }
+        </script>
+
+        <!-- === TECHNICIANS TABLE === -->
         <div class="section">
           <div class="section-header">Technicians – Checklist</div>
           <div class="table-container">
-            <table id="technicians">
+            <table id="technicians" class="training-table">
               <thead>
                 <tr>
-                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
+                  <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
+                  <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+                  <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Technician Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <script>
+                  const techCols = 17;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr>");
+                    document.write("<td><input type='text' placeholder='Technician Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < techCols - 2; j++) document.write(`<td>${dropdownCell()}</td>`);
+                    document.write("</tr>");
+                  }
+                </script>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="technicians">+</button>
-        </div>
-
-        <!-- ===== PARTS ===== -->
-        <div class="section">
-          <div class="section-header">Parts Representatives – Checklist</div>
-          <div class="table-container">
-            <table id="parts">
-              <thead>
-                <tr>
-                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th><th>Search Bar</th><th>Take Function</th><th>DMS History</th><th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><input type="text" placeholder="Parts Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Parts Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-              </tbody>
-            </table>
+          <div class="comments-block">
+            <h3>Additional Comments</h3>
+            <textarea placeholder="Type here..."></textarea>
           </div>
-          <button class="add-row" data-target="parts">+</button>
         </div>
 
-        <!-- ===== ADVISORS ===== -->
+        <!-- === ADVISORS TABLE === -->
         <div class="section">
           <div class="section-header">Service Advisors – Checklist</div>
           <div class="table-container">
-            <table id="advisors">
+            <table id="advisors" class="training-table">
               <thead>
                 <tr>
-                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th><th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th><th>Status Change</th><th>MPI Send</th><th>SOP</th>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
+                  <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th>
+                  <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th>
+                  <th>Status Change</th><th>MPI Send</th><th>SOP</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Advisor Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <script>
+                  const advCols = 16;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr>");
+                    document.write("<td><input type='text' placeholder='Advisor Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < advCols - 2; j++) document.write(`<td>${dropdownCell()}</td>`);
+                    document.write("</tr>");
+                  }
+                </script>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="advisors">+</button>
+          <div class="comments-block">
+            <h3>Additional Comments</h3>
+            <textarea placeholder="Type here..."></textarea>
+          </div>
         </div>
 
-        <!-- ===== BDC ===== -->
+        <!-- === PARTS TABLE === -->
         <div class="section">
-          <div class="section-header">BDC Representatives – Checklist</div>
+          <div class="section-header">Parts Representatives – Checklist</div>
           <div class="table-container">
-            <table id="bdc">
+            <table id="parts" class="training-table">
               <thead>
                 <tr>
-                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
+                  <th>Search Bar</th><th>Take Function</th><th>DMS History</th>
+                  <th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th><th>Edit ASR</th>
+                  <th>ShopChat / Parts</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="BDC Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="BDC Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <script>
+                  const partsCols = 16;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr>");
+                    document.write("<td><input type='text' placeholder='Parts Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < partsCols - 2; j++) document.write(`<td>${dropdownCell()}</td>`);
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="parts">+</button>
+          <div class="comments-block">
+            <h3>Additional Comments</h3>
+            <textarea placeholder="Type here..."></textarea>
+          </div>
+        </div>
+
+        <!-- === BDC TABLE === -->
+        <div class="section">
+          <div class="section-header">BDC Representatives – Checklist</div>
+          <div class="table-container">
+            <table id="bdc" class="training-table">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th></tr>
+              </thead>
+              <tbody>
+                <script>
+                  const bdcCols = 7;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr>");
+                    document.write("<td><input type='text' placeholder='BDC Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < bdcCols - 2; j++) document.write(`<td>${dropdownCell()}</td>`);
+                    document.write("</tr>");
+                  }
+                </script>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="bdc">+</button>
+          <div class="comments-block">
+            <h3>Additional Comments</h3>
+            <textarea placeholder="Type here..."></textarea>
+          </div>
         </div>
 
-        <!-- ===== PICKUP & DELIVERY ===== -->
+        <!-- === PICKUP TABLE === -->
         <div class="section">
           <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
           <div class="table-container">
-            <table id="pickup">
+            <table id="pickup" class="training-table">
               <thead>
                 <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
               </thead>
               <tbody>
-                <tr><td><input type="text" placeholder="Driver Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
-                <tr><td><input type="text" placeholder="Driver Name" /></td><td><input type="text" placeholder="DMS ID" /></td></tr>
+                <script>
+                  const pudCols = 5;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr>");
+                    document.write("<td><input type='text' placeholder='Driver Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < pudCols - 2; j++) document.write(`<td>${dropdownCell()}</td>`);
+                    document.write("</tr>");
+                  }
+                </script>
               </tbody>
             </table>
           </div>
           <button class="add-row" data-target="pickup">+</button>
+          <div class="comments-block">
+            <h3>Additional Comments</h3>
+            <textarea placeholder="Type here..."></textarea>
+          </div>
         </div>
       </section>
-
-      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
-      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
-      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
-      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
     </main>
   </div>
 
-  <!-- Floating buttons -->
-  <div id="floating-buttons">
-    <button id="pdfButton" class="floating-btn">Save as PDF</button>
-    <button id="exportButton" class="floating-btn secondary">Export JSON</button>
-  </div>
+  <!-- Floating PDF Button -->
+  <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- Inline Script -->
+  <!-- Scripts -->
   <script>
-    // Sidebar Navigation
+    // Navigation
     document.querySelectorAll(".nav-btn").forEach(btn=>{
       btn.addEventListener("click",()=>{
         const target=btn.getAttribute("data-target");
@@ -174,51 +241,31 @@
       });
     });
 
-    // Add-Row Logic
+    // Dropdown Colors
+    function colorSelect(sel){
+      const val=sel.value;
+      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
+      sel.style.backgroundColor=colors[val]||"white";
+    }
+    document.addEventListener("change",e=>{if(e.target.tagName==="SELECT")colorSelect(e.target);});
+
+    // Add Row
     document.querySelectorAll(".add-row").forEach(btn=>{
       btn.addEventListener("click",()=>{
         const table=document.getElementById(btn.dataset.target);
-        const firstRow=table.querySelector("tbody tr");
-        const clone=firstRow.cloneNode(true);
+        const row=table.querySelector("tbody tr");
+        const clone=row.cloneNode(true);
         clone.querySelectorAll("input").forEach(i=>i.value="");
-        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0; s.style.backgroundColor="white";});
+        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="white";});
         table.querySelector("tbody").appendChild(clone);
       });
-    });
-
-    // Dropdown Color Coding
-    function colorSelect(sel){
-      const v=sel.value;
-      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
-      sel.style.backgroundColor=colors[v]||"white";
-    }
-    document.addEventListener("change",e=>{
-      if(e.target.tagName==="SELECT"){colorSelect(e.target);}
     });
 
     // PDF Export
     document.getElementById("pdfButton").addEventListener("click",()=>{
       const active=document.querySelector(".page-section.active");
       import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then(html2pdf=>{
-          html2pdf.default().from(active).save(`${active.id}.pdf`);
-          alert("✅ PDF saved successfully!");
-        });
-    });
-
-    // JSON Export
-    document.getElementById("exportButton").addEventListener("click",()=>{
-      const data={};
-      document.querySelectorAll("input,select,textarea").forEach(el=>{
-        const key=`${el.closest("section")?.id||"global"}_${el.placeholder||el.previousElementSibling?.textContent||"field"}`;
-        data[key]=el.value;
-      });
-      const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
-      const a=document.createElement("a");
-      a.href=URL.createObjectURL(blob);
-      a.download="mykaarma-training-data.json";
-      a.click();
-      alert("✅ Data exported successfully!");
+        .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
     });
   </script>
 </body>
