@@ -1,222 +1,173 @@
-:root {
-  --orange: #f36f21;
-  --gray: #f6f6f6;
-  --border: #e3e7eb;
-  --ink: #222;
-  --radius: 16px;
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --table-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
-  --dropdown-gray: #e0e0e0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myKaarma – Interactive Training Checklist</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
-  background: var(--gray);
-  color: var(--ink);
-  overflow-x: hidden;
-}
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
+      </div>
+      <nav>
+        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
+        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
+        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      </nav>
+    </aside>
 
-#app {
-  display: flex;
-  min-height: 100vh;
-}
+    <!-- Main -->
+    <main id="content">
+      <!-- === PRE-TRAINING CHECKLIST === -->
+      <section id="pretraining" class="page-section active">
+        <h1>Pre-Training Checklist</h1>
+        <div class="section-block">
+          <h2>Handoff Notes</h2>
+          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
 
-/* Sidebar */
-#sidebar {
-  background: white;
-  border-right: 1px solid var(--border);
-  width: 260px;
-  padding: 20px 10px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-}
+        <div class="section-block">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      </section>
 
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
+      <!-- === DEALERSHIP INFORMATION === -->
+      <section id="dealership-info" class="page-section">
+        <h1>Dealership Information</h1>
+        <div class="section-block">
+          <h2>Wi-Fi Information</h2>
+          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
+          <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" placeholder="Enter password…" /></div>
+        </div>
 
-.nav-btn {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.nav-btn:hover {
-  background: #ffe3d0;
-  color: var(--orange);
-}
+        <div class="section-block">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      </section>
 
-/* Main */
-main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 30px 50px;
-}
+      <!-- === TRAINING CHECKLIST === -->
+      <section id="training-checklist" class="page-section">
+        <h1>Training Checklist</h1>
+        <div id="tables-container"></div>
+      </section>
+    </main>
+  </div>
 
-.page-section {
-  display: none;
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px 24px 30px;
-  margin-bottom: 40px;
-}
-.page-section.active { display: block; }
+  <!-- Floating Button -->
+  <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-h1 { color: var(--orange); margin-bottom: 20px; }
+  <!-- JS -->
+  <script>
+    // Sidebar Navigation
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const target=btn.getAttribute("data-target");
+        document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
+        document.getElementById(target).classList.add("active");
+        window.scrollTo({top:0});
+      });
+    });
 
-.section-block {
-  border-radius: var(--radius);
-  margin-bottom: 25px;
-  background: white;
-  box-shadow: var(--shadow);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
+    // Generate training tables dynamically
+    const roles = [
+      {id:"technicians", title:"Technicians – Checklist", rows:3, cols:["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"]},
+      {id:"advisors", title:"Service Advisors – Checklist", rows:3, cols:["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"]},
+      {id:"parts", title:"Parts Representatives – Checklist", rows:2, cols:["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"]},
+      {id:"bdc", title:"BDC Representatives – Checklist", rows:2, cols:["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]},
+      {id:"pickup", title:"Pick Up & Delivery Drivers – Checklist", rows:2, cols:["DMS ID","Login","PU&D","Notifications"]}
+    ];
 
-/* Checklist Rows */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.checklist-row:last-child { border-bottom: none; }
-.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
+    const tablesContainer=document.getElementById("tables-container");
+    roles.forEach(role=>{
+      const div=document.createElement("div");
+      div.classList.add("section");
+      div.innerHTML=`
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <table id="${role.id}" class="training-table">
+            <thead><tr><th style="width:260px;">Name</th>${role.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+            <tbody>
+              ${Array.from({length:role.rows}).map(()=>`
+                <tr>
+                  <td><input type="text" placeholder="Name"></td>
+                  ${role.cols.map(()=>`
+                    <td>
+                      <select>
+                        <option></option>
+                        <option value="Yes">Yes</option>
+                        <option value="Web Only">Web Only</option>
+                        <option value="Mobile Only">Mobile Only</option>
+                        <option value="No">No</option>
+                        <option value="Not Trained">Not Trained</option>
+                        <option value="N/A">N/A</option>
+                      </select>
+                    </td>`).join("")}
+                </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+        <button class="add-row" data-target="${role.id}">+</button>
+        <div class="section-block comment-box"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+      `;
+      tablesContainer.appendChild(div);
+    });
 
-.checklist-row select,
-.checklist-row input {
-  width: 250px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--dropdown-gray);
-}
+    // Dropdown color coding
+    function colorSelect(sel){
+      const v=sel.value;
+      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
+      sel.style.backgroundColor=colors[v]||"#e0e0e0";
+    }
+    document.addEventListener("change",e=>{
+      if(e.target.tagName==="SELECT")colorSelect(e.target);
+    });
 
-/* Notes */
-.section-block textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
-}
+    // Add row
+    document.addEventListener("click",e=>{
+      if(e.target.classList.contains("add-row")){
+        const id=e.target.dataset.target;
+        const table=document.getElementById(id);
+        const first=table.querySelector("tbody tr");
+        const clone=first.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i=>i.value="");
+        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="#e0e0e0";});
+        table.querySelector("tbody").appendChild(clone);
+      }
+    });
 
-/* Training Tables */
-.section-header {
-  background: var(--orange);
-  color: white;
-  padding: 10px 16px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
+    // Auto-expand textareas
+    document.addEventListener("input", e => {
+      if (e.target.tagName === "TEXTAREA") {
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+      }
+    });
 
-.table-container {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 420px;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--table-shadow);
-}
+    // Ensure tables scroll independently
+    document.querySelectorAll(".table-container").forEach(tc=>{
+      tc.style.overflowX="auto";
+      tc.style.overflowY="auto";
+    });
 
-.training-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 1200px;
-}
-
-.training-table th {
-  background: var(--orange);
-  color: #fff;
-  padding: 8px 10px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-}
-.training-table th:first-child {
-  background: var(--orange);
-  position: sticky;
-  left: 0;
-  z-index: 3;
-}
-
-.training-table td,
-.training-table input,
-.training-table select {
-  border: 1px solid var(--border);
-  padding: 6px 8px;
-  text-align: center;
-  font-size: 14px;
-}
-.training-table input[type="text"] {
-  width: 240px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  padding: 6px;
-}
-.training-table select {
-  min-width: 150px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--dropdown-gray);
-  text-align-last: center;
-}
-
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-.add-row {
-  display: block;
-  position: relative;
-  margin: 10px 0 10px 10px;
-  background: #ccc;
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  font-size: 20px;
-  line-height: 30px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.add-row:hover { background: var(--orange); color: #fff; }
-
-.floating-btn {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  background: var(--orange);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  padding: 12px 20px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-.floating-btn:hover { background: #ff8848; }
+    // Save as PDF
+    document.getElementById("pdfButton").addEventListener("click",()=>{
+      const active=document.querySelector(".page-section.active");
+      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+      .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
+    });
+  </script>
+</body>
+</html>
