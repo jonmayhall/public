@@ -9,6 +9,7 @@
 
 <body>
   <div id="app">
+    <!-- === SIDEBAR === -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -24,6 +25,7 @@
       </nav>
     </aside>
 
+    <!-- === MAIN CONTENT === -->
     <main id="content">
 
       <!-- === PRE-TRAINING CHECKLIST === -->
@@ -51,10 +53,10 @@
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
-        <!-- TECHNICIANS -->
+        <!-- === TECHNICIANS === -->
         <div class="section">
           <div class="section-header">Technicians – Checklist</div>
-          <div class="table-container">
+          <div class="table-scroll">
             <table id="technicians">
               <thead>
                 <tr>
@@ -87,10 +89,10 @@
           <button class="add-row" data-target="technicians">+</button>
         </div>
 
-        <!-- PARTS REPS -->
+        <!-- === PARTS REPRESENTATIVES === -->
         <div class="section">
           <div class="section-header">Parts Representatives – Checklist</div>
-          <div class="table-container">
+          <div class="table-scroll">
             <table id="parts">
               <thead>
                 <tr>
@@ -124,10 +126,10 @@
           <button class="add-row" data-target="parts">+</button>
         </div>
 
-        <!-- SERVICE ADVISORS -->
+        <!-- === SERVICE ADVISORS === -->
         <div class="section">
           <div class="section-header">Service Advisors – Checklist</div>
-          <div class="table-container">
+          <div class="table-scroll">
             <table id="advisors">
               <thead>
                 <tr>
@@ -161,10 +163,10 @@
           <button class="add-row" data-target="advisors">+</button>
         </div>
 
-        <!-- BDC REPS -->
+        <!-- === BDC REPRESENTATIVES === -->
         <div class="section">
           <div class="section-header">BDC Representatives – Checklist</div>
-          <div class="table-container small">
+          <div class="table-scroll small">
             <table id="bdc">
               <thead>
                 <tr>
@@ -196,10 +198,10 @@
           <button class="add-row" data-target="bdc">+</button>
         </div>
 
-        <!-- PICKUP & DELIVERY -->
+        <!-- === PICKUP & DELIVERY === -->
         <div class="section">
           <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
-          <div class="table-container small">
+          <div class="table-scroll small">
             <table id="pickup">
               <thead>
                 <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
@@ -228,6 +230,7 @@
         </div>
       </section>
 
+      <!-- === OTHER PAGES === -->
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
       <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
