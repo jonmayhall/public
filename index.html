@@ -6,141 +6,6 @@
   <title>myKaarma – Interactive Training Checklist</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div id="app">
-    <aside id="sidebar">
-      <div class="sidebar-header">
-        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
-      </div>
-      <nav>
-        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
-        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
-        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
-        <button class="nav-btn" data-target="training-summary">Training Summary</button>
-      </nav>
-    </aside>
-
-    <main id="content">
-      <!-- === PRE-TRAINING CHECKLIST === -->
-      <section id="pretraining" class="page-section active">
-        <h1>Pre-Training Checklist</h1>
-
-        <div class="section-block">
-          <h2>Handoff Notes</h2>
-          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Are all of the managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Location</h2>
-          <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Products</h2>
-          <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
-      </section>
-
-      <!-- === PLACEHOLDER FOR OTHER PAGES === -->
-<!-- === DEALERSHIP INFORMATION === -->
-<section id="dealership-info" class="page-section">
-  <h1>Dealership Information</h1>
-
-  <!-- WIFI INFORMATION -->
-  <div class="section-block">
-    <h2>Wi-Fi Information</h2>
-    <div class="checklist-row">
-      <label>Wi-Fi Name</label>
-      <input type="text" placeholder="Enter Wi-Fi name…" />
-    </div>
-    <div class="checklist-row">
-      <label>Wi-Fi Password</label>
-      <input type="text" placeholder="Enter password…" />
-    </div>
-  </div>
-
-  <!-- DEALERSHIP CONTACTS -->
-  <div class="section-block">
-    <h2>Dealership Contacts</h2>
-    <div class="checklist-row">
-      <label>Primary Point of Contact and Role</label>
-      <select>
-        <option></option>
-        <option>Service Advisor</option>
-        <option>Parts Rep</option>
-        <option>Technician</option>
-        <option>BDC Rep</option>
-        <option>Manager</option>
-        <option>Trainer</option>
-        <option>CEM</option>
-        <option>Product Champion</option>
-      </select>
-    </div>
-    <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter cell…" /></div>
-    <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter email…" /></div>
-
-    <div class="checklist-row"><label>Additional POC and Role</label>
-      <select>
-        <option></option>
-        <option>Service Advisor</option>
-        <option>Parts Rep</option>
-        <option>Technician</option>
-        <option>BDC Rep</option>
-        <option>Manager</option>
-        <option>Trainer</option>
-        <option>CEM</option>
-        <option>Product Champion</option>
-      </select>
-    </div>
-    <div class="checklist-row"><label>Additional POC Email</label><input type="text" placeholder="Enter email…" /></div>
-    <div class="checklist-row"><label>Include in communications?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-  </div>
-
-  <!-- TRAINING TEAM -->
-  <div class="section-block">
-    <h2>Training Team</h2>
-    <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter name…" /></div>
-    <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter names…" /></div>
-  </div>
-
-  <!-- ADDITIONAL COMMENTS -->
-  <div class="section-block">
-    <h2>Additional Comments</h2>
-    <textarea placeholder="Type here…"></textarea>
-  </div>
-</section>
-      
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
 
 <body>
   <div id="app">
@@ -182,7 +47,186 @@
         </div>
       </section>
 
-      
+      <!-- === TRAINING CHECKLIST === -->
+      <section id="training-checklist" class="page-section">
+        <h1>Training Checklist</h1>
+
+        <!-- TECHNICIANS -->
+        <div class="section">
+          <div class="section-header">Technicians – Checklist</div>
+          <div class="table-container">
+            <table id="technicians">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th>
+                  <th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th>
+                  <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+                  <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const techCols = 17;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < techCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="technicians">+</button>
+        </div>
+
+        <!-- PARTS REPS -->
+        <div class="section">
+          <div class="section-header">Parts Representatives – Checklist</div>
+          <div class="table-container">
+            <table id="parts">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th>
+                  <th>Search Bar</th><th>"Take" Function</th><th>DMS History</th>
+                  <th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th>
+                  <th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th>
+                  <th>Notifications</th><th>Filters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const partsCols = 16;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < partsCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="parts">+</button>
+        </div>
+
+        <!-- SERVICE ADVISORS -->
+        <div class="section">
+          <div class="section-header">Service Advisors – Checklist</div>
+          <div class="table-container">
+            <table id="advisors">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
+                  <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th>
+                  <th>DMS History</th><th>Prev. Declines</th><th>OCR</th>
+                  <th>Edit ASR</th><th>ShopChat</th><th>Status Change</th>
+                  <th>MPI Send</th><th>SOP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const advCols = 16;
+                  for (let i = 0; i < 3; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < advCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="advisors">+</button>
+        </div>
+
+        <!-- BDC REPS -->
+        <div class="section">
+          <div class="section-header">BDC Representatives – Checklist</div>
+          <div class="table-container small">
+            <table id="bdc">
+              <thead>
+                <tr>
+                  <th>Name</th><th>DMS ID</th><th>Login</th>
+                  <th>Scheduler</th><th>Declined Services</th>
+                  <th>ServiceConnect</th><th>Call Routing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <script>
+                  const bdcCols = 7;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < bdcCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="bdc">+</button>
+        </div>
+
+        <!-- PICKUP & DELIVERY -->
+        <div class="section">
+          <div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
+          <div class="table-container small">
+            <table id="pickup">
+              <thead>
+                <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr>
+              </thead>
+              <tbody>
+                <script>
+                  const pudCols = 5;
+                  for (let i = 0; i < 2; i++) {
+                    document.write("<tr><td><input type='text' placeholder='Name'></td><td><input type='text' placeholder='DMS ID'></td>");
+                    for (let j = 0; j < pudCols - 2; j++) {
+                      document.write(`<td><select>
+                        <option></option><option value='Yes'>Yes</option>
+                        <option value='Web Only'>Web Only</option>
+                        <option value='Mobile Only'>Mobile Only</option>
+                        <option value='No'>No</option>
+                        <option value='Not Trained'>Not Trained</option>
+                        <option value='N/A'>N/A</option></select></td>`);
+                    }
+                    document.write("</tr>");
+                  }
+                </script>
+              </tbody>
+            </table>
+          </div>
+          <button class="add-row" data-target="pickup">+</button>
+        </div>
+      </section>
 
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
