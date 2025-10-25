@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- ✅ Cache-buster for latest version -->
-  <link rel="stylesheet" href="style.css?v=6" />
+  <!-- Cache-buster -->
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 
 <body>
@@ -40,29 +40,6 @@
         </div>
 
         <div class="section-block">
-          <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Are all of the managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Location</h2>
-          <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Products</h2>
-          <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
           <h2>Additional Comments</h2>
           <textarea placeholder="Type here…"></textarea>
         </div>
@@ -79,22 +56,6 @@
         </div>
 
         <div class="section-block">
-          <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary Point of Contact and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
-          <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter cell…" /></div>
-          <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter email…" /></div>
-          <div class="checklist-row"><label>Additional POC and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
-          <div class="checklist-row"><label>Additional POC Email</label><input type="text" placeholder="Enter email…" /></div>
-          <div class="checklist-row"><label>Include in communications?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
-
-        <div class="section-block">
-          <h2>Training Team</h2>
-          <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter name…" /></div>
-          <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter names…" /></div>
-        </div>
-
-        <div class="section-block">
           <h2>Additional Comments</h2>
           <textarea placeholder="Type here…"></textarea>
         </div>
@@ -108,10 +69,140 @@
     </main>
   </div>
 
-  <!-- Floating PDF Button -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- ✅ Script with cache-buster -->
-  <script src="script.js?v=6"></script>
+  <!-- Script with cache-buster -->
+  <script src="script.js?v=7"></script>
+
+  <script>
+  // === Sidebar Navigation ===
+  document.querySelectorAll(".nav-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      document.querySelectorAll(".page-section").forEach((sec) => sec.classList.remove("active"));
+      document.getElementById(target).classList.add("active");
+      window.scrollTo({ top: 0 });
+    });
+  });
+
+  // === Dynamic Table Generation ===
+  const roles = [
+    {
+      id: "technicians",
+      title: "Technicians – Checklist",
+      rows: 3,
+      cols: ["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"]
+    },
+    {
+      id: "advisors",
+      title: "Service Advisors – Checklist",
+      rows: 3,
+      cols: ["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"]
+    },
+    {
+      id: "parts",
+      title: "Parts Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"]
+    },
+    {
+      id: "bdc",
+      title: "BDC Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]
+    },
+    {
+      id: "pickup",
+      title: "Pick Up & Delivery Drivers – Checklist",
+      rows: 2,
+      cols: ["DMS ID","Login","PU&D","Notifications"]
+    }
+  ];
+
+  const tablesContainer = document.getElementById("tables-container");
+  roles.forEach((role) => {
+    const section = document.createElement("div");
+    section.classList.add("section");
+    section.innerHTML = `
+      <div class="section-header">${role.title}</div>
+      <div class="table-wrapper">
+        <div class="table-scroll">
+          <table id="${role.id}" class="training-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                ${role.cols.map(c => `<th>${c}</th>`).join("")}
+              </tr>
+            </thead>
+            <tbody>
+              ${Array.from({ length: role.rows }).map(() => `
+                <tr>
+                  <td><input type="text" placeholder="Name" /></td>
+                  ${role.cols.map(() => `
+                    <td>
+                      <select>
+                        <option></option>
+                        <option value="Yes">Yes</option>
+                        <option value="Web Only">Web Only</option>
+                        <option value="Mobile Only">Mobile Only</option>
+                        <option value="No">No</option>
+                        <option value="Not Trained">Not Trained</option>
+                        <option value="N/A">N/A</option>
+                      </select>
+                    </td>`).join("")}
+                </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div class="add-row" data-target="${role.id}">+</div>
+        </div>
+      </div>
+      <div class="section-block comment-box"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+    `;
+    tablesContainer.appendChild(section);
+  });
+
+  // === Add Row Button ===
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-row")) {
+      const id = e.target.dataset.target;
+      const table = document.getElementById(id);
+      const first = table.querySelector("tbody tr");
+      const clone = first.cloneNode(true);
+      clone.querySelectorAll("input").forEach((i) => (i.value = ""));
+      clone.querySelectorAll("select").forEach((s) => {
+        s.selectedIndex = 0;
+        s.style.backgroundColor = "#f3f3f3";
+      });
+      table.querySelector("tbody").appendChild(clone);
+    }
+  });
+
+  // === Dropdown Colors ===
+  function colorSelect(sel) {
+    const v = sel.value;
+    const colors = {
+      "Yes": "#c9f7c0",
+      "Web Only": "#fff8b3",
+      "Mobile Only": "#ffe0b3",
+      "No": "#ffb3b3",
+      "Not Trained": "#ffb3b3",
+      "N/A": "#f2f2f2"
+    };
+    sel.style.backgroundColor = colors[v] || "#f3f3f3";
+  }
+  document.addEventListener("change", (e) => {
+    if (e.target.tagName === "SELECT") colorSelect(e.target);
+  });
+
+  // === Expanding Textareas ===
+  document.addEventListener("input", (e) => {
+    if (e.target.tagName === "TEXTAREA") {
+      e.target.style.height = "auto";
+      e.target.style.height = e.target.scrollHeight + "px";
+    }
+  });
+  </script>
 </body>
 </html>
