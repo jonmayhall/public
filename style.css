@@ -3,26 +3,32 @@
   --light-orange: #f9a868;
   --dark-orange: #e67e22;
   --gray: #f6f6f6;
+  --medium-gray: #d3d3d3;
   --border: #e3e7eb;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --dropdown-gray: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* === Base === */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background: var(--gray);
+  background: #e0e0e0;
   color: var(--ink);
+  overflow-x: hidden;
 }
+
 #app {
   display: flex;
   min-height: 100vh;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 20px;
 }
 
-/* Sidebar */
+/* === Sidebar === */
 #sidebar {
   background: white;
   border-right: 1px solid var(--border);
@@ -35,18 +41,43 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
 }
-.logo { width: 120px; margin-bottom: 20px; }
-.nav-btn {
-  width: 100%; background: none; border: none;
-  text-align: left; padding: 10px 14px;
-  border-radius: var(--radius); font-size: 15px;
-  cursor: pointer; transition: 0.2s;
-}
-.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
 
-/* Main */
-main { flex: 1; margin-left: 260px; padding: 30px 50px; }
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 15px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: #ffe3d0;
+  color: var(--orange);
+}
+
+/* === Main Content === */
+main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 30px 50px;
+}
 
 .page-section {
   display: none;
@@ -56,8 +87,15 @@ main { flex: 1; margin-left: 260px; padding: 30px 50px; }
   padding: 20px 24px 30px;
   margin-bottom: 40px;
 }
-.page-section.active { display: block; }
-h1 { color: var(--orange); margin-bottom: 20px; }
+
+.page-section.active {
+  display: block;
+}
+
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
 
 /* === Section Blocks === */
 .section-block {
@@ -66,6 +104,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   background: white;
   box-shadow: var(--shadow);
 }
+
 .section-block h2 {
   background: var(--orange);
   color: white;
@@ -75,7 +114,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Checklist Rows */
+/* === Checklist Rows === */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -83,18 +122,28 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.checklist-row:last-child { border-bottom: none; }
-.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
+
+.checklist-row:last-child {
+  border-bottom: none;
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 15px;
+  padding-right: 20px;
+}
+
 .checklist-row select,
 .checklist-row input {
   width: 250px;
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--dropdown-gray);
+  background: var(--medium-gray);
+  color: var(--ink);
 }
 
-/* Notes */
+/* === Textarea === */
 .section-block textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -102,57 +151,82 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   border-radius: 12px;
   border: 1px solid var(--border);
   resize: none;
-  overflow: hidden;
   font-family: inherit;
+  background: var(--medium-gray);
+  color: var(--ink);
+  overflow: hidden;
+  min-height: 80px;
 }
 
-/* === Training Tables === */
+.section-block textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+/* Expand textarea as typing */
+textarea {
+  overflow: hidden;
+  resize: none;
+}
+textarea:focus,
+textarea:not(:placeholder-shown) {
+  min-height: 100px;
+}
+
+/* === Training Checklist Tables === */
+.section {
+  margin-bottom: 50px;
+}
+
 .section-header {
   background: var(--orange);
   color: white;
   padding: 10px 16px;
   font-weight: 600;
   border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: var(--shadow);
 }
 
+/* Scrollable table wrapper */
 .table-container {
-  display: block;
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 420px;
+  max-height: 320px;
   border: 1px solid var(--border);
-  border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  position: relative;
+  box-shadow: var(--shadow);
+  background: #f5f5f5;
 }
 
-/* Table */
+/* Table layout */
 .training-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 1200px;
+  border-radius: var(--radius);
 }
 
-/* Light Orange Header w/ Orange Borders */
+/* Light orange header with borders */
 .training-table th {
-  background: var(--light-orange);
-  color: #fff;
+  background: #f9a868;
+  border: 1px solid #e67e22;
+  color: #222;
   padding: 8px 10px;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 2;
-  border: 1px solid var(--dark-orange);
 }
+
 .training-table th:first-child {
-  background: var(--light-orange);
+  background: #f9a868;
+  border: 1px solid #e67e22;
   position: sticky;
   left: 0;
   z-index: 3;
-  border-right: 1px solid var(--dark-orange);
 }
 
-/* Cells */
+/* Table cells */
 .training-table td,
 .training-table input,
 .training-table select {
@@ -161,46 +235,58 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   text-align: center;
   font-size: 14px;
 }
+
 .training-table input[type="text"] {
-  width: 240px;
+  width: 250px;
   border-radius: 6px;
   border: 1px solid var(--border);
   padding: 6px;
 }
+
 .training-table select {
   min-width: 150px;
-  border-radius: 10px;
+  border-radius: 16px;
   border: 1px solid var(--border);
-  background: var(--dropdown-gray);
-  text-align-last: center;
+  background: var(--medium-gray);
+  color: var(--ink);
 }
 
-/* Alternating Rows */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+/* Alternating row colors */
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
 
-/* Add Row Button (inside table border) */
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* === Add Row Button === */
 .add-row {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
+  display: block;
+  width: 100%;
   background: #ccc;
   color: #333;
   border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 8px 0;
+  text-align: center;
   font-size: 20px;
-  line-height: 30px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .add-row:hover {
   background: var(--orange);
   color: #fff;
 }
 
-/* Floating Save Button */
+/* Extra spacing between tables and notes */
+.comment-box {
+  margin-top: 30px;
+}
+
+/* === Floating Button (PDF) === */
 .floating-btn {
   position: fixed;
   top: 20px;
@@ -212,27 +298,24 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   padding: 12px 20px;
   cursor: pointer;
   box-shadow: var(--shadow);
+  z-index: 10;
 }
+
 .floating-btn:hover {
   background: #ff8848;
 }
 
-/* Scrollbar Styling (subtle for laptop screens) */
+/* === Scrollbars === */
 .table-container::-webkit-scrollbar {
   height: 10px;
   width: 10px;
 }
+
 .table-container::-webkit-scrollbar-thumb {
-  background-color: rgba(120, 120, 120, 0.4);
-  border-radius: 6px;
+  background: #ccc;
+  border-radius: 5px;
 }
+
 .table-container::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-/* === App Shadow Frame === */
-#app {
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius);
-  background: white;
-  margin: 20px;
+  background: #f0f0f0;
 }
