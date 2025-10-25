@@ -7,11 +7,10 @@
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --table-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
   --dropdown-gray: #e0e0e0;
 }
 
-/* === Base Layout === */
+/* === Base === */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
@@ -23,7 +22,7 @@ body {
   min-height: 100vh;
 }
 
-/* === Sidebar === */
+/* Sidebar */
 #sidebar {
   background: white;
   border-right: 1px solid var(--border);
@@ -37,32 +36,17 @@ body {
   top: 0;
   bottom: 0;
 }
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
+.logo { width: 120px; margin-bottom: 20px; }
 .nav-btn {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
+  width: 100%; background: none; border: none;
+  text-align: left; padding: 10px 14px;
+  border-radius: var(--radius); font-size: 15px;
+  cursor: pointer; transition: 0.2s;
 }
-.nav-btn:hover {
-  background: #ffe3d0;
-  color: var(--orange);
-}
+.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
 
-/* === Main Content === */
-main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 30px 50px;
-}
+/* Main */
+main { flex: 1; margin-left: 260px; padding: 30px 50px; }
 
 .page-section {
   display: none;
@@ -72,13 +56,8 @@ main {
   padding: 20px 24px 30px;
   margin-bottom: 40px;
 }
-.page-section.active {
-  display: block;
-}
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-}
+.page-section.active { display: block; }
+h1 { color: var(--orange); margin-bottom: 20px; }
 
 /* === Section Blocks === */
 .section-block {
@@ -96,7 +75,7 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* === Checklist Rows === */
+/* Checklist Rows */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -104,14 +83,8 @@ h1 {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.checklist-row:last-child {
-  border-bottom: none;
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 15px;
-  padding-right: 20px;
-}
+.checklist-row:last-child { border-bottom: none; }
+.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
 .checklist-row select,
 .checklist-row input {
   width: 250px;
@@ -121,7 +94,7 @@ h1 {
   background: var(--dropdown-gray);
 }
 
-/* === Notes / Comments === */
+/* Notes */
 .section-block textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -131,7 +104,6 @@ h1 {
   resize: none;
   overflow: hidden;
   font-family: inherit;
-  transition: all 0.2s ease;
 }
 
 /* === Training Tables === */
@@ -143,27 +115,25 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Table container */
 .table-container {
   display: block;
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 420px; /* triggers vertical scroll after 5+ rows */
+  max-height: 420px;
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--table-shadow);
-  background: #fff;
+  position: relative;
 }
 
-/* Table setup */
+/* Table */
 .training-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 1200px;
 }
 
-/* === Light Orange Sticky Header === */
+/* Light Orange Header w/ Orange Borders */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -172,7 +142,7 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 2;
-  border: 1px solid var(--dark-orange); /* slightly darker border for separation */
+  border: 1px solid var(--dark-orange);
 }
 .training-table th:first-child {
   background: var(--light-orange);
@@ -182,7 +152,7 @@ h1 {
   border-right: 1px solid var(--dark-orange);
 }
 
-/* === Table Cells === */
+/* Cells */
 .training-table td,
 .training-table input,
 .training-table select {
@@ -205,18 +175,15 @@ h1 {
   text-align-last: center;
 }
 
-/* === Row Alternating Colors === */
-.training-table tr:nth-child(odd) {
-  background: #fff;
-}
-.training-table tr:nth-child(even) {
-  background: #fafafa;
-}
+/* Alternating Rows */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === Add Row Button === */
+/* Add Row Button (inside table border) */
 .add-row {
-  display: block;
-  margin: 10px 0 10px 12px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
   background: #ccc;
   color: #333;
   border: none;
@@ -233,7 +200,7 @@ h1 {
   color: #fff;
 }
 
-/* === Floating Save Button === */
+/* Floating Save Button */
 .floating-btn {
   position: fixed;
   top: 20px;
@@ -248,4 +215,17 @@ h1 {
 }
 .floating-btn:hover {
   background: #ff8848;
+}
+
+/* Scrollbar Styling (subtle for laptop screens) */
+.table-container::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.4);
+  border-radius: 6px;
+}
+.table-container::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
 }
