@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <!-- ✅ Cache-buster to force load latest CSS -->
-  <link rel="stylesheet" href="style.css?v=4" />
+  <!-- ✅ cache buster -->
+  <link rel="stylesheet" href="style.css?v=5" />
   <link rel="icon" type="image/png" href="mykaarma_logo.png" />
 </head>
 
@@ -29,7 +29,6 @@
 
     <!-- Main Content -->
     <main id="content">
-
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
@@ -116,7 +115,15 @@
 
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- === Scripts === -->
+  <!-- === TABLE POPUP MODAL === -->
+  <div id="tableModal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal">×</button>
+      <div id="modalTableContainer"></div>
+    </div>
+  </div>
+
+  <!-- === Script === -->
   <script>
     // Sidebar Navigation
     document.querySelectorAll(".nav-btn").forEach(btn=>{
@@ -172,16 +179,6 @@
       tablesContainer.appendChild(div);
     });
 
-    // Dropdown color coding
-    function colorSelect(sel){
-      const v=sel.value;
-      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
-      sel.style.backgroundColor=colors[v]||"white";
-    }
-    document.addEventListener("change",e=>{
-      if(e.target.tagName==="SELECT")colorSelect(e.target);
-    });
-
     // Add-row
     document.addEventListener("click",e=>{
       if(e.target.classList.contains("add-row")){
@@ -202,46 +199,27 @@
         .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
     });
 
-    // Auto-expand textareas
-    document.addEventListener("input", (e) => {
-      if (e.target.tagName.toLowerCase() === "textarea") {
-        e.target.style.height = "auto";
-        e.target.style.height = e.target.scrollHeight + "px";
+    // === Table Popup Logic ===
+    document.addEventListener("click", (e) => {
+      const table = e.target.closest(".training-table");
+      if (table && !e.target.closest(".add-row")) {
+        const modal = document.getElementById("tableModal");
+        const modalContainer = document.getElementById("modalTableContainer");
+        modalContainer.innerHTML = "";
+        const clone = table.cloneNode(true);
+        modalContainer.appendChild(clone);
+        modal.style.display = "block";
       }
     });
 
-    // Collapsible notes (Training Checklist only)
-    function initCollapsibleNotes() {
-      const trainingPage = document.getElementById("training-checklist");
-      if (!trainingPage) return;
-      const commentBoxes = trainingPage.querySelectorAll(".comment-box");
-      commentBoxes.forEach((box) => {
-        const header = box.querySelector("h2");
-        if (!header) return;
-        const toggle = document.createElement("button");
-        toggle.textContent = "–";
-        toggle.style.cssText = `
-          background: var(--orange);
-          color: white;
-          border: none;
-          border-radius: 50%;
-          width: 26px;
-          height: 26px;
-          margin-left: 10px;
-          cursor: pointer;
-          font-weight: bold;
-        `;
-        header.appendChild(toggle);
-        const textarea = box.querySelector("textarea");
-        let collapsed = false;
-        toggle.addEventListener("click", () => {
-          collapsed = !collapsed;
-          textarea.style.display = collapsed ? "none" : "block";
-          toggle.textContent = collapsed ? "+" : "–";
-        });
-      });
-    }
-    document.addEventListener("DOMContentLoaded", initCollapsibleNotes);
+    document.querySelector(".close-modal").addEventListener("click", () => {
+      document.getElementById("tableModal").style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      const modal = document.getElementById("tableModal");
+      if (e.target === modal) modal.style.display = "none";
+    });
   </script>
 </body>
 </html>
