@@ -1,89 +1,41 @@
 // === Sidebar Navigation ===
-const navButtons = document.querySelectorAll(".nav-btn");
-const sections = document.querySelectorAll(".page-section");
-
-navButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const target = btn.getAttribute("data-target");
-    sections.forEach((sec) => sec.classList.remove("active"));
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const target=btn.getAttribute("data-target");
+    document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
     document.getElementById(target).classList.add("active");
-    window.scrollTo({ top: 0 });
+    window.scrollTo({top:0});
   });
 });
 
-// === Save & Restore Inputs ===
-document.querySelectorAll("input, select, textarea").forEach((el) => {
-  const key = `${el.closest("section")?.id || "global"}_${el.placeholder || el.previousElementSibling?.textContent}`;
-  if (localStorage.getItem(key)) el.value = localStorage.getItem(key);
-  el.addEventListener("input", () => localStorage.setItem(key, el.value));
-});
-
-// === Generate Dynamic Tables ===
-const roles = [
-  {
-    id: "technicians",
-    title: "Technicians – Checklist",
-    rows: 3,
-    cols: [
-      "DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment",
-      "Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts",
-      "Adding Media","Status Change","Notifications","Filters"
-    ]
-  },
-  {
-    id: "advisors",
-    title: "Service Advisors – Checklist",
-    rows: 3,
-    cols: [
-      "DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar",
-      "RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR",
-      "ShopChat","Status Change","MPI Send","SOP"
-    ]
-  },
-  {
-    id: "parts",
-    title: "Parts Representatives – Checklist",
-    rows: 2,
-    cols: [
-      "DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History",
-      "Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change",
-      "Notifications","Filters"
-    ]
-  },
-  {
-    id: "bdc",
-    title: "BDC Representatives – Checklist",
-    rows: 2,
-    cols: ["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]
-  },
-  {
-    id: "pickup",
-    title: "Pick Up & Delivery Drivers – Checklist",
-    rows: 2,
-    cols: ["DMS ID","Login","PU&D","Notifications"]
-  }
+// === TABLE BUILDER ===
+const roles=[
+  {id:"technicians",title:"Technicians – Checklist",rows:3,cols:["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"]},
+  {id:"advisors",title:"Service Advisors – Checklist",rows:3,cols:["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"]},
+  {id:"parts",title:"Parts Representatives – Checklist",rows:2,cols:["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"]},
+  {id:"bdc",title:"BDC Representatives – Checklist",rows:2,cols:["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]},
+  {id:"pickup",title:"Pick Up & Delivery Drivers – Checklist",rows:2,cols:["DMS ID","Login","PU&D","Notifications"]}
 ];
 
-const tablesContainer = document.getElementById("tables-container");
-roles.forEach(role => {
-  const section = document.createElement("div");
-  section.classList.add("section");
-
-  section.innerHTML = `
-    <div class="section-header">${role.title}</div>
-    <div class="table-container">
+const container=document.getElementById("tables-container");
+roles.forEach(role=>{
+  const wrapper=document.createElement("div");
+  wrapper.classList.add("section");
+  wrapper.innerHTML=`
+  <div class="section-header">${role.title}</div>
+  <div class="table-wrapper">
+    <div class="table-scroll">
       <table id="${role.id}" class="training-table">
         <thead>
           <tr>
-            <th style="min-width:260px;">Name</th>
-            ${role.cols.map(c => `<th>${c}</th>`).join("")}
+            <th>Name</th>${role.cols.map(c=>`<th>${c}</th>`).join("")}
           </tr>
         </thead>
         <tbody>
-          ${Array.from({length: role.rows}).map(() => `
+          ${Array.from({length:role.rows}).map(()=>`
             <tr>
-              <td><input type="text" placeholder="Name" /></td>
-              ${role.cols.map(() => `
+              <td><input type="text" placeholder="${role.title.split('–')[0].trim()} Name" /></td>
+              ${role.cols.map(()=>`
                 <td>
                   <select>
                     <option></option>
@@ -98,94 +50,48 @@ roles.forEach(role => {
             </tr>`).join("")}
         </tbody>
       </table>
-      <div class="add-row" data-target="${role.id}">+</div>
     </div>
-    <div class="section-block comment-box">
-      <h2>Additional Comments</h2>
-      <textarea placeholder="Type here…"></textarea>
-    </div>
+    <div class="table-footer"><button class="add-row" data-target="${role.id}">+</button></div>
+  </div>
+  <div class="section-block comment-box"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
   `;
-
-  tablesContainer.appendChild(section);
+  container.appendChild(wrapper);
 });
 
-// === Add Row Logic ===
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("add-row")) {
-    const id = e.target.dataset.target;
-    const table = document.getElementById(id);
-    if (!table) return;
-
-    const firstRow = table.querySelector("tbody tr");
-    const clone = firstRow.cloneNode(true);
-    clone.querySelectorAll("input").forEach(i => (i.value = ""));
-    clone.querySelectorAll("select").forEach(s => {
-      s.selectedIndex = 0;
-      s.style.backgroundColor = "#f3f3f3";
-    });
+// === ADD ROW BUTTON ===
+document.addEventListener("click",e=>{
+  if(e.target.classList.contains("add-row")){
+    const id=e.target.dataset.target;
+    const table=document.getElementById(id);
+    const first=table.querySelector("tbody tr");
+    const clone=first.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i=>i.value="");
+    clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="#f3f3f3";});
     table.querySelector("tbody").appendChild(clone);
   }
 });
 
-// === Dropdown Color Coding ===
-function colorSelect(sel) {
-  const v = sel.value;
-  const colors = {
-    "Yes": "#c9f7c0",
-    "Web Only": "#fff8b3",
-    "Mobile Only": "#ffe0b3",
-    "No": "#ffb3b3",
-    "Not Trained": "#ffb3b3",
-    "N/A": "#f2f2f2"
-  };
-  sel.style.backgroundColor = colors[v] || "#f3f3f3";
+// === DROPDOWN COLORS ===
+function colorSelect(sel){
+  const v=sel.value;
+  const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
+  sel.style.backgroundColor=colors[v]||"#f3f3f3";
 }
-document.addEventListener("change", (e) => {
-  if (e.target.tagName === "SELECT") colorSelect(e.target);
+document.addEventListener("change",e=>{
+  if(e.target.tagName==="SELECT")colorSelect(e.target);
 });
 
-// === Expanding Textareas ===
-document.addEventListener("input", (e) => {
-  if (e.target.tagName === "TEXTAREA") {
-    e.target.style.height = "auto";
-    e.target.style.height = e.target.scrollHeight + "px";
+// === AUTO-EXPANDING NOTES ===
+document.addEventListener("input",e=>{
+  if(e.target.tagName==="TEXTAREA"){
+    e.target.style.height="auto";
+    e.target.style.height=(e.target.scrollHeight)+"px";
   }
 });
 
-// === PDF Export (current active section) ===
-document.getElementById("pdfButton").addEventListener("click", () => {
-  const activePage = document.querySelector(".page-section.active");
+// === PDF Export ===
+document.getElementById("pdfButton").addEventListener("click",()=>{
+  const active=document.querySelector(".page-section.active");
   import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-    .then((html2pdf) => {
-      const opt = {
-        margin: 0.3,
-        filename: `${activePage.id}.pdf`,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      };
-      html2pdf.default().from(activePage).set(opt).save();
-    });
-});
-
-// === Popup Modal for Full Table View ===
-function createModal(content) {
-  const modal = document.createElement("div");
-  modal.className = "modal";
-  modal.innerHTML = `
-    <div class="modal-content">
-      <button class="close-modal">&times;</button>
-      ${content.innerHTML}
-    </div>
-  `;
-  document.body.appendChild(modal);
-  modal.style.display = "flex";
-
-  modal.querySelector(".close-modal").onclick = () => modal.remove();
-}
-
-// Optional: open any table in full view by double-click
-document.addEventListener("dblclick", (e) => {
-  const table = e.target.closest(".training-table");
-  if (table) createModal(table.closest(".table-container"));
+    .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
 });
