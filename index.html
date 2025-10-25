@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 
 <body>
   <div id="app">
-    <!-- Sidebar -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -25,7 +24,6 @@
       </nav>
     </aside>
 
-    <!-- Main Content -->
     <main id="content">
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
@@ -79,7 +77,7 @@
 
         <div class="section-block">
           <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary POC & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option></select></div>
+          <div class="checklist-row"><label>Primary POC & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option></select></div>
           <div class="checklist-row"><label>Primary POC Cell</label><input type="text" /></div>
           <div class="checklist-row"><label>Primary POC Email</label><input type="text" /></div>
           <div class="checklist-row"><label>Additional POC & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option></select></div>
@@ -103,38 +101,8 @@
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
-        <!-- TECHNICIANS -->
-        <div class="section">
-          <div class="section-header">Technicians – Checklist</div>
-          <div class="table-wrapper">
-            <div class="table-scroll">
-              <table class="training-table">
-                <thead>
-                  <tr>
-                    <th>Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><input type="text" placeholder="Name" /></td>
-                    <td><input type="text" placeholder="DMS ID" /></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="table-footer">
-              <button class="add-row">+</button>
-            </div>
-          </div>
-          <div class="section-block comment-box">
-            <h2>Additional Comments</h2>
-            <textarea placeholder="Type here…"></textarea>
-          </div>
-        </div>
-
-        <!-- Repeat similar blocks for Advisors, Parts, BDC, Pickup -->
+        <!-- Table Template (Tech, Advisors, etc.) -->
+        <div id="tables-container"></div>
       </section>
 
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
@@ -144,9 +112,8 @@
     </main>
   </div>
 
-  <!-- Floating PDF Button -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>
