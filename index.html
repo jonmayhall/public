@@ -4,7 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <!-- ✅ Cache-buster to force load latest CSS -->
+  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="icon" type="image/png" href="mykaarma_logo.png" />
 </head>
 
 <body>
@@ -114,7 +116,7 @@
 
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- Scripts -->
+  <!-- === Scripts === -->
   <script>
     // Sidebar Navigation
     document.querySelectorAll(".nav-btn").forEach(btn=>{
@@ -180,7 +182,7 @@
       if(e.target.tagName==="SELECT")colorSelect(e.target);
     });
 
-    // Add-row function
+    // Add-row
     document.addEventListener("click",e=>{
       if(e.target.classList.contains("add-row")){
         const id=e.target.dataset.target;
@@ -200,7 +202,7 @@
         .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
     });
 
-    // === Auto-expand textareas ===
+    // Auto-expand textareas
     document.addEventListener("input", (e) => {
       if (e.target.tagName.toLowerCase() === "textarea") {
         e.target.style.height = "auto";
@@ -208,7 +210,7 @@
       }
     });
 
-    // === Collapsible notes on Training Checklist only ===
+    // Collapsible notes (Training Checklist only)
     function initCollapsibleNotes() {
       const trainingPage = document.getElementById("training-checklist");
       if (!trainingPage) return;
