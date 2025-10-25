@@ -143,6 +143,11 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+/* table + notes spacing adjustment */
+.section {
+  margin-bottom: 50px; /* adds extra breathing room between tables and notes */
+}
+
 .table-wrapper {
   border: 1px solid var(--border);
   border-top: none;
