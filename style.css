@@ -167,6 +167,7 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+/* === Table Container === */
 .table-container {
   overflow-x: auto;
   overflow-y: auto;
@@ -177,13 +178,14 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-/* === Table === */
+/* === Table Styling === */
 .training-table {
   border-collapse: collapse;
   width: max-content;
   min-width: 1200px;
 }
 
+/* Header Row */
 .training-table th {
   background: #f9b47a; /* light orange header */
   color: #fff;
@@ -200,9 +202,16 @@ h1 {
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 3;
   background: #fff;
   border-right: 1px solid var(--border);
+  z-index: 3;
+}
+
+/* Match Name Header with Header Color */
+.training-table th:first-child {
+  background: #f9b47a;
+  color: #fff;
+  border-right: 1px solid #e68a3f;
 }
 
 /* Cells */
@@ -247,11 +256,10 @@ h1 {
   border-radius: 0 0 var(--radius) var(--radius);
   padding: 10px 0;
   color: var(--orange);
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
   cursor: pointer;
   transition: 0.2s;
-  margin-top: -4px;
 }
 
 .add-row:hover {
@@ -286,22 +294,23 @@ h1 {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-content {
   background: #fff;
-  margin: 4% auto;
-  padding: 20px 30px;
-  border-radius: var(--radius);
   width: 90%;
   max-width: 1400px;
   max-height: 85vh;
   overflow: auto;
-  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  padding: 25px 30px;
   position: relative;
+  animation: fadeIn 0.3s ease;
 }
 
 .close-modal {
@@ -322,6 +331,17 @@ h1 {
 
 .close-modal:hover {
   background: #d85f1d;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* === Scrollbars === */
