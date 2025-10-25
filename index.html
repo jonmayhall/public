@@ -4,9 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 
 <body>
@@ -27,12 +25,12 @@
       </nav>
     </aside>
 
-    <!-- Main -->
+    <!-- Main Content -->
     <main id="content">
+
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -116,6 +114,7 @@
 
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
+  <!-- Scripts -->
   <script>
     // Sidebar Navigation
     document.querySelectorAll(".nav-btn").forEach(btn=>{
@@ -136,40 +135,52 @@
       {id:"pickup", title:"Pick Up & Delivery Drivers – Checklist", rows:2, cols:["DMS ID","Login","PU&D","Notifications"]}
     ];
 
-    const container=document.getElementById("tables-container");
-    roles.forEach(r=>{
-      const section=document.createElement("div");
-      section.classList.add("section");
-      section.innerHTML=`
-        <div class="section-header">${r.title}</div>
+    const tablesContainer=document.getElementById("tables-container");
+    roles.forEach(role=>{
+      const div=document.createElement("div");
+      div.classList.add("section");
+      div.innerHTML=`
+        <div class="section-header">${role.title}</div>
         <div class="table-container">
-          <table id="${r.id}" class="training-table">
-            <thead><tr><th style="width:260px;">Name</th>${r.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+          <table id="${role.id}" class="training-table">
+            <thead><tr><th style="width:260px;">Name</th>${role.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
             <tbody>
-              ${Array.from({length:r.rows}).map(()=>`
+              ${Array.from({length:role.rows}).map(()=>`
                 <tr>
-                  <td><input type="text" placeholder="Name"></td>
-                  ${r.cols.map(()=>`
-                    <td><select>
-                      <option></option>
-                      <option value="Yes">Yes</option>
-                      <option value="Web Only">Web Only</option>
-                      <option value="Mobile Only">Mobile Only</option>
-                      <option value="No">No</option>
-                      <option value="Not Trained">Not Trained</option>
-                      <option value="N/A">N/A</option>
-                    </select></td>`).join("")}
+                  <td><input type="text" placeholder="${role.title.split('–')[0].trim()} Name"></td>
+                  ${role.cols.map(()=>`
+                    <td>
+                      <select>
+                        <option></option>
+                        <option value="Yes">Yes</option>
+                        <option value="Web Only">Web Only</option>
+                        <option value="Mobile Only">Mobile Only</option>
+                        <option value="No">No</option>
+                        <option value="Not Trained">Not Trained</option>
+                        <option value="N/A">N/A</option>
+                      </select>
+                    </td>`).join("")}
                 </tr>`).join("")}
             </tbody>
           </table>
-          <button class="add-row" data-target="${r.id}">+</button>
+          <button class="add-row" data-target="${role.id}">+</button>
         </div>
         <div class="section-block comment-box"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
       `;
-      container.appendChild(section);
+      tablesContainer.appendChild(div);
     });
 
-    // Add Row
+    // Dropdown color coding
+    function colorSelect(sel){
+      const v=sel.value;
+      const colors={"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
+      sel.style.backgroundColor=colors[v]||"white";
+    }
+    document.addEventListener("change",e=>{
+      if(e.target.tagName==="SELECT")colorSelect(e.target);
+    });
+
+    // Add-row function
     document.addEventListener("click",e=>{
       if(e.target.classList.contains("add-row")){
         const id=e.target.dataset.target;
@@ -177,17 +188,58 @@
         const first=table.querySelector("tbody tr");
         const clone=first.cloneNode(true);
         clone.querySelectorAll("input").forEach(i=>i.value="");
+        clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="white";});
         table.querySelector("tbody").appendChild(clone);
       }
     });
 
-    // Auto-expand notes
-    document.addEventListener("input",e=>{
-      if(e.target.tagName==="TEXTAREA"){
-        e.target.style.height="auto";
-        e.target.style.height=e.target.scrollHeight+"px";
+    // PDF Export
+    document.getElementById("pdfButton").addEventListener("click",()=>{
+      const active=document.querySelector(".page-section.active");
+      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+        .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
+    });
+
+    // === Auto-expand textareas ===
+    document.addEventListener("input", (e) => {
+      if (e.target.tagName.toLowerCase() === "textarea") {
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
       }
     });
+
+    // === Collapsible notes on Training Checklist only ===
+    function initCollapsibleNotes() {
+      const trainingPage = document.getElementById("training-checklist");
+      if (!trainingPage) return;
+      const commentBoxes = trainingPage.querySelectorAll(".comment-box");
+      commentBoxes.forEach((box) => {
+        const header = box.querySelector("h2");
+        if (!header) return;
+        const toggle = document.createElement("button");
+        toggle.textContent = "–";
+        toggle.style.cssText = `
+          background: var(--orange);
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 26px;
+          height: 26px;
+          margin-left: 10px;
+          cursor: pointer;
+          font-weight: bold;
+        `;
+        header.appendChild(toggle);
+        const textarea = box.querySelector("textarea");
+        let collapsed = false;
+        toggle.addEventListener("click", () => {
+          collapsed = !collapsed;
+          textarea.style.display = collapsed ? "none" : "block";
+          toggle.textContent = collapsed ? "+" : "–";
+        });
+      });
+    }
+    document.addEventListener("DOMContentLoaded", initCollapsibleNotes);
   </script>
 </body>
 </html>
