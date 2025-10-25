@@ -8,30 +8,122 @@
 }
 
 /* === Layout === */
-body {margin:0;font-family:"Inter",system-ui,sans-serif;background:var(--gray);}
-#app {display:flex;min-height:100vh;background:white;box-shadow:var(--shadow);border-radius:var(--radius);margin:20px;}
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--gray);
+}
+#app {
+  display: flex;
+  min-height: 100vh;
+  background: white;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  margin: 20px;
+}
 
 /* === Sidebar === */
-#sidebar {background:white;border-right:1px solid var(--border);width:260px;padding:20px 10px;display:flex;flex-direction:column;align-items:center;position:fixed;top:0;bottom:0;box-shadow:var(--shadow);}
-.logo{width:120px;margin-bottom:20px;}
-nav{width:100%;display:flex;flex-direction:column;gap:6px;}
-.nav-btn{background:none;border:none;padding:10px 14px;font-size:15px;text-align:left;border-radius:var(--radius);cursor:pointer;transition:0.2s;}
-.nav-btn:hover{background:#ffe3d0;color:var(--orange);}
+#sidebar {
+  background: white;
+  border-right: 1px solid var(--border);
+  width: 260px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  box-shadow: var(--shadow);
+}
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 15px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.nav-btn:hover {
+  background: #ffe3d0;
+  color: var(--orange);
+}
 
 /* === Main === */
-main{flex:1;margin-left:260px;padding:30px 50px;}
-.page-section{display:none;background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px 30px;margin-bottom:40px;}
-.page-section.active{display:block;}
-h1{color:var(--orange);margin-bottom:20px;}
+main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 30px 50px;
+}
+.page-section {
+  display: none;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px 30px;
+  margin-bottom: 40px;
+}
+.page-section.active {
+  display: block;
+}
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
 
-/* === Sections === */
-.section-block{border-radius:var(--radius);margin-bottom:25px;background:white;box-shadow:var(--shadow);}
-.section-block h2{background:var(--orange);color:white;margin:0;padding:10px 16px;font-size:16px;border-radius:var(--radius)var(--radius)0 0;}
-.checklist-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);}
-.checklist-row:last-child{border-bottom:none;}
-.checklist-row label{flex:1;font-size:15px;padding-right:20px;}
-.checklist-row select,.checklist-row input{width:250px;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:#f3f3f3;}
-.section-block textarea{
+/* === Section Blocks === */
+.section-block {
+  border-radius: var(--radius);
+  margin-bottom: 25px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.checklist-row:last-child {
+  border-bottom: none;
+}
+.checklist-row label {
+  flex: 1;
+  font-size: 15px;
+  padding-right: 20px;
+}
+.checklist-row select,
+.checklist-row input {
+  width: 250px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f3f3f3;
+}
+
+/* === Notes / Comments === */
+.section-block textarea {
   width: calc(100% - 64px);
   margin: 16px 32px;
   padding: 12px;
@@ -42,33 +134,105 @@ h1{color:var(--orange);margin-bottom:20px;}
   overflow: hidden;
 }
 
-/* === Tables === */
-.section-header{background:var(--orange);color:white;padding:12px 16px;font-weight:600;border-radius:var(--radius)var(--radius)0 0;}
-.table-wrapper{border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius)var(--radius);background:white;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;}
-.table-scroll{overflow-x:auto;overflow-y:auto;max-height:320px;}
-.training-table{border-collapse:collapse;width:max-content;min-width:1200px;}
-.training-table th{background:var(--light-orange);color:#fff;border:1px solid #e68a3f;padding:8px 10px;text-align:center;position:sticky;top:0;z-index:2;}
-.training-table th:first-child,.training-table td:first-child{position:sticky;left:0;background:white;z-index:3;border-right:1px solid var(--border);}
-.training-table th:first-child{background:var(--light-orange);color:#fff;}
-.training-table td,.training-table input,.training-table select{border:1px solid var(--border);padding:6px 8px;text-align:center;font-size:14px;}
-.training-table input[type="text"]{width:240px;border-radius:6px;border:1px solid var(--border);background:#f3f3f3;padding:6px;}
-.training-table select{min-width:150px;border-radius:10px;border:1px solid var(--border);background:#f3f3f3;}
-.training-table tr:nth-child(odd){background:#fff;}
-.training-table tr:nth-child(even){background:#fafafa;}
-
-/* === Footer (Add Button Bottom-Right Inside Border) === */
-.table-footer {
-  border-top: 1px solid var(--border);
-  background: white;
-  border-radius: 0 0 var(--radius) var(--radius);
-  padding: 10px 20px;
-  position: relative;
-  min-height: 50px;
+/* === Table Sections === */
+.section-header {
+  background: var(--orange);
+  color: white;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
+
+.table-wrapper {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.training-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 1200px;
+}
+
+/* === Table Headers === */
+.training-table th {
+  background: var(--light-orange);
+  color: #fff;
+  border: 1px solid #e68a3f;
+  padding: 8px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 3;
+  border-right: 1px solid var(--border);
+}
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+}
+
+/* === Table Cells === */
+.training-table td,
+.training-table input,
+.training-table select {
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+.training-table input[type="text"] {
+  width: 240px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #f3f3f3;
+  padding: 6px;
+}
+.training-table select {
+  min-width: 150px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f3f3f3;
+}
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* === Table Footer & Add Button === */
+.table-footer {
+  position: relative;
+  background: white;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  min-height: 50px;
+  overflow: visible;
+}
+
 .add-row {
   position: absolute;
-  right: 20px;
-  bottom: 12px;
+  right: 16px;
+  bottom: 10px;
   background: white;
   border: 1px solid var(--border);
   color: var(--orange);
@@ -79,14 +243,39 @@ h1{color:var(--orange);margin-bottom:20px;}
   padding: 4px 12px;
   transition: 0.2s;
   box-shadow: var(--shadow);
+  z-index: 5;
 }
-.add-row:hover { background: #ffe3d0; color: white; }
+.add-row:hover {
+  background: #ffe3d0;
+  color: white;
+}
 
-/* === Floating Button === */
-.floating-btn{position:fixed;top:20px;right:30px;background:var(--orange);color:white;border:none;border-radius:var(--radius);padding:12px 20px;cursor:pointer;box-shadow:var(--shadow);}
-.floating-btn:hover{background:#ff8848;}
+/* === Floating Button (Save as PDF) === */
+.floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.floating-btn:hover {
+  background: #ff8848;
+}
 
 /* === Scrollbars === */
-.table-scroll::-webkit-scrollbar{height:10px;width:10px;}
-.table-scroll::-webkit-scrollbar-thumb{background:#ccc;border-radius:10px;}
-.table-scroll::-webkit-scrollbar-track{background:#f3f3f3;}
+.table-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.table-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.table-scroll::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
