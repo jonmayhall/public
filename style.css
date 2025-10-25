@@ -165,9 +165,27 @@ h1 {
   border: 1px solid var(--border);
 }
 
+/* 👇 Scroll container — controls both directions */
 .table-scroll {
-  overflow: auto;
-  max-height: 400px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 290px; /* 👈 about 4 rows tall before vertical scroll starts */
+  width: 100%;
+  border-radius: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.table-scroll::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.table-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
 }
 
 /* Table itself */
