@@ -143,9 +143,18 @@ h1 {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* table + notes spacing adjustment */
+/* === Table + Notes Spacing === */
 .section {
-  margin-bottom: 50px; /* adds extra breathing room between tables and notes */
+  margin-bottom: 40px;
+}
+
+.section + .section-block.comment-box {
+  margin-top: 40px;
+}
+
+/* Ensure visual gap even when section-block follows directly */
+.table-wrapper {
+  margin-bottom: 40px;
 }
 
 .table-wrapper {
