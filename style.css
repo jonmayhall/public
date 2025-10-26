@@ -143,7 +143,7 @@ textarea {
   font-family: inherit;
 }
 
-/* === TABLE SECTIONS === */
+/* === SECTION HEADER === */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -151,16 +151,24 @@ textarea {
   padding: 10px 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
+  width: 100vw;
+  margin-left: calc(-1 * (50vw - 50%));
+  box-sizing: border-box;
 }
 
-/* container unified borders */
+/* === FULL-WIDTH TABLE CONTAINER === */
 .table-container {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
+  width: 100vw !important;
+  max-width: 100vw !important;
   overflow: visible !important;
+  margin-left: calc(-1 * (50vw - 50%));
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: #fff;
+  display: block;
+  box-sizing: border-box;
   box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--border);
 }
 
 /* === SCROLLABLE WRAPPER (vertical + horizontal) === */
@@ -179,15 +187,13 @@ textarea {
   scrollbar-width: thin;
 }
 
-/* hover cue */
 .scroll-wrapper:hover {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
-/* ensure tables overflow to enable scroll */
 .scroll-wrapper > table {
   width: max-content !important;
-  min-width: 1400px !important;
+  min-width: 1600px !important;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--border);
@@ -198,7 +204,7 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content !important;
-  min-width: 1400px !important;
+  min-width: 1600px !important;
   border: 1px solid var(--border);
 }
 
@@ -260,6 +266,8 @@ textarea {
 
 /* === ADD ROW FOOTER === */
 .table-footer {
+  width: 100vw;
+  margin-left: calc(-1 * (50vw - 50%));
   border: 1px solid var(--border);
   border-top: none;
   padding: 8px 10px;
@@ -316,22 +324,4 @@ textarea {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-
-.table-container {
-  overflow: visible !important;
-}
-
-.scroll-wrapper {
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  max-height: 320px !important;
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.scroll-wrapper > table {
-  width: max-content !important;
-  min-width: 1600px !important;
 }
