@@ -10,17 +10,19 @@
 }
 
 /* === BASE === */
-body {
+html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
+  overflow-x: hidden; /* prevent global horizontal scroll */
 }
 
 /* === LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
+  overflow-x: hidden; /* block side bleed from full-width content */
 }
 
 /* === SIDEBAR === */
@@ -66,7 +68,9 @@ nav {
 main {
   flex: 1;
   margin-left: 260px;
-  padding: 30px 50px;
+  padding: 40px 70px; /* spacing around cards */
+  box-sizing: border-box;
+  background: var(--gray-bg);
 }
 
 /* === PAGE SECTIONS === */
@@ -75,8 +79,9 @@ main {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 24px;
-  margin-bottom: 40px;
+  padding: 32px 40px;
+  margin: 0 auto 60px auto;
+  max-width: 1400px; /* centered and clean on wide monitors */
 }
 
 .page-section.active {
@@ -151,27 +156,25 @@ textarea {
   padding: 10px 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
-  width: 100vw;
-  margin-left: calc(-1 * (50vw - 50%));
+  box-shadow: var(--shadow);
   box-sizing: border-box;
 }
 
-/* === FULL-WIDTH TABLE CONTAINER === */
+/* === TABLE CONTAINER (INSIDE CONTENT ONLY) === */
 .table-container {
-  width: 100vw !important;
-  max-width: 100vw !important;
+  width: 100%;
+  margin-left: 0;
+  box-sizing: border-box;
   overflow: visible !important;
-  margin-left: calc(-1 * (50vw - 50%));
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
   background: #fff;
   display: block;
-  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
-  border-bottom: 1px solid var(--border);
 }
 
-/* === SCROLLABLE WRAPPER (vertical + horizontal) === */
+/* === SCROLLABLE WRAPPER (INDIVIDUAL TABLES) === */
 .scroll-wrapper {
   display: block;
   width: 100%;
@@ -191,20 +194,20 @@ textarea {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
+/* === TABLES === */
 .scroll-wrapper > table {
   width: max-content !important;
-  min-width: 1600px !important;
+  min-width: 1400px !important;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--border);
 }
 
-/* === TABLE CORE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content !important;
-  min-width: 1600px !important;
+  min-width: 1400px !important;
   border: 1px solid var(--border);
 }
 
@@ -266,8 +269,7 @@ textarea {
 
 /* === ADD ROW FOOTER === */
 .table-footer {
-  width: 100vw;
-  margin-left: calc(-1 * (50vw - 50%));
+  width: 100%;
   border: 1px solid var(--border);
   border-top: none;
   padding: 8px 10px;
@@ -319,73 +321,11 @@ textarea {
 @media (max-width: 900px) {
   #sidebar { width: 200px; }
   main { margin-left: 200px; padding: 20px; }
+  .page-section { padding: 20px; }
 }
 
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-
-/* === FIXED WIDTH TABLE CONTAINER (stays inside main content) === */
-.section-header,
-.table-container,
-.table-footer {
-  width: calc(100vw - 260px); /* subtract sidebar width */
-  margin-left: -24px;         /* align flush with section card edges */
-  box-sizing: border-box;
-}
-
-/* Section header unified */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange);
-  box-shadow: var(--shadow);
-}
-
-/* Container for scrollable tables */
-.table-container {
-  overflow: visible !important;
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  background: #fff;
-  display: block;
-  box-shadow: var(--shadow);
-  border-bottom: 1px solid var(--border);
-}
-
-/* === SCROLLABLE WRAPPER (vertical + horizontal) === */
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  max-height: 320px;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  border-top: 1px solid var(--border);
-  position: relative;
-  background: #fff;
-}
-
-/* === Table sizing to trigger scroll === */
-.scroll-wrapper > table {
-  width: max-content !important;
-  min-width: 1400px !important;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid var(--border);
-}
-
-/* Footer aligned with section edges */
-.table-footer {
-  border: 1px solid var(--border);
-  border-top: none;
-  padding: 8px 10px;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
+  .page-section { max-width: 100%; }
 }
