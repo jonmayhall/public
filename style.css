@@ -158,27 +158,25 @@ textarea {
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  overflow: hidden;
+  overflow: visible !important;
   box-shadow: var(--shadow);
 }
 
 /* === SCROLLABLE WRAPPER (vertical + horizontal) === */
 .scroll-wrapper {
-  position: relative;
-  max-height: 300px;
-  overflow-x: auto;
-  overflow-y: auto;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 320px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
   border-top: 1px solid var(--border);
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-/* Force tables to exceed width so horizontal scroll appears */
-.scroll-wrapper table {
-  min-width: 1200px;
-  width: max-content;
-  display: table;
-}
-
-/* Orange hover gradient (top + bottom overlay) */
+/* top/bottom orange hover gradient */
 .scroll-wrapper::before,
 .scroll-wrapper::after {
   content: "";
@@ -191,17 +189,14 @@ textarea {
   transition: opacity 0.3s ease;
   z-index: 999;
 }
-
 .scroll-wrapper::before {
   top: 0;
   background: linear-gradient(to bottom, rgba(243, 111, 33, 0.35), rgba(243, 111, 33, 0));
 }
-
 .scroll-wrapper::after {
   bottom: 0;
   background: linear-gradient(to top, rgba(243, 111, 33, 0.35), rgba(243, 111, 33, 0));
 }
-
 .scroll-wrapper:hover::before,
 .scroll-wrapper:hover::after {
   opacity: 1;
@@ -211,9 +206,15 @@ textarea {
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
-  width: max-content;      /* Key: prevents 100% fit, enables scroll */
-  min-width: 1200px;
+  width: max-content !important;
+  min-width: 1400px !important;
   border: 1px solid var(--border);
+}
+
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
 }
 
 /* Headers */
@@ -221,14 +222,12 @@ textarea {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  text-align: center;
   padding: 10px;
   border-bottom: 2px solid #e9742b;
   border-right: 1px solid #e9742b;
   position: sticky;
   top: 0;
   z-index: 3;
-  white-space: nowrap;
 }
 
 .training-table th:first-child {
@@ -252,9 +251,7 @@ textarea {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 6px 8px;
-  text-align: center;
   font-size: 14px;
-  white-space: nowrap;  /* Key: enables horizontal scrolling */
 }
 
 .training-table input[type="text"],
@@ -282,7 +279,7 @@ textarea {
   margin-bottom: 25px;
 }
 
-/* Smaller, blended add-row button */
+/* Small, subtle add button */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -292,22 +289,12 @@ textarea {
   height: 24px;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s;
 }
-
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
-}
-
-/* === SPACING FIX === */
-.table-section {
-  margin-bottom: 25px;
-}
-
-.comment-box {
-  margin-top: 25px;
 }
 
 /* === FLOATING PDF BUTTON === */
@@ -325,7 +312,6 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
-
 .floating-btn:hover {
   background: #ff8848;
 }
@@ -335,219 +321,7 @@ textarea {
   #sidebar { width: 200px; }
   main { margin-left: 200px; padding: 20px; }
 }
-
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
-
-/* === FINAL FIX: Independent horizontal + vertical scroll per table === */
-.scroll-wrapper {
-  display: block;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  max-height: 320px;
-  border-top: 1px solid var(--border);
-  position: relative;
-}
-
-/* ensure table is wider than its container */
-.scroll-wrapper table {
-  width: max-content !important;
-  min-width: 1400px !important;
-  table-layout: auto;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* optional: preserve sticky columns */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 3;
-}
-
-/* optional: show scrollbars consistently on Mac/Windows */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-
-/* === FINAL OVERRIDE: Independent horizontal + vertical scroll === */
-.table-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-/* The scrollable frame */
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  max-height: 320px;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  border-top: 1px solid var(--border);
-  position: relative;
-  box-sizing: border-box;
-}
-
-/* Force the table to exceed wrapper width */
-.scroll-wrapper > table {
-  display: table;
-  table-layout: auto;
-  width: auto !important;
-  min-width: 1400px !important; /* force horizontal overflow */
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* Prevent wrapping inside cells */
-.scroll-wrapper th,
-.scroll-wrapper td {
-  white-space: nowrap;
-}
-
-/* Keep sticky first column */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 3;
-}
-
-/* Optional visible scrollbars */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-
-/* === FINAL FIX FOR GITHUB HOSTED PAGE === */
-.table-container {
-  overflow: visible !important; /* let the wrapper scroll freely */
-}
-
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  max-height: 320px;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  position: relative;
-  border-top: 1px solid var(--border);
-  box-sizing: border-box;
-  background: #fff;
-}
-
-/* Make each table wider than wrapper so horizontal scroll triggers */
-.scroll-wrapper > table {
-  width: max-content !important;
-  min-width: 1400px !important;
-  table-layout: auto;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* Ensure headers and cells don't wrap */
-.scroll-wrapper th,
-.scroll-wrapper td {
-  white-space: nowrap;
-}
-
-/* Sticky first column */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 3;
-  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.05);
-}
-
-/* Make scrollbars clearly visible */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 5px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-
-/* === FINAL FIX FOR GITHUB HOSTED PAGE === */
-.table-container {
-  overflow: visible !important; /* let the wrapper scroll freely */
-}
-
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  max-height: 320px;
-  overflow-x: auto !important;
-  overflow-y: auto !important;
-  position: relative;
-  border-top: 1px solid var(--border);
-  box-sizing: border-box;
-  background: #fff;
-}
-
-/* Make each table wider than wrapper so horizontal scroll triggers */
-.scroll-wrapper > table {
-  width: max-content !important;
-  min-width: 1400px !important;
-  table-layout: auto;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* Ensure headers and cells don't wrap */
-.scroll-wrapper th,
-.scroll-wrapper td {
-  white-space: nowrap;
-}
-
-/* Sticky first column */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 3;
-  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.05);
-}
-
-/* Make scrollbars clearly visible */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 5px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
-}
-
