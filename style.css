@@ -162,7 +162,7 @@ textarea {
   box-shadow: var(--shadow);
 }
 
-/* Scrollable table wrapper */
+/* === SCROLLABLE WRAPPER === */
 .scroll-wrapper {
   position: relative;
   max-height: 300px;
@@ -172,31 +172,30 @@ textarea {
   transition: box-shadow 0.3s ease;
 }
 
-/* === Hover Gradient Effect === */
+/* Hover gradient fade (soft orange glow) */
 .scroll-wrapper::before,
 .scroll-wrapper::after {
   content: "";
   position: sticky;
   left: 0;
   right: 0;
-  height: 16px;
+  height: 18px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 5;
+  z-index: 10;
 }
 
 .scroll-wrapper::before {
   top: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08), transparent);
+  background: linear-gradient(to bottom, rgba(243, 111, 33, 0.25), transparent);
 }
 
 .scroll-wrapper::after {
   bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.08), transparent);
+  background: linear-gradient(to top, rgba(243, 111, 33, 0.25), transparent);
 }
 
-/* Only visible when hovering */
 .scroll-wrapper:hover::before,
 .scroll-wrapper:hover::after {
   opacity: 1;
