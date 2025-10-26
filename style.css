@@ -331,3 +331,43 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+
+/* === SCROLLABLE WRAPPER (orange hover gradient fixed) === */
+.scroll-wrapper {
+  position: relative;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Orange gradient overlay (top + bottom) */
+.scroll-wrapper::before,
+.scroll-wrapper::after {
+  content: "";
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 22px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 50; /* ensures visible above table cells */
+}
+
+.scroll-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(243, 111, 33, 0.35), rgba(243, 111, 33, 0));
+}
+
+.scroll-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(243, 111, 33, 0.35), rgba(243, 111, 33, 0));
+}
+
+/* Fade in when hovering over scroll area */
+.scroll-wrapper:hover::before,
+.scroll-wrapper:hover::after {
+  opacity: 1;
+}
