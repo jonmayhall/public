@@ -151,7 +151,7 @@ textarea {
   font-family: inherit;
 }
 
-/* === TRAINING CHECKLIST TABLE STYLING === */
+/* === TRAINING CHECKLIST === */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -168,11 +168,11 @@ textarea {
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--shadow);
+  border-bottom: none;
+  border-radius: 0;
   margin-bottom: 0;
-  overflow: hidden;
   position: relative;
+  box-shadow: var(--shadow);
 }
 
 /* === SCROLLABLE WRAPPER === */
@@ -183,11 +183,11 @@ textarea {
   max-height: 340px;
   overflow-x: auto;
   overflow-y: auto;
+  background: #fff;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: #fff;
   box-sizing: border-box;
-  scrollbar-color: #d0d0d0 transparent;
+  scrollbar-color: #cfcfcf transparent;
   scrollbar-width: thin;
 }
 
@@ -211,6 +211,7 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 2;
+  white-space: nowrap;
 }
 
 .training-table th:first-child {
@@ -228,6 +229,7 @@ textarea {
   padding: 6px 8px;
   text-align: center;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .training-table td:first-child {
@@ -254,12 +256,14 @@ textarea {
 .table-footer {
   border: 1px solid var(--border);
   border-top: none;
-  padding: 8px 12px;
   border-radius: 0 0 var(--radius) var(--radius);
   background: #fff;
   text-align: left;
   margin-bottom: 25px;
+  padding: 8px 12px;
   box-shadow: var(--shadow);
+  border-top: 1px solid var(--border);
+  margin-top: -1px; /* attaches footer flush to table */
 }
 
 .add-row {
@@ -267,9 +271,9 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 16px;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: background 0.2s, transform 0.1s;
