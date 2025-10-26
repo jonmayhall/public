@@ -1,29 +1,31 @@
 :root {
   --orange: #f36f21;
-  --light-orange: #ffeedf;
-  --border: #ddd;
-  --gray-bg: #f6f6f6;
+  --light-orange: #f9d2b5;
+  --gray-bg: #d7d7d7;
+  --card-bg: #f2f2f2;
+  --border: #ccc;
+  --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* === Base === */
+/* === BASE === */
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
-  color: #222;
+  color: var(--ink);
 }
 
-/* === Layout === */
+/* === LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
 }
 
-/* === Sidebar === */
+/* === SIDEBAR === */
 #sidebar {
-  background: #fff;
+  background: white;
   border-right: 1px solid var(--border);
   width: 260px;
   padding: 20px 10px;
@@ -60,16 +62,17 @@ nav {
   color: var(--orange);
 }
 
-/* === Main === */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 260px;
   padding: 30px 50px;
 }
 
+/* === PAGE SECTIONS === */
 .page-section {
   display: none;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 24px;
@@ -85,7 +88,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === Section Blocks === */
+/* === SECTION BLOCKS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -96,7 +99,7 @@ h1 {
 
 .section-block h2 {
   background: var(--orange);
-  color: #fff;
+  color: white;
   margin: 0;
   padding: 10px 16px;
   font-size: 16px;
@@ -114,6 +117,7 @@ h1 {
 
 .checklist-row label {
   flex: 1;
+  font-size: 15px;
   padding-right: 20px;
 }
 
@@ -124,33 +128,22 @@ h1 {
   border-radius: 10px;
   border: 1px solid var(--border);
   background: #eee;
-  font-size: 14px;
 }
 
-/* === Textareas === */
+/* === TEXTAREA === */
 textarea {
   width: calc(100% - 32px);
   margin: 16px;
   padding: 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
+  background: #f9f9f9;
   resize: none;
   overflow: hidden;
   font-family: inherit;
-  background: #f9f9f9;
-  transition: 0.2s;
 }
 
-textarea:focus {
-  border-color: var(--orange);
-  outline: none;
-}
-
-/* === Tables === */
-.table-section {
-  margin-bottom: 40px;
-}
-
+/* === TABLES === */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -162,7 +155,7 @@ textarea:focus {
 .table-container {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 320px; /* scroll after ~4 rows */
+  max-height: 320px; /* vertical scroll after ~4 rows */
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
@@ -172,18 +165,18 @@ textarea:focus {
 /* Table core */
 .training-table {
   border-collapse: collapse;
-  min-width: 1200px;
   width: max-content;
+  min-width: 1200px;
 }
 
 /* Headers */
 .training-table th {
-  background: var(--light-orange);
-  color: #333;
+  background: var(--orange);
+  color: #fff;
   font-weight: 600;
   text-align: center;
   padding: 8px;
-  border: 1px solid #f1c7a6;
+  border: 1px solid #e9742b;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -195,10 +188,10 @@ textarea:focus {
   position: sticky;
   left: 0;
   z-index: 3;
-  background: #fffaf7;
+  background: #fff;
 }
 
-/* Table body */
+/* Body */
 .training-table td {
   border: 1px solid var(--border);
   padding: 6px 8px;
@@ -212,30 +205,25 @@ textarea:focus {
   padding: 6px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #eee;
+  background: #f0f0f0;
 }
 
-/* Alternating rows */
-.training-table tr:nth-child(odd) {
-  background: #fff;
-}
+/* Row striping */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-.training-table tr:nth-child(even) {
-  background: #fafafa;
-}
-
-/* Footer with + button */
+/* === ADD ROW BUTTON === */
 .table-footer {
-  background: #fff;
   border: 1px solid var(--border);
   border-top: none;
   padding: 8px 12px;
-  text-align: left;
   border-radius: 0 0 var(--radius) var(--radius);
+  background: #fff;
+  text-align: left;
 }
 
 .add-row {
-  background: #999;
+  background: #777;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -247,11 +235,9 @@ textarea:focus {
   transition: background 0.2s;
 }
 
-.add-row:hover {
-  background: var(--orange);
-}
+.add-row:hover { background: var(--orange); }
 
-/* === Floating Button === */
+/* === FLOATING PDF BUTTON === */
 .floating-btn {
   position: fixed;
   top: 20px;
@@ -261,33 +247,20 @@ textarea:focus {
   border: none;
   border-radius: var(--radius);
   padding: 12px 20px;
-  cursor: pointer;
   font-size: 15px;
+  cursor: pointer;
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
 
-.floating-btn:hover {
-  background: #ff8848;
-}
+.floating-btn:hover { background: #ff8848; }
 
-/* === Responsive === */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
-  #sidebar {
-    width: 200px;
-  }
-  main {
-    margin-left: 200px;
-    padding: 20px;
-  }
+  #sidebar { width: 200px; }
+  main { margin-left: 200px; padding: 20px; }
 }
-
 @media (max-width: 600px) {
-  #sidebar {
-    display: none;
-  }
-  main {
-    margin-left: 0;
-    padding: 20px;
-  }
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
