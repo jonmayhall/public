@@ -381,3 +381,60 @@ textarea {
 .scroll-wrapper::-webkit-scrollbar-thumb:hover {
   background: #aaa;
 }
+
+/* === FINAL OVERRIDE: Independent horizontal + vertical scroll === */
+.table-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* The scrollable frame */
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 320px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  border-top: 1px solid var(--border);
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Force the table to exceed wrapper width */
+.scroll-wrapper > table {
+  display: table;
+  table-layout: auto;
+  width: auto !important;
+  min-width: 1400px !important; /* force horizontal overflow */
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Prevent wrapping inside cells */
+.scroll-wrapper th,
+.scroll-wrapper td {
+  white-space: nowrap;
+}
+
+/* Keep sticky first column */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 3;
+}
+
+/* Optional visible scrollbars */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
