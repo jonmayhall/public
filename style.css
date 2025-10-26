@@ -187,6 +187,7 @@ textarea {
   background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
+  position: relative;
 }
 
 /* gradient fade indicator */
@@ -210,7 +211,7 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
-  min-width: 100%;
+  min-width: 1200px; /* ✅ ensures horizontal scroll works */
   border: 1px solid var(--border);
   table-layout: auto;
 }
@@ -274,7 +275,7 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER (unified with border) === */
+/* === TABLE FOOTER (Unified with border) === */
 .table-footer {
   display: flex;
   align-items: center;
@@ -285,7 +286,7 @@ textarea {
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   padding: 8px 12px;
-  margin-top: -1px; /* closes border gap perfectly */
+  margin-top: -1px;
   box-sizing: border-box;
 }
 
