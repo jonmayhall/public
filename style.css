@@ -15,7 +15,7 @@ html, body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden;
+  overflow-x: hidden; /* prevent horizontal scroll */
 }
 
 /* === LAYOUT === */
@@ -36,6 +36,8 @@ html, body {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 900;
 }
 
 .logo {
@@ -84,8 +86,8 @@ main {
   box-shadow: var(--shadow);
   padding: 28px 32px;
   margin: 0 auto 50px auto;
-  width: 100%;
-  max-width: 1250px;
+  width: 95%;
+  max-width: 1400px;
   box-sizing: border-box;
 }
 
@@ -172,19 +174,22 @@ textarea {
   border-top: none;
   border-radius: 0;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  margin-bottom: 0;
   position: relative;
+  overflow: visible;
 }
 
-/* === SCROLLABLE WRAPPER === */
+/* === SCROLLABLE WRAPPER (table scroll only) === */
 .scroll-wrapper {
   display: block;
   width: 100%;
+  height: auto;
   max-height: 340px;
   overflow-x: auto;
   overflow-y: auto;
   border-top: 1px solid var(--border);
   background: #fff;
+  box-sizing: border-box;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
   position: relative;
@@ -211,7 +216,7 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
-  min-width: 1200px; /* ✅ ensures horizontal scroll works */
+  min-width: 1400px;
   border: 1px solid var(--border);
   table-layout: auto;
 }
@@ -224,7 +229,7 @@ textarea {
   font-size: 13px;
 }
 
-/* === HEADER COLORS === */
+/* sticky headers + first column */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -236,7 +241,6 @@ textarea {
   z-index: 3;
 }
 
-/* Make “Name” header match */
 .training-table th:first-child {
   background: var(--light-orange);
   color: #fff;
@@ -247,7 +251,6 @@ textarea {
   z-index: 4;
 }
 
-/* Sticky left column */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -256,7 +259,7 @@ textarea {
   border-right: 1px solid var(--border);
 }
 
-/* Cell borders */
+/* Cells */
 .training-table td {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -275,19 +278,17 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER (Unified with border) === */
+/* === ADD ROW FOOTER === */
 .table-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   width: 100%;
-  background: #fff;
   border: 1px solid var(--border);
   border-top: none;
+  background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
-  padding: 8px 12px;
-  margin-top: -1px;
-  box-sizing: border-box;
+  text-align: left;
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  padding: 6px 10px;
 }
 
 .add-row {
@@ -295,14 +296,13 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: 0.2s;
 }
-
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
@@ -341,67 +341,57 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
+.floating-btn:hover { background: #ff8848; }
 
-.floating-btn:hover {
+/* === SIDEBAR TOGGLE (for mobile) === */
+#menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none;
+  z-index: 950;
+}
+#menu-toggle:hover {
   background: #ff8848;
 }
 
-/* === MODAL === */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(4px);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-overlay.active { display: flex; }
-
-.modal-content {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-  padding: 20px;
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: auto;
-  position: relative;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #666;
-  transition: 0.2s;
-}
-
-.modal-close:hover { color: var(--orange); }
-
 /* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  main { padding: 20px 25px; }
+  .training-table { min-width: 1200px; }
+}
+
 @media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-  .page-section { max-width: 100%; padding: 20px; }
+  #sidebar {
+    left: -180px;
+  }
+  #sidebar.active {
+    left: 0;
+  }
+  #menu-toggle {
+    display: block;
+  }
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .page-section {
+    width: 95%;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+  .scroll-wrapper {
+    max-height: 260px;
+  }
+  .training-table { min-width: 900px; }
 }
