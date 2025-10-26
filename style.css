@@ -1,7 +1,7 @@
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
-  --gray-bg: #cfd1d3; /* slightly darker background */
+  --gray-bg: #cfd1d3;
   --card-bg: #fff;
   --border: #d0d0d0;
   --ink: #222;
@@ -153,13 +153,23 @@ textarea {
   border: 1px solid var(--orange);
 }
 
+/* Scrollable table container */
 .table-container {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 320px;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
   background: #fff;
+  border-bottom: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow-x: auto;
+}
+
+/* Limit height per table with scroll */
+.table-container table {
+  display: block;
+  overflow-y: auto;
+  max-height: 300px;
+  width: 100%;
 }
 
 /* Table core */
@@ -167,7 +177,7 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
-  min-width: 1200px;
+  min-width: 1000px;
   overflow: hidden;
 }
 
@@ -185,15 +195,14 @@ textarea {
   z-index: 2;
 }
 
-/* Unified borders and freeze */
 .training-table th:first-child {
-  background: var(--light-orange);
   border-left: 1px solid #e9742b;
   position: sticky;
   left: 0;
   z-index: 3;
 }
 
+/* Row header frozen */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -213,7 +222,7 @@ textarea {
 
 .training-table input[type="text"],
 .training-table select {
-  width: 180px;
+  width: 160px;
   padding: 6px;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -228,7 +237,7 @@ textarea {
 .table-footer {
   border: 1px solid var(--border);
   border-top: none;
-  padding: 10px 12px;
+  padding: 8px 10px;
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
@@ -236,17 +245,19 @@ textarea {
   margin-bottom: 25px;
 }
 
+/* Smaller, subtle button */
 .add-row {
   background: var(--orange);
   color: #fff;
   border: 1px solid #e9742b;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
   cursor: pointer;
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: all 0.2s;
+  vertical-align: middle;
 }
 
 .add-row:hover {
@@ -293,4 +304,3 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
-
