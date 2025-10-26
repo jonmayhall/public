@@ -255,7 +255,17 @@ textarea {
   z-index: 3;
 }
 
-.training-table th:first-child,
+/* FIX: Make "Name" header match others */
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+  border-left: 1px solid #e9742b;
+  border-right: 1px solid #e9742b;
+  position: sticky;
+  left: 0;
+  z-index: 4;
+}
+
 .training-table td:first-child {
   position: sticky;
   left: 0;
