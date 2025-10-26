@@ -15,7 +15,7 @@ html, body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden; /* prevent global horizontal scroll */
 }
 
 /* === LAYOUT === */
@@ -81,7 +81,10 @@ main {
   box-shadow: var(--shadow);
   padding: 32px 40px;
   margin: 0 auto 60px auto;
+  width: 100%;
   max-width: 1400px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .page-section.active {
@@ -173,7 +176,7 @@ textarea {
   box-shadow: var(--shadow);
 }
 
-/* === SCROLLABLE WRAPPER (INDIVIDUAL TABLES) === */
+/* === SCROLLABLE WRAPPER (vertical + horizontal) === */
 .scroll-wrapper {
   display: block;
   width: 100%;
@@ -193,10 +196,10 @@ textarea {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
-/* === TABLE CORE === */
+/* Fix table width clipping */
 .scroll-wrapper > table {
   width: max-content !important;
-  min-width: 1400px !important;
+  min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--border);
@@ -206,7 +209,7 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content !important;
-  min-width: 1400px !important;
+  min-width: 100%;
   border: 1px solid var(--border);
 }
 
@@ -295,6 +298,38 @@ textarea {
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
+}
+
+/* === COMMENT BOX (FULL WIDTH) === */
+.comment-box {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-top: 25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-box h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.comment-box textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  overflow: hidden;
+  font-family: inherit;
 }
 
 /* === FLOATING PDF BUTTON === */
