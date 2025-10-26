@@ -395,3 +395,35 @@ textarea {
   }
   .training-table { min-width: 900px; }
 }
+/* === FIX: Allow full horizontal scroll on narrow screens === */
+.scroll-wrapper {
+  scroll-padding-left: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.training-table {
+  margin-left: 0;
+}
+
+.training-table th:first-child,
+.training-table td:first-child {
+  left: 0;
+}
+
+@media (max-width: 900px) {
+  /* When sidebar is hidden, remove its offset */
+  main {
+    margin-left: 0 !important;
+  }
+  .page-section {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 40px auto;
+  }
+  .scroll-wrapper {
+    overflow-x: auto;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
