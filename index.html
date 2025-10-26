@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myKaarma – Interactive Training Checklist</title>
+  <link rel="stylesheet" href="style.css?v=4" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
+      </div>
+      <nav>
+        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
+        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
+        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main id="content">
+      <!-- === PRE-TRAINING CHECKLIST === -->
+      <section id="pretraining" class="page-section active">
+        <h1>Pre-Training Checklist</h1>
+        <div class="section-block">
+          <h2>Handoff Notes</h2>
+          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+        <div class="section-block">
+          <h2>Dealership Personnel</h2>
+          <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Are all of the managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+        <div class="section-block">
+          <h2>Location</h2>
+          <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+        <div class="section-block">
+          <h2>Products</h2>
+          <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+      </section>
+
+      <!-- === DEALERSHIP INFORMATION === -->
+      <section id="dealership-info" class="page-section">
+        <h1>Dealership Information</h1>
+        <div class="section-block">
+          <h2>Wi-Fi Information</h2>
+          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
+          <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" /></div>
+        </div>
+        <div class="section-block">
+          <h2>Dealership Contacts</h2>
+          <div class="checklist-row"><label>Primary Point of Contact & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option></select></div>
+          <div class="checklist-row"><label>Primary POC Cell</label><input type="text" /></div>
+          <div class="checklist-row"><label>Primary POC Email</label><input type="text" /></div>
+        </div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+      </section>
+
+      <!-- === TRAINING CHECKLIST === -->
+      <section id="training-checklist" class="page-section">
+        <h1>Training Checklist</h1>
+
+        <!-- === TECHNICIANS === -->
+        <div class="table-wrapper">
+          <div class="table-scroll">
+            <table class="training-table">
+              <thead>
+                <tr>
+                  <th class="name-col">Name</th>
+                  <th>DMS ID</th>
+                  <th>Login</th>
+                  <th>Workflow</th>
+                  <th>Mobile App Menu</th>
+                  <th>Search Bar</th>
+                  <th>RO Assignment</th>
+                  <th>Dispatch</th>
+                  <th>RO History</th>
+                  <th>Prev. Declines</th>
+                  <th>OCR</th>
+                  <th>Edit ASR</th>
+                  <th>ShopChat / Parts</th>
+                  <th>Adding Media</th>
+                  <th>Status Change</th>
+                  <th>Notifications</th>
+                  <th>Filters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><input type="text" placeholder="Name" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option></select></td></tr>
+                <tr><td><input type="text" placeholder="Name" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option></select></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer"><button class="add-row">+</button></div>
+        </div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+
+        <!-- === SERVICE ADVISORS === -->
+        <div class="table-wrapper">
+          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>MCI</th><th>Workflow</th><th>RO Assignment</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+
+        <!-- === PARTS REPRESENTATIVES === -->
+        <div class="table-wrapper">
+          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Parts Tab</th><th>SOP</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+
+        <!-- === BDC REPRESENTATIVES === -->
+        <div class="table-wrapper">
+          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>ServiceConnect</th><th>Call Routing</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+
+        <!-- === PICKUP & DELIVERY === -->
+        <div class="table-wrapper">
+          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+      </section>
+
+      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
+      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
+      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
+      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
+    </main>
+  </div>
+
+  <button id="pdfButton" class="floating-btn">Save as PDF</button>
+
+  <script>
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+        window.scrollTo({top:0});
+      });
+    });
+  </script>
+</body>
+</html>
 
