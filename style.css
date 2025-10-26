@@ -143,7 +143,7 @@ textarea {
   font-family: inherit;
 }
 
-/* === TABLES === */
+/* === TABLE SECTIONS === */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -153,32 +153,29 @@ textarea {
   border: 1px solid var(--orange);
 }
 
-/* Scrollable table container */
 .table-container {
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
   background: #fff;
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  overflow-x: auto;
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
-/* Limit height per table with scroll */
-.table-container table {
-  display: block;
-  overflow-y: auto;
+/* === FIX: make each table body scrollable === */
+.scroll-wrapper {
   max-height: 300px;
-  width: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
 }
 
-/* Table core */
+/* === TABLE CORE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
   min-width: 1000px;
-  overflow: hidden;
 }
 
 /* Headers */
@@ -192,17 +189,17 @@ textarea {
   border-right: 1px solid #e9742b;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .training-table th:first-child {
   border-left: 1px solid #e9742b;
   position: sticky;
   left: 0;
-  z-index: 3;
+  z-index: 4;
 }
 
-/* Row header frozen */
+/* First column stickiness */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -245,33 +242,22 @@ textarea {
   margin-bottom: 25px;
 }
 
-/* Smaller, subtle button */
 .add-row {
   background: var(--orange);
   color: #fff;
   border: 1px solid #e9742b;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: all 0.2s;
-  vertical-align: middle;
 }
 
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
-}
-
-/* === SPACING FIX === */
-.table-section {
-  margin-bottom: 25px;
-}
-
-.comment-box {
-  margin-top: 25px;
 }
 
 /* === FLOATING PDF BUTTON === */
