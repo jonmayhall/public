@@ -8,12 +8,15 @@
   <!-- Stylesheet with auto cache-buster -->
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    const css = document.getElementById('main-style');
+    const css = document.getElementById("main-style");
     css.href = `style.css?v=${Date.now()}`;
   </script>
 </head>
 
 <body>
+  <!-- Sidebar toggle for mobile -->
+  <button id="menu-toggle">☰</button>
+
   <div id="app">
     <!-- === SIDEBAR === -->
     <aside id="sidebar">
@@ -33,11 +36,9 @@
 
     <!-- === MAIN CONTENT === -->
     <main id="content">
-
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -68,7 +69,7 @@
           <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
-        <div class="comment-box">
+        <div class="section-block">
           <h2>Additional Comments</h2>
           <textarea placeholder="Type here…"></textarea>
         </div>
@@ -77,7 +78,6 @@
       <!-- === DEALERSHIP INFORMATION === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
-
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
@@ -86,12 +86,10 @@
 
         <div class="section-block">
           <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary Point of Contact and Role</label>
-            <select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
+          <div class="checklist-row"><label>Primary Point of Contact and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
           <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter cell…" /></div>
           <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter email…" /></div>
-          <div class="checklist-row"><label>Additional POC and Role</label>
-            <select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
+          <div class="checklist-row"><label>Additional POC and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
           <div class="checklist-row"><label>Additional POC Email</label><input type="text" placeholder="Enter email…" /></div>
           <div class="checklist-row"><label>Include in communications?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
@@ -102,7 +100,7 @@
           <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter names…" /></div>
         </div>
 
-        <div class="comment-box">
+        <div class="section-block">
           <h2>Additional Comments</h2>
           <textarea placeholder="Type here…"></textarea>
         </div>
@@ -114,17 +112,12 @@
         <div id="tables-container"></div>
       </section>
 
-      <!-- === OPCODES === -->
+      <!-- === OPCODES & PRICING === -->
       <section id="opcodes" class="page-section">
         <h1>Opcodes & Pricing</h1>
         <div class="section-block">
-          <h2>Common Opcodes</h2>
-          <textarea placeholder="List common opcodes here…"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Pricing Notes</h2>
-          <textarea placeholder="Enter pricing details here…"></textarea>
+          <h2>Opcode Setup Notes</h2>
+          <textarea placeholder="Document any pricing structure or setup notes here…"></textarea>
         </div>
       </section>
 
@@ -132,15 +125,9 @@
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
         <div class="section-block">
-          <h2>Integration Checklist</h2>
-          <div class="checklist-row"><label>DMS connected?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Repair orders syncing?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Customer data accurate?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
-
-        <div class="comment-box">
-          <h2>Additional Notes</h2>
-          <textarea placeholder="Type here…"></textarea>
+          <h2>Integration Status</h2>
+          <div class="checklist-row"><label>Is DMS integration active?</label><select><option></option><option>Yes</option><option>No</option><option>Pending</option></select></div>
+          <div class="checklist-row"><label>Notes</label><input type="text" placeholder="Add notes…" /></div>
         </div>
       </section>
 
@@ -148,14 +135,9 @@
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
         <div class="section-block">
-          <h2>Notifications Setup</h2>
-          <div class="checklist-row"><label>Email notifications active?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Text alerts configured?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
-
-        <div class="comment-box">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
+          <h2>Notification Preferences</h2>
+          <div class="checklist-row"><label>Are all advisors set up with notifications?</label><select><option></option><option>Yes</option><option>No</option></select></div>
+          <div class="checklist-row"><label>Notes</label><input type="text" placeholder="Add details…" /></div>
         </div>
       </section>
 
@@ -163,30 +145,17 @@
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
         <div class="section-block">
-          <h2>Trainer Feedback</h2>
-          <textarea placeholder="Summarize key takeaways, dealership engagement, and next steps…"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Follow-Up Plan</h2>
-          <textarea placeholder="Enter follow-up items, remote sessions, or retraining needs…"></textarea>
+          <h2>Final Notes</h2>
+          <textarea placeholder="Summarize key findings, recommendations, or follow-ups…"></textarea>
         </div>
       </section>
-
     </main>
   </div>
 
   <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
-  <!-- === MODAL OVERLAY === -->
-  <div class="modal-overlay">
-    <div class="modal-content">
-      <button class="modal-close">✕</button>
-      <div class="modal-body"></div>
-    </div>
-  </div>
-
+  <!-- === SCRIPTS === -->
   <script src="script.js"></script>
 </body>
 </html>
