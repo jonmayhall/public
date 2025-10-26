@@ -15,7 +15,7 @@ body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden; /* page never scrolls horizontally */
+  overflow-x: hidden;
 }
 
 /* === LAYOUT === */
@@ -151,16 +151,18 @@ textarea {
   font-family: inherit;
 }
 
-/* === TRAINING CHECKLIST TABLES === */
+/* === TRAINING CHECKLIST TABLE STYLING === */
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
   border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
+  box-shadow: var(--shadow);
 }
 
-/* The outer card that holds the scrollable wrapper */
 .table-container {
   width: 100%;
   background: #fff;
@@ -168,34 +170,34 @@ textarea {
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
-  overflow: hidden; /* keep the card tidy; scrolling handled by inner wrapper */
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
 }
 
-/* The inner scroll area — this is what scrolls, not the page */
+/* === SCROLLABLE WRAPPER === */
 .scroll-wrapper {
   display: block;
   width: 100%;
   max-width: 100%;
-  max-height: 320px;
-  overflow-x: auto; /* horizontal scroll lives here */
-  overflow-y: auto; /* vertical scroll lives here */
+  max-height: 340px;
+  overflow-x: auto;
+  overflow-y: auto;
   border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   background: #fff;
   box-sizing: border-box;
   scrollbar-color: #d0d0d0 transparent;
   scrollbar-width: thin;
 }
 
-/* The table may be wider than its container to enable horizontal scroll */
+/* === TRAINING TABLE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
-  width: max-content;     /* allow natural width so it can extend and scroll */
-  min-width: 1200px;      /* sensible baseline width */
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
+  width: max-content;
+  min-width: 1200px;
+  border: none;
 }
 
 .training-table th {
@@ -209,7 +211,6 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 2;
-  white-space: nowrap;     /* prevent header wrapping which can break scroll */
 }
 
 .training-table th:first-child {
@@ -227,7 +228,6 @@ textarea {
   padding: 6px 8px;
   text-align: center;
   font-size: 14px;
-  white-space: nowrap;     /* keep cells on one line for smooth horizontal scroll */
 }
 
 .training-table td:first-child {
@@ -250,7 +250,7 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD ROW FOOTER (attached neatly to the card) === */
+/* === ADD ROW FOOTER === */
 .table-footer {
   border: 1px solid var(--border);
   border-top: none;
@@ -267,16 +267,17 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.1s;
 }
 
 .add-row:hover {
   background: #ff8b42;
+  transform: scale(1.05);
 }
 
 /* === COMMENT BOX === */
