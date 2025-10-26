@@ -1,119 +1,248 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css?v=8" />
-</head>
+:root {
+  --orange: #f36f21;
+  --light-orange: #f9a35a;
+  --gray-bg: #f3f3f3;
+  --border: #d9d9d9;
+  --ink: #222;
+  --radius: 14px;
+  --shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
 
-<body>
-  <div id="app">
-    <aside id="sidebar">
-      <div class="sidebar-header">
-        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
-      </div>
-      <nav>
-        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
-        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
-        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
-        <button class="nav-btn" data-target="training-summary">Training Summary</button>
-      </nav>
-    </aside>
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
-    <main id="content">
-      <!-- === PRE-TRAINING CHECKLIST === -->
-      <section id="pretraining" class="page-section active">
-        <h1>Pre-Training Checklist</h1>
+#app {
+  display: flex;
+  min-height: 100vh;
+}
 
-        <div class="section-block">
-          <h2>Handoff Notes</h2>
-          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
+/* Sidebar */
+#sidebar {
+  background: white;
+  border-right: 1px solid var(--border);
+  width: 260px;
+  padding: 20px 10px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
 
-        <div class="section-block">
-          <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Personnel count accurate?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Managers active?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Active/pending advisors</label><input type="text" /></div>
-          <div class="checklist-row"><label>Active/pending parts reps</label><input type="text" /></div>
-          <div class="checklist-row"><label>Active/pending techs</label><input type="text" /></div>
-          <div class="checklist-row"><label>Active/pending BDC reps</label><input type="text" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
+.logo { width: 120px; margin-bottom: 20px; }
 
-        <div class="section-block">
-          <h2>Location</h2>
-          <div class="checklist-row"><label>How many buildings on Google Maps?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Were correct buildings relayed?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
+nav { width: 100%; display: flex; flex-direction: column; gap: 6px; }
 
-        <div class="section-block">
-          <h2>Products</h2>
-          <div class="checklist-row"><label>Communication – Integration OK?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-          <div class="checklist-row"><label>Payments – Integration OK?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 15px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
-      </section>
+.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
 
-      <!-- === DEALERSHIP INFORMATION === -->
-      <section id="dealership-info" class="page-section">
-        <h1>Dealership Information</h1>
+/* Main */
+main { flex: 1; margin-left: 260px; padding: 30px 50px; }
 
-        <div class="section-block">
-          <h2>Wi-Fi Information</h2>
-          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
-          <div class="checklist-row"><label>Password</label><input type="text" /></div>
-        </div>
+.page-section {
+  display: none;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 28px 36px;
+  margin-bottom: 40px;
+}
+.page-section.active { display: block; }
 
-        <div class="section-block">
-          <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary POC & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option></select></div>
-          <div class="checklist-row"><label>Primary POC Cell</label><input type="text" /></div>
-          <div class="checklist-row"><label>Primary POC Email</label><input type="text" /></div>
-          <div class="checklist-row"><label>Additional POC & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option></select></div>
-          <div class="checklist-row"><label>Additional POC Email</label><input type="text" /></div>
-          <div class="checklist-row"><label>Include in comms?</label><select><option></option><option>Yes</option><option>No</option></select></div>
-        </div>
+h1 { color: var(--orange); margin-bottom: 20px; }
 
-        <div class="section-block">
-          <h2>Training Team</h2>
-          <div class="checklist-row"><label>Lead Trainer</label><input type="text" /></div>
-          <div class="checklist-row"><label>Additional Trainers</label><input type="text" /></div>
-        </div>
+/* Section Blocks */
+.section-block {
+  border-radius: var(--radius);
+  margin-bottom: 25px;
+  background: white;
+  box-shadow: var(--shadow);
+}
 
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
-      </section>
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
 
-      <!-- === TRAINING CHECKLIST === -->
-      <section id="training-checklist" class="page-section">
-        <h1>Training Checklist</h1>
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
 
-        <!-- Table Template (Tech, Advisors, etc.) -->
-        <div id="tables-container"></div>
-      </section>
+.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
 
-      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
-      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
-      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
-      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
-    </main>
-  </div>
+.checklist-row select,
+.checklist-row input {
+  width: 250px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ededed;
+}
 
-  <button id="pdfButton" class="floating-btn">Save as PDF</button>
+/* Comments */
+.section-block textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  resize: none;
+  overflow: hidden;
+  background: #ededed;
+  font-family: inherit;
+  transition: height 0.2s;
+}
 
-  <script src="script.js?v=8"></script>
-</body>
-</html>
+/* Tables */
+.section-header {
+  background: var(--orange);
+  color: white;
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.table-wrapper {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Scroll container */
+.table-scroll {
+  display: block;
+  width: 100%;
+  max-height: 280px; /* ~4 rows */
+  overflow-x: auto;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.training-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 1200px;
+  width: max-content;
+}
+
+.training-table th {
+  background: var(--light-orange);
+  color: #fff;
+  padding: 8px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border-right: 1px solid #e7a96d;
+}
+
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 4;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: white;
+  z-index: 5;
+}
+
+.training-table td,
+.training-table input,
+.training-table select {
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.training-table input[type="text"] {
+  width: 220px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  padding: 6px;
+  background: #ededed;
+}
+
+.training-table select {
+  min-width: 130px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ededed;
+}
+
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
+/* Footer */
+.table-footer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 12px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.add-row {
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.add-row:hover { background: #ff8848; }
+
+/* Floating PDF Button */
+.floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.floating-btn:hover { background: #ff8848; }
