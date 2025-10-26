@@ -169,7 +169,13 @@ textarea {
   overflow-x: auto;
   overflow-y: auto;
   border-top: 1px solid var(--border);
-  white-space: nowrap;
+}
+
+/* ensure horizontal scroll works */
+.scroll-wrapper table {
+  min-width: 1200px;
+  width: max-content;
+  display: table;
 }
 
 /* Orange hover gradient (top + bottom overlay) */
@@ -205,8 +211,8 @@ textarea {
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
-  width: max-content;
-  min-width: 1000px;
+  width: 100%;
+  border: 1px solid var(--border);
 }
 
 /* Headers */
@@ -246,6 +252,7 @@ textarea {
   padding: 6px 8px;
   text-align: center;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .training-table input[type="text"],
@@ -331,3 +338,4 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+
