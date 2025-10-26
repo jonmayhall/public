@@ -340,3 +340,44 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+
+/* === FINAL FIX: Independent horizontal + vertical scroll per table === */
+.scroll-wrapper {
+  display: block;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  max-height: 320px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+/* ensure table is wider than its container */
+.scroll-wrapper table {
+  width: max-content !important;
+  min-width: 1400px !important;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* optional: preserve sticky columns */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 3;
+}
+
+/* optional: show scrollbars consistently on Mac/Windows */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
