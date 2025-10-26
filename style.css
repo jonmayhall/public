@@ -162,12 +162,44 @@ textarea {
   box-shadow: var(--shadow);
 }
 
-/* === FIX: make each table body scrollable === */
+/* Scrollable table wrapper */
 .scroll-wrapper {
+  position: relative;
   max-height: 300px;
   overflow-y: auto;
   overflow-x: auto;
   border-top: 1px solid var(--border);
+  transition: box-shadow 0.3s ease;
+}
+
+/* === Hover Gradient Effect === */
+.scroll-wrapper::before,
+.scroll-wrapper::after {
+  content: "";
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.scroll-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08), transparent);
+}
+
+.scroll-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.08), transparent);
+}
+
+/* Only visible when hovering */
+.scroll-wrapper:hover::before,
+.scroll-wrapper:hover::after {
+  opacity: 1;
 }
 
 /* === TABLE CORE === */
@@ -242,6 +274,7 @@ textarea {
   margin-bottom: 25px;
 }
 
+/* Smaller, blended add-row button */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -258,6 +291,15 @@ textarea {
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
+}
+
+/* === SPACING FIX === */
+.table-section {
+  margin-bottom: 25px;
+}
+
+.comment-box {
+  margin-top: 25px;
 }
 
 /* === FLOATING PDF BUTTON === */
