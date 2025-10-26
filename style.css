@@ -171,7 +171,7 @@ textarea {
   border-top: 1px solid var(--border);
 }
 
-/* ensure horizontal scroll works */
+/* Force tables to exceed width so horizontal scroll appears */
 .scroll-wrapper table {
   min-width: 1200px;
   width: max-content;
@@ -211,7 +211,8 @@ textarea {
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
-  width: 100%;
+  width: max-content;      /* Key: prevents 100% fit, enables scroll */
+  min-width: 1200px;
   border: 1px solid var(--border);
 }
 
@@ -227,6 +228,7 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
+  white-space: nowrap;
 }
 
 .training-table th:first-child {
@@ -252,7 +254,7 @@ textarea {
   padding: 6px 8px;
   text-align: center;
   font-size: 14px;
-  white-space: nowrap;
+  white-space: nowrap;  /* Key: enables horizontal scrolling */
 }
 
 .training-table input[type="text"],
@@ -338,4 +340,3 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
-
