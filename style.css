@@ -15,7 +15,7 @@ html, body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden; /* prevent page scroll */
+  overflow-x: hidden;
 }
 
 /* === LAYOUT === */
@@ -25,7 +25,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === SIDEBAR (Slim) === */
+/* === SIDEBAR === */
 #sidebar {
   background: #fff;
   border-right: 1px solid var(--border);
@@ -164,49 +164,29 @@ textarea {
   position: relative;
 }
 
-/* expand icon */
-.expand-btn {
-  float: right;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0.9;
-  transition: 0.2s;
-}
-.expand-btn:hover {
-  opacity: 1;
-  transform: scale(1.15);
-}
-
 /* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0;
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
   overflow: hidden;
   position: relative;
 }
 
-/* === SCROLLABLE WRAPPER (table scroll only) === */
+/* === SCROLLABLE WRAPPER === */
 .scroll-wrapper {
   display: block;
   width: 100%;
-  height: auto;
   max-height: 340px;
   overflow-x: auto;
   overflow-y: auto;
   border-top: 1px solid var(--border);
   background: #fff;
-  box-sizing: border-box;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
-  position: relative;
 }
 
 /* gradient fade indicator */
@@ -243,7 +223,7 @@ textarea {
   font-size: 13px;
 }
 
-/* sticky headers + first column */
+/* === HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -255,7 +235,7 @@ textarea {
   z-index: 3;
 }
 
-/* FIX: Make "Name" header match others */
+/* Make “Name” header match */
 .training-table th:first-child {
   background: var(--light-orange);
   color: #fff;
@@ -266,6 +246,7 @@ textarea {
   z-index: 4;
 }
 
+/* Sticky left column */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -274,7 +255,7 @@ textarea {
   border-right: 1px solid var(--border);
 }
 
-/* Cells */
+/* Cell borders */
 .training-table td {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -293,15 +274,19 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD ROW FOOTER === */
+/* === TABLE FOOTER (unified with border) === */
 .table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
+  background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  padding: 6px 10px;
-  background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
+  padding: 8px 12px;
+  margin-top: -1px; /* closes border gap perfectly */
+  box-sizing: border-box;
 }
 
 .add-row {
@@ -309,13 +294,14 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 13px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: 0.2s;
 }
+
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
@@ -354,9 +340,12 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
-.floating-btn:hover { background: #ff8848; }
 
-/* === MODAL OVERLAY === */
+.floating-btn:hover {
+  background: #ff8848;
+}
+
+/* === MODAL === */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -370,6 +359,7 @@ textarea {
   align-items: center;
   z-index: 999;
 }
+
 .modal-overlay.active { display: flex; }
 
 .modal-content {
@@ -400,6 +390,7 @@ textarea {
   color: #666;
   transition: 0.2s;
 }
+
 .modal-close:hover { color: var(--orange); }
 
 /* === RESPONSIVE === */
