@@ -1,6 +1,6 @@
 :root {
   --orange: #f36f21;
-  --light-orange: #f9d2b5;
+  --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
   --border: #dcdcdc;
@@ -170,29 +170,40 @@ textarea {
   min-width: 1200px;
   border-radius: var(--radius);
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 /* Headers */
 .training-table th {
-  background: #f8b17b;
+  background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   text-align: center;
   padding: 10px;
-  border-right: 1px solid #e9742b;
   border-bottom: 2px solid #e9742b;
+  border-right: 1px solid #e9742b;
   position: sticky;
   top: 0;
   z-index: 2;
 }
 
-/* Frozen first column */
-.training-table th:first-child,
-.training-table td:first-child {
+/* Name header matches others */
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+  border-left: 1px solid #e9742b;
   position: sticky;
   left: 0;
   z-index: 3;
-  background: #fcfcfc; /* off-white tint for better contrast */
+}
+
+/* Frozen first column cells */
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fcfcfc;
+  border-right: 1px solid var(--border);
 }
 
 /* Cells */
