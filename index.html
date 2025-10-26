@@ -4,12 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+
+  <!-- Auto cache-buster for stylesheet -->
+  <link id="main-style" rel="stylesheet" href="style.css" />
+  <script>
+    const css = document.getElementById('main-style');
+    css.href = `style.css?v=${Date.now()}`;
+  </script>
 </head>
 
 <body>
   <div id="app">
-    <!-- === SIDEBAR === -->
+    <!-- Sidebar -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -25,13 +31,11 @@
       </nav>
     </aside>
 
-    <!-- === MAIN CONTENT === -->
+    <!-- Main Content -->
     <main id="content">
-
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -71,7 +75,6 @@
       <!-- === DEALERSHIP INFORMATION === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
-
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
@@ -105,15 +108,12 @@
         <h1>Training Checklist</h1>
         <div id="tables-container"></div>
       </section>
-
-      <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
-      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
-      <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
-      <section id="training-summary" class="page-section"><h1>Training Summary</h1></section>
     </main>
   </div>
 
+  <!-- Floating PDF Button -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
-  <script src="script.js?v=2"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
