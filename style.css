@@ -15,7 +15,7 @@ html, body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden; /* prevent horizontal scroll */
+  overflow-x: hidden; /* prevent horizontal scroll of the page */
 }
 
 /* === LAYOUT === */
@@ -76,6 +76,7 @@ main {
   padding: 30px 40px;
   box-sizing: border-box;
   background: var(--gray-bg);
+  overflow-x: hidden;
 }
 
 /* === PAGE SECTIONS === */
@@ -89,6 +90,7 @@ main {
   width: 95%;
   max-width: 1400px;
   box-sizing: border-box;
+  padding-right: 10px;
 }
 
 .page-section.active {
@@ -183,10 +185,9 @@ textarea {
 .scroll-wrapper {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 340px;
   overflow-x: auto;
   overflow-y: auto;
+  max-height: 340px;
   border-top: 1px solid var(--border);
   background: #fff;
   box-sizing: border-box;
@@ -195,7 +196,6 @@ textarea {
   position: relative;
 }
 
-/* gradient fade indicator */
 .scroll-wrapper::after {
   content: "";
   position: sticky;
@@ -216,9 +216,10 @@ textarea {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
-  min-width: 1400px;
+  min-width: 1600px; /* ✅ ensures full horizontal scroll space */
   border: 1px solid var(--border);
   table-layout: auto;
+  margin: 0 auto;
 }
 
 .training-table th,
@@ -238,23 +239,21 @@ textarea {
   border-right: 1px solid #e9742b;
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 4;
 }
 
 .training-table th:first-child {
   background: var(--light-orange);
-  color: #fff;
   border-left: 1px solid #e9742b;
   border-right: 1px solid #e9742b;
-  position: sticky;
   left: 0;
-  z-index: 4;
+  z-index: 5;
 }
 
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   background: #fff;
   border-right: 1px solid var(--border);
 }
@@ -366,19 +365,13 @@ textarea {
 /* === RESPONSIVE === */
 @media (max-width: 1200px) {
   main { padding: 20px 25px; }
-  .training-table { min-width: 1200px; }
+  .training-table { min-width: 1400px; }
 }
 
 @media (max-width: 900px) {
-  #sidebar {
-    left: -180px;
-  }
-  #sidebar.active {
-    left: 0;
-  }
-  #menu-toggle {
-    display: block;
-  }
+  #sidebar { left: -180px; }
+  #sidebar.active { left: 0; }
+  #menu-toggle { display: block; }
   main {
     margin-left: 0;
     padding: 20px;
@@ -387,43 +380,11 @@ textarea {
     width: 95%;
     padding: 20px;
   }
+  .scroll-wrapper { max-height: 300px; }
+  .training-table { min-width: 1300px; }
 }
 
 @media (max-width: 600px) {
-  .scroll-wrapper {
-    max-height: 260px;
-  }
-  .training-table { min-width: 900px; }
-}
-/* === FIX: Allow full horizontal scroll on narrow screens === */
-.scroll-wrapper {
-  scroll-padding-left: 0;
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.training-table {
-  margin-left: 0;
-}
-
-.training-table th:first-child,
-.training-table td:first-child {
-  left: 0;
-}
-
-@media (max-width: 900px) {
-  /* When sidebar is hidden, remove its offset */
-  main {
-    margin-left: 0 !important;
-  }
-  .page-section {
-    width: 100%;
-    max-width: none;
-    margin: 0 auto 40px auto;
-  }
-  .scroll-wrapper {
-    overflow-x: auto;
-    padding-left: 0;
-    margin-left: 0;
-  }
+  .scroll-wrapper { max-height: 260px; }
+  .training-table { min-width: 1000px; }
 }
