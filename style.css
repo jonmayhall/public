@@ -155,7 +155,7 @@ textarea {
 .table-container {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 320px; /* vertical scroll after ~4 rows */
+  max-height: 320px; /* scroll after ~4 rows */
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
@@ -171,7 +171,7 @@ textarea {
 
 /* Headers */
 .training-table th {
-  background: var(--orange);
+  background: #f7b27a;
   color: #fff;
   font-weight: 600;
   text-align: center;
@@ -212,7 +212,7 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD ROW BUTTON === */
+/* === ADD ROW BUTTON & FOOTER === */
 .table-footer {
   border: 1px solid var(--border);
   border-top: none;
@@ -220,6 +220,7 @@ textarea {
   border-radius: 0 0 var(--radius) var(--radius);
   background: #fff;
   text-align: left;
+  margin-bottom: 25px; /* adds consistent spacing */
 }
 
 .add-row {
@@ -236,6 +237,15 @@ textarea {
 }
 
 .add-row:hover { background: var(--orange); }
+
+/* === TABLE + NOTES SPACING FIX === */
+.table-section {
+  margin-bottom: 25px;
+}
+
+.comment-box {
+  margin-top: 25px;
+}
 
 /* === FLOATING PDF BUTTON === */
 .floating-btn {
