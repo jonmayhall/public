@@ -325,3 +325,67 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+
+/* === FIXED WIDTH TABLE CONTAINER (stays inside main content) === */
+.section-header,
+.table-container,
+.table-footer {
+  width: calc(100vw - 260px); /* subtract sidebar width */
+  margin-left: -24px;         /* align flush with section card edges */
+  box-sizing: border-box;
+}
+
+/* Section header unified */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
+  box-shadow: var(--shadow);
+}
+
+/* Container for scrollable tables */
+.table-container {
+  overflow: visible !important;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: #fff;
+  display: block;
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--border);
+}
+
+/* === SCROLLABLE WRAPPER (vertical + horizontal) === */
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  border-top: 1px solid var(--border);
+  position: relative;
+  background: #fff;
+}
+
+/* === Table sizing to trigger scroll === */
+.scroll-wrapper > table {
+  width: max-content !important;
+  min-width: 1400px !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+}
+
+/* Footer aligned with section edges */
+.table-footer {
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 8px 10px;
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+}
