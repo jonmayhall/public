@@ -318,3 +318,20 @@ textarea {
   main { margin-left: 0; padding: 20px; }
 }
 
+.table-container {
+  overflow: visible !important;
+}
+
+.scroll-wrapper {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  max-height: 320px !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.scroll-wrapper > table {
+  width: max-content !important;
+  min-width: 1600px !important;
+}
