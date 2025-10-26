@@ -36,17 +36,9 @@ body {
   bottom: 0;
 }
 
-.logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
+.logo { width: 120px; margin-bottom: 20px; }
 
-nav {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+nav { width: 100%; display: flex; flex-direction: column; gap: 6px; }
 
 .nav-btn {
   background: none;
@@ -59,17 +51,10 @@ nav {
   transition: 0.2s;
 }
 
-.nav-btn:hover {
-  background: #ffe3d0;
-  color: var(--orange);
-}
+.nav-btn:hover { background: #ffe3d0; color: var(--orange); }
 
 /* Main */
-main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 30px 50px;
-}
+main { flex: 1; margin-left: 260px; padding: 30px 50px; }
 
 .page-section {
   display: none;
@@ -79,15 +64,9 @@ main {
   padding: 24px 28px 36px;
   margin-bottom: 40px;
 }
+.page-section.active { display: block; }
 
-.page-section.active {
-  display: block;
-}
-
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-}
+h1 { color: var(--orange); margin-bottom: 20px; }
 
 /* Section Blocks */
 .section-block {
@@ -114,15 +93,7 @@ h1 {
   border-bottom: 1px solid var(--border);
 }
 
-.checklist-row:last-child {
-  border-bottom: none;
-}
-
-.checklist-row label {
-  flex: 1;
-  font-size: 15px;
-  padding-right: 20px;
-}
+.checklist-row label { flex: 1; font-size: 15px; padding-right: 20px; }
 
 .checklist-row select,
 .checklist-row input {
@@ -147,7 +118,7 @@ h1 {
   transition: height 0.2s;
 }
 
-/* Training Tables */
+/* Tables */
 .section-header {
   background: var(--orange);
   color: white;
@@ -165,30 +136,17 @@ h1 {
   border: 1px solid var(--border);
 }
 
-/* 👇 Scroll container — controls both directions */
+/* Scroll container */
 .table-scroll {
+  display: block;
+  width: 100%;
+  max-height: 280px; /* ~4 rows */
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 290px; /* 👈 about 4 rows tall before vertical scroll starts */
-  width: 100%;
-  border-radius: 0;
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-.table-scroll::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
-}
-.table-scroll::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-.table-scroll::-webkit-scrollbar-thumb:hover {
-  background: #bbb;
-}
-
-/* Table itself */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
@@ -207,13 +165,19 @@ h1 {
   border-right: 1px solid #e7a96d;
 }
 
-.training-table th:first-child {
-  background: var(--light-orange);
+.training-table th:first-child,
+.training-table td:first-child {
   position: sticky;
   left: 0;
+  background: #fff;
   z-index: 4;
-  border-right: 2px solid #e7a96d;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: white;
+  z-index: 5;
 }
 
 .training-table td,
@@ -240,15 +204,10 @@ h1 {
   background: #ededed;
 }
 
-/* Rows */
-.training-table tr:nth-child(odd) {
-  background: #fff;
-}
-.training-table tr:nth-child(even) {
-  background: #fafafa;
-}
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-/* Table Footer */
+/* Footer */
 .table-footer {
   display: flex;
   justify-content: flex-start;
@@ -271,9 +230,7 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-.add-row:hover {
-  background: #ff8848;
-}
+.add-row:hover { background: #ff8848; }
 
 /* Floating PDF Button */
 .floating-btn {
@@ -288,7 +245,4 @@ h1 {
   cursor: pointer;
   box-shadow: var(--shadow);
 }
-
-.floating-btn:hover {
-  background: #ff8848;
-}
+.floating-btn:hover { background: #ff8848; }
