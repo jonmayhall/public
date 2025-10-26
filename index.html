@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 
 <body>
@@ -25,17 +25,19 @@
       </nav>
     </aside>
 
-    <!-- Main -->
+    <!-- Main Content -->
     <main id="content">
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
+
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
+
         <div class="section-block">
           <h2>Dealership Personnel</h2>
           <div class="checklist-row"><label>Does the personnel count in the admin tool appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -46,33 +48,39 @@
           <div class="checklist-row"><label>Number of active/pending BDC reps?</label><input type="text" /></div>
           <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
+
         <div class="section-block">
           <h2>Location</h2>
           <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" /></div>
           <div class="checklist-row"><label>Were the correct numbers of buildings needing training accurately relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
+
         <div class="section-block">
           <h2>Products</h2>
           <div class="checklist-row"><label>Communication – Integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Payments – Integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
+
         <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
       </section>
 
-      <!-- === DEALERSHIP INFORMATION === -->
+      <!-- === DEALERSHIP INFO === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
+
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
           <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" /></div>
         </div>
+
         <div class="section-block">
           <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary Point of Contact & Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option></select></div>
+          <div class="checklist-row"><label>Primary Point of Contact and Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option></select></div>
           <div class="checklist-row"><label>Primary POC Cell</label><input type="text" /></div>
           <div class="checklist-row"><label>Primary POC Email</label><input type="text" /></div>
         </div>
+
         <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
       </section>
 
@@ -80,62 +88,10 @@
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
-        <!-- === TECHNICIANS === -->
-        <div class="table-wrapper">
-          <div class="table-scroll">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th class="name-col">Name</th>
-                  <th>DMS ID</th>
-                  <th>Login</th>
-                  <th>Workflow</th>
-                  <th>Mobile App Menu</th>
-                  <th>Search Bar</th>
-                  <th>RO Assignment</th>
-                  <th>Dispatch</th>
-                  <th>RO History</th>
-                  <th>Prev. Declines</th>
-                  <th>OCR</th>
-                  <th>Edit ASR</th>
-                  <th>ShopChat / Parts</th>
-                  <th>Adding Media</th>
-                  <th>Status Change</th>
-                  <th>Notifications</th>
-                  <th>Filters</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><input type="text" placeholder="Name" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option></select></td></tr>
-                <tr><td><input type="text" placeholder="Name" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option></select></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-footer"><button class="add-row">+</button></div>
-        </div>
-        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
-
-        <!-- === SERVICE ADVISORS === -->
-        <div class="table-wrapper">
-          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>MCI</th><th>Workflow</th><th>RO Assignment</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
-        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
-
-        <!-- === PARTS REPRESENTATIVES === -->
-        <div class="table-wrapper">
-          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>Workflow</th><th>Parts Tab</th><th>SOP</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
-        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
-
-        <!-- === BDC REPRESENTATIVES === -->
-        <div class="table-wrapper">
-          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>ServiceConnect</th><th>Call Routing</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
-        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
-
-        <!-- === PICKUP & DELIVERY === -->
-        <div class="table-wrapper">
-          <div class="table-scroll"><table class="training-table"><thead><tr><th class="name-col">Name</th><th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr></thead><tbody><tr><td><input type="text" /></td><td><input type="text" /></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr></tbody></table></div><div class="table-footer"><button class="add-row">+</button></div></div>
-        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+        <div id="tables-container"></div>
       </section>
 
+      <!-- === PLACEHOLDER PAGES === -->
       <section id="opcodes" class="page-section"><h1>Opcodes & Pricing</h1></section>
       <section id="dms-integration" class="page-section"><h1>DMS Integration</h1></section>
       <section id="workflow" class="page-section"><h1>Workflow Notifications</h1></section>
@@ -146,6 +102,7 @@
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
   <script>
+    // Sidebar Navigation
     document.querySelectorAll(".nav-btn").forEach(btn=>{
       btn.addEventListener("click",()=>{
         document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
@@ -153,7 +110,62 @@
         window.scrollTo({top:0});
       });
     });
+
+    // Training Tables
+    const roles = [
+      {id:"technicians", title:"Technicians – Checklist", rows:3, cols:["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"]},
+      {id:"advisors", title:"Service Advisors – Checklist", rows:3, cols:["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"]},
+      {id:"parts", title:"Parts Representatives – Checklist", rows:2, cols:["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"]},
+      {id:"bdc", title:"BDC Representatives – Checklist", rows:2, cols:["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]},
+      {id:"pickup", title:"Pick Up & Delivery Drivers – Checklist", rows:2, cols:["DMS ID","Login","PU&D","Notifications"]}
+    ];
+
+    const tablesContainer=document.getElementById("tables-container");
+
+    roles.forEach(role=>{
+      const div=document.createElement("div");
+      div.classList.add("table-section");
+      div.innerHTML=`
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <table id="${role.id}" class="training-table">
+            <thead><tr><th>Name</th>${role.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead>
+            <tbody>
+              ${Array.from({length:role.rows}).map(()=>`
+                <tr>
+                  <td><input type="text" placeholder="Name"></td>
+                  ${role.cols.map(()=>`
+                    <td><select>
+                      <option></option>
+                      <option value="Yes">Yes</option>
+                      <option value="Web Only">Web Only</option>
+                      <option value="Mobile Only">Mobile Only</option>
+                      <option value="No">No</option>
+                      <option value="Not Trained">Not Trained</option>
+                      <option value="N/A">N/A</option>
+                    </select></td>`).join("")}
+                </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer"><button class="add-row" data-target="${role.id}">+</button></div>
+        <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+      `;
+      tablesContainer.appendChild(div);
+    });
+
+    // Add row functionality
+    document.addEventListener("click",e=>{
+      if(e.target.classList.contains("add-row")){
+        const id=e.target.dataset.target;
+        const table=document.getElementById(id);
+        const first=table.querySelector("tbody tr");
+        const clone=first.cloneNode(true);
+        clone.querySelectorAll("input").forEach(i=>i.value="");
+        clone.querySelectorAll("select").forEach(s=>s.selectedIndex=0);
+        table.querySelector("tbody").appendChild(clone);
+      }
+    });
   </script>
 </body>
 </html>
-
