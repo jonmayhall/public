@@ -1,3 +1,185 @@
+:root {
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --card-bg: #fff;
+  --border: #dcdcdc;
+  --ink: #222;
+  --radius: 16px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === BASE === */
+html, body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden; /* prevent page scroll */
+}
+
+/* === LAYOUT === */
+#app {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === SIDEBAR (Slim) === */
+#sidebar {
+  background: #fff;
+  border-right: 1px solid var(--border);
+  width: 180px;
+  padding: 20px 8px;
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--ink);
+}
+
+.nav-btn:hover {
+  background: #ffe3d0;
+  color: var(--orange);
+}
+
+/* === MAIN CONTENT === */
+main {
+  flex: 1;
+  margin-left: 180px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  background: var(--gray-bg);
+}
+
+/* === PAGE SECTIONS === */
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin: 0 auto 50px auto;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+}
+
+.page-section.active {
+  display: block;
+}
+
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+/* === SECTION BLOCKS === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TEXTAREA === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* === TABLE SECTION HEADER === */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
+  position: relative;
+}
+
+/* expand icon */
+.expand-btn {
+  float: right;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: 0.2s;
+}
+.expand-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
 /* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
@@ -11,54 +193,57 @@
   position: relative;
 }
 
-/* === SCROLLABLE WRAPPER (independent table scroll only) === */
+/* === SCROLLABLE WRAPPER (table scroll only) === */
 .scroll-wrapper {
   display: block;
   width: 100%;
   height: auto;
   max-height: 340px;
-  overflow-x: auto;       /* ✅ horizontal scroll for table only */
-  overflow-y: auto;       /* ✅ vertical scroll for table only */
+  overflow-x: auto;
+  overflow-y: auto;
   border-top: 1px solid var(--border);
   background: #fff;
   box-sizing: border-box;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
+  position: relative;
+}
+
+/* gradient fade indicator */
+.scroll-wrapper::after {
+  content: "";
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(to left, #fff, transparent);
+  pointer-events: none;
 }
 
 .scroll-wrapper:hover {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
 }
 
-/* === TRAINING TABLE (can extend fully beyond wrapper width) === */
+/* === TABLE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
-  width: max-content;    /* ✅ allows table to exceed wrapper width */
+  width: max-content;
   min-width: 100%;
   border: 1px solid var(--border);
   table-layout: auto;
 }
 
-/* === TABLE CELLS === */
 .training-table th,
 .training-table td {
-  white-space: nowrap;   /* ✅ keeps wide columns intact */
+  white-space: nowrap;
   text-align: center;
   padding: 8px 10px;
   font-size: 13px;
 }
 
-/* === FIXED FIRST COLUMN === */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background: #fff;
-}
-
-/* === HEADERS === */
+/* sticky headers + first column */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -70,6 +255,149 @@
   z-index: 3;
 }
 
-/* === ROW STRIPING === */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  border-right: 1px solid var(--border);
+}
+
+/* Cells */
+.training-table td {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.training-table input[type="text"],
+.training-table select {
+  width: 150px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+}
+
+/* Row striping */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
+
+/* === ADD ROW FOOTER === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 6px 10px;
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+}
+
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
+
+/* === COMMENT BOX === */
+.comment-box {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+}
+
+.comment-box h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* === FLOATING PDF BUTTON === */
+.floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.floating-btn:hover { background: #ff8848; }
+
+/* === MODAL OVERLAY === */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow: auto;
+  position: relative;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #666;
+  transition: 0.2s;
+}
+.modal-close:hover { color: var(--orange); }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+  .page-section { max-width: 100%; padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
+}
