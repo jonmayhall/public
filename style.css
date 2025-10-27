@@ -408,3 +408,32 @@ textarea {
     min-width: 950px;
   }
 }
+/* === FIX: ensure tables can scroll full width === */
+.table-container {
+  overflow: visible !important;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+/* Force table to expand beyond container width */
+.training-table {
+  width: max-content !important;
+  min-width: 1200px !important;
+  table-layout: auto;
+}
+
+/* Prevent any parent element from cutting off the scroll area */
+.page-section,
+main,
+body {
+  overflow-x: visible !important;
+}
