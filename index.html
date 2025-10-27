@@ -7,6 +7,7 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
+    // Cache-bust CSS
     const css = document.getElementById('main-style');
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -14,7 +15,7 @@
 
 <body>
   <div id="app">
-    <!-- SIDEBAR -->
+    <!-- === SIDEBAR === -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -30,13 +31,11 @@
       </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- === MAIN CONTENT === -->
     <main id="content">
-
-      <!-- === PRE-TRAINING CHECKLIST === -->
+      <!-- PRE-TRAINING -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -46,10 +45,10 @@
 
         <div class="section-block">
           <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Does the personnel count appear accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Number of active/pending advisors?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Number of active/pending parts reps?</label><input type="text" /></div>
-          <div class="checklist-row"><label>Number of active/pending techs?</label><input type="text" /></div>
+          <div class="checklist-row"><label>Personnel count accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Advisors (active/pending)</label><input type="text" /></div>
+          <div class="checklist-row"><label>Parts reps (active/pending)</label><input type="text" /></div>
+          <div class="checklist-row"><label>Techs (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
@@ -59,7 +58,7 @@
         </div>
       </section>
 
-      <!-- === DEALERSHIP INFO === -->
+      <!-- DEALERSHIP INFO -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
         <div class="section-block">
@@ -67,44 +66,49 @@
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
           <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" /></div>
         </div>
+
         <div class="section-block">
-          <h2>Primary Contact</h2>
+          <h2>Contacts</h2>
           <div class="checklist-row"><label>Primary POC</label><input type="text" /></div>
           <div class="checklist-row"><label>Cell</label><input type="text" /></div>
           <div class="checklist-row"><label>Email</label><input type="text" /></div>
         </div>
+
+        <div class="section-block">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
       </section>
 
-      <!-- === TRAINING CHECKLIST === -->
+      <!-- TRAINING CHECKLIST -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
         <div id="tables-container"></div>
       </section>
 
-      <!-- === OPCODES === -->
+      <!-- OPCODES -->
       <section id="opcodes" class="page-section">
         <h1>Opcodes & Pricing</h1>
-        <textarea placeholder="Enter details…"></textarea>
+        <div class="section-block"><h2>Notes</h2><textarea placeholder="Enter details…"></textarea></div>
       </section>
 
-      <!-- === DMS INTEGRATION === -->
+      <!-- DMS INTEGRATION -->
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
-        <textarea placeholder="Integration notes…"></textarea>
+        <div class="section-block"><h2>Notes</h2><textarea placeholder="Integration notes…"></textarea></div>
       </section>
 
-      <!-- === WORKFLOW === -->
+      <!-- WORKFLOW -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
-        <textarea placeholder="Workflow notes…"></textarea>
+        <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
       </section>
 
-      <!-- === TRAINING SUMMARY === -->
+      <!-- TRAINING SUMMARY -->
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
-        <textarea placeholder="Summary notes…"></textarea>
+        <div class="section-block"><h2>Summary</h2><textarea placeholder="Summary notes…"></textarea></div>
       </section>
-
     </main>
   </div>
 
