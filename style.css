@@ -6,7 +6,7 @@
   --border: #dcdcdc;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* === BASE === */
@@ -15,38 +15,45 @@ html, body {
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden; /* prevent horizontal scroll of the page */
+  overflow-x: hidden;
 }
 
-/* === LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* === SIDEBAR === */
 #sidebar {
   background: #fff;
   border-right: 1px solid var(--border);
-  width: 180px;
-  padding: 20px 8px;
-  box-shadow: var(--shadow);
+  width: 200px;
   position: fixed;
   top: 0;
   bottom: 0;
-  overflow-y: auto;
-  transition: left 0.3s ease;
-  z-index: 900;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header with gradient */
+.sidebar-header {
+  background: linear-gradient(to bottom, #000 0%, #1a1a1a 100%);
+  padding: 18px 10px;
+  text-align: center;
+  border-bottom: 1px solid #222;
 }
 
 .logo {
-  width: 100px;
-  display: block;
-  margin: 0 auto 15px;
+  width: 110px;
+  height: auto;
+  filter: brightness(1.2);
 }
 
+/* Nav */
 nav {
+  padding: 12px 8px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -55,31 +62,54 @@ nav {
 .nav-btn {
   background: none;
   border: none;
-  padding: 8px 10px;
-  font-size: 14px;
+  padding: 10px 12px;
   text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
+  font-size: 14px;
   color: var(--ink);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
 .nav-btn:hover {
-  background: #ffe3d0;
+  background: #fff3eb;
   color: var(--orange);
+}
+
+.nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* Active orange bar */
+.nav-btn.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--orange);
+  transform-origin: top;
+  animation: slideIn 0.25s forwards;
+}
+
+@keyframes slideIn {
+  to { transform: scaleY(1); }
 }
 
 /* === MAIN CONTENT === */
 main {
   flex: 1;
-  margin-left: 180px;
+  margin-left: 200px;
   padding: 30px 40px;
   box-sizing: border-box;
   background: var(--gray-bg);
-  overflow-x: hidden;
 }
 
-/* === PAGE SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -87,10 +117,7 @@ main {
   box-shadow: var(--shadow);
   padding: 28px 32px;
   margin: 0 auto 50px auto;
-  width: 95%;
-  max-width: 1400px;
-  box-sizing: border-box;
-  padding-right: 10px;
+  max-width: 1250px;
 }
 
 .page-section.active {
@@ -102,37 +129,29 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === SECTION BLOCKS === */
+/* === SECTIONS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 25px;
-  overflow: hidden;
 }
 
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
-  font-size: 16px;
-  font-weight: 600;
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+/* Checklist */
 .checklist-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
-}
-
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
 }
 
 .checklist-row input,
@@ -144,7 +163,6 @@ h1 {
   background: #f4f4f4;
 }
 
-/* === TEXTAREA === */
 textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -153,179 +171,10 @@ textarea {
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
-  overflow: hidden;
   font-family: inherit;
 }
 
-/* === TABLE SECTION HEADER === */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange);
-  position: relative;
-}
-
-/* === TABLE CONTAINER === */
-.table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0;
-  box-shadow: var(--shadow);
-  margin-bottom: 0;
-  position: relative;
-  overflow: visible;
-}
-
-/* === SCROLLABLE WRAPPER (table scroll only) === */
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 340px;
-  border-top: 1px solid var(--border);
-  background: #fff;
-  box-sizing: border-box;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
-  position: relative;
-}
-
-.scroll-wrapper::after {
-  content: "";
-  position: sticky;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  background: linear-gradient(to left, #fff, transparent);
-  pointer-events: none;
-}
-
-.scroll-wrapper:hover {
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
-}
-
-/* === TABLE === */
-.training-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: max-content;
-  min-width: 1600px; /* ✅ ensures full horizontal scroll space */
-  border: 1px solid var(--border);
-  table-layout: auto;
-  margin: 0 auto;
-}
-
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  padding: 8px 10px;
-  font-size: 13px;
-}
-
-/* sticky headers + first column */
-.training-table th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  border-bottom: 2px solid #e9742b;
-  border-right: 1px solid #e9742b;
-  position: sticky;
-  top: 0;
-  z-index: 4;
-}
-
-.training-table th:first-child {
-  background: var(--light-orange);
-  border-left: 1px solid #e9742b;
-  border-right: 1px solid #e9742b;
-  left: 0;
-  z-index: 5;
-}
-
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 3;
-  background: #fff;
-  border-right: 1px solid var(--border);
-}
-
-/* Cells */
-.training-table td {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.training-table input[type="text"],
-.training-table select {
-  width: 150px;
-  padding: 6px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-}
-
-/* Row striping */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === ADD ROW FOOTER === */
-.table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  padding: 6px 10px;
-}
-
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  transition: 0.2s;
-}
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
-
-/* === COMMENT BOX === */
-.comment-box {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-top: 20px;
-}
-
-.comment-box h2 {
-  background: var(--orange);
-  color: #fff;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-/* === FLOATING PDF BUTTON === */
+/* Floating PDF Button */
 .floating-btn {
   position: fixed;
   top: 20px;
@@ -340,51 +189,16 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
+
 .floating-btn:hover { background: #ff8848; }
 
-/* === SIDEBAR TOGGLE (for mobile) === */
-#menu-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  display: none;
-  z-index: 950;
-}
-#menu-toggle:hover {
-  background: #ff8848;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 1200px) {
-  main { padding: 20px 25px; }
-  .training-table { min-width: 1400px; }
-}
-
+/* Responsive */
 @media (max-width: 900px) {
-  #sidebar { left: -180px; }
-  #sidebar.active { left: 0; }
-  #menu-toggle { display: block; }
-  main {
-    margin-left: 0;
-    padding: 20px;
-  }
-  .page-section {
-    width: 95%;
-    padding: 20px;
-  }
-  .scroll-wrapper { max-height: 300px; }
-  .training-table { min-width: 1300px; }
+  #sidebar { width: 160px; }
+  main { margin-left: 160px; padding: 20px; }
 }
 
 @media (max-width: 600px) {
-  .scroll-wrapper { max-height: 260px; }
-  .training-table { min-width: 1000px; }
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
