@@ -7,7 +7,7 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // Cache-bust CSS
+    // Cache-bust CSS so updates always reload
     const css = document.getElementById('main-style');
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -20,14 +20,14 @@
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
       </div>
-      <nav>
-        <button class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
-        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
-        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
-        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      <nav id="sidebar-nav">
+        <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
+        <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button type="button" class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button type="button" class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
+        <button type="button" class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button type="button" class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button type="button" class="nav-btn" data-target="training-summary">Training Summary</button>
       </nav>
     </aside>
 
@@ -58,7 +58,7 @@
         </div>
       </section>
 
-      <!-- === DEALERSHIP INFO === -->
+      <!-- === DEALERSHIP INFORMATION === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
         <div class="section-block">
@@ -89,7 +89,6 @@
       <!-- === OPCODES & PRICING === -->
       <section id="opcodes" class="page-section">
         <h1>Opcodes & Pricing</h1>
-
         <div class="section-block">
           <h2>Training Tracking & Cost</h2>
           <div class="table-container">
@@ -136,7 +135,7 @@
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Integration notes…"></textarea></div>
       </section>
 
-      <!-- === WORKFLOW === -->
+      <!-- === WORKFLOW NOTIFICATIONS === -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
