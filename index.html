@@ -7,7 +7,7 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // Cache-bust CSS
+    // cache-bust CSS
     const css = document.getElementById('main-style');
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -15,7 +15,7 @@
 
 <body>
   <div id="app">
-    <!-- === SIDEBAR === -->
+    <!-- SIDEBAR -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -31,11 +31,12 @@
       </nav>
     </aside>
 
-    <!-- === MAIN CONTENT === -->
+    <!-- MAIN -->
     <main id="content">
       <!-- PRE-TRAINING -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
+
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
