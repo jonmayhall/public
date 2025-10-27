@@ -7,7 +7,7 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // cache-bust CSS
+    // Cache-bust CSS
     const css = document.getElementById('main-style');
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -15,7 +15,7 @@
 
 <body>
   <div id="app">
-    <!-- SIDEBAR -->
+    <!-- === SIDEBAR === -->
     <aside id="sidebar">
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
@@ -31,12 +31,11 @@
       </nav>
     </aside>
 
-    <!-- MAIN -->
+    <!-- === MAIN CONTENT === -->
     <main id="content">
-      <!-- PRE-TRAINING -->
+      <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -59,7 +58,7 @@
         </div>
       </section>
 
-      <!-- DEALERSHIP INFO -->
+      <!-- === DEALERSHIP INFO === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
         <div class="section-block">
@@ -81,31 +80,69 @@
         </div>
       </section>
 
-      <!-- TRAINING CHECKLIST -->
+      <!-- === TRAINING CHECKLIST === -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
         <div id="tables-container"></div>
       </section>
 
-      <!-- OPCODES -->
+      <!-- === OPCODES & PRICING === -->
       <section id="opcodes" class="page-section">
         <h1>Opcodes & Pricing</h1>
-        <div class="section-block"><h2>Notes</h2><textarea placeholder="Enter details…"></textarea></div>
+
+        <div class="section-block">
+          <h2>Training Tracking & Cost</h2>
+          <div class="table-container">
+            <div class="scroll-wrapper">
+              <table class="training-table opcodes-table">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>2024</th>
+                    <th>2025</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>January</td><td>7</td><td>4</td></tr>
+                  <tr><td>February</td><td>4</td><td>1</td></tr>
+                  <tr><td>March</td><td>1</td><td>1</td></tr>
+                  <tr><td>April</td><td>2</td><td>0</td></tr>
+                  <tr><td>May</td><td>2</td><td>0</td></tr>
+                  <tr><td>June</td><td>1</td><td>2</td></tr>
+                  <tr><td>July</td><td>2</td><td>2</td></tr>
+                  <tr><td>August</td><td>4</td><td>1</td></tr>
+                  <tr><td>September</td><td>5</td><td>3</td></tr>
+                  <tr><td>October</td><td>2</td><td>0</td></tr>
+                  <tr><td>November</td><td>5</td><td></td></tr>
+                  <tr><td>December</td><td>1</td><td></td></tr>
+                  <tr class="summary-row">
+                    <td>Total</td><td>36</td><td>14</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Add any relevant pricing or tracking notes here..."></textarea>
+        </div>
       </section>
 
-      <!-- DMS INTEGRATION -->
+      <!-- === DMS INTEGRATION === -->
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Integration notes…"></textarea></div>
       </section>
 
-      <!-- WORKFLOW -->
+      <!-- === WORKFLOW === -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
       </section>
 
-      <!-- TRAINING SUMMARY -->
+      <!-- === TRAINING SUMMARY === -->
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
         <div class="section-block"><h2>Summary</h2><textarea placeholder="Summary notes…"></textarea></div>
@@ -113,7 +150,9 @@
     </main>
   </div>
 
+  <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
+
   <script src="script.js"></script>
 </body>
 </html>
