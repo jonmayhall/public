@@ -7,7 +7,6 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // Cache-bust CSS so updates always reload
     const css = document.getElementById('main-style');
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -24,7 +23,6 @@
         <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
         <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
         <button type="button" class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button type="button" class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
         <button type="button" class="nav-btn" data-target="dms-integration">DMS Integration</button>
         <button type="button" class="nav-btn" data-target="workflow">Workflow Notifications</button>
         <button type="button" class="nav-btn" data-target="training-summary">Training Summary</button>
@@ -36,20 +34,26 @@
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
+
         <div class="section-block">
           <h2>Handoff Notes</h2>
-          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Deployment handoff?</label>
+            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label>
+            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label>
+            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
           <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Personnel count accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Personnel count accurate?</label>
+            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Advisors (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Parts reps (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Techs (active/pending)</label><input type="text" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Is the BDC onsite?</label>
+            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
@@ -86,56 +90,13 @@
         <div id="tables-container"></div>
       </section>
 
-      <!-- === OPCODES & PRICING === -->
-      <section id="opcodes" class="page-section">
-        <h1>Opcodes & Pricing</h1>
-        <div class="section-block">
-          <h2>Training Tracking & Cost</h2>
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table opcodes-table">
-                <thead>
-                  <tr>
-                    <th>Month</th>
-                    <th>2024</th>
-                    <th>2025</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>January</td><td>7</td><td>4</td></tr>
-                  <tr><td>February</td><td>4</td><td>1</td></tr>
-                  <tr><td>March</td><td>1</td><td>1</td></tr>
-                  <tr><td>April</td><td>2</td><td>0</td></tr>
-                  <tr><td>May</td><td>2</td><td>0</td></tr>
-                  <tr><td>June</td><td>1</td><td>2</td></tr>
-                  <tr><td>July</td><td>2</td><td>2</td></tr>
-                  <tr><td>August</td><td>4</td><td>1</td></tr>
-                  <tr><td>September</td><td>5</td><td>3</td></tr>
-                  <tr><td>October</td><td>2</td><td>0</td></tr>
-                  <tr><td>November</td><td>5</td><td></td></tr>
-                  <tr><td>December</td><td>1</td><td></td></tr>
-                  <tr class="summary-row">
-                    <td>Total</td><td>36</td><td>14</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Add any relevant pricing or tracking notes here..."></textarea>
-        </div>
-      </section>
-
       <!-- === DMS INTEGRATION === -->
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Integration notes…"></textarea></div>
       </section>
 
-      <!-- === WORKFLOW NOTIFICATIONS === -->
+      <!-- === WORKFLOW === -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
@@ -149,9 +110,7 @@
     </main>
   </div>
 
-  <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
-
   <script src="script.js"></script>
 </body>
 </html>
