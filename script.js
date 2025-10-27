@@ -65,8 +65,15 @@ roles.forEach(role => {
 document.addEventListener("change", e => {
   if (e.target.tagName === "SELECT") {
     const v = e.target.value;
-    const c = {"Yes":"#c9f7c0","Web Only":"#fff8b3","Mobile Only":"#ffe0b3","No":"#ffb3b3","Not Trained":"#ffb3b3","N/A":"#f2f2f2"};
-    e.target.style.backgroundColor = c[v] || "#f2f2f2";
+    const colors = {
+      "Yes":"#c9f7c0",
+      "Web Only":"#fff8b3",
+      "Mobile Only":"#ffe0b3",
+      "No":"#ffb3b3",
+      "Not Trained":"#ffb3b3",
+      "N/A":"#f2f2f2"
+    };
+    e.target.style.backgroundColor = colors[v] || "#f2f2f2";
   }
 });
 
@@ -76,23 +83,54 @@ document.addEventListener("click", e => {
     const id = e.target.dataset.target;
     const table = document.getElementById(id);
     const clone = table.querySelector("tbody tr").cloneNode(true);
-    clone.querySelectorAll("input").forEach(i=>i.value="");
-    clone.querySelectorAll("select").forEach(s=>{s.selectedIndex=0;s.style.backgroundColor="#f2f2f2";});
+    clone.querySelectorAll("input").forEach(i => i.value = "");
+    clone.querySelectorAll("select").forEach(s => { s.selectedIndex = 0; s.style.backgroundColor = "#f2f2f2"; });
     table.querySelector("tbody").appendChild(clone);
+    ensureTableWidth(table); // keep width safe after new row (no effect on width but harmless)
   }
 });
 
 // === Auto-expand Textareas ===
 document.addEventListener("input", e => {
   if (e.target.tagName === "TEXTAREA") {
-    e.target.style.height="auto";
-    e.target.style.height=e.target.scrollHeight+"px";
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
   }
 });
 
 // === PDF Export ===
-document.getElementById("pdfButton").addEventListener("click",()=>{
-  const active=document.querySelector(".page-section.active");
+document.getElementById("pdfButton").addEventListener("click", () => {
+  const active = document.querySelector(".page-section.active");
   import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-  .then(html2pdf=>html2pdf.default().from(active).save(`${active.id}.pdf`));
+    .then(html2pdf => html2pdf.default().from(active).save(`${active.id}.pdf`));
+});
+
+/* === KEY FIX: Ensure each table gets a safe min-width dynamically
+      so horizontal scroll always reaches the far-right columns === */
+function ensureTableWidth(table) {
+  if (!table) return;
+  const ths = table.querySelectorAll("thead th");
+  if (!ths.length) return;
+
+  // Name column fixed width (matches inline style)
+  const nameColWidth = 260;
+
+  // Target width for every other column (tuned smaller so more columns fit)
+  const colWidth = 160;
+
+  // Count includes the "Name" column, so subtract 1 for the rest
+  const total = nameColWidth + (ths.length - 1) * colWidth;
+
+  table.style.minWidth = total + "px";       // force a wide enough table
+  table.style.width = "max-content";         // let it grow with content
+}
+
+// Run after DOM is ready (tables are injected above)
+window.addEventListener("load", () => {
+  document.querySelectorAll(".training-table").forEach(ensureTableWidth);
+});
+
+// Also re-check on resize (optional safety)
+window.addEventListener("resize", () => {
+  document.querySelectorAll(".training-table").forEach(ensureTableWidth);
 });
