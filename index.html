@@ -7,7 +7,8 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    const css = document.getElementById('main-style');
+    // Cache-bust CSS on reload
+    const css = document.getElementById("main-style");
     css.href = `style.css?v=${Date.now()}`;
   </script>
 </head>
@@ -34,26 +35,20 @@
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
-
         <div class="section-block">
           <h2>Handoff Notes</h2>
-          <div class="checklist-row"><label>Deployment handoff?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>ServiceCart handoff?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler handoff?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
           <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Personnel count accurate?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Personnel count accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Advisors (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Parts reps (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Techs (active/pending)</label><input type="text" /></div>
-          <div class="checklist-row"><label>Is the BDC onsite?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
