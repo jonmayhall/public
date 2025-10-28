@@ -9,7 +9,7 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Base */
+/* === BASE === */
 html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -18,13 +18,14 @@ html, body {
   overflow-x: hidden;
 }
 
+/* === LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Sidebar */
+/* === SIDEBAR === */
 #sidebar {
   background: #fff;
   border-right: 1px solid var(--border);
@@ -36,8 +37,18 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-.logo { width: 100px; display: block; margin: 0 auto 15px; }
-nav { display: flex; flex-direction: column; gap: 4px; }
+
+.logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
 .nav-btn {
   background: none;
@@ -50,13 +61,14 @@ nav { display: flex; flex-direction: column; gap: 4px; }
   transition: 0.2s;
   color: var(--ink);
 }
-.nav-btn:hover, .nav-btn.active {
+.nav-btn:hover,
+.nav-btn.active {
   background: #fff3eb;
   color: var(--orange);
   font-weight: 600;
 }
 
-/* Main */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 180px;
@@ -65,7 +77,7 @@ main {
   background: var(--gray-bg);
 }
 
-/* Sections */
+/* === PAGE SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -80,7 +92,7 @@ main {
 .page-section.active { display: block; }
 h1 { color: var(--orange); margin-bottom: 20px; }
 
-/* Blocks */
+/* === SECTION BLOCKS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -97,7 +109,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   font-weight: 600;
 }
 
-/* Rows */
+/* === CHECKLIST ROWS === */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -114,7 +126,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   background: #f4f4f4;
 }
 
-/* Tables */
+/* === TABLES === */
 .table-container {
   width: 100%;
   background: #fff;
@@ -168,6 +180,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
+/* === ADD ROW FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -191,7 +204,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
-/* Floating Button */
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
   top: 20px;
