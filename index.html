@@ -38,7 +38,7 @@
     <main id="content">
 
       <!-- ========================================================= -->
-      <!-- === PAGE 1 : PRE-TRAINING CHECKLIST (Rebuilt) === -->
+      <!-- === PAGE 1 : PRE-TRAINING CHECKLIST === -->
       <!-- ========================================================= -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
@@ -117,7 +117,7 @@
       </section>
 
       <!-- ========================================================= -->
-      <!-- === PAGE 2 : DEALERSHIP INFORMATION (Rebuilt) === -->
+      <!-- === PAGE 2 : DEALERSHIP INFORMATION === -->
       <!-- ========================================================= -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
@@ -160,7 +160,6 @@
         </div>
       </section>
 
-<!-- CONTINUE TO PART 2 -->
       <!-- ========================================================= -->
       <!-- === PAGE 3 : TRAINING CHECKLIST === -->
       <!-- ========================================================= -->
@@ -213,7 +212,7 @@
           </div>
         </div>
 
-        <!-- === MPI OPCODES TABLE === -->
+        <!-- === MPI OPCODES TABLE (UPDATED) === -->
         <div class="section">
           <div class="section-header">MPI Opcodes</div>
           <div class="mpi-controls">
@@ -224,29 +223,24 @@
               <table id="mpi-opcodes" class="training-table draggable-table">
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>MPI Line</th>
-                    <th>MPI</th>
+                    <th>Opcode</th>
+                    <th>MPI Line #</th>
                     <th>Preselected Opcode</th>
-                    <th>Notes</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td class="row-number">1</td><td><input type="checkbox" class="verify"><input type="text" value="Exterior Lights"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">2</td><td><input type="checkbox" class="verify"><input type="text" value="Front Wiper Blades"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">3</td><td><input type="checkbox" class="verify"><input type="text" value="Battery Mountings, Terminals, and Wires"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">4</td><td><input type="checkbox" class="verify"><input type="text" value="Engine Oil"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">5</td><td><input type="checkbox" class="verify"><input type="text" value="Front Brake Pads"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Exterior Lights"></td><td><input type="text" placeholder="Enter Opcode"></td><td class="row-number">1</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Front Wiper Blades"></td><td><input type="text" placeholder="Enter Opcode"></td><td class="row-number">2</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Battery Mountings, Terminals, and Wires"></td><td><input type="text" placeholder="Enter Opcode"></td><td class="row-number">3</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Engine Oil"></td><td><input type="text" placeholder="Enter Opcode"></td><td class="row-number">4</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Front Brake Pads"></td><td><input type="text" placeholder="Enter Opcode"></td><td class="row-number">5</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
                 </tbody>
               </table>
             </div>
           </div>
           <div class="table-footer">
             <button class="add-row" data-target="mpi-opcodes" type="button">+</button>
-          </div>
-          <div class="section-block comment-box">
-            <h2>Notes</h2>
-            <textarea placeholder="Type here…"></textarea>
           </div>
         </div>
       </section>
