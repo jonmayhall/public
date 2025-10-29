@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Fade-out active section
       const active = document.querySelector(".page-section.active");
       if (active) {
         active.classList.remove("active");
@@ -22,7 +21,6 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => active.classList.remove("fade-out"), 250);
       }
 
-      // Fade-in
       setTimeout(() => {
         sections.forEach((s) => s.classList.remove("active"));
         section.classList.add("active", "fade-in");
@@ -31,6 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -80,7 +79,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === SORTABLEJS (SCROLL + DRAG FIXED) ===
+  // === SORTABLEJS FOR DRAG + SCROLL ===
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
   document.head.appendChild(sortableScript);
@@ -93,7 +92,7 @@ window.addEventListener("DOMContentLoaded", () => {
         handle: "td,th",
         ghostClass: "dragging",
         scroll: true,
-        scrollSensitivity: 60,
+        scrollSensitivity: 70,
         scrollSpeed: 15,
         onEnd: () => {
           if (table.id === "mpi-opcodes") updateRowNumbers();
@@ -101,22 +100,40 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Force proper scroll wrapper height
-    const wrappers = document.querySelectorAll(".scroll-wrapper");
-    wrappers.forEach((wrap) => {
+    // Force scroll wrappers to behave properly
+    document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
       wrap.style.maxHeight = "340px";
       wrap.style.overflowY = "auto";
       wrap.style.overflowX = "auto";
     });
   };
 
+  // === RESET ORDER BUTTON (MPI) ===
+  const resetButton = document.getElementById("resetMpiOrder");
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      const mpiTable = document.getElementById("mpi-opcodes");
+      if (!mpiTable) return;
+      const tbody = mpiTable.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort((a, b) => {
+        const aNum = parseInt(a.querySelector(".row-number").textContent);
+        const bNum = parseInt(b.querySelector(".row-number").textContent);
+        return aNum - bNum;
+      });
+      tbody.innerHTML = "";
+      rows.forEach((r) => tbody.appendChild(r));
+      updateRowNumbers();
+    });
+  }
+
   // === UPDATE MPI ROW NUMBERS ===
   function updateRowNumbers() {
     const mpi = document.getElementById("mpi-opcodes");
     if (!mpi) return;
     mpi.querySelectorAll("tbody tr").forEach((row, i) => {
-      const cell = row.querySelector(".row-number");
-      if (cell) cell.textContent = i + 1;
+      const num = row.querySelector(".row-number");
+      if (num) num.textContent = i + 1;
     });
   }
 
