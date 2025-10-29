@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Fade-out current active section
       const active = document.querySelector(".page-section.active");
       if (active) {
         active.classList.remove("active");
@@ -25,24 +24,20 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => active.classList.remove("fade-out"), 250);
       }
 
-      // Fade-in new section
       setTimeout(() => {
         sections.forEach((s) => s.classList.remove("active"));
         section.classList.add("active", "fade-in");
         setTimeout(() => section.classList.remove("fade-in"), 250);
       }, 150);
 
-      // Highlight active button
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-
-      // Smooth scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
   // =======================================================
-  // === TRAINING TABLE GENERATION (Dynamic Page Content) ===
+  // === TRAINING TABLE GENERATION ===
   // =======================================================
   const roles = [
     {
@@ -54,7 +49,8 @@ window.addEventListener("DOMContentLoaded", () => {
         "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
         "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
         "Notifications", "Filters"
-      ]
+      ],
+      sample: ["Alex Brown", "Jordan White", "Sam Green"]
     },
     {
       id: "advisors",
@@ -64,7 +60,8 @@ window.addEventListener("DOMContentLoaded", () => {
         "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
         "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
         "ShopChat", "Status Change", "MPI Send", "SOP"
-      ]
+      ],
+      sample: ["Taylor Reed", "Chris Hall", "Jamie Lee"]
     },
     {
       id: "parts",
@@ -74,19 +71,22 @@ window.addEventListener("DOMContentLoaded", () => {
         "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
         "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
         "ShopChat / Parts", "Status Change", "Notifications", "Filters"
-      ]
+      ],
+      sample: ["Pat Stone", "Riley Gray"]
     },
     {
       id: "bdc",
       title: "BDC Representatives – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"],
+      sample: ["Morgan James", "Casey Ellis"]
     },
     {
       id: "pickup",
       title: "Pick Up & Delivery Drivers – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+      cols: ["DMS ID", "Login", "PU&D", "Notifications"],
+      sample: ["Alex P.", "Drew L."]
     }
   ];
 
@@ -95,37 +95,39 @@ window.addEventListener("DOMContentLoaded", () => {
     roles.forEach((role) => {
       const div = document.createElement("div");
       div.classList.add("section");
+
+      // build rows with test data
+      const rowsHTML = role.sample.map(name => `
+        <tr>
+          <td><input type="text" value="${name}"></td>
+          ${role.cols.map(() => `
+            <td>
+              <select>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="Web Only">Web Only</option>
+                <option value="Mobile Only">Mobile Only</option>
+                <option value="No">No</option>
+                <option value="Not Trained">Not Trained</option>
+                <option value="N/A">N/A</option>
+              </select>
+            </td>
+          `).join("")}
+        </tr>
+      `).join("");
+
       div.innerHTML = `
         <div class="section-header">${role.title}</div>
         <div class="table-container">
           <div class="scroll-wrapper">
-            <table id="${role.id}" class="training-table">
+            <table id="${role.id}" class="training-table draggable-table">
               <thead>
                 <tr>
                   <th style="width:260px;">Name</th>
                   ${role.cols.map(c => `<th>${c}</th>`).join("")}
                 </tr>
               </thead>
-              <tbody>
-                ${Array.from({ length: role.rows }).map(() => `
-                  <tr>
-                    <td><input type="text" placeholder="Name"></td>
-                    ${role.cols.map(() => `
-                      <td>
-                        <select>
-                          <option></option>
-                          <option value="Yes">Yes</option>
-                          <option value="Web Only">Web Only</option>
-                          <option value="Mobile Only">Mobile Only</option>
-                          <option value="No">No</option>
-                          <option value="Not Trained">Not Trained</option>
-                          <option value="N/A">N/A</option>
-                        </select>
-                      </td>
-                    `).join("")}
-                  </tr>
-                `).join("")}
-              </tbody>
+              <tbody>${rowsHTML}</tbody>
             </table>
           </div>
         </div>
@@ -170,12 +172,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(id);
     if (!table) return;
 
-    // Clone the first row as a template
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
 
-    // Reset all values
-    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
+    clone.querySelectorAll("input").forEach((input) => input.value = "");
     clone.querySelectorAll("select").forEach((select) => {
       select.selectedIndex = 0;
       select.style.backgroundColor = "#f2f2f2";
@@ -203,7 +203,6 @@ window.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(sortableScript);
 
   sortableScript.onload = () => {
-    // Make all draggable tables sortable
     document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
       const table = tbody.closest("table");
       new Sortable(tbody, {
@@ -218,13 +217,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
-
-    // Scroll fix for wrappers
-    document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
-      wrap.style.maxHeight = "340px";
-      wrap.style.overflowY = "auto";
-      wrap.style.overflowX = "auto";
-    });
   };
 
   // =======================================================
@@ -238,8 +230,8 @@ window.addEventListener("DOMContentLoaded", () => {
       const tbody = mpiTable.querySelector("tbody");
       const rows = Array.from(tbody.querySelectorAll("tr"));
       rows.sort((a, b) => {
-        const aNum = parseInt(a.querySelector(".row-number").textContent);
-        const bNum = parseInt(b.querySelector(".row-number").textContent);
+        const aNum = parseInt(a.querySelector(".row-number")?.textContent || "0");
+        const bNum = parseInt(b.querySelector(".row-number")?.textContent || "0");
         return aNum - bNum;
       });
       tbody.innerHTML = "";
@@ -248,7 +240,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === UPDATE MPI ROW NUMBERS ===
+  // === AUTO UPDATE MPI ROW NUMBERS ===
   function updateRowNumbers() {
     const mpi = document.getElementById("mpi-opcodes");
     if (!mpi) return;
@@ -257,16 +249,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (num) num.textContent = i + 1;
     });
   }
-
-  // =======================================================
-  // === CHECKBOX VISUAL FEEDBACK ===
-  // =======================================================
-  document.addEventListener("change", (e) => {
-    if (e.target.classList.contains("verify")) {
-      const cell = e.target.parentElement;
-      cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
-    }
-  });
 
   // =======================================================
   // === PDF EXPORT FUNCTION ===
