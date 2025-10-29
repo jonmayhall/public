@@ -7,20 +7,22 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // Cache-bust stylesheet
-    const css = document.getElementById("main-style");
-    css.href = `style.css?v=${Date.now()}`;
+    const css=document.getElementById("main-style");
+    css.href=`style.css?v=${Date.now()}`;
   </script>
 </head>
 
 <body>
+  <!-- === TOP BAR === -->
+  <header id="topbar">
+    <div class="topbar-content">
+      <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
+    </div>
+  </header>
+
   <div id="app">
     <!-- === SIDEBAR === -->
     <aside id="sidebar">
-      <div class="sidebar-header">
-        <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
-      </div>
-
       <nav id="sidebar-nav">
         <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
         <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
@@ -33,7 +35,7 @@
 
     <!-- === MAIN CONTENT === -->
     <main id="content">
-      <!-- === PRE-TRAINING CHECKLIST === -->
+      <!-- === PRE-TRAINING === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
 
@@ -48,7 +50,7 @@
           <h2>Dealership Personnel</h2>
           <div class="checklist-row"><label>Personnel count accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
           <div class="checklist-row"><label>Advisors (active/pending)</label><input type="text" /></div>
-          <div class="checklist-row"><label>Parts reps (active/pending)</label><input type="text" /></div>
+          <div class="checklist-row"><label>Parts Reps (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Techs (active/pending)</label><input type="text" /></div>
           <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
@@ -59,10 +61,9 @@
         </div>
       </section>
 
-      <!-- === DEALERSHIP INFORMATION === -->
+      <!-- === DEALERSHIP INFO === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
-
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
@@ -100,7 +101,7 @@
         <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
       </section>
 
-      <!-- === TRAINING SUMMARY === -->
+      <!-- === SUMMARY === -->
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
         <div class="section-block"><h2>Summary</h2><textarea placeholder="Summary notes…"></textarea></div>
@@ -108,9 +109,7 @@
     </main>
   </div>
 
-  <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
-
   <script src="script.js"></script>
 </body>
 </html>
