@@ -14,13 +14,14 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE PAGE STRUCTURE === */
+/* === BASE STRUCTURE === */
 html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* === TOP BAR === */
@@ -93,7 +94,6 @@ nav {
   transition: 0.2s;
   color: var(--ink);
 }
-
 .nav-btn:hover,
 .nav-btn.active {
   background: #fff3eb;
@@ -132,7 +132,7 @@ h1 {
 }
 
 /* =======================================================
-   SECTION BLOCKS AND ROWS
+   SECTION BLOCKS
    ======================================================= */
 .section-block {
   background: #fff;
@@ -141,10 +141,9 @@ h1 {
   margin-bottom: 25px;
   overflow: hidden;
 }
-
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
   font-size: 16px;
@@ -187,7 +186,7 @@ textarea {
 }
 
 /* =======================================================
-   TRAINING TABLES & OPCODES TABLES
+   TABLES – TRAINING & OPCODES
    ======================================================= */
 .section-header {
   background: var(--orange);
@@ -198,12 +197,11 @@ textarea {
   border: 1px solid var(--orange);
   margin-bottom: 0;
 }
-
 .section {
   margin-bottom: 32px;
 }
 
-/* === FIX: MPI CONTROLS ALIGNMENT === */
+/* === MPI CONTROLS ALIGNMENT === */
 .section-header + .mpi-controls {
   margin-top: -4px;
   margin-bottom: 6px;
@@ -221,16 +219,17 @@ textarea {
   overflow: hidden;
 }
 
-/* === FIX: Scroll Wrapper for Horizontal & Vertical Scroll === */
+/* === SCROLL WRAPPER (HORIZONTAL + VERTICAL) === */
 .scroll-wrapper {
   position: relative;
   display: block;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
   max-height: 340px;
   background: #fff;
   border-top: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
@@ -243,8 +242,6 @@ textarea {
   width: max-content;
   table-layout: auto;
 }
-
-/* === TABLE CELLS === */
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -314,7 +311,6 @@ textarea {
 /* === ROW STYLES === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
-
 .draggable-table tbody tr:hover {
   background: #fff3eb;
   transition: background 0.2s ease;
@@ -391,13 +387,22 @@ textarea {
 .floating-btn:hover { background: #ff8848; }
 
 /* =======================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (HORIZONTAL SCROLL ON MOBILE)
    ======================================================= */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
 }
+
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
+  .scroll-wrapper {
+    overflow-x: scroll !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .training-table {
+    width: 150%;
+    min-width: 800px;
+  }
 }
