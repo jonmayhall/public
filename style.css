@@ -9,6 +9,7 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* === BASE === */
 html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -17,6 +18,7 @@ html, body {
   overflow-x: hidden;
 }
 
+/* === TOP BAR === */
 #topbar {
   background: linear-gradient(90deg, #000 0%, #333 100%);
   height: 70px;
@@ -45,6 +47,7 @@ html, body {
   object-fit: contain;
 }
 
+/* === APP LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
@@ -52,6 +55,7 @@ html, body {
   overflow-x: hidden;
 }
 
+/* === SIDEBAR === */
 #sidebar {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
@@ -91,9 +95,290 @@ nav {
   font-weight: 600;
 }
 
+.nav-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 4px var(--orange); }
+  to { box-shadow: 0 0 10px var(--orange); }
+}
+
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
   padding: 30px 40px;
   box-sizing: border-box;
-  background:
+  background: var(--gray-bg);
+}
+
+/* === PAGE SECTIONS === */
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin: 0 auto 50px auto;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+}
+
+.page-section.active { display: block; }
+
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+/* === SECTION BLOCKS === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* === CHECKLIST ROWS === */
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TEXTAREA === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* === TABLES === */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
+}
+
+/* === TABLE CONTAINER === */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  overflow-x: auto;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  scrollbar-color: #ccc transparent;
+  scrollbar-width: thin;
+}
+
+/* === TABLE CORE === */
+.training-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: max-content;
+  min-width: 100%;
+}
+
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* === HEADER COLORS === */
+.training-table th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  transition: background 0.2s;
+}
+
+.training-table th:hover {
+  background: #f49c56;
+}
+
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+}
+
+/* Sticky first column */
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: #fff;
+  border-right: 1px solid var(--border);
+}
+
+/* === TABLE INPUTS & SELECTS === */
+.training-table td:first-child input[type="text"],
+.training-table select {
+  width: 200px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  color: var(--ink);
+  font-size: 13px;
+  font-family: inherit;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.training-table input[type="text"]:hover,
+.training-table select:hover {
+  border-color: var(--light-orange);
+}
+
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* Row striping */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
+/* === FOOTER === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+  padding: 8px 12px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: 0.2s;
+  vertical-align: middle;
+}
+
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
+
+/* === FLOATING PDF BUTTON === */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+
+.floating-btn:hover {
+  background: #ff8848;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
+}
+
+/* === DRAGGABLE TABLE ENHANCEMENTS === */
+.dragging {
+  background: #fff6ef !important;
+  box-shadow: 0 2px 8px rgba(243, 111, 33, 0.4);
+  cursor: grabbing;
+}
+
+.draggable-table tbody tr:hover {
+  background: #fff3eb;
+  transition: background 0.2s ease;
+}
