@@ -41,7 +41,109 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // =======================================================
+  // === TRAINING TABLE GENERATION (Dynamic Page Content) ===
+  // =======================================================
+  const roles = [
+    {
+      id: "technicians",
+      title: "Technicians – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
+        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
+        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
+        "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "advisors",
+      title: "Service Advisors – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
+        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
+        "ShopChat", "Status Change", "MPI Send", "SOP"
+      ]
+    },
+    {
+      id: "parts",
+      title: "Parts Representatives – Checklist",
+      rows: 2,
+      cols: [
+        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
+        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
+        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "bdc",
+      title: "BDC Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+    },
+    {
+      id: "pickup",
+      title: "Pick Up & Delivery Drivers – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+    }
+  ];
+
+  const container = document.getElementById("tables-container");
+  if (container) {
+    roles.forEach((role) => {
+      const div = document.createElement("div");
+      div.classList.add("section");
+      div.innerHTML = `
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table id="${role.id}" class="training-table">
+              <thead>
+                <tr>
+                  <th style="width:260px;">Name</th>
+                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
+                </tr>
+              </thead>
+              <tbody>
+                ${Array.from({ length: role.rows }).map(() => `
+                  <tr>
+                    <td><input type="text" placeholder="Name"></td>
+                    ${role.cols.map(() => `
+                      <td>
+                        <select>
+                          <option></option>
+                          <option value="Yes">Yes</option>
+                          <option value="Web Only">Web Only</option>
+                          <option value="Mobile Only">Mobile Only</option>
+                          <option value="No">No</option>
+                          <option value="Not Trained">Not Trained</option>
+                          <option value="N/A">N/A</option>
+                        </select>
+                      </td>
+                    `).join("")}
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-footer">
+          <button class="add-row" data-target="${role.id}" type="button">+</button>
+        </div>
+        <div class="section-block comment-box">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // =======================================================
   // === DROPDOWN COLOR CODING ===
+  // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
       const value = e.target.value;
@@ -59,7 +161,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // =======================================================
   // === ADD ROW FUNCTION ===
+  // =======================================================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
     const id = e.target.dataset.target;
@@ -70,9 +174,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
 
-    // Reset values in cloned row
-    clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
-    clone.querySelectorAll("input[type='checkbox']").forEach((cb) => (cb.checked = false));
+    // Reset all values
+    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
     clone.querySelectorAll("select").forEach((select) => {
       select.selectedIndex = 0;
       select.style.backgroundColor = "#f2f2f2";
@@ -82,7 +185,9 @@ window.addEventListener("DOMContentLoaded", () => {
     if (id === "mpi-opcodes") updateRowNumbers();
   });
 
+  // =======================================================
   // === AUTO EXPAND TEXTAREAS ===
+  // =======================================================
   document.addEventListener("input", (e) => {
     if (e.target.tagName === "TEXTAREA") {
       e.target.style.height = "auto";
@@ -90,13 +195,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === SORTABLEJS (for drag-and-drop tables) ===
+  // =======================================================
+  // === SORTABLEJS (Drag-and-Drop Rows) ===
+  // =======================================================
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
   document.head.appendChild(sortableScript);
 
   sortableScript.onload = () => {
-    // Make all tables with class "draggable-table" sortable
+    // Make all draggable tables sortable
     document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
       const table = tbody.closest("table");
       new Sortable(tbody, {
@@ -105,14 +212,14 @@ window.addEventListener("DOMContentLoaded", () => {
         ghostClass: "dragging",
         scroll: true,
         scrollSensitivity: 60,
-        scrollSpeed: 15,
+        scrollSpeed: 20,
         onEnd: () => {
           if (table.id === "mpi-opcodes") updateRowNumbers();
         }
       });
     });
 
-    // Ensure all scroll wrappers work properly
+    // Scroll fix for wrappers
     document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
       wrap.style.maxHeight = "340px";
       wrap.style.overflowY = "auto";
@@ -120,7 +227,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // === RESET ORDER BUTTON (for MPI Opcodes) ===
+  // =======================================================
+  // === RESET ORDER BUTTON (MPI Table) ===
+  // =======================================================
   const resetButton = document.getElementById("resetMpiOrder");
   if (resetButton) {
     resetButton.addEventListener("click", () => {
@@ -139,7 +248,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === AUTO UPDATE MPI ROW NUMBERS ===
+  // === UPDATE MPI ROW NUMBERS ===
   function updateRowNumbers() {
     const mpi = document.getElementById("mpi-opcodes");
     if (!mpi) return;
@@ -149,7 +258,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // =======================================================
   // === CHECKBOX VISUAL FEEDBACK ===
+  // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.classList.contains("verify")) {
       const cell = e.target.parentElement;
@@ -157,7 +268,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // =======================================================
   // === PDF EXPORT FUNCTION ===
+  // =======================================================
   const pdfButton = document.getElementById("pdfButton");
   if (pdfButton) {
     pdfButton.addEventListener("click", () => {
@@ -170,7 +283,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// === FADE ANIMATION STYLES ===
+// === FADE ANIMATIONS ===
 document.head.insertAdjacentHTML("beforeend", `
   <style>
     .fade-in { animation: fadeIn 0.25s ease-in-out; }
@@ -179,3 +292,4 @@ document.head.insertAdjacentHTML("beforeend", `
     @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
   </style>
 `);
+
