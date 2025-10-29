@@ -206,14 +206,12 @@ textarea {
   border: 1px solid var(--orange);
 }
 
-/* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
   border-bottom: none;
-  border-radius: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -230,7 +228,6 @@ textarea {
   scrollbar-width: thin;
 }
 
-/* === TABLE CORE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
@@ -248,7 +245,6 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
-/* === HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -259,16 +255,13 @@ textarea {
   transition: background 0.2s;
 }
 
-.training-table th:hover {
-  background: #f49c56;
-}
+.training-table th:hover { background: #f49c56; }
 
 .training-table th:first-child {
   background: var(--light-orange);
   color: #fff;
 }
 
-/* Sticky first column */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -278,9 +271,9 @@ textarea {
 }
 
 /* === TABLE INPUTS & SELECTS === */
-.training-table td:first-child input[type="text"],
+.training-table input[type="text"],
 .training-table select {
-  width: 200px;
+  width: 180px;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -304,9 +297,23 @@ textarea {
   background: #fff9f5;
 }
 
-/* Row striping */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
+
+/* === CHECKBOXES === */
+.verify {
+  accent-color: var(--orange);
+  transform: scale(1.1);
+  margin-right: 8px;
+}
+
+/* === ROW NUMBER === */
+.row-number {
+  width: 40px;
+  font-weight: 600;
+  color: var(--orange);
+  text-align: center;
+}
 
 /* === FOOTER === */
 .table-footer {
@@ -332,7 +339,6 @@ textarea {
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: 0.2s;
-  vertical-align: middle;
 }
 
 .add-row:hover {
@@ -356,8 +362,18 @@ textarea {
   transition: 0.2s;
 }
 
-.floating-btn:hover {
-  background: #ff8848;
+.floating-btn:hover { background: #ff8848; }
+
+/* === DRAGGING EFFECTS === */
+.dragging {
+  background: #fff6ef !important;
+  box-shadow: 0 2px 8px rgba(243, 111, 33, 0.4);
+  cursor: grabbing;
+}
+
+.draggable-table tbody tr:hover {
+  background: #fff3eb;
+  transition: background 0.2s ease;
 }
 
 /* === RESPONSIVE === */
@@ -369,16 +385,4 @@ textarea {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-
-/* === DRAGGABLE TABLE ENHANCEMENTS === */
-.dragging {
-  background: #fff6ef !important;
-  box-shadow: 0 2px 8px rgba(243, 111, 33, 0.4);
-  cursor: grabbing;
-}
-
-.draggable-table tbody tr:hover {
-  background: #fff3eb;
-  transition: background 0.2s ease;
 }
