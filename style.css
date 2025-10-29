@@ -51,7 +51,7 @@ html, body {
 #app {
   display: flex;
   min-height: 100vh;
-  margin-top: 70px; /* below top bar */
+  margin-top: 70px;
   overflow-x: hidden;
 }
 
@@ -201,7 +201,7 @@ textarea {
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 30px; /* More space before notes */
+  margin-bottom: 30px;
   overflow: hidden;
 }
 
@@ -224,6 +224,8 @@ textarea {
   min-width: 100%;
   border: 1px solid var(--border);
 }
+
+/* --- HEADER FIXES --- */
 .training-table th, .training-table td {
   white-space: nowrap;
   text-align: center;
@@ -233,9 +235,9 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
-/* Make all header cells same orange */
+/* Restore the lighter orange header tone */
 .training-table th {
-  background: var(--orange);
+  background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
@@ -243,8 +245,13 @@ textarea {
   z-index: 3;
 }
 
-/* Sticky first column */
-.training-table th:first-child,
+/* Make Name header match same orange */
+.training-table th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+}
+
+/* Sticky first column cells */
 .training-table td:first-child {
   position: sticky;
   left: 0;
