@@ -1,371 +1,278 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – Modern Dashboard
-   ======================================================= */
+// =======================================================
+// === MAIN SITE SCRIPT – myKaarma Interactive Checklist ===
+// =======================================================
 
-/* === FONT === */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+window.addEventListener("DOMContentLoaded", () => {
 
-/* === COLOR SYSTEM === */
-:root {
-  --orange: #f36f21;
-  --orange-light: #f9b07a;
-  --bg: #f5f6f8;
-  --surface: #ffffff;
-  --ink: #1e1e1e;
-  --border: #d4d7dc;
-  --radius: 12px;
-  --shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
+  // === SIDEBAR NAVIGATION ===
+  const nav = document.getElementById("sidebar-nav");
+  const sections = document.querySelectorAll(".page-section");
 
-/* === DARK MODE === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #181a1d;
-    --surface: #222428;
-    --ink: #f3f3f3;
-    --border: #35373a;
-    --shadow: 0 1px 4px rgba(0,0,0,0.4);
+  if (nav) {
+    nav.addEventListener("click", (e) => {
+      const btn = e.target.closest(".nav-btn");
+      if (!btn) return;
+
+      const target = btn.dataset.target;
+      const section = document.getElementById(target);
+      if (!section) return;
+
+      // Fade-out current active section
+      const active = document.querySelector(".page-section.active");
+      if (active) {
+        active.classList.remove("active");
+        active.classList.add("fade-out");
+        setTimeout(() => active.classList.remove("fade-out"), 250);
+      }
+
+      // Fade-in new section
+      setTimeout(() => {
+        sections.forEach((s) => s.classList.remove("active"));
+        section.classList.add("active", "fade-in");
+        setTimeout(() => section.classList.remove("fade-in"), 250);
+      }, 150);
+
+      // Highlight active button
+      nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Smooth scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
-}
 
-/* === GLOBAL RESET === */
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-html, body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  overflow-x: hidden;
-  font-size: 15px;
-}
+  // =======================================================
+  // === TRAINING TABLE GENERATION ===
+  // =======================================================
+  const roles = [
+    {
+      id: "technicians",
+      title: "Technicians – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
+        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
+        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
+        "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "advisors",
+      title: "Service Advisors – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
+        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
+        "ShopChat", "Status Change", "MPI Send", "SOP"
+      ]
+    },
+    {
+      id: "parts",
+      title: "Parts Representatives – Checklist",
+      rows: 2,
+      cols: [
+        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
+        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
+        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "bdc",
+      title: "BDC Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+    },
+    {
+      id: "pickup",
+      title: "Pick Up & Delivery Drivers – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+    }
+  ];
 
-/* =======================================================
-   LAYOUT STRUCTURE
-   ======================================================= */
-#topbar {
-  background: var(--orange);
-  color: #fff;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 24px;
-  box-shadow: var(--shadow);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-}
-.top-logo {
-  height: 36px;
-  object-fit: contain;
-}
-
-#app {
-  display: flex;
-  margin-top: 64px;
-  min-height: calc(100vh - 64px);
-}
-
-/* =======================================================
-   SIDEBAR – With Active Accent
-   ======================================================= */
-#sidebar {
-  width: 210px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  padding: 16px 10px;
-  position: fixed;
-  top: 64px;
-  bottom: 0;
-  overflow-y: auto;
-}
-
-.nav-btn {
-  border: none;
-  background: transparent;
-  color: var(--ink);
-  text-align: left;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 10px 14px 10px 18px;
-  margin-bottom: 4px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  transition: all 0.25s ease;
-}
-
-.nav-btn::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 8px;
-  width: 3px;
-  border-radius: 2px;
-  background: transparent;
-  transition: all 0.25s ease;
-}
-
-.nav-btn:hover {
-  background: rgba(243,111,33,0.12);
-  color: var(--orange);
-  transform: translateX(2px);
-}
-.nav-btn:hover::before {
-  background: rgba(243,111,33,0.4);
-}
-
-.nav-btn.active {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-}
-.nav-btn.active::before {
-  background: #fff;
-}
-
-/* Dark Mode refinements */
-@media (prefers-color-scheme: dark) {
-  .nav-btn:hover {
-    background: rgba(243,111,33,0.25);
+  const container = document.getElementById("tables-container");
+  if (container) {
+    roles.forEach((role) => {
+      const div = document.createElement("div");
+      div.classList.add("section");
+      div.innerHTML = `
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table id="${role.id}" class="training-table">
+              <thead>
+                <tr>
+                  <th style="width:260px;">Name</th>
+                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
+                </tr>
+              </thead>
+              <tbody>
+                ${Array.from({ length: role.rows }).map(() => `
+                  <tr>
+                    <td><input type="text" placeholder="Name"></td>
+                    ${role.cols.map(() => `
+                      <td>
+                        <select>
+                          <option></option>
+                          <option value="Yes">Yes</option>
+                          <option value="Web Only">Web Only</option>
+                          <option value="Mobile Only">Mobile Only</option>
+                          <option value="No">No</option>
+                          <option value="Not Trained">Not Trained</option>
+                          <option value="N/A">N/A</option>
+                        </select>
+                      </td>
+                    `).join("")}
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-footer">
+          <button class="add-row" data-target="${role.id}" type="button">+</button>
+        </div>
+        <div class="section-block comment-box">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      `;
+      container.appendChild(div);
+    });
   }
-  .nav-btn.active {
-    background: var(--orange);
-    color: #fff;
+
+  // =======================================================
+  // === DROPDOWN COLOR CODING (Light & Dark Mode) ===
+  // =======================================================
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  document.addEventListener("change", (e) => {
+    if (e.target.tagName === "SELECT") {
+      const value = e.target.value;
+      const colorsLight = {
+        "Yes": "#c9f7c0",
+        "Web Only": "#fff8b3",
+        "Mobile Only": "#ffe0b3",
+        "No": "#ffb3b3",
+        "Not Trained": "#ffb3b3",
+        "N/A": "#f2f2f2",
+        "Yes, each has their own": "#c9f7c0",
+        "Yes, but they are sharing": "#fff8b3"
+      };
+      const colorsDark = {
+        "Yes": "#3a6f3a",
+        "Web Only": "#6b5b2e",
+        "Mobile Only": "#705a2e",
+        "No": "#7f3b3b",
+        "Not Trained": "#7f3b3b",
+        "N/A": "#333",
+        "Yes, each has their own": "#3a6f3a",
+        "Yes, but they are sharing": "#6b5b2e"
+      };
+      e.target.style.backgroundColor = (prefersDark ? colorsDark[value] : colorsLight[value]) || "";
+    }
+  });
+
+  // =======================================================
+  // === ADD ROW FUNCTION ===
+  // =======================================================
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("add-row")) return;
+    const id = e.target.dataset.target;
+    const table = document.getElementById(id);
+    if (!table) return;
+
+    const firstRow = table.querySelector("tbody tr");
+    const clone = firstRow.cloneNode(true);
+    clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
+    clone.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+      select.style.backgroundColor = "";
+    });
+    table.querySelector("tbody").appendChild(clone);
+    if (id === "mpi-opcodes") updateRowNumbers();
+  });
+
+  // =======================================================
+  // === AUTO EXPAND TEXTAREAS ===
+  // =======================================================
+  document.addEventListener("input", (e) => {
+    if (e.target.tagName === "TEXTAREA") {
+      e.target.style.height = "auto";
+      e.target.style.height = e.target.scrollHeight + "px";
+    }
+  });
+
+  // =======================================================
+  // === SORTABLEJS (Drag-and-Drop Rows) ===
+  // =======================================================
+  const sortableScript = document.createElement("script");
+  sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
+  document.head.appendChild(sortableScript);
+
+  sortableScript.onload = () => {
+    document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
+      const table = tbody.closest("table");
+      new Sortable(tbody, {
+        animation: 150,
+        handle: "td,th",
+        ghostClass: "dragging",
+        onEnd: () => {
+          if (table.id === "mpi-opcodes") updateRowNumbers();
+        }
+      });
+    });
+  };
+
+  // === RESET ORDER BUTTON (MPI Table) ===
+  const resetButton = document.getElementById("resetMpiOrder");
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      const mpiTable = document.getElementById("mpi-opcodes");
+      if (!mpiTable) return;
+      const tbody = mpiTable.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort((a, b) => {
+        const aNum = parseInt(a.querySelector(".row-number").textContent);
+        const bNum = parseInt(b.querySelector(".row-number").textContent);
+        return aNum - bNum;
+      });
+      tbody.innerHTML = "";
+      rows.forEach((r) => tbody.appendChild(r));
+      updateRowNumbers();
+    });
   }
-}
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
-main {
-  flex: 1;
-  margin-left: 210px;
-  padding: 32px;
-  background: var(--bg);
-  transition: background 0.3s ease;
-}
-.page-section {
-  display: none;
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px 32px;
-  margin: 0 auto 40px auto;
-  max-width: 1250px;
-}
-.page-section.active { display: block; }
+  function updateRowNumbers() {
+    const mpi = document.getElementById("mpi-opcodes");
+    if (!mpi) return;
+    mpi.querySelectorAll("tbody tr").forEach((row, i) => {
+      const num = row.querySelector(".row-number");
+      if (num) num.textContent = i + 1;
+    });
+  }
 
-h1 {
-  color: var(--orange);
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-h2 {
-  color: var(--orange);
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-  padding: 10px 14px;
-  background: rgba(243,111,33,0.12);
-  border-bottom: 1px solid var(--border);
-}
+  // =======================================================
+  // === CHECKBOX VISUAL FEEDBACK ===
+  // =======================================================
+  document.addEventListener("change", (e) => {
+    if (e.target.classList.contains("verify")) {
+      const cell = e.target.parentElement;
+      cell.style.backgroundColor = e.target.checked ? "rgba(243,111,33,0.1)" : "";
+    }
+  });
 
-/* =======================================================
-   CHECKLIST BLOCKS
-   ======================================================= */
-.section-block {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 24px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.checklist-row:last-child { border-bottom: none; }
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 240px;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-  font-size: 14px;
-  transition: 0.2s;
-}
-.checklist-row input:focus,
-.checklist-row select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  background: #fff;
-}
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  font-family: inherit;
-  resize: none;
-}
-
-/* =======================================================
-   TABLES
-   ======================================================= */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.table-container {
-  border: 1px solid var(--border);
-  border-top: none;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 340px;
-}
-.training-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
-}
-.training-table th,
-.training-table td {
-  border: 1px solid var(--border);
-  text-align: center;
-  padding: 8px 10px;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.training-table th {
-  background: var(--orange-light);
-  color: #fff;
-  font-weight: 600;
-}
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: var(--surface);
-}
-.training-table input[type="text"],
-.training-table select {
-  width: 170px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-size: 13px;
-}
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 6px;
-}
-.row-number {
-  color: var(--orange);
-  font-weight: 600;
-}
-.table-footer {
-  border: 1px solid var(--border);
-  border-top: none;
-  background: var(--surface);
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-  margin-bottom: 25px;
-}
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.add-row:hover { background: #ff8b42; transform: scale(1.05); }
-
-/* =======================================================
-   BUTTONS & CONTROLS
-   ======================================================= */
-.mpi-controls {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px 0 6px;
-}
-#resetMpiOrder {
-  background: #fff3eb;
-  color: var(--orange);
-  border: 1px solid var(--orange);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 13px;
-  cursor: pointer;
-}
-#resetMpiOrder:hover {
-  background: var(--orange);
-  color: #fff;
-}
-
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
-.floating-btn {
-  position: fixed;
-  top: 84px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-.floating-btn:hover { background: #ff8848; }
-
-/* =======================================================
-   RESPONSIVE DESIGN
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 160px; }
-  main { margin-left: 160px; padding: 24px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 16px; }
-}
+  // =======================================================
+  // === PDF EXPORT FUNCTION ===
+  // =======================================================
+  const pdfButton = document.getElementById("pdfButton");
+  if (pdfButton) {
+    pdfButton.addEventListener("click", () => {
+      const active = document.querySelector(".page-section.active");
+      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+        .then((html2pdf) => {
+          html2pdf.default().from(active).save(`${active.id}.pdf`);
+        });
+    });
+  }
+});
