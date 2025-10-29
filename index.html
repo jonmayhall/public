@@ -24,57 +24,90 @@
     <!-- === SIDEBAR === -->
     <aside id="sidebar">
       <nav id="sidebar-nav">
-        <button class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
-        <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button class="nav-btn" data-target="opcodes">Opcodes & Pricing</button>
-        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-        <button class="nav-btn" data-target="workflow">Workflow Notifications</button>
-        <button class="nav-btn" data-target="training-summary">Training Summary</button>
+        <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
+        <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button type="button" class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button type="button" class="nav-btn" data-target="opcodes-pricing">Opcodes & Pricing</button>
+        <button type="button" class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button type="button" class="nav-btn" data-target="workflow">Workflow Notifications</button>
+        <button type="button" class="nav-btn" data-target="training-summary">Training Summary</button>
       </nav>
     </aside>
 
     <!-- === MAIN CONTENT === -->
     <main id="content">
 
-      <!-- === PRE-TRAINING CHECKLIST === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 1 : PRE-TRAINING CHECKLIST (Rebuilt) === -->
+      <!-- ========================================================= -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
 
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff completed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>ServiceCart handoff completed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler handoff completed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Payments handoff completed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Any additional notes from Deployment?</label><textarea placeholder="Add notes…"></textarea></div>
+          <div class="checklist-row"><label>ServiceCart handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Other product handoffs completed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
           <h2>Dealership Personnel</h2>
-          <div class="checklist-row"><label>Personnel count in Admin Tool appears accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Are all managers active and assigned?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Number of active/pending Advisors</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending Parts Reps</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending Technicians</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Number of active/pending BDC Reps</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Personnel count in admin tool appears accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>All managers active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Number of active/pending advisors</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending parts reps</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending techs</label><input type="text" placeholder="Enter count…" /></div>
+          <div class="checklist-row"><label>Number of active/pending BDC reps</label><input type="text" placeholder="Enter count…" /></div>
           <div class="checklist-row"><label>Is the BDC onsite?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Notes about personnel or access issues</label><textarea placeholder="Type notes…"></textarea></div>
         </div>
 
         <div class="section-block">
-          <h2>Location</h2>
+          <h2>Location & Buildings</h2>
           <div class="checklist-row"><label>How many buildings does Google Maps show?</label><input type="text" placeholder="Enter count…" /></div>
-          <div class="checklist-row"><label>Were all required buildings correctly relayed?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Additional notes regarding locations</label><textarea placeholder="Type notes…"></textarea></div>
+          <div class="checklist-row"><label>Were the correct number of buildings relayed for training?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
-          <h2>Products</h2>
+          <h2>Products / Integrations</h2>
           <div class="checklist-row"><label>Communication integration functioning properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Payments integration verified?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Scheduler integration verified?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Additional integration concerns?</label><textarea placeholder="Type notes…"></textarea></div>
+          <div class="checklist-row"><label>Payments integration working correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Sales Tax %</label><input type="text" placeholder="%" /></div>
+          <div class="checklist-row"><label>Shop Fees %</label><input type="text" placeholder="%" /></div>
+        </div>
+
+        <div class="section-block">
+          <h2>iOS Device Usage</h2>
+          <div class="checklist-row"><label>Do technicians have their own devices?</label>
+            <select>
+              <option></option>
+              <option>Yes, each has their own</option>
+              <option>Yes, but they are sharing</option>
+              <option>No</option>
+            </select>
+          </div>
+          <div class="checklist-row"><label>Number of devices on site</label><input type="text" placeholder="Enter number…" /></div>
+          <div class="checklist-row"><label>Do they have Apple IDs set up?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Is Find My iPad turned off on all devices?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+
+        <div class="section-block">
+          <h2>ServiceCart / Scheduler / ServiceConnect</h2>
+          <div class="checklist-row"><label>ServiceCart enabled and active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>Scheduler enabled and active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+          <div class="checklist-row"><label>ServiceConnect enabled and active?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
+        </div>
+
+        <div class="section-block">
+          <h2>Monday Visit Notes</h2>
+          <textarea placeholder="Type any notes from Monday visit…"></textarea>
+        </div>
+
+        <div class="section-block">
+          <h2>Wi-Fi & Dealership Expectations</h2>
+          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
+          <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" placeholder="Enter Wi-Fi password…" /></div>
+          <textarea placeholder="Additional expectations or requirements…"></textarea>
         </div>
 
         <div class="section-block">
@@ -83,60 +116,42 @@
         </div>
       </section>
 
-      <!-- === DEALERSHIP INFORMATION === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 2 : DEALERSHIP INFORMATION (Rebuilt) === -->
+      <!-- ========================================================= -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
 
         <div class="section-block">
-          <h2>Wi-Fi Information</h2>
-          <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" placeholder="Enter Wi-Fi name…" /></div>
-          <div class="checklist-row"><label>Wi-Fi Password</label><input type="text" placeholder="Enter password…" /></div>
-          <div class="checklist-row"><label>Network reliability or issues?</label><select><option></option><option>Good</option><option>Spotty</option><option>Poor</option></select></div>
+          <h2>General Info</h2>
+          <div class="checklist-row"><label>Dealer Group Name</label><input type="text" placeholder="Enter Dealer Group…" /></div>
+          <div class="checklist-row"><label>Dealership Name</label><input type="text" placeholder="Enter Dealership Name…" /></div>
+          <div class="checklist-row"><label>Brand / Franchise</label><input type="text" placeholder="Enter Brand…" /></div>
+          <div class="checklist-row"><label>Street Address</label><input type="text" placeholder="Address…" /></div>
+          <div class="checklist-row"><label>City</label><input type="text" placeholder="City…" /></div>
+          <div class="checklist-row"><label>State</label><input type="text" placeholder="State…" /></div>
+          <div class="checklist-row"><label>Zip Code</label><input type="text" placeholder="Zip…" /></div>
+          <div class="checklist-row"><label>Time Zone</label><input type="text" placeholder="Enter Time Zone…" /></div>
         </div>
 
         <div class="section-block">
           <h2>Dealership Contacts</h2>
-          <div class="checklist-row"><label>Primary Point of Contact Name</label><input type="text" placeholder="Enter name…" /></div>
-          <div class="checklist-row"><label>Primary Role</label>
-            <select>
-              <option></option>
-              <option>Service Advisor</option>
-              <option>Parts Rep</option>
-              <option>Technician</option>
-              <option>BDC Rep</option>
-              <option>Manager</option>
-              <option>Trainer</option>
-              <option>CEM</option>
-              <option>Product Champion</option>
-            </select>
-          </div>
-          <div class="checklist-row"><label>Primary Contact Cell</label><input type="text" placeholder="Enter phone…" /></div>
-          <div class="checklist-row"><label>Primary Contact Email</label><input type="text" placeholder="Enter email…" /></div>
-
-          <div class="checklist-row"><label>Additional Contact Name</label><input type="text" placeholder="Enter name…" /></div>
-          <div class="checklist-row"><label>Additional Contact Role</label>
-            <select>
-              <option></option>
-              <option>Service Advisor</option>
-              <option>Parts Rep</option>
-              <option>Technician</option>
-              <option>BDC Rep</option>
-              <option>Manager</option>
-              <option>Trainer</option>
-              <option>CEM</option>
-              <option>Product Champion</option>
-            </select>
-          </div>
-          <div class="checklist-row"><label>Additional Contact Email</label><input type="text" placeholder="Enter email…" /></div>
+          <div class="checklist-row"><label>Primary POC Name</label><input type="text" placeholder="Enter Name…" /></div>
+          <div class="checklist-row"><label>Primary POC Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
+          <div class="checklist-row"><label>Primary POC Cell</label><input type="text" placeholder="Enter Cell…" /></div>
+          <div class="checklist-row"><label>Primary POC Email</label><input type="text" placeholder="Enter Email…" /></div>
+          <div class="checklist-row"><label>Additional POC Name</label><input type="text" placeholder="Enter Name…" /></div>
+          <div class="checklist-row"><label>Additional POC Role</label><select><option></option><option>Service Advisor</option><option>Parts Rep</option><option>Technician</option><option>BDC Rep</option><option>Manager</option><option>Trainer</option><option>CEM</option><option>Product Champion</option></select></div>
+          <div class="checklist-row"><label>Additional POC Email</label><input type="text" placeholder="Enter Email…" /></div>
           <div class="checklist-row"><label>Include in communications?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
         </div>
 
         <div class="section-block">
           <h2>Training Team</h2>
-          <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter name…" /></div>
-          <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter names…" /></div>
-          <div class="checklist-row"><label>Training Start Date</label><input type="date" /></div>
-          <div class="checklist-row"><label>Training End Date</label><input type="date" /></div>
+          <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter Lead Trainer…" /></div>
+          <div class="checklist-row"><label>Additional Trainers</label><input type="text" placeholder="Enter Additional Names…" /></div>
+          <div class="checklist-row"><label>Product Champion/s</label><input type="text" placeholder="Enter Champion Names…" /></div>
+          <div class="checklist-row"><label>CEM/s</label><input type="text" placeholder="Enter CEM Names…" /></div>
         </div>
 
         <div class="section-block">
@@ -145,46 +160,136 @@
         </div>
       </section>
 
-      <!-- === TRAINING CHECKLIST === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 3 : TRAINING CHECKLIST === -->
+      <!-- ========================================================= -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
         <div id="tables-container"></div>
       </section>
 
-      <!-- === OPCODES === -->
-      <section id="opcodes" class="page-section">
+      <!-- ========================================================= -->
+      <!-- === PAGE 4 : OPCODES & PRICING === -->
+      <!-- ========================================================= -->
+      <section id="opcodes-pricing" class="page-section">
         <h1>Opcodes & Pricing</h1>
-        <div class="section-block">
-          <h2>Notes</h2>
-          <textarea placeholder="Add any opcode and pricing details here…"></textarea>
+
+        <!-- === OPCODES SETUP TABLE === -->
+        <div class="section">
+          <div class="section-header">Opcodes Setup</div>
+          <div class="table-container">
+            <div class="scroll-wrapper">
+              <table id="opcodes-setup" class="training-table draggable-table">
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Opcode</th>
+                    <th>Hours</th>
+                    <th>Customer Pay Labor Rate</th>
+                    <th>Fixed Customer Pay Labor Rate</th>
+                    <th>Labor Charged</th>
+                    <th>Set Parts Charged</th>
+                    <th>Parts Retail</th>
+                    <th>ServiceCart</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="2 Wheel Alignment"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="4 Spark Plug Replacement"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Brake Fluid Exchange"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Cabin Air Filter"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Conventional Oil Change"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-footer">
+            <button class="add-row" data-target="opcodes-setup" type="button">+</button>
+          </div>
+          <div class="section-block comment-box">
+            <h2>Notes</h2>
+            <textarea placeholder="Type here…"></textarea>
+          </div>
+        </div>
+
+        <!-- === MPI OPCODES TABLE === -->
+        <div class="section">
+          <div class="section-header">MPI Opcodes</div>
+          <div class="mpi-controls">
+            <button id="resetMpiOrder" type="button">↻ Reset Order</button>
+          </div>
+          <div class="table-container">
+            <div class="scroll-wrapper">
+              <table id="mpi-opcodes" class="training-table draggable-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>MPI Line</th>
+                    <th>MPI</th>
+                    <th>Preselected Opcode</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="row-number">1</td><td><input type="checkbox" class="verify"><input type="text" value="Exterior Lights"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  <tr><td class="row-number">2</td><td><input type="checkbox" class="verify"><input type="text" value="Front Wiper Blades"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  <tr><td class="row-number">3</td><td><input type="checkbox" class="verify"><input type="text" value="Battery Mountings, Terminals, and Wires"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  <tr><td class="row-number">4</td><td><input type="checkbox" class="verify"><input type="text" value="Engine Oil"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  <tr><td class="row-number">5</td><td><input type="checkbox" class="verify"><input type="text" value="Front Brake Pads"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-footer">
+            <button class="add-row" data-target="mpi-opcodes" type="button">+</button>
+          </div>
+          <div class="section-block comment-box">
+            <h2>Notes</h2>
+            <textarea placeholder="Type here…"></textarea>
+          </div>
         </div>
       </section>
 
-      <!-- === DMS INTEGRATION === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 5 : DMS INTEGRATION === -->
+      <!-- ========================================================= -->
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
         <div class="section-block">
           <h2>Integration Notes</h2>
-          <textarea placeholder="Add notes here…"></textarea>
+          <textarea placeholder="Type integration notes here…"></textarea>
         </div>
       </section>
 
-      <!-- === WORKFLOW === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 6 : WORKFLOW NOTIFICATIONS === -->
+      <!-- ========================================================= -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
-        <div class="section-block"><h2>Workflow Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
+        <div class="section-block">
+          <h2>Workflow Notes</h2>
+          <textarea placeholder="Type workflow notes here…"></textarea>
+        </div>
       </section>
 
-      <!-- === SUMMARY === -->
+      <!-- ========================================================= -->
+      <!-- === PAGE 7 : TRAINING SUMMARY === -->
+      <!-- ========================================================= -->
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
-        <div class="section-block"><h2>Summary Notes</h2><textarea placeholder="Summary notes…"></textarea></div>
+        <div class="section-block">
+          <h2>Summary</h2>
+          <textarea placeholder="Type overall training summary here…"></textarea>
+        </div>
       </section>
-    </main>
+
+          </main>
   </div>
 
+  <!-- === FLOATING SAVE BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
+
+  <!-- === JS LOGIC === -->
   <script src="script.js"></script>
 </body>
 </html>
-
