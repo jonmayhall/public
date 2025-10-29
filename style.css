@@ -1,3 +1,8 @@
+/* =======================================================
+   myKaarma Interactive Training Checklist Stylesheet
+   ======================================================= */
+
+/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -9,7 +14,7 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE === */
+/* === BASE PAGE STRUCTURE === */
 html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -55,7 +60,9 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === SIDEBAR === */
+/* =======================================================
+   SIDEBAR
+   ======================================================= */
 #sidebar {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
@@ -94,7 +101,9 @@ nav {
   font-weight: 600;
 }
 
-/* === MAIN CONTENT === */
+/* =======================================================
+   MAIN CONTENT AREA
+   ======================================================= */
 main {
   flex: 1;
   margin-left: 190px;
@@ -122,7 +131,9 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === SECTION BLOCKS === */
+/* =======================================================
+   SECTION BLOCKS AND ROWS
+   ======================================================= */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -130,6 +141,7 @@ h1 {
   margin-bottom: 25px;
   overflow: hidden;
 }
+
 .section-block h2 {
   background: var(--orange);
   color: white;
@@ -174,7 +186,9 @@ textarea {
   font-family: inherit;
 }
 
-/* === TABLES === */
+/* =======================================================
+   TRAINING TABLES AND OPCODES TABLES
+   ======================================================= */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -234,6 +248,7 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
+  transition: background 0.2s;
 }
 .training-table th:hover { background: #f49c56; }
 
@@ -281,7 +296,7 @@ textarea {
   text-align: center;
 }
 
-/* === ROW HOVER/DRAG === */
+/* === ROW STRIPING & DRAG === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
@@ -295,7 +310,7 @@ textarea {
   cursor: grabbing;
 }
 
-/* === FOOTER === */
+/* === FOOTER BUTTONS === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -341,7 +356,9 @@ textarea {
   color: #fff;
 }
 
-/* === FLOATING PDF BUTTON === */
+/* =======================================================
+   FLOATING BUTTON (PDF EXPORT)
+   ======================================================= */
 .floating-btn {
   position: fixed;
   top: 90px;
@@ -358,7 +375,9 @@ textarea {
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* === RESPONSIVE === */
+/* =======================================================
+   RESPONSIVE DESIGN
+   ======================================================= */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
