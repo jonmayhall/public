@@ -85,12 +85,28 @@ nav {
   cursor: pointer;
   transition: 0.2s;
   color: var(--ink);
+  position: relative;
 }
 .nav-btn:hover,
 .nav-btn.active {
   background: #fff3eb;
   color: var(--orange);
   font-weight: 600;
+}
+.nav-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { box-shadow: 0 0 4px var(--orange); }
+  to { box-shadow: 0 0 10px var(--orange); }
 }
 
 /* === MAIN CONTENT === */
@@ -185,7 +201,7 @@ textarea {
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* More space before notes */
   overflow: hidden;
 }
 
@@ -216,14 +232,18 @@ textarea {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
+
+/* Make all header cells same orange */
 .training-table th {
-  background: var(--light-orange);
+  background: var(--orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 3;
 }
+
+/* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -232,6 +252,16 @@ textarea {
   background: #fff;
   border-right: 1px solid var(--border);
 }
+
+/* Make Name inputs wider */
+.training-table td:first-child input[type="text"] {
+  width: 200px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+}
+
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
@@ -240,22 +270,24 @@ textarea {
   width: 100%;
   border: 1px solid var(--border);
   border-top: none;
-  padding: 6px 10px;
+  padding: 8px 12px;
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
+  box-sizing: border-box;
 }
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 13px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: 0.2s;
+  vertical-align: middle;
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
