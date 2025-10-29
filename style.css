@@ -133,7 +133,6 @@ main {
   max-width: 1250px;
   box-sizing: border-box;
 }
-
 .page-section.active { display: block; }
 
 h1 {
@@ -149,7 +148,6 @@ h1 {
   margin-bottom: 25px;
   overflow: hidden;
 }
-
 .section-block h2 {
   background: var(--orange);
   color: white;
@@ -167,13 +165,11 @@ h1 {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-
 .checklist-row label {
   flex: 1;
   font-size: 14px;
   padding-right: 20px;
 }
-
 .checklist-row input,
 .checklist-row select {
   width: 220px;
@@ -206,12 +202,14 @@ textarea {
   border: 1px solid var(--orange);
 }
 
+/* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
   border-bottom: none;
+  border-radius: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -228,13 +226,13 @@ textarea {
   scrollbar-width: thin;
 }
 
+/* === TABLE CORE === */
 .training-table {
   border-collapse: separate;
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
 }
-
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -245,6 +243,7 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
+/* === HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -254,14 +253,9 @@ textarea {
   z-index: 3;
   transition: background 0.2s;
 }
-
 .training-table th:hover { background: #f49c56; }
 
-.training-table th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
+/* === FIRST COLUMN STICKY === */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -283,12 +277,8 @@ textarea {
   font-family: inherit;
   transition: border 0.2s, box-shadow 0.2s, background 0.2s;
 }
-
 .training-table input[type="text"]:hover,
-.training-table select:hover {
-  border-color: var(--light-orange);
-}
-
+.training-table select:hover { border-color: var(--light-orange); }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
@@ -296,9 +286,6 @@ textarea {
   outline: none;
   background: #fff9f5;
 }
-
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === CHECKBOXES === */
 .verify {
@@ -315,6 +302,10 @@ textarea {
   text-align: center;
 }
 
+/* === ROW STYLING === */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
 /* === FOOTER === */
 .table-footer {
   width: 100%;
@@ -327,7 +318,6 @@ textarea {
   margin-bottom: 25px;
   box-sizing: border-box;
 }
-
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -340,11 +330,7 @@ textarea {
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   transition: 0.2s;
 }
-
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
+.add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
 /* === FLOATING PDF BUTTON === */
 .floating-btn {
@@ -361,16 +347,14 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
-
 .floating-btn:hover { background: #ff8848; }
 
-/* === DRAGGING EFFECTS === */
+/* === DRAG EFFECTS === */
 .dragging {
   background: #fff6ef !important;
-  box-shadow: 0 2px 8px rgba(243, 111, 33, 0.4);
+  box-shadow: 0 2px 8px rgba(243,111,33,0.4);
   cursor: grabbing;
 }
-
 .draggable-table tbody tr:hover {
   background: #fff3eb;
   transition: background 0.2s ease;
@@ -381,7 +365,6 @@ textarea {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
 }
-
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
