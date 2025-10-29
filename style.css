@@ -187,7 +187,7 @@ textarea {
 }
 
 /* =======================================================
-   TRAINING TABLES AND OPCODES TABLES
+   TRAINING TABLES & OPCODES TABLES
    ======================================================= */
 .section-header {
   background: var(--orange);
@@ -196,6 +196,17 @@ textarea {
   padding: 10px 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
+  margin-bottom: 0;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+/* === FIX: MPI CONTROLS ALIGNMENT === */
+.section-header + .mpi-controls {
+  margin-top: -4px;
+  margin-bottom: 6px;
 }
 
 /* === TABLE CONTAINER === */
@@ -210,15 +221,16 @@ textarea {
   overflow: hidden;
 }
 
+/* === FIX: Scroll Wrapper for Horizontal & Vertical Scroll === */
 .scroll-wrapper {
   position: relative;
   display: block;
   width: 100%;
-  max-height: 340px;
-  overflow-y: auto;
   overflow-x: auto;
-  border-top: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 340px;
   background: #fff;
+  border-top: 1px solid var(--border);
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
@@ -227,10 +239,12 @@ textarea {
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: max-content;
   min-width: 100%;
+  width: max-content;
+  table-layout: auto;
 }
 
+/* === TABLE CELLS === */
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -241,18 +255,19 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
+/* === HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 5;
   transition: background 0.2s;
 }
 .training-table th:hover { background: #f49c56; }
 
-/* === FIRST COLUMN STICKY === */
+/* === STICKY FIRST COLUMN === */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -261,7 +276,7 @@ textarea {
   border-right: 1px solid var(--border);
 }
 
-/* === TABLE INPUTS === */
+/* === INPUTS / SELECTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 180px;
@@ -296,7 +311,7 @@ textarea {
   text-align: center;
 }
 
-/* === ROW STRIPING & DRAG === */
+/* === ROW STYLES === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
