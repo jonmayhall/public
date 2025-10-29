@@ -229,6 +229,7 @@ textarea {
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
+  border: 1px solid var(--border);
 }
 
 .training-table th,
@@ -249,6 +250,14 @@ textarea {
   top: 0;
   z-index: 3;
   transition: background 0.2s;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.training-table th:first-child {
+  border-left: 1px solid var(--border);
+}
+.training-table th:last-child {
+  border-right: 1px solid var(--border);
 }
 .training-table th:hover { background: #f49c56; }
 
@@ -290,7 +299,7 @@ textarea {
 
 /* === ROW NUMBER === */
 .row-number {
-  width: 40px;
+  width: 60px;
   font-weight: 600;
   color: var(--orange);
   text-align: center;
@@ -354,6 +363,22 @@ textarea {
 #resetMpiOrder:hover {
   background: var(--orange);
   color: #fff;
+}
+
+/* === MPI HEADER ALIGNMENT FIX === */
+#mpi-opcodes {
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+#mpi-opcodes th {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+#mpi-opcodes th:first-child {
+  border-left: 1px solid var(--border);
+}
+#mpi-opcodes th:last-child {
+  border-right: 1px solid var(--border);
 }
 
 /* =======================================================
