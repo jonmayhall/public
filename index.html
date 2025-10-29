@@ -38,7 +38,7 @@
     <main id="content">
 
       <!-- ========================================================= -->
-      <!-- === PAGE 1 : PRE-TRAINING CHECKLIST (Rebuilt) === -->
+      <!-- === PAGE 1 : PRE-TRAINING CHECKLIST === -->
       <!-- ========================================================= -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
@@ -117,7 +117,7 @@
       </section>
 
       <!-- ========================================================= -->
-      <!-- === PAGE 2 : DEALERSHIP INFORMATION (Rebuilt) === -->
+      <!-- === PAGE 2 : DEALERSHIP INFORMATION === -->
       <!-- ========================================================= -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
@@ -169,7 +169,7 @@
       </section>
 
       <!-- ========================================================= -->
-      <!-- === PAGE 4 : OPCODES & PRICING === -->
+      <!-- === PAGE 4 : OPCODES & PRICING (FIXED MPI TABLE) === -->
       <!-- ========================================================= -->
       <section id="opcodes-pricing" class="page-section">
         <h1>Opcodes & Pricing</h1>
@@ -179,28 +179,30 @@
           <div class="section-header">Opcodes Setup</div>
           <div class="table-container">
             <div class="scroll-wrapper">
-              <table id="opcodes-setup" class="training-table draggable-table">
-                <thead>
-                  <tr>
-                    <th>Service</th>
-                    <th>Opcode</th>
-                    <th>Hours</th>
-                    <th>Customer Pay Labor Rate</th>
-                    <th>Fixed Customer Pay Labor Rate</th>
-                    <th>Labor Charged</th>
-                    <th>Set Parts Charged</th>
-                    <th>Parts Retail</th>
-                    <th>ServiceCart</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td><input type="checkbox" class="verify"><input type="text" value="2 Wheel Alignment"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-                  <tr><td><input type="checkbox" class="verify"><input type="text" value="4 Spark Plug Replacement"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Brake Fluid Exchange"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Cabin Air Filter"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-                  <tr><td><input type="checkbox" class="verify"><input type="text" value="Conventional Oil Change"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-                </tbody>
-              </table>
+              <div class="scroll-inner">
+                <table id="opcodes-setup" class="training-table draggable-table">
+                  <thead>
+                    <tr>
+                      <th>Service</th>
+                      <th>Opcode</th>
+                      <th>Hours</th>
+                      <th>Customer Pay Labor Rate</th>
+                      <th>Fixed Customer Pay Labor Rate</th>
+                      <th>Labor Charged</th>
+                      <th>Set Parts Charged</th>
+                      <th>Parts Retail</th>
+                      <th>ServiceCart</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><input type="checkbox" class="verify"><input type="text" value="2 Wheel Alignment"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                    <tr><td><input type="checkbox" class="verify"><input type="text" value="4 Spark Plug Replacement"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                    <tr><td><input type="checkbox" class="verify"><input type="text" value="Brake Fluid Exchange"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                    <tr><td><input type="checkbox" class="verify"><input type="text" value="Cabin Air Filter"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                    <tr><td><input type="checkbox" class="verify"><input type="text" value="Conventional Oil Change"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="table-footer">
@@ -212,7 +214,7 @@
           </div>
         </div>
 
-        <!-- === MPI OPCODES TABLE === -->
+        <!-- === MPI OPCODES TABLE (FIXED STRUCTURE) === -->
         <div class="section">
           <div class="section-header">MPI Opcodes</div>
           <div class="mpi-controls">
@@ -220,24 +222,26 @@
           </div>
           <div class="table-container">
             <div class="scroll-wrapper">
-              <table id="mpi-opcodes" class="training-table draggable-table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>MPI Line</th>
-                    <th>MPI</th>
-                    <th>Preselected Opcode</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td class="row-number">1</td><td><input type="checkbox" class="verify"><input type="text" value="Exterior Lights"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">2</td><td><input type="checkbox" class="verify"><input type="text" value="Front Wiper Blades"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">3</td><td><input type="checkbox" class="verify"><input type="text" value="Battery Mountings, Terminals, and Wires"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">4</td><td><input type="checkbox" class="verify"><input type="text" value="Engine Oil"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                  <tr><td class="row-number">5</td><td><input type="checkbox" class="verify"><input type="text" value="Front Brake Pads"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-                </tbody>
-              </table>
+              <div class="scroll-inner">
+                <table id="mpi-opcodes" class="training-table draggable-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>MPI Line</th>
+                      <th>MPI</th>
+                      <th>Preselected Opcode</th>
+                      <th>Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="row-number">1</td><td><input type="checkbox" class="verify"><input type="text" value="Exterior Lights"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td class="row-number">2</td><td><input type="checkbox" class="verify"><input type="text" value="Front Wiper Blades"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td class="row-number">3</td><td><input type="checkbox" class="verify"><input type="text" value="Battery Mountings, Terminals, and Wires"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td class="row-number">4</td><td><input type="checkbox" class="verify"><input type="text" value="Engine Oil"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                    <tr><td class="row-number">5</td><td><input type="checkbox" class="verify"><input type="text" value="Front Brake Pads"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="table-footer">
@@ -255,10 +259,7 @@
       <!-- ========================================================= -->
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
-        <div class="section-block">
-          <h2>Integration Notes</h2>
-          <textarea placeholder="Type integration notes here…"></textarea>
-        </div>
+        <div class="section-block"><h2>Notes</h2><textarea placeholder="Integration notes…"></textarea></div>
       </section>
 
       <!-- ========================================================= -->
@@ -266,10 +267,7 @@
       <!-- ========================================================= -->
       <section id="workflow" class="page-section">
         <h1>Workflow Notifications</h1>
-        <div class="section-block">
-          <h2>Workflow Notes</h2>
-          <textarea placeholder="Type workflow notes here…"></textarea>
-        </div>
+        <div class="section-block"><h2>Notes</h2><textarea placeholder="Workflow notes…"></textarea></div>
       </section>
 
       <!-- ========================================================= -->
@@ -277,19 +275,13 @@
       <!-- ========================================================= -->
       <section id="training-summary" class="page-section">
         <h1>Training Summary</h1>
-        <div class="section-block">
-          <h2>Summary</h2>
-          <textarea placeholder="Type overall training summary here…"></textarea>
-        </div>
+        <div class="section-block"><h2>Summary</h2><textarea placeholder="Summary notes…"></textarea></div>
       </section>
-
-          </main>
+    </main>
   </div>
 
-  <!-- === FLOATING SAVE BUTTON === -->
+  <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
-
-  <!-- === JS LOGIC === -->
   <script src="script.js"></script>
 </body>
 </html>
