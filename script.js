@@ -1,5 +1,6 @@
-// Run only after DOM is fully ready
+// Run after DOM is fully loaded
 window.addEventListener("DOMContentLoaded", () => {
+
   // === SIDEBAR NAVIGATION ===
   const nav = document.getElementById("sidebar-nav");
   const sections = document.querySelectorAll(".page-section");
@@ -9,12 +10,12 @@ window.addEventListener("DOMContentLoaded", () => {
       const btn = e.target.closest(".nav-btn");
       if (!btn) return;
 
-      // Get target section
+      // Get target section ID
       const target = btn.dataset.target;
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Toggle visible section
+      // Toggle active section
       sections.forEach((s) => s.classList.remove("active"));
       section.classList.add("active");
 
@@ -22,21 +23,60 @@ window.addEventListener("DOMContentLoaded", () => {
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // Scroll to top
+      // Scroll to top smoothly
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
   // === TRAINING TABLE GENERATION ===
   const roles = [
-    { id: "technicians", title: "Technicians – Checklist", rows: 3, cols: ["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"] },
-    { id: "advisors", title: "Service Advisors – Checklist", rows: 3, cols: ["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"] },
-    { id: "parts", title: "Parts Representatives – Checklist", rows: 2, cols: ["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"] },
-    { id: "bdc", title: "BDC Representatives – Checklist", rows: 2, cols: ["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"] },
-    { id: "pickup", title: "Pick Up & Delivery Drivers – Checklist", rows: 2, cols: ["DMS ID","Login","PU&D","Notifications"] }
+    {
+      id: "technicians",
+      title: "Technicians – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
+        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
+        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
+        "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "advisors",
+      title: "Service Advisors – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
+        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
+        "ShopChat", "Status Change", "MPI Send", "SOP"
+      ]
+    },
+    {
+      id: "parts",
+      title: "Parts Representatives – Checklist",
+      rows: 2,
+      cols: [
+        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
+        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
+        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "bdc",
+      title: "BDC Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+    },
+    {
+      id: "pickup",
+      title: "Pick Up & Delivery Drivers – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+    }
   ];
 
   const container = document.getElementById("tables-container");
+
   if (container) {
     roles.forEach((role) => {
       const div = document.createElement("div");
@@ -48,7 +88,10 @@ window.addEventListener("DOMContentLoaded", () => {
           <div class="scroll-wrapper">
             <table id="${role.id}" class="training-table">
               <thead>
-                <tr><th style="width:260px;">Name</th>${role.cols.map(c => `<th>${c}</th>`).join("")}</tr>
+                <tr>
+                  <th style="width:260px;">Name</th>
+                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
+                </tr>
               </thead>
               <tbody>
                 ${Array.from({ length: role.rows }).map(() => `
@@ -65,14 +108,21 @@ window.addEventListener("DOMContentLoaded", () => {
                           <option value="Not Trained">Not Trained</option>
                           <option value="N/A">N/A</option>
                         </select>
-                      </td>`).join("")}
-                  </tr>`).join("")}
+                      </td>
+                    `).join("")}
+                  </tr>
+                `).join("")}
               </tbody>
             </table>
           </div>
         </div>
-        <div class="table-footer"><button class="add-row" data-target="${role.id}" type="button">+</button></div>
-        <div class="section-block comment-box"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
+        <div class="table-footer">
+          <button class="add-row" data-target="${role.id}" type="button">+</button>
+        </div>
+        <div class="section-block comment-box">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
       `;
       container.appendChild(div);
     });
@@ -81,7 +131,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // === DROPDOWN COLOR CODING ===
   document.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
-      const v = e.target.value;
+      const value = e.target.value;
       const colors = {
         "Yes": "#c9f7c0",
         "Web Only": "#fff8b3",
@@ -90,29 +140,31 @@ window.addEventListener("DOMContentLoaded", () => {
         "Not Trained": "#ffb3b3",
         "N/A": "#f2f2f2"
       };
-      e.target.style.backgroundColor = colors[v] || "#f2f2f2";
+      e.target.style.backgroundColor = colors[value] || "#f2f2f2";
     }
   });
 
-  // === ADD ROW FUNCTION ===
+  // === ADD ROW BUTTON ===
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
+
     const id = e.target.dataset.target;
     const table = document.getElementById(id);
     if (!table) return;
 
-    const first = table.querySelector("tbody tr");
-    const clone = first.cloneNode(true);
-    clone.querySelectorAll("input").forEach((i) => (i.value = ""));
-    clone.querySelectorAll("select").forEach((s) => {
-      s.selectedIndex = 0;
-      s.style.backgroundColor = "#f2f2f2";
+    const firstRow = table.querySelector("tbody tr");
+    const clone = firstRow.cloneNode(true);
+
+    clone.querySelectorAll("input").forEach((input) => input.value = "");
+    clone.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+      select.style.backgroundColor = "#f2f2f2";
     });
 
     table.querySelector("tbody").appendChild(clone);
   });
 
-  // === AUTO-EXPAND TEXTAREAS ===
+  // === AUTO EXPAND TEXTAREA ===
   document.addEventListener("input", (e) => {
     if (e.target.tagName === "TEXTAREA") {
       e.target.style.height = "auto";
@@ -121,14 +173,16 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // === PDF EXPORT ===
-  const pdfBtn = document.getElementById("pdfButton");
-  if (pdfBtn) {
-    pdfBtn.addEventListener("click", () => {
+  const pdfButton = document.getElementById("pdfButton");
+
+  if (pdfButton) {
+    pdfButton.addEventListener("click", () => {
       const active = document.querySelector(".page-section.active");
       import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then((html2pdf) =>
-          html2pdf.default().from(active).save(`${active.id}.pdf`)
-        );
+        .then((html2pdf) => {
+          html2pdf.default().from(active).save(`${active.id}.pdf`);
+        });
     });
   }
+
 });
