@@ -10,20 +10,31 @@ window.addEventListener("DOMContentLoaded", () => {
       const btn = e.target.closest(".nav-btn");
       if (!btn) return;
 
-      // Get target section ID
       const target = btn.dataset.target;
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Toggle active section
-      sections.forEach((s) => s.classList.remove("active"));
-      section.classList.add("active");
+      // Fade-out active section
+      const active = document.querySelector(".page-section.active");
+      if (active) {
+        active.classList.remove("active");
+        active.classList.add("fade-out");
+        setTimeout(() => {
+          active.classList.remove("fade-out");
+        }, 250);
+      }
+
+      // Delay fade-in for smoother transition
+      setTimeout(() => {
+        sections.forEach((s) => s.classList.remove("active"));
+        section.classList.add("active", "fade-in");
+        setTimeout(() => section.classList.remove("fade-in"), 250);
+      }, 150);
 
       // Highlight active button
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // Scroll to top smoothly
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -144,10 +155,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === ADD ROW BUTTON ===
+  // === ADD ROW FUNCTION ===
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
-
     const id = e.target.dataset.target;
     const table = document.getElementById(id);
     if (!table) return;
@@ -164,7 +174,7 @@ window.addEventListener("DOMContentLoaded", () => {
     table.querySelector("tbody").appendChild(clone);
   });
 
-  // === AUTO EXPAND TEXTAREA ===
+  // === AUTO EXPAND TEXTAREAS ===
   document.addEventListener("input", (e) => {
     if (e.target.tagName === "TEXTAREA") {
       e.target.style.height = "auto";
@@ -174,7 +184,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // === PDF EXPORT ===
   const pdfButton = document.getElementById("pdfButton");
-
   if (pdfButton) {
     pdfButton.addEventListener("click", () => {
       const active = document.querySelector(".page-section.active");
@@ -184,5 +193,24 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
-
 });
+
+/* === FADE ANIMATION CLASSES === */
+document.head.insertAdjacentHTML("beforeend", `
+  <style>
+    .fade-in {
+      animation: fadeIn 0.25s ease-in-out;
+    }
+    .fade-out {
+      animation: fadeOut 0.25s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(10px); }
+    }
+  </style>
+`);
