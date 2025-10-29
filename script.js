@@ -1,4 +1,7 @@
-// === MAIN SCRIPT ===
+// =======================================================
+// === MAIN SITE SCRIPT – myKaarma Interactive Checklist ===
+// =======================================================
+
 window.addEventListener("DOMContentLoaded", () => {
 
   // === SIDEBAR NAVIGATION ===
@@ -14,6 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById(target);
       if (!section) return;
 
+      // Fade-out current active section
       const active = document.querySelector(".page-section.active");
       if (active) {
         active.classList.remove("active");
@@ -21,15 +25,18 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => active.classList.remove("fade-out"), 250);
       }
 
+      // Fade-in new section
       setTimeout(() => {
         sections.forEach((s) => s.classList.remove("active"));
         section.classList.add("active", "fade-in");
         setTimeout(() => section.classList.remove("fade-in"), 250);
       }, 150);
 
+      // Highlight active button
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
+      // Smooth scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -44,7 +51,9 @@ window.addEventListener("DOMContentLoaded", () => {
         "Mobile Only": "#ffe0b3",
         "No": "#ffb3b3",
         "Not Trained": "#ffb3b3",
-        "N/A": "#f2f2f2"
+        "N/A": "#f2f2f2",
+        "Yes, each has their own": "#c9f7c0",
+        "Yes, but they are sharing": "#fff8b3"
       };
       e.target.style.backgroundColor = colors[value] || "#f2f2f2";
     }
@@ -57,9 +66,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(id);
     if (!table) return;
 
+    // Clone the first row as a template
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
 
+    // Reset values in cloned row
     clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
     clone.querySelectorAll("input[type='checkbox']").forEach((cb) => (cb.checked = false));
     clone.querySelectorAll("select").forEach((select) => {
@@ -79,12 +90,13 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === SORTABLEJS FOR DRAG + SCROLL ===
+  // === SORTABLEJS (for drag-and-drop tables) ===
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
   document.head.appendChild(sortableScript);
 
   sortableScript.onload = () => {
+    // Make all tables with class "draggable-table" sortable
     document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
       const table = tbody.closest("table");
       new Sortable(tbody, {
@@ -92,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
         handle: "td,th",
         ghostClass: "dragging",
         scroll: true,
-        scrollSensitivity: 70,
+        scrollSensitivity: 60,
         scrollSpeed: 15,
         onEnd: () => {
           if (table.id === "mpi-opcodes") updateRowNumbers();
@@ -100,7 +112,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Force scroll wrappers to behave properly
+    // Ensure all scroll wrappers work properly
     document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
       wrap.style.maxHeight = "340px";
       wrap.style.overflowY = "auto";
@@ -108,7 +120,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // === RESET ORDER BUTTON (MPI) ===
+  // === RESET ORDER BUTTON (for MPI Opcodes) ===
   const resetButton = document.getElementById("resetMpiOrder");
   if (resetButton) {
     resetButton.addEventListener("click", () => {
@@ -127,7 +139,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === UPDATE MPI ROW NUMBERS ===
+  // === AUTO UPDATE MPI ROW NUMBERS ===
   function updateRowNumbers() {
     const mpi = document.getElementById("mpi-opcodes");
     if (!mpi) return;
@@ -145,7 +157,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === PDF EXPORT ===
+  // === PDF EXPORT FUNCTION ===
   const pdfButton = document.getElementById("pdfButton");
   if (pdfButton) {
     pdfButton.addEventListener("click", () => {
