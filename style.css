@@ -201,12 +201,6 @@ textarea {
   margin-bottom: 32px;
 }
 
-/* === MPI CONTROLS ALIGNMENT === */
-.section-header + .mpi-controls {
-  margin-top: -4px;
-  margin-bottom: 6px;
-}
-
 /* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
@@ -219,7 +213,9 @@ textarea {
   overflow: hidden;
 }
 
-/* === SCROLL WRAPPER (HORIZONTAL + VERTICAL) === */
+/* =======================================================
+   FIX: HORIZONTAL SCROLL FOR WIDE TABLES (MPI + PICKUP)
+   ======================================================= */
 .scroll-wrapper {
   position: relative;
   display: block;
@@ -234,32 +230,23 @@ textarea {
   scrollbar-width: thin;
 }
 
-/* === TABLE CORE === */
+/* For long tables, let them grow and enable horizontal scroll */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
-  min-width: 100%;
+  min-width: 1200px; /* force enough width to scroll */
   width: max-content;
   table-layout: auto;
 }
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  padding: 8px 10px;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
 
-/* === HEADER COLORS === */
+/* Sticky header fix so it stays visible inside scroll */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 3;
   transition: background 0.2s;
 }
 .training-table th:hover { background: #f49c56; }
@@ -347,11 +334,6 @@ textarea {
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
 /* === RESET ORDER BUTTON === */
-.mpi-controls {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px 0 6px 0;
-}
 #resetMpiOrder {
   background: #fff3eb;
   color: var(--orange);
@@ -361,10 +343,23 @@ textarea {
   font-size: 13px;
   cursor: pointer;
   transition: 0.2s;
+  margin-right: 8px;
 }
 #resetMpiOrder:hover {
   background: var(--orange);
   color: #fff;
+}
+
+/* === OPTIONAL SCROLL HINT === */
+.scroll-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  pointer-events: none;
+  background: linear-gradient(to left, rgba(255,255,255,0.95), transparent);
 }
 
 /* =======================================================
