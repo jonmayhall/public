@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
+  <!-- Fonts + CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
     const css = document.getElementById("main-style");
@@ -15,9 +19,7 @@
 <body>
   <!-- === TOP BAR === -->
   <header id="topbar">
-    <div class="topbar-content">
-      <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
-    </div>
+    <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
   </header>
 
   <div id="app">
@@ -159,6 +161,7 @@
           <textarea placeholder="Type here…"></textarea>
         </div>
       </section>
+
       <!-- ========================================================= -->
       <!-- === PAGE 3 : TRAINING CHECKLIST === -->
       <!-- ========================================================= -->
@@ -168,12 +171,11 @@
       </section>
 
       <!-- ========================================================= -->
-      <!-- === PAGE 4 : OPCODES & PRICING (UPDATED) === -->
+      <!-- === PAGE 4 : OPCODES & PRICING === -->
       <!-- ========================================================= -->
       <section id="opcodes-pricing" class="page-section">
         <h1>Opcodes & Pricing</h1>
 
-        <!-- === OPCODES SETUP TABLE (STATIC SERVICE COLUMN) === -->
         <div class="section">
           <div class="section-header">Opcodes Setup</div>
           <div class="table-container">
@@ -255,22 +257,18 @@
           <div class="table-footer">
             <button class="add-row" data-target="opcodes-setup" type="button">+</button>
           </div>
-          <div class="section-block comment-box">
-            <h2>Notes</h2>
-            <textarea placeholder="Type here…"></textarea>
-          </div>
         </div>
 
-        <!-- === MPI OPCODES TABLE (FIXED HEADER + NEW COLUMNS) === -->
+        <!-- === MPI OPCODES TABLE === -->
         <div class="section">
           <div class="section-header">MPI Opcodes</div>
           <div class="mpi-controls">
             <button id="resetMpiOrder" type="button">↻ Reset Order</button>
           </div>
-          <div class="table-container" style="border-top:none;">
+          <div class="table-container">
             <div class="scroll-wrapper">
-              <table id="mpi-opcodes" class="training-table draggable-table" style="border-collapse:collapse; border:1px solid var(--border);">
-                <thead style="border-top:1px solid var(--border);">
+              <table id="mpi-opcodes" class="training-table draggable-table">
+                <thead>
                   <tr>
                     <th>MPI Line</th>
                     <th>Opcode</th>
@@ -318,6 +316,7 @@
           </div>
         </div>
       </section>
+
       <!-- ========================================================= -->
       <!-- === PAGE 5 : DMS INTEGRATION === -->
       <!-- ========================================================= -->
@@ -350,9 +349,9 @@
           <textarea placeholder="Type overall training summary here…"></textarea>
         </div>
       </section>
-
     </main>
   </div>
+
   <!-- === FLOATING SAVE BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
 
@@ -363,14 +362,8 @@
   <style>
     .fade-in { animation: fadeIn 0.25s ease-in-out; }
     .fade-out { animation: fadeOut 0.25s ease-in-out; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to   { opacity: 0; transform: translateY(10px); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+    @keyframes fadeOut { from { opacity: 1; transform: translateY(0);} to { opacity: 0; transform: translateY(10px);} }
   </style>
 </body>
 </html>
