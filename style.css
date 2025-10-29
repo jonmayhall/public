@@ -37,19 +37,16 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-
 .logo {
   width: 100px;
   display: block;
   margin: 0 auto 15px;
 }
-
 nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
 .nav-btn {
   background: none;
   border: none;
@@ -90,6 +87,7 @@ main {
   box-sizing: border-box;
 }
 .page-section.active { display: block; }
+
 h1 { color: var(--orange); margin-bottom: 20px; }
 
 /* === SECTION BLOCKS === */
