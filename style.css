@@ -1,8 +1,3 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist Stylesheet
-   ======================================================= */
-
-/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -14,7 +9,7 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE PAGE STRUCTURE === */
+/* === GLOBAL LAYOUT === */
 html, body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -23,7 +18,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === TOP BAR === */
 #topbar {
   background: linear-gradient(90deg, #000 0%, #333 100%);
   height: 70px;
@@ -47,12 +41,8 @@ html, body {
   padding-left: 20px;
 }
 
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.top-logo { height: 42px; }
 
-/* === APP LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
@@ -60,9 +50,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* === SIDEBAR === */
 #sidebar {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
@@ -76,12 +64,6 @@ html, body {
   overflow-y: auto;
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
 .nav-btn {
   background: none;
   border: none;
@@ -90,10 +72,9 @@ nav {
   text-align: left;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
   color: var(--ink);
+  transition: 0.2s;
 }
-
 .nav-btn:hover,
 .nav-btn.active {
   background: #fff3eb;
@@ -101,18 +82,14 @@ nav {
   font-weight: 600;
 }
 
-/* =======================================================
-   MAIN CONTENT AREA
-   ======================================================= */
+/* === MAIN AREA === */
 main {
   flex: 1;
   margin-left: 190px;
   padding: 30px 40px;
-  box-sizing: border-box;
   background: var(--gray-bg);
 }
 
-/* === PAGE SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -120,20 +97,13 @@ main {
   box-shadow: var(--shadow);
   padding: 28px 32px;
   margin: 0 auto 50px auto;
-  width: 100%;
   max-width: 1250px;
-  box-sizing: border-box;
 }
 .page-section.active { display: block; }
 
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-}
+h1 { color: var(--orange); margin-bottom: 20px; }
 
-/* =======================================================
-   SECTION BLOCKS AND ROWS
-   ======================================================= */
+/* === CHECKLIST BLOCKS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -141,17 +111,14 @@ h1 {
   margin-bottom: 25px;
   overflow: hidden;
 }
-
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
-  font-size: 16px;
   font-weight: 600;
+  font-size: 16px;
 }
-
-/* === CHECKLIST ROWS === */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -159,13 +126,7 @@ h1 {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
+.checklist-row input, .checklist-row select {
   width: 220px;
   padding: 8px 10px;
   border-radius: 10px;
@@ -173,104 +134,35 @@ h1 {
   background: #f4f4f4;
 }
 
-/* === TEXTAREA === */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
-}
-
-/* =======================================================
-   TRAINING TABLES AND OPCODES TABLES
-   ======================================================= */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange);
-}
-
-/* === TABLE CONTAINER === */
-.table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-bottom: none;
-  border-radius: 0;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.scroll-wrapper {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-height: 340px;
-  overflow-y: auto;
-  overflow-x: auto;
-  border-top: 1px solid var(--border);
-  background: #fff;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
-}
-
-/* === TABLE CORE === */
+/* === TABLES === */
 .training-table {
   border-collapse: collapse;
-  border-spacing: 0;
+  border: 1px solid var(--border);
   width: max-content;
   min-width: 100%;
-  border: 1px solid var(--border);
 }
-
-.training-table th,
-.training-table td {
-  white-space: nowrap;
+.training-table th, .training-table td {
   text-align: center;
   padding: 8px 10px;
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-
 .training-table th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  transition: background 0.2s;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
-.training-table th:first-child {
-  border-left: 1px solid var(--border);
-}
-.training-table th:last-child {
-  border-right: 1px solid var(--border);
-}
-.training-table th:hover { background: #f49c56; }
+.training-table th:first-child { border-left: 1px solid var(--border); }
 
-/* === FIRST COLUMN STICKY === */
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 4;
   background: #fff;
   border-right: 1px solid var(--border);
 }
 
-/* === TABLE INPUTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 180px;
@@ -278,50 +170,15 @@ textarea {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  color: var(--ink);
   font-size: 13px;
-  font-family: inherit;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
 }
 
-/* === CHECKBOXES === */
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 8px;
-}
+.verify { accent-color: var(--orange); margin-right: 8px; }
 
-/* === ROW NUMBER === */
-.row-number {
-  width: 60px;
-  font-weight: 600;
-  color: var(--orange);
-  text-align: center;
-}
+.row-number { color: var(--orange); font-weight: 600; }
 
-/* === ROW STRIPING & DRAG === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-.draggable-table tbody tr:hover {
-  background: #fff3eb;
-  transition: background 0.2s ease;
-}
-.dragging {
-  background: #fff6ef !important;
-  box-shadow: 0 2px 8px rgba(243,111,33,0.4);
-  cursor: grabbing;
-}
-
-/* === FOOTER BUTTONS === */
+/* === FOOTER BUTTON === */
 .table-footer {
-  width: 100%;
   border: 1px solid var(--border);
   border-top: none;
   background: #fff;
@@ -329,7 +186,6 @@ textarea {
   text-align: left;
   padding: 8px 12px;
   margin-bottom: 25px;
-  box-sizing: border-box;
 }
 .add-row {
   background: var(--orange);
@@ -344,11 +200,10 @@ textarea {
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
-/* === RESET ORDER BUTTON === */
 .mpi-controls {
   display: flex;
   justify-content: flex-end;
-  padding: 8px 0 6px 0;
+  padding: 8px 0 6px;
 }
 #resetMpiOrder {
   background: #fff3eb;
@@ -358,32 +213,13 @@ textarea {
   padding: 4px 10px;
   font-size: 13px;
   cursor: pointer;
-  transition: 0.2s;
 }
 #resetMpiOrder:hover {
   background: var(--orange);
   color: #fff;
 }
 
-/* === MPI HEADER ALIGNMENT FIX === */
-#mpi-opcodes {
-  border-collapse: collapse;
-  border: 1px solid var(--border);
-}
-#mpi-opcodes th {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-#mpi-opcodes th:first-child {
-  border-left: 1px solid var(--border);
-}
-#mpi-opcodes th:last-child {
-  border-right: 1px solid var(--border);
-}
-
-/* =======================================================
-   FLOATING BUTTON (PDF EXPORT)
-   ======================================================= */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
@@ -396,13 +232,10 @@ textarea {
   font-size: 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.2s;
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* =======================================================
-   RESPONSIVE DESIGN
-   ======================================================= */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
