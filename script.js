@@ -19,121 +19,19 @@ window.addEventListener("DOMContentLoaded", () => {
       if (active) {
         active.classList.remove("active");
         active.classList.add("fade-out");
-        setTimeout(() => {
-          active.classList.remove("fade-out");
-        }, 250);
+        setTimeout(() => active.classList.remove("fade-out"), 250);
       }
 
-      // Delay fade-in
+      // Fade-in
       setTimeout(() => {
         sections.forEach((s) => s.classList.remove("active"));
         section.classList.add("active", "fade-in");
         setTimeout(() => section.classList.remove("fade-in"), 250);
       }, 150);
 
-      // Highlight active button
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-
       window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // === TRAINING CHECKLIST TABLE GENERATION ===
-  const roles = [
-    {
-      id: "technicians",
-      title: "Technicians – Checklist",
-      rows: 3,
-      cols: [
-        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
-        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
-        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
-        "Notifications", "Filters"
-      ]
-    },
-    {
-      id: "advisors",
-      title: "Service Advisors – Checklist",
-      rows: 3,
-      cols: [
-        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
-        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
-        "ShopChat", "Status Change", "MPI Send", "SOP"
-      ]
-    },
-    {
-      id: "parts",
-      title: "Parts Representatives – Checklist",
-      rows: 2,
-      cols: [
-        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
-        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
-        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
-      ]
-    },
-    {
-      id: "bdc",
-      title: "BDC Representatives – Checklist",
-      rows: 2,
-      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
-    },
-    {
-      id: "pickup",
-      title: "Pick Up & Delivery Drivers – Checklist",
-      rows: 2,
-      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
-    }
-  ];
-
-  const container = document.getElementById("tables-container");
-  if (container) {
-    roles.forEach((role) => {
-      const div = document.createElement("div");
-      div.classList.add("section");
-      div.innerHTML = `
-        <div class="section-header">${role.title}</div>
-        <div class="table-container">
-          <div class="scroll-wrapper">
-            <table id="${role.id}" class="training-table">
-              <thead>
-                <tr>
-                  <th style="width:260px;">Name</th>
-                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
-                </tr>
-              </thead>
-              <tbody>
-                ${Array.from({ length: role.rows }).map(() => `
-                  <tr>
-                    <td><input type="text" placeholder="Name"></td>
-                    ${role.cols.map(() => `
-                      <td>
-                        <select>
-                          <option></option>
-                          <option value="Yes">Yes</option>
-                          <option value="Web Only">Web Only</option>
-                          <option value="Mobile Only">Mobile Only</option>
-                          <option value="No">No</option>
-                          <option value="Not Trained">Not Trained</option>
-                          <option value="N/A">N/A</option>
-                        </select>
-                      </td>
-                    `).join("")}
-                  </tr>
-                `).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="table-footer">
-          <button class="add-row" data-target="${role.id}" type="button">+</button>
-        </div>
-        <div class="section-block comment-box">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
-      `;
-      container.appendChild(div);
     });
   }
 
@@ -156,7 +54,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // === ADD ROW FUNCTION ===
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
-
     const id = e.target.dataset.target;
     const table = document.getElementById(id);
     if (!table) return;
@@ -164,7 +61,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
 
-    // reset inputs/selects
     clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
     clone.querySelectorAll("input[type='checkbox']").forEach((cb) => (cb.checked = false));
     clone.querySelectorAll("select").forEach((select) => {
@@ -184,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === SORTABLEJS SETUP ===
+  // === SORTABLEJS (SCROLL + DRAG FIXED) ===
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
   document.head.appendChild(sortableScript);
@@ -194,23 +90,33 @@ window.addEventListener("DOMContentLoaded", () => {
       const table = tbody.closest("table");
       new Sortable(tbody, {
         animation: 150,
-        handle: "td",
+        handle: "td,th",
         ghostClass: "dragging",
+        scroll: true,
+        scrollSensitivity: 60,
+        scrollSpeed: 15,
         onEnd: () => {
           if (table.id === "mpi-opcodes") updateRowNumbers();
         }
       });
     });
+
+    // Force proper scroll wrapper height
+    const wrappers = document.querySelectorAll(".scroll-wrapper");
+    wrappers.forEach((wrap) => {
+      wrap.style.maxHeight = "340px";
+      wrap.style.overflowY = "auto";
+      wrap.style.overflowX = "auto";
+    });
   };
 
-  // === AUTO UPDATE MPI ROW NUMBERS ===
+  // === UPDATE MPI ROW NUMBERS ===
   function updateRowNumbers() {
-    const mpiTable = document.getElementById("mpi-opcodes");
-    if (!mpiTable) return;
-    const rows = mpiTable.querySelectorAll("tbody tr");
-    rows.forEach((row, i) => {
-      const num = row.querySelector(".row-number");
-      if (num) num.textContent = i + 1;
+    const mpi = document.getElementById("mpi-opcodes");
+    if (!mpi) return;
+    mpi.querySelectorAll("tbody tr").forEach((row, i) => {
+      const cell = row.querySelector(".row-number");
+      if (cell) cell.textContent = i + 1;
     });
   }
 
@@ -218,11 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("change", (e) => {
     if (e.target.classList.contains("verify")) {
       const cell = e.target.parentElement;
-      if (e.target.checked) {
-        cell.style.backgroundColor = "#fff7ed";
-      } else {
-        cell.style.backgroundColor = "";
-      }
+      cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
     }
   });
 
