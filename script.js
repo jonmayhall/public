@@ -170,11 +170,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(id);
     if (!table) return;
 
-    // Clone the first row as a template
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
 
-    // Reset all values
     clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
     clone.querySelectorAll("select").forEach((select) => {
       select.selectedIndex = 0;
@@ -203,7 +201,6 @@ window.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(sortableScript);
 
   sortableScript.onload = () => {
-    // Make all draggable tables sortable
     document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
       const table = tbody.closest("table");
       new Sortable(tbody, {
@@ -217,13 +214,6 @@ window.addEventListener("DOMContentLoaded", () => {
           if (table.id === "mpi-opcodes") updateRowNumbers();
         }
       });
-    });
-
-    // Scroll fix for wrappers
-    document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
-      wrap.style.maxHeight = "340px";
-      wrap.style.overflowY = "auto";
-      wrap.style.overflowX = "auto";
     });
   };
 
@@ -282,14 +272,3 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-// === FADE ANIMATIONS ===
-document.head.insertAdjacentHTML("beforeend", `
-  <style>
-    .fade-in { animation: fadeIn 0.25s ease-in-out; }
-    .fade-out { animation: fadeOut 0.25s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
-  </style>
-`);
-
