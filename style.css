@@ -206,14 +206,15 @@ textarea {
   border: 1px solid var(--orange);
 }
 
+/* === TABLE CONTAINER === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: none; /* unify with footer */
+  border-radius: 0;
   box-shadow: var(--shadow);
-  margin-bottom: 30px;
   overflow: hidden;
 }
 
@@ -235,7 +236,6 @@ textarea {
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
-  border: 1px solid var(--border);
 }
 
 .training-table th,
@@ -248,7 +248,7 @@ textarea {
   border-bottom: 1px solid var(--border);
 }
 
-/* === TABLE HEADER COLORS === */
+/* === HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -259,18 +259,18 @@ textarea {
   transition: background 0.2s;
 }
 
-/* subtle hover tint on header */
+/* Header hover tint */
 .training-table th:hover {
   background: #f49c56;
 }
 
-/* first column header (Name) matches others */
+/* "Name" header matches others */
 .training-table th:first-child {
   background: var(--light-orange);
   color: #fff;
 }
 
-/* sticky first column cells */
+/* Sticky first column */
 .training-table td:first-child {
   position: sticky;
   left: 0;
@@ -293,7 +293,7 @@ textarea {
   transition: border 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
-/* orange accent hover/focus */
+/* Hover/Focus Orange Accent */
 .training-table input[type="text"]:hover,
 .training-table select:hover {
   border-color: var(--light-orange);
@@ -311,15 +311,16 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD ROW FOOTER === */
+/* === FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
-  border-top: none;
-  padding: 8px 12px;
+  border-top: none; /* connects to table border */
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
+  padding: 8px 12px;
+  margin-bottom: 25px; /* spacing before notes */
   box-sizing: border-box;
 }
 
