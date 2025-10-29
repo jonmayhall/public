@@ -7,7 +7,7 @@
 
   <link id="main-style" rel="stylesheet" href="style.css" />
   <script>
-    // Cache-bust CSS on reload
+    // Cache-bust stylesheet
     const css = document.getElementById("main-style");
     css.href = `style.css?v=${Date.now()}`;
   </script>
@@ -20,6 +20,7 @@
       <div class="sidebar-header">
         <img src="mykaarma_logo.png" alt="myKaarma logo" class="logo" />
       </div>
+
       <nav id="sidebar-nav">
         <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
         <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
@@ -35,6 +36,7 @@
       <!-- === PRE-TRAINING CHECKLIST === -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
+
         <div class="section-block">
           <h2>Handoff Notes</h2>
           <div class="checklist-row"><label>Deployment handoff?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
@@ -60,6 +62,7 @@
       <!-- === DEALERSHIP INFORMATION === -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
+
         <div class="section-block">
           <h2>Wi-Fi Information</h2>
           <div class="checklist-row"><label>Wi-Fi Name</label><input type="text" /></div>
@@ -105,7 +108,9 @@
     </main>
   </div>
 
+  <!-- === FLOATING PDF BUTTON === -->
   <button id="pdfButton" class="floating-btn">Save as PDF</button>
+
   <script src="script.js"></script>
 </body>
 </html>
