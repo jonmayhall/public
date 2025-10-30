@@ -15,6 +15,7 @@
 <aside id="sidebar">
 <nav id="sidebar-nav">
 <button type="button" class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
+  <button type="button" class="nav-btn" data-target="onsite-trainers">Onsite Trainers & Assigned CEM</button>
 <button type="button" class="nav-btn" data-target="dealership-info">Dealership Information</button>
 <button type="button" class="nav-btn" data-target="training-checklist">Training Checklist</button>
 <button type="button" class="nav-btn" data-target="opcodes-pricing">Opcodes & Pricing</button>
@@ -96,7 +97,30 @@
 
 <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
 </section>
-<!-- ========================================================= -->
+<section id="onsite-trainers" class="page-section">
+  <h1>Onsite Trainers & Assigned CEM</h1>
+
+  <div class="section-block">
+    <h2>Training Team</h2>
+    <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter Lead Trainer…"></div>
+    <div class="checklist-row"><label>Additional Trainer/s</label><input type="text" placeholder="Enter Additional Trainers…"></div>
+    <div class="checklist-row"><label>Product Champion/s</label><input type="text" placeholder="Enter Product Champion Names…"></div>
+  </div>
+
+  <div class="section-block">
+    <h2>Customer Engagement Manager</h2>
+    <div class="checklist-row"><label>CEM Assigned to Store</label><input type="text" placeholder="Enter CEM Name…"></div>
+    <div class="checklist-row"><label>Product Champion/s</label><input type="text" placeholder="Enter Champion Name and Role…"></div>
+    <div class="checklist-row"><label>Blockers / Need More Work</label><input type="text" placeholder="List blockers or follow-up items…"></div>
+  </div>
+
+  <div class="section-block comment-box">
+    <h2>Notes</h2>
+    <textarea id="onsite-notes" placeholder="Type notes for CEM here…"></textarea>
+  </div>
+</section>
+
+  <!-- ========================================================= -->
 <!-- PAGE 2 – DEALERSHIP INFORMATION -->
 <!-- ========================================================= -->
 <section id="dealership-info" class="page-section">
@@ -562,6 +586,11 @@
   <div class="section-block">
     <h2>Post Training Notes – Thursday</h2>
     <textarea placeholder="Type Thursday notes…"></textarea>
+  </div>
+
+  <div class="section-block">
+  <h2>Information for CEM Notes</h2>
+  <textarea id="summary-cem-notes" placeholder="Auto-filled from Onsite Trainers & Assigned CEM notes…"></textarea>
   </div>
 </section>
 
