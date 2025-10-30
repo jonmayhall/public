@@ -5,7 +5,7 @@
 /* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
-  --light-orange: #f8b17b;
+  --light-orange: #f8b17b; /* use this for all table header cells */
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
   --border: #dcdcdc;
@@ -43,18 +43,12 @@ h2 {
   align-items: center;
   justify-content: flex-start;
   padding-left: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 20;
 }
-
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.top-logo { height: 42px; object-fit: contain; }
 
 /* === APP LAYOUT === */
 #app {
@@ -64,50 +58,26 @@ h2 {
   overflow-x: hidden;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* === SIDEBAR === */
 #sidebar {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
   padding: 20px 8px;
   box-shadow: var(--shadow);
   position: fixed;
-  top: 70px;
-  bottom: 0;
+  top: 70px; bottom: 0;
   overflow-y: auto;
 }
-
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
+nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
+  background: none; border: none; padding: 10px 12px; font-size: 14px;
+  text-align: left; border-radius: var(--radius); cursor: pointer; transition: .2s; color: var(--ink);
 }
+.nav-btn:hover, .nav-btn.active { background: #fff3eb; color: var(--orange); font-weight: 600; }
 
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
-}
-
-/* =======================================================
-   MAIN CONTENT AREA
-   ======================================================= */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -129,9 +99,7 @@ main {
 }
 .page-section.active { display: block; }
 
-/* =======================================================
-   SECTION BLOCKS AND ROWS
-   ======================================================= */
+/* === SECTION BLOCKS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -139,10 +107,9 @@ main {
   margin-bottom: 25px;
   overflow: hidden;
 }
-
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
   font-size: 16px;
@@ -151,24 +118,12 @@ main {
 
 /* === CHECKLIST ROWS === */
 .checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
 }
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f9f9f9;
+.checklist-row label { flex: 1; font-size: 14px; padding-right: 20px; }
+.checklist-row input, .checklist-row select {
+  width: 220px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: #f9f9f9;
 }
 
 /* === TEXTAREAS === */
@@ -185,49 +140,23 @@ textarea {
   font-size: 14px;
 }
 
-/* =======================================================
-   CHAMPIONS & BLOCKERS
-   ======================================================= */
+/* === CHAMPIONS & BLOCKERS === */
 .add-btn {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 16px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: 0.2s;
+  background: var(--orange); color:#fff; border:none; border-radius:50%;
+  width:26px; height:26px; font-size:16px; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor:pointer; margin-top:6px; transition:.2s;
 }
-.add-btn:hover { background: #ff8b42; transform: scale(1.05); }
-
-#champion-container input,
-#blocker-container input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-bottom: 8px;
+.add-btn:hover { background:#ff8b42; transform: scale(1.05); }
+#champion-container input, #blocker-container input {
+  width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:8px; margin-bottom:8px;
 }
-
-#summary-champion-container div,
-#summary-blocker-container div {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin-bottom: 6px;
-  font-size: 14px;
+#summary-champion-container div, #summary-blocker-container div {
+  width:100%; background:#fff; border:1px solid var(--border); border-radius:8px; padding:8px 10px; margin-bottom:6px; font-size:14px;
 }
 
 /* =======================================================
-   FIXED TRAINING + OPCODES TABLE SYSTEM
+   TABLE SYSTEM (Training, Opcodes, DMS)
    ======================================================= */
 .section-header {
   background: var(--orange);
@@ -258,7 +187,7 @@ textarea {
   scrollbar-width: thin;
 }
 
-/* === TABLE CORE === */
+/* --- core table --- */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -266,9 +195,7 @@ textarea {
   min-width: 100%;
   table-layout: auto;
 }
-
-.training-table th,
-.training-table td {
+.training-table th, .training-table td {
   text-align: center;
   padding: 8px 10px;
   font-size: 13px;
@@ -277,40 +204,43 @@ textarea {
   white-space: nowrap;
 }
 
-/* === TABLE HEADERS (ALL ORANGE) === */
+/* --- header row = lighter orange everywhere --- */
 .training-table th {
-  background: var(--orange);
+  background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 4; /* base for headers */
 }
 
-/* === STICKY FIRST TWO COLUMNS === */
-.training-table th:first-child,
+/* --- column sizing for sticky columns --- */
+.training-table th:first-child, .training-table td:first-child {
+  width: 50px; min-width: 50px; max-width: 50px;
+}
+.training-table th:nth-child(2), .training-table td:nth-child(2) {
+  min-width: 300px; max-width: 300px;
+}
+
+/* --- sticky columns: header cells keep lighter orange; body cells stay white --- */
+.training-table th:first-child {
+  position: sticky; left: 0; z-index: 7; background: var(--light-orange); color:#fff;
+}
 .training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: var(--orange);
-  color: #fff;
-  z-index: 6;
+  position: sticky; left: 0; z-index: 6; background: #fff; color: var(--ink);
 }
 
-.training-table th:nth-child(2),
+.training-table th:nth-child(2) {
+  position: sticky; left: 50px; z-index: 7; background: var(--light-orange); color:#fff;
+}
 .training-table td:nth-child(2) {
-  position: sticky;
-  left: 50px;
-  background: var(--orange);
-  color: #fff;
-  z-index: 5;
-  min-width: 300px;
-  max-width: 300px;
+  position: sticky; left: 50px; z-index: 6; background: #fff; color: var(--ink);
 }
 
-/* === TABLE INPUTS === */
-.training-table input[type="text"],
-.training-table select {
+/* --- normal headers (beyond first two) already light orange --- */
+
+/* --- inputs --- */
+.training-table input[type="text"], .training-table select {
   width: 180px;
   padding: 6px 8px;
   border-radius: 8px;
@@ -320,27 +250,22 @@ textarea {
   font-size: 13px;
   font-family: inherit;
 }
-.training-table input[type="text"]:focus,
-.training-table select:focus {
+.training-table input[type="text"]:focus, .training-table select:focus {
   border-color: var(--orange);
   box-shadow: 0 0 3px rgba(243,111,33,0.4);
   outline: none;
   background: #fff9f5;
 }
 
-/* === CHECKBOX COLUMN === */
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 8px;
-}
+/* --- checkbox column --- */
+.verify { accent-color: var(--orange); transform: scale(1.1); }
 
-/* === ROWS === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-.training-table tbody tr:hover { background: #fff3eb; transition: background 0.2s; }
+/* --- rows --- */
+.training-table tbody tr:nth-child(odd) { background: #fff; }
+.training-table tbody tr:nth-child(even) { background: #fafafa; }
+.training-table tbody tr:hover { background: #fff3eb; transition: background .2s; }
 
-/* === FOOTER === */
+/* --- footer, attached to container --- */
 .table-footer {
   width: 100%;
   border-top: 1px solid var(--border);
@@ -355,57 +280,35 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 26px; height: 26px;
   font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
+  cursor: pointer; transition: .2s;
 }
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
+.add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
-/* === RESET ORDER BUTTON === */
+/* --- MPI controls --- */
 .mpi-controls {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px 0 6px 0;
+  display: flex; justify-content: flex-end; padding: 8px 0 6px 0;
 }
 #resetMpiOrder {
-  background: #fff3eb;
-  color: var(--orange);
+  background: #fff3eb; color: var(--orange);
   border: 1px solid var(--orange);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.2s;
+  border-radius: 8px; padding: 4px 10px;
+  font-size: 13px; cursor: pointer; transition: .2s;
 }
 #resetMpiOrder:hover { background: var(--orange); color: #fff; }
 
-/* =======================================================
-   FLOATING BUTTON
-   ======================================================= */
+/* === FLOATING BUTTON === */
 .floating-btn {
-  position: fixed;
-  top: 90px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
+  position: fixed; top: 90px; right: 25px;
+  background: var(--orange); color: #fff;
+  border: none; border-radius: var(--radius);
+  padding: 10px 18px; font-size: 14px;
+  cursor: pointer; box-shadow: var(--shadow); transition: .2s;
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* =======================================================
-   RESPONSIVE DESIGN
-   ======================================================= */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
