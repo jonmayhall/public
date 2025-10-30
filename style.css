@@ -98,9 +98,6 @@ html, body {
   margin-bottom: 4px;
   border-radius: var(--radius);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   position: relative;
   transition: all 0.25s ease;
 }
@@ -122,29 +119,14 @@ html, body {
   color: var(--orange);
   transform: translateX(2px);
 }
-.nav-btn:hover::before {
-  background: rgba(243,111,33,0.4);
-}
+.nav-btn:hover::before { background: rgba(243,111,33,0.4); }
 
 .nav-btn.active {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
 }
-.nav-btn.active::before {
-  background: #fff;
-}
-
-/* Dark Mode refinements */
-@media (prefers-color-scheme: dark) {
-  .nav-btn:hover {
-    background: rgba(243,111,33,0.25);
-  }
-  .nav-btn.active {
-    background: var(--orange);
-    color: #fff;
-  }
-}
+.nav-btn.active::before { background: #fff; }
 
 /* =======================================================
    MAIN CONTENT
@@ -154,7 +136,6 @@ main {
   margin-left: 210px;
   padding: 32px;
   background: var(--bg);
-  transition: background 0.3s ease;
 }
 .page-section {
   display: none;
@@ -214,13 +195,6 @@ h2 {
   border: 1px solid var(--border);
   background: #f4f4f4;
   font-size: 14px;
-  transition: 0.2s;
-}
-.checklist-row input:focus,
-.checklist-row select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  background: #fff;
 }
 textarea {
   width: calc(100% - 32px);
@@ -272,11 +246,38 @@ textarea {
   color: #fff;
   font-weight: 600;
 }
+
+/* === STICKY FIRST COLUMN (Name / Service) === */
+.training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
+  z-index: 5;
   background: var(--surface);
+  border-right: 1px solid var(--border);
 }
+
+/* === ENHANCE STICKY CELLS === */
+#opcodes-setup th:first-child,
+#opcodes-setup td:first-child {
+  min-width: 240px;
+}
+#opcodes-setup td:first-child,
+#opcodes-setup td:first-child input[type="text"],
+#technicians td:first-child,
+#advisors td:first-child,
+#parts td:first-child,
+#bdc td:first-child,
+#pickup td:first-child {
+  background: var(--surface);
+  font-weight: 500;
+  color: var(--ink);
+  z-index: 6;
+}
+
+/* =======================================================
+   TABLE INPUTS
+   ======================================================= */
 .training-table input[type="text"],
 .training-table select {
   width: 170px;
@@ -286,15 +287,8 @@ textarea {
   background: #f2f2f2;
   font-size: 13px;
 }
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 6px;
-}
-.row-number {
-  color: var(--orange);
-  font-weight: 600;
-}
+.verify { accent-color: var(--orange); transform: scale(1.1); margin-right: 6px; }
+.row-number { color: var(--orange); font-weight: 600; }
 .table-footer {
   border: 1px solid var(--border);
   border-top: none;
@@ -334,10 +328,7 @@ textarea {
   font-size: 13px;
   cursor: pointer;
 }
-#resetMpiOrder:hover {
-  background: var(--orange);
-  color: #fff;
-}
+#resetMpiOrder:hover { background: var(--orange); color: #fff; }
 
 /* =======================================================
    FLOATING SAVE BUTTON
