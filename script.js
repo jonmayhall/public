@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === TRAINING TABLES (build with full cells/dropdowns) ===
+  // === TRAINING TABLES (Dynamic + Wider Name Columns) ===
   // =======================================================
   const YESNO = `
     <select>
@@ -59,7 +59,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const tcPage = document.getElementById("training-checklist");
   if (tcPage) {
-    // Remove any old static sections to avoid duplication
     tcPage.querySelectorAll(".section").forEach(s => s.remove());
 
     roles.forEach((role) => {
@@ -73,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
               <thead>
                 <tr>
                   <th>Completed</th>
-                  <th style="width:260px;">Name</th>
+                  <th style="width:340px;">Name</th>
                   ${role.cols.map(c=>`<th>${c}</th>`).join("")}
                 </tr>
               </thead>
@@ -81,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 ${Array.from({length: role.rows}).map(()=>`
                   <tr>
                     <td><input type="checkbox" class="verify" /></td>
-                    <td><input type="text" placeholder="Name" /></td>
+                    <td><input type="text" placeholder="Name" style="width:320px;" /></td>
                     ${role.cols.map(()=>`<td>${YESNO}</td>`).join("")}
                   </tr>
                 `).join("")}
@@ -100,47 +99,32 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === FOOTER NORMALIZER (pairs each footer with table) ===
+  // === FOOTER NORMALIZER ===
   // =======================================================
-  (function normalizeFooters() {
-    // For every footer on the page, move it inside the correct table-container.
-    document.querySelectorAll(".table-footer").forEach(footer => {
-      const btn = footer.querySelector(".add-row");
-      const targetId = btn?.dataset?.target;
-      let container = null;
-
-      if (targetId) {
-        const table = document.getElementById(targetId);
-        if (table) container = table.closest(".table-container");
-      }
-
-      // Fallback: use the nearest previous .table-container in the same .section
-      if (!container) {
-        const sec = footer.closest(".section") || document;
-        const containers = Array.from(sec.querySelectorAll(".table-container"));
-        // choose the last container that appears before this footer
-        container = containers.reverse().find(c => c.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING) || null;
-      }
-
-      if (container && !container.contains(footer)) {
-        container.appendChild(footer);
-      }
-
-      // Ensure Notes (comment-box) comes AFTER the table-container visually
-      const section = footer.closest(".section");
-      if (section) {
-        const comment = section.querySelector(".comment-box");
-        if (comment && container && container.nextElementSibling !== comment) {
-          section.appendChild(comment);
-        }
-        // mark container so CSS can style joined border/radius
-        if (container) container.classList.add("has-footer");
-      }
-    });
-  })();
+  document.querySelectorAll(".table-footer").forEach(footer => {
+    const btn = footer.querySelector(".add-row");
+    const targetId = btn?.dataset?.target;
+    let container = null;
+    if (targetId) {
+      const table = document.getElementById(targetId);
+      if (table) container = table.closest(".table-container");
+    }
+    if (!container) {
+      const sec = footer.closest(".section") || document;
+      const containers = Array.from(sec.querySelectorAll(".table-container"));
+      container = containers.reverse().find(c => c.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING) || null;
+    }
+    if (container && !container.contains(footer)) container.appendChild(footer);
+    const section = footer.closest(".section");
+    if (section) {
+      const comment = section.querySelector(".comment-box");
+      if (comment && container && container.nextElementSibling !== comment) section.appendChild(comment);
+      if (container) container.classList.add("has-footer");
+    }
+  });
 
   // =======================================================
-  // === ADD ROW (works for all tables) ===
+  // === ADD ROW ===
   // =======================================================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
@@ -150,32 +134,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const tbody = table.querySelector("tbody");
     const clone = tbody.querySelector("tr").cloneNode(true);
-
     clone.querySelectorAll("input[type='text']").forEach(el => el.value = "");
     clone.querySelectorAll("input[type='checkbox']").forEach(el => el.checked = false);
     clone.querySelectorAll("select").forEach(el => { el.selectedIndex = 0; el.style.backgroundColor = "#f2f2f2"; });
-
     tbody.appendChild(clone);
-    if (id === "mpi-opcodes") updateRowNumbers();
   });
 
   // =======================================================
-  // === SELECT COLOR CODING + VERIFY HIGHLIGHT ===
+  // === DROPDOWN COLOR CODING + VERIFY HIGHLIGHT ===
   // =======================================================
   const bgColors = {
-    "Yes": "#c9f7c0",
-    "Web Only": "#fff8b3",
-    "Mobile Only": "#ffe0b3",
-    "No": "#ffb3b3",
-    "Not Trained": "#ffb3b3",
-    "N/A": "#f2f2f2",
-    "Yes, each has their own": "#c9f7c0",
+    "Yes": "#c9f7c0","Web Only": "#fff8b3","Mobile Only": "#ffe0b3","No": "#ffb3b3",
+    "Not Trained": "#ffb3b3","N/A": "#f2f2f2","Yes, each has their own": "#c9f7c0",
     "Yes, but they are sharing": "#fff8b3"
   };
   document.addEventListener("change", (e) => {
-    if (e.target.tagName === "SELECT") {
-      e.target.style.backgroundColor = bgColors[e.target.value] || "#f2f2f2";
-    }
+    if (e.target.tagName === "SELECT") e.target.style.backgroundColor = bgColors[e.target.value] || "#f2f2f2";
     if (e.target.classList.contains("verify")) {
       const cell = e.target.closest("td");
       if (cell) cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "#fff";
@@ -193,7 +167,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // =======================================================
-  // === SORTABLEJS (draggable rows for draggable-table) ===
+  // === SORTABLEJS (for drag/drop rows) ===
   // =======================================================
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
@@ -208,50 +182,13 @@ window.addEventListener("DOMContentLoaded", () => {
         ghostClass: "dragging",
         scroll: true,
         scrollSensitivity: 60,
-        scrollSpeed: 20,
-        onEnd: () => { if (table && table.id === "mpi-opcodes") updateRowNumbers(); }
+        scrollSpeed: 20
       });
-    });
-
-    document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
-      wrap.style.maxHeight = "340px";
-      wrap.style.overflowY = "auto";
-      wrap.style.overflowX = "auto";
     });
   };
 
   // =======================================================
-  // === MPI Reset Order (Page 4) ===
-  // =======================================================
-  const resetButton = document.getElementById("resetMpiOrder");
-  if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      const mpiTable = document.getElementById("mpi-opcodes");
-      if (!mpiTable) return;
-      const tbody = mpiTable.querySelector("tbody");
-      const rows = Array.from(tbody.querySelectorAll("tr"));
-      rows.sort((a, b) => {
-        const aNum = parseInt(a.querySelector(".row-number")?.textContent || "0", 10);
-        const bNum = parseInt(b.querySelector(".row-number")?.textContent || "0", 10);
-        return aNum - bNum;
-      });
-      tbody.innerHTML = "";
-      rows.forEach((r) => tbody.appendChild(r));
-      updateRowNumbers();
-    });
-  }
-
-  function updateRowNumbers() {
-    const mpi = document.getElementById("mpi-opcodes");
-    if (!mpi) return;
-    mpi.querySelectorAll("tbody tr").forEach((row, i) => {
-      const numCell = row.querySelector(".row-number");
-      if (numCell) numCell.textContent = String(i + 1);
-    });
-  }
-
-  // =======================================================
-  // === PDF EXPORT (active section) ===
+  // === PDF EXPORT ===
   // =======================================================
   const pdfButton = document.getElementById("pdfButton");
   if (pdfButton) {
@@ -262,30 +199,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // =======================================================
-  // === Visual patch to join header+table+footer box ===
-  // =======================================================
+  // === Fade Animations ===
   document.head.insertAdjacentHTML("beforeend", `
     <style>
-      .section .section-header{border:1px solid var(--border);border-bottom:none;border-radius:var(--radius) var(--radius) 0 0;}
-      .table-container.has-footer{border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;background:#fff;}
-      .table-container.has-footer>.table-footer{border-top:1px solid var(--border);background:#fff;padding:8px 12px;border-radius:0 0 var(--radius) var(--radius);margin:0;}
-      .training-table{border-collapse:separate;border-spacing:0;}
-      .training-table th,.training-table td{border:1px solid var(--border);}
-      .training-table th{border-top:none;}
-      .training-table th:first-child{border-left:none;}
-      .training-table th:last-child{border-right:none;}
+      .fade-in { animation: fadeIn 0.25s ease-in-out; }
+      .fade-out { animation: fadeOut 0.25s ease-in-out; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
     </style>
   `);
-
 });
-
-// === FADE ANIMATIONS ===
-document.head.insertAdjacentHTML("beforeend", `
-  <style>
-    .fade-in { animation: fadeIn 0.25s ease-in-out; }
-    .fade-out { animation: fadeOut 0.25s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
-  </style>
-`);
