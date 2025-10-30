@@ -447,3 +447,118 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* =======================================================
+   TABLE BORDER + FOOTER ALIGNMENT FIXES
+   ======================================================= */
+
+/* Make sure table containers and notes are clearly separated */
+.section {
+  margin-bottom: 35px;
+}
+
+.table-container {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.scroll-wrapper {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 360px;
+  background: #fff;
+}
+
+/* Fix footer alignment */
+.table-footer {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  vertical-align: middle;
+}
+.add-row:hover { background: #ff8b42; transform: scale(1.05); }
+
+/* Notes boxes start below the footer cleanly */
+.section-block.comment-box {
+  margin-top: 14px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* =======================================================
+   DMS INTEGRATION TABLE STYLING
+   ======================================================= */
+#dms-integration .training-table th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#dms-integration .training-table td,
+#dms-integration .training-table th {
+  padding: 10px 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#dms-integration .training-table td:first-child,
+#dms-integration .training-table th:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 3;
+}
+
+/* Slightly taller cells for readability */
+.training-table td {
+  height: 36px;
+  vertical-align: middle;
+}
+
+/* Scroll-wrapper fix for large DMS tables */
+#dms-integration .scroll-wrapper {
+  max-height: 420px;
+}
+
+/* Lighter orange for row headers */
+.section-header {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--light-orange);
+}
+
+/* Ensure sticky cells stay aligned on horizontal scroll */
+.training-table th,
+.training-table td {
+  background-clip: padding-box;
+}
+
