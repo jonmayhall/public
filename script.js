@@ -1,185 +1,115 @@
 // =======================================================
-// === myKaarma Interactive Training Checklist Script ===
+// === FIXED SCRIPT FOR TRAINING CHECKLIST & TABLES ===
 // =======================================================
-
 window.addEventListener("DOMContentLoaded", () => {
+
   // === SIDEBAR NAVIGATION ===
   const nav = document.getElementById("sidebar-nav");
   const sections = document.querySelectorAll(".page-section");
-
   if (nav) {
     nav.addEventListener("click", (e) => {
       const btn = e.target.closest(".nav-btn");
       if (!btn) return;
-      const section = document.getElementById(btn.dataset.target);
+      const target = btn.dataset.target;
+      const section = document.getElementById(target);
       if (!section) return;
-
-      nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      sections.forEach((s) => s.classList.remove("active"));
+      document.querySelector(".page-section.active")?.classList.remove("active");
       section.classList.add("active");
+      nav.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
-  // === AUTO-RESIZE TEXTAREAS ===
-  document.addEventListener("input", (e) => {
-    if (e.target.tagName === "TEXTAREA") {
-      e.target.style.height = "auto";
-      e.target.style.height = e.target.scrollHeight + "px";
-    }
-  });
+  // === TRAINING CHECKLIST TABLE BUILDER ===
+  const roles = [
+    {id:"technicians",title:"Technicians – Checklist",cols:["DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment","Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts","Adding Media","Status Change","Notifications","Filters"],rows:3},
+    {id:"advisors",title:"Service Advisors – Checklist",cols:["DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar","RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR","ShopChat","Status Change","MPI Send","SOP"],rows:3},
+    {id:"parts",title:"Parts Representatives – Checklist",cols:["DMS ID","Login","Web App","Workflow","Search Bar","Take Function","DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR","ShopChat / Parts","Status Change","Notifications","Filters"],rows:2},
+    {id:"bdc",title:"BDC Representatives – Checklist",cols:["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"],rows:2},
+    {id:"pickup",title:"Pick Up & Delivery Drivers – Checklist",cols:["DMS ID","Login","PU&D","Notifications"],rows:2}
+  ];
 
-  // === NOTE SYNC UTILITY ===
-  function syncNotes(sourceId, targetId) {
-    const src = document.getElementById(sourceId);
-    const tgt = document.getElementById(targetId);
-    if (!src || !tgt) return;
-
-    // copy on typing
-    src.addEventListener("input", () => {
-      tgt.value = src.value;
-      tgt.style.height = "auto";
-      tgt.style.height = tgt.scrollHeight + "px";
-      localStorage.setItem(targetId, tgt.value);
+  const container=document.getElementById("tables-container");
+  if(container){
+    roles.forEach(role=>{
+      const section=document.createElement("div");
+      section.classList.add("section");
+      const table=`
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table id="${role.id}" class="training-table">
+              <thead><tr>
+                <th></th><th style="width:300px;">Name</th>
+                ${role.cols.map(c=>`<th>${c}</th>`).join("")}
+              </tr></thead>
+              <tbody>
+                ${Array.from({length:role.rows}).map(()=>`
+                  <tr>
+                    <td><input type="checkbox" class="verify"></td>
+                    <td><input type="text" placeholder="Name"></td>
+                    ${role.cols.map(()=>`
+                      <td>
+                        <select>
+                          <option></option><option>Yes</option><option>Web Only</option>
+                          <option>Mobile Only</option><option>No</option>
+                          <option>Not Trained</option><option>N/A</option>
+                        </select>
+                      </td>`).join("")}
+                  </tr>`).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-footer">
+          <button class="add-row" data-target="${role.id}" type="button">+</button>
+        </div>
+        <div class="section-block comment-box">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>`;
+      section.innerHTML=table;
+      container.appendChild(section);
     });
-
-    // refresh when visiting summary
-    document.querySelector(`[data-target="training-summary"]`)
-      ?.addEventListener("click", () => {
-        tgt.value = src.value;
-        tgt.style.height = "auto";
-        tgt.style.height = tgt.scrollHeight + "px";
-      });
   }
 
-  // === CONNECT PAGE NOTES ===
-  syncNotes("pretraining-notes", "summary-pretraining-notes");
-  syncNotes("training-notes", "summary-tuesday-notes");
-  syncNotes("opcodes-notes", "summary-opcodes-notes");
-  syncNotes("dms-notes", "summary-opcodes-notes");
-  syncNotes("onsite-notes", "summary-cem-notes");
-
-  // === LOCAL-STORAGE PERSISTENCE ===
-  document.addEventListener("input", (e) => {
-    if (e.target.tagName === "TEXTAREA" && e.target.id) {
-      localStorage.setItem(e.target.id, e.target.value);
-    }
+  // === ADD ROW ===
+  document.addEventListener("click",(e)=>{
+    if(!e.target.classList.contains("add-row"))return;
+    const id=e.target.dataset.target;
+    const table=document.getElementById(id);
+    if(!table)return;
+    const first=table.querySelector("tbody tr");
+    const clone=first.cloneNode(true);
+    clone.querySelectorAll("input").forEach(i=>i.value="");
+    clone.querySelectorAll("select").forEach(s=>{s.value="";s.style.background="#f2f2f2";});
+    table.querySelector("tbody").appendChild(clone);
   });
 
-  document.querySelectorAll("textarea[id]").forEach((area) => {
-    const saved = localStorage.getItem(area.id);
-    if (saved) {
-      area.value = saved;
-      area.style.height = "auto";
-      area.style.height = area.scrollHeight + "px";
-    }
+  // === SELECT COLOR CODING ===
+  document.addEventListener("change",(e)=>{
+    if(e.target.tagName!=="SELECT")return;
+    const v=e.target.value;
+    const colors={
+      "Yes":"#c9f7c0",
+      "Web Only":"#fff8b3",
+      "Mobile Only":"#ffe0b3",
+      "No":"#ffb3b3",
+      "Not Trained":"#ffb3b3",
+      "N/A":"#f2f2f2"
+    };
+    e.target.style.backgroundColor=colors[v]||"#f2f2f2";
   });
 
-  // =======================================================
-  // === CHAMPIONS & BLOCKERS SECTION ===
-  // =======================================================
-  const champContainer = document.getElementById("champion-container");
-  const blockContainer = document.getElementById("blocker-container");
-  const addChampion = document.getElementById("add-champion");
-  const addBlocker = document.getElementById("add-blocker");
-  const summaryChamp = document.getElementById("summary-champion-container");
-  const summaryBlock = document.getElementById("summary-blocker-container");
-
-  function saveCBData() {
-    const champs = [...document.querySelectorAll(".champion-input")]
-      .map((i) => i.value.trim())
-      .filter(Boolean);
-    const blocks = [...document.querySelectorAll(".blocker-input")]
-      .map((i) => i.value.trim())
-      .filter(Boolean);
-    localStorage.setItem("champions", JSON.stringify(champs));
-    localStorage.setItem("blockers", JSON.stringify(blocks));
-  }
-
-  function loadCBData() {
-    const champs = JSON.parse(localStorage.getItem("champions") || "[]");
-    const blocks = JSON.parse(localStorage.getItem("blockers") || "[]");
-
-    if (champContainer) {
-      champContainer.innerHTML = "";
-      champs.forEach((v) => {
-        const input = document.createElement("input");
-        input.type = "text";
-        input.placeholder = "User Name & Role…";
-        input.className = "champion-input";
-        input.value = v;
-        champContainer.appendChild(input);
-      });
-    }
-    if (blockContainer) {
-      blockContainer.innerHTML = "";
-      blocks.forEach((v) => {
-        const input = document.createElement("input");
-        input.type = "text";
-        input.placeholder = "User Name & Role…";
-        input.className = "blocker-input";
-        input.value = v;
-        blockContainer.appendChild(input);
-      });
-    }
-  }
-
-  function renderCBSummary() {
-    const champs = JSON.parse(localStorage.getItem("champions") || "[]");
-    const blocks = JSON.parse(localStorage.getItem("blockers") || "[]");
-    if (summaryChamp)
-      summaryChamp.innerHTML = champs.length
-        ? champs.map((c) => `<div>${c}</div>`).join("")
-        : "<em>No data entered</em>";
-    if (summaryBlock)
-      summaryBlock.innerHTML = blocks.length
-        ? blocks.map((b) => `<div>${b}</div>`).join("")
-        : "<em>No data entered</em>";
-  }
-
-  if (addChampion)
-    addChampion.addEventListener("click", () => {
-      const i = document.createElement("input");
-      i.type = "text";
-      i.placeholder = "User Name & Role…";
-      i.className = "champion-input";
-      champContainer.appendChild(i);
-      saveCBData();
-    });
-
-  if (addBlocker)
-    addBlocker.addEventListener("click", () => {
-      const i = document.createElement("input");
-      i.type = "text";
-      i.placeholder = "User Name & Role…";
-      i.className = "blocker-input";
-      blockContainer.appendChild(i);
-      saveCBData();
-    });
-
-  document.addEventListener("input", (e) => {
-    if (e.target.classList.contains("champion-input") ||
-        e.target.classList.contains("blocker-input")) {
-      saveCBData();
-    }
-  });
-
-  loadCBData();
-  document.querySelector(`[data-target="training-summary"]`)
-    ?.addEventListener("click", renderCBSummary);
-
-  // =======================================================
-  // === SAVE-AS-PDF (ACTIVE SECTION) ===
-  // =======================================================
-  const pdfButton = document.getElementById("pdfButton");
-  if (pdfButton) {
-    pdfButton.addEventListener("click", () => {
-      const active = document.querySelector(".page-section.active");
+  // === PDF EXPORT ===
+  const pdfButton=document.getElementById("pdfButton");
+  if(pdfButton){
+    pdfButton.addEventListener("click",()=>{
+      const active=document.querySelector(".page-section.active");
       import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then((html2pdf) => {
-          html2pdf.default().from(active).save(`${active.id}.pdf`);
-        });
+      .then(html2pdf=>{html2pdf.default().from(active).save(`${active.id}.pdf`);});
     });
   }
+
 });
