@@ -202,3 +202,25 @@ window.addEventListener("DOMContentLoaded", () => {
     </style>
   `);
 });
+// =======================================================
+// === LOCAL STORAGE PERSISTENCE FOR ALL TEXTAREAS ===
+// =======================================================
+
+// Auto-save notes to localStorage
+document.addEventListener("input", (e) => {
+  if (e.target.tagName === "TEXTAREA" && e.target.id) {
+    localStorage.setItem(e.target.id, e.target.value);
+  }
+});
+
+// Restore notes from localStorage when the page loads
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("textarea[id]").forEach((area) => {
+    const saved = localStorage.getItem(area.id);
+    if (saved) {
+      area.value = saved;
+      area.style.height = "auto";
+      area.style.height = area.scrollHeight + "px"; // auto-expand
+    }
+  });
+});
