@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist — Clean Full CSS
+   myKaarma Interactive Training Checklist – Final Style
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -93,7 +93,7 @@ nav {
 }
 
 /* =======================================================
-   MAIN CONTENT
+   MAIN CONTENT AREA
    ======================================================= */
 main {
   flex: 1;
@@ -122,94 +122,37 @@ h1 {
 }
 
 /* =======================================================
-   SECTION STRUCTURE
+   SECTION BLOCKS
    ======================================================= */
 .section {
-  margin-bottom: 32px;
+  margin-bottom: 35px;
   position: relative;
 }
-
-/* Unified orange header for all tables */
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
-  border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
   font-size: 16px;
-  line-height: 1.2;
-}
-
-/* === CHECKLIST BLOCKS === */
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-/* === CHECKLIST ROWS === */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-}
-
-/* === TEXTAREA === */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
 }
 
 /* =======================================================
-   TABLE STYLING — UNIVERSAL
+   TABLES
    ======================================================= */
 .table-container {
-  width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-bottom: none;
+  border-top: none;
   border-radius: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
-  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .scroll-wrapper {
-  position: relative;
   display: block;
   width: 100%;
   max-height: 340px;
@@ -221,34 +164,188 @@ textarea {
   scrollbar-width: thin;
 }
 
-/* Core Table */
+/* Table design */
 .training-table {
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
 }
-
 .training-table th,
 .training-table td {
   white-space: nowrap;
   text-align: center;
-  padding: 8px 10px;
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background-clip: padding-box;
 }
 
-/* Table Headers — MyKaarma Orange */
+/* Rounded, modern cells */
+.training-table td {
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+.training-table tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Header row — lighter orange */
 .training-table th {
-  background: var(--orange);
+  background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 3;
+  padding: 9px 10px;
+  border-radius: 0;
 }
-.training-table th:hover { background: #ff8848; }
+.training-table th:hover {
+  background: #ff9b5f;
+}
 
-/
+/* Sticky columns */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: #fff;
+}
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  position: sticky;
+  left: 60px;
+  z-index: 4;
+  background: #fff;
+}
+
+/* Input fields */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  color: var(--ink);
+  font-size: 13px;
+  font-family: inherit;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* Service, Name, MPI columns — full width text boxes */
+.training-table td:nth-child(2) input[type="text"],
+.training-table th[style*="Service"] + td input[type="text"],
+.training-table th[style*="MPI"] + td input[type="text"] {
+  width: 100%;
+  max-width: none;
+}
+
+/* Checkboxes */
+.verify {
+  accent-color: var(--orange);
+  transform: scale(1.1);
+  margin-right: 8px;
+}
+
+/* Footer with Add button — part of the table border */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
+
+/* Notes section separate (not touching table) */
+.section-block.comment-box {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* =======================================================
+   DMS INTEGRATION PAGE
+   ======================================================= */
+#dms-integration .training-table th {
+  background: var(--light-orange);
+  color: #fff;
+}
+#dms-integration .training-table th:first-child,
+#dms-integration .training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 4;
+}
+#dms-integration .training-table th:nth-child(2),
+#dms-integration .training-table td:nth-child(2) {
+  position: static;
+  background: inherit;
+}
+
+/* =======================================================
+   FLOATING SAVE BUTTON
+   ======================================================= */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.floating-btn:hover {
+  background: #ff8848;
+}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
+}
