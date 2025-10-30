@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist — CLEAN LAYOUT FIX
+   myKaarma Interactive Training Checklist — CLEAN FINAL
    ======================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -36,19 +36,31 @@ html, body { margin: 0; background: var(--gray-bg); color: var(--ink); overflow-
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px; padding: 20px 8px;
+  width: 190px;
+  padding: 20px 8px;
   box-shadow: var(--shadow);
-  position: fixed; top: 70px; bottom: 0;
+  position: fixed;
+  top: 70px;
+  bottom: 0;
   overflow-y: auto;
 }
 nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none; border: none; padding: 10px 12px;
-  font-size: 14px; text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
   border-radius: var(--radius);
-  cursor: pointer; transition: 0.2s; color: var(--ink);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--ink);
 }
-.nav-btn:hover, .nav-btn.active { background: #fff3eb; color: var(--orange); font-weight: 600; }
+.nav-btn:hover, .nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
+}
 
 /* === MAIN CONTENT === */
 main {
@@ -110,7 +122,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES — FIXED GRIDS, SPACING, ROUNDED EDGES
+   TABLES — CLEAN GRID + ROUNDED HEADERS/FOOTERS
    ======================================================= */
 .section-header {
   background: var(--orange);
@@ -125,10 +137,10 @@ textarea {
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-bottom: none;
-  border-radius: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin-bottom: 20px;
 }
 .scroll-wrapper {
   position: relative;
@@ -163,34 +175,50 @@ textarea {
 .training-table th:first-child { border-left: none; }
 .training-table th:last-child { border-right: none; }
 
-/* === STICKY COLUMNS (PERFECTLY ALIGNED) === */
+/* === STICKY COLUMNS === */
 .training-table th:first-child,
 .training-table td:first-child {
-  position: sticky; left: 0; z-index: 10;
+  position: sticky;
+  left: 0;
+  z-index: 10;
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  width: 70px; min-width: 70px;
-  border-right: 1px solid var(--border);
+  width: 70px;
+  min-width: 70px;
 }
 .training-table td:first-child {
-  background: #fff; color: var(--ink);
+  background: #fff;
+  color: var(--ink);
   font-weight: 400;
 }
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  position: sticky; left: 70px; z-index: 9;
+  position: sticky;
+  left: 70px;
+  z-index: 9;
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  width: 240px; min-width: 240px;
-  border-right: 1px solid var(--border);
+  width: 240px;
+  min-width: 240px;
 }
 .training-table td:nth-child(2) {
-  background: #fff; color: var(--ink); font-weight: 500;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 500;
 }
 
-/* === CHECKBOXES === */
+/* === INPUTS & CHECKBOXES === */
+.training-table input[type="text"], .training-table select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f9f9f9;
+  font-size: 13px;
+  box-sizing: border-box;
+}
 .verify {
   accent-color: var(--orange);
   transform: scale(1.1);
@@ -202,19 +230,7 @@ textarea {
   transition: background 0.3s ease;
 }
 
-/* === INPUTS & DROPDOWNS === */
-.training-table input[type="text"], .training-table select {
-  width: 160px;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f9f9f9;
-  font-size: 13px;
-}
-select:focus, input:focus {
-  border-color: var(--orange);
-  outline: none;
-}
+/* === DROPDOWN COLOR CODING === */
 select {
   background-color: #f2f2f2;
 }
@@ -223,34 +239,45 @@ select option[value="No"], select option[value="Not Trained"] { background-color
 select option[value="Web Only"], select option[value="Mobile Only"] { background-color: #fff8b3; }
 select option[value="N/A"] { background-color: #f2f2f2; }
 
-/* === TABLE FOOTER === */
-.table-footer {
-  border: 1px solid var(--border);
-  border-top: none;
+/* === TABLE FOOTER (CLEAN TIGHT + BUTTON FIT) === */
+.table-container .table-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   background: #fff;
+  border-top: 1px solid var(--border);
   border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-  margin-bottom: 35px;
-  box-shadow: var(--shadow);
+  padding: 6px 10px;
+  margin: 0;
+  height: 38px;
+  box-shadow: none;
 }
-.add-row {
+.table-footer .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 24px; height: 24px;
-  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: 0.2s;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.05); }
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
 
 /* === NOTES SECTIONS === */
 .comment-box {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  margin-top: 20px;
+  margin-top: 18px;
   background: #fff;
   box-shadow: var(--shadow);
 }
@@ -262,10 +289,11 @@ select option[value="N/A"] { background-color: #f2f2f2; }
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* === FLOATING BUTTON === */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
-  top: 90px; right: 25px;
+  top: 90px;
+  right: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -286,57 +314,4 @@ select option[value="N/A"] { background-color: #f2f2f2; }
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-/* === FIX: FOOTER APPEARS AS PART OF TABLE BORDER === */
-.table-footer {
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  padding: 8px 12px;
-  margin-top: -1px;      /* joins to table border */
-  margin-bottom: 30px;
-  box-shadow: var(--shadow);
-}
-/* === FIX: remove the ghost/extra box under all tables === */
-.table-footer {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  padding: 4px 0 0 0 !important;
-}
-
-/* keeps the "+" button visible but inline with border */
-.table-footer .add-row {
-  position: relative;
-  top: -1px;
-  border: 1px solid var(--orange);
-  background: var(--orange);
-}
-
-/* tighten notes section spacing */
-.comment-box {
-  margin-top: 12px !important;
-}
-/* === Round the bottom of all table containers === */
-.table-container {
-  border-radius: 0 0 var(--radius) var(--radius);
-  overflow: hidden;
-}
-
-/* keep the top of each orange header rounded */
-.section-header {
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-/* if the footer is merged into the table, smooth the curve */
-.table-container .table-footer {
-  border-top: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
-  background: #fff;
-  padding: 8px 12px;
-  margin: 0;
 }
