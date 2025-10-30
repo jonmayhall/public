@@ -234,33 +234,31 @@ textarea {
   font-weight: 600;
 }
 
-/* === STICKY FIRST COLUMN (Name / Service) === */
-.training-table th:first-child,
-.training-table td:first-child {
+/* === STICKY HEADER CELLS (only Name + Service headers) === */
+.training-table th:first-child {
   position: sticky;
   left: 0;
   z-index: 5;
   background: var(--orange-light);
   color: #fff;
   font-weight: 600;
+}
+
+/* Keep table body cells white (non-sticky color) */
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 500;
   border-right: 1px solid var(--border);
 }
 
-/* === ENHANCE STICKY CELLS === */
+/* Opcodes Setup first header wider */
 #opcodes-setup th:first-child,
 #opcodes-setup td:first-child {
   min-width: 240px;
-}
-#opcodes-setup td:first-child input[type="text"],
-#technicians td:first-child input,
-#advisors td:first-child input,
-#parts td:first-child input,
-#bdc td:first-child input,
-#pickup td:first-child input {
-  background: var(--orange-light);
-  color: #fff;
-  font-weight: 600;
-  border: 1px solid #fff4;
 }
 
 /* =======================================================
