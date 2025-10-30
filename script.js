@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Fade-out current active section
       const active = document.querySelector(".page-section.active");
       if (active) {
         active.classList.remove("active");
@@ -25,35 +24,42 @@ window.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => active.classList.remove("fade-out"), 250);
       }
 
-      // Fade-in new section
       setTimeout(() => {
         sections.forEach((s) => s.classList.remove("active"));
         section.classList.add("active", "fade-in");
         setTimeout(() => section.classList.remove("fade-in"), 250);
       }, 150);
 
-      // Highlight active button
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-
-      // Smooth scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
   // =======================================================
-  // === TRAINING TABLE GENERATION ===
+  // === TRAINING TABLE GENERATION (Dynamic + Full Cells) ===
   // =======================================================
+  const YESNO = `
+    <select>
+      <option></option>
+      <option value="Yes">Yes</option>
+      <option value="Web Only">Web Only</option>
+      <option value="Mobile Only">Mobile Only</option>
+      <option value="No">No</option>
+      <option value="Not Trained">Not Trained</option>
+      <option value="N/A">N/A</option>
+    </select>
+  `;
+
   const roles = [
     {
       id: "technicians",
       title: "Technicians – Checklist",
       rows: 3,
       cols: [
-        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
-        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
-        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
-        "Notifications", "Filters"
+        "DMS ID","Login","Workflow","Mobile App Menu","Search Bar","RO Assignment",
+        "Dispatch","RO History","Prev. Declines","OCR","Edit ASR","ShopChat / Parts",
+        "Adding Media","Status Change","Notifications","Filters"
       ]
     },
     {
@@ -61,9 +67,9 @@ window.addEventListener("DOMContentLoaded", () => {
       title: "Service Advisors – Checklist",
       rows: 3,
       cols: [
-        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
-        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
-        "ShopChat", "Status Change", "MPI Send", "SOP"
+        "DMS ID","Login","Mobile App Menu","MCI","Workflow","Search Bar",
+        "RO Assignment","DMS History","Prev. Declines","OCR","Edit ASR",
+        "ShopChat","Status Change","MPI Send","SOP"
       ]
     },
     {
@@ -71,37 +77,40 @@ window.addEventListener("DOMContentLoaded", () => {
       title: "Parts Representatives – Checklist",
       rows: 2,
       cols: [
-        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
-        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
-        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
+        "DMS ID","Login","Web App","Workflow","Search Bar","Take Function",
+        "DMS History","Prev. Declines","Parts Tab","SOP","Edit ASR",
+        "ShopChat / Parts","Status Change","Notifications","Filters"
       ]
     },
     {
       id: "bdc",
       title: "BDC Representatives – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+      cols: ["DMS ID","Login","Scheduler","Declined Services","ServiceConnect","Call Routing"]
     },
     {
       id: "pickup",
       title: "Pick Up & Delivery Drivers – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+      cols: ["DMS ID","Login","PU&D","Notifications"]
     }
   ];
 
-  const container = document.getElementById("tables-container");
+  const container = document.getElementById("training-checklist");
   if (container) {
+    container.querySelectorAll(".section").forEach(sec => sec.remove());
+
     roles.forEach((role) => {
-      const div = document.createElement("div");
-      div.classList.add("section");
-      div.innerHTML = `
+      const sec = document.createElement("div");
+      sec.className = "section";
+      sec.innerHTML = `
         <div class="section-header">${role.title}</div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table id="${role.id}" class="training-table">
               <thead>
                 <tr>
+                  <th>Completed</th>
                   <th style="width:260px;">Name</th>
                   ${role.cols.map(c => `<th>${c}</th>`).join("")}
                 </tr>
@@ -109,72 +118,37 @@ window.addEventListener("DOMContentLoaded", () => {
               <tbody>
                 ${Array.from({ length: role.rows }).map(() => `
                   <tr>
+                    <td><input type="checkbox" class="verify"></td>
                     <td><input type="text" placeholder="Name"></td>
-                    ${role.cols.map(() => `
-                      <td>
-                        <select>
-                          <option></option>
-                          <option value="Yes">Yes</option>
-                          <option value="Web Only">Web Only</option>
-                          <option value="Mobile Only">Mobile Only</option>
-                          <option value="No">No</option>
-                          <option value="Not Trained">Not Trained</option>
-                          <option value="N/A">N/A</option>
-                        </select>
-                      </td>
-                    `).join("")}
+                    ${role.cols.map(() => `<td>${YESNO}</td>`).join("")}
                   </tr>
                 `).join("")}
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="table-footer">
-          <button class="add-row" data-target="${role.id}" type="button">+</button>
+          <div class="table-footer"><button class="add-row" data-target="${role.id}" type="button">+</button></div>
         </div>
         <div class="section-block comment-box">
-          <h2>Additional Comments</h2>
+          <h2>Notes</h2>
           <textarea placeholder="Type here…"></textarea>
         </div>
       `;
-      container.appendChild(div);
+      container.appendChild(sec);
     });
   }
 
   // =======================================================
-  // === DROPDOWN COLOR CODING (Light & Dark Mode) ===
+  // === Fix Floating Footers (Move inside table-container) ===
   // =======================================================
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  document.addEventListener("change", (e) => {
-    if (e.target.tagName === "SELECT") {
-      const value = e.target.value;
-      const colorsLight = {
-        "Yes": "#c9f7c0",
-        "Web Only": "#fff8b3",
-        "Mobile Only": "#ffe0b3",
-        "No": "#ffb3b3",
-        "Not Trained": "#ffb3b3",
-        "N/A": "#f2f2f2",
-        "Yes, each has their own": "#c9f7c0",
-        "Yes, but they are sharing": "#fff8b3"
-      };
-      const colorsDark = {
-        "Yes": "#3a6f3a",
-        "Web Only": "#6b5b2e",
-        "Mobile Only": "#705a2e",
-        "No": "#7f3b3b",
-        "Not Trained": "#7f3b3b",
-        "N/A": "#333",
-        "Yes, each has their own": "#3a6f3a",
-        "Yes, but they are sharing": "#6b5b2e"
-      };
-      e.target.style.backgroundColor = (prefersDark ? colorsDark[value] : colorsLight[value]) || "";
+  document.querySelectorAll(".table-container + .table-footer").forEach((footer) => {
+    const containerEl = footer.previousElementSibling;
+    if (containerEl && containerEl.classList.contains("table-container")) {
+      containerEl.appendChild(footer);
     }
   });
 
   // =======================================================
-  // === ADD ROW FUNCTION ===
+  // === ADD ROW ===
   // =======================================================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
@@ -182,15 +156,44 @@ window.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(id);
     if (!table) return;
 
-    const firstRow = table.querySelector("tbody tr");
+    const tBody = table.querySelector("tbody");
+    const firstRow = tBody.querySelector("tr");
     const clone = firstRow.cloneNode(true);
-    clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
-    clone.querySelectorAll("select").forEach((select) => {
-      select.selectedIndex = 0;
-      select.style.backgroundColor = "";
+
+    clone.querySelectorAll("input[type='text']").forEach((el) => el.value = "");
+    clone.querySelectorAll("input[type='checkbox']").forEach((el) => el.checked = false);
+    clone.querySelectorAll("select").forEach((el) => {
+      el.selectedIndex = 0;
+      el.style.backgroundColor = "#f2f2f2";
     });
-    table.querySelector("tbody").appendChild(clone);
+
+    tBody.appendChild(clone);
     if (id === "mpi-opcodes") updateRowNumbers();
+  });
+
+  // =======================================================
+  // === DROPDOWN COLOR CODING ===
+  // =======================================================
+  const bgColors = {
+    "Yes": "#c9f7c0",
+    "Web Only": "#fff8b3",
+    "Mobile Only": "#ffe0b3",
+    "No": "#ffb3b3",
+    "Not Trained": "#ffb3b3",
+    "N/A": "#f2f2f2",
+    "Yes, each has their own": "#c9f7c0",
+    "Yes, but they are sharing": "#fff8b3"
+  };
+
+  document.addEventListener("change", (e) => {
+    if (e.target.tagName === "SELECT") {
+      const value = e.target.value;
+      e.target.style.backgroundColor = bgColors[value] || "#f2f2f2";
+    }
+    if (e.target.classList.contains("verify")) {
+      const cell = e.target.closest("td");
+      if (cell) cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "#fff";
+    }
   });
 
   // =======================================================
@@ -204,7 +207,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // =======================================================
-  // === SORTABLEJS (Drag-and-Drop Rows) ===
+  // === SORTABLEJS (for drag/drop rows) ===
   // =======================================================
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
@@ -217,14 +220,25 @@ window.addEventListener("DOMContentLoaded", () => {
         animation: 150,
         handle: "td,th",
         ghostClass: "dragging",
+        scroll: true,
+        scrollSensitivity: 60,
+        scrollSpeed: 20,
         onEnd: () => {
-          if (table.id === "mpi-opcodes") updateRowNumbers();
+          if (table && table.id === "mpi-opcodes") updateRowNumbers();
         }
       });
     });
+
+    document.querySelectorAll(".scroll-wrapper").forEach((wrap) => {
+      wrap.style.maxHeight = "340px";
+      wrap.style.overflowY = "auto";
+      wrap.style.overflowX = "auto";
+    });
   };
 
-  // === RESET ORDER BUTTON (MPI Table) ===
+  // =======================================================
+  // === MPI Reset Order ===
+  // =======================================================
   const resetButton = document.getElementById("resetMpiOrder");
   if (resetButton) {
     resetButton.addEventListener("click", () => {
@@ -233,8 +247,8 @@ window.addEventListener("DOMContentLoaded", () => {
       const tbody = mpiTable.querySelector("tbody");
       const rows = Array.from(tbody.querySelectorAll("tr"));
       rows.sort((a, b) => {
-        const aNum = parseInt(a.querySelector(".row-number").textContent);
-        const bNum = parseInt(b.querySelector(".row-number").textContent);
+        const aNum = parseInt(a.querySelector(".row-number")?.textContent || "0", 10);
+        const bNum = parseInt(b.querySelector(".row-number")?.textContent || "0", 10);
         return aNum - bNum;
       });
       tbody.innerHTML = "";
@@ -247,23 +261,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const mpi = document.getElementById("mpi-opcodes");
     if (!mpi) return;
     mpi.querySelectorAll("tbody tr").forEach((row, i) => {
-      const num = row.querySelector(".row-number");
-      if (num) num.textContent = i + 1;
+      const numCell = row.querySelector(".row-number");
+      if (numCell) numCell.textContent = String(i + 1);
     });
   }
 
   // =======================================================
-  // === CHECKBOX VISUAL FEEDBACK ===
-  // =======================================================
-  document.addEventListener("change", (e) => {
-    if (e.target.classList.contains("verify")) {
-      const cell = e.target.parentElement;
-      cell.style.backgroundColor = e.target.checked ? "rgba(243,111,33,0.1)" : "";
-    }
-  });
-
-  // =======================================================
-  // === PDF EXPORT FUNCTION ===
+  // === PDF EXPORT ===
   // =======================================================
   const pdfButton = document.getElementById("pdfButton");
   if (pdfButton) {
@@ -276,3 +280,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// === FADE ANIMATIONS ===
+document.head.insertAdjacentHTML("beforeend", `
+  <style>
+    .fade-in { animation: fadeIn 0.25s ease-in-out; }
+    .fade-out { animation: fadeOut 0.25s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
+  </style>
+`);
