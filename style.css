@@ -1,7 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Style Sheet
+   myKaarma Interactive Training Checklist – FINAL STYLE
    ======================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
@@ -147,9 +146,7 @@ textarea {
   border: 1px solid var(--border);
   border-top: none;
   border-bottom: none;
-  border-radius: 0;
   box-shadow: var(--shadow);
-  overflow: hidden;
 }
 .scroll-wrapper {
   position: relative;
@@ -192,6 +189,7 @@ textarea {
   color: #fff;
   font-weight: 600;
   width: 70px;
+  min-width: 70px;
 }
 .training-table td:first-child {
   background: #fff;
@@ -207,6 +205,7 @@ textarea {
   color: #fff;
   font-weight: 600;
   width: 240px;
+  min-width: 240px;
 }
 .training-table td:nth-child(2) {
   background: #fff;
@@ -233,12 +232,13 @@ textarea {
   transition: background 0.3s;
 }
 
-/* === DROPDOWN COLORS === */
+/* === DROPDOWN COLOR CODING === */
 select {
   background-color: #f2f2f2;
 }
 select option[value="Yes"] { background-color: #c9f7c0; }
-select option[value="No"] { background-color: #ffb3b3; }
+select option[value="No"], select option[value="Not Trained"] { background-color: #ffb3b3; }
+select option[value="Web Only"], select option[value="Mobile Only"] { background-color: #fff8b3; }
 select option[value="N/A"] { background-color: #f2f2f2; }
 
 /* === FOOTER === */
@@ -265,7 +265,7 @@ select option[value="N/A"] { background-color: #f2f2f2; }
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
-/* === BUTTONS & FLOATING PDF === */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
