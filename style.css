@@ -3,562 +3,231 @@
    ======================================================= */
 
 /* === COLOR VARIABLES === */
-:root {
-  --orange: #f36f21;
-  --light-orange: #f8b17b;
-  --gray-bg: #d7d7d7;
-  --card-bg: #fff;
-  --border: #dcdcdc;
-  --ink: #222;
-  --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+:root{
+  --orange:#f36f21;
+  --light-orange:#f8b17b;
+  --gray-bg:#d7d7d7;
+  --card-bg:#fff;
+  --border:#dcdcdc;
+  --ink:#222;
+  --radius:16px;
+  --shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 /* === BASE PAGE STRUCTURE === */
-html, body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
-}
-
-h1 {
-  color: var(--orange);
-  margin-bottom: 18px;
-  font-size: 20px;
-}
-
-h2 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
+html,body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--gray-bg);
+  color:var(--ink);
+  overflow-x:hidden;
 }
 
 /* === TOP BAR === */
-#topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 20;
+#topbar{
+  background:linear-gradient(90deg,#000 0%,#333 100%);
+  height:70px; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
+  position:fixed; inset:0 0 auto 0; z-index:20;
 }
-
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.topbar-content{width:100%; max-width:1400px; display:flex; align-items:center; padding-left:20px;}
+.top-logo{height:42px; object-fit:contain}
 
 /* === APP LAYOUT === */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
-}
+#app{display:flex; min-height:100vh; margin-top:70px; overflow-x:hidden}
 
 /* =======================================================
    SIDEBAR
    ======================================================= */
-#sidebar {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
-  box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px; bottom: 0;
-  overflow-y: auto;
+#sidebar{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+  border-right:1px solid var(--border);
+  width:190px; padding:20px 8px;
+  box-shadow:var(--shadow);
+  position:fixed; top:70px; bottom:0; overflow-y:auto; z-index:10;
 }
-
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+#sidebar nav{display:flex; flex-direction:column; gap:6px;}
+.nav-btn{
+  background:none; border:none; padding:10px 12px; font-size:14px; text-align:left;
+  border-radius:var(--radius); cursor:pointer; transition:.2s; color:var(--ink);
 }
-
-.nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
-}
-
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
-}
+.nav-btn:hover,.nav-btn.active{background:#fff3eb; color:var(--orange); font-weight:600}
 
 /* =======================================================
    MAIN CONTENT AREA
    ======================================================= */
-main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  box-sizing: border-box;
-  background: var(--gray-bg);
-}
+main{flex:1; margin-left:190px; padding:30px 40px; box-sizing:border-box; background:var(--gray-bg)}
 
-.page-section {
-  display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px 32px;
-  margin: 0 auto 50px auto;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
+/* === PAGE SECTIONS === */
+.page-section{
+  display:none; background:var(--card-bg); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:28px 32px; margin:0 auto 50px; width:100%; max-width:1250px; box-sizing:border-box;
 }
-
-.page-section.active {
-  display: block;
-}
+.page-section.active{display:block}
+h1{color:var(--orange); margin:0 0 18px 0; font-size:24px; line-height:1.2}
 
 /* =======================================================
    SECTION BLOCKS AND ROWS
    ======================================================= */
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
+.section{margin-bottom:28px; position:relative}
+
+/* lighter orange row header (your request) */
+.section-header{
+  background:var(--light-orange); color:#fff; font-weight:600;
+  padding:10px 16px; font-size:15px; line-height:1.15;
+  border-radius:var(--radius) var(--radius) 0 0;
+  border:1px solid var(--light-orange);
 }
 
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 16px;
-  font-weight: 600;
+/* === CHECKLIST BLOCKS === */
+.section-block{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  margin-bottom:20px; overflow:hidden; border:1px solid var(--border);
+}
+.section-block h2{
+  background:var(--orange); color:#fff; margin:0; padding:10px 16px; font-size:15px; font-weight:600;
 }
 
 /* === CHECKLIST ROWS === */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
+.checklist-row{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 16px; border-top:1px solid var(--border);
 }
-
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f9f9f9;
+.section-block .checklist-row:first-of-type{border-top:1px solid var(--border)}
+.checklist-row label{flex:1; font-size:14px; padding-right:20px}
+.checklist-row input,.checklist-row select{
+  width:220px; padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:#f4f4f4;
 }
 
 /* === TEXTAREA === */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
-  font-size: 14px;
+textarea{
+  width:calc(100% - 32px); margin:16px; padding:12px; border-radius:12px;
+  border:1px solid var(--border); background:#fafafa; resize:none; overflow:hidden; font-family:inherit;
 }
 
 /* =======================================================
-   CHAMPIONS & BLOCKERS
+   TABLES
    ======================================================= */
-.add-btn {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 16px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 6px;
-  transition: 0.2s;
+
+/* The table frame (top half) */
+.table-container{
+  width:100%; background:#fff; border:1px solid var(--border);
+  border-bottom:none; border-radius:var(--radius) var(--radius) 0 0;
+  box-shadow:var(--shadow); overflow:hidden; position:relative; z-index:0;
 }
 
-.add-btn:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
+/* Scroll area with inner top/bottom borders to visually connect table */
+.scroll-wrapper{
+  position:relative; display:block; width:100%;
+  max-height:340px; overflow:auto; background:#fff;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  scrollbar-color:#ccc transparent; scrollbar-width:thin;
 }
 
-#champion-container input,
-#blocker-container input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-bottom: 8px;
+/* The footer is the bottom half, finishes the rounded border
+   This guarantees it never “slides under” later content */
+.table-footer{
+  width:100%; background:#fff; border:1px solid var(--border); border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  text-align:left; padding:8px 12px; margin:0; box-sizing:border-box; position:relative; z-index:0;
 }
 
-#summary-champion-container div,
-#summary-blocker-container div {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-/* =======================================================
-   TRAINING, OPCODES, AND DMS TABLE SYSTEM
-   ======================================================= */
-.section {
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #fff;
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-}
-
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange);
-}
-
-/* === TABLE CONTAINER === */
-.table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: hidden;
-}
-
-.scroll-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 360px;
-  border-top: 1px solid var(--border);
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
+/* Keep notes visually separate below the finished table */
+.section-block.comment-box{
+  margin-top:14px; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
 }
 
 /* === TABLE CORE === */
-.training-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: max-content;
-  min-width: 100%;
-  table-layout: auto;
-}
+.training-table{border-collapse:separate; border-spacing:0; width:max-content; min-width:100%}
 
 .training-table th,
-.training-table td {
-  text-align: center;
-  padding: 8px 10px;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  white-space: nowrap;
+.training-table td{
+  white-space:nowrap; text-align:center; padding:8px 10px; font-size:13px;
+  border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+  background-clip:padding-box;
 }
 
-/* === HEADER COLORS === */
-.training-table th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
+/* Column header (lighter orange), sticky at top */
+.training-table th{
+  background:var(--light-orange); color:#fff; font-weight:600;
+  position:sticky; top:0; z-index:3; transition:background .2s;
 }
+.training-table th:hover{background:#f49c56}
 
-/* === STICKY FIRST TWO COLUMNS === */
+/* First two columns sticky (global tables) */
 .training-table th:first-child,
-.training-table th:nth-child(2) {
-  background: var(--light-orange);
-  color: #fff;
-  z-index: 6;
+.training-table td:first-child{
+  position:sticky; left:0; z-index:4; background:#fff; /* checkbox col stays white */
 }
-
-.training-table td:first-child,
-.training-table td:nth-child(2) {
-  background: #fff;
-  color: var(--ink);
-  z-index: 5;
-}
-
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  width: 50px;
-  min-width: 50px;
-  max-width: 50px;
-}
-
 .training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  position: sticky;
-  left: 50px;
-  min-width: 300px;
-  max-width: 300px;
+.training-table td:nth-child(2){
+  position:sticky; left:60px; z-index:4; background:#fff; /* Name/Service col stays white */
 }
 
-/* === INPUTS === */
+/* Row striping & drag visuals */
+.training-table tr:nth-child(odd){background:#fff}
+.training-table tr:nth-child(even){background:#fafafa}
+
+/* Table inputs */
 .training-table input[type="text"],
-.training-table select {
-  width: 180px;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  color: var(--ink);
-  font-size: 13px;
-  font-family: inherit;
+.training-table select{
+  width:100%; max-width:280px;
+  padding:6px 8px; border-radius:8px; border:1px solid var(--border); background:#f2f2f2; color:var(--ink); font-size:13px; font-family:inherit;
 }
-
 .training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
+.training-table select:focus{border-color:var(--orange); box-shadow:0 0 3px rgba(243,111,33,.4); outline:none; background:#fff9f5}
 
-/* === CHECKBOXES === */
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 8px;
-}
+/* Name/Service/MPI text boxes should expand fully inside cell */
+.training-table td:nth-child(2) input[type="text"]{max-width:none}
 
-/* === ROWS === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-.training-table tbody tr:hover { background: #fff3eb; transition: background 0.2s; }
+/* Checkboxes */
+.verify{accent-color:var(--orange); transform:scale(1.1)}
 
-/* === TABLE FOOTERS === */
-.table-footer {
-  border-top: 1px solid var(--border);
-  background: #fff;
-  padding: 8px 12px;
-  border-radius: 0 0 var(--radius) var(--radius);
-  margin-top: -1px;
-  text-align: left;
+/* Footer + button */
+.add-row{
+  background:var(--orange); color:#fff; border:none; border-radius:50%;
+  width:26px; height:26px; font-size:14px; cursor:pointer; transition:.2s; vertical-align:middle;
 }
-
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
-
-/* === RESET ORDER BUTTON === */
-.mpi-controls {
-  display: flex;
-  justify-content: flex-end;
-  padding: 8px 0 6px 0;
-}
-
-#resetMpiOrder {
-  background: #fff3eb;
-  color: var(--orange);
-  border: 1px solid var(--orange);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#resetMpiOrder:hover {
-  background: var(--orange);
-  color: #fff;
-}
-
-/* === FLOATING BUTTON === */
-.floating-btn {
-  position: fixed;
-  top: 90px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-
-.floating-btn:hover {
-  background: #ff8848;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
-/* =======================================================
-   TABLE BORDER + FOOTER ALIGNMENT FIXES
-   ======================================================= */
-
-/* Make sure table containers and notes are clearly separated */
-.section {
-  margin-bottom: 35px;
-}
-
-.table-container {
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: var(--radius) var(--radius) 0 0;
-  overflow: hidden;
-  background: #fff;
-}
-
-.scroll-wrapper {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 360px;
-  background: #fff;
-}
-
-/* Fix footer alignment */
-.table-footer {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-  vertical-align: middle;
-}
-.add-row:hover { background: #ff8b42; transform: scale(1.05); }
-
-/* Notes boxes start below the footer cleanly */
-.section-block.comment-box {
-  margin-top: 14px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
+.add-row:hover{background:#ff8b42; transform:scale(1.05)}
 
 /* =======================================================
-   DMS INTEGRATION TABLE STYLING
+   DMS INTEGRATION — ONLY FIRST COLUMN STICKY
    ======================================================= */
-#dms-integration .training-table th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+
+/* Remove sticky 2nd column on DMS tables only */
+#dms-integration .training-table th:nth-child(2),
+#dms-integration .training-table td:nth-child(2){
+  position:static; left:auto; z-index:auto; background:inherit;
 }
 
-#dms-integration .training-table td,
-#dms-integration .training-table th {
-  padding: 10px 8px;
-  font-size: 13px;
-  white-space: nowrap;
-  text-align: center;
+/* Keep ONLY first column sticky on DMS page */
+#dms-integration .training-table th:first-child,
+#dms-integration .training-table td:first-child{
+  position:sticky; left:0; z-index:4; background:#fff;
 }
 
-#dms-integration .training-table td:first-child,
-#dms-integration .training-table th:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 3;
-}
+/* Give DMS tables a tad more height for readability */
+#dms-integration .scroll-wrapper{max-height:420px}
+#dms-integration .training-table td{height:36px; vertical-align:middle}
 
-/* Slightly taller cells for readability */
-.training-table td {
-  height: 36px;
-  vertical-align: middle;
+/* =======================================================
+   FLOATING BUTTON (PDF EXPORT)
+   ======================================================= */
+.floating-btn{
+  position:fixed; top:90px; right:25px; background:var(--orange); color:#fff; border:none;
+  border-radius:var(--radius); padding:10px 18px; font-size:14px; cursor:pointer; box-shadow:var(--shadow); transition:.2s;
 }
+.floating-btn:hover{background:#ff8848}
 
-/* Scroll-wrapper fix for large DMS tables */
-#dms-integration .scroll-wrapper {
-  max-height: 420px;
+/* =======================================================
+   RESPONSIVE DESIGN
+   ======================================================= */
+@media (max-width:900px){
+  #sidebar{width:150px}
+  main{margin-left:150px; padding:20px}
 }
-
-/* Lighter orange for row headers */
-.section-header {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--light-orange);
+@media (max-width:600px){
+  #sidebar{display:none}
+  main{margin-left:0; padding:20px}
 }
-
-/* Ensure sticky cells stay aligned on horizontal scroll */
-.training-table th,
-.training-table td {
-  background-clip: padding-box;
-}
-
