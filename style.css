@@ -300,3 +300,24 @@ select option[value="N/A"] { background-color: #f2f2f2; }
   margin-bottom: 30px;
   box-shadow: var(--shadow);
 }
+/* === FIX: remove the ghost/extra box under all tables === */
+.table-footer {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 4px 0 0 0 !important;
+}
+
+/* keeps the "+" button visible but inline with border */
+.table-footer .add-row {
+  position: relative;
+  top: -1px;
+  border: 1px solid var(--orange);
+  background: var(--orange);
+}
+
+/* tighten notes section spacing */
+.comment-box {
+  margin-top: 12px !important;
+}
