@@ -109,3 +109,4 @@
 document.addEventListener("DOMContentLoaded",()=>{const addPOC=document.getElementById("addPOC"),addTrainer=document.getElementById("addTrainer"),addProductChampion=document.getElementById("addProductChampion"),addBlocker=document.getElementById("addBlocker");function cloneRow(id){const g=document.getElementById(id);if(g){const f=g.querySelector(".checklist-row");const c=f.cloneNode(true);c.querySelectorAll("input").forEach(i=>i.value="");g.appendChild(c);}}if(addPOC)addPOC.addEventListener("click",()=>cloneRow("additional-poc-group"));if(addTrainer)addTrainer.addEventListener("click",()=>cloneRow("trainer-group"));if(addProductChampion)addProductChampion.addEventListener("click",()=>cloneRow("cem-product-group"));if(addBlocker)addBlocker.addEventListener("click",()=>cloneRow("cem-blocker-group"));});
 </script>
 </body></html>
+
