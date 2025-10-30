@@ -624,30 +624,102 @@
 <section id="dms-integration" class="page-section">
   <h1>DMS Integration</h1>
 
+  <!-- === PUSH BASED TABLE === -->
   <div class="section">
-    <div class="section-header">Integration Visual Reference</div>
+    <div class="section-header">Push-Based DMS (myKaarma pushing information to DMS)</div>
     <div class="table-container">
       <div class="scroll-wrapper">
-        <table id="dms-visual" class="training-table">
+        <table id="dms-push" class="training-table">
           <thead>
             <tr>
               <th style="width:300px;">Integration Type</th>
-              <th>Description</th>
-              <th>Status</th>
+              <th>Customer Pull</th><th>Customer Push</th><th>Vehicle Pull</th><th>Vehicle Push</th>
+              <th>Appointment Pull</th><th>Appointment Push</th><th>RO Pull</th><th>RO Push</th>
+              <th>Writeback (ServiceCart)</th><th>RO Creation (Check-in)</th><th>Parts Invoices Pull</th>
+              <th>Parts Availability & Pricing (ServiceCart)</th><th>Special Order Pull</th>
+              <th>F&I Sales History</th><th>Opcodes Pull</th><th>Historical RO Pull</th><th>Historical Customer Pull</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>DMS Push</td><td>ROs pushed from DMS to myKaarma</td><td>Enabled</td></tr>
-            <tr><td>DMS Pull</td><td>ROs pulled by myKaarma from DMS</td><td>Enabled</td></tr>
-            <tr><td>Price File Sync</td><td>Parts and labor pricing synchronized daily</td><td>Enabled</td></tr>
-            <tr><td>Repair Order Status</td><td>Live status updates reflected in both systems</td><td>Active</td></tr>
-            <tr><td>Invoice Posting</td><td>Completed RO invoices pushed automatically to DMS</td><td>Active</td></tr>
+            <tr>
+              <td>Reynolds</td>
+              <td>Happens Automatically</td><td>On-Demand if any appointments scheduled</td>
+              <td>Comes with RO</td><td>On-Demand if any appointments scheduled</td>
+              <td>Happens Automatically</td><td>On-Demand if any appointments scheduled</td>
+              <td>Happens Automatically</td><td>N/A</td><td>On-Demand</td>
+              <td>Happens Automatically</td><td>On-Demand</td><td>N/A</td>
+              <td>Happens Automatically</td><td>On-Demand</td><td>N/A</td>
+              <td>Yes, Happens Automatically</td><td>N/A</td>
+            </tr>
+            <tr>
+              <td>Automate</td>
+              <td>Happens Automatically</td><td>N/A</td>
+              <td>Comes with RO</td><td>N/A</td><td>Happens Automatically</td><td>N/A</td>
+              <td>Happens Automatically</td><td>N/A</td><td>N/A</td>
+              <td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td>
+              <td>N/A</td><td>N/A</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="table-footer">
-      <small style="color:#777;font-size:13px;">Visual reference only (not editable)</small>
+  </div>
+
+  <!-- === PULL BASED TABLE === -->
+  <div class="section">
+    <div class="section-header">Pull-Based DMS (myKaarma pulling information from DMS)</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table id="dms-pull" class="training-table">
+          <thead>
+            <tr>
+              <th style="width:300px;">DMS Provider</th>
+              <th>Customer Pull</th><th>Customer Push</th><th>Vehicle Pull</th><th>Vehicle Push</th>
+              <th>Appointment Pull</th><th>Appointment Push</th><th>RO Pull</th><th>RO Push</th>
+              <th>Writeback (ServiceCart)</th><th>RO Creation (Check-in)</th><th>Parts Invoices Pull</th>
+              <th>Parts Availability & Pricing (ServiceCart)</th><th>Special Order Pull</th>
+              <th>F&I Sales History</th><th>Opcodes Pull</th><th>Historical RO Pull</th><th>Historical Customer Pull</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CDK</td>
+              <td>Every 15 min</td><td>On-Demand</td><td>Comes with RO</td><td>On-Demand</td>
+              <td>Every 15 min</td><td>On-Demand</td><td>Every 5 min</td><td>On-Demand</td>
+              <td>On-Demand</td><td>Every 15 min</td><td>On-Demand</td>
+              <td>Every 15 min</td><td>Nightly sync (2 yrs)</td><td>Nightly sync</td><td>Yes, On-Demand</td><td>N/A</td>
+            </tr>
+            <tr>
+              <td>Dealertrack / Arkona</td>
+              <td>Every 5 min</td><td>On-Demand</td><td>On-Demand</td><td>On-Demand</td>
+              <td>Every 15 min</td><td>On-Demand</td><td>Every 2 min</td><td>On-Demand</td>
+              <td>On-Demand</td><td>Every 15 min</td><td>On-Demand</td>
+              <td>N/A</td><td>N/A</td><td>Nightly sync</td><td>Yes, On-Demand</td><td>Yes, On-Demand</td>
+            </tr>
+            <tr>
+              <td>Lightyear / DealerBuilt</td>
+              <td>Every 5 min</td><td>On-Demand</td><td>Comes with RO</td><td>On-Demand</td>
+              <td>Every 5 min</td><td>On-Demand</td><td>Every 2 min</td><td>On-Demand</td>
+              <td>On-Demand</td><td>Every 5 min</td><td>N/A</td>
+              <td>N/A</td><td>Nightly sync</td><td>Yes, On-Demand</td><td>Yes, On-Demand</td><td>N/A</td>
+            </tr>
+            <tr>
+              <td>PBS</td>
+              <td>N/A</td><td>On-Demand</td><td>N/A</td><td>On-Demand</td>
+              <td>Every 5 min</td><td>On-Demand</td><td>Every 2 min</td><td>On-Demand</td>
+              <td>On-Demand</td><td>N/A</td><td>On-Demand</td>
+              <td>N/A</td><td>N/A</td><td>Nightly sync</td><td>Yes, On-Demand</td><td>N/A</td>
+            </tr>
+            <tr>
+              <td>Tekion</td>
+              <td>Comes with RO</td><td>On-Demand</td><td>Comes with RO</td><td>On-Demand</td>
+              <td>Every 5 min</td><td>On-Demand</td><td>Every 5 min</td><td>Planned</td>
+              <td>Planned</td><td>Planned</td><td>Planned</td>
+              <td>N/A</td><td>Planned</td><td>Planned</td><td>Yes, during deployment</td><td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
