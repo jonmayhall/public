@@ -127,7 +127,6 @@ main {
   max-width: 1250px;
   box-sizing: border-box;
 }
-
 .page-section.active { display: block; }
 
 /* =======================================================
@@ -228,37 +227,7 @@ textarea {
 }
 
 /* =======================================================
-   FLOATING BUTTON
-   ======================================================= */
-.floating-btn {
-  position: fixed;
-  top: 90px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-.floating-btn:hover { background: #ff8848; }
-
-/* =======================================================
-   RESPONSIVE DESIGN
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
-/* =======================================================
-   TRAINING TABLES AND OPCODES TABLES
+   FIXED TRAINING + OPCODES TABLE SYSTEM
    ======================================================= */
 .section-header {
   background: var(--orange);
@@ -274,21 +243,17 @@ textarea {
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-bottom: none;
-  border-radius: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
 .scroll-wrapper {
-  position: relative;
-  display: block;
   width: 100%;
-  max-height: 340px;
-  overflow-y: auto;
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 360px;
   border-top: 1px solid var(--border);
-  background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
@@ -299,50 +264,48 @@ textarea {
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
+  table-layout: auto;
 }
 
 .training-table th,
 .training-table td {
-  white-space: nowrap;
   text-align: center;
   padding: 8px 10px;
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }
 
-/* === TABLE HEADERS === */
+/* === TABLE HEADERS (ALL ORANGE) === */
 .training-table th {
-  background: var(--light-orange);
+  background: var(--orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 3;
-  transition: background 0.2s;
-  text-align: center;
-}
-.training-table th:hover {
-  background: #f49c56;
+  z-index: 4;
 }
 
 /* === STICKY FIRST TWO COLUMNS === */
-.training-table td:first-child,
-.training-table th:first-child {
+.training-table th:first-child,
+.training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 4;
-  background: var(--light-orange);
+  background: var(--orange);
   color: #fff;
-  font-weight: 600;
+  z-index: 6;
 }
 
-.training-table td:nth-child(2),
-.training-table th:nth-child(2) {
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
   position: sticky;
-  left: 60px; /* width of checkbox column */
-  z-index: 3;
-  background: #fff;
+  left: 50px;
+  background: var(--orange);
+  color: #fff;
+  z-index: 5;
+  min-width: 300px;
+  max-width: 300px;
 }
 
 /* === TABLE INPUTS === */
@@ -372,30 +335,19 @@ textarea {
   margin-right: 8px;
 }
 
-/* === STRIPING & DRAGGING === */
+/* === ROWS === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tbody tr:hover { background: #fff3eb; transition: background 0.2s; }
 
-.draggable-table tbody tr:hover {
-  background: #fff3eb;
-  transition: background 0.2s ease;
-}
-.dragging {
-  background: #fff6ef !important;
-  box-shadow: 0 2px 8px rgba(243,111,33,0.4);
-  cursor: grabbing;
-}
-
-/* === TABLE FOOTER === */
+/* === FOOTER === */
 .table-footer {
   width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
+  border-top: 1px solid var(--border);
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
-  margin-bottom: 25px;
   box-sizing: border-box;
 }
 .add-row {
@@ -403,9 +355,9 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -414,7 +366,7 @@ textarea {
   transform: scale(1.05);
 }
 
-/* === RESET ORDER BUTTON (MPI TABLE) === */
+/* === RESET ORDER BUTTON === */
 .mpi-controls {
   display: flex;
   justify-content: flex-end;
@@ -430,7 +382,35 @@ textarea {
   cursor: pointer;
   transition: 0.2s;
 }
-#resetMpiOrder:hover {
+#resetMpiOrder:hover { background: var(--orange); color: #fff; }
+
+/* =======================================================
+   FLOATING BUTTON
+   ======================================================= */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  right: 25px;
   background: var(--orange);
   color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.floating-btn:hover { background: #ff8848; }
+
+/* =======================================================
+   RESPONSIVE DESIGN
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
