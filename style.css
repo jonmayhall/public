@@ -321,3 +321,22 @@ select option[value="N/A"] { background-color: #f2f2f2; }
 .comment-box {
   margin-top: 12px !important;
 }
+/* === Round the bottom of all table containers === */
+.table-container {
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+}
+
+/* keep the top of each orange header rounded */
+.section-header {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* if the footer is merged into the table, smooth the curve */
+.table-container .table-footer {
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: #fff;
+  padding: 8px 12px;
+  margin: 0;
+}
