@@ -245,7 +245,13 @@ textarea {
 }
 .training-table th:hover { background: #f49c56; }
 
-/* === STICKY FIRST COLUMN === */
+/* === FIRST COLUMN HEADER LIGHT ORANGE === */
+.training-table th:first-child {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+
+/* === FIRST COLUMN STICKY CELLS === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
