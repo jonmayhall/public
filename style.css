@@ -315,3 +315,36 @@ select option[value="N/A"] { background-color: #f2f2f2; }
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === DMS Integration Tables – Read-Only Visuals === */
+#dms-integration .training-table th:first-child,
+#dms-integration .training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  z-index: 10;
+  min-width: 160px;
+  max-width: 200px;
+}
+
+/* Keep non-sticky cells clean */
+#dms-integration .training-table td {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* Taller rows for clarity */
+#dms-integration .training-table td,
+#dms-integration .training-table th {
+  padding: 12px 14px;
+  height: 44px;
+  line-height: 1.4;
+}
+
+/* Smooth side-scroll */
+#dms-integration .scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 400px;
+}
