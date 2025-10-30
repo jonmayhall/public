@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>myKaarma – Interactive Training Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
 
 <body>
 <header id="topbar"><img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo"/></header>
+
 <div id="app">
 <aside id="sidebar">
 <nav id="sidebar-nav">
@@ -33,7 +34,7 @@
 <!-- ========================================================= -->
 <section id="pretraining" class="page-section active">
 <h1>Pre-Training Checklist</h1>
-<!-- existing content unchanged -->
+<!-- existing pre-training content here -->
 </section>
 
 <!-- ========================================================= -->
@@ -41,116 +42,311 @@
 <!-- ========================================================= -->
 <section id="dealership-info" class="page-section">
 <h1>Dealership Information</h1>
-<!-- existing content unchanged -->
+<!-- existing dealership info content here -->
 </section>
 
 <!-- ========================================================= -->
-<!-- PAGE 3 – Training Checklist (Dynamic Tables) -->
+<!-- PAGE 3 – Training Checklist -->
 <!-- ========================================================= -->
 <section id="training-checklist" class="page-section">
 <h1>Training Checklist</h1>
-<div id="tables-container">
 
-<!-- Technicians Table -->
-<div class="section"><div class="section-header">Technicians – Checklist</div>
+<!-- ====================== TECHNICIANS ====================== -->
+<div class="section">
+<div class="section-header">Technicians – Checklist</div>
 <div class="table-container"><div class="scroll-wrapper">
 <table id="technicians" class="training-table">
-<thead><tr><th>Completed</th><th style="width:260px;">Name</th>
-<th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th><th>Search Bar</th><th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th></tr></thead>
+<thead>
+<tr>
+<th>Completed</th><th style="width:260px;">Name</th>
+<th>DMS ID</th><th>Login</th><th>Workflow</th><th>Mobile App Menu</th><th>Search Bar</th>
+<th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th>
+<th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Adding Media</th>
+<th>Status Change</th><th>Notifications</th><th>Filters</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" placeholder="Name"></td>
-<td colspan="16"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="technicians">+</button></div></div>
+<tr>
+<td><input type="checkbox" class="verify"/></td>
+<td><input type="text" placeholder="Name"/></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="table-footer"><button class="add-row" data-target="technicians">+</button></div>
+</div>
 
-<!-- Advisors Table -->
-<div class="section"><div class="section-header">Service Advisors – Checklist</div>
+<!-- ====================== SERVICE ADVISORS ====================== -->
+<div class="section">
+<div class="section-header">Service Advisors – Checklist</div>
 <div class="table-container"><div class="scroll-wrapper">
 <table id="advisors" class="training-table">
-<thead><tr><th>Completed</th><th style="width:260px;">Name</th>
-<th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th><th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th><th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th><th>Status Change</th><th>MPI Send</th><th>SOP</th></tr></thead>
+<thead>
+<tr>
+<th>Completed</th><th style="width:260px;">Name</th>
+<th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th><th>Workflow</th>
+<th>Search Bar</th><th>RO Assignment</th><th>DMS History</th><th>Prev. Declines</th>
+<th>OCR</th><th>Edit ASR</th><th>ShopChat</th><th>Status Change</th><th>MPI Send</th><th>SOP</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" placeholder="Name"></td><td colspan="15"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="advisors">+</button></div></div>
+<tr>
+<td><input type="checkbox" class="verify"/></td>
+<td><input type="text" placeholder="Name"/></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="table-footer"><button class="add-row" data-target="advisors">+</button></div>
+</div>
 
-<!-- Parts Table -->
-<div class="section"><div class="section-header">Parts Representatives – Checklist</div>
+<!-- ====================== PARTS ====================== -->
+<div class="section">
+<div class="section-header">Parts Representatives – Checklist</div>
 <div class="table-container"><div class="scroll-wrapper">
 <table id="parts" class="training-table">
-<thead><tr><th>Completed</th><th style="width:260px;">Name</th>
-<th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th><th>Search Bar</th><th>Take Function</th><th>DMS History</th><th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th><th>Notifications</th><th>Filters</th></tr></thead>
+<thead>
+<tr>
+<th>Completed</th><th style="width:260px;">Name</th>
+<th>DMS ID</th><th>Login</th><th>Web App</th><th>Workflow</th><th>Search Bar</th><th>Take Function</th>
+<th>DMS History</th><th>Prev. Declines</th><th>Parts Tab</th><th>SOP</th><th>Edit ASR</th><th>ShopChat / Parts</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" placeholder="Name"></td><td colspan="15"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="parts">+</button></div></div>
+<tr>
+<td><input type="checkbox" class="verify"/></td>
+<td><input type="text" placeholder="Name"/></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="table-footer"><button class="add-row" data-target="parts">+</button></div>
+</div>
 
-<!-- BDC Table -->
-<div class="section"><div class="section-header">BDC Representatives – Checklist</div>
+<!-- ====================== BDC ====================== -->
+<div class="section">
+<div class="section-header">BDC Representatives – Checklist</div>
 <div class="table-container"><div class="scroll-wrapper">
 <table id="bdc" class="training-table">
-<thead><tr><th>Completed</th><th style="width:260px;">Name</th>
-<th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th></tr></thead>
+<thead>
+<tr>
+<th>Completed</th><th style="width:260px;">Name</th>
+<th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Call Routing</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" placeholder="Name"></td><td colspan="6"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="bdc">+</button></div></div>
+<tr>
+<td><input type="checkbox" class="verify"/></td>
+<td><input type="text" placeholder="Name"/></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="table-footer"><button class="add-row" data-target="bdc">+</button></div>
+</div>
 
-<!-- Pickup Table -->
-<div class="section"><div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
+<!-- ====================== PICKUP ====================== -->
+<div class="section">
+<div class="section-header">Pick Up & Delivery Drivers – Checklist</div>
 <div class="table-container"><div class="scroll-wrapper">
 <table id="pickup" class="training-table">
-<thead><tr><th>Completed</th><th style="width:260px;">Name</th>
-<th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th></tr></thead>
+<thead>
+<tr>
+<th>Completed</th><th style="width:260px;">Name</th>
+<th>DMS ID</th><th>Login</th><th>PU&D</th><th>Notifications</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" placeholder="Name"></td><td colspan="4"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="pickup">+</button></div></div>
-
-</div></section>
-
+<tr>
+<td><input type="checkbox" class="verify"/></td>
+<td><input type="text" placeholder="Name"/></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+<td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="table-footer"><button class="add-row" data-target="pickup">+</button></div>
+</div>
+</section>
 <!-- ========================================================= -->
-<!-- PAGE 4 – Opcodes & Pricing -->
+<!-- PAGE 4 – OPCODES & PRICING -->
 <!-- ========================================================= -->
 <section id="opcodes-pricing" class="page-section">
-<h1>Opcodes & Pricing</h1>
-<div class="section"><div class="section-header">Opcodes Setup</div>
-<div class="table-container"><div class="scroll-wrapper">
-<table id="opcodes-setup" class="training-table draggable-table">
-<thead><tr><th>Completed</th><th>Service</th><th>Opcode</th><th>Hours</th><th>Customer Pay Labor Rate</th><th>Fixed Customer Pay Labor Rate</th><th>Labor Charged</th><th>Set Parts Charged</th><th>Parts Retail</th><th>ServiceCart</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" value="2 Wheel Alignment"></td><td colspan="8"></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="opcodes-setup">+</button></div></div>
+  <h1>Opcodes & Pricing</h1>
 
-<div class="section"><div class="section-header">MPI Opcodes</div>
-<div class="mpi-controls"><button id="resetMpiOrder" type="button">↻ Reset Order</button></div>
-<div class="table-container"><div class="scroll-wrapper">
-<table id="mpi-opcodes" class="training-table draggable-table">
-<thead><tr><th>Completed</th><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" class="verify"></td><td><input type="text" value="Exterior Lights"></td><td><input type="text"></td><td class="row-number">1</td><td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
-</tbody></table></div></div>
-<div class="table-footer"><button class="add-row" data-target="mpi-opcodes">+</button></div></div>
+  <!-- === OPCODES SETUP TABLE === -->
+  <div class="section">
+    <div class="section-header">Opcodes Setup</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table id="opcodes-setup" class="training-table draggable-table">
+          <thead>
+            <tr>
+              <th>Completed</th>
+              <th>Service</th>
+              <th>Opcode</th>
+              <th>Hours</th>
+              <th>Customer Pay Labor Rate</th>
+              <th>Fixed Customer Pay Labor Rate</th>
+              <th>Labor Charged</th>
+              <th>Set Parts Charged</th>
+              <th>Parts Retail</th>
+              <th>ServiceCart</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="verify" /></td>
+              <td><input type="text" placeholder="Service" /></td>
+              <td><input type="text" placeholder="Opcode" /></td>
+              <td><input type="text" placeholder="Hours" /></td>
+              <td><input type="text" placeholder="$" /></td>
+              <td><input type="text" placeholder="$" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="table-footer"><button class="add-row" data-target="opcodes-setup">+</button></div>
+  </div>
+
+  <!-- === MPI OPCODES TABLE === -->
+  <div class="section">
+    <div class="section-header">MPI Opcodes</div>
+    <div class="mpi-controls"><button id="resetMpiOrder" type="button">↻ Reset Order</button></div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table id="mpi-opcodes" class="training-table draggable-table">
+          <thead>
+            <tr>
+              <th>Completed</th>
+              <th>MPI Line</th>
+              <th>Opcode</th>
+              <th>MPI Line #</th>
+              <th>Preselected Opcode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="verify" /></td>
+              <td><input type="text" placeholder="MPI Line" /></td>
+              <td><input type="text" placeholder="Opcode" /></td>
+              <td class="row-number">1</td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="table-footer"><button class="add-row" data-target="mpi-opcodes">+</button></div>
+  </div>
 </section>
 
 <!-- ========================================================= -->
-<!-- PAGE 5 – DMS Integration -->
+<!-- PAGE 5 – DMS INTEGRATION -->
 <!-- ========================================================= -->
-<section id="dms-integration" class="page-section"><h1>DMS Integration</h1><div class="section-block"><h2>Integration Notes</h2><textarea placeholder="Type integration notes here…"></textarea></div></section>
+<section id="dms-integration" class="page-section">
+  <h1>DMS Integration</h1>
+  <div class="section-block">
+    <h2>Integration Notes</h2>
+    <textarea placeholder="Type integration notes here…"></textarea>
+  </div>
+</section>
 
 <!-- ========================================================= -->
-<!-- PAGE 6 – Workflow Notifications -->
+<!-- PAGE 6 – WORKFLOW NOTIFICATIONS -->
 <!-- ========================================================= -->
-<section id="workflow" class="page-section"><h1>Workflow Notifications</h1><div class="section-block"><h2>Workflow Notes</h2><textarea placeholder="Type workflow notes here…"></textarea></div></section>
+<section id="workflow" class="page-section">
+  <h1>Workflow Notifications</h1>
+  <div class="section-block">
+    <h2>Workflow Notes</h2>
+    <textarea placeholder="Type workflow notes here…"></textarea>
+  </div>
+</section>
 
 <!-- ========================================================= -->
-<!-- PAGE 7 – Training Summary -->
+<!-- PAGE 7 – TRAINING SUMMARY -->
 <!-- ========================================================= -->
-<section id="training-summary" class="page-section"><h1>Training Summary</h1><div class="section-block"><h2>Summary</h2><textarea placeholder="Type overall training summary here…"></textarea></div></section>
+<section id="training-summary" class="page-section">
+  <h1>Training Summary</h1>
+  <div class="section-block">
+    <h2>Summary</h2>
+    <textarea placeholder="Type overall training summary here…"></textarea>
+  </div>
+</section>
 
-</main></div>
+</main>
+</div>
+
 <button id="pdfButton" class="floating-btn">Save as PDF</button>
 <script src="script.js"></script>
-<style>.fade-in{animation:fadeIn .25s ease-in-out}.fade-out{animation:fadeOut .25s ease-in-out}@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(10px)}}</style>
-</body></html>
+<style>
+.fade-in{animation:fadeIn .25s ease-in-out}
+.fade-out{animation:fadeOut .25s ease-in-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(10px)}}
+</style>
+</body>
+</html>
