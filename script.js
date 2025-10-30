@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === TRAINING TABLES (Dynamic + Wider Name Columns) ===
+  // === TRAINING TABLES (auto-wide text boxes) ===
   // =======================================================
   const YESNO = `
     <select>
@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
               <thead>
                 <tr>
                   <th>Completed</th>
-                  <th style="width:340px;">Name</th>
+                  <th>Name</th>
                   ${role.cols.map(c=>`<th>${c}</th>`).join("")}
                 </tr>
               </thead>
@@ -80,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 ${Array.from({length: role.rows}).map(()=>`
                   <tr>
                     <td><input type="checkbox" class="verify" /></td>
-                    <td><input type="text" placeholder="Name" style="width:320px;" /></td>
+                    <td><input type="text" placeholder="Name" class="auto-wide" /></td>
                     ${role.cols.map(()=>`<td>${YESNO}</td>`).join("")}
                   </tr>
                 `).join("")}
@@ -98,8 +98,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // === Widen Service and MPI Opcode cells ===
+  document.querySelectorAll('#opcodes-setup td:first-of-type input[type="text"], #mpi-opcodes td:nth-of-type(2) input[type="text"]').forEach(el => {
+    el.style.width = "100%";
+  });
+
   // =======================================================
-  // === FOOTER NORMALIZER ===
+  // === FOOTER FIX: ensure footers are part of table block ===
   // =======================================================
   document.querySelectorAll(".table-footer").forEach(footer => {
     const btn = footer.querySelector(".add-row");
@@ -115,12 +120,7 @@ window.addEventListener("DOMContentLoaded", () => {
       container = containers.reverse().find(c => c.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING) || null;
     }
     if (container && !container.contains(footer)) container.appendChild(footer);
-    const section = footer.closest(".section");
-    if (section) {
-      const comment = section.querySelector(".comment-box");
-      if (comment && container && container.nextElementSibling !== comment) section.appendChild(comment);
-      if (container) container.classList.add("has-footer");
-    }
+    if (container) container.classList.add("has-footer");
   });
 
   // =======================================================
@@ -141,7 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // =======================================================
-  // === DROPDOWN COLOR CODING + VERIFY HIGHLIGHT ===
+  // === SELECT COLOR CODING + VERIFY HIGHLIGHT ===
   // =======================================================
   const bgColors = {
     "Yes": "#c9f7c0","Web Only": "#fff8b3","Mobile Only": "#ffe0b3","No": "#ffb3b3",
@@ -167,7 +167,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // =======================================================
-  // === SORTABLEJS (for drag/drop rows) ===
+  // === SORTABLEJS (draggable rows for draggable-table) ===
   // =======================================================
   const sortableScript = document.createElement("script");
   sortableScript.src = "https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js";
@@ -175,15 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   sortableScript.onload = () => {
     document.querySelectorAll(".draggable-table tbody").forEach((tbody) => {
-      const table = tbody.closest("table");
-      new Sortable(tbody, {
-        animation: 150,
-        handle: "td,th",
-        ghostClass: "dragging",
-        scroll: true,
-        scrollSensitivity: 60,
-        scrollSpeed: 20
-      });
+      new Sortable(tbody, { animation: 150, handle: "td,th", ghostClass: "dragging" });
     });
   };
 
@@ -206,6 +198,7 @@ window.addEventListener("DOMContentLoaded", () => {
       .fade-out { animation: fadeOut 0.25s ease-in-out; }
       @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
+      .training-table td input[type="text"] { width: 100%; box-sizing: border-box; }
     </style>
   `);
 });
