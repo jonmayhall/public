@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – FINAL STYLE
+   myKaarma Interactive Training Checklist — CLEAN LAYOUT FIX
    ======================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -16,12 +16,7 @@
 
 /* === GLOBAL === */
 * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
-html, body {
-  margin: 0;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
-}
+html, body { margin: 0; background: var(--gray-bg); color: var(--ink); overflow-x: hidden; }
 
 /* === TOP BAR === */
 #topbar {
@@ -41,30 +36,19 @@ html, body {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
+  width: 190px; padding: 20px 8px;
   box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px; bottom: 0;
+  position: fixed; top: 70px; bottom: 0;
   overflow-y: auto;
 }
 nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
+  background: none; border: none; padding: 10px 12px;
+  font-size: 14px; text-align: left;
   border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
+  cursor: pointer; transition: 0.2s; color: var(--ink);
 }
-.nav-btn:hover, .nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
-}
+.nav-btn:hover, .nav-btn.active { background: #fff3eb; color: var(--orange); font-weight: 600; }
 
 /* === MAIN CONTENT === */
 main {
@@ -90,7 +74,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 .section-block h2 {
   background: var(--orange);
@@ -99,6 +83,7 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   padding: 10px 16px;
   font-size: 16px;
   font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 .checklist-row {
   display: flex;
@@ -107,20 +92,13 @@ h1 { color: var(--orange); margin-bottom: 20px; }
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
+.checklist-row:last-child { border-bottom: none; }
+.checklist-row label { flex: 1; font-size: 14px; padding-right: 20px; }
 .checklist-row input, .checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
+  width: 220px; padding: 8px 10px;
+  border-radius: 10px; border: 1px solid var(--border);
+  background: #f9f9f9;
 }
-
-/* === TEXTAREA === */
 textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -129,10 +107,11 @@ textarea {
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
-  overflow: hidden;
 }
 
-/* === TABLES === */
+/* =======================================================
+   TABLES — FIXED GRIDS, SPACING, ROUNDED EDGES
+   ======================================================= */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -140,13 +119,16 @@ textarea {
   padding: 10px 16px;
   border-radius: var(--radius) var(--radius) 0 0;
 }
+
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
   border-bottom: none;
+  border-radius: 0;
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 .scroll-wrapper {
   position: relative;
@@ -160,14 +142,14 @@ textarea {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
+  border-spacing: 0;
 }
 .training-table th, .training-table td {
-  white-space: nowrap;
-  text-align: center;
+  border: 1px solid var(--border);
   padding: 8px 10px;
+  text-align: center;
   font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }
 .training-table th {
   background: var(--light-orange);
@@ -176,63 +158,63 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 5;
+  border-top: none;
 }
-.training-table th:hover { background: #f49c56; }
+.training-table th:first-child { border-left: none; }
+.training-table th:last-child { border-right: none; }
 
-/* === STICKY COLUMNS === */
+/* === STICKY COLUMNS (PERFECTLY ALIGNED) === */
 .training-table th:first-child,
 .training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 10;
+  position: sticky; left: 0; z-index: 10;
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  width: 70px;
-  min-width: 70px;
+  width: 70px; min-width: 70px;
+  border-right: 1px solid var(--border);
 }
 .training-table td:first-child {
-  background: #fff;
-  color: var(--ink);
+  background: #fff; color: var(--ink);
   font-weight: 400;
 }
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  position: sticky;
-  left: 70px;
-  z-index: 9;
+  position: sticky; left: 70px; z-index: 9;
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  width: 240px;
-  min-width: 240px;
+  width: 240px; min-width: 240px;
+  border-right: 1px solid var(--border);
 }
 .training-table td:nth-child(2) {
-  background: #fff;
-  color: var(--ink);
-  font-weight: 500;
+  background: #fff; color: var(--ink); font-weight: 500;
 }
 
-/* === INPUTS & CHECKBOXES === */
+/* === CHECKBOXES === */
+.verify {
+  accent-color: var(--orange);
+  transform: scale(1.1);
+  margin: 0 auto;
+  display: block;
+}
+.training-table td:first-child:has(.verify:checked) {
+  background: #fff7ed;
+  transition: background 0.3s ease;
+}
+
+/* === INPUTS & DROPDOWNS === */
 .training-table input[type="text"], .training-table select {
   width: 160px;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f9f9f9;
   font-size: 13px;
 }
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 6px;
+select:focus, input:focus {
+  border-color: var(--orange);
+  outline: none;
 }
-.training-table td:first-child:has(.verify:checked) {
-  background: #fff7ed;
-  transition: background 0.3s;
-}
-
-/* === DROPDOWN COLOR CODING === */
 select {
   background-color: #f2f2f2;
 }
@@ -241,35 +223,49 @@ select option[value="No"], select option[value="Not Trained"] { background-color
 select option[value="Web Only"], select option[value="Mobile Only"] { background-color: #fff8b3; }
 select option[value="N/A"] { background-color: #f2f2f2; }
 
-/* === FOOTER === */
+/* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
   border: 1px solid var(--border);
   border-top: none;
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
+  box-shadow: var(--shadow);
 }
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 24px; height: 24px;
   font-size: 14px;
   cursor: pointer;
   transition: 0.2s;
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.05); }
 
-/* === FLOATING SAVE BUTTON === */
+/* === NOTES SECTIONS === */
+.comment-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 20px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.comment-box h2 {
+  background: var(--orange);
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
-  top: 90px;
-  right: 25px;
+  top: 90px; right: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
