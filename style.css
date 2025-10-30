@@ -29,10 +29,7 @@
 }
 
 /* === GLOBAL RESET === */
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+* { box-sizing: border-box; font-family: 'Inter', sans-serif; }
 html, body {
   margin: 0;
   background: var(--bg);
@@ -59,10 +56,7 @@ html, body {
   right: 0;
   z-index: 20;
 }
-.top-logo {
-  height: 36px;
-  object-fit: contain;
-}
+.top-logo { height: 36px; object-fit: contain; }
 
 #app {
   display: flex;
@@ -71,7 +65,7 @@ html, body {
 }
 
 /* =======================================================
-   SIDEBAR – With Active Accent
+   SIDEBAR
    ======================================================= */
 #sidebar {
   width: 210px;
@@ -101,7 +95,6 @@ html, body {
   position: relative;
   transition: all 0.25s ease;
 }
-
 .nav-btn::before {
   content: "";
   position: absolute;
@@ -113,14 +106,12 @@ html, body {
   background: transparent;
   transition: all 0.25s ease;
 }
-
 .nav-btn:hover {
   background: rgba(243,111,33,0.12);
   color: var(--orange);
   transform: translateX(2px);
 }
 .nav-btn:hover::before { background: rgba(243,111,33,0.4); }
-
 .nav-btn.active {
   background: var(--orange);
   color: #fff;
@@ -148,11 +139,7 @@ main {
 }
 .page-section.active { display: block; }
 
-h1 {
-  color: var(--orange);
-  font-weight: 700;
-  margin-bottom: 20px;
-}
+h1 { color: var(--orange); font-weight: 700; margin-bottom: 20px; }
 h2 {
   color: var(--orange);
   font-size: 16px;
@@ -253,7 +240,9 @@ textarea {
   position: sticky;
   left: 0;
   z-index: 5;
-  background: var(--surface);
+  background: var(--orange-light);
+  color: #fff;
+  font-weight: 600;
   border-right: 1px solid var(--border);
 }
 
@@ -262,17 +251,16 @@ textarea {
 #opcodes-setup td:first-child {
   min-width: 240px;
 }
-#opcodes-setup td:first-child,
 #opcodes-setup td:first-child input[type="text"],
-#technicians td:first-child,
-#advisors td:first-child,
-#parts td:first-child,
-#bdc td:first-child,
-#pickup td:first-child {
-  background: var(--surface);
-  font-weight: 500;
-  color: var(--ink);
-  z-index: 6;
+#technicians td:first-child input,
+#advisors td:first-child input,
+#parts td:first-child input,
+#bdc td:first-child input,
+#pickup td:first-child input {
+  background: var(--orange-light);
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid #fff4;
 }
 
 /* =======================================================
