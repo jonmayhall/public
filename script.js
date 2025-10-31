@@ -1,152 +1,279 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – Final JS
-   ======================================================= */
+// =======================================================
+// === MAIN SITE SCRIPT – myKaarma Interactive Checklist ===
+// =======================================================
 
-// === SIDEBAR NAVIGATION ===
-document.addEventListener("DOMContentLoaded", () => {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const pages = document.querySelectorAll(".page-section");
+window.addEventListener("DOMContentLoaded", () => {
 
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
+  // === SIDEBAR NAVIGATION ===
+  const nav = document.getElementById("sidebar-nav");
+  const sections = document.querySelectorAll(".page-section");
+
+  if (nav) {
+    nav.addEventListener("click", (e) => {
+      const btn = e.target.closest(".nav-btn");
+      if (!btn) return;
+
       const target = btn.dataset.target;
-      pages.forEach(p => p.classList.remove("active"));
-      document.getElementById(target).classList.add("active");
+      const section = document.getElementById(target);
+      if (!section) return;
 
-      navButtons.forEach(b => b.classList.remove("active"));
+      const active = document.querySelector(".page-section.active");
+      if (active) {
+        active.classList.remove("active");
+        active.classList.add("fade-out");
+        setTimeout(() => active.classList.remove("fade-out"), 250);
+      }
+
+      setTimeout(() => {
+        sections.forEach((s) => s.classList.remove("active"));
+        section.classList.add("active", "fade-in");
+        setTimeout(() => section.classList.remove("fade-in"), 250);
+      }, 150);
+
+      nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  });
-});
-
-// === ADD ROW TO TABLE ===
-document.addEventListener("click", e => {
-  if (!e.target.classList.contains("add-row")) return;
-  const btn = e.target;
-  const tableId = btn.dataset.target;
-  let table;
-
-  if (tableId) {
-    table = document.getElementById(tableId);
-  } else {
-    table = btn.closest(".section").querySelector("table");
   }
 
-  if (!table) return;
-  const first = table.querySelector("tbody tr");
-  if (!first) return;
+  // =======================================================
+  // === TRAINING TABLE GENERATION (Dynamic Page Content) ===
+  // =======================================================
+  const roles = [
+    {
+      id: "technicians",
+      title: "Technicians – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
+        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
+        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
+        "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "advisors",
+      title: "Service Advisors – Checklist",
+      rows: 3,
+      cols: [
+        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
+        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
+        "ShopChat", "Status Change", "MPI Send", "SOP"
+      ]
+    },
+    {
+      id: "parts",
+      title: "Parts Representatives – Checklist",
+      rows: 2,
+      cols: [
+        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
+        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
+        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
+      ]
+    },
+    {
+      id: "bdc",
+      title: "BDC Representatives – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+    },
+    {
+      id: "pickup",
+      title: "Pick Up & Delivery Drivers – Checklist",
+      rows: 2,
+      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
+    }
+  ];
 
-  const clone = first.cloneNode(true);
-  clone.querySelectorAll("input[type='text']").forEach(i => (i.value = ""));
-  clone.querySelectorAll("input[type='checkbox']").forEach(c => (c.checked = false));
-  clone.querySelectorAll("select").forEach(s => {
-    s.selectedIndex = 0;
-    s.style.backgroundColor = "#f2f2f2";
-  });
-
-  table.querySelector("tbody").appendChild(clone);
-});
-
-// === DYNAMIC FIELD ADDERS (TRAINERS, CHAMPIONS, BLOCKERS) ===
-function addTrainerField(el) {
-  const parent = el.closest(".trainer-input").parentNode;
-  const div = document.createElement("div");
-  div.className = "trainer-input";
-  div.style.position = "relative";
-  div.innerHTML = `<input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
-                   <button type="button" class="add-row" onclick="addTrainerField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
-  parent.appendChild(div);
-}
-
-function addChampionField(el) {
-  const parent = el.closest(".champion-input").parentNode;
-  const div = document.createElement("div");
-  div.className = "champion-input";
-  div.style.position = "relative";
-  div.innerHTML = `<input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
-                   <button type="button" class="add-row" onclick="addChampionField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
-  parent.appendChild(div);
-}
-
-function addBlockerField(el) {
-  const parent = el.closest(".blocker-input").parentNode;
-  const div = document.createElement("div");
-  div.className = "blocker-input";
-  div.style.position = "relative";
-  div.innerHTML = `<input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
-                   <button type="button" class="add-row" onclick="addBlockerField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
-  parent.appendChild(div);
-}
-
-// === DROPDOWN COLOR CODING ===
-document.addEventListener("change", e => {
-  if (e.target.tagName !== "SELECT") return;
-  const val = e.target.value.trim();
-
-  if (e.target.classList.contains("rating-select")) {
-    if (val === "5" || val === "4") e.target.style.backgroundColor = "#c9f7c0";
-    else if (val === "3") e.target.style.backgroundColor = "#fff8b3";
-    else if (val === "2" || val === "1") e.target.style.backgroundColor = "#ffb3b3";
-    else e.target.style.backgroundColor = "#f2f2f2";
-    return;
+  const container = document.getElementById("tables-container");
+  if (container) {
+    roles.forEach((role) => {
+      const div = document.createElement("div");
+      div.classList.add("section");
+      div.innerHTML = `
+        <div class="section-header">${role.title}</div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table id="${role.id}" class="training-table">
+              <thead>
+                <tr>
+                  <th style="width:40px;"></th>
+                  <th style="width:260px;">Name</th>
+                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
+                </tr>
+              </thead>
+              <tbody>
+                ${Array.from({ length: role.rows }).map(() => `
+                  <tr>
+                    <td><input type="checkbox" class="verify"></td>
+                    <td><input type="text" placeholder="Name"></td>
+                    ${role.cols.map(() => `
+                      <td>
+                        <select>
+                          <option></option>
+                          <option value="Yes">Yes</option>
+                          <option value="Web Only">Web Only</option>
+                          <option value="Mobile Only">Mobile Only</option>
+                          <option value="No">No</option>
+                          <option value="Not Trained">Not Trained</option>
+                          <option value="N/A">N/A</option>
+                        </select>
+                      </td>
+                    `).join("")}
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-footer">
+          <button class="add-row" data-target="${role.id}" type="button">+</button>
+        </div>
+        <div class="section-block comment-box">
+          <h2>Additional Comments</h2>
+          <textarea placeholder="Type here…"></textarea>
+        </div>
+      `;
+      container.appendChild(div);
+    });
   }
 
-  const colorMap = {
-    Yes: "#c9f7c0",
-    No: "#ffb3b3",
-    "N/A": "#f2f2f2",
-    "Yes, each has their own": "#c9f7c0",
-    "Yes, but they are sharing": "#fff8b3"
+  // =======================================================
+  // === DROPDOWN COLOR CODING ===
+  // =======================================================
+  document.addEventListener("change", (e) => {
+    if (e.target.tagName === "SELECT") {
+      const value = e.target.value;
+      const colors = {
+        "Yes": "#c9f7c0",
+        "Web Only": "#fff8b3",
+        "Mobile Only": "#ffe0b3",
+        "No": "#ffb3b3",
+        "Not Trained": "#ffb3b3",
+        "N/A": "#f2f2f2",
+        "Yes, each has their own": "#c9f7c0",
+        "Yes, but they are sharing": "#fff8b3"
+      };
+      e.target.style.backgroundColor = colors[value] || "#f2f2f2";
+    }
+  });
+
+  // =======================================================
+  // === ADD ROW FUNCTION (Tables) ===
+  // =======================================================
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("add-row")) return;
+    const id = e.target.dataset.target;
+    const table = document.getElementById(id);
+    if (!table) return;
+
+    const firstRow = table.querySelector("tbody tr");
+    const clone = firstRow.cloneNode(true);
+    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
+    clone.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+      select.style.backgroundColor = "#f2f2f2";
+    });
+    clone.querySelectorAll(".verify").forEach((box) => (box.checked = false));
+
+    table.querySelector("tbody").appendChild(clone);
+  });
+
+  // =======================================================
+  // === TEXTAREA AUTO EXPAND ===
+  // =======================================================
+  document.addEventListener("input", (e) => {
+    if (e.target.tagName === "TEXTAREA") {
+      e.target.style.height = "auto";
+      e.target.style.height = e.target.scrollHeight + "px";
+    }
+  });
+
+  // =======================================================
+  // === CHECKBOX VISUAL FEEDBACK ===
+  // =======================================================
+  document.addEventListener("change", (e) => {
+    if (e.target.classList.contains("verify")) {
+      const cell = e.target.closest("td");
+      cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
+    }
+  });
+
+  // =======================================================
+  // === PDF EXPORT FUNCTION ===
+  // =======================================================
+  const pdfButton = document.getElementById("pdfButton");
+  if (pdfButton) {
+    pdfButton.addEventListener("click", () => {
+      const active = document.querySelector(".page-section.active");
+      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+        .then((html2pdf) => {
+          html2pdf.default().from(active).save(`${active.id}.pdf`);
+        });
+    });
+  }
+
+  // =======================================================
+  // === AUTO-FILL NOTE SYNC LOGIC ===
+  // =======================================================
+  const pretrainingNotes = document.querySelector("#pretraining textarea:last-of-type");
+  const mondayNotes = document.querySelector("#monday-visit textarea");
+  const trainingSummaryNotes = document.querySelector("#training-summary textarea:nth-of-type(1)");
+  const tuesdayNotes = document.querySelector("#training-summary textarea:nth-of-type(2)");
+  const opcodeNotes = document.querySelector("#training-summary textarea:nth-of-type(3)");
+  const cemNotes = document.querySelector("#training-summary textarea:nth-of-type(5)");
+
+  const syncNotes = () => {
+    const preText = pretrainingNotes?.value || "";
+    if (trainingSummaryNotes) trainingSummaryNotes.value = preText;
+
+    const mondayText = mondayNotes?.value || "";
+    if (tuesdayNotes) tuesdayNotes.value = mondayText;
+
+    const opcode = document.querySelector("#opcodes-pricing");
+    const dms = document.querySelector("#dms-integration");
+    const opcodeText = opcode?.querySelector("textarea")?.value || "";
+    const dmsText = dms?.querySelector("textarea")?.value || "";
+    opcodeNotes.value = `${opcodeText}\n${dmsText}`.trim();
+
+    const cem = document.querySelector("#onsite-trainers textarea");
+    if (cem && cemNotes) cemNotes.value = cem.value;
   };
-  e.target.style.backgroundColor = colorMap[val] || "#f2f2f2";
+
+  setInterval(syncNotes, 2000);
+
+  // =======================================================
+  // === ADDITIONAL TRAINER / CHAMPION / BLOCKER FIELDS ===
+  // =======================================================
+  window.addTrainerField = function (btn) {
+    const container = btn.closest(".trainer-input").parentElement;
+    const clone = btn.closest(".trainer-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+
+  window.addChampionField = function (btn) {
+    const container = btn.closest(".champion-input").parentElement;
+    const clone = btn.closest(".champion-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+
+  window.addBlockerField = function (btn) {
+    const container = btn.closest(".blocker-input").parentElement;
+    const clone = btn.closest(".blocker-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
 });
 
-// === CONDITIONAL TEXTAREAS (Final Onsite) ===
-document.addEventListener("change", e => {
-  if (e.target.id === "trained-all") {
-    document.getElementById("untrained-notes").style.display =
-      e.target.value === "No" ? "block" : "none";
-  }
-  if (e.target.id === "tickets") {
-    const val = e.target.value;
-    document.getElementById("ticket-details").style.display =
-      val === "Yes" || val === "Tier 2" ? "block" : "none";
-  }
-});
-
-// === CHECKBOX HIGHLIGHTING ===
-document.addEventListener("change", e => {
-  if (!e.target.classList.contains("verify")) return;
-  const td = e.target.closest("td");
-  if (td) td.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
-});
-
-// === PDF EXPORT ===
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("pdfButton");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    const active = document.querySelector(".page-section.active");
-    if (!active) return;
-    import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-      .then(h => h.default().from(active).save(`${active.id}.pdf`));
-  });
-});
-
-// === AUTOFILL PLACEHOLDER (FOR FUTURE SYNCING BETWEEN PAGES) ===
-// These will be expanded later if you want Pre-Training / Monday / etc. to fill into Summary.
-function getTextFrom(pageID) {
-  const page = document.getElementById(pageID);
-  if (!page) return "";
-  const textareas = page.querySelectorAll("textarea");
-  return Array.from(textareas)
-    .map(t => t.value.trim())
-    .filter(v => v)
-    .join("\n\n");
-}
-
-function autofillSummary() {
-  document.getElementById("summary-pretraining").value = getTextFrom("pretraining") + "\n" + getTextFrom("monday-visit");
-  document.getElementById("summary-opcodes").value = getTextFrom("opcodes-pricing") + "\n" + getTextFrom("dms-integration");
-}
+// === FADE ANIMATIONS ===
+document.head.insertAdjacentHTML("beforeend", `
+  <style>
+    .fade-in { animation: fadeIn 0.25s ease-in-out; }
+    .fade-out { animation: fadeOut 0.25s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
+  </style>
+`);
