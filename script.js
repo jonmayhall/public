@@ -218,21 +218,18 @@ window.addEventListener("DOMContentLoaded", () => {
   // === AUTO-FILL NOTE SYNC LOGIC ===
   // =======================================================
   const pretrainingNotes = document.querySelector("#pretraining textarea:last-of-type");
-  const mondayNotes = document.querySelector("#pretraining textarea");
+  const mondayNotes = document.querySelector("#monday-visit textarea");
   const trainingSummaryNotes = document.querySelector("#training-summary textarea:nth-of-type(1)");
   const tuesdayNotes = document.querySelector("#training-summary textarea:nth-of-type(2)");
   const opcodeNotes = document.querySelector("#training-summary textarea:nth-of-type(3)");
   const cemNotes = document.querySelector("#training-summary textarea:nth-of-type(5)");
 
   const syncNotes = () => {
-    const preText = mondayNotes?.value || "";
+    const preText = pretrainingNotes?.value || "";
     if (trainingSummaryNotes) trainingSummaryNotes.value = preText;
 
-    const tables = document.querySelector("#training-checklist");
-    if (tables) {
-      const checkNotes = tables.querySelectorAll(".comment-box textarea");
-      tuesdayNotes.value = Array.from(checkNotes).map(n => n.value).join("\n");
-    }
+    const mondayText = mondayNotes?.value || "";
+    if (tuesdayNotes) tuesdayNotes.value = mondayText;
 
     const opcode = document.querySelector("#opcodes-pricing");
     const dms = document.querySelector("#dms-integration");
