@@ -1,5 +1,6 @@
 // =======================================================
 // === MAIN SITE SCRIPT – myKaarma Interactive Checklist ===
+// === Final Build, October 2025 ===
 // =======================================================
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
@@ -44,39 +46,47 @@ window.addEventListener("DOMContentLoaded", () => {
       id: "technicians",
       title: "Technicians – Checklist",
       rows: 3,
-      cols: ["DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
-             "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
-             "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
-             "Notifications", "Desktop Filter"]
+      cols: [
+        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
+        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
+        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
+        "Desktop Filter"
+      ]
     },
     {
       id: "advisors",
       title: "Service Advisors – Checklist",
       rows: 3,
-      cols: ["DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
-             "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
-             "ShopChat", "Status Change", "MPI Send", "Desktop Filter"]
+      cols: [
+        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
+        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
+        "ShopChat", "Status Change", "MPI Send", "Desktop Filter"
+      ]
     },
     {
       id: "parts",
       title: "Parts Representatives – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
-             "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
-             "ShopChat / Parts", "Status Change", "Notifications", "Desktop Filter"]
+      cols: [
+        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
+        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
+        "ShopChat / Parts", "Status Change", "Notifications", "Desktop Filter"
+      ]
     },
     {
       id: "bdc",
       title: "BDC Representatives – Checklist",
       rows: 2,
-      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
+      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing", "Desktop Filter"]
     },
     {
       id: "dispatcher",
       title: "Pickup & Delivery Dispatcher – Checklist",
       rows: 2,
-      cols: ["Creating Trips", "Customer Tab", "Editing Trips", "Adding Driver",
-             "Adding Loaners", "Drivers View / Mobile App", "Global View"]
+      cols: [
+        "Creating Trips", "Customer Tab", "Editing Trips", "Adding Driver",
+        "Adding Loaners", "Drivers View / Mobile App", "Global View"
+      ]
     },
     {
       id: "pickup",
@@ -112,8 +122,8 @@ window.addEventListener("DOMContentLoaded", () => {
                       <td>
                         <select>
                           <option></option>
-                          <option>Yes</option>
-                          <option>No</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
                         </select>
                       </td>
                     `).join("")}
@@ -140,17 +150,19 @@ window.addEventListener("DOMContentLoaded", () => {
   // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
-      const val = e.target.value;
+      const value = e.target.value;
       const colors = {
         "Yes": "#c9f7c0",
         "No": "#ffb3b3",
+        "5": "#c9f7c0",
+        "4": "#c9f7c0",
+        "3": "#fff8b3",
+        "2": "#ffb3b3",
+        "1": "#ffb3b3",
         "N/A": "#f2f2f2",
-        "Web Only": "#fff8b3",
-        "Mobile Only": "#ffe0b3",
-        "No Information to Review": "#ffb3b3",
-        "No Information Available": "#ffb3b3"
+        "No Information to Review": "#ffb3b3"
       };
-      e.target.style.backgroundColor = colors[val] || "#f2f2f2";
+      e.target.style.backgroundColor = colors[value] || "#f2f2f2";
     }
   });
 
@@ -162,14 +174,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const id = e.target.dataset.target;
     const table = document.getElementById(id);
     if (!table) return;
-    const first = table.querySelector("tbody tr");
-    const clone = first.cloneNode(true);
-    clone.querySelectorAll("input[type='text']").forEach((i) => i.value = "");
-    clone.querySelectorAll("select").forEach((s) => {
-      s.selectedIndex = 0;
-      s.style.backgroundColor = "#f2f2f2";
+
+    const firstRow = table.querySelector("tbody tr");
+    const clone = firstRow.cloneNode(true);
+    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
+    clone.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+      select.style.backgroundColor = "#f2f2f2";
     });
-    clone.querySelectorAll(".verify").forEach((c) => c.checked = false);
+    clone.querySelectorAll(".verify").forEach((box) => (box.checked = false));
+
     table.querySelector("tbody").appendChild(clone);
   });
 
@@ -194,23 +208,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // =======================================================
-  // === CONDITIONAL TEXTAREAS (Final Onsite Check) ===
-  // =======================================================
-  const trainedAll = document.getElementById("trained-all");
-  const trainedNotes = document.getElementById("trained-all-notes");
-  const supportTickets = document.getElementById("support-tickets");
-  const ticketNotes = document.getElementById("support-ticket-notes");
-
-  const toggleVisibility = () => {
-    if (trainedAll && trainedNotes)
-      trainedNotes.classList.toggle("hidden", trainedAll.value !== "No");
-    if (supportTickets && ticketNotes)
-      ticketNotes.classList.toggle("hidden", !["Yes", "Tier 2"].includes(supportTickets.value));
-  };
-
-  [trainedAll, supportTickets].forEach(el => el?.addEventListener("change", toggleVisibility));
-
-  // =======================================================
   // === PDF EXPORT FUNCTION ===
   // =======================================================
   const pdfButton = document.getElementById("pdfButton");
@@ -225,64 +222,51 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === NOTE SYNC (Expanded for all new pages) ===
+  // === AUTO-FILL NOTE SYNC LOGIC ===
   // =======================================================
   const pretrainingNotes = document.querySelector("#pretraining textarea:last-of-type");
   const mondayNotes = document.querySelector("#monday-visit textarea");
-  const trainingSummary = document.querySelector("#training-summary");
+  const trainingSummaryNotes = document.querySelector("#training-summary textarea:nth-of-type(2)");
+  const tuesdayNotes = document.querySelector("#training-summary textarea:nth-of-type(3)");
+  const wednesdayNotes = document.querySelector("#training-summary textarea:nth-of-type(4)");
+  const opcodeNotes = document.querySelector("#training-summary textarea:nth-of-type(5)");
+  const cemNotes = document.querySelector("#training-summary textarea:nth-of-type(1)");
 
   const syncNotes = () => {
-    if (!trainingSummary) return;
-    const tAreas = trainingSummary.querySelectorAll("textarea");
-
     const preText = pretrainingNotes?.value || "";
     const mondayText = mondayNotes?.value || "";
+    if (trainingSummaryNotes) trainingSummaryNotes.value = preText + "\n" + mondayText;
 
-    // Order: Overall, CEM, Champions, Pre/Monday, Tue, Wed, Opcodes
-    if (tAreas[2]) tAreas[2].value = preText + "\n" + mondayText;
+    const opcode = document.querySelector("#opcodes-pricing");
+    const dms = document.querySelector("#dms-integration");
+    const opcodeText = opcode?.querySelector("textarea")?.value || "";
+    const dmsText = dms?.querySelector("textarea")?.value || "";
+    if (opcodeNotes) opcodeNotes.value = `${opcodeText}\n${dmsText}`.trim();
 
-    // Tuesday / Wednesday autofills from Training Checklist page
-    const checklist = document.querySelector("#training-checklist");
-    const checkNotes = checklist?.querySelector("textarea")?.value || "";
-    if (tAreas[3]) tAreas[3].value = checkNotes;
-    if (tAreas[4]) tAreas[4].value = checkNotes;
-
-    // Opcode + DMS integration merge
-    const opcode = document.querySelector("#opcodes-pricing textarea")?.value || "";
-    const dms = document.querySelector("#dms-integration textarea")?.value || "";
-    if (tAreas[5]) tAreas[5].value = `${opcode}\n${dms}`.trim();
-
-    // Champions & Blockers autofill
-    const champions = Array.from(document.querySelectorAll(".champion-input input"))
-      .map(i => i.value).filter(Boolean).join(", ");
-    const blockers = Array.from(document.querySelectorAll(".blocker-input input"))
-      .map(i => i.value).filter(Boolean).join(", ");
-    const champInput = trainingSummary.querySelector("input[placeholder*='Champion']");
-    const blockInput = trainingSummary.querySelector("input[placeholder*='Blocker']");
-    if (champInput) champInput.value = champions;
-    if (blockInput) blockInput.value = blockers;
+    const cem = document.querySelector("#onsite-trainers textarea");
+    if (cem && cemNotes) cemNotes.value = cem.value;
   };
 
   setInterval(syncNotes, 2000);
 
   // =======================================================
-  // === ADDITIONAL INPUT FIELD FUNCTIONS ===
+  // === ADDITIONAL TRAINER / CHAMPION / BLOCKER FIELDS ===
   // =======================================================
-  window.addTrainerField = (btn) => {
+  window.addTrainerField = function (btn) {
     const container = btn.closest(".trainer-input").parentElement;
     const clone = btn.closest(".trainer-input").cloneNode(true);
     clone.querySelector("input").value = "";
     container.appendChild(clone);
   };
 
-  window.addChampionField = (btn) => {
+  window.addChampionField = function (btn) {
     const container = btn.closest(".champion-input").parentElement;
     const clone = btn.closest(".champion-input").cloneNode(true);
     clone.querySelector("input").value = "";
     container.appendChild(clone);
   };
 
-  window.addBlockerField = (btn) => {
+  window.addBlockerField = function (btn) {
     const container = btn.closest(".blocker-input").parentElement;
     const clone = btn.closest(".blocker-input").cloneNode(true);
     clone.querySelector("input").value = "";
@@ -295,8 +279,7 @@ document.head.insertAdjacentHTML("beforeend", `
   <style>
     .fade-in { animation: fadeIn 0.25s ease-in-out; }
     .fade-out { animation: fadeOut 0.25s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
-    @keyframes fadeOut { from { opacity: 1; transform: translateY(0);} to { opacity: 0; transform: translateY(10px);} }
-    .hidden { display:none; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
   </style>
 `);
