@@ -159,6 +159,67 @@
         </div>
       </section>
 
+<!-- ========================================================= -->
+<!-- === PAGE 2 : ONSITE TRAINERS & CEM ASSIGNED === -->
+<!-- ========================================================= -->
+<section id="onsite-trainers" class="page-section">
+  <h1>Onsite Trainers & CEM Assigned</h1>
+
+  <!-- === ONSITE TRAINERS === -->
+  <div class="section-block">
+    <h2>Onsite Trainers</h2>
+
+    <div class="checklist-row">
+      <label>Lead Trainer</label>
+      <input type="text" placeholder="Enter Lead Trainer..." />
+    </div>
+
+    <div class="checklist-row">
+      <label>Additional Trainers</label>
+      <div style="display:flex; flex-direction:column; width:220px;">
+        <div class="trainer-input" style="position:relative;">
+          <input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
+          <button type="button" class="add-row" onclick="addTrainerField(this)" style="position:absolute; bottom:-12px; left:-34px;">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === CUSTOMER ENGAGEMENT MANAGER === -->
+  <div class="section-block">
+    <h2>Customer Engagement Manager</h2>
+    <div class="checklist-row">
+      <label>CEM Assigned to Store</label>
+      <input type="text" placeholder="Enter CEM Name..." />
+    </div>
+  </div>
+
+  <!-- === CHAMPIONS & BLOCKERS === -->
+  <div class="section-block">
+    <h2>Champions & Blockers</h2>
+
+    <div class="checklist-row">
+      <label>Champion/s</label>
+      <div style="display:flex; flex-direction:column; width:220px;">
+        <div class="champion-input" style="position:relative;">
+          <input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
+          <button type="button" class="add-row" onclick="addChampionField(this)" style="position:absolute; bottom:-12px; left:-34px;">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-row">
+      <label>Blockers</label>
+      <div style="display:flex; flex-direction:column; width:220px;">
+        <div class="blocker-input" style="position:relative;">
+          <input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
+          <button type="button" class="add-row" onclick="addBlockerField(this)" style="position:absolute; bottom:-12px; left:-34px;">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      
       <!-- ========================================================= -->
       <!-- === PAGE 2 : DEALERSHIP INFORMATION === -->
       <!-- ========================================================= -->
