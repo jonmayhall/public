@@ -1,5 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Final Stylesheet
+   Updated Oct 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -202,7 +203,6 @@ textarea {
   overflow: hidden;
   margin: 0;
 }
-
 .scroll-wrapper {
   display: block;
   width: 100%;
