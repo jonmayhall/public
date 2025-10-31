@@ -360,16 +360,100 @@
 <!-- === PAGE 6 : OPCODES & PRICING === -->
 <!-- ========================================================= -->
 <section id="opcodes-pricing" class="page-section">
-  <h1>Opcodes &amp; Pricing</h1>
-  <!-- (same as restored version already provided earlier) -->
-</section>
+  <h1>Opcodes & Pricing</h1>
 
-<!-- ========================================================= -->
-<!-- === PAGE 7 : DMS INTEGRATION === -->
-<!-- ========================================================= -->
-<section id="dms-integration" class="page-section">
-  <h1>DMS Integration</h1>
-  <!-- (same as restored version already provided earlier) -->
+  <!-- === OPCODES SETUP TABLE === -->
+  <div class="section">
+    <div class="section-header">Opcodes Setup</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table id="opcodes-setup" class="training-table draggable-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th style="width:260px;">Service</th>
+              <th>Opcode</th>
+              <th>Hours</th>
+              <th>Customer Pay Labor Rate</th>
+              <th>Fixed Customer Pay Labor Rate</th>
+              <th>Labor Charged</th>
+              <th>Set Parts Charged</th>
+              <th>Parts Retail</th>
+              <th>ServiceCart</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="verify"></td>
+              <td><input type="text" value="2 Wheel Alignment"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="verify"></td>
+              <td><input type="text" value="Brake Fluid Exchange"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="table-footer">
+      <button class="add-row" data-target="opcodes-setup" type="button">+</button>
+    </div>
+    <div class="section-block comment-box">
+      <h2>Notes</h2>
+      <textarea placeholder="Type here…"></textarea>
+    </div>
+  </div>
+
+  <!-- === MPI OPCODES TABLE === -->
+  <div class="section">
+    <div class="section-header">MPI Opcodes</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table id="mpi-opcodes" class="training-table draggable-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th style="width:260px;">MPI Line</th>
+              <th>Opcode</th>
+              <th>MPI Line #</th>
+              <th>Preselected Opcode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" class="verify"></td>
+              <td><input type="text" value="Exterior Lights"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="verify"></td>
+              <td><input type="text" value="Front Brake Pads"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="table-footer">
+      <button class="add-row" data-target="mpi-opcodes" type="button">+</button>
+    </div>
+    <div class="section-block comment-box">
+      <h2>Notes</h2>
+      <textarea placeholder="Type here…"></textarea>
+    </div>
+  </div>
 </section>
 
 <!-- ========================================================= -->
