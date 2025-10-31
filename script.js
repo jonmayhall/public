@@ -1,204 +1,152 @@
-// =======================================================
-// === MAIN SITE SCRIPT – myKaarma Interactive Checklist ===
-// =======================================================
+/* =======================================================
+   myKaarma Interactive Training Checklist – Final JS
+   ======================================================= */
 
-window.addEventListener("DOMContentLoaded", () => {
+// === SIDEBAR NAVIGATION ===
+document.addEventListener("DOMContentLoaded", () => {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const pages = document.querySelectorAll(".page-section");
 
-  // === SIDEBAR NAVIGATION ===
-  const nav = document.getElementById("sidebar-nav");
-  const sections = document.querySelectorAll(".page-section");
-
-  if (nav) {
-    nav.addEventListener("click", (e) => {
-      const btn = e.target.closest(".nav-btn");
-      if (!btn) return;
-
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
       const target = btn.dataset.target;
-      const section = document.getElementById(target);
-      if (!section) return;
+      pages.forEach(p => p.classList.remove("active"));
+      document.getElementById(target).classList.add("active");
 
-      const active = document.querySelector(".page-section.active");
-      if (active) {
-        active.classList.remove("active");
-        active.classList.add("fade-out");
-        setTimeout(() => active.classList.remove("fade-out"), 250);
-      }
-
-      setTimeout(() => {
-        sections.forEach((s) => s.classList.remove("active"));
-        section.classList.add("active", "fade-in");
-        setTimeout(() => section.classList.remove("fade-in"), 250);
-      }, 150);
-
-      nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+      navButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }
-
-  // =======================================================
-  // === DROPDOWN COLOR CODING ===
-  // =======================================================
-  document.addEventListener("change", (e) => {
-    if (e.target.tagName === "SELECT") {
-      const val = e.target.value;
-      const colorMap = {
-        "Yes": "#c9f7c0",
-        "No": "#ffb3b3",
-        "N/A": "#f2f2f2",
-        "Partially": "#fff8b3",
-        "Tier 2": "#fff8b3",
-        "5": "#c9f7c0",
-        "4": "#c9f7c0",
-        "3": "#fff8b3",
-        "2": "#ffb3b3",
-        "1": "#ffb3b3",
-      };
-      e.target.style.backgroundColor = colorMap[val] || "#f2f2f2";
-    }
   });
-
-  // =======================================================
-  // === TABLE ADD ROW FUNCTION ===
-  // =======================================================
-  document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("add-row")) return;
-    const id = e.target.dataset.target;
-    const table = document.getElementById(id);
-    if (!table) return;
-
-    const first = table.querySelector("tbody tr:not(:last-child)");
-    if (!first) return;
-
-    const clone = first.cloneNode(true);
-    clone.querySelectorAll("input, select").forEach((el) => {
-      if (el.tagName === "SELECT") {
-        el.selectedIndex = 0;
-        el.style.backgroundColor = "#f2f2f2";
-      } else el.value = "";
-    });
-    table.querySelector("tbody").insertBefore(clone, table.querySelector("tbody tr:last-child"));
-  });
-
-  // =======================================================
-  // === ADDITIONAL INPUT FIELDS ===
-  // =======================================================
-  window.addTrainerField = (btn) => {
-    const container = btn.closest(".trainer-input").parentElement;
-    const clone = btn.closest(".trainer-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
-  window.addChampionField = (btn) => {
-    const container = btn.closest(".champion-input").parentElement;
-    const clone = btn.closest(".champion-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
-  window.addBlockerField = (btn) => {
-    const container = btn.closest(".blocker-input").parentElement;
-    const clone = btn.closest(".blocker-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
-
-  // =======================================================
-  // === TEXTAREA AUTO EXPAND ===
-  // =======================================================
-  document.addEventListener("input", (e) => {
-    if (e.target.tagName === "TEXTAREA") {
-      e.target.style.height = "auto";
-      e.target.style.height = e.target.scrollHeight + "px";
-    }
-  });
-
-  // =======================================================
-  // === CHECKBOX VISUAL FEEDBACK ===
-  // =======================================================
-  document.addEventListener("change", (e) => {
-    if (e.target.classList.contains("verify")) {
-      const td = e.target.closest("td");
-      td.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
-    }
-  });
-
-  // =======================================================
-  // === CONDITIONAL VISIBILITY (Final Onsite Check) ===
-  // =======================================================
-  const trainedSelect = document.getElementById("trained-all");
-  const untrainedNotes = document.getElementById("untrained-notes");
-  if (trainedSelect && untrainedNotes) {
-    trainedSelect.addEventListener("change", () => {
-      untrainedNotes.style.display = trainedSelect.value === "No" ? "block" : "none";
-    });
-  }
-
-  const ticketSelect = document.getElementById("tickets");
-  const ticketDetails = document.getElementById("ticket-details");
-  if (ticketSelect && ticketDetails) {
-    ticketSelect.addEventListener("change", () => {
-      ticketDetails.style.display =
-        ticketSelect.value === "Yes" || ticketSelect.value === "Tier 2" ? "block" : "none";
-    });
-  }
-
-  // =======================================================
-  // === PDF EXPORT ===
-  // =======================================================
-  const pdfButton = document.getElementById("pdfButton");
-  if (pdfButton) {
-    pdfButton.addEventListener("click", () => {
-      const active = document.querySelector(".page-section.active");
-      import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
-        .then((html2pdf) => {
-          html2pdf.default().from(active).save(`${active.id}.pdf`);
-        });
-    });
-  }
-
-  // =======================================================
-  // === NOTE SYNC / AUTO-FILL LOGIC ===
-  // =======================================================
-  function syncNotes() {
-    const cemField = document.querySelector("#onsite-trainers input[placeholder='Enter CEM Name…']");
-    const cemNotes = document.getElementById("summary-cem");
-    if (cemField && cemNotes) cemNotes.value = cemField.value;
-
-    const champs = Array.from(document.querySelectorAll("#onsite-trainers .champion-input input"))
-      .map(i => i.value).filter(Boolean).join(", ");
-    const blocks = Array.from(document.querySelectorAll("#onsite-trainers .blocker-input input"))
-      .map(i => i.value).filter(Boolean).join(", ");
-    if (document.getElementById("summary-champions")) document.getElementById("summary-champions").value = champs;
-    if (document.getElementById("summary-blockers")) document.getElementById("summary-blockers").value = blocks;
-
-    const preNotes = Array.from(document.querySelectorAll("#pretraining textarea"))
-      .map(t => t.value).join("\n");
-    const monNotes = Array.from(document.querySelectorAll("#monday-visit textarea"))
-      .map(t => t.value).join("\n");
-    if (document.getElementById("summary-pretraining"))
-      document.getElementById("summary-pretraining").value = `${preNotes}\n${monNotes}`.trim();
-
-    const checklistNotes = Array.from(document.querySelectorAll("#training-checklist .comment-box textarea"))
-      .map(t => t.value).join("\n");
-    const sumTue = document.getElementById("summary-tuesday");
-    if (sumTue) sumTue.value = checklistNotes;
-
-    const opcode = document.querySelector("#opcodes-pricing textarea")?.value || "";
-    const dms = document.querySelector("#dms-integration textarea")?.value || "";
-    const opNotes = document.getElementById("summary-opcodes");
-    if (opNotes) opNotes.value = `${opcode}\n${dms}`.trim();
-  }
-
-  setInterval(syncNotes, 2000);
 });
 
-// === FADE ANIMATIONS ===
-document.head.insertAdjacentHTML("beforeend", `
-<style>
-.fade-in { animation: fadeIn 0.25s ease-in-out; }
-.fade-out { animation: fadeOut 0.25s ease-in-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
-</style>
-`);
+// === ADD ROW TO TABLE ===
+document.addEventListener("click", e => {
+  if (!e.target.classList.contains("add-row")) return;
+  const btn = e.target;
+  const tableId = btn.dataset.target;
+  let table;
+
+  if (tableId) {
+    table = document.getElementById(tableId);
+  } else {
+    table = btn.closest(".section").querySelector("table");
+  }
+
+  if (!table) return;
+  const first = table.querySelector("tbody tr");
+  if (!first) return;
+
+  const clone = first.cloneNode(true);
+  clone.querySelectorAll("input[type='text']").forEach(i => (i.value = ""));
+  clone.querySelectorAll("input[type='checkbox']").forEach(c => (c.checked = false));
+  clone.querySelectorAll("select").forEach(s => {
+    s.selectedIndex = 0;
+    s.style.backgroundColor = "#f2f2f2";
+  });
+
+  table.querySelector("tbody").appendChild(clone);
+});
+
+// === DYNAMIC FIELD ADDERS (TRAINERS, CHAMPIONS, BLOCKERS) ===
+function addTrainerField(el) {
+  const parent = el.closest(".trainer-input").parentNode;
+  const div = document.createElement("div");
+  div.className = "trainer-input";
+  div.style.position = "relative";
+  div.innerHTML = `<input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
+                   <button type="button" class="add-row" onclick="addTrainerField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
+  parent.appendChild(div);
+}
+
+function addChampionField(el) {
+  const parent = el.closest(".champion-input").parentNode;
+  const div = document.createElement("div");
+  div.className = "champion-input";
+  div.style.position = "relative";
+  div.innerHTML = `<input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
+                   <button type="button" class="add-row" onclick="addChampionField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
+  parent.appendChild(div);
+}
+
+function addBlockerField(el) {
+  const parent = el.closest(".blocker-input").parentNode;
+  const div = document.createElement("div");
+  div.className = "blocker-input";
+  div.style.position = "relative";
+  div.innerHTML = `<input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
+                   <button type="button" class="add-row" onclick="addBlockerField(this)" style="position:absolute;bottom:-12px;left:-34px;">+</button>`;
+  parent.appendChild(div);
+}
+
+// === DROPDOWN COLOR CODING ===
+document.addEventListener("change", e => {
+  if (e.target.tagName !== "SELECT") return;
+  const val = e.target.value.trim();
+
+  if (e.target.classList.contains("rating-select")) {
+    if (val === "5" || val === "4") e.target.style.backgroundColor = "#c9f7c0";
+    else if (val === "3") e.target.style.backgroundColor = "#fff8b3";
+    else if (val === "2" || val === "1") e.target.style.backgroundColor = "#ffb3b3";
+    else e.target.style.backgroundColor = "#f2f2f2";
+    return;
+  }
+
+  const colorMap = {
+    Yes: "#c9f7c0",
+    No: "#ffb3b3",
+    "N/A": "#f2f2f2",
+    "Yes, each has their own": "#c9f7c0",
+    "Yes, but they are sharing": "#fff8b3"
+  };
+  e.target.style.backgroundColor = colorMap[val] || "#f2f2f2";
+});
+
+// === CONDITIONAL TEXTAREAS (Final Onsite) ===
+document.addEventListener("change", e => {
+  if (e.target.id === "trained-all") {
+    document.getElementById("untrained-notes").style.display =
+      e.target.value === "No" ? "block" : "none";
+  }
+  if (e.target.id === "tickets") {
+    const val = e.target.value;
+    document.getElementById("ticket-details").style.display =
+      val === "Yes" || val === "Tier 2" ? "block" : "none";
+  }
+});
+
+// === CHECKBOX HIGHLIGHTING ===
+document.addEventListener("change", e => {
+  if (!e.target.classList.contains("verify")) return;
+  const td = e.target.closest("td");
+  if (td) td.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
+});
+
+// === PDF EXPORT ===
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("pdfButton");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const active = document.querySelector(".page-section.active");
+    if (!active) return;
+    import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js")
+      .then(h => h.default().from(active).save(`${active.id}.pdf`));
+  });
+});
+
+// === AUTOFILL PLACEHOLDER (FOR FUTURE SYNCING BETWEEN PAGES) ===
+// These will be expanded later if you want Pre-Training / Monday / etc. to fill into Summary.
+function getTextFrom(pageID) {
+  const page = document.getElementById(pageID);
+  if (!page) return "";
+  const textareas = page.querySelectorAll("textarea");
+  return Array.from(textareas)
+    .map(t => t.value.trim())
+    .filter(v => v)
+    .join("\n\n");
+}
+
+function autofillSummary() {
+  document.getElementById("summary-pretraining").value = getTextFrom("pretraining") + "\n" + getTextFrom("monday-visit");
+  document.getElementById("summary-opcodes").value = getTextFrom("opcodes-pricing") + "\n" + getTextFrom("dms-integration");
+}
