@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const section = document.getElementById(target);
       if (!section) return;
 
-      // Fade transition
       const active = document.querySelector(".page-section.active");
       if (active) {
         active.classList.remove("active");
@@ -39,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === TRAINING TABLE GENERATION ===
+  // === TRAINING TABLE GENERATION (Dynamic Page Content) ===
   // =======================================================
   const roles = [
     {
@@ -141,10 +140,11 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === COLOR CODING FOR DROPDOWNS ===
+  // === DROPDOWN COLOR CODING ===
   // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
+      const value = e.target.value;
       const colors = {
         "Yes": "#c9f7c0",
         "Web Only": "#fff8b3",
@@ -155,12 +155,12 @@ window.addEventListener("DOMContentLoaded", () => {
         "Yes, each has their own": "#c9f7c0",
         "Yes, but they are sharing": "#fff8b3"
       };
-      e.target.style.backgroundColor = colors[e.target.value] || "#f2f2f2";
+      e.target.style.backgroundColor = colors[value] || "#f2f2f2";
     }
   });
 
   // =======================================================
-  // === ADD ROW FUNCTION ===
+  // === ADD ROW FUNCTION (Tables) ===
   // =======================================================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
@@ -170,12 +170,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const firstRow = table.querySelector("tbody tr");
     const clone = firstRow.cloneNode(true);
-    clone.querySelectorAll("input[type='text']").forEach((i) => i.value = "");
-    clone.querySelectorAll("select").forEach((s) => {
-      s.selectedIndex = 0;
-      s.style.backgroundColor = "#f2f2f2";
+    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
+    clone.querySelectorAll("select").forEach((select) => {
+      select.selectedIndex = 0;
+      select.style.backgroundColor = "#f2f2f2";
     });
-    clone.querySelectorAll(".verify").forEach((c) => (c.checked = false));
+    clone.querySelectorAll(".verify").forEach((box) => (box.checked = false));
 
     table.querySelector("tbody").appendChild(clone);
   });
@@ -245,6 +245,30 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   setInterval(syncNotes, 2000);
+
+  // =======================================================
+  // === ADDITIONAL TRAINER / CHAMPION / BLOCKER FIELDS ===
+  // =======================================================
+  window.addTrainerField = function (btn) {
+    const container = btn.closest(".trainer-input").parentElement;
+    const clone = btn.closest(".trainer-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+
+  window.addChampionField = function (btn) {
+    const container = btn.closest(".champion-input").parentElement;
+    const clone = btn.closest(".champion-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+
+  window.addBlockerField = function (btn) {
+    const container = btn.closest(".blocker-input").parentElement;
+    const clone = btn.closest(".blocker-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
 });
 
 // === FADE ANIMATIONS ===
