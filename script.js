@@ -38,129 +38,29 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === TRAINING TABLE GENERATION (Dynamic Page Content) ===
-  // =======================================================
-  const roles = [
-    {
-      id: "technicians",
-      title: "Technicians – Checklist",
-      rows: 3,
-      cols: [
-        "DMS ID", "Login", "Workflow", "Mobile App Menu", "Search Bar",
-        "RO Assignment", "Dispatch", "RO History", "Prev. Declines", "OCR",
-        "Edit ASR", "ShopChat / Parts", "Adding Media", "Status Change",
-        "Notifications", "Filters"
-      ]
-    },
-    {
-      id: "advisors",
-      title: "Service Advisors – Checklist",
-      rows: 3,
-      cols: [
-        "DMS ID", "Login", "Mobile App Menu", "MCI", "Workflow", "Search Bar",
-        "RO Assignment", "DMS History", "Prev. Declines", "OCR", "Edit ASR",
-        "ShopChat", "Status Change", "MPI Send", "SOP"
-      ]
-    },
-    {
-      id: "parts",
-      title: "Parts Representatives – Checklist",
-      rows: 2,
-      cols: [
-        "DMS ID", "Login", "Web App", "Workflow", "Search Bar", "Take Function",
-        "DMS History", "Prev. Declines", "Parts Tab", "SOP", "Edit ASR",
-        "ShopChat / Parts", "Status Change", "Notifications", "Filters"
-      ]
-    },
-    {
-      id: "bdc",
-      title: "BDC Representatives – Checklist",
-      rows: 2,
-      cols: ["DMS ID", "Login", "Scheduler", "Declined Services", "ServiceConnect", "Call Routing"]
-    },
-    {
-      id: "pickup",
-      title: "Pick Up & Delivery Drivers – Checklist",
-      rows: 2,
-      cols: ["DMS ID", "Login", "PU&D", "Notifications"]
-    }
-  ];
-
-  const container = document.getElementById("tables-container");
-  if (container) {
-    roles.forEach((role) => {
-      const div = document.createElement("div");
-      div.classList.add("section");
-      div.innerHTML = `
-        <div class="section-header">${role.title}</div>
-        <div class="table-container">
-          <div class="scroll-wrapper">
-            <table id="${role.id}" class="training-table">
-              <thead>
-                <tr>
-                  <th style="width:40px;"></th>
-                  <th style="width:260px;">Name</th>
-                  ${role.cols.map(c => `<th>${c}</th>`).join("")}
-                </tr>
-              </thead>
-              <tbody>
-                ${Array.from({ length: role.rows }).map(() => `
-                  <tr>
-                    <td><input type="checkbox" class="verify"></td>
-                    <td><input type="text" placeholder="Name"></td>
-                    ${role.cols.map(() => `
-                      <td>
-                        <select>
-                          <option></option>
-                          <option value="Yes">Yes</option>
-                          <option value="Web Only">Web Only</option>
-                          <option value="Mobile Only">Mobile Only</option>
-                          <option value="No">No</option>
-                          <option value="Not Trained">Not Trained</option>
-                          <option value="N/A">N/A</option>
-                        </select>
-                      </td>
-                    `).join("")}
-                  </tr>
-                `).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="table-footer">
-          <button class="add-row" data-target="${role.id}" type="button">+</button>
-        </div>
-        <div class="section-block comment-box">
-          <h2>Additional Comments</h2>
-          <textarea placeholder="Type here…"></textarea>
-        </div>
-      `;
-      container.appendChild(div);
-    });
-  }
-
-  // =======================================================
   // === DROPDOWN COLOR CODING ===
   // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.tagName === "SELECT") {
-      const value = e.target.value;
-      const colors = {
+      const val = e.target.value;
+      const colorMap = {
         "Yes": "#c9f7c0",
-        "Web Only": "#fff8b3",
-        "Mobile Only": "#ffe0b3",
         "No": "#ffb3b3",
-        "Not Trained": "#ffb3b3",
         "N/A": "#f2f2f2",
-        "Yes, each has their own": "#c9f7c0",
-        "Yes, but they are sharing": "#fff8b3"
+        "Partially": "#fff8b3",
+        "Tier 2": "#fff8b3",
+        "5": "#c9f7c0",
+        "4": "#c9f7c0",
+        "3": "#fff8b3",
+        "2": "#ffb3b3",
+        "1": "#ffb3b3",
       };
-      e.target.style.backgroundColor = colors[value] || "#f2f2f2";
+      e.target.style.backgroundColor = colorMap[val] || "#f2f2f2";
     }
   });
 
   // =======================================================
-  // === ADD ROW FUNCTION (Tables) ===
+  // === TABLE ADD ROW FUNCTION ===
   // =======================================================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("add-row")) return;
@@ -168,17 +68,40 @@ window.addEventListener("DOMContentLoaded", () => {
     const table = document.getElementById(id);
     if (!table) return;
 
-    const firstRow = table.querySelector("tbody tr");
-    const clone = firstRow.cloneNode(true);
-    clone.querySelectorAll("input[type='text']").forEach((input) => input.value = "");
-    clone.querySelectorAll("select").forEach((select) => {
-      select.selectedIndex = 0;
-      select.style.backgroundColor = "#f2f2f2";
-    });
-    clone.querySelectorAll(".verify").forEach((box) => (box.checked = false));
+    const first = table.querySelector("tbody tr:not(:last-child)");
+    if (!first) return;
 
-    table.querySelector("tbody").appendChild(clone);
+    const clone = first.cloneNode(true);
+    clone.querySelectorAll("input, select").forEach((el) => {
+      if (el.tagName === "SELECT") {
+        el.selectedIndex = 0;
+        el.style.backgroundColor = "#f2f2f2";
+      } else el.value = "";
+    });
+    table.querySelector("tbody").insertBefore(clone, table.querySelector("tbody tr:last-child"));
   });
+
+  // =======================================================
+  // === ADDITIONAL INPUT FIELDS ===
+  // =======================================================
+  window.addTrainerField = (btn) => {
+    const container = btn.closest(".trainer-input").parentElement;
+    const clone = btn.closest(".trainer-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+  window.addChampionField = (btn) => {
+    const container = btn.closest(".champion-input").parentElement;
+    const clone = btn.closest(".champion-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
+  window.addBlockerField = (btn) => {
+    const container = btn.closest(".blocker-input").parentElement;
+    const clone = btn.closest(".blocker-input").cloneNode(true);
+    clone.querySelector("input").value = "";
+    container.appendChild(clone);
+  };
 
   // =======================================================
   // === TEXTAREA AUTO EXPAND ===
@@ -195,13 +118,33 @@ window.addEventListener("DOMContentLoaded", () => {
   // =======================================================
   document.addEventListener("change", (e) => {
     if (e.target.classList.contains("verify")) {
-      const cell = e.target.closest("td");
-      cell.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
+      const td = e.target.closest("td");
+      td.style.backgroundColor = e.target.checked ? "#fff7ed" : "";
     }
   });
 
   // =======================================================
-  // === PDF EXPORT FUNCTION ===
+  // === CONDITIONAL VISIBILITY (Final Onsite Check) ===
+  // =======================================================
+  const trainedSelect = document.getElementById("trained-all");
+  const untrainedNotes = document.getElementById("untrained-notes");
+  if (trainedSelect && untrainedNotes) {
+    trainedSelect.addEventListener("change", () => {
+      untrainedNotes.style.display = trainedSelect.value === "No" ? "block" : "none";
+    });
+  }
+
+  const ticketSelect = document.getElementById("tickets");
+  const ticketDetails = document.getElementById("ticket-details");
+  if (ticketSelect && ticketDetails) {
+    ticketSelect.addEventListener("change", () => {
+      ticketDetails.style.display =
+        ticketSelect.value === "Yes" || ticketSelect.value === "Tier 2" ? "block" : "none";
+    });
+  }
+
+  // =======================================================
+  // === PDF EXPORT ===
   // =======================================================
   const pdfButton = document.getElementById("pdfButton");
   if (pdfButton) {
@@ -215,65 +158,47 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // =======================================================
-  // === AUTO-FILL NOTE SYNC LOGIC ===
+  // === NOTE SYNC / AUTO-FILL LOGIC ===
   // =======================================================
-  const pretrainingNotes = document.querySelector("#pretraining textarea:last-of-type");
-  const mondayNotes = document.querySelector("#monday-visit textarea");
-  const trainingSummaryNotes = document.querySelector("#training-summary textarea:nth-of-type(1)");
-  const tuesdayNotes = document.querySelector("#training-summary textarea:nth-of-type(2)");
-  const opcodeNotes = document.querySelector("#training-summary textarea:nth-of-type(3)");
-  const cemNotes = document.querySelector("#training-summary textarea:nth-of-type(5)");
+  function syncNotes() {
+    const cemField = document.querySelector("#onsite-trainers input[placeholder='Enter CEM Name…']");
+    const cemNotes = document.getElementById("summary-cem");
+    if (cemField && cemNotes) cemNotes.value = cemField.value;
 
-  const syncNotes = () => {
-    const preText = pretrainingNotes?.value || "";
-    if (trainingSummaryNotes) trainingSummaryNotes.value = preText;
+    const champs = Array.from(document.querySelectorAll("#onsite-trainers .champion-input input"))
+      .map(i => i.value).filter(Boolean).join(", ");
+    const blocks = Array.from(document.querySelectorAll("#onsite-trainers .blocker-input input"))
+      .map(i => i.value).filter(Boolean).join(", ");
+    if (document.getElementById("summary-champions")) document.getElementById("summary-champions").value = champs;
+    if (document.getElementById("summary-blockers")) document.getElementById("summary-blockers").value = blocks;
 
-    const mondayText = mondayNotes?.value || "";
-    if (tuesdayNotes) tuesdayNotes.value = mondayText;
+    const preNotes = Array.from(document.querySelectorAll("#pretraining textarea"))
+      .map(t => t.value).join("\n");
+    const monNotes = Array.from(document.querySelectorAll("#monday-visit textarea"))
+      .map(t => t.value).join("\n");
+    if (document.getElementById("summary-pretraining"))
+      document.getElementById("summary-pretraining").value = `${preNotes}\n${monNotes}`.trim();
 
-    const opcode = document.querySelector("#opcodes-pricing");
-    const dms = document.querySelector("#dms-integration");
-    const opcodeText = opcode?.querySelector("textarea")?.value || "";
-    const dmsText = dms?.querySelector("textarea")?.value || "";
-    opcodeNotes.value = `${opcodeText}\n${dmsText}`.trim();
+    const checklistNotes = Array.from(document.querySelectorAll("#training-checklist .comment-box textarea"))
+      .map(t => t.value).join("\n");
+    const sumTue = document.getElementById("summary-tuesday");
+    if (sumTue) sumTue.value = checklistNotes;
 
-    const cem = document.querySelector("#onsite-trainers textarea");
-    if (cem && cemNotes) cemNotes.value = cem.value;
-  };
+    const opcode = document.querySelector("#opcodes-pricing textarea")?.value || "";
+    const dms = document.querySelector("#dms-integration textarea")?.value || "";
+    const opNotes = document.getElementById("summary-opcodes");
+    if (opNotes) opNotes.value = `${opcode}\n${dms}`.trim();
+  }
 
   setInterval(syncNotes, 2000);
-
-  // =======================================================
-  // === ADDITIONAL TRAINER / CHAMPION / BLOCKER FIELDS ===
-  // =======================================================
-  window.addTrainerField = function (btn) {
-    const container = btn.closest(".trainer-input").parentElement;
-    const clone = btn.closest(".trainer-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
-
-  window.addChampionField = function (btn) {
-    const container = btn.closest(".champion-input").parentElement;
-    const clone = btn.closest(".champion-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
-
-  window.addBlockerField = function (btn) {
-    const container = btn.closest(".blocker-input").parentElement;
-    const clone = btn.closest(".blocker-input").cloneNode(true);
-    clone.querySelector("input").value = "";
-    container.appendChild(clone);
-  };
 });
 
 // === FADE ANIMATIONS ===
 document.head.insertAdjacentHTML("beforeend", `
-  <style>
-    .fade-in { animation: fadeIn 0.25s ease-in-out; }
-    .fade-out { animation: fadeOut 0.25s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
-  </style>
+<style>
+.fade-in { animation: fadeIn 0.25s ease-in-out; }
+.fade-out { animation: fadeOut 0.25s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(10px); } }
+</style>
 `);
