@@ -1,421 +1,80 @@
 /* ========================================================= */
-/* === MYKAARMA INTERACTIVE TRAINING CHECKLIST - STYLE.CSS === */
-/* === FULL UPDATED FILE | NOVEMBER 2025 | MATCHED HEADER === */
+/* === GLOBAL LAYOUT & TABLE STYLING - UPDATED NOV 2025 === */
 /* ========================================================= */
 
-/* === COLOR VARIABLES === */
 :root {
-  --orange: #f36f21;           /* myKaarma main orange */
-  --light-orange: #f8b17b;     /* header orange for column headers */
-  --gray-bg: #d7d7d7;
-  --card-bg: #fff;
-  --border: #dcdcdc;
-  --ink: #222;
-  --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --border-color: #ccc;
+  --header-text: #fff;
+  --body-bg: #fff;
+  --font: 'Roboto', sans-serif;
 }
 
-/* === BASE STRUCTURE === */
-html, body {
+body {
+  font-family: var(--font);
+  color: #222;
+  background-color: #fafafa;
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
+  padding: 0;
 }
 
-h1, h2, h3, label, select, input, textarea, th, td {
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-}
-
-/* === TOP BAR === */
-#topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-}
-.topbar-content {
-  width: 100%;
-  max-width: 1400px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-}
-.top-logo { height: 42px; object-fit: contain; }
-#dealership-name {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  margin-left: 20px;
-}
-
-/* === LAYOUT === */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
-}
-
-/* ========================================================= */
-/* === SIDEBAR === */
-/* ========================================================= */
-#sidebar {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
-  box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px;
-  bottom: 0;
-  overflow-y: auto;
-}
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
-}
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
+/* === PAGE SECTION HEADINGS === */
+.page-section h1 {
   color: var(--orange);
-  font-weight: 600;
-}
-
-/* ========================================================= */
-/* === MAIN CONTENT === */
-/* ========================================================= */
-main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  background: var(--gray-bg);
-  box-sizing: border-box;
-}
-.page-section {
-  display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px 32px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
-}
-.page-section.active { display: block; }
-h1 {
-  color: var(--orange);
+  border-bottom: 3px solid var(--orange);
+  padding-bottom: 8px;
   margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 1.8em;
 }
 
-/* ========================================================= */
-/* === SECTION HEADERS & BLOCKS === */
-/* ========================================================= */
-.section {
-  margin-bottom: 35px;
-}
+/* === SECTION HEADERS (main table title bars) === */
 .section-header {
   background: var(--orange);
-  color: #fff;
+  color: var(--header-text);
+  padding: 8px 12px;
   font-weight: 600;
-  padding: 10px 16px;
-  border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 16px;
-  line-height: 1.3;
-}
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 1.1em;
+  border-radius: 4px 4px 0 0;
 }
 
-/* ========================================================= */
-/* === CHECKLIST ROWS === */
-/* ========================================================= */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-}
-
-/* ========================================================= */
-/* === TEXTAREAS === */
-/* ========================================================= */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
-}
-
-/* ========================================================= */
-/* === TABLES === */
-/* ========================================================= */
+/* === TABLE WRAPPERS === */
 .table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0;
-  box-shadow: var(--shadow);
+  margin: 10px 0 0 0;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
   overflow: hidden;
-  margin: 0;
-}
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  max-height: 340px;
-  overflow: auto;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   background: #fff;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
 }
 
-/* === CORE TABLE === */
+.scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* === TABLE BASE === */
 .training-table {
+  width: 100%;
   border-collapse: collapse;
-  border-spacing: 0;
-  width: max-content;
-  min-width: 100%;
-}
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background-clip: padding-box;
-  padding: 8px 10px;
+  table-layout: auto;
+  background-color: #fff;
 }
 
-/* === TABLE HEADER COLORS === */
-.training-table th {
+/* === HEADER CELLS === */
+.training-table thead th {
   background: var(--light-orange);
-  color: #fff;
+  color: var(--header-text);
   font-weight: 600;
+  text-align: center;
+  padding: 8px 6px;
+  border: 1px solid #ddd;
   position: sticky;
   top: 0;
-  z-index: 3;
-}
-
-/* === FIX FOR STICKY HEADER COLOR LOSS === */
-.training-table th:first-child,
-.training-table th:nth-child(2) {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-  z-index: 5;
-}
-
-/* === STICKY FIRST + SECOND COLUMNS === */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
   z-index: 4;
-  background: #fff;
-}
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  position: sticky;
-  left: 60px;
-  z-index: 3;
-  background: #fff;
+  white-space: normal;
 }
 
-/* === CHECKBOX COLUMN WIDTH === */
-.training-table th:first-child,
-.training-table td:first-child {
-  width: 40px;
-}
-
-/* === TEXTBOX + SELECT STYLING === */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: inherit;
-  font-size: 13px;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* === NAME / SERVICE / MPI LINE === */
-.training-table td:nth-child(2) input[type="text"] {
-  width: 250px;
-}
-
-/* === CHECKBOX === */
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 4px;
-}
-
-/* === ROW STRIPING === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === FOOTER === */
-.table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
-}
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-}
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-/* ========================================================= */
-/* === FLOATING SAVE BUTTON === */
-/* ========================================================= */
-.floating-btn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 8px 14px;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-.floating-btn:hover { background: #ff8848; }
-
-/* ========================================================= */
-/* === RESPONSIVE === */
-/* ========================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
-/* === FIX: header color on sticky first two header cells === */
-.training-table thead th {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-}
-.training-table thead th:first-child,
-.training-table thead th:nth-child(2) {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-  z-index: 6;
-}
-
-/* === FIX: keep inputs inside cells; no bleed === */
-.training-table td,
-.training-table th {
-  overflow: hidden;          /* clip anything that tries to spill */
-}
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;              /* allow shrinking inside sticky cols */
-  box-sizing: border-box;    /* padding stays inside cell width */
-  display: block;
-}
-
-/* === Sticky columns (checkbox + name) and exact offsets === */
+/* === STICKY FIRST TWO COLUMNS === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -426,12 +85,12 @@ textarea {
   min-width: 40px;
   max-width: 40px;
   text-align: center;
-  padding: 6px 4px;
 }
+
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
   position: sticky;
-  left: 40px;                /* sits right after the checkbox col */
+  left: 40px;
   z-index: 4;
   background: #fff;
   width: 260px;
@@ -439,14 +98,99 @@ textarea {
   max-width: 260px;
 }
 
-/* === Make body columns adapt to header label widths === */
-/* (no table-layout: fixed; let content auto-size) */
-.training-table {
-  table-layout: auto;
+/* === COLUMN WIDTHS - match longest header text === */
+.training-table th:nth-child(3),
+.training-table td:nth-child(3) { width: 150px; }
+.training-table th:nth-child(4),
+.training-table td:nth-child(4) { width: 160px; }
+.training-table th:nth-child(5),
+.training-table td:nth-child(5) { width: 230px; }
+.training-table th:nth-child(6),
+.training-table td:nth-child(6) { width: 250px; }
+.training-table th:nth-child(7),
+.training-table td:nth-child(7) { width: 160px; }
+.training-table th:nth-child(8),
+.training-table td:nth-child(8) { width: 180px; }
+.training-table th:nth-child(9),
+.training-table td:nth-child(9) { width: 160px; }
+.training-table th:nth-child(10),
+.training-table td:nth-child(10) { width: 150px; }
+.training-table th:nth-child(11),
+.training-table td:nth-child(11) { width: 150px; }
+.training-table th:nth-child(12),
+.training-table td:nth-child(12) { width: 150px; }
+.training-table th:nth-child(13),
+.training-table td:nth-child(13) { width: 150px; }
+.training-table th:nth-child(14),
+.training-table td:nth-child(14) { width: 150px; }
+.training-table th:nth-child(15),
+.training-table td:nth-child(15) { width: 150px; }
+.training-table th:nth-child(16),
+.training-table td:nth-child(16) { width: 150px; }
+.training-table th:nth-child(17),
+.training-table td:nth-child(17) { width: 150px; }
+.training-table th:nth-child(18),
+.training-table td:nth-child(18) { width: 150px; }
+
+/* === CELL STYLING === */
+.training-table td {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 4px;
 }
 
-/* === Keep scroll working both directions === */
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
+/* === INPUTS AND SELECTS === */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: var(--font);
+  font-size: 0.9em;
+  display: block;
+}
+
+/* === COMMENT BOXES === */
+.comment-box {
+  margin-top: 8px;
+}
+
+.comment-box textarea {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 6px;
+  font-family: var(--font);
+  font-size: 0.9em;
+  box-sizing: border-box;
+}
+
+/* === ADD ROW BUTTONS === */
+.table-footer {
+  text-align: right;
+  margin-top: 4px;
+}
+
+.add-row {
+  background-color: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 1.2em;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.add-row:hover {
+  background-color: #d85f1a;
+}
+
+/* === SECTION SPACING === */
+.section {
+  margin-bottom: 32px;
 }
