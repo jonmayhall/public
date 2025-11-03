@@ -1,7 +1,7 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – Corrected Stylesheet
-   Full File – Updated Nov 2025
-   ======================================================= */
+/* ========================================================= */
+/* === MYKAARMA INTERACTIVE TRAINING CHECKLIST - STYLE.CSS === */
+/* === FULL UPDATED FILE | NOVEMBER 2025 | MATCHED HEADER === */
+/* ========================================================= */
 
 /* === COLOR VARIABLES === */
 :root {
@@ -66,9 +66,9 @@ h1, h2, h3, label, select, input, textarea, th, td {
   overflow-x: hidden;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* ========================================================= */
+/* === SIDEBAR === */
+/* ========================================================= */
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
@@ -104,9 +104,9 @@ nav {
   font-weight: 600;
 }
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
+/* ========================================================= */
+/* === MAIN CONTENT === */
+/* ========================================================= */
 main {
   flex: 1;
   margin-left: 190px;
@@ -133,9 +133,9 @@ h1 {
   font-weight: 700;
 }
 
-/* =======================================================
-   SECTION HEADERS & BLOCKS
-   ======================================================= */
+/* ========================================================= */
+/* === SECTION HEADERS & BLOCKS === */
+/* ========================================================= */
 .section {
   margin-bottom: 35px;
 }
@@ -166,7 +166,9 @@ h1 {
   font-weight: 600;
 }
 
+/* ========================================================= */
 /* === CHECKLIST ROWS === */
+/* ========================================================= */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -188,7 +190,9 @@ h1 {
   background: #f4f4f4;
 }
 
+/* ========================================================= */
 /* === TEXTAREAS === */
+/* ========================================================= */
 textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -201,9 +205,9 @@ textarea {
   font-family: inherit;
 }
 
-/* =======================================================
-   TABLES
-   ======================================================= */
+/* ========================================================= */
+/* === TABLES === */
+/* ========================================================= */
 .table-container {
   width: 100%;
   background: #fff;
@@ -253,12 +257,16 @@ textarea {
   top: 0;
   z-index: 3;
 }
+
+/* === FIX FOR STICKY HEADER COLOR LOSS === */
 .training-table th:first-child,
 .training-table th:nth-child(2) {
-  background: var(--light-orange);
+  background: var(--light-orange) !important;
+  color: #fff !important;
+  z-index: 5;
 }
 
-/* === STICKY FIRST COLUMN === */
+/* === STICKY FIRST + SECOND COLUMNS === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -269,9 +277,9 @@ textarea {
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
   position: sticky;
-  left: 60px; /* first column width */
-  background: #fff;
+  left: 60px;
   z-index: 3;
+  background: #fff;
 }
 
 /* === CHECKBOX COLUMN WIDTH === */
@@ -351,9 +359,9 @@ textarea {
   overflow: hidden;
 }
 
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
+/* ========================================================= */
+/* === FLOATING SAVE BUTTON === */
+/* ========================================================= */
 .floating-btn {
   position: absolute;
   top: 20px;
@@ -370,9 +378,9 @@ textarea {
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
+/* ========================================================= */
+/* === RESPONSIVE === */
+/* ========================================================= */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
