@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Final Stylesheet
-   Updated Nov 2025 (stabilized)
+   Updated Nov 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -43,9 +43,9 @@ html, body {
   max-width: 1400px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
   justify-content: flex-start;
   gap: 40px;
+  padding-left: 20px;
 }
 .top-logo { height: 42px; object-fit: contain; }
 #dealer-display {
@@ -271,13 +271,17 @@ textarea {
   left: 0;
   z-index: 4;
   background: #fff;
+  width: 40px;
+  min-width: 40px;
 }
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
   position: sticky;
-  left: 50px;
+  left: 40px;
   z-index: 4;
   background: #fff;
+  width: 260px;
+  min-width: 260px;
 }
 
 /* === WIDER CELLS FOR NAME / SERVICE / MPI === */
@@ -386,35 +390,10 @@ textarea {
 }
 
 /* =======================================================
-   PATCH: Sticky headers + safe fixes
+   PATCH: tighten columns & fix sticky header colors
    ======================================================= */
-.training-table thead th {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-  white-space: normal;
-  position: sticky;
-  top: 0;
-  z-index: 4;
-}
 
-.training-table td,
-.training-table th { overflow: hidden; }
-
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: block;
-}
-
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-}
-/* === PATCH: tighten non-sticky columns & fix sticky gap === */
-
-/* 1. Narrow every non-sticky column just enough for header text */
+/* tighten non-sticky columns */
 .training-table th:not(:first-child):not(:nth-child(2)),
 .training-table td:not(:first-child):not(:nth-child(2)) {
   width: auto;
@@ -423,7 +402,7 @@ textarea {
   padding: 6px 8px;
 }
 
-/* 2. Prevent column expansion on wide text boxes */
+/* inputs stay contained */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -431,25 +410,33 @@ textarea {
   box-sizing: border-box;
 }
 
-/* 3. Fill sticky overlap area with header color instead of white */
-.training-table th:first-child,
-.training-table td:first-child {
+/* only sticky column headers use light orange */
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
   background: var(--light-orange);
-}
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  background: var(--light-orange);
-  border-left: 1px solid var(--border);
+  color: #fff;
 }
 
-/* 4. Keep sticky left widths unchanged */
+/* body cells in sticky columns stay white */
+.training-table tbody td:first-child,
+.training-table tbody td:nth-child(2) {
+  background: #fff;
+}
+
+/* ensure sticky positions and widths */
 .training-table th:first-child,
 .training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 5;
   width: 40px;
   min-width: 40px;
 }
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
+  position: sticky;
+  left: 40px;
+  z-index: 4;
   width: 260px;
   min-width: 260px;
 }
