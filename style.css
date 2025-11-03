@@ -1,12 +1,12 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Stylesheet
-   Updated Nov 2025
+   myKaarma Interactive Training Checklist – Corrected Stylesheet
+   Full File – Updated Nov 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
 :root {
-  --orange: #f36f21;
-  --light-orange: #f8b17b;
+  --orange: #f36f21;           /* myKaarma main orange */
+  --light-orange: #f8b17b;     /* header orange for column headers */
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
   --border: #dcdcdc;
@@ -22,7 +22,10 @@ html, body {
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
-  font-size: 13px;
+}
+
+h1, h2, h3, label, select, input, textarea, th, td {
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 /* === TOP BAR === */
@@ -44,19 +47,16 @@ html, body {
   max-width: 1400px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 20px;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-}
-.topbar-content span.dealer-name {
-  margin-left: 24px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #f8f8f8;
+  justify-content: space-between;
+  padding: 0 24px;
 }
 .top-logo { height: 42px; object-fit: contain; }
+#dealership-name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 20px;
+}
 
 /* === LAYOUT === */
 #app {
@@ -104,18 +104,6 @@ nav {
   font-weight: 600;
 }
 
-/* === TRAINER DROPDOWN (TOP OF SIDEBAR) === */
-#trainer-select {
-  width: 100%;
-  margin-bottom: 16px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f9f9f9;
-  font-size: 13px;
-  font-family: inherit;
-}
-
 /* =======================================================
    MAIN CONTENT
    ======================================================= */
@@ -146,19 +134,19 @@ h1 {
 }
 
 /* =======================================================
-   SECTION BLOCKS
+   SECTION HEADERS & BLOCKS
    ======================================================= */
 .section {
   margin-bottom: 35px;
 }
 .section-header {
-  background: var(--light-orange);
+  background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.3;
 }
 .section-block {
@@ -174,7 +162,7 @@ h1 {
   color: white;
   margin: 0;
   padding: 10px 16px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -188,7 +176,7 @@ h1 {
 }
 .checklist-row label {
   flex: 1;
-  font-size: 13px;
+  font-size: 14px;
   padding-right: 20px;
 }
 .checklist-row input,
@@ -198,8 +186,6 @@ h1 {
   border-radius: 10px;
   border: 1px solid var(--border);
   background: #f4f4f4;
-  font-family: inherit;
-  font-size: 13px;
 }
 
 /* === TEXTAREAS === */
@@ -213,7 +199,6 @@ textarea {
   resize: none;
   overflow: hidden;
   font-family: inherit;
-  font-size: 13px;
 }
 
 /* =======================================================
@@ -240,6 +225,8 @@ textarea {
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
+
+/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -256,6 +243,8 @@ textarea {
   background-clip: padding-box;
   padding: 8px 10px;
 }
+
+/* === TABLE HEADER COLORS === */
 .training-table th {
   background: var(--light-orange);
   color: #fff;
@@ -263,11 +252,13 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  border-radius: 0;
 }
-.training-table th:hover { background: #f49c56; }
+.training-table th:first-child,
+.training-table th:nth-child(2) {
+  background: var(--light-orange);
+}
 
-/* === Sticky first column === */
+/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -275,8 +266,21 @@ textarea {
   z-index: 4;
   background: #fff;
 }
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  position: sticky;
+  left: 60px; /* first column width */
+  background: #fff;
+  z-index: 3;
+}
 
-/* === Inputs === */
+/* === CHECKBOX COLUMN WIDTH === */
+.training-table th:first-child,
+.training-table td:first-child {
+  width: 40px;
+}
+
+/* === TEXTBOX + SELECT STYLING === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -294,24 +298,24 @@ textarea {
   outline: none;
   background: #fff9f5;
 }
-.training-table td:nth-child(2) input[type="text"],
-.training-table td:nth-child(2),
-.training-table th:nth-child(2) {
-  width: 260px !important;
+
+/* === NAME / SERVICE / MPI LINE === */
+.training-table td:nth-child(2) input[type="text"] {
+  width: 250px;
 }
 
-/* === Checkbox === */
+/* === CHECKBOX === */
 .verify {
   accent-color: var(--orange);
   transform: scale(1.1);
   margin-right: 4px;
 }
 
-/* === Row striping === */
+/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === Footer === */
+/* === FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -328,9 +332,9 @@ textarea {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
@@ -338,7 +342,7 @@ textarea {
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
 
-/* === Comment box === */
+/* === COMMENT BOX === */
 .section-block.comment-box {
   margin-top: 18px;
   border-radius: var(--radius);
@@ -351,15 +355,15 @@ textarea {
    FLOATING SAVE BUTTON
    ======================================================= */
 .floating-btn {
-  position: fixed;
-  top: 90px;
-  left: 25px;
+  position: absolute;
+  top: 20px;
+  right: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
+  padding: 8px 14px;
+  font-size: 13px;
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: 0.2s;
@@ -377,145 +381,3 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
-
-/* =======================================================
-   FUNCTIONAL UPDATES – STICKY COLUMNS / SCROLL
-   ======================================================= */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
-  background: #fff;
-}
-#opcodes-setup th:first-child,
-#opcodes-setup td:first-child,
-#opcodes-setup th:nth-child(2),
-#opcodes-setup td:nth-child(2),
-#mpi-opcodes th:first-child,
-#mpi-opcodes td:first-child,
-#mpi-opcodes th:nth-child(2),
-#mpi-opcodes td:nth-child(2) {
-  position: sticky;
-  background: #fff;
-  z-index: 5;
-}
-#opcodes-setup th:nth-child(2),
-#opcodes-setup td:nth-child(2),
-#mpi-opcodes th:nth-child(2),
-#mpi-opcodes td:nth-child(2) {
-  left: 200px;
-}
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 340px;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
-}
-.training-table th:first-child,
-.training-table td:first-child {
-  min-width: 200px;
-  max-width: 200px;
-  width: 200px;
-}
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  min-width: 160px;
-  max-width: 160px;
-  width: 160px;
-}
-/* =======================================================
-   TABLE TUNING — keep look, fix behavior
-   ======================================================= */
-
-/* A) Table header row uses myKaarma orange by default */
-.training-table thead th {
-  background: var(--orange) !important;
-  color: #fff;
-}
-
-/* First & second header cells use the light orange (like your row headers) */
-.training-table thead th:first-child,
-.training-table thead th:nth-child(2) {
-  background: var(--light-orange) !important;
-}
-
-/* B) Checkbox column (first col) — narrow & sticky everywhere */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
-  background: #fff;
-  width: 34px;
-  min-width: 34px;
-  max-width: 34px;
-  text-align: center;
-  padding: 6px 4px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  accent-color: var(--orange);
-  transform: scale(1.05);
-}
-
-/* C) “Name / Service / MPI Line” column (second col) — fit input nicely */
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-  background-clip: padding-box;
-}
-.training-table td:nth-child(2) input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* D) Inputs fill their cells cleanly (don’t shrink inputs; size the cells) */
-.training-table td input[type="text"],
-.training-table td select {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* E) Opcodes & Pricing: first two columns sticky (checkbox + text col) */
-#opcodes-setup thead th:first-child,
-#opcodes-setup tbody td:first-child,
-#opcodes-setup thead th:nth-child(2),
-#opcodes-setup tbody td:nth-child(2),
-#mpi-opcodes thead th:first-child,
-#mpi-opcodes tbody td:first-child,
-#mpi-opcodes thead th:nth-child(2),
-#mpi-opcodes tbody td:nth-child(2) {
-  position: sticky;
-  background: #fff;
-  z-index: 5;
-}
-
-/* Offsets for second sticky column (after 34px checkbox col) */
-#opcodes-setup thead th:nth-child(2),
-#opcodes-setup tbody td:nth-child(2),
-#mpi-opcodes thead th:nth-child(2),
-#mpi-opcodes tbody td:nth-child(2) {
-  left: 34px;
-}
-
-/* Make the second column on those tables wide enough for the text box */
-#opcodes-setup thead th:nth-child(2),
-#opcodes-setup tbody td:nth-child(2),
-#mpi-opcodes thead th:nth-child(2),
-#mpi-opcodes tbody td:nth-child(2) {
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-}
-
-/* F) Scroll wrappers keep horizontal/vertical scroll */
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-/* G) Ensure header hover color still feels right */
-.training-table th:hover { background: #f49c56 !important; }
