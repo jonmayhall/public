@@ -412,3 +412,44 @@ textarea {
   overflow-x: auto;
   overflow-y: auto;
 }
+/* === PATCH: tighten non-sticky columns & fix sticky gap === */
+
+/* 1. Narrow every non-sticky column just enough for header text */
+.training-table th:not(:first-child):not(:nth-child(2)),
+.training-table td:not(:first-child):not(:nth-child(2)) {
+  width: auto;
+  min-width: max-content;
+  white-space: nowrap;
+  padding: 6px 8px;
+}
+
+/* 2. Prevent column expansion on wide text boxes */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 3. Fill sticky overlap area with header color instead of white */
+.training-table th:first-child,
+.training-table td:first-child {
+  background: var(--light-orange);
+}
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  background: var(--light-orange);
+  border-left: 1px solid var(--border);
+}
+
+/* 4. Keep sticky left widths unchanged */
+.training-table th:first-child,
+.training-table td:first-child {
+  width: 40px;
+  min-width: 40px;
+}
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 260px;
+  min-width: 260px;
+}
