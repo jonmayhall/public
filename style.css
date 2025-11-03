@@ -425,3 +425,97 @@ textarea {
   max-width: 160px;
   width: 160px;
 }
+/* =======================================================
+   TABLE TUNING — keep look, fix behavior
+   ======================================================= */
+
+/* A) Table header row uses myKaarma orange by default */
+.training-table thead th {
+  background: var(--orange) !important;
+  color: #fff;
+}
+
+/* First & second header cells use the light orange (like your row headers) */
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
+  background: var(--light-orange) !important;
+}
+
+/* B) Checkbox column (first col) — narrow & sticky everywhere */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: #fff;
+  width: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  text-align: center;
+  padding: 6px 4px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  accent-color: var(--orange);
+  transform: scale(1.05);
+}
+
+/* C) “Name / Service / MPI Line” column (second col) — fit input nicely */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  background-clip: padding-box;
+}
+.training-table td:nth-child(2) input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* D) Inputs fill their cells cleanly (don’t shrink inputs; size the cells) */
+.training-table td input[type="text"],
+.training-table td select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* E) Opcodes & Pricing: first two columns sticky (checkbox + text col) */
+#opcodes-setup thead th:first-child,
+#opcodes-setup tbody td:first-child,
+#opcodes-setup thead th:nth-child(2),
+#opcodes-setup tbody td:nth-child(2),
+#mpi-opcodes thead th:first-child,
+#mpi-opcodes tbody td:first-child,
+#mpi-opcodes thead th:nth-child(2),
+#mpi-opcodes tbody td:nth-child(2) {
+  position: sticky;
+  background: #fff;
+  z-index: 5;
+}
+
+/* Offsets for second sticky column (after 34px checkbox col) */
+#opcodes-setup thead th:nth-child(2),
+#opcodes-setup tbody td:nth-child(2),
+#mpi-opcodes thead th:nth-child(2),
+#mpi-opcodes tbody td:nth-child(2) {
+  left: 34px;
+}
+
+/* Make the second column on those tables wide enough for the text box */
+#opcodes-setup thead th:nth-child(2),
+#opcodes-setup tbody td:nth-child(2),
+#mpi-opcodes thead th:nth-child(2),
+#mpi-opcodes tbody td:nth-child(2) {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+}
+
+/* F) Scroll wrappers keep horizontal/vertical scroll */
+.scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* G) Ensure header hover color still feels right */
+.training-table th:hover { background: #f49c56 !important; }
