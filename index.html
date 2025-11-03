@@ -417,262 +417,299 @@
 <!-- ========================================================= -->
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
+  <div id="tables-container">
 
-  <!-- === TECHNICIANS TABLE === -->
-  <div class="section">
-    <div class="section-header">Technicians – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="technicians" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>DMS ID</th>
-              <th>Login</th>
-              <th>Workflow</th>
-              <th>Mobile App Menu</th>
-              <th>Search Bar</th>
-              <th>RO Assignment</th>
-              <th>Dispatch</th>
-              <th>RO History</th>
-              <th>Prev. Declines</th>
-              <th>OCR</th>
-              <th>Edit ASR</th>
-              <th>ShopChat / Parts</th>
-              <th>Adding Media</th>
-              <th>Status Change</th>
-              <th>Notifications</th>
-              <th>Desktop Filter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16">
-                <select><option></option><option>Yes</option><option>No</option></select>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === TECHNICIANS – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">Technicians – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="technicians" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>DMS ID</th>
+                <th>Login</th>
+                <th>Workflow</th>
+                <th>Mobile App Menu</th>
+                <th>Search Bar</th>
+                <th>RO Assignment</th>
+                <th>Dispatch</th>
+                <th>RO History</th>
+                <th>Prev. Declines</th>
+                <th>OCR</th>
+                <th>Edit ASR</th>
+                <th>ShopChat / Parts</th>
+                <th>Adding Media</th>
+                <th>Status Change</th>
+                <th>Notifications</th>
+                <th>Desktop Filter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 3 editable rows -->
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="technicians" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="technicians" type="button">+</button>
-    </div>
-  </div>
 
-  <!-- === SERVICE ADVISORS TABLE === -->
-  <div class="section">
-    <div class="section-header">Service Advisors – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="advisors" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>DMS ID</th>
-              <th>Login</th>
-              <th>Mobile App Menu</th>
-              <th>MCI</th>
-              <th>Workflow</th>
-              <th>Search Bar</th>
-              <th>RO Assignment</th>
-              <th>DMS History</th>
-              <th>Prev. Declines</th>
-              <th>OCR</th>
-              <th>Edit ASR</th>
-              <th>ShopChat</th>
-              <th>Status Change</th>
-              <th>MPI Send</th>
-              <th>SOP</th>
-              <th>Desktop Filter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="16"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === SERVICE ADVISORS – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">Service Advisors – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="advisors" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>DMS ID</th>
+                <th>Login</th>
+                <th>Mobile App Menu</th>
+                <th>MCI</th>
+                <th>Workflow</th>
+                <th>Search Bar</th>
+                <th>RO Assignment</th>
+                <th>DMS History</th>
+                <th>Prev. Declines</th>
+                <th>OCR</th>
+                <th>Edit ASR</th>
+                <th>ShopChat</th>
+                <th>Status Change</th>
+                <th>MPI Send</th>
+                <th>Desktop Filter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 3 editable rows -->
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="advisors" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="advisors" type="button">+</button>
-    </div>
-  </div>
 
-  <!-- === PARTS REPRESENTATIVES TABLE === -->
-  <div class="section">
-    <div class="section-header">Parts Representatives – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="parts" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>DMS ID</th>
-              <th>Login</th>
-              <th>Web App</th>
-              <th>Workflow</th>
-              <th>Search Bar</th>
-              <th>Take Function</th>
-              <th>DMS History</th>
-              <th>Prev. Declines</th>
-              <th>Parts Tab</th>
-              <th>SOP</th>
-              <th>Edit ASR</th>
-              <th>ShopChat / Parts</th>
-              <th>Status Change</th>
-              <th>Notifications</th>
-              <th>Desktop Filter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="15"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="15"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === PARTS REPRESENTATIVES – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">Parts Representatives – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="parts" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>DMS ID</th>
+                <th>Login</th>
+                <th>Web App</th>
+                <th>Workflow</th>
+                <th>Search Bar</th>
+                <th>Take Function</th>
+                <th>DMS History</th>
+                <th>Prev. Declines</th>
+                <th>Parts Tab</th>
+                <th>SOP</th>
+                <th>Edit ASR</th>
+                <th>ShopChat / Parts</th>
+                <th>Status Change</th>
+                <th>Notifications</th>
+                <th>Desktop Filter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 2 editable rows -->
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="15"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="parts" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="parts" type="button">+</button>
-    </div>
-  </div>
 
-  <!-- === BDC REPRESENTATIVES TABLE === -->
-  <div class="section">
-    <div class="section-header">BDC Representatives – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="bdc" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>Scheduler</th>
-              <th>Declined Services</th>
-              <th>ServiceConnect</th>
-              <th>Call Routing</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="4"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === BDC REPRESENTATIVES – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">BDC Representatives – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="bdc" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>Scheduler</th>
+                <th>Declined Services</th>
+                <th>ServiceConnect</th>
+                <th>Call Routing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="bdc" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="bdc" type="button">+</button>
-    </div>
-  </div>
 
-  <!-- === PICKUP & DELIVERY DISPATCHER TABLE === -->
-  <div class="section">
-    <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="dispatcher" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>Creating Trips</th>
-              <th>Customer Tab</th>
-              <th>Editing Trips</th>
-              <th>Adding Driver</th>
-              <th>Adding Loaners</th>
-              <th>Drivers View / Mobile App</th>
-              <th>Global View</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="7"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === PICKUP & DELIVERY DISPATCHER – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="pickup-dispatcher" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>Creating Trips</th>
+                <th>Customer Tab</th>
+                <th>Editing Trips</th>
+                <th>Adding Driver</th>
+                <th>Adding Loaners</th>
+                <th>Drivers View / Mobile App</th>
+                <th>Global View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="7"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="pickup-dispatcher" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="dispatcher" type="button">+</button>
-    </div>
-  </div>
 
-  <!-- === PICKUP & DELIVERY DRIVERS TABLE === -->
-  <div class="section">
-    <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table id="pickup" class="training-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th style="width:240px;">Name</th>
-              <th>App Login</th>
-              <th>PU&D</th>
-              <th>Notifications</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify" /></td>
-              <td><input type="text" placeholder="Name" /></td>
-              <td colspan="3"><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- === PICKUP & DELIVERY DRIVERS – CHECKLIST === -->
+    <div class="section">
+      <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table id="pickup-drivers" class="training-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th style="width:240px;">Name</th>
+                <th>App Login</th>
+                <th>PU&D</th>
+                <th>Notifications</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="verify" /></td>
+                <td><input type="text" placeholder="Name" /></td>
+                <td colspan="3"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="table-footer">
+        <button class="add-row" data-target="pickup-drivers" type="button">+</button>
+      </div>
+      <div class="section-block comment-box">
+        <h2>Additional Comments</h2>
+        <textarea placeholder="Type here…"></textarea>
       </div>
     </div>
-    <div class="table-footer">
-      <button class="add-row" data-target="pickup" type="button">+</button>
-    </div>
-  </div>
 
-  <div class="section-block comment-box">
-    <h2>Additional Comments</h2>
-    <textarea placeholder="Type here…"></textarea>
   </div>
 </section>
+
 <!-- ========================================================= -->
 <!-- === PAGE 6 : OPCODES & PRICING === -->
 <!-- ========================================================= -->
