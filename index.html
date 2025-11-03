@@ -419,205 +419,174 @@
   <h1>Training Checklist</h1>
   <div id="tables-container">
 
-    <!-- === TECHNICIANS – CHECKLIST (3 rows) === -->
-    <div class="section">
-      <div class="section-header">Technicians – Checklist</div>
-      <div class="table-container">
-        <div class="scroll-wrapper">
-          <table id="technicians" class="training-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th style="width:260px;">Name</th>
-                <th>DMS ID</th>
-                <th>Login</th>
-                <th>Workflow</th>
-                <th>Mobile App Menu</th>
-                <th>Search Bar</th>
-                <th>RO Assignment</th>
-                <th>Dispatch</th>
-                <th>RO History</th>
-                <th>Prev. Declines</th>
-                <th>OCR</th>
-                <th>Edit ASR</th>
-                <th>ShopChat / Parts</th>
-                <th>Adding Media</th>
-                <th>Status Change</th>
-                <th>Notifications</th>
-                <th>Desktop Filter</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- row 1 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-              <!-- row 2 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-              <!-- row 3 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer">
-        <button class="add-row" data-target="technicians" type="button">+</button>
-      </div>
-      <div class="section-block comment-box">
-        <h2>Additional Comments</h2>
-        <textarea placeholder="Type here…"></textarea>
-      </div>
-    </div>
+ <!-- === TECHNICIANS – CHECKLIST === -->
+<div class="section">
+  <div class="section-header">Technicians – Checklist</div>
+  <div class="table-container">
+    <div class="scroll-wrapper">
+      <table id="technicians" class="training-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="width:260px;">Name</th>
+            <th>DMS ID</th>
+            <th>Login</th>
+            <th>Workflow</th>
+            <th>Mobile App Menu</th>
+            <th>Search Bar</th>
+            <th>RO Assignment</th>
+            <th>Dispatch</th>
+            <th>RO History</th>
+            <th>Prev. Declines</th>
+            <th>OCR</th>
+            <th>Edit ASR</th>
+            <th>ShopChat / Parts</th>
+            <th>Adding Media</th>
+            <th>Status Change</th>
+            <th>Notifications</th>
+            <th>Desktop Filter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
 
-    <!-- === SERVICE ADVISORS – CHECKLIST (3 rows) === -->
-    <div class="section">
-      <div class="section-header">Service Advisors – Checklist</div>
-      <div class="table-container">
-        <div class="scroll-wrapper">
-          <table id="advisors" class="training-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th style="width:260px;">Name</th>
-                <th>DMS ID</th>
-                <th>Login</th>
-                <th>Mobile App Menu</th>
-                <th>MCI</th>
-                <th>Workflow</th>
-                <th>Search Bar</th>
-                <th>RO Assignment</th>
-                <th>DMS History</th>
-                <th>Prev. Declines</th>
-                <th>OCR</th>
-                <th>Edit ASR</th>
-                <th>ShopChat</th>
-                <th>Status Change</th>
-                <th>MPI Send</th>
-                <th>Desktop Filter</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- row 1 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-              <!-- row 2 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-              <!-- row 3 -->
-              <tr>
-                <td><input type="checkbox" class="verify" /></td>
-                <td><input type="text" placeholder="Name" /></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-                <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer">
-        <button class="add-row" data-target="advisors" type="button">+</button>
-      </div>
-      <div class="section-block comment-box">
-        <h2>Additional Comments</h2>
-        <textarea placeholder="Type here…"></textarea>
-      </div>
+          <!-- row 2 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+
+          <!-- row 3 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <div class="table-footer">
+    <button class="add-row" data-target="technicians" type="button">+</button>
+  </div>
+  <div class="section-block comment-box">
+    <h2>Additional Comments</h2>
+    <textarea placeholder="Type here…"></textarea>
+  </div>
+</div>
+
+<!-- === SERVICE ADVISORS – CHECKLIST === -->
+<div class="section">
+  <div class="section-header">Service Advisors – Checklist</div>
+  <div class="table-container">
+    <div class="scroll-wrapper">
+      <table id="advisors" class="training-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="width:260px;">Name</th>
+            <th>DMS ID</th>
+            <th>Login</th>
+            <th>Mobile App Menu</th>
+            <th>MCI</th>
+            <th>Workflow</th>
+            <th>Search Bar</th>
+            <th>RO Assignment</th>
+            <th>DMS History</th>
+            <th>Prev. Declines</th>
+            <th>OCR</th>
+            <th>Edit ASR</th>
+            <th>ShopChat</th>
+            <th>Status Change</th>
+            <th>MPI Send</th>
+            <th>Desktop Filter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td colspan="15"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+          <!-- row 2 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td colspan="15"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+          <!-- row 3 -->
+          <tr>
+            <td><input type="checkbox" class="verify" /></td>
+            <td><input type="text" placeholder="Name" /></td>
+            <td colspan="15"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="table-footer">
+    <button class="add-row" data-target="advisors" type="button">+</button>
+  </div>
+  <div class="section-block comment-box">
+    <h2>Additional Comments</h2>
+    <textarea placeholder="Type here…"></textarea>
+  </div>
+</div>
 
     <!-- === PARTS REPRESENTATIVES – CHECKLIST (2 rows) === -->
     <div class="section">
