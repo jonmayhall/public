@@ -389,3 +389,64 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === FIX: header color on sticky first two header cells === */
+.training-table thead th {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+  z-index: 6;
+}
+
+/* === FIX: keep inputs inside cells; no bleed === */
+.training-table td,
+.training-table th {
+  overflow: hidden;          /* clip anything that tries to spill */
+}
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;              /* allow shrinking inside sticky cols */
+  box-sizing: border-box;    /* padding stays inside cell width */
+  display: block;
+}
+
+/* === Sticky columns (checkbox + name) and exact offsets === */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  background: #fff;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  text-align: center;
+  padding: 6px 4px;
+}
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  position: sticky;
+  left: 40px;                /* sits right after the checkbox col */
+  z-index: 4;
+  background: #fff;
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+}
+
+/* === Make body columns adapt to header label widths === */
+/* (no table-layout: fixed; let content auto-size) */
+.training-table {
+  table-layout: auto;
+}
+
+/* === Keep scroll working both directions === */
+.scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+}
