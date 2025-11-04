@@ -91,3 +91,64 @@
   max-width: 100%;
   box-sizing: border-box;
 }
+/* ====== REVERT TO SAFE TABLE BEHAVIOR ====== */
+.training-table {
+  border-collapse: collapse !important;  /* back to normal */
+  border-spacing: 0 !important;
+}
+
+/* reset any previous positioning hacks */
+.training-table th, .training-table td { position: static; }
+
+/* keep your sticky columns + widths exactly as before */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky; left: 0; z-index: 5;
+  width: 40px; min-width: 40px; max-width: 40px;
+  background: #fff;
+}
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  position: sticky; left: 40px; z-index: 5;
+  width: 260px; min-width: 260px; max-width: 260px;
+  background: #fff;
+}
+
+/* ====== FIX 1: "white square" seam in header between col 1 & 2 ====== */
+.training-table thead th { z-index: 6; } /* headers above body */
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
+  background: var(--light-orange) !important;   /* same as other headers */
+  color: #fff !important;
+}
+
+/* ====== FIX 2: subtle divider without border (prevents column 2 wiggle) ====== */
+/* remove the right border on the two sticky columns … */
+.training-table th:first-child,
+.training-table td:first-child,
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  border-right: none !important;
+}
+/* …and draw a 1px divider inside column 2 instead (no layout shift) */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  box-shadow: inset -1px 0 0 0 var(--border);
+}
+
+/* ====== tighten non-sticky columns so they fit header text, not wider ====== */
+.training-table th:not(:first-child):not(:nth-child(2)),
+.training-table td:not(:first-child):not(:nth-child(2)) {
+  width: auto;
+  white-space: nowrap;
+  padding: 6px 8px;
+}
+
+/* inputs never push columns wider */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
