@@ -384,3 +384,44 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === COMBINED SINGLE STICKY COLUMN === */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  width: 260px;
+  min-width: 260px;
+  background: #fff;
+  text-align: left;
+  padding: 6px 10px;
+}
+
+/* header stays light orange */
+.training-table thead th:first-child {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+
+/* checkbox + text inline inside the same cell */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+}
+
+.training-table td:first-child input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
