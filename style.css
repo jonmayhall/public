@@ -1,333 +1,330 @@
 /* =======================================================
-   BASE LAYOUT & THEME — myKaarma Interactive Checklist
+   myKaarma Interactive Training Checklist – Stable Version
+   Restored November 2025
    ======================================================= */
+
+/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
-  --light-orange: #f7b37d;
-  --gray-bg: #f7f7f7;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --card-bg: #fff;
   --border: #dcdcdc;
-  --text: #222;
-  --header-text: #fff;
-  --font: 'Roboto', sans-serif;
+  --ink: #222;
+  --radius: 16px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* === BASE STRUCTURE === */
 html, body {
   margin: 0;
-  padding: 0;
-  font-family: var(--font);
-  color: var(--text);
-  background: #fff;
-  height: 100%;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-h1, h2 {
-  color: var(--orange);
-  margin-bottom: 8px;
+/* === TOP BAR === */
+#topbar {
+  background: linear-gradient(90deg, #000 0%, #333 100%);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 0 40px;
+}
+.topbar-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
+#dealershipNameDisplay {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-h1 { font-size: 1.9rem; }
-h2 { font-size: 1.3rem; }
-
-input, select, textarea {
-  font-family: var(--font);
-  font-size: 14px;
-  padding: 6px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-label {
-  font-weight: 500;
+/* === LAYOUT === */
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
 }
 
 /* =======================================================
-   TOP BAR & SIDEBAR
+   SIDEBAR
    ======================================================= */
-#topbar {
-  background: #000;
-  padding: 8px 20px;
-  color: var(--header-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#topbar img.top-logo {
-  height: 36px;
-}
-
 #sidebar {
-  background: var(--gray-bg);
-  width: 260px;
-  flex-shrink: 0;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  padding-top: 20px;
+  width: 190px;
+  padding: 20px 8px;
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  overflow-y: auto;
 }
-
-#sidebar nav {
+nav {
   display: flex;
   flex-direction: column;
+  gap: 6px;
 }
-
 .nav-btn {
   background: none;
   border: none;
-  padding: 12px 16px;
-  text-align: left;
+  padding: 10px 12px;
   font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
   cursor: pointer;
-  color: #333;
-  transition: background 0.2s;
+  transition: 0.2s;
+  color: var(--ink);
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
 }
 
-.nav-btn.active,
-.nav-btn:hover {
-  background: var(--light-orange);
-  color: #000;
+/* =======================================================
+   MAIN CONTENT
+   ======================================================= */
+main {
+  flex: 1;
+  margin-left: 190px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
+  box-sizing: border-box;
 }
-
-#app {
-  display: flex;
-  height: 100vh;
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin: 0 auto 50px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
 }
-
-#content {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 20px 30px 60px;
+.page-section.active { display: block; }
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 /* =======================================================
    SECTIONS
    ======================================================= */
-.page-section {
-  margin-bottom: 60px;
-}
-
 .section {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
-
 .section-header {
   background: var(--orange);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 8px 8px 0 0;
+  color: #fff;
   font-weight: 600;
-}
-
-.section-block {
-  background: #fff;
-  padding: 16px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.checklist-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--orange);
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 16px;
+  line-height: 1.3;
 }
 
 /* =======================================================
-   TABLES — GENERAL
+   TABLES
    ======================================================= */
-.training-table {
+.table-container {
   width: 100%;
-  border-collapse: collapse;
-  min-width: 900px;
-  font-size: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin: 0;
+}
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  overflow: auto;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  scrollbar-color: #ccc transparent;
+  scrollbar-width: thin;
 }
 
+/* === CORE TABLE === */
+.training-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: max-content;
+  min-width: 100%;
+  background: #fff;
+}
 .training-table th,
 .training-table td {
-  border: 1px solid var(--border);
-  padding: 6px 8px;
+  white-space: nowrap;
   text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background-clip: padding-box;
+  padding: 8px 10px;
 }
 
-.training-table th {
+/* === HEADER ROWS === */
+.training-table thead th {
   background: var(--light-orange);
-  color: var(--header-text);
+  color: #fff;
+  font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 2;
-  font-weight: 600;
+  z-index: 3;
 }
 
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  border: none;
-  padding: 4px;
-  background: transparent;
-  font-size: 14px;
-}
-
-.training-table input[type="checkbox"] {
-  transform: scale(1.2);
-}
-
-.scroll-wrapper {
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 0 0 8px 8px;
-}
-
-.table-container {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 3px rgba(0,0,0,0.05);
-}
-
-/* =======================================================
-   STICKY COLUMNS
-   ======================================================= */
+/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  background: var(--light-orange);
-  z-index: 3;
-}
-
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  position: sticky;
-  left: 60px;
+  z-index: 4;
   background: #fff;
-  z-index: 3;
-}
-
-/* =======================================================
-   BUTTONS & FOOTERS
-   ======================================================= */
-button {
-  background: var(--orange);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  background: #d95f16;
-}
-
-.add-row {
-  font-size: 18px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  line-height: 0;
-  text-align: center;
-}
-
-.table-footer {
-  margin-top: 6px;
-}
-
-/* =======================================================
-   FLOATING BUTTON
-   ======================================================= */
-.floating-btn {
-  position: fixed;
-  top: 16px;
-  left: 20px;
-  z-index: 999;
-  background: var(--orange);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-}
-
-/* =======================================================
-   COMMENT BOX
-   ======================================================= */
-.comment-box textarea {
-  width: 100%;
-  border-radius: 8px;
-  padding: 8px;
-  font-size: 14px;
-}
-
-/* =======================================================
-   PATCH: Horizontal Scroll + Compact Opcodes Columns
-   ======================================================= */
-
-/* --- Fix horizontal scroll on Training Checklist tables --- */
-#technicians .scroll-wrapper,
-#advisors .scroll-wrapper,
-#parts-reps .scroll-wrapper,
-#bdc-reps .scroll-wrapper,
-#dispatcher .scroll-wrapper,
-#drivers .scroll-wrapper {
-  overflow-x: auto !important;
-  width: 100%;
-}
-
-/* Ensure tables can extend beyond container width for scrolling */
-#technicians table,
-#advisors table,
-#parts-reps table,
-#bdc-reps table,
-#dispatcher table,
-#drivers table {
-  width: max-content !important;
-  min-width: 100%;
-}
-
-/* --- Opcodes & Pricing column size refinement --- */
-#opcodes-setup th,
-#opcodes-setup td,
-#mpi-opcodes th,
-#mpi-opcodes td {
-  white-space: nowrap;
-  padding: 6px 8px;
-  text-align: center;
-}
-
-/* Default: keep columns compact */
-#opcodes-setup th:not(:first-child),
-#opcodes-setup td:not(:first-child),
-#mpi-opcodes th:not(:first-child),
-#mpi-opcodes td:not(:first-child) {
-  width: auto;
-  min-width: fit-content;
-}
-
-/* Make the Opcode columns a little wider for readability */
-#opcodes-setup th:nth-child(2),
-#opcodes-setup td:nth-child(2),
-#mpi-opcodes th:nth-child(2),
-#mpi-opcodes td:nth-child(2) {
-  min-width: 120px;
-  width: 120px;
-}
-
-/* Keep first column sticky and properly sized */
-#opcodes-setup th:first-child,
-#opcodes-setup td:first-child,
-#mpi-opcodes th:first-child,
-#mpi-opcodes td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 3;
-  background: #fff;
+  text-align: left;
   width: 280px;
   min-width: 280px;
+  padding: 6px 10px;
+  border-right: 1px solid var(--border);
+}
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+}
+
+/* === INPUTS & SELECTS === */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+.training-table select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.training-table input[type="checkbox"] {
+  transform: scale(1.1);
+  margin-right: 6px;
+}
+
+/* === FIRST COLUMN COMBO === */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.training-table td:first-child input[type="text"] {
+  flex: 1;
+  background: #f9f9f9;
+}
+
+/* === COLUMN WIDTHS === */
+.training-table th:not(:first-child),
+.training-table td:not(:first-child) {
+  width: auto;
+  min-width: fit-content;
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+
+/* === ROW STRIPING === */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
+/* === TABLE FOOTER === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: #fff;
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  box-sizing: border-box;
+}
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+
+/* === COMMENT BOX === */
+.section-block.comment-box {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* === FLOATING BUTTON === */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.floating-btn:hover { background: #ff8848; }
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
