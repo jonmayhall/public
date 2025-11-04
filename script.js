@@ -1,126 +1,114 @@
-// =======================================================
-// === myKaarma Interactive Training Checklist Script ===
-// =======================================================
+/* =======================================================
+   myKaarma Interactive Training Checklist – Script.js
+   Restored stable version (November 2025)
+   ======================================================= */
 
-window.addEventListener("DOMContentLoaded", () => {
-  // === SIDEBAR NAVIGATION ===
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const sections = document.querySelectorAll(".page-section");
+// === PAGE NAVIGATION ===
+const navButtons = document.querySelectorAll(".nav-btn");
+const sections = document.querySelectorAll(".page-section");
 
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-target");
-      sections.forEach((s) => s.classList.remove("active"));
-      document.getElementById(target).classList.add("active");
-
-      navButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+navButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    navButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    const target = btn.getAttribute("data-target");
+    sections.forEach((sec) => {
+      sec.classList.toggle("active", sec.id === target);
     });
+    window.scrollTo(0, 0);
   });
+});
 
-  // === DEALERSHIP NAME SYNC ===
-  const dealerGroupInput = document.getElementById("dealerGroup");
-  const dealerNameInput = document.getElementById("dealershipName");
-  const headerDisplay = document.getElementById("dealership-display");
+// === DYNAMIC ADD-ROW BUTTONS FOR TABLES ===
+document.querySelectorAll(".add-row").forEach((button) => {
+  button.addEventListener("click", () => {
+    const table = button.closest(".section, .section-block").querySelector("table");
+    if (!table) return;
 
-  function updateHeaderName() {
-    const group = dealerGroupInput?.value.trim() || "";
-    const name = dealerNameInput?.value.trim() || "";
+    const tbody = table.querySelector("tbody");
+    const firstRow = tbody.querySelector("tr");
+    if (!firstRow) return;
 
-    let displayText = "Dealership Name";
-    if (group && name) displayText = `${group} – ${name}`;
-    else if (name) displayText = name;
-    else if (group) displayText = group;
+    const newRow = firstRow.cloneNode(true);
 
-    headerDisplay.textContent = displayText;
-    localStorage.setItem("dealerGroup", group);
-    localStorage.setItem("dealerName", name);
-  }
+    // Clear all inputs/selects
+    newRow.querySelectorAll("input, select, textarea").forEach((el) => {
+      if (el.tagName === "SELECT") el.selectedIndex = 0;
+      else el.value = "";
+    });
 
-  // Load saved values
-  const savedGroup = localStorage.getItem("dealerGroup");
-  const savedName = localStorage.getItem("dealerName");
-  if (savedGroup) dealerGroupInput.value = savedGroup;
-  if (savedName) dealerNameInput.value = savedName;
-  updateHeaderName();
-
-  if (dealerGroupInput) dealerGroupInput.addEventListener("input", updateHeaderName);
-  if (dealerNameInput) dealerNameInput.addEventListener("input", updateHeaderName);
-
-  // === ADD ROW FUNCTIONALITY ===
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("add-row")) {
-      const id = e.target.dataset.target;
-      const table = document.getElementById(id);
-      if (!table) return;
-
-      const firstRow = table.querySelector("tbody tr");
-      if (!firstRow) return;
-
-      const clone = firstRow.cloneNode(true);
-      clone.querySelectorAll("input[type='text']").forEach((input) => (input.value = ""));
-      clone.querySelectorAll("textarea").forEach((ta) => (ta.value = ""));
-      clone.querySelectorAll("select").forEach((select) => (select.selectedIndex = 0));
-      clone.querySelectorAll(".verify").forEach((box) => (box.checked = false));
-
-      table.querySelector("tbody").appendChild(clone);
-    }
+    tbody.appendChild(newRow);
   });
+});
 
-  // === AUTO EXPAND TEXTAREAS ===
-  document.addEventListener("input", (e) => {
-    if (e.target.tagName === "TEXTAREA") {
-      e.target.style.height = "auto";
-      e.target.style.height = e.target.scrollHeight + "px";
-    }
-  });
+// === ADD TRAINER FIELD ===
+function addTrainerField(button) {
+  const container = button.closest(".trainer-input").parentElement;
+  const newDiv = document.createElement("div");
+  newDiv.className = "trainer-input";
+  newDiv.style.position = "relative";
+  newDiv.innerHTML = `
+    <input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>
+  `;
+  container.appendChild(newDiv);
+}
 
-  // === DROPDOWN COLOR FEEDBACK ===
-  document.addEventListener("change", (e) => {
-    if (e.target.tagName === "SELECT") {
-      const value = e.target.value.trim();
-      const colors = {
-        "Yes": "#d6f5d6",
-        "No": "#ffd6d6",
-        "N/A": "#f2f2f2",
-      };
-      e.target.style.backgroundColor = colors[value] || "#fff";
-    }
-  });
+// === ADD CHAMPION FIELD ===
+function addChampionField(button) {
+  const container = button.closest(".champion-input").parentElement;
+  const newDiv = document.createElement("div");
+  newDiv.className = "champion-input";
+  newDiv.style.position = "relative";
+  newDiv.innerHTML = `
+    <input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addChampionField(this)">+</button>
+  `;
+  container.appendChild(newDiv);
+}
 
-  // === CHECKBOX HIGHLIGHT ===
-  document.addEventListener("change", (e) => {
-    if (e.target.classList.contains("verify")) {
-      const row = e.target.closest("tr");
-      if (row) row.style.backgroundColor = e.target.checked ? "#fff8e1" : "";
-    }
-  });
+// === ADD BLOCKER FIELD ===
+function addBlockerField(button) {
+  const container = button.closest(".blocker-input").parentElement;
+  const newDiv = document.createElement("div");
+  newDiv.className = "blocker-input";
+  newDiv.style.position = "relative";
+  newDiv.innerHTML = `
+    <input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addBlockerField(this)">+</button>
+  `;
+  container.appendChild(newDiv);
+}
 
-  // === SAVE AS PDF (ALL PAGES) ===
-  const pdfButton = document.getElementById("pdfButton");
-  if (pdfButton) {
-    pdfButton.addEventListener("click", async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF("p", "pt", "a4");
+// === DEALERSHIP NAME LIVE UPDATE IN HEADER ===
+const dealerInput = document.getElementById("dealer-name");
+const dealerGroupInput = document.getElementById("dealer-group");
+const topbar = document.querySelector(".topbar-content");
 
-      const content = document.querySelector("#content");
-      const clone = content.cloneNode(true);
+if (dealerInput && topbar) {
+  const dealershipDisplay = document.createElement("div");
+  dealershipDisplay.id = "dealershipNameDisplay";
+  dealershipDisplay.textContent = "";
+  topbar.appendChild(dealershipDisplay);
 
-      // Hide sidebar and floating buttons in PDF
-      clone.querySelectorAll(".floating-btn, #sidebar").forEach((el) => el.remove());
+  const updateHeader = () => {
+    const group = dealerGroupInput?.value?.trim() || "";
+    const name = dealerInput?.value?.trim() || "";
+    dealershipDisplay.textContent = group
+      ? `${group} – ${name}`
+      : name || "";
+  };
 
-      await doc.html(clone, {
-        callback: function (pdf) {
-          pdf.save("Training_Summary.pdf");
-        },
-        margin: [20, 20, 20, 20],
-        autoPaging: "text",
-        x: 0,
-        y: 0,
-        html2canvas: { scale: 0.6 },
-      });
+  dealerInput.addEventListener("input", updateHeader);
+  if (dealerGroupInput) dealerGroupInput.addEventListener("input", updateHeader);
+}
+
+// === SAVE AS PDF (SUMMARY PAGE) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const pdfBtn = document.getElementById("save-pdf");
+  if (pdfBtn) {
+    pdfBtn.addEventListener("click", () => {
+      window.print();
     });
   }
 });
