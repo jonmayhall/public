@@ -333,14 +333,11 @@
     </div>
   </div>
 </section>
-     
-<!-- ========================================================= -->
-<!-- === PAGE 5 : TRAINING CHECKLIST === -->
-<!-- ========================================================= -->
+
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
 
-  <!-- === TECHNICIANS === -->
+  <!-- TECHNICIANS — 3 rows -->
   <div class="section">
     <div class="section-header">Technicians – Checklist</div>
     <div class="table-container">
@@ -356,28 +353,76 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 3 preset rows -->
-            ${Array.from({length:3}).map(() => `
-              <tr>
-                <td><input type="text" placeholder="Technician Name…"></td>
-                ${Array.from({length:16}).map(() => `
-                  <td>
-                    <select>
-                      <option></option>
-                      <option>Yes</option>
-                      <option>No</option>
-                      <option>N/A</option>
-                    </select>
-                  </td>`).join('')}
-              </tr>`).join('')}
+            <!-- Row 1 -->
+            <tr>
+              <td><input type="text" placeholder="Technician Name…"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+              <td><input type="text" placeholder="Technician Name…"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+              <td><input type="text" placeholder="Technician Name…"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
           </tbody>
-          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- === SERVICE ADVISORS === -->
+  <!-- SERVICE ADVISORS — 3 rows -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -393,27 +438,71 @@
             </tr>
           </thead>
           <tbody>
-            ${Array.from({length:3}).map(() => `
-              <tr>
-                <td><input type="text" placeholder="Advisor Name…"></td>
-                ${Array.from({length:15}).map(() => `
-                  <td>
-                    <select>
-                      <option></option>
-                      <option>Yes</option>
-                      <option>No</option>
-                      <option>N/A</option>
-                    </select>
-                  </td>`).join('')}
-              </tr>`).join('')}
+            <!-- Repeat this row 3x -->
+            <tr>
+              <td><input type="text" placeholder="Advisor Name…"></td>
+              <!-- 15 dropdown cells -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td><!-- x15 -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Advisor Name…"></td>
+              <!-- repeat same 15 dropdowns -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td><!-- x15 -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Advisor Name…"></td>
+              <!-- repeat same 15 dropdowns -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td><!-- x15 -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
           </tbody>
-          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- === PARTS REPRESENTATIVES === -->
+  <!-- PARTS REPS — 2 rows -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -429,27 +518,50 @@
             </tr>
           </thead>
           <tbody>
-            ${Array.from({length:2}).map(() => `
-              <tr>
-                <td><input type="text" placeholder="Parts Rep Name…"></td>
-                ${Array.from({length:13}).map(() => `
-                  <td>
-                    <select>
-                      <option></option>
-                      <option>Yes</option>
-                      <option>No</option>
-                      <option>N/A</option>
-                    </select>
-                  </td>`).join('')}
-              </tr>`).join('')}
+            <tr>
+              <td><input type="text" placeholder="Parts Rep Name…"></td>
+              <!-- 13 dropdown cells -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td><!-- x13 -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Parts Rep Name…"></td>
+              <!-- repeat 13 dropdown cells -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td><!-- x13 -->
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
           </tbody>
-          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- === BDC === -->
+  <!-- BDC — 1 row -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -465,12 +577,12 @@
           <tbody>
             <tr>
               <td><input type="text" placeholder="BDC Rep Name…"></td>
-              ${Array.from({length:6}).map(() => `
-                <td>
-                  <select>
-                    <option></option><option>Yes</option><option>No</option><option>N/A</option>
-                  </select>
-                </td>`).join('')}
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
             </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
@@ -479,7 +591,7 @@
     </div>
   </div>
 
-  <!-- === DISPATCHER === -->
+  <!-- DISPATCHER — 1 row -->
   <div class="section">
     <div class="section-header">Pickup &amp; Delivery Dispatcher – Checklist</div>
     <div class="table-container">
@@ -495,8 +607,13 @@
           <tbody>
             <tr>
               <td><input type="text" placeholder="Dispatcher Name…"></td>
-              ${Array.from({length:7}).map(() => `
-                <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>`).join('')}
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
             </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
@@ -505,7 +622,7 @@
     </div>
   </div>
 
-  <!-- === DRIVERS === -->
+  <!-- DRIVERS — 1 row -->
   <div class="section">
     <div class="section-header">Pickup &amp; Delivery Drivers – Checklist</div>
     <div class="table-container">
@@ -515,8 +632,9 @@
           <tbody>
             <tr>
               <td><input type="text" placeholder="Driver Name…"></td>
-              ${Array.from({length:3}).map(() => `
-                <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>`).join('')}
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
             </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
@@ -526,9 +644,6 @@
   </div>
 </section>
 
-<!-- ========================================================= -->
-<!-- === PAGE 6 : OPCODES & PRICING === -->
-<!-- ========================================================= -->
 <section id="opcodes-pricing" class="page-section">
   <h1>Opcodes &amp; Pricing</h1>
 
@@ -545,16 +660,20 @@
             </tr>
           </thead>
           <tbody>
-            ${Array.from({length:2}).map(() => `
-              <tr>
-                <td><input type="text" placeholder="Service Name…"></td>
-                ${Array.from({length:7}).map(() => `<td><input type="text"></td>`).join('')}
-                <td>
-                  <select>
-                    <option></option><option>Yes</option><option>No</option><option>N/A</option>
-                  </select>
-                </td>
-              </tr>`).join('')}
+            <tr>
+              <td><input type="text" value="2 Wheel Alignment"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Brake Fluid Exchange"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -567,17 +686,22 @@
     <div class="table-container">
       <div class="scroll-wrapper">
         <table id="mpi-opcodes" class="training-table">
-          <thead><tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
+          <thead>
+            <tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr>
+          </thead>
           <tbody>
-            ${Array.from({length:2}).map(() => `
-              <tr>
-                <td><input type="text" placeholder="MPI Line Name…"></td>
-                <td><input type="text" placeholder="Opcode…"></td>
-                <td><input type="text" placeholder="Line #…"></td>
-                <td>
-                  <select><option></option><option>Yes</option><option>No</option></select>
-                </td>
-              </tr>`).join('')}
+            <tr>
+              <td><input type="text" value="Exterior Lights"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Front Brake Pads"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
