@@ -356,9 +356,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Technician Name…" /></td><td colspan="16"></td></tr>
-            <tr><td><input type="text" placeholder="Technician Name…" /></td><td colspan="16"></td></tr>
-            <tr><td><input type="text" placeholder="Technician Name…" /></td><td colspan="16"></td></tr>
+            <!-- 3 preset rows -->
+            ${Array.from({length:3}).map(() => `
+              <tr>
+                <td><input type="text" placeholder="Technician Name…"></td>
+                ${Array.from({length:16}).map(() => `
+                  <td>
+                    <select>
+                      <option></option>
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>N/A</option>
+                    </select>
+                  </td>`).join('')}
+              </tr>`).join('')}
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -366,7 +377,7 @@
     </div>
   </div>
 
-  <!-- === ADVISORS === -->
+  <!-- === SERVICE ADVISORS === -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -382,9 +393,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Advisor Name…" /></td><td colspan="15"></td></tr>
-            <tr><td><input type="text" placeholder="Advisor Name…" /></td><td colspan="15"></td></tr>
-            <tr><td><input type="text" placeholder="Advisor Name…" /></td><td colspan="15"></td></tr>
+            ${Array.from({length:3}).map(() => `
+              <tr>
+                <td><input type="text" placeholder="Advisor Name…"></td>
+                ${Array.from({length:15}).map(() => `
+                  <td>
+                    <select>
+                      <option></option>
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>N/A</option>
+                    </select>
+                  </td>`).join('')}
+              </tr>`).join('')}
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -392,7 +413,7 @@
     </div>
   </div>
 
-  <!-- === PARTS REPS === -->
+  <!-- === PARTS REPRESENTATIVES === -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -408,8 +429,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Parts Rep Name…" /></td><td colspan="13"></td></tr>
-            <tr><td><input type="text" placeholder="Parts Rep Name…" /></td><td colspan="13"></td></tr>
+            ${Array.from({length:2}).map(() => `
+              <tr>
+                <td><input type="text" placeholder="Parts Rep Name…"></td>
+                ${Array.from({length:13}).map(() => `
+                  <td>
+                    <select>
+                      <option></option>
+                      <option>Yes</option>
+                      <option>No</option>
+                      <option>N/A</option>
+                    </select>
+                  </td>`).join('')}
+              </tr>`).join('')}
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -431,7 +463,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="BDC Rep Name…" /></td><td colspan="6"></td></tr>
+            <tr>
+              <td><input type="text" placeholder="BDC Rep Name…"></td>
+              ${Array.from({length:6}).map(() => `
+                <td>
+                  <select>
+                    <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                  </select>
+                </td>`).join('')}
+            </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -439,7 +479,7 @@
     </div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DISPATCHER === -->
+  <!-- === DISPATCHER === -->
   <div class="section">
     <div class="section-header">Pickup &amp; Delivery Dispatcher – Checklist</div>
     <div class="table-container">
@@ -453,7 +493,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Dispatcher Name…" /></td><td colspan="7"></td></tr>
+            <tr>
+              <td><input type="text" placeholder="Dispatcher Name…"></td>
+              ${Array.from({length:7}).map(() => `
+                <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>`).join('')}
+            </tr>
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -461,14 +505,20 @@
     </div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DRIVERS === -->
+  <!-- === DRIVERS === -->
   <div class="section">
     <div class="section-header">Pickup &amp; Delivery Drivers – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th></tr></thead>
-          <tbody><tr><td><input type="text" placeholder="Driver Name…" /></td><td colspan="3"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Driver Name…"></td>
+              ${Array.from({length:3}).map(() => `
+                <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>`).join('')}
+            </tr>
+          </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
@@ -495,8 +545,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" value="2 Wheel Alignment" /></td><td colspan="8"></td></tr>
-            <tr><td><input type="text" value="Brake Fluid Exchange" /></td><td colspan="8"></td></tr>
+            ${Array.from({length:2}).map(() => `
+              <tr>
+                <td><input type="text" placeholder="Service Name…"></td>
+                ${Array.from({length:7}).map(() => `<td><input type="text"></td>`).join('')}
+                <td>
+                  <select>
+                    <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                  </select>
+                </td>
+              </tr>`).join('')}
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
@@ -511,8 +569,15 @@
         <table id="mpi-opcodes" class="training-table">
           <thead><tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
           <tbody>
-            <tr><td><input type="text" value="Exterior Lights" /></td><td colspan="3"></td></tr>
-            <tr><td><input type="text" value="Front Brake Pads" /></td><td colspan="3"></td></tr>
+            ${Array.from({length:2}).map(() => `
+              <tr>
+                <td><input type="text" placeholder="MPI Line Name…"></td>
+                <td><input type="text" placeholder="Opcode…"></td>
+                <td><input type="text" placeholder="Line #…"></td>
+                <td>
+                  <select><option></option><option>Yes</option><option>No</option></select>
+                </td>
+              </tr>`).join('')}
           </tbody>
           <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
