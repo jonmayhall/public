@@ -225,3 +225,70 @@ textarea{ width:calc(100% - 32px); margin:16px; padding:12px; border-radius:12px
   min-width: 160px;
   max-width: 180px;
 }
+/* === OPCODES PAGE SCROLL + STICKY HEADER === */
+#opcodes-pricing .scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Keep header visible when scrolling */
+#opcodes-pricing table.sticky-header thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f7b87d; /* light orange */
+  z-index: 2;
+  border-bottom: 2px solid #d1842a;
+}
+
+/* Table basics */
+#opcodes-pricing table.training-table {
+  min-width: 900px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Compact layout for MPI Opcodes */
+#mpi-opcodes.compact th,
+#mpi-opcodes.compact td {
+  white-space: nowrap;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+#mpi-opcodes.compact input,
+#mpi-opcodes.compact select {
+  width: 100%;
+  min-width: 100px;
+  max-width: 140px;
+  font-size: 13px;
+  padding: 4px;
+}
+
+#mpi-opcodes.compact th:first-child,
+#mpi-opcodes.compact td:first-child {
+  min-width: 160px;
+  max-width: 180px;
+}
+
+/* Add-row footer styling */
+#opcodes-pricing tfoot td {
+  border-top: 1px solid #d1842a;
+  text-align: center;
+  padding: 6px 0;
+}
+
+#opcodes-pricing .add-row {
+  background-color: #f7b87d;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#opcodes-pricing .add-row:hover {
+  background-color: #f6a74e;
+}
