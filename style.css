@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Unified Styles
-   Updated November 2025 (Seamless Header Version)
+   Finalized November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -108,17 +108,23 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === SECTION HEADERS === */
-.section { margin-bottom: 35px; }
+/* === SECTION HEADERS (Flat, seamless into table) === */
+.section {
+  margin-bottom: 35px;
+}
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: 0;               /* no curves */
   font-size: 16px;
   margin-bottom: 0;
+  box-shadow: none;
+  height: 38px;
+  display: flex;
+  align-items: center;
 }
 
 /* === SECTION BLOCKS === */
@@ -180,7 +186,7 @@ textarea {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
   margin-bottom: 24px;
@@ -214,21 +220,18 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 30px; /* slightly shorter */
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border); /* vertical divider */
+  height: 30px;                     /* slightly shorter */
+  border: 1px solid var(--border);  /* even border all around */
+  border-top: none;
   white-space: nowrap;
   text-align: center;
   padding: 6px 8px;
 }
-.training-table thead th:last-child {
-  border-right: none;
-}
 .training-table thead th:first-child {
   text-align: left;
-  background: var(--light-orange);
+}
+.training-table thead th:last-child {
+  border-right: none;
 }
 
 /* === BODY CELLS === */
@@ -290,17 +293,20 @@ textarea {
   border-top: 1px solid var(--border);
   background: #fff;
   text-align: center;
-  padding: 8px 12px;
+  height: 34px;                /* shorter footer */
+  padding: 4px 0;
 }
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   font-size: 15px;
   font-weight: bold;
+  line-height: 24px;
+  text-align: center;
   cursor: pointer;
   transition: 0.2s;
 }
