@@ -401,3 +401,60 @@ textarea {
   background: var(--light-orange) !important;
   color: #fff !important;
 }
+/* =======================================================
+   PATCH: Tighten Opcodes + Advisor tables and stop sticky wiggle
+   ======================================================= */
+
+/* --- 1. Stop sticky column movement on scroll --- */
+.training-table {
+  position: relative;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.training-table th:first-child,
+.training-table td:first-child,
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  position: sticky;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* --- 2. Make all non-sticky columns tighter (only as wide as their header) --- */
+#opcodes-setup th:not(:first-child):not(:nth-child(2)),
+#opcodes-setup td:not(:first-child):not(:nth-child(2)),
+#mpi-opcodes th:not(:first-child):not(:nth-child(2)),
+#mpi-opcodes td:not(:first-child):not(:nth-child(2)),
+#advisors th:not(:first-child):not(:nth-child(2)),
+#advisors td:not(:first-child):not(:nth-child(2)) {
+  width: auto;
+  min-width: 90px;
+  max-width: 150px;
+  white-space: nowrap;
+  padding: 6px 8px;
+}
+
+/* Prevent input overflow and match visual consistency */
+#opcodes-setup input[type="text"],
+#mpi-opcodes input[type="text"],
+#advisors input[type="text"],
+#opcodes-setup select,
+#mpi-opcodes select,
+#advisors select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* --- 3. Ensure sticky headers (first two columns) stay light orange only in header --- */
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+.training-table tbody td:first-child,
+.training-table tbody td:nth-child(2) {
+  background: #fff !important;
+}
