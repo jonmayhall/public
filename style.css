@@ -178,3 +178,80 @@ h1{color:var(--orange);font-size:24px;font-weight:700;margin-bottom:20px;}
   #sidebar{display:none;}
   main{margin-left:0;padding:20px;}
 }
+/* ======= APPEND-ONLY RESCUE HOTFIX ======= */
+
+/* Light-orange header rows, compact, no rounding, flush into section header */
+.training-table thead th {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  height: 18px !important;
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  border-top: none !important;
+  border-bottom: 1px solid #f36f21 !important;
+  border-right: 1px solid #f36f21 !important;
+}
+.training-table thead th:first-child { border-left: 1px solid #f36f21 !important; }
+
+/* Body rows compact + clean right edge */
+.training-table td {
+  height: 18px !important;
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  border-right: 1px solid #f36f21 !important;
+  border-bottom: 1px solid #f36f21 !important;
+}
+.training-table td:last-child,
+.training-table thead th:last-child { border-right: 1px solid #f36f21 !important; }
+
+/* Sticky first column stays white, centered; inputs fit */
+.training-table th:first-child,
+.training-table td:first-child {
+  background: #fff !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  min-width: 170px !important;
+  width: 170px !important;
+}
+
+/* Inline checkbox + text */
+.firstcell {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+.firstcell input[type="checkbox"] {
+  width: 14px !important;
+  height: 14px !important;
+  accent-color: #f36f21 !important; /* myKaarma orange checkmark */
+  cursor: pointer !important;
+}
+.training-table td:first-child input[type="text"] {
+  width: 96% !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* Footer line with left-aligned + button and breathing room */
+.table-footer {
+  text-align: left !important;
+  padding: 6px 10px !important;
+  border-top: 1px solid #f36f21 !important;
+}
+.add-row {
+  margin-left: 4px !important;
+  width: 22px !important;
+  height: 22px !important;
+  line-height: 22px !important;
+  border-radius: 50% !important;
+  background: #f36f21 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Prevent right-edge clipping in scrollers */
+.scroll-wrapper { padding-bottom: 2px !important; overflow-x: auto !important; overflow-y: auto !important; }
