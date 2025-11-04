@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Unified Style
-   November 2025
+   myKaarma Interactive Training Checklist – Stable Stylesheet
+   Final Unified Orange Theme (November 2025)
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -36,13 +36,14 @@ html, body {
   top: 0; left: 0; right: 0;
   z-index: 20;
 }
-.topbar-content { display: flex; align-items: center; gap: 30px; }
+.topbar-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
 .top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -78,7 +79,7 @@ nav { display: flex; flex-direction: column; gap: 6px; }
   font-weight: 600;
 }
 
-/* === MAIN === */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -96,14 +97,9 @@ main {
   max-width: 1250px;
 }
 .page-section.active { display: block; }
-h1 {
-  color: var(--orange);
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
+h1 { color: var(--orange); font-size: 24px; font-weight: 700; margin-bottom: 20px; }
 
-/* === SECTION HEADER === */
+/* === SECTION HEADERS === */
 .section {
   margin-bottom: 35px;
 }
@@ -111,14 +107,63 @@ h1 {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 15px;
-  height: 32px;
-  display: flex;
-  align-items: center;
+  font-size: 16px;
   margin-bottom: 0;
+}
+
+/* === CHECKLIST BLOCKS === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.section-block h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* === CHECKLIST ROWS === */
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TEXTAREAS === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  font-family: inherit;
 }
 
 /* =======================================================
@@ -136,6 +181,7 @@ h1 {
 .scroll-wrapper {
   display: block;
   width: 100%;
+  max-height: 360px;
   overflow-x: auto;
   overflow-y: auto;
   border-top: 1px solid var(--border);
@@ -151,10 +197,8 @@ h1 {
   width: max-content;
   min-width: 100%;
   border-spacing: 0;
-  table-layout: auto;
-  font-size: 12px;
-  line-height: 1.05;
   border: 1px solid var(--border);
+  table-layout: auto;
 }
 
 /* === HEADER ROW === */
@@ -165,18 +209,17 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 22px;
+  height: 20px;
   padding: 4px 6px;
   font-size: 11px;
   text-align: center;
   white-space: nowrap;
+  border-radius: 0;
   border-top: none;
   border-bottom: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  border-radius: 0; /* connects straight to main header */
 }
 .training-table thead th:first-child {
-  text-align: center;
   border-left: 1px solid var(--border);
 }
 .training-table thead th:last-child {
@@ -210,6 +253,12 @@ h1 {
   vertical-align: middle;
   padding: 3px 5px;
 }
+.training-table td:first-child input[type="text"] {
+  width: 96%;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
 
 /* === INPUTS & SELECTS === */
 .training-table input[type="text"],
@@ -222,7 +271,7 @@ h1 {
   background: #f9f9f9;
   font-family: "Roboto", sans-serif;
   font-size: 11px;
-  text-align: center; /* center input text */
+  text-align: center;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
@@ -257,14 +306,6 @@ h1 {
   margin-left: 6px;
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
 
 /* === FLOATING BUTTON === */
 .floating-btn {
