@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Styles
+   myKaarma Interactive Training Checklist – Finalized Styles
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -155,7 +155,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES
+   TABLES – Corrected Alignment and Footer Line
    ======================================================= */
 .table-container {
   width: 100%;
@@ -171,7 +171,7 @@ textarea {
   max-height: 360px;
   overflow: auto;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
   background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
@@ -180,18 +180,9 @@ textarea {
 /* === TABLE CORE === */
 .training-table {
   border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  border: none;
   border-spacing: 0;
-}
-.training-table th, .training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
-  background-clip: padding-box;
 }
 
 /* === HEADER STYLES === */
@@ -199,30 +190,39 @@ textarea {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
+  text-align: center;
   position: sticky;
   top: 0;
   z-index: 3;
-}
-.section-header,
-.training-table caption {
-  background: var(--orange);
-  color: #fff;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
 }
 
-/* === FIRST COLUMN STICKY === */
+/* === ALIGN FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   background: #fff;
-  text-align: left;
   z-index: 4;
-  min-width: 200px;
   width: 200px;
+  min-width: 200px;
+  text-align: left;
+  border-right: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
+
+/* === CELLS === */
+.training-table td {
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  background-clip: padding-box;
+  white-space: nowrap;
 }
 
 /* === INPUTS INSIDE TABLE === */
@@ -249,15 +249,17 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD BUTTON === */
-.table-footer {
-  width: 100%;
-  border-top: none;
+/* === TABLE FOOTER INSIDE BORDER === */
+.training-table tfoot {
   background: #fff;
-  text-align: left;
-  padding: 8px 12px;
+  border-top: 1px solid var(--border);
 }
-.add-row {
+.training-table tfoot td {
+  padding: 8px 12px;
+  text-align: left;
+  border-top: 1px solid var(--border);
+}
+.training-table .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
@@ -269,7 +271,10 @@ textarea {
   cursor: pointer;
   transition: 0.2s;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+.training-table .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
 
 /* === COMMENT BOX === */
 .section-block.comment-box {
