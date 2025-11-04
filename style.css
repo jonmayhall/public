@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Compact Styles
+   myKaarma Interactive Training Checklist – Final Compact + Auto-Scroll
    Version: November 2025
    ======================================================= */
 
@@ -179,7 +179,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES – Compact + Scroll-Fix Version
+   TABLES – Auto Height + Scroll Fix
    ======================================================= */
 .table-container {
   width: 100%;
@@ -191,11 +191,11 @@ textarea {
   margin-bottom: 24px;
 }
 
-/* enable full horizontal scroll */
+/* Auto height scroll wrapper */
 .scroll-wrapper {
   display: block;
   width: 100%;
-  max-height: 360px;
+  max-height: none;
   overflow-x: auto;
   overflow-y: auto;
   border-top: 1px solid var(--border);
@@ -203,6 +203,7 @@ textarea {
   background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
+  padding-bottom: 2px; /* prevents right cutoff */
 }
 
 /* === TABLE CORE === */
