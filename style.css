@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Unified Styles
-   Finalized November 2025
+   myKaarma Interactive Training Checklist – Final Unified Styles
+   Completed November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -108,7 +108,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === SECTION HEADERS (Flat, seamless into table) === */
+/* === SECTION HEADERS (Rounded Top, Flat Bottom) === */
 .section {
   margin-bottom: 35px;
 }
@@ -118,7 +118,7 @@ h1 {
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: 0;               /* no curves */
+  border-radius: var(--radius) var(--radius) 0 0; /* rounded top only */
   font-size: 16px;
   margin-bottom: 0;
   box-shadow: none;
@@ -180,7 +180,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES – Unified Seamless Styling
+   TABLES – Seamless Styling (rounded container, flush headers)
    ======================================================= */
 .table-container {
   width: 100%;
