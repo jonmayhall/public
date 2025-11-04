@@ -378,3 +378,26 @@ textarea {
 .training-table tbody td:nth-child(2) {
   background: #fff !important;
 }
+/* === PATCH: lock 2nd sticky column so it no longer wiggles === */
+
+/* create a consistent stacking context for each table */
+.training-table {
+  position: relative;
+}
+
+/* keep sticky columns firmly anchored and aligned */
+.training-table th:first-child,
+.training-table td:first-child,
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* preserve the light-orange header only for those two cells */
+.training-table thead th:first-child,
+.training-table thead th:nth-child(2) {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
