@@ -1,15 +1,15 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – style.css
-   Final Clean Version – November 2025
+   myKaarma Interactive Training Checklist – Restored Style
+   Stable Pre-Checkbox Version (November 2025)
    ======================================================= */
 
 /* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
-  --light-orange: #f7b87d;
-  --border: #d1842a;
+  --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
+  --border: #dcdcdc;
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@ html, body {
   display: flex;
   align-items: center;
   padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 20;
@@ -43,10 +43,7 @@ html, body {
 }
 .top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -56,6 +53,7 @@ html, body {
 #sidebar {
   width: 190px;
   background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   padding: 20px 8px;
   position: fixed;
@@ -65,24 +63,17 @@ html, body {
 }
 nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
+  background: none; border: none; padding: 10px 12px;
+  font-size: 14px; text-align: left;
+  border-radius: var(--radius); cursor: pointer;
+  transition: 0.2s; color: var(--ink);
 }
 .nav-btn:hover,
 .nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
+  background: #fff3eb; color: var(--orange); font-weight: 600;
 }
 
-/* === MAIN === */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -100,29 +91,66 @@ main {
   max-width: 1250px;
 }
 .page-section.active { display: block; }
-h1 {
-  color: var(--orange);
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
+h1 { color: var(--orange); font-size: 24px; font-weight: 700; margin-bottom: 20px; }
 
-/* === SECTION HEADERS === */
-.section {
-  margin-bottom: 35px;
-}
+/* === SECTION BLOCKS === */
+.section { margin-bottom: 35px; }
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 16px;
+}
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.section-block h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
   font-size: 15px;
-  height: 32px;
+  font-weight: 600;
+}
+
+/* === CHECKLIST ROWS === */
+.checklist-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+.checklist-row label {
+  flex: 1; font-size: 14px; padding-right: 20px;
+}
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TEXTAREA === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  font-family: inherit;
 }
 
 /* =======================================================
@@ -132,22 +160,20 @@ h1 {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  margin-bottom: 24px;
 }
 .scroll-wrapper {
   display: block;
   width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+  max-height: 360px;
+  overflow: auto;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: #fff;
-  scrollbar-width: thin;
   scrollbar-color: #ccc transparent;
-  padding-bottom: 2px;
+  scrollbar-width: thin;
 }
 
 /* === TABLE CORE === */
@@ -156,12 +182,19 @@ h1 {
   width: max-content;
   min-width: 100%;
   border-spacing: 0;
-  table-layout: auto;
-  font-size: 12px;
-  line-height: 1.05;
+  border: none;
+}
+.training-table th, .training-table td {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 8px;
+  background-clip: padding-box;
 }
 
-/* === HEADER ROW === */
+/* === HEADER STYLES === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -169,112 +202,77 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 20px;
-  padding: 2px 6px;
-  font-size: 11px;
-  text-align: center;
-  white-space: nowrap;
+  height: 24px;
   border-top: none;
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
 }
-.training-table thead th:first-child { text-align: center; }
-.training-table thead th:last-child { border-right: 1px solid var(--border); }
-
-/* === BODY CELLS === */
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 3px 6px;
-  height: 22px;
-  font-size: 11px;
+.section-header,
+.training-table caption {
+  background: var(--orange);
+  color: #fff;
 }
-.training-table tr:last-child td { border-bottom: none; }
-.training-table td:last-child { border-right: 1px solid var(--border); }
 
-/* === FIRST COLUMN (sticky, centered, checkbox) === */
+/* === FIRST COLUMN STICKY === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   background: #fff;
+  text-align: left;
   z-index: 4;
-  min-width: 160px;
-  width: 160px;
-  border-right: 1px solid var(--border);
-  text-align: center;
-  vertical-align: middle;
-  padding: 2px 4px;
+  min-width: 200px;
+  width: 200px;
+}
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
 }
 
-/* Centered checkbox + text container */
-.firstcell {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-}
-.firstcell input[type="checkbox"] {
-  transform: scale(1.05);
-  accent-color: var(--orange);
-  cursor: pointer;
-}
-
-/* === INPUTS & SELECTS === */
+/* === INPUTS INSIDE TABLE === */
 .training-table input[type="text"],
 .training-table select {
-  width: 110%;
-  max-width: 130px;
+  width: 100%;
   box-sizing: border-box;
-  padding: 3px 5px;
-  border-radius: 5px;
+  padding: 5px 6px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background: #f2f2f2;
   font-family: "Roboto", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 2px rgba(243,111,33,0.4);
+  box-shadow: 0 0 3px rgba(243,111,33,0.4);
   outline: none;
   background: #fff9f5;
 }
 
-/* === ROW COLORS === */
+/* === ROW STYLING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === FOOTER WITH ADD BUTTON === */
+/* === TABLE FOOTER === */
 .table-footer {
-  border-top: 1px solid var(--border);
+  width: 100%;
+  border-top: none;
   background: #fff;
   text-align: left;
-  padding: 6px 12px;
+  padding: 6px 10px;
 }
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 13px;
+  width: 24px;
+  height: 24px;
+  font-size: 15px;
   font-weight: bold;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 6px;
   cursor: pointer;
   transition: 0.2s;
+  margin-left: 4px;
 }
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
-}
+.add-row:hover { background: #ff8b42; transform: scale(1.1); }
 
 /* === COMMENT BOX === */
 .section-block.comment-box {
@@ -284,7 +282,7 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-/* === FLOATING SAVE BUTTON === */
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
