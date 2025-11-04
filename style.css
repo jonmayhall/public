@@ -440,3 +440,18 @@ textarea {
   width: 260px;
   min-width: 260px;
 }
+/* === PATCH: eliminate sticky column shift === */
+
+/* remove right border on sticky columns */
+.training-table th:first-child,
+.training-table td:first-child,
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  border-right: none !important;
+}
+
+/* add subtle divider shadow instead of border */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  box-shadow: 2px 0 0 0 var(--border);
+}
