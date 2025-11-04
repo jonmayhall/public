@@ -191,24 +191,149 @@
         <div class="section-block"><h2>Additional Comments</h2><textarea placeholder="Type here…"></textarea></div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- === PAGE 4 : ONSITE TRAINERS & CEM === -->
-      <!-- ========================================================= -->
-      <section id="onsite-trainers" class="page-section">
-        <h1>Onsite Trainers &amp; CEM</h1>
-        <div class="section-block">
-          <h2>Onsite Trainers</h2>
-          <div class="checklist-row"><label>Lead Trainer</label><input type="text" placeholder="Enter Lead Trainer…" /></div>
-          <div class="checklist-row"><label style="padding-left:60px;">Additional Trainers</label>
-            <div style="display:flex;flex-direction:column;width:260px;">
-              <div class="trainer-input" style="position:relative;">
-                <input type="text" placeholder="Enter Additional Trainer…" style="width:100%;" />
-                <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- ========================================================= -->
+<!-- === PAGE 4 : ONSITE TRAINERS & CEM === -->
+<!-- ========================================================= -->
+<section id="onsite-trainers" class="page-section">
+  <h1>Onsite Trainers &amp; CEM</h1>
 
+  <!-- === Onsite Trainers === -->
+  <div class="section">
+    <div class="section-header">Onsite Trainers</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table">
+          <thead>
+            <tr><th>Lead Trainer</th><th>Additional Trainers</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Enter Lead Trainer…" /></td>
+              <td>
+                <div style="display:flex;flex-direction:column;width:260px;">
+                  <div class="trainer-input" style="position:relative;">
+                    <input type="text" placeholder="Enter Additional Trainer…" style="width:100%;" />
+                    <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Customer Engagement Manager === -->
+  <div class="section">
+    <div class="section-header">Customer Engagement Manager</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table">
+          <thead>
+            <tr><th>CEM Assigned</th><th>First Agreed CEM Call</th><th>Onsite Handoff Call</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Enter CEM Name…" /></td>
+              <td><input type="date" /></td>
+              <td style="display:flex;gap:6px;align-items:center;">
+                <select>
+                  <option></option><option>Yes</option><option>No</option>
+                </select>
+                <input type="date" style="border-radius:8px;padding:6px;" />
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Dealership Management Engagement === -->
+  <div class="section">
+    <div class="section-header">Dealership Management Engagement</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table">
+          <thead>
+            <tr>
+              <th>Name</th><th>Role</th><th>Rating</th><th>Summary of the Manager</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Name…" /></td>
+              <td>
+                <select>
+                  <option></option><option>FOD</option><option>General Manager</option>
+                  <option>Service Director</option><option>Service Manager</option>
+                  <option>Parts Manager</option><option>Shop Foreman</option>
+                </select>
+              </td>
+              <td>
+                <select>
+                  <option></option>
+                  <option style="background:#c9f7c0;">5</option>
+                  <option style="background:#c9f7c0;">4</option>
+                  <option style="background:#fff8b3;">3</option>
+                  <option style="background:#ffb3b3;">2</option>
+                  <option style="background:#ffb3b3;">1</option>
+                </select>
+              </td>
+              <td><input type="text" placeholder="Engagement, style, actions…" /></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Champions & Blockers === -->
+  <div class="section">
+    <div class="section-header">Champions &amp; Blockers</div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table">
+          <thead><tr><th>Champion/s</th><th>Blockers</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display:flex;flex-direction:column;width:260px;">
+                  <div class="champion-input" style="position:relative;">
+                    <input type="text" placeholder="Enter Champion Name &amp; Role…" />
+                    <button type="button" class="add-row small-btn" onclick="addChampionField(this)">+</button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div style="display:flex;flex-direction:column;width:260px;">
+                  <div class="blocker-input" style="position:relative;">
+                    <input type="text" placeholder="Enter Blocker Name &amp; Role…" />
+                    <button type="button" class="add-row small-btn" onclick="addBlockerField(this)">+</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+     
 <!-- ========================================================= -->
 <!-- === PAGE 5 : TRAINING CHECKLIST === -->
 <!-- ========================================================= -->
@@ -231,14 +356,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="text" placeholder="Technician Name…" /></td>
-              <td colspan="16"></td>
-            </tr>
+            <tr><td><input type="text" placeholder="Technician Name…" /></td><td colspan="16"></td></tr>
           </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -262,9 +382,7 @@
           <tbody>
             <tr><td><input type="text" placeholder="Advisor Name…" /></td><td colspan="15"></td></tr>
           </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -288,9 +406,7 @@
           <tbody>
             <tr><td><input type="text" placeholder="Parts Rep Name…" /></td><td colspan="13"></td></tr>
           </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -312,9 +428,7 @@
           <tbody>
             <tr><td><input type="text" placeholder="BDC Rep Name…" /></td><td colspan="6"></td></tr>
           </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -336,9 +450,7 @@
           <tbody>
             <tr><td><input type="text" placeholder="Dispatcher Name…" /></td><td colspan="7"></td></tr>
           </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -354,9 +466,7 @@
             <tr><th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th></tr>
           </thead>
           <tbody><tr><td><input type="text" placeholder="Driver Name…" /></td><td colspan="3"></td></tr></tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -381,14 +491,8 @@
               <th>Parts Retail</th><th>ServiceCart</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" value="2 Wheel Alignment" /></td><td colspan="8"></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tbody><tr><td><input type="text" value="2 Wheel Alignment" /></td><td colspan="8"></td></tr></tbody>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -399,15 +503,9 @@
     <div class="table-container">
       <div class="scroll-wrapper">
         <table id="mpi-opcodes" class="training-table">
-          <thead>
-            <tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><input type="text" value="Exterior Lights" /></td><td colspan="3"></td></tr>
-          </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <thead><tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
+          <tbody><tr><td><input type="text" value="Exterior Lights" /></td><td colspan="3"></td></tr></tbody>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -433,12 +531,8 @@
               <th>Opcodes</th><th>Historical RO</th><th>Historical Customer</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td>Reynolds</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>N/A</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>Nightly</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-          </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tbody><tr><td>Reynolds</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>N/A</td><td>On Demand</td><td>Auto</td><td>On Demand</td><td>Auto</td><td>Nightly</td><td>Yes</td><td>Yes</td><td>Yes</td></tr></tbody>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -457,12 +551,8 @@
               <th>Opcodes</th><th>Historical RO</th><th>Historical Customer</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td>CDK</td><td>15 min</td><td>On Demand</td><td>With RO</td><td>On Demand</td><td>15 min</td><td>On Demand</td><td>5 min</td><td>On Demand</td><td>On Demand</td><td>15 min</td><td>On Demand</td><td>15 min</td><td>Nightly</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-          </tbody>
-          <tfoot>
-            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
-          </tfoot>
+          <tbody><tr><td>CDK</td><td>15 min</td><td>On Demand</td><td>With RO</td><td>On Demand</td><td>15 min</td><td>On Demand</td><td>5 min</td><td>On Demand</td><td>On Demand</td><td>15 min</td><td>On Demand</td><td>15 min</td><td>Nightly</td><td>Yes</td><td>Yes</td><td>Yes</td></tr></tbody>
+          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -474,17 +564,12 @@
   </div>
 </section>
 
-      <!-- ========================================================= -->
-      <!-- === PAGE 8 : TRAINING SUMMARY === -->
-      <!-- ========================================================= -->
-      <section id="training-summary" class="page-section">
-        <h1>Training Summary</h1>
-        <div class="section-block"><h2>Overall Notes</h2><textarea placeholder="Type summary notes here…"></textarea></div>
-        <button class="floating-btn" id="save-pdf">Save as PDF</button>
-      </section>
-    </main>
-  </div>
+<!-- ========================================================= -->
+<!-- === PAGE 8 : TRAINING SUMMARY === -->
+<!-- ========================================================= -->
+<section id="training-summary" class="page-section">
+  <h1>Training Summary</h1>
+  <div class="section-block"><h2>Overall Notes</h2><textarea placeholder="Type summary notes here…"></textarea></div>
+  <button class="floating-btn" id="save-pdf">Save as PDF</button>
+</section>
 
-  <script src="script.js"></script>
-</body>
-</html>
