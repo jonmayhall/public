@@ -1,26 +1,36 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Script.js
-   Updated November 2025
+   Fully corrected – November 2025
    ======================================================= */
 
 // === PAGE NAVIGATION ===
-const navButtons = document.querySelectorAll(".nav-btn");
-const sections = document.querySelectorAll(".page-section");
+document.addEventListener("DOMContentLoaded", () => {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const sections = document.querySelectorAll(".page-section");
 
-navButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    navButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    const target = btn.getAttribute("data-target");
-    sections.forEach((sec) => sec.classList.toggle("active", sec.id === target));
-    window.scrollTo(0, 0);
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // deactivate all buttons
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // show selected section only
+      const target = btn.getAttribute("data-target");
+      sections.forEach((sec) => {
+        sec.classList.toggle("active", sec.id === target);
+      });
+
+      // scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   });
 });
 
 // === DYNAMIC ADD-ROW BUTTONS FOR TABLES ===
-document.querySelectorAll(".add-row").forEach((button) => {
-  button.addEventListener("click", () => {
-    const table = button.closest(".table-container")?.querySelector("table");
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-row")) {
+    const button = e.target;
+    const table = button.closest("table");
     if (!table) return;
 
     const tbody = table.querySelector("tbody");
@@ -29,14 +39,14 @@ document.querySelectorAll(".add-row").forEach((button) => {
 
     const newRow = firstRow.cloneNode(true);
 
-    // Clear all inputs/selects in the cloned row
+    // Clear all inputs/selects/textareas in cloned row
     newRow.querySelectorAll("input, select, textarea").forEach((el) => {
       if (el.tagName === "SELECT") el.selectedIndex = 0;
       else el.value = "";
     });
 
     tbody.appendChild(newRow);
-  });
+  }
 });
 
 // === ADD TRAINER / CHAMPION / BLOCKER FIELDS ===
@@ -112,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // === UTILITY: AUTO-ADJUST TABLE WIDTHS ===
 // Keeps header and body perfectly aligned when scrolling
 window.addEventListener("load", () => {
-  document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+  document.querySelectorAll(".scroll-wrapper").forEach((wrapper) => {
     const table = wrapper.querySelector("table");
     if (table) {
       table.style.minWidth = "100%";
