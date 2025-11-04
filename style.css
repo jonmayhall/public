@@ -1,9 +1,9 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – style.css
-   Final Stable Version (November 2025)
+   myKaarma Interactive Training Checklist – Final Clean CSS
+   November 2025
    ======================================================= */
 
-/* === COLOR VARIABLES === */
+/* === COLORS === */
 :root {
   --orange: #f36f21;
   --light-orange: #f7b87d;
@@ -12,7 +12,7 @@
   --card-bg: #fff;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* === BASE === */
@@ -31,7 +31,7 @@ html, body {
   display: flex;
   align-items: center;
   padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 20;
@@ -82,7 +82,7 @@ nav { display: flex; flex-direction: column; gap: 6px; }
   font-weight: 600;
 }
 
-/* === MAIN CONTENT === */
+/* === MAIN === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -107,7 +107,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* === SECTION HEADER === */
+/* === SECTION HEADERS === */
 .section {
   margin-bottom: 35px;
 }
@@ -119,7 +119,7 @@ h1 {
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
   font-size: 15px;
-  height: 34px;
+  height: 32px;
   display: flex;
   align-items: center;
   margin-bottom: 0;
@@ -147,7 +147,7 @@ h1 {
   background: #fff;
   scrollbar-width: thin;
   scrollbar-color: #ccc transparent;
-  padding-bottom: 2px; /* avoids cutoff on right */
+  padding-bottom: 2px;
 }
 
 /* === TABLE CORE === */
@@ -161,7 +161,7 @@ h1 {
   line-height: 1.05;
 }
 
-/* === HEADER (short, even) === */
+/* === HEADER === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -170,7 +170,7 @@ h1 {
   top: 0;
   z-index: 3;
   height: 20px;
-  padding: 2px 6px;
+  padding: 4px 6px;
   font-size: 11px;
   text-align: center;
   white-space: nowrap;
@@ -179,7 +179,6 @@ h1 {
   border-right: 1px solid var(--border);
 }
 .training-table thead th:first-child { text-align: center; }
-.training-table thead th:last-child { border-right: 1px solid var(--border); }
 
 /* === BODY CELLS === */
 .training-table td {
@@ -192,9 +191,8 @@ h1 {
   font-size: 11px;
 }
 .training-table tr:last-child td { border-bottom: none; }
-.training-table td:last-child { border-right: 1px solid var(--border); }
 
-/* === FIRST COLUMN (sticky, centered via .firstcell wrapper) === */
+/* === FIRST COLUMN (sticky, centered) === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -209,7 +207,7 @@ h1 {
   padding: 2px 4px;
 }
 
-/* Centered content container for checkbox + text */
+/* Inner wrapper for checkbox + text */
 .firstcell {
   display: inline-flex;
   align-items: center;
@@ -244,16 +242,16 @@ h1 {
   background: #fff9f5;
 }
 
-/* === ROW COLORS === */
+/* === ROW STRIPES === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === FOOTER LINE WITH ADD BUTTON === */
+/* === FOOTER WITH ADD BUTTON === */
 .table-footer {
   border-top: 1px solid var(--border);
   background: #fff;
   text-align: left;
-  padding: 6px 16px;
+  padding: 6px 18px;
 }
 .add-row {
   background: var(--orange);
@@ -267,13 +265,16 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 6px; /* more breathing room */
+  margin-left: 8px;
   cursor: pointer;
   transition: 0.2s;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
 
-/* === TEXTAREA & COMMENT BOX === */
+/* === COMMENT BOX === */
 .section-block.comment-box {
   margin-top: 18px;
   border-radius: var(--radius);
@@ -281,7 +282,7 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-/* === FLOATING BUTTON === */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
