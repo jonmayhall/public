@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Unified Styles
-   Updated November 2025
+   Updated November 2025 (Seamless Header Version)
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -118,6 +118,7 @@ h1 {
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 /* === SECTION BLOCKS === */
@@ -173,7 +174,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES – Unified Styling
+   TABLES – Unified Seamless Styling
    ======================================================= */
 .table-container {
   width: 100%;
@@ -205,7 +206,7 @@ textarea {
   font-size: 13px;
 }
 
-/* === HEADER STYLES === */
+/* === HEADER STYLES (Flat, shorter, divided) === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -213,14 +214,21 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 36px;
+  height: 30px; /* slightly shorter */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border); /* vertical divider */
   white-space: nowrap;
-  padding: 8px 10px;
+  text-align: center;
+  padding: 6px 8px;
 }
-.training-table th:first-child {
+.training-table thead th:last-child {
+  border-right: none;
+}
+.training-table thead th:first-child {
+  text-align: left;
   background: var(--light-orange);
-  color: #fff;
 }
 
 /* === BODY CELLS === */
@@ -232,6 +240,9 @@ textarea {
   padding: 8px 10px;
   height: 36px;
   background-clip: padding-box;
+}
+.training-table td:last-child {
+  border-right: none;
 }
 
 /* === FIRST COLUMN STICKY === */
@@ -275,7 +286,6 @@ textarea {
 .training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === FOOTER LINE WITH ADD BUTTON === */
-.table-footer,
 .training-table tfoot td {
   border-top: 1px solid var(--border);
   background: #fff;
