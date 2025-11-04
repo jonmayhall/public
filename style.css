@@ -1,5 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Unified Stylesheet
+   Restored global styles + scoped Training Checklist / Opcodes updates
    Updated: November 2025
    ======================================================= */
 
@@ -43,10 +44,7 @@ html, body {
   align-items: center;
   gap: 30px;
 }
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
@@ -122,10 +120,8 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION HEADERS === */
-.section {
-  margin-bottom: 35px;
-}
+/* === SECTIONS === */
+.section { margin-bottom: 35px; }
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -137,203 +133,56 @@ h1 {
 }
 
 /* =======================================================
-   TABLES
+   DEFAULT TABLE STYLE (for all pages)
    ======================================================= */
-
-.table-container {
+.training-table {
+  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
+  min-width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  margin: 0;
 }
 
-.scroll-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-height: 340px;
-  border-top: 1px solid var(--border);
-  background: #fff;
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
-}
-
-/* === CORE TABLE === */
-.training-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: max-content;
-  min-width: 100%;
-  font-size: 13px;
-}
 .training-table th,
 .training-table td {
-  white-space: nowrap;
-  text-align: center;
+  text-align: left;
+  padding: 8px 10px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
-  vertical-align: middle;
+  font-size: 13px;
+  white-space: nowrap;
   background: #fff;
-}
-.training-table th:last-child,
-.training-table td:last-child {
-  border-right: none;
+  color: #222;
 }
 
-/* === HEADER STYLING === */
 .training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
+  background: #f4f4f4;
+  color: #333;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 5;
-  border-bottom: 2px solid var(--orange);
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
+  z-index: 3;
+  border-bottom: 2px solid var(--border);
 }
 
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 6;
+  position: static;
+  left: auto;
+  z-index: auto;
   background: #fff;
   text-align: left;
-  min-width: 280px;
-  border-right: 2px solid var(--orange);
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
+  min-width: auto;
+  border-right: 1px solid var(--border);
+  box-shadow: none;
 }
 
-/* === FIRST COLUMN (CHECKBOX + TEXT) === */
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  transform: scale(1.1);
-}
-.training-table td:first-child input[type="text"] {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-  font-family: "Roboto", sans-serif;
-}
-
-/* === INPUTS & SELECTS === */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* === CELL WIDTHS === */
-.training-table th:not(:first-child),
-.training-table td:not(:first-child) {
-  padding: 6px 8px;
-  white-space: nowrap;
-  width: auto;
-  min-width: fit-content;
-}
-
-/* === STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #f9f9f9; }
-
-/* === CLEAN BORDERS === */
-.training-table tr:last-child td {
-  border-bottom: none;
-}
-.training-table tr:hover td {
-  background: #fff7f2;
-}
-
-/* === TABLE FOOTER === */
-.table-footer {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  padding: 8px 12px;
-  text-align: left;
-}
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-}
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
-}
+.training-table tr:nth-child(even) { background: #fafafa; }
 
 /* =======================================================
-   OPCODES & PRICING TABLE TUNING
-   ======================================================= */
-#opcodes-setup th,
-#opcodes-setup td,
-#mpi-opcodes th,
-#mpi-opcodes td {
-  text-align: center;
-  padding: 6px 8px;
-}
-#opcodes-setup th:not(:first-child),
-#mpi-opcodes th:not(:first-child) {
-  width: auto;
-  min-width: fit-content;
-}
-#opcodes-setup th:nth-child(2),
-#opcodes-setup td:nth-child(2),
-#mpi-opcodes th:nth-child(2),
-#mpi-opcodes td:nth-child(2) {
-  min-width: 120px;
-}
-#opcodes-setup th:first-child,
-#opcodes-setup td:first-child,
-#mpi-opcodes th:first-child,
-#mpi-opcodes td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 6;
-  background: #fff;
-  min-width: 280px;
-}
-
-/* =======================================================
-   COMMENT BOXES & NOTES
+   COMMENT BOXES / TEXTAREA
    ======================================================= */
 .section-block.comment-box {
   border: 1px solid var(--border);
@@ -362,9 +211,31 @@ h1 {
   font-family: inherit;
 }
 
-/* =======================================================
-   BUTTONS / FLOAT ACTIONS
-   ======================================================= */
+/* === TABLE FOOTER BUTTON === */
+.table-footer {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 8px 12px;
+  text-align: left;
+}
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
@@ -391,4 +262,105 @@ h1 {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
+}
+
+/* =======================================================
+   SCOPED TABLE ENHANCEMENTS
+   Training Checklist + Opcodes Pages ONLY
+   ======================================================= */
+
+#training-checklist .scroll-wrapper,
+#opcodes-pricing .scroll-wrapper {
+  overflow-x: auto !important;
+  overflow-y: auto;
+  width: 100%;
+  background: #fff;
+}
+
+/* Full header row uses light-orange (not just first cell) */
+#training-checklist thead th,
+#opcodes-pricing thead th {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+  position: sticky;
+  top: 0;
+  z-index: 7;
+  border-bottom: 2px solid var(--orange);
+}
+
+/* SINGLE sticky first column (checkbox + text) */
+#training-checklist th:first-child,
+#training-checklist td:first-child,
+#opcodes-pricing th:first-child,
+#opcodes-pricing td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 8;
+  background: #fff;
+  min-width: 280px;
+  width: 280px;
+  text-align: left;
+  padding-left: 10px;
+  border-right: 1px solid var(--border);
+  box-shadow: 2px 0 0 0 var(--border);
+  background-clip: padding-box;
+}
+
+/* Flex the checkbox + text nicely */
+#training-checklist td:first-child,
+#opcodes-pricing td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#training-checklist td:first-child input[type="checkbox"],
+#opcodes-pricing td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+}
+#training-checklist td:first-child input[type="text"],
+#opcodes-pricing td:first-child input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+/* Non-sticky columns compact + crisp */
+#training-checklist th:not(:first-child),
+#training-checklist td:not(:first-child),
+#opcodes-pricing th:not(:first-child),
+#opcodes-pricing td:not(:first-child) {
+  padding: 6px 8px;
+  white-space: nowrap;
+  width: auto;
+  min-width: fit-content;
+  background: #fff;
+  border-right: 1px solid var(--border);
+}
+
+/* Crisper gridlines */
+#training-checklist td, #training-checklist th,
+#opcodes-pricing td, #opcodes-pricing th {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Let the tables extend horizontally */
+#training-checklist .training-table,
+#opcodes-pricing .training-table {
+  width: max-content !important;
+  min-width: 100%;
+}
+
+/* Opcodes: slightly wider Opcode columns only */
+#opcodes-setup th:nth-child(2),
+#opcodes-setup td:nth-child(2),
+#mpi-opcodes th:nth-child(2),
+#mpi-opcodes td:nth-child(2) {
+  min-width: 120px;
+  width: 120px;
 }
