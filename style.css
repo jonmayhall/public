@@ -1,7 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Stylesheet
-   Restored stable version with myKaarma aesthetic
-   Updated: November 2025
+   myKaarma Interactive Training Checklist – Unified Stylesheet
+   Updated November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -19,7 +18,7 @@
 /* === BASE STRUCTURE === */
 html, body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -38,18 +37,22 @@ html, body {
   left: 0;
   right: 0;
   z-index: 20;
-  padding-left: 30px;
+  padding: 0 40px;
 }
 .topbar-content {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 30px;
 }
-.top-logo { height: 42px; object-fit: contain; }
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -60,7 +63,9 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === SIDEBAR === */
+/* =======================================================
+   SIDEBAR
+   ======================================================= */
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
@@ -96,7 +101,9 @@ nav {
   font-weight: 600;
 }
 
-/* === MAIN CONTENT === */
+/* =======================================================
+   MAIN CONTENT
+   ======================================================= */
 main {
   flex: 1;
   margin-left: 190px;
@@ -113,6 +120,7 @@ main {
   margin: 0 auto 50px;
   width: 100%;
   max-width: 1250px;
+  box-sizing: border-box;
 }
 .page-section.active { display: block; }
 h1 {
@@ -122,7 +130,9 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION BLOCKS === */
+/* =======================================================
+   SECTION BLOCKS
+   ======================================================= */
 .section {
   margin-bottom: 35px;
 }
@@ -231,8 +241,8 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === HEADERS === */
-.training-table th {
+/* === HEADER ROWS === */
+.training-table thead th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
@@ -241,32 +251,59 @@ textarea {
   z-index: 3;
   border-radius: 0;
 }
-.training-table th:hover { background: #f49c56; }
-
-/* === FIRST COLUMN HEADER LIGHT ORANGE === */
-.training-table th:first-child {
-  background: var(--light-orange) !important;
-  color: #fff !important;
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
 }
 
-/* === FIRST COLUMN STICKY CELLS === */
+/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   z-index: 4;
   background: #fff;
+  text-align: left;
+  width: 280px;
+  min-width: 280px;
+  padding: 6px 10px;
+  border-right: 1px solid var(--border);
+}
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
 }
 
-/* === INPUTS & DROPDOWNS === */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
+/* === CHECKBOX + TEXT FIELD COMBO IN FIRST COLUMN === */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+}
+.training-table td:first-child input[type="text"] {
+  flex: 1;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-family: inherit;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+/* === INPUTS & SELECTS === */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 .training-table input[type="text"]:focus,
@@ -277,25 +314,20 @@ textarea {
   background: #fff9f5;
 }
 
-/* === WIDER CELLS FOR NAME / SERVICE / MPI === */
-.training-table td:nth-child(2) input[type="text"],
-.training-table td:nth-child(2),
-.training-table th:nth-child(2) {
-  width: 260px !important;
-}
-
-/* === CHECKBOX === */
-.verify {
-  accent-color: var(--orange);
-  transform: scale(1.1);
-  margin-right: 4px;
+/* === COLUMN WIDTH OPTIMIZATION === */
+.training-table th:not(:first-child),
+.training-table td:not(:first-child) {
+  padding: 6px 8px;
+  width: auto;
+  min-width: fit-content;
+  white-space: nowrap;
 }
 
 /* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === FOOTER === */
+/* === TABLE FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -331,7 +363,9 @@ textarea {
   overflow: hidden;
 }
 
-/* === FLOATING SAVE BUTTON === */
+/* =======================================================
+   FLOATING SAVE BUTTON
+   ======================================================= */
 .floating-btn {
   position: fixed;
   top: 90px;
@@ -348,7 +382,9 @@ textarea {
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* === RESPONSIVE === */
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
