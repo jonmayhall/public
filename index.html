@@ -644,9 +644,13 @@
   </div>
 </section>
 
+<!-- ========================================================= -->
+<!-- === PAGE 6 : OPCODES & PRICING === -->
+<!-- ========================================================= -->
 <section id="opcodes-pricing" class="page-section">
   <h1>Opcodes &amp; Pricing</h1>
 
+  <!-- === OPCODES SETUP === -->
   <div class="section">
     <div class="section-header">Opcodes Setup</div>
     <div class="table-container">
@@ -654,56 +658,96 @@
         <table id="opcodes-setup" class="training-table">
           <thead>
             <tr>
-              <th>Service</th><th>Opcode</th><th>Hours</th><th>Customer Pay Labor Rate</th>
-              <th>Fixed Customer Pay Labor Rate</th><th>Labor Charged</th><th>Set Parts Charged</th>
-              <th>Parts Retail</th><th>ServiceCart</th>
+              <th>Service</th>
+              <th>Opcode</th>
+              <th>Hours</th>
+              <th>Customer Pay Labor Rate</th>
+              <th>Fixed CP Labor Rate</th>
+              <th>Labor Charged</th>
+              <th>Set Parts Charged</th>
+              <th>Parts Retail</th>
+              <th>ServiceCart</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><input type="text" value="2 Wheel Alignment"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
               <td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><input type="text" value="Brake Fluid Exchange"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
               <td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option><option>N/A</option>
+                </select>
+              </td>
             </tr>
           </tbody>
-          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
         </table>
       </div>
     </div>
   </div>
 
+  <!-- === MPI OPCODES === -->
   <div class="section">
     <div class="section-header">MPI Opcodes</div>
     <div class="table-container">
       <div class="scroll-wrapper">
-        <table id="mpi-opcodes" class="training-table">
+        <table id="mpi-opcodes" class="training-table compact">
           <thead>
-            <tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr>
+            <tr>
+              <th>MPI Line</th>
+              <th>Opcode</th>
+              <th>Line #</th>
+              <th>Preselected</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
               <td><input type="text" value="Exterior Lights"></td>
               <td><input type="text"></td>
               <td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><input type="text" value="Front Brake Pads"></td>
               <td><input type="text"></td>
               <td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td>
+                <select>
+                  <option></option><option>Yes</option><option>No</option>
+                </select>
+              </td>
             </tr>
           </tbody>
-          <tfoot><tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr></tfoot>
+          <tfoot>
+            <tr><td colspan="100%"><button class="add-row" type="button">+</button></td></tr>
+          </tfoot>
         </table>
       </div>
     </div>
