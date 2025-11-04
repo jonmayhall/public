@@ -1,36 +1,30 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Script.js
-   Fully corrected – November 2025
+   myKaarma Interactive Training Checklist – script.js
+   Final Stable Version (November 2025)
    ======================================================= */
 
 // === PAGE NAVIGATION ===
-document.addEventListener("DOMContentLoaded", () => {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const sections = document.querySelectorAll(".page-section");
+const navButtons = document.querySelectorAll(".nav-btn");
+const sections = document.querySelectorAll(".page-section");
 
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // deactivate all buttons
-      navButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+navButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    navButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
 
-      // show selected section only
-      const target = btn.getAttribute("data-target");
-      sections.forEach((sec) => {
-        sec.classList.toggle("active", sec.id === target);
-      });
-
-      // scroll to top
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    const target = btn.getAttribute("data-target");
+    sections.forEach((sec) => {
+      sec.classList.toggle("active", sec.id === target);
     });
+
+    window.scrollTo(0, 0);
   });
 });
 
 // === DYNAMIC ADD-ROW BUTTONS FOR TABLES ===
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("add-row")) {
-    const button = e.target;
-    const table = button.closest("table");
+document.querySelectorAll(".add-row").forEach((button) => {
+  button.addEventListener("click", () => {
+    const table = button.closest(".table-container")?.querySelector("table");
     if (!table) return;
 
     const tbody = table.querySelector("tbody");
@@ -39,14 +33,20 @@ document.addEventListener("click", (e) => {
 
     const newRow = firstRow.cloneNode(true);
 
-    // Clear all inputs/selects/textareas in cloned row
+    // Clear all inputs/selects in the cloned row
     newRow.querySelectorAll("input, select, textarea").forEach((el) => {
-      if (el.tagName === "SELECT") el.selectedIndex = 0;
-      else el.value = "";
+      if (el.type === "checkbox") {
+        el.checked = false;
+      } else if (el.tagName === "SELECT") {
+        el.selectedIndex = 0;
+      } else {
+        el.value = "";
+      }
     });
 
     tbody.appendChild(newRow);
-  }
+    initFirstColumnWrappers(table); // reapply checkbox wrapper
+  });
 });
 
 // === ADD TRAINER / CHAMPION / BLOCKER FIELDS ===
@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // === UTILITY: AUTO-ADJUST TABLE WIDTHS ===
-// Keeps header and body perfectly aligned when scrolling
 window.addEventListener("load", () => {
   document.querySelectorAll(".scroll-wrapper").forEach((wrapper) => {
     const table = wrapper.querySelector("table");
@@ -128,5 +127,56 @@ window.addEventListener("load", () => {
       table.style.minWidth = "100%";
       wrapper.scrollLeft = 0;
     }
+  });
+});
+
+// =======================================================
+// === FIRST COLUMN WRAPPERS WITH CHECKBOXES
+// =======================================================
+function initFirstColumnWrappers(scope = document) {
+  scope.querySelectorAll(".training-table tbody tr").forEach((row) => {
+    const td = row.querySelector("td:first-child");
+    if (!td) return;
+
+    // Skip if already wrapped
+    if (td.querySelector(".firstcell")) return;
+
+    // Move any existing content (like text or input)
+    const existing = Array.from(td.childNodes).filter(
+      (n) => n.nodeType === 1 || n.nodeType === 3
+    );
+    const wrapper = document.createElement("label");
+    wrapper.className = "firstcell";
+
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+
+    // Find or create name input
+    let input = existing.find((n) => n.tagName === "INPUT");
+    if (!input) {
+      input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Name…";
+      input.style.maxWidth = "130px";
+    }
+
+    // Clear and rebuild
+    td.textContent = "";
+    wrapper.append(cb, input);
+    td.appendChild(wrapper);
+  });
+}
+
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", () => {
+  initFirstColumnWrappers();
+
+  // Reapply wrapper when new rows are added
+  document.querySelectorAll(".add-row").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      requestAnimationFrame(() =>
+        initFirstColumnWrappers(btn.closest(".table-container") || document)
+      );
+    });
   });
 });
