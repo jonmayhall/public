@@ -1,127 +1,97 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – script.js
-   Final Stable Version (November 2025)
-   ======================================================= */
+/* ========= myKaarma – Stable Rescue script.js ========= */
 
-// === PAGE NAVIGATION ===
+/* NAV */
 const navButtons = document.querySelectorAll(".nav-btn");
 const sections = document.querySelectorAll(".page-section");
-
-navButtons.forEach((btn) => {
+navButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    navButtons.forEach((b) => b.classList.remove("active"));
+    navButtons.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-
     const target = btn.getAttribute("data-target");
-    sections.forEach((sec) => {
-      sec.classList.toggle("active", sec.id === target);
-    });
-
+    sections.forEach(sec => sec.classList.toggle("active", sec.id === target));
     window.scrollTo(0, 0);
   });
 });
 
-// === DYNAMIC ADD-ROW BUTTONS FOR TABLES ===
-document.querySelectorAll(".add-row").forEach((button) => {
+/* ADD-ROW */
+document.querySelectorAll(".add-row").forEach(button => {
   button.addEventListener("click", () => {
     const table = button.closest(".table-container")?.querySelector("table");
     if (!table) return;
-
     const tbody = table.querySelector("tbody");
     const firstRow = tbody?.querySelector("tr");
     if (!firstRow) return;
 
     const newRow = firstRow.cloneNode(true);
-
-    // Clear all inputs/selects in the cloned row
-    newRow.querySelectorAll("input, select, textarea").forEach((el) => {
-      if (el.type === "checkbox") {
-        el.checked = false;
-      } else if (el.tagName === "SELECT") {
-        el.selectedIndex = 0;
-      } else {
-        el.value = "";
-      }
+    newRow.querySelectorAll("input, select, textarea").forEach(el => {
+      if (el.type === "checkbox") el.checked = false;
+      else if (el.tagName === "SELECT") el.selectedIndex = 0;
+      else el.value = "";
     });
 
     tbody.appendChild(newRow);
-    initFirstColumnWrappers(table); // reapply checkbox wrapper
+    // re-wrap only this table
+    initFirstColumnWrappers(table);
   });
 });
 
-// === ADD TRAINER / CHAMPION / BLOCKER FIELDS ===
+/* Inline add fields (trainers/champions/blockers) */
 function addTrainerField(button) {
   const container = button.closest(".trainer-input").parentElement;
-  const newDiv = document.createElement("div");
-  newDiv.className = "trainer-input";
-  newDiv.style.position = "relative";
-  newDiv.innerHTML = `
+  const div = document.createElement("div");
+  div.className = "trainer-input";
+  div.style.position = "relative";
+  div.innerHTML = `
     <input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
-    <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>
-  `;
-  container.appendChild(newDiv);
+    <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>`;
+  container.appendChild(div);
 }
-
 function addChampionField(button) {
   const container = button.closest(".champion-input").parentElement;
-  const newDiv = document.createElement("div");
-  newDiv.className = "champion-input";
-  newDiv.style.position = "relative";
-  newDiv.innerHTML = `
+  const div = document.createElement("div");
+  div.className = "champion-input";
+  div.style.position = "relative";
+  div.innerHTML = `
     <input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
-    <button type="button" class="add-row small-btn" onclick="addChampionField(this)">+</button>
-  `;
-  container.appendChild(newDiv);
+    <button type="button" class="add-row small-btn" onclick="addChampionField(this)">+</button>`;
+  container.appendChild(div);
 }
-
 function addBlockerField(button) {
   const container = button.closest(".blocker-input").parentElement;
-  const newDiv = document.createElement("div");
-  newDiv.className = "blocker-input";
-  newDiv.style.position = "relative";
-  newDiv.innerHTML = `
+  const div = document.createElement("div");
+  div.className = "blocker-input";
+  div.style.position = "relative";
+  div.innerHTML = `
     <input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
-    <button type="button" class="add-row small-btn" onclick="addBlockerField(this)">+</button>
-  `;
-  container.appendChild(newDiv);
+    <button type="button" class="add-row small-btn" onclick="addBlockerField(this)">+</button>`;
+  container.appendChild(div);
 }
 
-// === DEALERSHIP NAME LIVE UPDATE IN HEADER ===
+/* Live dealership name in topbar */
 const dealerInput = document.getElementById("dealer-name");
 const dealerGroupInput = document.getElementById("dealer-group");
 const topbar = document.querySelector(".topbar-content");
-
 if (dealerInput && topbar) {
-  const dealershipDisplay = document.createElement("div");
-  dealershipDisplay.id = "dealershipNameDisplay";
-  dealershipDisplay.textContent = "";
-  topbar.appendChild(dealershipDisplay);
-
+  const display = document.createElement("div");
+  display.id = "dealershipNameDisplay";
+  topbar.appendChild(display);
   const updateHeader = () => {
     const group = dealerGroupInput?.value?.trim() || "";
     const name = dealerInput?.value?.trim() || "";
-    dealershipDisplay.textContent = group
-      ? `${group} – ${name}`
-      : name || "";
+    display.textContent = group ? `${group} – ${name}` : (name || "");
   };
-
   dealerInput.addEventListener("input", updateHeader);
-  if (dealerGroupInput) dealerGroupInput.addEventListener("input", updateHeader);
+  dealerGroupInput?.addEventListener("input", updateHeader);
 }
 
-// === SAVE AS PDF ===
+/* Save as PDF */
 document.addEventListener("DOMContentLoaded", () => {
-  const pdfBtn = document.getElementById("save-pdf");
-  if (pdfBtn) {
-    pdfBtn.addEventListener("click", () => {
-      window.print();
-    });
-  }
+  document.getElementById("save-pdf")?.addEventListener("click", () => window.print());
 });
 
-// === UTILITY: AUTO-ADJUST TABLE WIDTHS ===
+/* Table width alignment */
 window.addEventListener("load", () => {
-  document.querySelectorAll(".scroll-wrapper").forEach((wrapper) => {
+  document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
     const table = wrapper.querySelector("table");
     if (table) {
       table.style.minWidth = "100%";
@@ -130,53 +100,66 @@ window.addEventListener("load", () => {
   });
 });
 
-// =======================================================
-// === FIRST COLUMN WRAPPERS WITH CHECKBOXES
-// =======================================================
+/* ====== SAFE FIRST-COLUMN WRAPPER (no HTML changes needed) ======
+   Applies ONLY on #training-checklist and #opcodes-pricing.
+   Adds inline checkbox + keeps text input, centered horizontally.
+*/
+function pageHasId(el, id) {
+  return !!el.closest(`#${id}`);
+}
+
 function initFirstColumnWrappers(scope = document) {
-  scope.querySelectorAll(".training-table tbody tr").forEach((row) => {
-    const td = row.querySelector("td:first-child");
-    if (!td) return;
+  // Only target the two pages you asked for
+  const allowed = Array.from(scope.querySelectorAll("#training-checklist, #opcodes-pricing"));
+  if (allowed.length === 0) return;
 
-    // Skip if already wrapped
-    if (td.querySelector(".firstcell")) return;
+  allowed.forEach(page => {
+    page.querySelectorAll(".training-table tbody tr").forEach(row => {
+      const td = row.querySelector("td:first-child");
+      if (!td) return;
 
-    // Move any existing content (like text or input)
-    const existing = Array.from(td.childNodes).filter(
-      (n) => n.nodeType === 1 || n.nodeType === 3
-    );
-    const wrapper = document.createElement("label");
-    wrapper.className = "firstcell";
+      // Skip if we already wrapped it
+      if (td.querySelector(".firstcell")) return;
 
-    const cb = document.createElement("input");
-    cb.type = "checkbox";
+      // Detect existing input or text
+      const existingInput = td.querySelector("input[type='text']");
+      const existingSelect = td.querySelector("select");
 
-    // Find or create name input
-    let input = existing.find((n) => n.tagName === "INPUT");
-    if (!input) {
-      input = document.createElement("input");
-      input.type = "text";
-      input.placeholder = "Name…";
-      input.style.maxWidth = "130px";
-    }
+      // We only auto-wrap if the first column contains a single name input or plain text.
+      // If the user already edited HTML with different content, we don't touch it.
+      if (existingSelect) return;
 
-    // Clear and rebuild
-    td.textContent = "";
-    wrapper.append(cb, input);
-    td.appendChild(wrapper);
+      // Build wrapper
+      const wrapper = document.createElement("div");
+      wrapper.className = "firstcell";
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+
+      let nameInput = existingInput;
+      if (!nameInput) {
+        nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.placeholder = "Name…";
+      }
+
+      // Clear and insert
+      td.textContent = "";
+      wrapper.append(cb, nameInput);
+      td.appendChild(wrapper);
+    });
   });
 }
 
-// Initialize on page load
+/* Run once on DOM ready and after each + clone */
 document.addEventListener("DOMContentLoaded", () => {
-  initFirstColumnWrappers();
-
-  // Reapply wrapper when new rows are added
-  document.querySelectorAll(".add-row").forEach((btn) => {
+  initFirstColumnWrappers(document);
+  // Make sure any + buttons added later still re-wrap correctly
+  document.querySelectorAll(".add-row").forEach(btn => {
     btn.addEventListener("click", () => {
-      requestAnimationFrame(() =>
-        initFirstColumnWrappers(btn.closest(".table-container") || document)
-      );
+      requestAnimationFrame(() => {
+        initFirstColumnWrappers(btn.closest(".page-section") || document);
+      });
     });
   });
 });
