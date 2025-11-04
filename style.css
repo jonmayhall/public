@@ -365,3 +365,16 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === PATCH: ensure all header rows are light orange, sticky columns stay white === */
+
+/* Make every header cell light orange, including the sticky ones */
+.training-table thead th {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+
+/* Body cells in sticky columns remain white */
+.training-table tbody td:first-child,
+.training-table tbody td:nth-child(2) {
+  background: #fff !important;
+}
