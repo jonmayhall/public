@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Unified Stylesheet
-   Updated November 2025
+   Updated: November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -9,16 +9,16 @@
   --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
-  --border: #dcdcdc;
+  --border: #d0d0d0;
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE STRUCTURE === */
+/* === BASE === */
 html, body {
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -26,18 +26,17 @@ html, body {
 
 /* === TOP BAR === */
 #topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
+  background: linear-gradient(90deg, #000, #333);
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  padding: 0 40px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
-  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 }
 .topbar-content {
   display: flex;
@@ -52,10 +51,10 @@ html, body {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  margin-left: 20px;
 }
 
-/* === LAYOUT === */
+/* === APP LAYOUT === */
 #app {
   display: flex;
   min-height: 100vh;
@@ -63,16 +62,13 @@ html, body {
   overflow-x: hidden;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* === SIDEBAR === */
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.9);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
   padding: 20px 8px;
-  box-shadow: var(--shadow);
   position: fixed;
   top: 70px;
   bottom: 0;
@@ -88,22 +84,18 @@ nav {
   border: none;
   padding: 10px 12px;
   font-size: 14px;
-  text-align: left;
   border-radius: var(--radius);
   cursor: pointer;
   transition: 0.2s;
   color: var(--ink);
 }
-.nav-btn:hover,
-.nav-btn.active {
+.nav-btn:hover, .nav-btn.active {
   background: #fff3eb;
   color: var(--orange);
   font-weight: 600;
 }
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -120,9 +112,9 @@ main {
   margin: 0 auto 50px;
   width: 100%;
   max-width: 1250px;
-  box-sizing: border-box;
 }
 .page-section.active { display: block; }
+
 h1 {
   color: var(--orange);
   margin-bottom: 20px;
@@ -130,9 +122,7 @@ h1 {
   font-weight: 700;
 }
 
-/* =======================================================
-   SECTION BLOCKS
-   ======================================================= */
+/* === SECTION HEADERS === */
 .section {
   margin-bottom: 35px;
 }
@@ -141,119 +131,72 @@ h1 {
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
-  border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
-  line-height: 1.3;
-}
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-/* === CHECKLIST ROWS === */
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-}
-
-/* === TEXTAREAS === */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
+  border: 1px solid var(--orange);
 }
 
 /* =======================================================
    TABLES
    ======================================================= */
+
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  border-radius: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
   margin: 0;
 }
+
 .scroll-wrapper {
-  display: block;
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   max-height: 340px;
-  overflow: auto;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   background: #fff;
-  scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
 
 /* === CORE TABLE === */
 .training-table {
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
+  font-size: 13px;
 }
 .training-table th,
 .training-table td {
   white-space: nowrap;
   text-align: center;
-  font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background-clip: padding-box;
   padding: 8px 10px;
+  vertical-align: middle;
+  background: #fff;
+}
+.training-table th:last-child,
+.training-table td:last-child {
+  border-right: none;
 }
 
-/* === HEADER ROWS === */
+/* === HEADER STYLING === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 3;
-  border-radius: 0;
+  z-index: 5;
+  border-bottom: 2px solid var(--orange);
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
-  color: #fff;
 }
 
 /* === STICKY FIRST COLUMN === */
@@ -261,27 +204,24 @@ textarea {
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 4;
+  z-index: 6;
   background: #fff;
   text-align: left;
-  width: 280px;
   min-width: 280px;
-  padding: 6px 10px;
-  border-right: 1px solid var(--border);
+  border-right: 2px solid var(--orange);
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
   color: #fff;
 }
 
-/* === CHECKBOX + TEXT FIELD COMBO IN FIRST COLUMN === */
+/* === FIRST COLUMN (CHECKBOX + TEXT) === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
   transform: scale(1.1);
 }
 .training-table td:first-child input[type="text"] {
@@ -289,9 +229,8 @@ textarea {
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f4f4f4;
   font-family: "Roboto", sans-serif;
-  font-size: 13px;
 }
 
 /* === INPUTS & SELECTS === */
@@ -302,42 +241,46 @@ textarea {
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f4f4f4;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
   outline: none;
   background: #fff9f5;
 }
 
-/* === COLUMN WIDTH OPTIMIZATION === */
+/* === CELL WIDTHS === */
 .training-table th:not(:first-child),
 .training-table td:not(:first-child) {
   padding: 6px 8px;
+  white-space: nowrap;
   width: auto;
   min-width: fit-content;
-  white-space: nowrap;
 }
 
-/* === ROW STRIPING === */
+/* === STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tr:nth-child(even) { background: #f9f9f9; }
+
+/* === CLEAN BORDERS === */
+.training-table tr:last-child td {
+  border-bottom: none;
+}
+.training-table tr:hover td {
+  background: #fff7f2;
+}
 
 /* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
+  background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
   padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
+  text-align: left;
 }
 .add-row {
   background: var(--orange);
@@ -352,19 +295,75 @@ textarea {
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
 }
 
 /* =======================================================
-   FLOATING SAVE BUTTON
+   OPCODES & PRICING TABLE TUNING
+   ======================================================= */
+#opcodes-setup th,
+#opcodes-setup td,
+#mpi-opcodes th,
+#mpi-opcodes td {
+  text-align: center;
+  padding: 6px 8px;
+}
+#opcodes-setup th:not(:first-child),
+#mpi-opcodes th:not(:first-child) {
+  width: auto;
+  min-width: fit-content;
+}
+#opcodes-setup th:nth-child(2),
+#opcodes-setup td:nth-child(2),
+#mpi-opcodes th:nth-child(2),
+#mpi-opcodes td:nth-child(2) {
+  min-width: 120px;
+}
+#opcodes-setup th:first-child,
+#opcodes-setup td:first-child,
+#mpi-opcodes th:first-child,
+#mpi-opcodes td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 6;
+  background: #fff;
+  min-width: 280px;
+}
+
+/* =======================================================
+   COMMENT BOXES & NOTES
+   ======================================================= */
+.section-block.comment-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-top: 18px;
+}
+.section-block.comment-box h2 {
+  background: var(--orange);
+  color: #fff;
+  padding: 10px 16px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.section-block.comment-box textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fafafa;
+  resize: none;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* =======================================================
+   BUTTONS / FLOAT ACTIONS
    ======================================================= */
 .floating-btn {
   position: fixed;
@@ -392,70 +391,4 @@ textarea {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-/* =======================================================
-   PATCH: Horizontal Scroll + Compact Opcodes Columns
-   ======================================================= */
-
-/* --- Fix horizontal scroll on Training Checklist tables --- */
-#technicians .scroll-wrapper,
-#advisors .scroll-wrapper,
-#parts-reps .scroll-wrapper,
-#bdc-reps .scroll-wrapper,
-#dispatcher .scroll-wrapper,
-#drivers .scroll-wrapper {
-  overflow-x: auto !important;
-  width: 100%;
-}
-
-/* Ensure tables can extend beyond container width for scrolling */
-#technicians table,
-#advisors table,
-#parts-reps table,
-#bdc-reps table,
-#dispatcher table,
-#drivers table {
-  width: max-content !important;
-  min-width: 100%;
-}
-
-/* --- Opcodes & Pricing column size refinement --- */
-#opcodes-setup th,
-#opcodes-setup td,
-#mpi-opcodes th,
-#mpi-opcodes td {
-  white-space: nowrap;
-  padding: 6px 8px;
-  text-align: center;
-}
-
-/* Default: keep columns compact */
-#opcodes-setup th:not(:first-child),
-#opcodes-setup td:not(:first-child),
-#mpi-opcodes th:not(:first-child),
-#mpi-opcodes td:not(:first-child) {
-  width: auto;
-  min-width: fit-content;
-}
-
-/* Make the Opcode columns a little wider for readability */
-#opcodes-setup th:nth-child(2),
-#opcodes-setup td:nth-child(2),
-#mpi-opcodes th:nth-child(2),
-#mpi-opcodes td:nth-child(2) {
-  min-width: 120px;
-  width: 120px;
-}
-
-/* Keep first column sticky and properly sized */
-#opcodes-setup th:first-child,
-#opcodes-setup td:first-child,
-#mpi-opcodes th:first-child,
-#mpi-opcodes td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 3;
-  background: #fff;
-  width: 280px;
-  min-width: 280px;
 }
