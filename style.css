@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Style
-   Stable Pre-Checkbox Version (November 2025)
+   myKaarma Interactive Training Checklist – Final Unified Style
+   November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -9,7 +9,7 @@
   --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
   --card-bg: #fff;
-  --border: #dcdcdc;
+  --border: #f36f21; /* unified myKaarma orange border */
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -36,14 +36,13 @@ html, body {
   top: 0; left: 0; right: 0;
   z-index: 20;
 }
-.topbar-content {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+.topbar-content { display: flex; align-items: center; gap: 30px; }
 .top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
-  color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -53,7 +52,6 @@ html, body {
 #sidebar {
   width: 190px;
   background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   padding: 20px 8px;
   position: fixed;
@@ -63,17 +61,24 @@ html, body {
 }
 nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none; border: none; padding: 10px 12px;
-  font-size: 14px; text-align: left;
-  border-radius: var(--radius); cursor: pointer;
-  transition: 0.2s; color: var(--ink);
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--ink);
 }
 .nav-btn:hover,
 .nav-btn.active {
-  background: #fff3eb; color: var(--orange); font-weight: 600;
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
 }
 
-/* === MAIN CONTENT === */
+/* === MAIN === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -91,66 +96,29 @@ main {
   max-width: 1250px;
 }
 .page-section.active { display: block; }
-h1 { color: var(--orange); font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+h1 {
+  color: var(--orange);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 
-/* === SECTION BLOCKS === */
-.section { margin-bottom: 35px; }
+/* === SECTION HEADER === */
+.section {
+  margin-bottom: 35px;
+}
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 16px;
-}
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.section-block h2 {
-  background: var(--orange);
-  color: #fff;
-  margin: 0;
-  padding: 10px 16px;
   font-size: 15px;
-  font-weight: 600;
-}
-
-/* === CHECKLIST ROWS === */
-.checklist-row {
+  height: 32px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-}
-.checklist-row label {
-  flex: 1; font-size: 14px; padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-}
-
-/* === TEXTAREA === */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  font-family: inherit;
+  margin-bottom: 0;
 }
 
 /* =======================================================
@@ -160,20 +128,21 @@ textarea {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin-bottom: 24px;
 }
 .scroll-wrapper {
   display: block;
   width: 100%;
-  max-height: 360px;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: #fff;
-  scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
 
 /* === TABLE CORE === */
@@ -182,19 +151,13 @@ textarea {
   width: max-content;
   min-width: 100%;
   border-spacing: 0;
-  border: none;
-}
-.training-table th, .training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 6px 8px;
-  background-clip: padding-box;
+  table-layout: auto;
+  font-size: 12px;
+  line-height: 1.05;
+  border: 1px solid var(--border);
 }
 
-/* === HEADER STYLES === */
+/* === HEADER ROW === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -202,59 +165,80 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 24px;
+  height: 22px;
+  padding: 4px 6px;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
   border-top: none;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-radius: 0; /* connects straight to main header */
 }
-.section-header,
-.training-table caption {
-  background: var(--orange);
-  color: #fff;
+.training-table thead th:first-child {
+  text-align: center;
+  border-left: 1px solid var(--border);
+}
+.training-table thead th:last-child {
+  border-right: 1px solid var(--border);
 }
 
-/* === FIRST COLUMN STICKY === */
+/* === BODY CELLS === */
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3px 6px;
+  height: 22px;
+  font-size: 11px;
+}
+.training-table tr:last-child td { border-bottom: none; }
+.training-table td:last-child { border-right: 1px solid var(--border); }
+
+/* === FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   background: #fff;
-  text-align: left;
   z-index: 4;
-  min-width: 200px;
-  width: 200px;
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
+  min-width: 180px;
+  width: 180px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 5px;
 }
 
-/* === INPUTS INSIDE TABLE === */
+/* === INPUTS & SELECTS === */
 .training-table input[type="text"],
 .training-table select {
-  width: 100%;
+  width: 95%;
   box-sizing: border-box;
-  padding: 5px 6px;
+  padding: 3px 5px;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f9f9f9;
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
+  text-align: center; /* center input text */
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  box-shadow: 0 0 2px rgba(243,111,33,0.4);
   outline: none;
   background: #fff9f5;
 }
 
-/* === ROW STYLING === */
+/* === ROW COLORS === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
-  border-top: none;
+  border-top: 1px solid var(--border);
   background: #fff;
   text-align: left;
   padding: 6px 10px;
@@ -270,7 +254,7 @@ textarea {
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
-  margin-left: 4px;
+  margin-left: 6px;
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
 
