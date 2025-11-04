@@ -393,3 +393,69 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* =======================================================
+   PATCH: Horizontal Scroll + Compact Opcodes Columns
+   ======================================================= */
+
+/* --- Fix horizontal scroll on Training Checklist tables --- */
+#technicians .scroll-wrapper,
+#advisors .scroll-wrapper,
+#parts-reps .scroll-wrapper,
+#bdc-reps .scroll-wrapper,
+#dispatcher .scroll-wrapper,
+#drivers .scroll-wrapper {
+  overflow-x: auto !important;
+  width: 100%;
+}
+
+/* Ensure tables can extend beyond container width for scrolling */
+#technicians table,
+#advisors table,
+#parts-reps table,
+#bdc-reps table,
+#dispatcher table,
+#drivers table {
+  width: max-content !important;
+  min-width: 100%;
+}
+
+/* --- Opcodes & Pricing column size refinement --- */
+#opcodes-setup th,
+#opcodes-setup td,
+#mpi-opcodes th,
+#mpi-opcodes td {
+  white-space: nowrap;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+/* Default: keep columns compact */
+#opcodes-setup th:not(:first-child),
+#opcodes-setup td:not(:first-child),
+#mpi-opcodes th:not(:first-child),
+#mpi-opcodes td:not(:first-child) {
+  width: auto;
+  min-width: fit-content;
+}
+
+/* Make the Opcode columns a little wider for readability */
+#opcodes-setup th:nth-child(2),
+#opcodes-setup td:nth-child(2),
+#mpi-opcodes th:nth-child(2),
+#mpi-opcodes td:nth-child(2) {
+  min-width: 120px;
+  width: 120px;
+}
+
+/* Keep first column sticky and properly sized */
+#opcodes-setup th:first-child,
+#opcodes-setup td:first-child,
+#mpi-opcodes th:first-child,
+#mpi-opcodes td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #fff;
+  width: 280px;
+  min-width: 280px;
+}
