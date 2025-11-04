@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Script.js
-   Restored stable version (November 2025)
+   Updated November 2025
    ======================================================= */
 
 // === PAGE NAVIGATION ===
@@ -12,9 +12,7 @@ navButtons.forEach((btn) => {
     navButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     const target = btn.getAttribute("data-target");
-    sections.forEach((sec) => {
-      sec.classList.toggle("active", sec.id === target);
-    });
+    sections.forEach((sec) => sec.classList.toggle("active", sec.id === target));
     window.scrollTo(0, 0);
   });
 });
@@ -22,16 +20,16 @@ navButtons.forEach((btn) => {
 // === DYNAMIC ADD-ROW BUTTONS FOR TABLES ===
 document.querySelectorAll(".add-row").forEach((button) => {
   button.addEventListener("click", () => {
-    const table = button.closest(".section, .section-block").querySelector("table");
+    const table = button.closest(".table-container")?.querySelector("table");
     if (!table) return;
 
     const tbody = table.querySelector("tbody");
-    const firstRow = tbody.querySelector("tr");
+    const firstRow = tbody?.querySelector("tr");
     if (!firstRow) return;
 
     const newRow = firstRow.cloneNode(true);
 
-    // Clear all inputs/selects
+    // Clear all inputs/selects in the cloned row
     newRow.querySelectorAll("input, select, textarea").forEach((el) => {
       if (el.tagName === "SELECT") el.selectedIndex = 0;
       else el.value = "";
@@ -41,7 +39,7 @@ document.querySelectorAll(".add-row").forEach((button) => {
   });
 });
 
-// === ADD TRAINER FIELD ===
+// === ADD TRAINER / CHAMPION / BLOCKER FIELDS ===
 function addTrainerField(button) {
   const container = button.closest(".trainer-input").parentElement;
   const newDiv = document.createElement("div");
@@ -54,7 +52,6 @@ function addTrainerField(button) {
   container.appendChild(newDiv);
 }
 
-// === ADD CHAMPION FIELD ===
 function addChampionField(button) {
   const container = button.closest(".champion-input").parentElement;
   const newDiv = document.createElement("div");
@@ -67,7 +64,6 @@ function addChampionField(button) {
   container.appendChild(newDiv);
 }
 
-// === ADD BLOCKER FIELD ===
 function addBlockerField(button) {
   const container = button.closest(".blocker-input").parentElement;
   const newDiv = document.createElement("div");
@@ -103,7 +99,7 @@ if (dealerInput && topbar) {
   if (dealerGroupInput) dealerGroupInput.addEventListener("input", updateHeader);
 }
 
-// === SAVE AS PDF (SUMMARY PAGE) ===
+// === SAVE AS PDF ===
 document.addEventListener("DOMContentLoaded", () => {
   const pdfBtn = document.getElementById("save-pdf");
   if (pdfBtn) {
@@ -111,4 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
       window.print();
     });
   }
+});
+
+// === UTILITY: AUTO-ADJUST TABLE WIDTHS ===
+// Keeps header and body perfectly aligned when scrolling
+window.addEventListener("load", () => {
+  document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+    const table = wrapper.querySelector("table");
+    if (table) {
+      table.style.minWidth = "100%";
+      wrapper.scrollLeft = 0;
+    }
+  });
 });
