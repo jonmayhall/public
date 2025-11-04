@@ -387,9 +387,8 @@
           </div>
         </div>
       </section>
-
       <!-- ========================================================= -->
-<!-- === PAGE 5 : TRAINING CHECKLIST (Fixed, full cells) === -->
+<!-- === PAGE 5 : TRAINING CHECKLIST (Fully Expanded) === -->
 <!-- ========================================================= -->
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
@@ -411,47 +410,62 @@
               </tr>
             </thead>
             <tbody>
-              <!-- 3 rows to start -->
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Technician Name…" />
-                </td>
-                <!-- Each skill is a Yes/No select -->
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Technician Name…"></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
-
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
-
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
-
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
                 <td><select><option></option><option>Yes</option><option>No</option></select></td>
               </tr>
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Technician Name…" />
-                </td>
-                <!-- duplicate the Yes/No cells -->
-                ${Array.from({length:16}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Technician Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
               </tr>
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Technician Name…" />
-                </td>
-                ${Array.from({length:16}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Technician Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
               </tr>
             </tbody>
           </table>
@@ -476,15 +490,60 @@
               </tr>
             </thead>
             <tbody>
-              <!-- 3 rows to start -->
-              ${[1,2,3].map(()=>`
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Advisor Name…" />
-                </td>
-                ${Array.from({length:15}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
-              </tr>`).join('')}
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Advisor Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Advisor Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Advisor Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -508,108 +567,37 @@
               </tr>
             </thead>
             <tbody>
-              <!-- 2 rows to start -->
-              ${[1,2].map(()=>`
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Parts Rep Name…" />
-                </td>
-                ${Array.from({length:13}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
-              </tr>`).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
-    </div>
-
-    <!-- === BDC REPRESENTATIVES CHECKLIST === -->
-    <div class="section">
-      <div class="section-header">BDC Representatives – Checklist</div>
-      <div class="table-container">
-        <div class="scroll-wrapper">
-          <table class="training-table">
-            <thead>
-              <tr>
-                <th style="width:280px;">Name</th>
-                <th>DMS ID</th><th>Login</th><th>Scheduler</th>
-                <th>Declined Services</th><th>ServiceConnect</th><th>Routing</th>
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Parts Rep Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
               </tr>
-            </thead>
-            <tbody>
               <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="BDC Rep Name…" />
-                </td>
-                <!-- BDC: Yes/No only -->
-                ${Array.from({length:6}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
-    </div>
-
-    <!-- === PICKUP & DELIVERY DISPATCHER === -->
-    <div class="section">
-      <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
-      <div class="table-container">
-        <div class="scroll-wrapper">
-          <table class="training-table">
-            <thead>
-              <tr>
-                <th style="width:280px;">Name</th>
-                <th>Creating Trips</th><th>Customer Tab</th><th>Editing Trips</th>
-                <th>Adding Driver</th><th>Adding Loaners</th><th>Drivers View / Mobile App</th><th>Global View</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Dispatcher Name…" />
-                </td>
-                ${Array.from({length:7}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
-    </div>
-
-    <!-- === PICKUP & DELIVERY DRIVERS === -->
-    <div class="section">
-      <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
-      <div class="table-container">
-        <div class="scroll-wrapper">
-          <table class="training-table">
-            <thead>
-              <tr>
-                <th style="width:280px;">Name</th>
-                <th>App Login</th><th>PU&amp;D</th><th>Notifications</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="checkbox" class="verify" />
-                  <input type="text" placeholder="Driver Name…" />
-                </td>
-                ${Array.from({length:3}).map(()=>'<td><select><option></option><option>Yes</option><option>No</option></select></td>').join('')}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
-    </div>
-
-  </div>
-</section>
+                <td><input type="checkbox" class="verify"><input type="text" placeholder="Parts Rep Name…"></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</option><option>No</option></select></td>
+                <td><select><option></option><option>Yes</
 
       <!-- ========================================================= -->
       <!-- === PAGE 6 : OPCODES & PRICING === -->
