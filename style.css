@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Unified Styles
-   Compact + Auto-Fit Version (November 2025)
+   myKaarma Interactive Training Checklist – Final Compact Styles
+   Version: November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -116,13 +116,12 @@ h1 {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0; /* rounded top only */
-  font-size: 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 15px;
   margin-bottom: 0;
-  box-shadow: none;
-  height: 38px;
+  height: 34px;
   display: flex;
   align-items: center;
 }
@@ -140,8 +139,8 @@ h1 {
   background: var(--orange);
   color: #fff;
   margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
+  padding: 8px 14px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -150,29 +149,29 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-top: 1px solid var(--border);
 }
 .checklist-row label {
   flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
+  font-size: 13px;
+  padding-right: 16px;
 }
 .checklist-row input,
 .checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  width: 200px;
+  padding: 6px 8px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: #f4f4f4;
 }
 
 /* === TEXTAREA === */
 textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
+  width: calc(100% - 28px);
+  margin: 14px;
+  padding: 10px;
+  border-radius: 10px;
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
@@ -180,7 +179,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES – Compact + Auto-Fit Version
+   TABLES – Compact + Scroll-Fix Version
    ======================================================= */
 .table-container {
   width: 100%;
@@ -191,11 +190,14 @@ textarea {
   overflow: hidden;
   margin-bottom: 24px;
 }
+
+/* enable full horizontal scroll */
 .scroll-wrapper {
   display: block;
   width: 100%;
   max-height: 360px;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: #fff;
@@ -209,9 +211,9 @@ textarea {
   width: max-content;
   min-width: 100%;
   border-spacing: 0;
-  font-size: 12.5px;
-  line-height: 1.2;
-  table-layout: auto; /* allows flexible column sizing */
+  font-size: 12px;
+  line-height: 1.1;
+  table-layout: auto;
 }
 
 /* === HEADER (Shorter + Divided) === */
@@ -222,12 +224,13 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  height: 24px;                    /* shorter header height */
+  height: 20px;
   border: 1px solid var(--border);
   border-top: none;
   white-space: nowrap;
   text-align: center;
-  padding: 4px 6px;
+  padding: 3px 5px;
+  font-size: 11.5px;
 }
 .training-table thead th:first-child { text-align: left; }
 .training-table thead th:last-child { border-right: none; }
@@ -238,9 +241,9 @@ textarea {
   text-align: center;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 4px 6px;
-  height: 28px;
-  background-clip: padding-box;
+  padding: 3px 5px;
+  height: 24px;
+  font-size: 11.5px;
 }
 .training-table td:last-child { border-right: none; }
 
@@ -252,45 +255,45 @@ textarea {
   background: #fff;
   text-align: left;
   z-index: 4;
-  min-width: 180px;
-  width: 180px;
+  min-width: 160px;
+  width: 160px;
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
   color: #fff;
 }
 
-/* === AUTO-TIGHTEN COLUMN WIDTHS (Safe Fit) === */
+/* === AUTO COLUMN FIT === */
 .training-table th,
 .training-table td {
-  max-width: 140px;
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .training-table th:first-child,
 .training-table td:first-child {
-  max-width: 200px;
+  max-width: 180px;
   white-space: normal;
   word-break: break-word;
 }
 .training-table select,
 .training-table input[type="text"] {
-  min-width: 80px;
-  max-width: 130px;
+  min-width: 70px;
+  max-width: 110px;
 }
 
-/* === INPUTS IN TABLES (Scaled Down) === */
+/* === INPUTS (Mini) === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
   box-sizing: border-box;
-  padding: 4px 6px;
+  padding: 3px 5px;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: #f2f2f2;
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: 11.5px;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
@@ -309,19 +312,19 @@ textarea {
   border-top: 1px solid var(--border);
   background: #fff;
   text-align: center;
-  height: 28px;
-  padding: 2px 0;
+  height: 26px;
+  padding: 1px 0;
 }
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
   font-weight: bold;
-  line-height: 22px;
+  line-height: 20px;
   text-align: center;
   cursor: pointer;
   transition: 0.2s;
