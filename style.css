@@ -1,5 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Styles
+   myKaarma Interactive Training Checklist – Unified Stylesheet
+   Updated November 2025
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -42,7 +43,10 @@ html, body {
 }
 .top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
-  color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -62,14 +66,21 @@ html, body {
 }
 nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none; border: none; padding: 10px 12px;
-  font-size: 14px; text-align: left;
-  border-radius: var(--radius); cursor: pointer;
-  transition: 0.2s; color: var(--ink);
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--ink);
 }
 .nav-btn:hover,
 .nav-btn.active {
-  background: #fff3eb; color: var(--orange); font-weight: 600;
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
 }
 
 /* === MAIN CONTENT === */
@@ -90,10 +101,17 @@ main {
   max-width: 1250px;
 }
 .page-section.active { display: block; }
-h1 { color: var(--orange); font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+h1 {
+  color: var(--orange);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 
 /* === SECTION BLOCKS === */
-.section { margin-bottom: 35px; }
+.section {
+  margin-bottom: 35px;
+}
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -203,13 +221,6 @@ textarea {
   top: 0;
   z-index: 3;
 }
-.section-header,
-.training-table caption {
-  background: var(--orange);
-  color: #fff;
-}
-
-/* === FIRST COLUMN STICKY === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -245,38 +256,59 @@ textarea {
   background: #fff9f5;
 }
 
-/* === ROW STYLING === */
+/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === ADD BUTTON === */
+/* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
-  border-top: none;
+  border-top: 1px solid var(--border);
   background: #fff;
   text-align: left;
-  padding: 8px 12px;
+  padding: 10px 14px;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
-.add-row {
+.table-footer .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
 
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
+/* === TABLE NOTES === */
+.table-notes {
+  background: #fff;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 10px 16px 14px;
+}
+.table-notes label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 6px;
+}
+.table-notes textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  background: #fafafa;
+  resize: vertical;
 }
 
 /* === FLOATING BUTTON === */
@@ -294,7 +326,9 @@ textarea {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
-.floating-btn:hover { background: #ff8848; }
+.floating-btn:hover {
+  background: #ff8848;
+}
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
