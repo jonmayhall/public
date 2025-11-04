@@ -418,7 +418,7 @@
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
 
-  <!-- === TECHNICIANS TABLE === -->
+  <!-- === TECHNICIANS CHECKLIST === -->
   <div class="section">
     <div class="section-header">Technicians – Checklist</div>
     <div class="table-container">
@@ -426,20 +426,35 @@
         <table id="technicians" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
-              <th>MPI</th>
-              <th>Photo</th>
-              <th>Video</th>
-              <th>Tech Notes</th>
-              <th>ShopChat</th>
-              <th>Send to Advisor</th>
-              <th>ServiceCart</th>
-              <th>Desktop Filter</th>
+              <th>Name</th>
+              <th>DMS ID</th>
+              <th>Login</th>
+              <th>Mobile App Menu</th>
+              <th>Search Bar</th>
+              <th>RO Assignment</th>
+              <th>Dispatch</th>
+              <th>RO History</th>
+              <th>Prev. Declines</th>
+              <th>Workflow</th>
+              <th>OCR</th>
+              <th>Edit ASR</th>
+              <th>ShopChat / Parts</th>
+              <th>Adding Media</th>
+              <th>Status Change</th>
+              <th>Notifications</th>
+              <th>Filters</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><input type="checkbox" class="verify"><input type="text" placeholder="Technician Name"></td>
+              <td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
@@ -450,15 +465,14 @@
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
             </tr>
             <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="Technician Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><input type="checkbox" class="verify"><input type="text"></td>
+              <td><input type="text"></td>
+              <td colspan="15"></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="verify"><input type="text"></td>
+              <td><input type="text"></td>
+              <td colspan="15"></td>
             </tr>
           </tbody>
         </table>
@@ -467,7 +481,7 @@
     <div class="table-footer"><button class="add-row" data-target="technicians" type="button">+</button></div>
   </div>
 
-  <!-- === SERVICE ADVISORS TABLE === -->
+  <!-- === SERVICE ADVISORS CHECKLIST === -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -475,43 +489,24 @@
         <table id="advisors" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
+              <th>Name</th>
               <th>DMS ID</th>
               <th>Login</th>
-              <th>Mobile App Menu</th>
-              <th>MCI</th>
+              <th>Desktop Filter</th>
               <th>Workflow</th>
-              <th>Search Bar</th>
-              <th>RO Assignment</th>
-              <th>DMS History</th>
-              <th>Prev. Declines</th>
               <th>OCR</th>
               <th>Edit ASR</th>
-              <th>ShopChat</th>
+              <th>ShopChat / Parts</th>
+              <th>Adding Media</th>
               <th>Status Change</th>
-              <th>MPI Send</th>
-              <th>SOP</th>
+              <th>Notifications</th>
+              <th>Filters</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="Advisor Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
           </tbody>
         </table>
       </div>
@@ -519,7 +514,7 @@
     <div class="table-footer"><button class="add-row" data-target="advisors" type="button">+</button></div>
   </div>
 
-  <!-- === PARTS REPRESENTATIVES TABLE === -->
+  <!-- === PARTS REPRESENTATIVES CHECKLIST === -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -527,29 +522,25 @@
         <table id="parts-reps" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
+              <th>Name</th>
               <th>DMS ID</th>
-              <th>Mobile App Menu</th>
-              <th>Customer Tab</th>
-              <th>RO Tab</th>
-              <th>Adding Parts</th>
-              <th>ServiceCart</th>
-              <th>ShopChat</th>
-              <th>Workflow</th>
+              <th>Login</th>
+              <th>Web App</th>
+              <th>Search Bar</th>
+              <th>"Take" Function</th>
+              <th>DMS History</th>
+              <th>Prev. Declines</th>
+              <th>Parts Tab</th>
+              <th>Edit ASR</th>
+              <th>ShopChat / Parts</th>
+              <th>Status Change</th>
+              <th>Notifications</th>
+              <th>Filters</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="Parts Rep Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
           </tbody>
         </table>
       </div>
@@ -557,7 +548,7 @@
     <div class="table-footer"><button class="add-row" data-target="parts-reps" type="button">+</button></div>
   </div>
 
-  <!-- === BDC REPRESENTATIVES TABLE === -->
+  <!-- === BDC REPRESENTATIVES CHECKLIST === -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -565,25 +556,17 @@
         <table id="bdc-reps" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
+              <th>Name</th>
               <th>DMS ID</th>
-              <th>Appointment Creation</th>
-              <th>Customer Search</th>
-              <th>Notes Entry</th>
-              <th>Follow-ups</th>
-              <th>App Login</th>
+              <th>Login</th>
+              <th>Scheduler</th>
+              <th>Declined Services</th>
+              <th>ServiceConnect</th>
+              <th>Routing</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="BDC Rep Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
           </tbody>
         </table>
       </div>
@@ -591,35 +574,26 @@
     <div class="table-footer"><button class="add-row" data-target="bdc-reps" type="button">+</button></div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DISPATCHER TABLE === -->
+  <!-- === DISPATCHER CHECKLIST === -->
   <div class="section">
-    <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
+    <div class="section-header">Pickup and Delivery Dispatcher – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table id="dispatcher" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
+              <th>Name</th>
               <th>Creating Trips</th>
               <th>Customer Tab</th>
               <th>Editing Trips</th>
               <th>Adding Driver</th>
               <th>Adding Loaners</th>
-              <th>Drivers View/Mobile App</th>
+              <th>Drivers View / Mobile App</th>
               <th>Global View</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="Dispatcher Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
           </tbody>
         </table>
       </div>
@@ -627,31 +601,24 @@
     <div class="table-footer"><button class="add-row" data-target="dispatcher" type="button">+</button></div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DRIVERS TABLE === -->
+  <!-- === PICKUP & DELIVERY DRIVERS CHECKLIST === -->
   <div class="section">
-    <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
+    <div class="section-header">Pickup and Delivery Drivers – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table id="drivers" class="training-table">
           <thead>
             <tr>
-              <th style="width:280px;">Name</th>
+              <th>Name</th>
               <th>App Login</th>
-              <th>Trips</th>
-              <th>Navigation</th>
-              <th>Photo Upload</th>
-              <th>Signature</th>
+              <th>Trip View</th>
+              <th>Check-In</th>
+              <th>Customer Contact</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox" class="verify"><input type="text" placeholder="Driver Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            <tr><td><input type="checkbox" class="verify"><input type="text"></td></tr>
           </tbody>
         </table>
       </div>
@@ -659,6 +626,7 @@
     <div class="table-footer"><button class="add-row" data-target="drivers" type="button">+</button></div>
   </div>
 </section>
+
 <!-- ========================================================= -->
 <!-- === PAGE 6 : OPCODES & PRICING === -->
 <!-- ========================================================= -->
