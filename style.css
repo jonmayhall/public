@@ -199,7 +199,7 @@ textarea {
 }
 
 /* =======================================================
-   TABLES
+   TABLES (Global Style)
    ======================================================= */
 .table-container {
   width: 100%;
@@ -222,8 +222,6 @@ textarea {
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
-
-/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -240,8 +238,6 @@ textarea {
   background-clip: padding-box;
   padding: 8px 10px;
 }
-
-/* === HEADER ROWS === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -251,12 +247,6 @@ textarea {
   z-index: 3;
   border-radius: 0;
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -273,8 +263,6 @@ textarea {
   background: var(--light-orange);
   color: #fff;
 }
-
-/* === CHECKBOX + TEXT FIELD COMBO IN FIRST COLUMN === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -293,8 +281,6 @@ textarea {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
-
-/* === INPUTS & SELECTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -313,8 +299,6 @@ textarea {
   outline: none;
   background: #fff9f5;
 }
-
-/* === COLUMN WIDTH OPTIMIZATION === */
 .training-table th:not(:first-child),
 .training-table td:not(:first-child) {
   padding: 6px 8px;
@@ -322,12 +306,8 @@ textarea {
   min-width: fit-content;
   white-space: nowrap;
 }
-
-/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === TABLE FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -353,14 +333,78 @@ textarea {
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
 .section-block.comment-box {
   margin-top: 18px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
   overflow: hidden;
+}
+
+/* =======================================================
+   TRAINING CHECKLIST PATCH – Match Opcodes Look
+   ======================================================= */
+#training-checklist .scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+#training-checklist .training-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
+#training-checklist .training-table th,
+#training-checklist .training-table td {
+  white-space: nowrap;
+  padding: 6px 8px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+#training-checklist .training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+#training-checklist .training-table td[colspan] {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 6px 8px;
+}
+#training-checklist .training-table input[type="text"],
+#training-checklist .training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-size: 13px;
+}
+#training-checklist .training-table th:first-child,
+#training-checklist .training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 4;
+  text-align: left;
+  min-width: 240px;
+  max-width: 240px;
+}
+#training-checklist .training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#training-checklist .training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
 }
 
 /* =======================================================
