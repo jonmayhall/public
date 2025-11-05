@@ -1,81 +1,149 @@
-// =======================================================
-// myKaarma Interactive Checklist – Stable Navigation & Table Cloning
-// =======================================================
+/* ========= myKaarma – Interactive Training Checklist ========= */
 
-// Sidebar navigation
-window.addEventListener('DOMContentLoaded', () => {
-  const nav = document.getElementById('sidebar-nav');
-  const sections = document.querySelectorAll('.page-section');
+/* === NAVIGATION BETWEEN PAGES === */
+const navButtons = document.querySelectorAll(".nav-btn");
+const sections = document.querySelectorAll(".page-section");
 
-  if (nav) {
-    nav.addEventListener('click', (e) => {
-      const btn = e.target.closest('.nav-btn');
-      if (!btn) return;
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
+navButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    navButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const target = btn.getAttribute("data-target");
+    sections.forEach(sec => sec.classList.toggle("active", sec.id === target));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 
-      nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+/* === ADD ROW BUTTONS === */
+document.querySelectorAll(".add-row").forEach(button => {
+  button.addEventListener("click", () => {
+    const table = button.closest(".table-container")?.querySelector("table");
+    if (!table) return;
 
-      sections.forEach(sec => sec.classList.remove('active'));
-      target.classList.add('active');
+    const tbody = table.querySelector("tbody");
+    const firstRow = tbody?.querySelector("tr");
+    if (!firstRow) return;
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const newRow = firstRow.cloneNode(true);
+    newRow.querySelectorAll("input, select, textarea").forEach(el => {
+      if (el.type === "checkbox") el.checked = false;
+      else if (el.tagName === "SELECT") el.selectedIndex = 0;
+      else el.value = "";
     });
-  }
 
-  // Add-row handler: clone the LAST data row in this section's table body
-  document.querySelectorAll('.table-footer .add-row').forEach(button => {
-    button.addEventListener('click', () => {
-      const section = button.closest('.section');
-      if (!section) return;
-      const table = section.querySelector('table.training-table');
-      if (!table) return;
+    tbody.appendChild(newRow);
+    initFirstColumnWrappers(table);
+  });
+});
 
-      const tbody = table.tBodies[0];
-      if (!tbody || !tbody.rows.length) return;
+/* === INLINE FIELD ADDERS (TRAINERS, CHAMPIONS, BLOCKERS) === */
+function addTrainerField(button) {
+  const container = button.closest(".trainer-input").parentElement;
+  const div = document.createElement("div");
+  div.className = "trainer-input";
+  div.style.position = "relative";
+  div.innerHTML = `
+    <input type="text" placeholder="Enter Additional Trainer..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addTrainerField(this)">+</button>`;
+  container.appendChild(div);
+}
 
-      // find last row with real inputs to clone
-      const rowToClone = [...tbody.rows].slice(-1)[0].cloneNode(true);
+function addChampionField(button) {
+  const container = button.closest(".champion-input").parentElement;
+  const div = document.createElement("div");
+  div.className = "champion-input";
+  div.style.position = "relative";
+  div.innerHTML = `
+    <input type="text" placeholder="Enter Champion Name & Role..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addChampionField(this)">+</button>`;
+  container.appendChild(div);
+}
 
-      // reset fields in the clone
-      rowToClone.querySelectorAll('input, select').forEach(el => {
-        if (el.type === 'checkbox') el.checked = false;
-        else el.value = '';
-      });
+function addBlockerField(button) {
+  const container = button.closest(".blocker-input").parentElement;
+  const div = document.createElement("div");
+  div.className = "blocker-input";
+  div.style.position = "relative";
+  div.innerHTML = `
+    <input type="text" placeholder="Enter Blocker Name & Role..." style="width:100%;" />
+    <button type="button" class="add-row small-btn" onclick="addBlockerField(this)">+</button>`;
+  container.appendChild(div);
+}
 
-      tbody.appendChild(rowToClone);
+/* === LIVE DEALERSHIP NAME IN HEADER === */
+const dealerInput = document.getElementById("dealer-name");
+const dealerGroupInput = document.getElementById("dealer-group");
+const topbar = document.querySelector(".topbar-content");
+
+if (dealerInput && topbar) {
+  const display = document.createElement("div");
+  display.id = "dealershipNameDisplay";
+  topbar.appendChild(display);
+  const updateHeader = () => {
+    const group = dealerGroupInput?.value?.trim() || "";
+    const name = dealerInput?.value?.trim() || "";
+    display.textContent = group ? `${group} – ${name}` : (name || "");
+  };
+  dealerInput.addEventListener("input", updateHeader);
+  dealerGroupInput?.addEventListener("input", updateHeader);
+}
+
+/* === SAVE AS PDF === */
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("save-pdf")?.addEventListener("click", () => window.print());
+});
+
+/* === TABLE WIDTH ALIGNMENT === */
+window.addEventListener("load", () => {
+  document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+    const table = wrapper.querySelector("table");
+    if (table) {
+      table.style.minWidth = "100%";
+      wrapper.scrollLeft = 0;
+    }
+  });
+});
+
+/* === STICKY FIRST COLUMN WRAPPER === */
+function initFirstColumnWrappers(scope = document) {
+  const pages = scope.querySelectorAll("#training-checklist, #opcodes-pricing");
+  if (!pages.length) return;
+
+  pages.forEach(page => {
+    page.querySelectorAll(".training-table tbody tr").forEach(row => {
+      const td = row.querySelector("td:first-child");
+      if (!td || td.querySelector(".firstcell")) return;
+
+      const existingInput = td.querySelector("input[type='text']");
+      if (!existingInput) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "firstcell";
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+
+      td.textContent = "";
+      wrapper.append(cb, existingInput);
+      td.appendChild(wrapper);
     });
   });
+}
 
-  // Save all pages as PDF from Summary page button
-  const saveBtn = document.getElementById('savePDF');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p', 'pt', 'a4');
-      const pages = document.querySelectorAll('.page-section');
-
-      const marginX = 30, marginY = 30, lineHeight = 14, maxWidth = 535;
-      let first = true;
-
-      pages.forEach(page => {
-        if (!first) doc.addPage();
-        first = false;
-
-        // Title
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(16);
-        doc.text(page.querySelector('h1')?.innerText || 'Section', marginX, marginY);
-
-        // Dump text content (simple, reliable fallback)
-        const text = page.innerText.replace(/\s+\n/g, '\n').trim();
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(10);
-        doc.text(doc.splitTextToSize(text, maxWidth), marginX, marginY + 24, { lineHeightFactor: 1.15 });
+document.addEventListener("DOMContentLoaded", () => {
+  initFirstColumnWrappers(document);
+  document.querySelectorAll(".add-row").forEach(btn => {
+    btn.addEventListener("click", () => {
+      requestAnimationFrame(() => {
+        initFirstColumnWrappers(btn.closest(".page-section") || document);
       });
-
-      doc.save('Training_Summary.pdf');
     });
+  });
+});
+
+/* === AUTO SCROLL TO TOP ON PAGE CHANGE (safety fallback) === */
+document.addEventListener("click", e => {
+  if (e.target.classList.contains("nav-btn")) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 });
