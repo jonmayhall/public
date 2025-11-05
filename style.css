@@ -33,10 +33,7 @@ html, body {
   z-index: 20;
   padding: 0 40px;
 }
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
@@ -115,7 +112,7 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION HEADERS (Dark Orange Rounded) === */
+/* === SECTION HEADERS === */
 .section {
   margin-bottom: 35px;
 }
@@ -192,7 +189,7 @@ textarea {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 0; /* full table is squared */
+  border-radius: 0;
   box-shadow: var(--shadow);
   margin: 0;
   overflow: hidden;
@@ -230,7 +227,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === Light Orange Header (flat, squared, flows with section header) === */
+/* === Light Orange Header (flat, squared) === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -239,7 +236,7 @@ textarea {
   top: 0;
   z-index: 3;
   border: none;
-  border-radius: 0; /* squared top */
+  border-radius: 0;
 }
 
 /* === Sticky First Column === */
@@ -260,7 +257,7 @@ textarea {
   color: #fff;
 }
 
-/* === Input & Selects === */
+/* === Inputs & Selects === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -302,7 +299,7 @@ textarea {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === Table Footer (flush, squared, connected) === */
+/* === Table Footer (flush, rounded bottom) === */
 .table-footer {
   width: 100%;
   border-top: none;
@@ -310,7 +307,7 @@ textarea {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: #fff;
-  border-radius: 0; /* squared bottom */
+  border-radius: 0 0 var(--radius) var(--radius); /* rounded bottom */
   text-align: left;
   padding: 8px 12px;
   margin: 0;
@@ -359,7 +356,7 @@ textarea {
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* === RESPONSIVE === */
+/* === Responsive === */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
