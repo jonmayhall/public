@@ -471,7 +471,7 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
 <section id="opcodes-pricing" class="page-section">
   <h1>Opcodes &amp; Pricing</h1>
 
-  <!-- Opcodes Setup -->
+  <!-- === OPCODES SETUP === -->
   <div class="section">
     <div class="section-header">Opcodes Setup</div>
     <div class="table-container">
@@ -480,37 +480,78 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
           <thead>
             <tr>
               <th>Service</th>
-              <th>Opcode</th><th>Hours</th><th>Customer Pay Labor Rate</th>
-              <th>Fixed Customer Pay Labor Rate</th><th>Labor Charged</th>
-              <th>Set Parts Charged</th><th>Parts Retail</th><th>ServiceCart</th>
+              <th>Opcode</th>
+              <th>Hours</th>
+              <th>Customer Pay Labor Rate</th>
+              <th>Fixed Customer Pay Labor Rate</th>
+              <th>Labor Charged</th>
+              <th>Set Parts Charged</th>
+              <th>Parts Retail</th>
+              <th>ServiceCart Opcode</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><input type="checkbox"><input type="text" value="2 Wheel Alignment"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td>
               <td>
-                <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
+                <input type="checkbox" />
+                <input type="text" placeholder="2 Wheel Alignment" />
+              </td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>N/A</option>
+                </select>
               </td>
             </tr>
             <tr>
-              <td><input type="checkbox"><input type="text" value="Brake Fluid Exchange"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td>
               <td>
-                <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
+                <input type="checkbox" />
+                <input type="text" placeholder="Brake Fluid Exchange" />
+              </td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>N/A</option>
+                </select>
               </td>
             </tr>
             <tr>
-              <td><input type="checkbox"><input type="text" value="Battery Replacement"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-              <td><input type="text"></td>
               <td>
-                <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
+                <input type="checkbox" />
+                <input type="text" placeholder="Battery Replacement" />
+              </td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>N/A</option>
+                </select>
               </td>
             </tr>
           </tbody>
@@ -520,7 +561,7 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- MPI Opcodes -->
+  <!-- === MPI OPCODES === -->
   <div class="section">
     <div class="section-header">MPI Opcodes</div>
     <div class="table-container">
@@ -529,19 +570,41 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
           <thead>
             <tr>
               <th>MPI Line</th>
-              <th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th>
+              <th>Opcode</th>
+              <th>MPI Line #</th>
+              <th>Preselected Opcode</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><input type="checkbox"><input type="text" value="Exterior Lights"></td>
-              <td><input type="text"></td><td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td>
+                <input type="checkbox" />
+                <input type="text" placeholder="Exterior Lights" />
+              </td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </td>
             </tr>
             <tr>
-              <td><input type="checkbox"><input type="text" value="Front Brake Pads"></td>
-              <td><input type="text"></td><td><input type="text"></td>
-              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td>
+                <input type="checkbox" />
+                <input type="text" placeholder="Front Brake Pads" />
+              </td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td>
+                <select>
+                  <option></option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -550,6 +613,7 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 </section>
+
 
      <!-- ========================================================= -->
 <!-- === PAGE 7 : DMS INTEGRATION === -->
