@@ -7,364 +7,17 @@
 
   <!-- Updated CSS link with cache-buster -->
   <link rel="stylesheet" href="style.css?v=20251106" />
-
-  <style>
-    /* =======================================================
-       myKaarma Interactive Training Checklist – Complete Single-File Version
-       ======================================================= */
-
-    :root {
-      --orange: #f36f21;
-      --light-orange: #f8b17b;
-      --gray-bg: #d7d7d7;
-      --card-bg: #fff;
-      --border: #dcdcdc;
-      --ink: #222;
-      --radius: 16px;
-      --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    html, body {
-      margin: 0;
-      font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--gray-bg);
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-
-    /* === TOP BAR === */
-    #topbar {
-      background: linear-gradient(90deg, #000 0%, #333 100%);
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      padding: 0 40px;
-    }
-
-    .top-logo {
-      height: 42px;
-      object-fit: contain;
-    }
-
-    #dealershipNameDisplay {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* === LAYOUT === */
-    #app {
-      display: flex;
-      min-height: 100vh;
-      margin-top: 70px;
-      overflow-x: hidden;
-    }
-
-    /* =======================================================
-       SIDEBAR
-       ======================================================= */
-    #sidebar {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      border-right: 1px solid var(--border);
-      width: 190px;
-      padding: 20px 8px;
-      box-shadow: var(--shadow);
-      position: fixed;
-      top: 70px;
-      bottom: 0;
-      overflow-y: auto;
-    }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .nav-btn {
-      background: none;
-      border: none;
-      padding: 10px 12px;
-      font-size: 14px;
-      text-align: left;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: 0.2s;
-      color: var(--ink);
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active {
-      background: #fff3eb;
-      color: var(--orange);
-      font-weight: 600;
-    }
-
-    /* =======================================================
-       MAIN CONTENT
-       ======================================================= */
-    main {
-      flex: 1;
-      margin-left: 190px;
-      padding: 30px 40px;
-      background: var(--gray-bg);
-      box-sizing: border-box;
-    }
-
-    .page-section {
-      display: none;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px 32px;
-      margin: 0 auto 50px;
-      width: 100%;
-      max-width: 1250px;
-      box-sizing: border-box;
-    }
-
-    .page-section.active {
-      display: block;
-    }
-
-    h1 {
-      color: var(--orange);
-      margin-bottom: 20px;
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    /* =======================================================
-       SECTION BLOCKS
-       ======================================================= */
-    .section {
-      margin-bottom: 35px;
-    }
-
-    .section-header {
-      background: var(--orange);
-      color: #fff;
-      font-weight: 600;
-      padding: 10px 16px;
-      border: 1px solid var(--orange);
-      font-size: 16px;
-      line-height: 1.3;
-    }
-
-    .section-block {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 25px;
-      border: 1px solid var(--border);
-    }
-
-    .section-block h2 {
-      background: var(--orange);
-      color: #fff;
-      margin: 0;
-      padding: 10px 16px;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .checklist-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .checklist-row label {
-      flex: 1;
-      font-size: 14px;
-      padding-right: 20px;
-    }
-
-    .checklist-row input,
-    .checklist-row select {
-      width: 220px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #f4f4f4;
-    }
-
-    textarea {
-      width: calc(100% - 32px);
-      margin: 16px;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fafafa;
-      resize: none;
-      font-family: inherit;
-    }
-
-    /* =======================================================
-       TABLES
-       ======================================================= */
-    .table-container {
-      width: 100%;
-      background: #fff;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      margin: 0;
-    }
-
-    .scroll-wrapper {
-      display: block;
-      width: 100%;
-      overflow: auto;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: #fff;
-    }
-
-    .training-table {
-      border-collapse: collapse;
-      border-spacing: 0;
-      width: max-content;
-      min-width: 100%;
-    }
-
-    .training-table th,
-    .training-table td {
-      white-space: nowrap;
-      text-align: center;
-      font-size: 13px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 10px;
-    }
-
-    .training-table thead th {
-      background: var(--light-orange);
-      color: #fff;
-      font-weight: 600;
-      position: sticky;
-      top: 0;
-      z-index: 3;
-    }
-
-    .training-table th:first-child,
-    .training-table td:first-child {
-      position: sticky;
-      left: 0;
-      z-index: 4;
-      background: #fff;
-      text-align: left;
-      width: 250px;
-      min-width: 250px;
-    }
-
-    .training-table td:first-child {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .training-table td:first-child input[type="text"] {
-      flex: 1;
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #f2f2f2;
-    }
-
-    .training-table input[type="text"],
-    .training-table select {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #f2f2f2;
-      font-family: "Roboto", sans-serif;
-      font-size: 13px;
-    }
-
-    .training-table tr:nth-child(odd) {
-      background: #fff;
-    }
-
-    .training-table tr:nth-child(even) {
-      background: #fafafa;
-    }
-
-    .table-footer {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-top: none;
-      background: #fff;
-      text-align: left;
-      padding: 8px 12px;
-    }
-
-    .add-row {
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 26px;
-      height: 26px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(243, 111, 33, 0.3);
-    }
-
-    .add-row:hover {
-      background: #ff8b42;
-      transform: scale(1.1);
-    }
-
-    .floating-btn {
-      position: fixed;
-      top: 90px;
-      left: 25px;
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius);
-      padding: 10px 18px;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-    }
-
-    .floating-btn:hover {
-      background: #ff8848;
-    }
-  </style>
 </head>
 
 <body>
-
-  <!-- ========================================================= -->
   <!-- === TOP BAR === -->
-  <!-- ========================================================= -->
   <header id="topbar">
     <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
     <div id="dealershipNameDisplay">Dealership Name</div>
   </header>
-  <!-- ========================================================= -->
-  <!-- === APP LAYOUT === -->
-  <!-- ========================================================= -->
+
   <div id="app">
-    <!-- ========================================================= -->
     <!-- === SIDEBAR === -->
-    <!-- ========================================================= -->
     <aside id="sidebar">
       <nav id="sidebar-nav">
         <button class="nav-btn active" data-target="pretraining">Pre-Training Checklist</button>
@@ -378,14 +31,9 @@
       </nav>
     </aside>
 
-    <!-- ========================================================= -->
     <!-- === MAIN CONTENT === -->
-    <!-- ========================================================= -->
     <main id="content">
-
-      <!-- ========================================================= -->
       <!-- === PAGE 1 : PRE-TRAINING CHECKLIST === -->
-      <!-- ========================================================= -->
       <section id="pretraining" class="page-section active">
         <h1>Pre-Training Checklist</h1>
         <div class="section-block">
@@ -402,9 +50,7 @@
         </div>
       </section>
 
-      <!-- ========================================================= -->
       <!-- === PAGE 2 : MONDAY VISIT === -->
-      <!-- ========================================================= -->
       <section id="monday-visit" class="page-section">
         <h1>Monday Visit</h1>
         <div class="section-block">
@@ -416,27 +62,17 @@
         </div>
       </section>
 
-      <!-- ========================================================= -->
       <!-- === PAGE 3 : DEALERSHIP INFORMATION === -->
-      <!-- ========================================================= -->
       <section id="dealership-info" class="page-section">
         <h1>Dealership Information</h1>
         <div class="section-block">
           <h2>General Info</h2>
-          <div class="checklist-row">
-            <label>Dealer Group</label>
-            <input type="text" />
-          </div>
-          <div class="checklist-row">
-            <label>Dealership Name</label>
-            <input type="text" />
-          </div>
+          <div class="checklist-row"><label>Dealer Group</label><input type="text" /></div>
+          <div class="checklist-row"><label>Dealership Name</label><input type="text" /></div>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- === PAGE 4 : ONSITE TRAINERS & CEM === -->
-      <!-- ========================================================= -->
+            <!-- === PAGE 4 : ONSITE TRAINERS & CEM === -->
       <section id="onsite-trainers" class="page-section">
         <h1>Onsite Trainers &amp; CEM</h1>
 
@@ -460,9 +96,8 @@
           </div>
         </div>
       </section>
-      <!-- ========================================================= -->
+
       <!-- === PAGE 5 : TRAINING CHECKLIST === -->
-      <!-- ========================================================= -->
       <section id="training-checklist" class="page-section">
         <h1>Training Checklist</h1>
 
@@ -494,21 +129,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- === 3 Rows === -->
-                  ${Array.from({ length: 3 })
-                    .map(
-                      () => `
-                    <tr>
-                      <td><input type="checkbox" /><input type="text" placeholder="Technician Name" /></td>
-                      ${Array.from({ length: 16 })
-                        .map(
-                          () =>
-                            `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                        )
-                        .join("")}
-                    </tr>`
-                    )
-                    .join("")}
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Technician Name" /></td>
+                    ${Array.from({length:16}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Technician Name" /></td>
+                    ${Array.from({length:16}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Technician Name" /></td>
+                    ${Array.from({length:16}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -543,20 +175,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  ${Array.from({ length: 3 })
-                    .map(
-                      () => `
-                    <tr>
-                      <td><input type="checkbox" /><input type="text" placeholder="Advisor Name" /></td>
-                      ${Array.from({ length: 15 })
-                        .map(
-                          () =>
-                            `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                        )
-                        .join("")}
-                    </tr>`
-                    )
-                    .join("")}
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Advisor Name" /></td>
+                    ${Array.from({length:15}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Advisor Name" /></td>
+                    ${Array.from({length:15}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Advisor Name" /></td>
+                    ${Array.from({length:15}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -564,7 +194,7 @@
           <div class="table-footer"><button class="add-row" type="button">+</button></div>
         </div>
 
-        <!-- === PARTS REPRESENTATIVES === -->
+                <!-- === PARTS REPRESENTATIVES === -->
         <div class="section">
           <div class="section-header">Parts Representatives – Checklist</div>
           <div class="table-container">
@@ -589,20 +219,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  ${Array.from({ length: 2 })
-                    .map(
-                      () => `
-                    <tr>
-                      <td><input type="checkbox" /><input type="text" placeholder="Parts Rep Name" /></td>
-                      ${Array.from({ length: 13 })
-                        .map(
-                          () =>
-                            `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                        )
-                        .join("")}
-                    </tr>`
-                    )
-                    .join("")}
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Parts Rep Name" /></td>
+                    ${Array.from({length:13}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /><input type="text" placeholder="Parts Rep Name" /></td>
+                    ${Array.from({length:13}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -630,12 +254,7 @@
                 <tbody>
                   <tr>
                     <td><input type="checkbox" /><input type="text" placeholder="BDC Rep Name" /></td>
-                    ${Array.from({ length: 6 })
-                      .map(
-                        () =>
-                          `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                      )
-                      .join("")}
+                    ${Array.from({length:6}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
                   </tr>
                 </tbody>
               </table>
@@ -665,12 +284,7 @@
                 <tbody>
                   <tr>
                     <td><input type="checkbox" /><input type="text" placeholder="Dispatcher Name" /></td>
-                    ${Array.from({ length: 7 })
-                      .map(
-                        () =>
-                          `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                      )
-                      .join("")}
+                    ${Array.from({length:7}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
                   </tr>
                 </tbody>
               </table>
@@ -696,12 +310,7 @@
                 <tbody>
                   <tr>
                     <td><input type="checkbox" /><input type="text" placeholder="Driver Name" /></td>
-                    ${Array.from({ length: 3 })
-                      .map(
-                        () =>
-                          `<td><select><option></option><option>Yes</option><option>No</option></select></td>`
-                      )
-                      .join("")}
+                    ${Array.from({length:3}).map(()=>`<td><select><option></option><option>Yes</option><option>No</option></select></td>`).join("")}
                   </tr>
                 </tbody>
               </table>
@@ -710,7 +319,8 @@
           <div class="table-footer"><button class="add-row" type="button">+</button></div>
         </div>
       </section>
-      <!-- ========================================================= -->
+
+            <!-- ========================================================= -->
       <!-- === PAGE 6 : OPCODES & PRICING === -->
       <!-- ========================================================= -->
       <section id="opcodes-pricing" class="page-section">
@@ -737,25 +347,16 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="checkbox"><input type="text" placeholder="2 Wheel Alignment"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+                    <td><input type="checkbox" /><input type="text" placeholder="2 Wheel Alignment" /></td>
+                    ${Array.from({length:8}).map(()=>`<td><input type="text" /></td>`).join("")}
                   </tr>
                   <tr>
-                    <td><input type="checkbox"><input type="text" placeholder="Brake Fluid Exchange"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+                    <td><input type="checkbox" /><input type="text" placeholder="Brake Fluid Exchange" /></td>
+                    ${Array.from({length:8}).map(()=>`<td><input type="text" /></td>`).join("")}
                   </tr>
                   <tr>
-                    <td><input type="checkbox"><input type="text" placeholder="Battery Replacement"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+                    <td><input type="checkbox" /><input type="text" placeholder="Battery Replacement" /></td>
+                    ${Array.from({length:8}).map(()=>`<td><input type="text" /></td>`).join("")}
                   </tr>
                 </tbody>
               </table>
@@ -772,18 +373,23 @@
               <table class="training-table">
                 <thead>
                   <tr>
-                    <th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th>
+                    <th>MPI Line</th>
+                    <th>Opcode</th>
+                    <th>MPI Line #</th>
+                    <th>Preselected Opcode</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="checkbox"><input type="text" placeholder="Exterior Lights"></td>
-                    <td><input type="text"></td><td><input type="text"></td>
+                    <td><input type="checkbox" /><input type="text" placeholder="Exterior Lights" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
                     <td><select><option></option><option>Yes</option><option>No</option></select></td>
                   </tr>
                   <tr>
-                    <td><input type="checkbox"><input type="text" placeholder="Front Brake Pads"></td>
-                    <td><input type="text"></td><td><input type="text"></td>
+                    <td><input type="checkbox" /><input type="text" placeholder="Front Brake Pads" /></td>
+                    <td><input type="text" /></td>
+                    <td><input type="text" /></td>
                     <td><select><option></option><option>Yes</option><option>No</option></select></td>
                   </tr>
                 </tbody>
@@ -800,6 +406,7 @@
       <section id="dms-integration" class="page-section">
         <h1>DMS Integration</h1>
 
+        <!-- Push-Based -->
         <div class="section">
           <div class="section-header">Push-Based DMS (myKaarma → DMS)</div>
           <div class="table-container">
@@ -808,10 +415,22 @@
                 <thead>
                   <tr>
                     <th>Integration Type</th>
-                    <th>Customer Pull</th><th>Customer Push</th><th>Vehicle Pull</th><th>Vehicle Push</th>
-                    <th>Appointment Pull</th><th>Appointment Push</th><th>RO Pull</th><th>RO Push</th>
-                    <th>Writeback</th><th>RO Creation</th><th>Parts Invoices</th><th>Parts Availability</th>
-                    <th>Special Orders</th><th>Opcodes</th><th>Historical RO</th><th>Historical Customer</th>
+                    <th>Customer Pull</th>
+                    <th>Customer Push</th>
+                    <th>Vehicle Pull</th>
+                    <th>Vehicle Push</th>
+                    <th>Appointment Pull</th>
+                    <th>Appointment Push</th>
+                    <th>RO Pull</th>
+                    <th>RO Push</th>
+                    <th>Writeback</th>
+                    <th>RO Creation</th>
+                    <th>Parts Invoices</th>
+                    <th>Parts Availability</th>
+                    <th>Special Orders</th>
+                    <th>Opcodes</th>
+                    <th>Historical RO</th>
+                    <th>Historical Customer</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -835,6 +454,7 @@
           </div>
         </div>
 
+        <!-- Pull-Based -->
         <div class="section">
           <div class="section-header">Pull-Based DMS (DMS → myKaarma)</div>
           <div class="table-container">
@@ -843,10 +463,22 @@
                 <thead>
                   <tr>
                     <th>DMS Provider</th>
-                    <th>Customer Pull</th><th>Customer Push</th><th>Vehicle Pull</th><th>Vehicle Push</th>
-                    <th>Appointment Pull</th><th>Appointment Push</th><th>RO Pull</th><th>RO Push</th>
-                    <th>Writeback</th><th>RO Creation</th><th>Parts Invoices</th><th>Parts Availability</th>
-                    <th>Special Orders</th><th>Opcodes</th><th>Historical RO</th><th>Historical Customer</th>
+                    <th>Customer Pull</th>
+                    <th>Customer Push</th>
+                    <th>Vehicle Pull</th>
+                    <th>Vehicle Push</th>
+                    <th>Appointment Pull</th>
+                    <th>Appointment Push</th>
+                    <th>RO Pull</th>
+                    <th>RO Push</th>
+                    <th>Writeback</th>
+                    <th>RO Creation</th>
+                    <th>Parts Invoices</th>
+                    <th>Parts Availability</th>
+                    <th>Special Orders</th>
+                    <th>Opcodes</th>
+                    <th>Historical RO</th>
+                    <th>Historical Customer</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -918,74 +550,13 @@
           <textarea placeholder="Autofill from Opcodes and DMS Integration notes…"></textarea>
         </div>
       </section>
-
     </main>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- === JAVASCRIPT SECTION (INLINE) === -->
-  <!-- ========================================================= -->
-  <script>
-  // === Navigation between pages ===
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const sections = document.querySelectorAll('.page-section');
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      navButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      sections.forEach(sec => sec.classList.remove('active'));
-      const target = document.getElementById(btn.dataset.target);
-      if (target) target.classList.add('active');
-      window.scrollTo(0, 0);
-    });
-  });
-
-  // === Add new row to tables ===
-  document.querySelectorAll('.add-row').forEach(button => {
-    button.addEventListener('click', () => {
-      const table = button.closest('.section').querySelector('table');
-      if (!table) return;
-      const newRow = table.rows[1].cloneNode(true);
-      newRow.querySelectorAll('input, select').forEach(input => {
-        if (input.type === 'checkbox') input.checked = false;
-        else input.value = '';
-      });
-      table.tBodies[0].appendChild(newRow);
-    });
-  });
-
-  // === PDF Save ===
-  document.getElementById('savePDF')?.addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');
-    const pages = document.querySelectorAll('.page-section');
-    let y = 20;
-
-    pages.forEach((page, i) => {
-      doc.setFontSize(16);
-      doc.setTextColor(40);
-      doc.text(page.querySelector('h1').innerText, 40, y);
-      y += 20;
-      const text = page.innerText.slice(0, 1200);
-      doc.setFontSize(10);
-      doc.text(text, 40, y, { maxWidth: 500 });
-      if (i < pages.length - 1) doc.addPage();
-      y = 20;
-    });
-
-    doc.save('Training_Summary.pdf');
-  });
-  </script>
-
-  <!-- Include jsPDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- === JS LIBRARIES === -->
+  <!-- === JS LIBRARIES === -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- === MAIN SCRIPT (your file) === -->
+  <!-- === MAIN SCRIPT === -->
   <script src="script.js?v=20251106"></script>
-</body>
-</html>
-
 </body>
 </html>
