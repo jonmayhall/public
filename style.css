@@ -363,3 +363,16 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === Training Summary button and card layout === */
+#savePDF.floating-btn {
+  top: 90px;
+  left: 40px;
+  right: auto;
+}
+
+.section-block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  padding-bottom: 10px;
+}
