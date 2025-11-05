@@ -1,3 +1,4 @@
+<script>
 // === PAGE NAVIGATION ===
 document.querySelectorAll(".nav-btn").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -15,7 +16,7 @@ document.querySelectorAll(".nav-btn").forEach(btn => {
   });
 });
 
-// === ADD ROW FUNCTION ===
+// === ADD ROW BUTTONS ===
 document.querySelectorAll(".add-row").forEach(button => {
   button.addEventListener("click", () => {
     const targetTable = button.dataset.target
@@ -24,13 +25,17 @@ document.querySelectorAll(".add-row").forEach(button => {
     if (!targetTable) return;
 
     const tbody = targetTable.querySelector("tbody");
+    if (!tbody || !tbody.rows.length) return;
+
     const newRow = tbody.rows[0].cloneNode(true);
 
-    // clear text inputs & selects
+    // Clear cloned row inputs/selects
     newRow.querySelectorAll("input, select").forEach(el => {
       if (el.type === "checkbox") el.checked = false;
       else el.value = "";
     });
+
     tbody.appendChild(newRow);
   });
 });
+</script>
