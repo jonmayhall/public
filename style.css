@@ -139,13 +139,13 @@ h1 {
 .section-header {
   background: var(--orange);
   color: #fff;
-  font-weight: 700;
-  padding: 14px 20px;  /* Taller like page headers */
+  font-weight: 600;
+  padding: 8px 14px;      /* smaller height */
   border: 1px solid var(--orange);
   border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 18px;     /* Match main header scale */
-  line-height: 1.4;
-  letter-spacing: 0.3px;
+  font-size: 15px;        /* matches light-orange table header size */
+  line-height: 1.2;
+  letter-spacing: 0.2px;
 }
 .section-block {
   background: #fff;
