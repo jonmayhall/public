@@ -1,9 +1,3 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – Unified Stylesheet
-   Updated November 2025
-   ======================================================= */
-
-/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -63,9 +57,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* === SIDEBAR === */
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
@@ -101,9 +93,7 @@ nav {
   font-weight: 600;
 }
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -130,9 +120,7 @@ h1 {
   font-weight: 700;
 }
 
-/* =======================================================
-   SECTION BLOCKS
-   ======================================================= */
+/* === SECTION HEADERS === */
 .section {
   margin-bottom: 35px;
 }
@@ -161,6 +149,7 @@ h1 {
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 /* === CHECKLIST ROWS === */
@@ -198,15 +187,13 @@ textarea {
   font-family: inherit;
 }
 
-/* =======================================================
-   TABLES
-   ======================================================= */
+/* === TABLES === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-bottom: none; /* connects seamlessly with footer */
-  border-radius: 0; /* no top rounding */
+  border-bottom: none;
+  border-radius: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
   margin: 0;
@@ -222,8 +209,6 @@ textarea {
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
-
-/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -241,7 +226,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === HEADER ROWS === */
+/* === TABLE HEADERS === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -249,16 +234,12 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  border-radius: 0 !important; /* remove rounding at the header */
+  border-radius: 0;
 }
-.training-table thead th:first-child {
-  border-top-left-radius: 0 !important;
-}
+.training-table thead th:first-child,
 .training-table thead th:last-child {
-  border-top-right-radius: 0 !important;
+  background: var(--light-orange);
 }
-
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -276,7 +257,7 @@ textarea {
   color: #fff;
 }
 
-/* === CHECKBOX + TEXT FIELD COMBO IN FIRST COLUMN === */
+/* === FIRST COLUMN INPUTS === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -315,8 +296,6 @@ textarea {
   outline: none;
   background: #fff9f5;
 }
-
-/* === COLUMN WIDTH OPTIMIZATION === */
 .training-table th:not(:first-child),
 .training-table td:not(:first-child) {
   padding: 6px 8px;
@@ -324,18 +303,16 @@ textarea {
   min-width: fit-content;
   white-space: nowrap;
 }
-
-/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER === */
+/* === TABLE FOOTERS === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
   border-top: none;
   background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius); /* only round bottom corners */
+  border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
   margin: 0;
@@ -365,9 +342,7 @@ textarea {
   overflow: hidden;
 }
 
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
@@ -384,9 +359,7 @@ textarea {
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
@@ -394,72 +367,4 @@ textarea {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
-}
-/* === SECTION HEADERS === */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0; /* Rounded top corners */
-  font-size: 16px;
-  line-height: 1.3;
-}
-
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0; /* Rounded top corners */
-}
-
-/* === TABLES === */
-.table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-bottom: none; /* connects with footer */
-  border-radius: 0;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  margin: 0;
-}
-
-.training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  border-radius: 0; /* no rounding at corners */
-}
-
-/* === EXTEND LIGHT ORANGE HEADER ALL THE WAY ACROSS === */
-.training-table thead th:first-child,
-.training-table thead th:last-child {
-  background: var(--light-orange);
-}
-
-/* === STICKY FIRST COLUMN HEADER BACKGROUND === */
-.training-table th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === TABLE FOOTERS === */
-.table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius); /* Rounded bottom corners */
-  text-align: left;
-  padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
 }
