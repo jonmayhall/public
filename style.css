@@ -373,3 +373,61 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === GLOBAL CARD VISIBILITY FIX === */
+.page-section {
+  background: transparent; /* stop hiding rounded edges */
+  box-shadow: none;
+  padding: 28px 32px;
+}
+
+.section-block,
+.table-container {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  overflow: hidden; /* makes radius visible */
+  position: relative;
+}
+
+/* === ORANGE HEADERS (TOP OF CARDS) === */
+.section-header,
+.section-block h2 {
+  background: var(--orange);
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border: 1px solid var(--orange);
+  margin: 0;
+}
+
+/* === TABLE HEADER / FOOTER ROUNDING === */
+.training-table thead th:first-child {
+  border-top-left-radius: var(--radius);
+}
+.training-table thead th:last-child {
+  border-top-right-radius: var(--radius);
+}
+.table-footer {
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+}
+
+/* === EXTEND LIGHT ORANGE ACROSS ENTIRE HEADER === */
+.training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+.training-table thead th:first-child,
+.training-table thead th:last-child {
+  background: var(--light-orange);
+}
+
+/* === PREVENT CLIPPING INSIDE SCROLL AREAS === */
+.scroll-wrapper {
+  overflow: visible; /* allow header and radius to show */
+}
