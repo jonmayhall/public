@@ -131,34 +131,24 @@ h1 {
 }
 
 /* =======================================================
-   SECTION CARDS
+   SECTION BLOCKS (CARD STYLE)
    ======================================================= */
-.section {
+.section-block {
   background: #fff;
-  border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   margin-bottom: 32px;
   overflow: hidden;
 }
-
-/* === SECTION HEADERS === */
-.section-header {
+.section-block h2 {
   background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 12px 18px;
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius) var(--radius) 0 0;
+  color: white;
   margin: 0;
-  line-height: 1.3;
-}
-
-/* === CONTENT BELOW EACH HEADER === */
-.section-content {
-  padding: 14px 18px 18px 18px;
-  background: #fff;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
 }
 
 /* =======================================================
@@ -170,9 +160,6 @@ h1 {
   align-items: center;
   padding: 10px 16px;
   border-top: 1px solid var(--border);
-}
-.checklist-row:first-child {
-  border-top: none;
 }
 .checklist-row label {
   flex: 1;
@@ -209,16 +196,20 @@ textarea {
 .table-container {
   width: 100%;
   background: #fff;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-top: none;
   border-radius: 0;
+  box-shadow: var(--shadow);
   overflow: hidden;
+  margin: 0;
 }
 .scroll-wrapper {
   display: block;
   width: 100%;
   max-height: 340px;
   overflow: auto;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
@@ -242,7 +233,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === HEADER ROWS === */
+/* === TABLE HEADER ROWS === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -251,6 +242,10 @@ textarea {
   top: 0;
   z-index: 3;
   border-radius: 0;
+}
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
 }
 
 /* === STICKY FIRST COLUMN === */
@@ -271,7 +266,7 @@ textarea {
   color: #fff;
 }
 
-/* === INPUTS & SELECTS IN TABLE === */
+/* === INPUTS & SELECTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -298,8 +293,10 @@ textarea {
 /* === TABLE FOOTER === */
 .table-footer {
   width: 100%;
-  border-top: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-top: none;
   background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
   margin: 0;
@@ -319,6 +316,15 @@ textarea {
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
+
+/* === COMMENT BOX === */
+.section-block.comment-box {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
 
 /* =======================================================
    FLOATING SAVE BUTTON
