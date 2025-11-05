@@ -203,3 +203,27 @@ h1{color:var(--orange);margin-bottom:20px;font-size:24px;font-weight:700;}
 /* === RESPONSIVE === */
 @media(max-width:900px){#sidebar{width:150px;}main{margin-left:150px;padding:20px;}}
 @media(max-width:600px){#sidebar{display:none;}main{margin-left:0;padding:20px;}}
+/* === TABLE CONTAINER === */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-bottom: none; /* remove bottom border so it connects with footer */
+  border-radius: var(--radius) var(--radius) 0 0; /* rounded top only */
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin: 0;
+}
+
+/* === TABLE FOOTER === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none; /* aligns perfectly with table bottom */
+  background: #fff;
+  border-radius: 0 0 var(--radius) var(--radius); /* rounded corners on bottom only */
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  box-sizing: border-box;
+}
