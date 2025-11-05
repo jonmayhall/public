@@ -1,31 +1,30 @@
 // =======================================================
-// myKaarma Interactive Checklist – Stable Navigation & Table Cloning
+// myKaarma Interactive Checklist – Final JS (Navigation + Tables + PDF)
 // =======================================================
 
-window.addEventListener('DOMContentLoaded', () => {
-  // === Sidebar Navigation ===
-  const nav = document.getElementById('sidebar-nav');
+document.addEventListener('DOMContentLoaded', () => {
+  // === PAGE NAVIGATION ===
+  const navButtons = document.querySelectorAll('.nav-btn');
   const sections = document.querySelectorAll('.page-section');
 
-  if (nav) {
-    nav.addEventListener('click', (e) => {
-      const btn = e.target.closest('.nav-btn');
-      if (!btn) return;
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
-
-      // Set active button and section
-      nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // deactivate all
+      navButtons.forEach(b => b.classList.remove('active'));
       sections.forEach(sec => sec.classList.remove('active'));
-      target.classList.add('active');
 
+      // activate clicked
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.add('active');
+
+      // scroll to top for smooth transition
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
+  });
 
-  // === Add Row Functionality ===
-  document.querySelectorAll('.table-footer .add-row').forEach(button => {
+  // === ADD ROW FUNCTIONALITY ===
+  document.querySelectorAll('.add-row').forEach(button => {
     button.addEventListener('click', () => {
       const section = button.closest('.section');
       if (!section) return;
@@ -33,22 +32,23 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!table) return;
 
       const tbody = table.tBodies[0];
-      if (!tbody || !tbody.rows.length) return;
+      if (!tbody.rows.length) return;
 
       // Clone last row
-      const rowToClone = tbody.rows[tbody.rows.length - 1].cloneNode(true);
+      const lastRow = tbody.rows[tbody.rows.length - 1];
+      const newRow = lastRow.cloneNode(true);
 
-      // Clear data
-      rowToClone.querySelectorAll('input, select').forEach(el => {
+      // Reset fields
+      newRow.querySelectorAll('input, select').forEach(el => {
         if (el.type === 'checkbox') el.checked = false;
         else el.value = '';
       });
 
-      tbody.appendChild(rowToClone);
+      tbody.appendChild(newRow);
     });
   });
 
-  // === PDF Export ===
+  // === PDF SAVE ===
   const saveBtn = document.getElementById('savePDF');
   if (saveBtn) {
     saveBtn.addEventListener('click', async () => {
@@ -63,13 +63,13 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!firstPage) doc.addPage();
         firstPage = false;
 
-        // Page Title
+        // Add page title
         const title = page.querySelector('h1')?.innerText || 'Section';
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(16);
         doc.text(title, marginX, marginY);
 
-        // Page Text (simple fallback)
+        // Add body text
         const text = page.innerText.replace(/\s+\n/g, '\n').trim();
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
