@@ -1,111 +1,344 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable Styles
+   myKaarma Interactive Training Checklist – Final Style
+   Compatible with full HTML (pages 1–8)
    ======================================================= */
-:root{
-  --orange:#f36f21;
-  --light-orange:#f8b17b;
-  --gray-bg:#d7d7d7;
-  --card-bg:#fff;
-  --border:#dcdcdc;
-  --ink:#222;
-  --radius:16px;
-  --shadow:0 2px 8px rgba(0,0,0,0.1);
+
+:root {
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --card-bg: #fff;
+  --border: #dcdcdc;
+  --ink: #222;
+  --radius: 16px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Base */
-html,body{margin:0;font-family:Roboto,Inter,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--gray-bg);color:var(--ink);overflow-x:hidden;}
-#topbar{background:linear-gradient(90deg,#000, #333);height:70px;display:flex;align-items:center;gap:24px;padding:0 40px;position:fixed;top:0;left:0;right:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.25);}
-.top-logo{height:42px;object-fit:contain;}
-#dealershipNameDisplay{color:#fff;font-size:18px;font-weight:600;letter-spacing:.5px;}
-#app{display:flex;min-height:100vh;margin-top:70px;overflow-x:hidden;}
-
-/* Sidebar */
-#sidebar{background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-right:1px solid var(--border);width:190px;padding:20px 8px;box-shadow:var(--shadow);position:fixed;top:70px;bottom:0;overflow-y:auto;}
-#sidebar nav{display:flex;flex-direction:column;gap:6px;}
-.nav-btn{background:none;border:0;padding:10px 12px;font-size:14px;text-align:left;border-radius:12px;cursor:pointer;transition:.2s;color:var(--ink);}
-.nav-btn:hover,.nav-btn.active{background:#fff3eb;color:var(--orange);font-weight:600;}
-
-/* Main */
-main{flex:1;margin-left:190px;padding:30px 40px;box-sizing:border-box;}
-.page-section{display:none;background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin:0 auto 50px;max-width:1250px;}
-.page-section.active{display:block;}
-h1{color:var(--orange);margin:0 0 20px;font-size:24px;font-weight:700;}
-
-/* Section cards */
-.section{margin-bottom:35px;}
-.section-header{background:var(--orange);color:#fff;font-weight:600;padding:10px 16px;border:1px solid var(--orange);border-radius:16px 16px 0 0;font-size:16px;line-height:1.3;}
-.section-block{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:25px;border:1px solid var(--border);}
-.section-block h2{background:var(--orange);color:#fff;margin:0;padding:10px 16px;font-size:15px;font-weight:600;border-radius:16px 16px 0 0;}
-
-/* Checklist rows */
-.checklist-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);}
-.checklist-row label{flex:1;font-size:14px;padding-right:20px;}
-.checklist-row input,.checklist-row select{width:220px;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:#f4f4f4;}
-
-/* Textarea */
-textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;border:1px solid var(--border);background:#fafafa;resize:none;font-family:inherit;}
-
-/* Tables */
-.table-container{width:100%;background:#fff;border:1px solid var(--border);border-top:none;box-shadow:var(--shadow);margin:0;border-radius:0 0 16px 16px;}
-.scroll-wrapper{display:block;width:100%;max-height:360px;overflow:auto;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff;scrollbar-color:#ccc transparent;scrollbar-width:thin;}
-
-/* Core table */
-.training-table{border-collapse:collapse;border-spacing:0;width:max-content;min-width:100%;}
-.training-table th,.training-table td{white-space:nowrap;text-align:center;font-size:13px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background-clip:padding-box;padding:8px 10px;}
-
-/* Header strip = full light orange, sticky */
-.training-table thead th{background:var(--light-orange);color:#fff;font-weight:600;position:sticky;top:0;z-index:3;border-radius:0;}
-
-/* Sticky first column (name+checkbox columns already merged in your HTML) */
-.training-table th:first-child,.training-table td:first-child{
-  position:sticky;left:0;z-index:4;background:#fff;text-align:left;
-  width:260px;min-width:260px;max-width:260px; /* consistent width */
-  padding:6px 10px;border-right:1px solid var(--border);
-}
-.training-table thead th:first-child{background:var(--light-orange);color:#fff;}
-
-/* First-column combo layout */
-.training-table td:first-child{display:flex;align-items:center;gap:8px;}
-.training-table td:first-child input[type="checkbox"]{flex-shrink:0;transform:scale(1.05);}
-.training-table td:first-child input[type="text"]{
-  flex:1;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:#f2f2f2;min-width:0;
+/* === BASE LAYOUT === */
+html, body {
+  margin: 0;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-/* Inputs/selects fit inside cells */
-.training-table input[type="text"],.training-table select{
-  width:100%;box-sizing:border-box;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:#f2f2f2;font-size:13px;font-family:Roboto, sans-serif;min-width:110px;
+/* === TOPBAR === */
+#topbar {
+  background: linear-gradient(90deg, #000 0%, #333 100%);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
 }
-.training-table input[type="text"]:focus,.training-table select:focus{border-color:var(--orange);box-shadow:0 0 3px rgba(243,111,33,.4);outline:none;background:#fff9f5;}
 
-/* Column sizing (compact) */
-.training-table th:not(:first-child),.training-table td:not(:first-child){padding:6px 8px;width:auto;min-width:fit-content;}
-
-/* Opcodes page: make first column wider for service/MPI line */
-#opcodes-pricing .training-table th:first-child,#opcodes-pricing .training-table td:first-child{
-  width:320px;min-width:320px;max-width:320px;
+.top-logo {
+  height: 42px;
+  object-fit: contain;
 }
 
-/* Striping */
-.training-table tbody tr:nth-child(odd){background:#fff;}
-.training-table tbody tr:nth-child(even){background:#fafafa;}
+#dealershipNameDisplay {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
-/* Footer attaches flush (no table bottom rounding) */
-.table-footer{width:100%;border:1px solid var(--border);border-top:none;background:#fff;text-align:left;padding:8px 12px;margin:0;border-radius:0 0 16px 16px;box-sizing:border-box;}
-.add-row{background:var(--orange);color:#fff;border:0;border-radius:50%;width:26px;height:26px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(243,111,33,.3);}
-.add-row:hover{background:#ff8b42;transform:scale(1.06);}
+/* === APP LAYOUT === */
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
+}
 
-/* Floating Save PDF button (Summary only) */
-.floating-btn{position:fixed;top:90px;left:25px;background:var(--orange);color:#fff;border:0;border-radius:16px;padding:10px 18px;font-size:14px;cursor:pointer;box-shadow:var(--shadow);}
-.floating-btn:hover{background:#ff8848;}
+/* === SIDEBAR === */
+#sidebar {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  border-right: 1px solid var(--border);
+  width: 190px;
+  padding: 20px 8px;
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+}
 
-/* Ensure all training tables can scroll horizontally */
-#training-checklist .scroll-wrapper,
-#opcodes-pricing .scroll-wrapper,
-#dms-integration .scroll-wrapper{overflow-x:auto;width:100%;}
-#training-checklist table,
-#opcodes-pricing table,
-#dms-integration table{width:max-content;min-width:100%;}
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-/* Responsive */
-@media (max-width:900px){#sidebar{width:150px;}main{margin-left:150px;padding:20px;}}
-@media (max-width:600px){#sidebar{display:none;}main{margin-left:0;padding:20px;}}
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--ink);
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* === MAIN CONTENT === */
+main {
+  flex: 1;
+  margin-left: 190px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
+  box-sizing: border-box;
+}
+
+/* === PAGE SECTIONS === */
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin: 0 auto 50px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* === HEADINGS === */
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.section {
+  margin-bottom: 35px;
+}
+
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 16px;
+  font-size: 16px;
+  line-height: 1.3;
+  border-radius: 16px 16px 0 0;
+}
+
+/* === BLOCKS & CHECKLISTS === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  border: 1px solid var(--border);
+}
+
+.section-block h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 16px 16px 0 0;
+}
+
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TABLES === */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin: 0;
+  border-radius: 0 0 0 0;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+  background: #fff;
+}
+
+.training-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: max-content;
+  min-width: 100%;
+}
+
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+}
+
+/* === STICKY HEADER / COLUMN === */
+.training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border-top: none;
+}
+
+/* === Sticky first column === */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: #fff;
+  text-align: left;
+  width: 250px;
+  min-width: 250px;
+}
+
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.training-table td:first-child input[type="text"] {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+}
+
+/* === Table inputs === */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* === TABLE FOOTER === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: #fff;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 0 0 16px 16px;
+}
+
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+  transition: 0.2s ease;
+}
+
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
+
+/* === FLOATING BUTTON === */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  left: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s ease;
+}
+
+.floating-btn:hover {
+  background: #ff8848;
+}
+
+/* === TEXTAREA STYLING === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+}
