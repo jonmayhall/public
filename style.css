@@ -115,7 +115,7 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION HEADERS (DARK ORANGE) === */
+/* === SECTION HEADERS (Dark Orange Rounded) === */
 .section {
   margin-bottom: 35px;
 }
@@ -125,7 +125,7 @@ h1 {
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0; /* rounded top */
+  border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
   line-height: 1.3;
 }
@@ -147,7 +147,7 @@ h1 {
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0; /* rounded top */
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 /* === CHECKLIST ROWS === */
@@ -192,12 +192,14 @@ textarea {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 0; /* full table is squared */
   box-shadow: var(--shadow);
   margin: 0;
   overflow: hidden;
   position: relative;
 }
+
+/* === Scroll wrapper === */
 .scroll-wrapper {
   display: block;
   width: 100%;
@@ -209,6 +211,8 @@ textarea {
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
+
+/* === Table core === */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -226,7 +230,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === LIGHT ORANGE HEADER (SQUARED, FULL WIDTH) === */
+/* === Light Orange Header (flat, squared, flows with section header) === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -238,7 +242,7 @@ textarea {
   border-radius: 0; /* squared top */
 }
 
-/* === STICKY FIRST COLUMN === */
+/* === Sticky First Column === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -256,7 +260,7 @@ textarea {
   color: #fff;
 }
 
-/* === INPUTS & SELECTS IN TABLE === */
+/* === Input & Selects === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -294,22 +298,26 @@ textarea {
   background: #fff9f5;
 }
 
-/* === STRIPING === */
+/* === Row Striping === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER (SQUARED BOTTOM, FLUSH) === */
+/* === Table Footer (flush, squared, connected) === */
 .table-footer {
   width: 100%;
-  border: 1px solid var(--border);
   border-top: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   background: #fff;
-  border-radius: 0; /* squared */
+  border-radius: 0; /* squared bottom */
   text-align: left;
   padding: 8px 12px;
   margin: 0;
   box-sizing: border-box;
 }
+
+/* === Add Row Button === */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -334,7 +342,7 @@ textarea {
   overflow: hidden;
 }
 
-/* === FLOATING SAVE BUTTON === */
+/* === Floating Save Button === */
 .floating-btn {
   position: fixed;
   top: 90px;
