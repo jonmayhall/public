@@ -251,4 +251,112 @@ textarea {
   padding: 6px 10px;
   border-right: 1px solid var(--border);
 }
-.training-table thead
+.training-table thead th:first-child {
+  background: var(--light-orange);
+  color: #fff;
+}
+
+/* === INPUTS & SELECTS IN TABLE === */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+}
+.training-table td:first-child input[type="text"] {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* === STRIPING === */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
+
+/* === TABLE FOOTER (SQUARED BOTTOM, FLUSH) === */
+.table-footer {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-top: none;
+  background: #fff;
+  border-radius: 0; /* squared */
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  box-sizing: border-box;
+}
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+
+/* === COMMENT BOX === */
+.section-block.comment-box {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* === FLOATING SAVE BUTTON === */
+.floating-btn {
+  position: fixed;
+  top: 90px;
+  right: 25px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.floating-btn:hover { background: #ff8848; }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
+}
