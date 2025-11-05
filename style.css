@@ -33,11 +33,6 @@ html, body {
   z-index: 20;
   padding: 0 40px;
 }
-.topbar-content {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
 .top-logo {
   height: 42px;
   object-fit: contain;
@@ -120,7 +115,7 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION HEADERS === */
+/* === SECTION HEADERS (DARK ORANGE) === */
 .section {
   margin-bottom: 35px;
 }
@@ -130,10 +125,9 @@ h1 {
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: var(--radius) var(--radius) 0 0; /* rounded top */
   font-size: 16px;
   line-height: 1.3;
-  overflow: hidden;
 }
 
 /* === SECTION CARDS === */
@@ -153,7 +147,7 @@ h1 {
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: var(--radius) var(--radius) 0 0; /* rounded top */
 }
 
 /* === CHECKLIST ROWS === */
@@ -191,7 +185,9 @@ textarea {
   font-family: inherit;
 }
 
-/* === TABLES === */
+/* =======================================================
+   TABLES
+   ======================================================= */
 .table-container {
   width: 100%;
   background: #fff;
@@ -230,7 +226,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === TABLE HEADER === */
+/* === LIGHT ORANGE HEADER (SQUARED, FULL WIDTH) === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -239,11 +235,7 @@ textarea {
   top: 0;
   z-index: 3;
   border: none;
-  border-radius: 0; /* flat across */
-}
-.training-table thead th:first-child,
-.training-table thead th:last-child {
-  background: var(--light-orange);
+  border-radius: 0; /* squared top */
 }
 
 /* === STICKY FIRST COLUMN === */
@@ -259,112 +251,4 @@ textarea {
   padding: 6px 10px;
   border-right: 1px solid var(--border);
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === INPUTS & SELECTS IN TABLE === */
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-}
-.training-table td:first-child input[type="text"] {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* === ROW STRIPING === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === TABLE FOOTER === */
-.table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
-}
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-}
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-/* === FLOATING SAVE BUTTON === */
-.floating-btn {
-  position: fixed;
-  top: 90px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-.floating-btn:hover { background: #ff8848; }
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
+.training-table thead
