@@ -1,193 +1,194 @@
-// === Sidebar Navigation ===
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+/* =======================================================
+   myKaarma Interactive Training Checklist
+   JavaScript Logic – Updated November 2025
+   ======================================================= */
 
-    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-    const target = document.getElementById(btn.dataset.target);
-    if (target) target.classList.add('active');
+/* ========================================================= */
+/* === SIDEBAR NAVIGATION === */
+/* ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const sections = document.querySelectorAll(".page-section");
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      sections.forEach((sec) => sec.classList.remove("active"));
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   });
 });
 
-// === Add Row Buttons ===
-document.querySelectorAll('.add-row').forEach(button => {
-  button.addEventListener('click', () => {
-    const table = button.closest('.section, .section-block').querySelector('table');
+/* ========================================================= */
+/* === ADD ROW FUNCTIONALITY === */
+/* ========================================================= */
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-btn")) {
+    const table = e.target.closest(".section-block, .card").querySelector("table");
     if (!table) return;
-    const row = table.querySelector('tbody tr').cloneNode(true);
-    row.querySelectorAll('input, select').forEach(el => {
-      if (el.type === 'checkbox') el.checked = false;
-      else el.value = '';
+
+    const tbody = table.querySelector("tbody");
+    const lastRow = tbody.querySelector("tr:last-child");
+    const clone = lastRow.cloneNode(true);
+
+    clone.querySelectorAll("input, select").forEach((el) => {
+      if (el.type === "checkbox") el.checked = false;
+      else el.value = "";
     });
-    table.querySelector('tbody').appendChild(row);
-  });
+
+    tbody.appendChild(clone);
+  }
 });
 
-// === Add Additional POC ===
-document.querySelectorAll('.add-poc').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const section = btn.closest('.section-block');
-    const clone = section.querySelectorAll('.checklist-row')[3].cloneNode(true);
-    clone.querySelectorAll('input').forEach(i => (i.value = ''));
-    section.insertBefore(clone, btn.closest('.table-footer'));
+/* ========================================================= */
+/* === PAGE COMPLETION STATUS + TIMESTAMP === */
+/* ========================================================= */
+function checkPageCompletion(page) {
+  const inputs = page.querySelectorAll("input, select, textarea");
+  const nonNotes = [...inputs].filter(
+    (el) =>
+      !(el.tagName === "TEXTAREA" && el.closest(".section-block h2")?.innerText.toLowerCase().includes("note"))
+  );
+
+  const allFilled = nonNotes.length > 0 && nonNotes.every((el) => {
+    if (el.type === "checkbox") return true;
+    return el.value && el.value.trim() !== "";
   });
-});
 
-// === Add Additional Trainer ===
-document.querySelectorAll('.add-trainer').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const section = btn.closest('.section-block');
-    const clone = section.querySelector('input[type="text"]').cloneNode(true);
-    clone.value = '';
-    const newRow = document.createElement('div');
-    newRow.classList.add('checklist-row');
-    newRow.style.paddingLeft = '40px';
-    const label = document.createElement('label');
-    label.textContent = 'Additional Trainers';
-    newRow.appendChild(label);
-    newRow.appendChild(clone);
-    section.insertBefore(newRow, btn.closest('.table-footer'));
-  });
-});
-
-// === Auto-Fill Training End Date ===
-const startDate = document.getElementById('trainingStartDate');
-const endDate = document.getElementById('trainingEndDate');
-if (startDate && endDate) {
-  startDate.addEventListener('change', () => {
-    const start = new Date(startDate.value);
-    if (isNaN(start)) return;
-    const end = new Date(start);
-    end.setDate(start.getDate() + 2);
-    endDate.value = end.toISOString().split('T')[0];
-  });
-}
-
-// === Auto Update Header with Dealer Group + Dealership Name ===
-const dealerGroupInput = document.getElementById('dealerGroup');
-const dealershipInput = document.getElementById('dealershipName');
-const displayName = document.getElementById('dealershipNameDisplay');
-
-function updateHeaderName() {
-  const group = (dealerGroupInput?.value || '').trim();
-  const name = (dealershipInput?.value || '').trim();
-  const ignore = ['n/a', 'none', 'no', 'unknown', 'idk', "i don't know"];
-  if (!name) return (displayName.textContent = 'Dealership Name');
-  if (!group || ignore.includes(group.toLowerCase())) displayName.textContent = name;
-  else displayName.textContent = `${group} – ${name}`;
-}
-
-if (dealerGroupInput && dealershipInput) {
-  dealerGroupInput.addEventListener('input', updateHeaderName);
-  dealershipInput.addEventListener('input', updateHeaderName);
-}
-
-// === Page Completion + Timestamp ===
-const pages = document.querySelectorAll('.page-section');
-pages.forEach(page => {
-  const inputs = page.querySelectorAll('input[type="text"], input[type="date"], select');
-  const notes = page.querySelectorAll('textarea');
-  const banner = page.querySelector('.page-complete-banner');
-  const timestamp = page.querySelector('.timestamp');
-
-  function checkComplete() {
-    let complete = true;
-    inputs.forEach(el => {
-      if (!el.value) complete = false;
-    });
-    if (complete) {
-      banner.textContent = '✅ This page is complete.';
-      banner.classList.add('visible');
-      const now = new Date().toLocaleString();
-      timestamp.textContent = `Completed on ${now}`;
-    } else {
-      banner.classList.remove('visible');
-      timestamp.textContent = '';
-    }
+  let completeTag = page.querySelector(".page-complete");
+  if (!completeTag) {
+    completeTag = document.createElement("div");
+    completeTag.className = "page-complete";
+    page.prepend(completeTag);
   }
 
-  inputs.forEach(el => el.addEventListener('input', checkComplete));
-});
-
-// === Toast Notification ===
-const toast = document.createElement('div');
-toast.id = 'toast';
-document.body.appendChild(toast);
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('visible');
-  setTimeout(() => toast.classList.remove('visible'), 2000);
-}
-
-// === Notes Autofill into Summary ===
-function syncNotes() {
-  const pretrainingNotes = document.querySelector('#pretraining textarea')?.value || '';
-  const mondayNotes = document.querySelector('#monday-visit textarea')?.value || '';
-  const trainingNotes = document.querySelector('#training-checklist textarea')?.value || '';
-  const opNotes = document.querySelector('#opcodes-pricing textarea')?.value || '';
-  const dmsNotes = document.querySelector('#dms-integration textarea')?.value || '';
-  const postNotes = document.querySelector('#post-training textarea')?.value || '';
-
-  document.getElementById('summary-pretraining').value = `${pretrainingNotes}\n${mondayNotes}`;
-  document.getElementById('summary-tuesday').value = trainingNotes;
-  document.getElementById('summary-wednesday').value = opNotes;
-  document.getElementById('summary-dms').value = dmsNotes;
-  document.getElementById('summary-posttraining').value = postNotes;
-
-  showToast('✅ Notes updated in Training Summary');
-}
-
-document.querySelectorAll('textarea').forEach(t =>
-  t.addEventListener('input', () => {
-    syncNotes();
-  })
-);
-
-// === Save as PDF ===
-document.getElementById('savePDFBtn')?.addEventListener('click', async () => {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ orientation: 'p', unit: 'pt', format: 'letter' });
-
-  const pages = document.querySelectorAll('.page-section');
-  let y = 40;
-
-  for (const section of pages) {
-    const title = section.querySelector('h1').innerText;
-    pdf.setFontSize(14);
-    pdf.text(title, 40, y);
-    y += 20;
-
-    const content = section.innerText.trim().substring(0, 1000);
-    const split = pdf.splitTextToSize(content, 520);
-    pdf.setFontSize(10);
-    pdf.text(split, 40, y);
-    y += split.length * 12 + 20;
-
-    if (y > 700) {
-      pdf.addPage();
-      y = 40;
-    }
+  let timestampTag = page.querySelector(".page-timestamp");
+  if (!timestampTag) {
+    timestampTag = document.createElement("span");
+    timestampTag.className = "page-timestamp";
+    completeTag.appendChild(timestampTag);
   }
 
-  pdf.save('Training_Checklist.pdf');
+  if (allFilled) {
+    const now = new Date();
+    const formatted = now.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    completeTag.textContent = "Page Complete";
+    completeTag.appendChild(timestampTag);
+    timestampTag.textContent = ` — ${formatted}`;
+    completeTag.style.display = "inline-block";
+  } else {
+    completeTag.textContent = "";
+    completeTag.style.display = "none";
+  }
+}
+
+// Observe field changes
+document.addEventListener("input", (e) => {
+  const section = e.target.closest(".page-section");
+  if (section) checkPageCompletion(section);
 });
 
-// === Submit to Google Sheets ===
-document.getElementById('submitGoogleBtn')?.addEventListener('click', () => {
-  const data = {};
-  document.querySelectorAll('input, select, textarea').forEach(el => {
-    const label = el.closest('.checklist-row')?.querySelector('label')?.textContent || el.id || 'unlabeled';
-    data[label] = el.value;
-  });
-  fetch('https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(res => res.text())
-  .then(() => showToast('✅ Submitted to Google Sheet'))
-  .catch(() => showToast('⚠️ Error submitting form'));
+/* ========================================================= */
+/* === DEALERSHIP HEADER AUTO-POPULATE === */
+/* ========================================================= */
+document.addEventListener("input", () => {
+  const dealerGroupInput = document.querySelector(
+    '#dealership-info input[placeholder="Dealer Group"], #dealership-info input[name="Dealer Group"]'
+  );
+  const dealershipNameInput = document.querySelector(
+    '#dealership-info input[placeholder="Dealership Name"], #dealership-info input[name="Dealership Name"]'
+  );
+
+  const headerDisplay = document.getElementById("dealershipNameDisplay");
+  if (!headerDisplay || !dealershipNameInput) return;
+
+  const dealerGroup = dealerGroupInput?.value?.trim();
+  const dealership = dealershipNameInput.value.trim();
+
+  if (!dealership) {
+    headerDisplay.textContent = "Dealership Name";
+    return;
+  }
+
+  const ignore = ["n/a", "none", "i don't know", "unknown"];
+  if (dealerGroup && !ignore.includes(dealerGroup.toLowerCase())) {
+    headerDisplay.textContent = `${dealerGroup} – ${dealership}`;
+  } else {
+    headerDisplay.textContent = dealership;
+  }
+});
+
+/* ========================================================= */
+/* === AUTO-FILL NOTES INTO SUMMARY PAGE === */
+/* ========================================================= */
+function autoFillNotes() {
+  const pretraining = document.querySelector("#pretraining textarea");
+  const dealership = document.querySelector("#dealership-info textarea");
+  const onsite = document.querySelector("#onsite-trainers textarea");
+  const training = document.querySelector("#training-checklist textarea");
+  const opcodes = document.querySelector("#opcodes-pricing textarea");
+  const dms = document.querySelector("#dms-integration textarea");
+  const post = document.querySelector("#post-training textarea");
+
+  const summary = {
+    pretraining: document.getElementById("pretrainingNotes"),
+    tuesday: document.getElementById("tuesdayNotes"),
+    thursday: document.getElementById("thursdayNotes"),
+    dms: document.getElementById("dmsNotes"),
+    post: document.getElementById("postTrainingNotes"),
+  };
+
+  if (summary.pretraining)
+    summary.pretraining.value = [pretraining?.value, dealership?.value, onsite?.value]
+      .filter(Boolean)
+      .join("\n\n");
+
+  if (summary.tuesday) summary.tuesday.value = training?.value || "";
+  if (summary.thursday) summary.thursday.value = opcodes?.value || "";
+  if (summary.dms) summary.dms.value = dms?.value || "";
+  if (summary.post) summary.post.value = post?.value || "";
+}
+
+setInterval(autoFillNotes, 3000);
+
+/* ========================================================= */
+/* === GOOGLE SHEETS SUBMISSION === */
+/* ========================================================= */
+const sheetURL =
+  "https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec";
+
+document.getElementById("submitSummaryBtn")?.addEventListener("click", async () => {
+  autoFillNotes();
+
+  const data = {
+    dealer: document.getElementById("dealershipNameDisplay").textContent.trim(),
+    overall: document.getElementById("overallNotes")?.value || "",
+    pretraining: document.getElementById("pretrainingNotes")?.value || "",
+    tuesday: document.getElementById("tuesdayNotes")?.value || "",
+    thursday: document.getElementById("thursdayNotes")?.value || "",
+    dms: document.getElementById("dmsNotes")?.value || "",
+    post: document.getElementById("postTrainingNotes")?.value || "",
+  };
+
+  try {
+    const response = await fetch(sheetURL, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(data),
+    });
+    alert("✅ Training Summary submitted successfully!");
+  } catch (err) {
+    console.error("Submission error:", err);
+    alert("⚠️ Error submitting summary. Check console for details.");
+  }
 });
