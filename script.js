@@ -1,33 +1,28 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – JS Logic
-   Verified: November 2025
+   Clean & Verified: November 2025
    ======================================================= */
 
-/* === SIDEBAR NAVIGATION (Stable) === */
 document.addEventListener('DOMContentLoaded', function() {
+
+  /* === SIDEBAR NAVIGATION === */
   const buttons = document.querySelectorAll('.nav-btn');
   const pages = document.querySelectorAll('.page-section');
 
   buttons.forEach(btn => {
     btn.addEventListener('click', function() {
-      // remove current active button
       buttons.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
-
-      // hide all pages
       pages.forEach(p => p.classList.remove('active'));
-
-      // show the selected page
       const targetId = this.getAttribute('data-target');
       const targetPage = document.getElementById(targetId);
       if (targetPage) targetPage.classList.add('active');
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 
-  /* === ADD ROW BUTTONS === */
-  document.querySelectorAll('.add-row').forEach(button => {
+  /* === ADD BUTTONS (tables + trainer lines) === */
+  document.querySelectorAll('.add-btn').forEach(button => {
     button.addEventListener('click', () => {
       const table = button.closest('.section')?.querySelector('table');
       if (table) {
@@ -39,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         tbody.appendChild(rowClone);
       } else {
-        // For Additional Trainers add button
+        // For Additional Trainers or POC fields
         const parent = button.closest('.checklist-row');
         const newRow = parent.cloneNode(true);
         newRow.querySelector('input').value = '';
@@ -48,9 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  /* =======================================================
-     PAGE COMPLETION + TIMESTAMP
-     ======================================================= */
+  /* === PAGE COMPLETION + TIMESTAMP === */
   const pagesWithStatus = document.querySelectorAll('.page-section');
   pagesWithStatus.forEach(page => {
     const statusBanner = page.querySelector('.page-status');
@@ -81,9 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatus();
   });
 
-  /* =======================================================
-     AUTO HEADER UPDATE – DEALERSHIP NAME
-     ======================================================= */
+  /* === AUTO HEADER UPDATE – DEALERSHIP NAME === */
   const dealerInput = document.querySelector('#dealership-info input:nth-of-type(2)');
   const groupInput = document.querySelector('#dealership-info input:nth-of-type(1)');
   const headerDisplay = document.getElementById('dealershipNameDisplay');
@@ -104,9 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
   groupInput?.addEventListener('input', updateHeader);
   updateHeader();
 
-  /* =======================================================
-     TRAINING END DATE AUTO-FILL (2 days after start)
-     ======================================================= */
+  /* === TRAINING END DATE AUTO-FILL (2 days after start) === */
   const start = document.getElementById('trainingStart');
   const end = document.getElementById('trainingEnd');
   if (start && end) {
@@ -121,11 +110,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* =======================================================
-     GOOGLE SHEETS SUBMIT (Trainer sync)
-     ======================================================= */
+  /* === GOOGLE SHEETS SUBMIT === */
   const formURL = "https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec";
-  const saveBtn = document.getElementById('savePDF') || document.getElementById('submitSummary');
+  const saveBtn = document.getElementById('savePDF') || document.getElementById('submitSummaryBtn');
   const trainerSelect = document.getElementById('leadTrainerSelect');
 
   async function submitToSheet() {
@@ -158,9 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (saveBtn) saveBtn.addEventListener('click', submitToSheet);
 
-  /* =======================================================
-     NOTES AUTO-FILL TO SUMMARY PAGE
-     ======================================================= */
+  /* === NOTES AUTO-FILL TO SUMMARY PAGE === */
   const summary = document.getElementById('training-summary');
   if (summary) {
     const fillMap = {
@@ -168,8 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
       dealership-info: 'Pre-Training & Monday Visit Notes',
       onsite-trainers: 'Pre-Training & Monday Visit Notes',
       training-checklist: 'End of Day Training Summary - Tuesday',
-      opcodes-pricing: 'End of Day Training Summary - Thursday',
-      dms-integration: 'Opcode, Pricing, and Integrations Notes',
+      'opcodes-pricing': 'End of Day Training Summary - Thursday',
+      'dms-integration': 'Opcode, Pricing, and Integrations Notes',
       'post-training': 'Post-Training Checklist Notes'
     };
 
