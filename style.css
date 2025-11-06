@@ -278,3 +278,72 @@ textarea {
   #sidebar{display:none;}
   main{margin-left:0;padding:20px;}
 }
+/* =======================================================
+   HOTFIX — Revert to Early-Morning Table Look
+   Place at the END of style.css
+   ======================================================= */
+
+/* 1) Cards: rounded TOP only, square bottom */
+.section-block,
+.card {
+  border-radius: 16px 16px 0 0 !important;
+}
+
+/* 2) Table header: light orange + visible vertical dividers */
+.training-table thead th {
+  background: var(--light-orange) !important;
+  color: #222 !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-right: 1px solid var(--border) !important;
+}
+.training-table thead th:last-child {
+  border-right: none !important;
+}
+
+/* 3) Compact cell spacing; clear dividers between cells */
+.training-table td {
+  padding: 5px 8px !important;
+  border-right: 1px solid var(--border) !important;
+}
+.training-table td:last-child {
+  border-right: none !important;
+}
+
+/* 4) Square form controls everywhere (no rounded corners) */
+.training-table input,
+.training-table select,
+.checklist-row input,
+.checklist-row select,
+textarea {
+  border-radius: 0 !important;
+  padding: 4px 6px !important;
+}
+
+/* 5) Footer: smaller, left-aligned, visually connected to table, square bottom */
+.table-footer {
+  padding: 6px 10px !important;
+  text-align: left !important;
+  border-top: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+}
+
+/* 6) Add button: smaller, on the left, tight */
+.table-footer .add-row,
+.table-footer .add-btn {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 14px !important;
+  line-height: 24px !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 7) First column (checkbox + text) stays compact and aligned */
+.training-table td:first-child {
+  gap: 6px !important;
+}
+.training-table td:first-child input[type="text"] {
+  padding: 4px 6px !important;
+}
