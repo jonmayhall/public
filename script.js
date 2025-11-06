@@ -1,9 +1,8 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist JS
-   Compact Classic Logic – Original Morning Version
+   myKaarma Interactive Training Checklist – Restored Script
    ======================================================= */
 
-// === Sidebar Navigation ===
+// === SIDEBAR NAVIGATION ===
 document.querySelectorAll(".nav-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -17,94 +16,148 @@ document.querySelectorAll(".nav-btn").forEach(btn => {
   });
 });
 
-// === Add Row Buttons ===
-document.querySelectorAll(".add-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const table = btn.closest("table");
-    const tbody = table?.querySelector("tbody");
-    const row = tbody?.querySelector("tr");
-    if (row) {
-      const clone = row.cloneNode(true);
-      clone.querySelectorAll("input, select").forEach(el => (el.value = ""));
-      tbody.appendChild(clone);
+// === ADD ROW BUTTONS ===
+document.addEventListener("click", e => {
+  if (e.target.classList.contains("add-btn") || e.target.classList.contains("add-row")) {
+    const table = e.target.closest("table");
+    if (table) {
+      const lastRow = table.querySelector("tbody tr:last-child");
+      if (lastRow) {
+        const clone = lastRow.cloneNode(true);
+        clone.querySelectorAll("input, select").forEach(input => {
+          if (input.tagName === "SELECT") input.selectedIndex = 0;
+          else input.value = "";
+        });
+        table.querySelector("tbody").appendChild(clone);
+      }
     }
-  });
+  }
 });
 
-// === Auto Fill End Date (2 days later) ===
-const start = document.getElementById("trainingStart");
-const end = document.getElementById("trainingEnd");
-if (start && end) {
-  start.addEventListener("change", () => {
-    const d = new Date(start.value);
-    if (!isNaN(d)) {
-      d.setDate(d.getDate() + 2);
-      end.value = d.toISOString().split("T")[0];
+// === AUTO-FILL END DATE ===
+const trainingStart = document.getElementById("trainingStart");
+const trainingEnd = document.getElementById("trainingEnd");
+if (trainingStart && trainingEnd) {
+  trainingStart.addEventListener("change", () => {
+    const start = new Date(trainingStart.value);
+    if (!isNaN(start)) {
+      const end = new Date(start);
+      end.setDate(end.getDate() + 2);
+      trainingEnd.value = end.toISOString().split("T")[0];
     }
   });
 }
 
-// === Dealership Name Auto Update ===
-const groupInput = document.querySelector("#dealership-info input[placeholder='Dealer Group']");
-const dealerInput = document.querySelector("#dealership-info input[placeholder='Dealership Name']");
-if (dealerInput) {
-  dealerInput.addEventListener("input", () => {
-    const group = groupInput?.value?.trim();
-    const name = dealerInput.value.trim();
-    const header = document.getElementById("dealershipNameDisplay");
-    if (!name) {
-      header.textContent = "Dealership Name";
-      return;
-    }
-    if (group && !["n/a", "none", "i don't know", "na"].includes(group.toLowerCase())) {
-      header.textContent = `${group} – ${name}`;
-    } else {
-      header.textContent = name;
-    }
-  });
+// === DEALERSHIP NAME HEADER AUTO-FILL ===
+const dealershipNameInput = document.querySelector('#dealership-info input[placeholder="Dealership Name"]');
+const dealerGroupInput = document.querySelector('#dealership-info input[placeholder="Dealer Group"]');
+const dealershipDisplay = document.getElementById("dealershipNameDisplay");
+
+function updateHeaderName() {
+  const dealerGroup = (dealerGroupInput?.value || "").trim();
+  const dealership = (dealershipNameInput?.value || "").trim();
+
+  let exclude = ["n/a", "na", "none", "no", "i don't know"];
+  let headerText = dealership || "Dealership Name";
+
+  if (dealerGroup && !exclude.includes(dealerGroup.toLowerCase())) {
+    headerText = `${dealerGroup} – ${dealership}`;
+  }
+
+  if (dealershipDisplay) dealershipDisplay.textContent = headerText;
 }
 
-// === Summary Auto Fill ===
-function fillSummary() {
-  const map = [
-    ["#pretraining textarea", "#pretrainingNotes"],
-    ["#monday-visit textarea", "#tuesdayNotes"],
-    ["#training-checklist textarea", "#tuesdayNotes"],
-    ["#opcodes-pricing textarea", "#thursdayNotes"],
-    ["#dms-integration textarea", "#dmsNotes"],
-    ["#post-training textarea", "#postTrainingNotes"]
-  ];
-  map.forEach(([src, dest]) => {
-    const s = document.querySelector(src);
-    const d = document.querySelector(dest);
-    if (s && d) d.value = s.value;
+dealershipNameInput?.addEventListener("input", updateHeaderName);
+dealerGroupInput?.addEventListener("input", updateHeaderName);
+
+// === PAGE COMPLETION TRACKER ===
+function checkPageCompletion(section) {
+  const inputs = section.querySelectorAll("input:not([type='date']), select, textarea");
+  let total = 0;
+  let filled = 0;
+  inputs.forEach(i => {
+    // Skip Notes sections
+    if (i.closest("textarea") || i.closest(".comment-box") || i.closest("h2")?.textContent.toLowerCase().includes("notes")) return;
+    total++;
+    if (i.value.trim() !== "") filled++;
   });
+
+  const pageComplete = section.querySelector(".page-complete");
+  if (!pageComplete) return;
+
+  if (filled > 0 && filled === total) {
+    const now = new Date();
+    const timeStr = now.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+    pageComplete.style.display = "inline-block";
+    pageComplete.querySelector(".page-timestamp").textContent = `  (${timeStr})`;
+  } else {
+    pageComplete.style.display = "none";
+  }
 }
 
-// === Submit Summary ===
-const submitBtn = document.getElementById("submitSummaryBtn");
-if (submitBtn) {
-  submitBtn.addEventListener("click", () => {
-    fillSummary();
+document.querySelectorAll(".page-section").forEach(section => {
+  section.addEventListener("input", () => checkPageCompletion(section));
+});
+
+// === AUTO-FILL NOTES INTO SUMMARY ===
+const noteMap = {
+  pretraining: "pretrainingNotes",
+  trainingChecklist: "tuesdayNotes",
+  opcodesPricing: "thursdayNotes",
+  dmsIntegration: "dmsNotes",
+  postTraining: "postTrainingNotes"
+};
+
+Object.entries(noteMap).forEach(([pageId, summaryId]) => {
+  const pageNotes = document.querySelector(`#${pageId} textarea`);
+  const summaryField = document.getElementById(summaryId);
+  if (pageNotes && summaryField) {
+    pageNotes.addEventListener("input", () => {
+      summaryField.value = pageNotes.value;
+    });
+  }
+});
+
+// === SUBMIT TO GOOGLE SHEETS ===
+const submitSummaryBtn = document.getElementById("submitSummaryBtn");
+if (submitSummaryBtn) {
+  submitSummaryBtn.addEventListener("click", async () => {
+    const leadTrainer = document.getElementById("leadTrainerSelect")?.value || "";
+    const pretrainingNotes = document.getElementById("pretrainingNotes")?.value || "";
+    const tuesdayNotes = document.getElementById("tuesdayNotes")?.value || "";
+    const thursdayNotes = document.getElementById("thursdayNotes")?.value || "";
+    const dmsNotes = document.getElementById("dmsNotes")?.value || "";
+    const postNotes = document.getElementById("postTrainingNotes")?.value || "";
+    const overallNotes = document.getElementById("overallNotes")?.value || "";
+
     const payload = {
-      trainer: document.getElementById("leadTrainerSelect")?.value || "",
-      dealership: dealerInput?.value || "",
-      timestamp: new Date().toLocaleString(),
-      overall: document.getElementById("overallNotes")?.value || "",
-      pretraining: document.getElementById("pretrainingNotes")?.value || "",
-      tuesday: document.getElementById("tuesdayNotes")?.value || "",
-      thursday: document.getElementById("thursdayNotes")?.value || "",
-      dms: document.getElementById("dmsNotes")?.value || "",
-      post: document.getElementById("postTrainingNotes")?.value || ""
+      leadTrainer,
+      pretrainingNotes,
+      tuesdayNotes,
+      thursdayNotes,
+      dmsNotes,
+      postNotes,
+      overallNotes
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    alert("Training Summary submitted successfully!");
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(payload)
+        }
+      );
+      alert("Training Summary Submitted Successfully!");
+    } catch (err) {
+      console.error("Submit failed:", err);
+      alert("Error submitting summary. Please try again.");
+    }
   });
 }
