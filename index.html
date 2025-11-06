@@ -42,85 +42,66 @@
     <!-- ========================================================= -->
     <main id="content">
 
-      <!-- ========================================================= -->
-      <!-- === PAGE 1 : ONSITE TRAINERS &amp; CEM === -->
-      <!-- ========================================================= -->
-      <section id="onsite-trainers" class="page-section active">
-        <h1>Onsite Trainers &amp; CEM</h1>
+    <!-- ========================================================= -->
+<!-- === PAGE 1 : ONSITE TRAINERS & CEM === -->
+<!-- ========================================================= -->
+<section id="onsite-trainers" class="page-section active">
+  <h1>Onsite Trainers &amp; CEM</h1>
+  <div class="page-status">Incomplete</div>
 
-        <!-- PAGE COMPLETION BANNER -->
-        <div class="page-complete" style="display:none;">Page Complete<span class="page-timestamp"></span></div>
+  <!-- === ONSITE TRAINERS === -->
+  <div class="section-block">
+    <h2>Onsite Trainers</h2>
 
-        <!-- Lead Trainer Dropdown -->
-        <div class="section-block">
-          <h2>Lead Trainer</h2>
-          <div class="checklist-row">
-            <label>Select Lead Trainer:</label>
-            <select id="leadTrainer" name="leadTrainer">
-              <option></option>
-              <option>Adam Jeffords</option>
-              <option>Alec Parker</option>
-              <option>Brian Button</option>
-              <option>Christopher Eskew</option>
-              <option>Dana Berry</option>
-              <option>Ethan Corliss</option>
-              <option>Joel Zavaleta</option>
-              <option>Lauren Ramos</option>
-              <option>Miles Krasic</option>
-              <option disabled>──────────────</option>
-              <option>Anthony Carbone</option>
-              <option>Brett Smith</option>
-              <option>Clyde Chapman</option>
-              <option>Dennitza Fernandez</option>
-              <option>Eliud Garcia</option>
-              <option>Jackson Geraghty</option>
-              <option>Kevin Mullinax</option>
-              <option>Kyle Leavitt</option>
-              <option>Sharon Rusta</option>
-              <option>Terry Hart</option>
-            </select>
-          </div>
-        </div>
+    <div class="checklist-row">
+      <label>Lead Trainer</label>
+      <select id="leadTrainerSelect">
+        <option></option>
+        <option>Adam Jeffords</option>
+        <option>Alec Parker</option>
+        <option>Brian Button</option>
+        <option>Christopher Eskew</option>
+        <option>Dana Berry</option>
+        <option>Ethan Corliss</option>
+        <option>Joel Zavaleta</option>
+        <option>Lauren Ramos</option>
+        <option>Miles Krasic</option>
+        <option disabled>──────────</option>
+        <option>Anthony Carbone</option>
+        <option>Brett Smith</option>
+        <option>Clyde Chapman</option>
+        <option>Dennitza Fernandez</option>
+        <option>Eliud Garcia</option>
+        <option>Jackson Geraghty</option>
+        <option>Kevin Mullinax</option>
+        <option>Kyle Leavitt</option>
+        <option>Sharon Rusta</option>
+        <option>Terry Hart</option>
+      </select>
+    </div>
 
-        <!-- Additional Trainers -->
-        <div class="section-block">
-          <h2>Additional Trainers</h2>
-          <div class="checklist-row" style="padding-left:40px;">
-            <label>Trainer Name</label>
-            <input type="text" placeholder="Additional Trainer Name" />
-          </div>
-          <div class="table-footer">
-            <button class="add-btn" type="button">+</button>
-          </div>
-        </div>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Additional Trainers</label>
+      <input type="text" placeholder="Add name...">
+      <button class="add-row" type="button" title="Add more trainers">+</button>
+    </div>
+  </div>
 
-        <!-- CEM Section -->
-        <div class="section-block">
-          <h2>Customer Engagement Manager (CEM)</h2>
-          <div class="checklist-row">
-            <label>CEM Assigned to Store</label>
-            <input type="text" placeholder="CEM Name" />
-          </div>
-        </div>
+  <!-- === CUSTOMER ENGAGEMENT MANAGER === -->
+  <div class="section-block">
+    <h2>Customer Engagement Manager</h2>
 
-        <!-- Training Dates -->
-        <div class="section-block">
-          <h2>Training Dates</h2>
-          <div class="checklist-row">
-            <label>Training Start Date</label>
-            <input type="date" id="trainingStart" />
-          </div>
-          <div class="checklist-row">
-            <label>Training End Date</label>
-            <input type="date" id="trainingEnd" />
-          </div>
-        </div>
+    <div class="checklist-row"><label>CEM Assigned to Store</label><input type="text"></div>
+    <div class="checklist-row"><label>Training Start Date</label><input type="date" id="trainingStart"></div>
+    <div class="checklist-row"><label>Training End Date</label><input type="date" id="trainingEnd"></div>
+  </div>
 
-        <div class="section-block">
-          <h2>Onsite Notes</h2>
-          <textarea placeholder="Enter Onsite Trainer or CEM related notes…"></textarea>
-        </div>
-      </section>
+  <!-- === COMMENT BOX === -->
+  <div class="section-block comment-box">
+    <h2>Deployment Notes</h2>
+    <textarea placeholder="Enter notes related to trainer setup, scheduling, or communication..."></textarea>
+  </div>
+</section>
 
            <!-- ========================================================= -->
       <!-- === PAGE 2 : DEALERSHIP INFORMATION === -->
