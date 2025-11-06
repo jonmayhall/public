@@ -277,85 +277,176 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>ServiceCart note</label>
+      <label>ServiceCart note?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>Scheduler notes</label>
+      <label>Scheduler notes?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>CDK or DMS configuration notes</label>
+      <label>Deployment handoff?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>Customer Engagement Manager (CEM) notes</label>
+      <label>Remote training notes?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
-    <div class="checklist-row" style="padding-left:40px;">
-      <label>Any past onsite training notes</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
+  <!-- === System Functionality Review === -->
+<div class="section-block">
+  <h2>System Functionality Review</h2>
+
+  <!-- Communication -->
+  <div class="checklist-row">
+    <label><strong>Communication</strong></label>
   </div>
 
-  <div class="section-block">
-    <h2>Equipment &amp; Access</h2>
-
-    <div class="checklist-row">
-      <label>Is the dealership using company iPads or personal devices?</label>
-      <select>
-        <option></option><option>Company</option><option>Personal</option><option>Both</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Has access been confirmed for all service advisors?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Technician logins verified before training?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Is the integration functioning properly? (Historic pull, customer information, etc.)</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
   </div>
 
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Are texts and calls reaching the end user? (No errors)</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <!-- Payments -->
+  <div class="checklist-row">
+    <label><strong>Payments</strong></label>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Is integration working correctly? (Dollar amount, descriptions, etc.)</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Do the invoices sent to the customer appear correctly?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <!-- ServiceCart -->
+  <div class="checklist-row">
+    <label><strong>ServiceCart</strong> <em>(Do not make changes until you have discussed them with the dealership and understand why.)</em></label>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Does integration appear to be working correctly? (ROs pull, parts, etc.)</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>How many workflows were created?</label>
+    <input type="text" placeholder="Enter number">
+  </div>
+
+  <div class="checklist-row" style="padding-left:60px;">
+    <label>Do the workflows seem sensible?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>How many PMI forms were created?</label>
+    <input type="text" placeholder="Enter number">
+  </div>
+
+  <!-- Scheduler -->
+  <div class="checklist-row">
+    <label><strong>Scheduler</strong></label>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Are Scheduler appointments syncing properly with DMS?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Are Team Load rules configured appropriately?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Does the Scheduler display correct advisor and technician availability?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <!-- ServiceConnect -->
+  <div class="checklist-row">
+    <label><strong>ServiceConnect</strong></label>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Are ServiceConnect messages delivering successfully?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+
+  <div class="checklist-row" style="padding-left:40px;">
+    <label>Are automatic responses and routing configured correctly?</label>
+    <select>
+      <option></option><option>Yes</option><option>No</option><option>N/A</option>
+    </select>
+  </div>
+</div>
+
   <div class="section-block">
-    <h2>Team Communication</h2>
+    <h2>Autoamtions</h2>
 
     <div class="checklist-row">
-      <label>Was the pre-training email sent to the Service Manager?</label>
+      <label>Are automated welcome texts active?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Are automated payment requests active?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row">
-      <label>Was the pre-training call completed?</label>
+      <label>Are follow-up messages active?</label>
       <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+        <option></option><option>Yes</option><option>No</option>
       </select>
     </div>
 
     <div class="checklist-row">
-      <label>Was a training schedule shared with the dealership team?</label>
+      <label>Are appointment reminders active?</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
