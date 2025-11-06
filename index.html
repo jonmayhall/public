@@ -127,6 +127,8 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
 
   <main id="content">
 
+<main id="content">
+
 <!-- ========================================================= -->
 <!-- === PAGE 1 : ONSITE TRAINERS & CEM === -->
 <!-- ========================================================= -->
@@ -141,19 +143,20 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
       <input type="text" placeholder="Name">
     </div>
 
-    <div class="checklist-row">
-      <label>Secondary Trainer/s </label>
-      <input type="text" placeholder="Name">
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Additional Trainers</label>
+      <input type="text" placeholder="Name" class="trainer-input">
+      <button type="button" class="add-trainer-btn">+</button>
     </div>
 
     <div class="checklist-row">
       <label>Training Start Date</label>
-      <input type="date">
+      <input type="date" id="training-start">
     </div>
 
     <div class="checklist-row">
       <label>Training End Date</label>
-      <input type="date">
+      <input type="date" id="training-end">
     </div>
   </div>
 
@@ -192,13 +195,15 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
     </div>
 
     <div class="checklist-row">
-      <label>Total Employees Using myKaarma</label>
+      <label>Total Buildings or Service Departments</label>
       <input type="number">
     </div>
 
-    <div class="checklist-row">
-      <label>Total Buildings or Service Departments</label>
-      <input type="number">
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Are all buildings on one campus?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
     </div>
   </div>
 
@@ -210,42 +215,60 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
       <input type="text">
     </div>
 
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Cell</label>
+      <input type="text">
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Email Address</label>
+      <input type="email">
+    </div>
+
     <div class="checklist-row">
       <label>Parts Manager</label>
       <input type="text">
     </div>
 
-    <div class="checklist-row">
-      <label>BDC / Scheduler Contact</label>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Cell</label>
       <input type="text">
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Email Address</label>
+      <input type="email">
     </div>
 
     <div class="checklist-row">
       <label>General Manager</label>
       <input type="text">
     </div>
-  </div>
 
-  <div class="section-block">
-    <h2>System Information</h2>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Cell</label>
+      <input type="text">
+    </div>
 
-    <div class="checklist-row">
-      <label>DMS Provider</label>
-      <input type="text" placeholder="e.g., CDK, Reynolds, Tekion">
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Email Address</label>
+      <input type="email">
     </div>
 
     <div class="checklist-row">
-      <label>Integration Type</label>
-      <select>
-        <option></option><option>Push-Based</option><option>Pull-Based</option><option>Manual</option>
-      </select>
+      <label>Additional POC</label>
+      <input type="text" placeholder="Name" class="poc-input">
+      <button type="button" class="add-poc-btn">+</button>
     </div>
 
-    <div class="checklist-row">
-      <label>Does the dealership use Scheduler?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Cell</label>
+      <input type="text">
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Email Address</label>
+      <input type="email">
     </div>
   </div>
 </section>
@@ -265,332 +288,262 @@ textarea{width:calc(100% - 32px);margin:16px;padding:12px;border-radius:12px;bor
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>ServiceCart note?</label>
+      <label>ServiceCart note</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>Scheduler notes?</label>
+      <label>Scheduler notes</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>Deployment handoff?</label>
+      <label>CDK or DMS configuration notes</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row" style="padding-left:40px;">
-      <label>Remote training notes?</label>
+      <label>Customer Engagement Manager (CEM) notes</label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
-  <!-- === System Functionality Review === -->
-<div class="section-block">
-  <h2>System Functionality Review</h2>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Any past onsite training notes</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
 
-  <!-- Communication -->
-  <div class="checklist-row">
-    <label><strong>Communication</strong></label>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Sales notes?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Contract?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
   </div>
 
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Is the integration functioning properly? (Historic pull, customer information, etc.)</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Are texts and calls reaching the end user? (No errors)</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <!-- Payments -->
-  <div class="checklist-row">
-    <label><strong>Payments</strong></label>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Is integration working correctly? (Dollar amount, descriptions, etc.)</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Do the invoices sent to the customer appear correctly?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <!-- ServiceCart -->
-  <div class="checklist-row">
-    <label><strong>ServiceCart</strong> <em>(Do not make changes until you have discussed them with the dealership and understand why.)</em></label>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Does integration appear to be working correctly? (ROs pull, parts, etc.)</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>How many workflows were created?</label>
-    <input type="text" placeholder="Enter number">
-  </div>
-
-  <div class="checklist-row" style="padding-left:60px;">
-    <label>Do the workflows seem sensible?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>How many PMI forms were created?</label>
-    <input type="text" placeholder="Enter number">
-  </div>
-
-  <!-- Scheduler -->
-  <div class="checklist-row">
-    <label><strong>Scheduler</strong></label>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Are Scheduler appointments syncing properly with DMS?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Are Team Load rules configured appropriately?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Does the Scheduler display correct advisor and technician availability?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <!-- ServiceConnect -->
-  <div class="checklist-row">
-    <label><strong>ServiceConnect</strong></label>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Are ServiceConnect messages delivering successfully?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-
-  <div class="checklist-row" style="padding-left:40px;">
-    <label>Are automatic responses and routing configured correctly?</label>
-    <select>
-      <option></option><option>Yes</option><option>No</option><option>N/A</option>
-    </select>
-  </div>
-</div>
-
+  <!-- System Functionality Review -->
   <div class="section-block">
-    <h2>Autoamtions</h2>
+    <h2>System Functionality Review</h2>
 
     <div class="checklist-row">
-      <label>Are automated welcome texts active?</label>
+      <label class="subheader">Communication</label>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Is the integration functioning properly? <em>(historic pull, customer information, etc.)</em></label>
       <select>
-        <option></option><option>Yes</option><option>No</option>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
-    <div class="checklist-row">
-      <label>Are automated payment requests active?</label>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Are texts and calls reaching the end user? <em>(no errors)</em></label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
 
     <div class="checklist-row">
-      <label>Are follow-up messages active?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option>
-      </select>
+      <label class="subheader">Payments</label>
     </div>
 
-    <div class="checklist-row">
-      <label>Are appointment reminders active?</label>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Is integration working correctly? <em>(dollar amount, descriptions, etc.)</em></label>
       <select>
         <option></option><option>Yes</option><option>No</option><option>N/A</option>
       </select>
     </div>
-  </div>
 
-  <div class="section-block comment-box">
-    <h2>Pre-Training Notes</h2>
-    <textarea placeholder="Add additional pre-training comments or dealership notes…"></textarea>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Do the invoices sent to the customer appear correctly?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label class="subheader">ServiceCart <em>(do not make changes until you have discussed them with the dealership and understand why)</em></label>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Does integration appear to be working correctly? <em>(ROs pull, parts, etc.)</em></label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>How many workflows?</label>
+      <input type="text" placeholder="Enter number">
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Do they appear sensible?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>How many PMI forms?</label>
+      <input type="text" placeholder="Enter number">
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Did you review labor pricing?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Are they using parts kits?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label class="subheader">Scheduler</label>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Are appointments pulling over correctly?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Do store-level and individual appointment capacities look correct?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Are opcodes loaded?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Are they using teams?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Do they use factory maintenance menus?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label class="subheader">Automations</label>
+    </div>
+
+    <div class="checklist-row">
+      <label>Were the following automations activated prior to arrival?</label>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Welcome texts</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Payment requests</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Follow-up messages</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Appointment reminders</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
   </div>
 </section>
+</main>
 
 <!-- ========================================================= -->
-<!-- === PAGE : MONDAY VISIT === -->
+<!-- === SUPPORTING JAVASCRIPT === -->
 <!-- ========================================================= -->
-<section id="monday-visit" class="page-section">
-  <h1>Monday Visit</h1>
+<script>
+// === Add Additional Trainer ===
+document.querySelector('.add-trainer-btn')?.addEventListener('click', () => {
+  const container = document.querySelector('.trainer-input').parentNode;
+  const newInput = document.createElement('div');
+  newInput.className = 'checklist-row';
+  newInput.style.paddingLeft = '40px';
+  newInput.innerHTML = '<input type="text" placeholder="Name">';
+  container.parentNode.insertBefore(newInput, container.nextSibling);
+});
 
-  <!-- === Dealership Expectations === -->
-  <div class="section-block">
-    <h2>Dealership Expectations</h2>
-
+// === Add Additional POC ===
+document.querySelector('.add-poc-btn')?.addEventListener('click', () => {
+  const lastPOC = document.querySelector('.add-poc-btn').closest('.checklist-row');
+  const pocBlock = document.createElement('div');
+  pocBlock.innerHTML = `
     <div class="checklist-row">
-      <label>Was the dealership prepared for MCI before arrival?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
+      <label>Additional POC</label>
+      <input type="text" placeholder="Name">
     </div>
-
-    <div class="checklist-row">
-      <label>Was staff available and ready for onboarding?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Cell</label>
+      <input type="text">
     </div>
+    <div class="checklist-row" style="padding-left:40px;">
+      <label>Email Address</label>
+      <input type="email">
+    </div>`;
+  lastPOC.parentNode.appendChild(pocBlock);
+});
 
-    <div class="checklist-row">
-      <label>Was management present during the kickoff?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Were department leads engaged during introductions?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- === Environment & Connectivity === -->
-  <div class="section-block">
-    <h2>Environment &amp; Connectivity</h2>
-
-    <div class="checklist-row">
-      <label>Was Wi-Fi functional for all trainers and staff?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Were all devices connected to the correct network?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Was VPN or firewall access needed for myKaarma apps?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Were devices logged in and synced with myKaarma?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- === iOS Devices === -->
-  <div class="section-block">
-    <h2>iOS Devices</h2>
-
-    <div class="checklist-row">
-      <label>Were iPads updated to the latest iOS version?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Was the myKaarma app installed on all iPads?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Were staff able to log in successfully?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Did technicians receive proper guidance on iOS notifications?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Are all iPads set to stay unlocked during use (Auto-Lock disabled)?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- === Onsite Readiness === -->
-  <div class="section-block">
-    <h2>Onsite Readiness</h2>
-
-    <div class="checklist-row">
-      <label>Were service drive stations functional and ready for demo?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Was printer access tested for RO and MPI printouts?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-
-    <div class="checklist-row">
-      <label>Was the DMS integration confirmed as working?</label>
-      <select>
-        <option></option><option>Yes</option><option>No</option><option>N/A</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- === Monday Visit Notes === -->
-  <div class="section-block comment-box">
-    <h2>Monday Visit Notes</h2>
-    <textarea placeholder="Add notes or observations from Monday’s visit…"></textarea>
-  </div>
-</section>
+// === Auto-fill End Date (+2 days) ===
+const startDate = document.getElementById('training-start');
+const endDate = document.getElementById('training-end');
+startDate?.addEventListener('change', () => {
+  const date = new Date(startDate.value);
+  if (!isNaN(date)) {
+    date.setDate(date.getDate() + 2);
+    const offset = date.getTimezoneOffset();
+    const adjusted = new Date(date.getTime() - offset * 60 * 1000);
+    endDate.value = adjusted.toISOString().split('T')[0];
+  }
+});
+</script>
 
     <!-- ========================================================= -->
 <!-- === PAGE 5 : TRAINING CHECKLIST === -->
