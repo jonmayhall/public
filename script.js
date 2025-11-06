@@ -1,22 +1,26 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – JS Logic
-   Updated: November 2025
+   Verified: November 2025
    ======================================================= */
 
 /* === SIDEBAR NAVIGATION (Stable) === */
-document.addEventListener('DOMContentLoaded', () => {
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const sections = document.querySelectorAll('.page-section');
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.nav-btn');
+  const pages = document.querySelectorAll('.page-section');
 
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      navButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // remove current active button
+      buttons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
 
-      const targetId = btn.dataset.target;
-      sections.forEach(sec => sec.classList.remove('active'));
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) targetSection.classList.add('active');
+      // hide all pages
+      pages.forEach(p => p.classList.remove('active'));
+
+      // show the selected page
+      const targetId = this.getAttribute('data-target');
+      const targetPage = document.getElementById(targetId);
+      if (targetPage) targetPage.classList.add('active');
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -47,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =======================================================
      PAGE COMPLETION + TIMESTAMP
      ======================================================= */
-  const pages = document.querySelectorAll('.page-section');
-  pages.forEach(page => {
+  const pagesWithStatus = document.querySelectorAll('.page-section');
+  pagesWithStatus.forEach(page => {
     const statusBanner = page.querySelector('.page-status');
     if (!statusBanner) return;
 
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el.type === 'checkbox') return el.checked;
         return el.value.trim() !== '';
       });
+
       if (filled.length && filled.length === inputs.length) {
         const now = new Date();
         const ts = now.toLocaleString();
@@ -71,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusBanner.style.borderColor = '#ccc';
       }
     };
+
     page.addEventListener('input', updateStatus);
     updateStatus();
   });
