@@ -261,193 +261,316 @@
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- === PAGE 5 : TRAINING CHECKLIST === -->
-      <!-- ========================================================= -->
-      <section id="training-checklist" class="page-section">
-        <h1>Training Checklist</h1>
-        <div class="page-complete" style="display:none;">Page Complete<span class="page-timestamp"></span></div>
+     <!-- ========================================================= -->
+<!-- === PAGE 5 : TRAINING CHECKLIST (RESTORED TABLES) === -->
+<!-- ========================================================= -->
+<section id="training-checklist" class="page-section">
+  <h1>Training Checklist</h1>
+  <div class="page-complete" style="display:none;">Page Complete<span class="page-timestamp"></span></div>
 
-        <!-- Technicians -->
-        <div class="card">
-          <h2>Technicians</h2>
-          <div class="scroll-wrapper">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th>Technician Name</th>
-                  <th>Role</th>
-                  <th>Device</th>
-                  <th>Installed App</th>
-                  <th>Signed In</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><input type="text" /></td>
-                </tr>
-              </tbody>
-              <tfoot><tr><td colspan="6"><button class="add-btn" type="button">+</button></td></tr></tfoot>
-            </table>
-          </div>
-        </div>
+  <!-- Technicians – Checklist -->
+  <div class="card">
+    <h2>Technicians – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>Search Bar</th>
+            <th>RO Assignment</th><th>Dispatch</th><th>RO History</th><th>Prev. Declines</th>
+            <th>Workflow</th><th>OCR</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+            <th>Adding Media</th><th>Status Change</th><th>Notifications</th><th>Filters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Technician Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Technician Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="17" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <!-- Service Advisors -->
-        <div class="card">
-          <h2>Service Advisors</h2>
-          <div class="scroll-wrapper">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th>Advisor Name</th>
-                  <th>Role</th>
-                  <th>Device</th>
-                  <th>Installed App</th>
-                  <th>Signed In</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><input type="text" /></td>
-                </tr>
-              </tbody>
-              <tfoot><tr><td colspan="6"><button class="add-btn" type="button">+</button></td></tr></tfoot>
-            </table>
-          </div>
-        </div>
+  <!-- Service Advisors – Checklist -->
+  <div class="card">
+    <h2>Service Advisors – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>DMS ID</th><th>Login</th><th>Mobile App Menu</th><th>MCI</th>
+            <th>Workflow</th><th>Search Bar</th><th>RO Assignment</th><th>DMS History</th>
+            <th>Prev. Declines</th><th>OCR</th><th>Edit ASR</th><th>ShopChat</th>
+            <th>Status Change</th><th>MPI Send</th><th>Desktop Filter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Advisor Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="16" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <!-- Parts Reps -->
-        <div class="card">
-          <h2>Parts Reps</h2>
-          <div class="scroll-wrapper">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th>Parts Rep Name</th>
-                  <th>Role</th>
-                  <th>Device</th>
-                  <th>Installed App</th>
-                  <th>Signed In</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><input type="text" /></td>
-                </tr>
-              </tbody>
-              <tfoot><tr><td colspan="6"><button class="add-btn" type="button">+</button></td></tr></tfoot>
-            </table>
-          </div>
-        </div>
+  <!-- Parts Representatives – Checklist -->
+  <div class="card">
+    <h2>Parts Representatives – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>DMS ID</th><th>Login</th><th>Web App</th><th>Search Bar</th>
+            <th>Take Function</th><th>DMS History</th><th>Prev. Declines</th>
+            <th>Parts Tab</th><th>Edit ASR</th><th>ShopChat / Parts</th>
+            <th>Status Change</th><th>Notifications</th><th>Filters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Parts Rep Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="14" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <!-- BDC -->
-        <div class="card">
-          <h2>BDC</h2>
-          <div class="scroll-wrapper">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th>BDC Rep Name</th>
-                  <th>Role</th>
-                  <th>Device</th>
-                  <th>Installed App</th>
-                  <th>Signed In</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><input type="text" /></td>
-                </tr>
-              </tbody>
-              <tfoot><tr><td colspan="6"><button class="add-btn" type="button">+</button></td></tr></tfoot>
-            </table>
-          </div>
-        </div>
+  <!-- BDC Representatives – Checklist -->
+  <div class="card">
+    <h2>BDC Representatives – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>DMS ID</th><th>Login</th><th>Scheduler</th>
+            <th>Declined Services</th><th>ServiceConnect</th><th>Routing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="BDC Rep Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="7" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <!-- Pickup &amp; Delivery -->
-        <div class="card">
-          <h2>Pickup &amp; Delivery</h2>
-          <div class="scroll-wrapper">
-            <table class="training-table">
-              <thead>
-                <tr>
-                  <th>Driver Name</th>
-                  <th>Vehicle</th>
-                  <th>Device</th>
-                  <th>Installed App</th>
-                  <th>Signed In</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><input type="text" /></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
-                  <td><input type="text" /></td>
-                </tr>
-              </tbody>
-              <tfoot><tr><td colspan="6"><button class="add-btn" type="button">+</button></td></tr></tfoot>
-            </table>
-          </div>
-        </div>
+  <!-- Pickup & Delivery Dispatcher – Checklist -->
+  <div class="card">
+    <h2>Pickup &amp; Delivery Dispatcher – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Creating Trips</th><th>Customer Tab</th><th>Editing Trips</th>
+            <th>Adding Driver</th><th>Adding Loaners</th><th>Drivers View / Mobile App</th><th>Global View</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Dispatcher Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="8" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <div class="section-block">
-          <h2>Training Checklist Notes</h2>
-          <textarea placeholder="Enter any training observations, missing users, or hardware issues…"></textarea>
-        </div>
-      </section>
-      <!-- ========================================================= -->
-      <!-- === PAGE 6 : OPCODES & PRICING === -->
-      <!-- ========================================================= -->
-      <section id="opcodes-pricing" class="page-section">
-        <h1>Opcodes &amp; Pricing</h1>
-        <div class="page-complete" style="display:none;">Page Complete<span class="page-timestamp"></span></div>
+  <!-- Pickup & Delivery Drivers – Checklist -->
+  <div class="card">
+    <h2>Pickup &amp; Delivery Drivers – Checklist</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>App Login</th><th>PU&amp;D</th><th>Notifications</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Driver Name"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
 
-        <div class="section-block">
-          <h2>Opcodes</h2>
-          <div class="checklist-row"><label>Are opcodes loaded and configured properly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Do they use factory maintenance menus?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Are pricing rules applied consistently?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
+  <div class="section-block comment-box">
+    <h2>Training Checklist Notes</h2>
+    <textarea placeholder="Enter any training observations, missing users, or hardware issues…"></textarea>
+  </div>
+</section>
 
-        <div class="section-block">
-          <h2>Parts Pricing</h2>
-          <div class="checklist-row"><label>Are parts kits used and priced correctly?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-          <div class="checklist-row"><label>Is battery pricing verified and accurate?</label><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></div>
-        </div>
+    <!-- ========================================================= -->
+<!-- === PAGE 6 : OPCODES & PRICING (RESTORED TABLES) === -->
+<!-- ========================================================= -->
+<section id="opcodes-pricing" class="page-section">
+  <h1>Opcodes &amp; Pricing</h1>
+  <div class="page-complete" style="display:none;">Page Complete<span class="page-timestamp"></span></div>
 
-        <div class="section-block">
-          <h2>Opcodes &amp; Pricing Notes</h2>
-          <textarea placeholder="Enter opcode setup notes, pricing issues, or recommendations…"></textarea>
-        </div>
-      </section>
+  <!-- Opcodes Setup -->
+  <div class="card">
+    <h2>Opcodes Setup</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Opcode</th><th>Hours</th><th>Customer Pay Labor Rate</th>
+            <th>Fixed Customer Pay Labor Rate</th><th>Labor Charged</th>
+            <th>Set Parts Charged</th><th>Parts Retail</th><th>ServiceCart</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" value="2 Wheel Alignment"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+          </tr>
+          <tr>
+            <td><input type="text" value="Brake Fluid Exchange"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+          </tr>
+          <tr>
+            <td><input type="text" value="Battery Replacement"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="9" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- MPI Opcodes -->
+  <div class="card">
+    <h2>MPI Opcodes</h2>
+    <div class="scroll-wrapper">
+      <table class="training-table">
+        <thead>
+          <tr>
+            <th>MPI Line</th>
+            <th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" value="Exterior Lights"></td>
+            <td><input type="text"></td><td><input type="text"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+          <tr>
+            <td><input type="text" value="Front Brake Pads"></td>
+            <td><input type="text"></td><td><input type="text"></td>
+            <td><select><option></option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" style="text-align:center;"><button class="add-btn" type="button">+</button></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-block comment-box">
+    <h2>Opcodes &amp; Pricing Notes</h2>
+    <textarea placeholder="Enter opcode setup notes, pricing issues, or recommendations…"></textarea>
+  </div>
+</section>
 
       <!-- ========================================================= -->
       <!-- === PAGE 7 : DMS INTEGRATION === -->
