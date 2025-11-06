@@ -1,384 +1,334 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Layout
-   Updated: November 2025
+   myKaarma Interactive Training Checklist
+   Restored Spacious Layout - November 2025
    ======================================================= */
 
-/* === COLOR VARIABLES === */
+/* === ROOT VARIABLES === */
 :root {
-  --orange: #f36f21;
-  --light-orange: #f8b17b;
-  --gray-bg: #d7d7d7;
-  --card-bg: #fff;
-  --border: #dcdcdc;
-  --ink: #222;
-  --radius: 16px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
-  --complete-green: #d8f6d0;
-  --complete-border: #8ac78a;
+  --myk-dark-orange: #e96b00;
+  --myk-light-orange: #ffd8b1;
+  --card-bg: #ffffff;
+  --border-gray: #dcdcdc;
+  --light-gray: #f7f7f7;
+  --green-complete: #d8f6d0;
+  --font-color: #222;
+  --shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* === BASE STRUCTURE === */
-html, body {
+/* === GLOBAL RESET === */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
+  background-color: #f3f3f3;
+  color: var(--font-color);
 }
 
 /* === TOP BAR === */
 #topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
-  height: 70px;
+  background-color: #fff;
+  border-bottom: 3px solid var(--myk-dark-orange);
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  padding: 0 40px;
-}
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
-#dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  z-index: 999;
 }
 
-/* === LAYOUT === */
+.top-logo {
+  height: 40px;
+}
+
+#dealershipNameDisplay {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--myk-dark-orange);
+}
+
+/* === APP LAYOUT === */
 #app {
   display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
+  min-height: calc(100vh - 70px);
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
+/* === SIDEBAR === */
 #sidebar {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
-  box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px;
-  bottom: 0;
+  width: 250px;
+  background-color: #2e2e2e;
+  color: white;
+  padding: 10px;
   overflow-y: auto;
 }
-nav {
+
+#sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-.nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s;
-  color: var(--ink);
-}
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
+  gap: 8px;
 }
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
-main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  background: var(--gray-bg);
-  box-sizing: border-box;
+.nav-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-btn.active {
+  background: var(--myk-dark-orange);
+  border-color: var(--myk-dark-orange);
+}
+
+/* === MAIN CONTENT === */
+#content {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: #f3f3f3;
+}
+
 .page-section {
   display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 30px 36px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
 }
+
 .page-section.active {
   display: block;
 }
+
 .page-section h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  color: var(--myk-dark-orange);
+  margin-top: 0;
+  margin-bottom: 25px;
+  line-height: 1.3;
 }
 
-/* =======================================================
-   PAGE COMPLETION BANNER
-   ======================================================= */
+/* === PAGE STATUS / COMPLETE BAR === */
 .page-status {
-  background: var(--complete-green);
-  border: 1px solid var(--complete-border);
-  color: #285e28;
-  font-size: 13px;
+  border: 1px solid #ccc;
+  background: #f6f6f6;
+  color: #333;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.page-complete {
+  font-size: 14px;
+  color: #155724;
+  background: var(--green-complete);
+  border: 1px solid #8ac78a;
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: inline-block;
+}
+
+/* === SECTION BLOCKS === */
+.section-block {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-gray);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+}
+
+.section-block h2 {
+  background: var(--myk-dark-orange);
+  color: white;
+  margin: -20px -20px 15px -20px;
+  padding: 12px 20px;
+  border-radius: 14px 14px 0 0;
+  font-size: 18px;
+}
+
+.section-block.comment-box h2 {
+  background: var(--myk-light-orange);
+  color: #000;
+  border-radius: 14px 14px 0 0;
+}
+
+/* === CHECKLIST ROWS === */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 20px;
+}
+
+.checklist-row label {
+  flex: 1 1 auto;
   font-weight: 500;
 }
 
-/* =======================================================
-   SECTION STYLING
-   ======================================================= */
-.section {
-  margin-bottom: 40px;
-}
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 12px 18px;
-  border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
-  font-size: 16px;
-  line-height: 1.3;
-}
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  padding-bottom: 10px;
-}
-.section-block h2 {
-  background: var(--orange);
-  color: #fff;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.checklist-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-}
-.checklist-row label {
-  flex: 1;
-  font-size: 14px;
-  padding-right: 20px;
-}
-.checklist-row input,
-.checklist-row select {
-  width: 220px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #f4f4f4;
-  font-size: 14px;
-}
-.checklist-row select:focus,
-.checklist-row input:focus {
-  border-color: var(--orange);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* =======================================================
-   TEXTAREAS
-   ======================================================= */
-textarea {
-  width: calc(100% - 32px);
-  margin: 16px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fafafa;
-  resize: none;
-  overflow: hidden;
-  font-family: inherit;
+.checklist-row select,
+.checklist-row input[type="text"],
+.checklist-row input[type="email"],
+.checklist-row input[type="date"],
+.checklist-row textarea {
+  flex: 0 0 230px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   font-size: 14px;
 }
 
-/* =======================================================
-   TABLE STYLING
-   ======================================================= */
-.table-container {
+.checklist-row textarea {
   width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin: 0;
-}
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: #fff;
-}
-.training-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: max-content;
-  min-width: 100%;
-}
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  min-height: 80px;
 }
 
-/* === HEADER ROW === */
-.training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  border-radius: 0;
-}
-
-/* === FIRST COLUMN STICKY === */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
-  background: #fff;
-  text-align: left;
-  width: 280px;
-  min-width: 280px;
-  padding: 6px 10px;
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === CHECKBOX + NAME FIELD === */
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  transform: scale(1.1);
-}
-.training-table td:first-child input[type="text"] {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-}
-
-/* === INPUTS IN TABLE === */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  background: #fff9f5;
-  outline: none;
-}
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === TABLE FOOTER === */
-.table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: none;
-  background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
-  padding: 8px 12px;
-}
+/* === ADD BUTTONS === */
+.add-btn,
 .add-row {
-  background: var(--orange);
-  color: #fff;
+  background: var(--myk-dark-orange);
+  color: white;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-  transition: 0.2s;
+  line-height: 32px;
+  text-align: center;
+  transition: background 0.2s;
 }
+
+.add-btn:hover,
 .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
+  background: #c65b00;
 }
 
-/* =======================================================
-   FLOATING BUTTON
-   ======================================================= */
-.floating-btn {
-  position: fixed;
-  top: 90px;
-  right: 25px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  padding: 10px 18px;
-  font-size: 14px;
-  cursor: pointer;
+/* === TABLE CARDS === */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
   box-shadow: var(--shadow);
-  transition: 0.2s;
-}
-.floating-btn:hover {
-  background: #ff8848;
+  padding: 0;
+  margin-bottom: 40px;
+  overflow: hidden;
 }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
+.card h2 {
+  background: var(--myk-dark-orange);
+  color: white;
+  padding: 14px 20px;
+  margin: 0;
+  border-radius: 16px 16px 0 0;
 }
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+
+.scroll-wrapper {
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  padding: 10px 20px 0 20px;
+}
+
+/* === TABLES === */
+.training-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-gray);
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+}
+
+.training-table thead th {
+  background-color: var(--myk-light-orange);
+  color: #000;
+  padding: 10px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid var(--border-gray);
+}
+
+.training-table td {
+  border-bottom: 1px solid var(--border-gray);
+  padding: 8px 10px;
+}
+
+.training-table input,
+.training-table select {
+  width: 100%;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.training-table tfoot td {
+  background-color: var(--light-gray);
+  text-align: center;
+  padding: 10px;
+  border-top: 2px solid var(--border-gray);
+  border-radius: 0 0 16px 16px;
+}
+
+/* === COMMENT BOX / TEXTAREAS === */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* === SUBMIT BUTTON === */
+#submitSummaryBtn {
+  background: var(--myk-dark-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+#submitSummaryBtn:hover {
+  background: #c65b00;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  #app {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .nav-btn {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+
+  #content {
+    padding: 20px;
+  }
 }
