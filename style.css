@@ -1,18 +1,18 @@
 /* =======================================================
    myKaarma Interactive Training Checklist
-   Spacious Layout – November 2025
+   Clean Compact UI – November 2025
    ======================================================= */
 
-/* === COLOR VARIABLES === */
+/* === COLORS === */
 :root {
   --myk-orange: #e96b00;
-  --myk-orange-light: #ffe4c4;
-  --myk-orange-dark: #cc5f00;
-  --card-bg: #ffffff;
-  --border-gray: #d6d6d6;
-  --light-gray: #f8f8f8;
-  --page-bg: #f3f3f3;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --myk-orange-dark: #c95e00;
+  --myk-orange-light: #ffe3c4;
+  --page-bg: #f4f4f4;
+  --card-bg: #fff;
+  --border: #d9d9d9;
+  --sidebar-bg: #ededed;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* === GLOBAL === */
@@ -21,140 +21,122 @@
 }
 
 body {
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--page-bg);
   color: #222;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 /* === TOP BAR === */
 #topbar {
-  background-color: var(--myk-orange);
-  color: white;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 28px;
+  align-items: center;
+  background: var(--myk-orange);
+  padding: 8px 22px;
+  color: #fff;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   box-shadow: var(--shadow);
 }
 
 .top-logo {
-  height: 42px;
+  height: 36px;
 }
 
 #dealershipNameDisplay {
-  font-weight: 700;
-  font-size: 21px;
-  color: white;
+  font-weight: 600;
+  font-size: 19px;
 }
 
-/* === APP LAYOUT === */
+/* === LAYOUT === */
 #app {
   display: flex;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 60px);
 }
 
 /* === SIDEBAR === */
 #sidebar {
-  width: 250px;
-  background-color: #f9f9f9;
-  border-right: 1px solid #ddd;
-  padding: 18px 16px;
-  box-shadow: inset -1px 0 0 #ccc;
+  width: 230px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid #ccc;
+  padding: 16px 12px;
 }
 
 #sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nav-btn {
   background: #fff;
-  color: #333;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 11px 16px;
-  text-align: left;
-  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 500;
+  text-align: left;
+  padding: 9px 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  color: #333;
+  transition: all 0.2s;
 }
 
 .nav-btn:hover {
-  background: #f1f1f1;
+  background: #f6f6f6;
 }
 
 .nav-btn.active {
   background: var(--myk-orange);
-  color: white;
+  color: #fff;
   border-color: var(--myk-orange-dark);
 }
 
 /* === MAIN CONTENT === */
 #content {
   flex: 1;
-  padding: 50px 60px;
-  max-width: 1300px;
-  margin: 0 auto;
+  padding: 38px 50px;
 }
 
 .page-section {
   display: none;
 }
-
 .page-section.active {
   display: block;
 }
 
 .page-section h1 {
   color: var(--myk-orange);
-  font-size: 30px;
-  margin-top: 0;
-  margin-bottom: 28px;
-  line-height: 1.3;
-}
-
-/* === PAGE STATUS === */
-.page-status {
-  display: inline-block;
-  font-size: 14px;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  background: #fafafa;
-  border-radius: 8px;
-  margin-bottom: 22px;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 22px 0;
 }
 
 /* === SECTION BLOCKS === */
 .section-block {
   background: var(--card-bg);
-  border: 1px solid var(--border-gray);
-  border-radius: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   box-shadow: var(--shadow);
-  margin-bottom: 45px;
-  padding: 24px;
+  margin-bottom: 32px;
+  padding: 18px 20px;
 }
 
 .section-block h2 {
   background: var(--myk-orange);
-  color: white;
-  margin: -24px -24px 20px -24px;
-  padding: 14px 24px;
-  border-radius: 18px 18px 0 0;
-  font-size: 18px;
+  color: #fff;
+  margin: -18px -20px 16px -20px;
+  padding: 10px 18px;
+  border-radius: 14px 14px 0 0;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .section-block.comment-box h2 {
   background: var(--myk-orange-light);
   color: #333;
-  border-radius: 18px 18px 0 0;
 }
 
 /* === CHECKLIST ROWS === */
@@ -162,8 +144,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  gap: 20px;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
 .checklist-row label {
@@ -175,99 +157,97 @@ body {
 .checklist-row input[type="text"],
 .checklist-row input[type="email"],
 .checklist-row input[type="date"] {
-  flex: 0 0 250px;
-  padding: 7px 9px;
-  font-size: 14px;
+  flex: 0 0 220px;
+  padding: 6px 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 7px;
-}
-
-/* === ADD BUTTONS === */
-.add-btn {
-  background: var(--myk-orange);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 22px;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  line-height: 34px;
-  transition: background 0.25s;
-}
-
-.add-btn:hover {
-  background: var(--myk-orange-dark);
+  font-size: 14px;
 }
 
 /* === TABLE CARDS === */
 .card {
   background: var(--card-bg);
-  border-radius: 18px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
-  margin-bottom: 55px;
+  margin-bottom: 40px;
   overflow: hidden;
 }
 
 .card h2 {
   background: var(--myk-orange);
-  color: white;
-  padding: 15px 24px;
+  color: #fff;
   margin: 0;
-  font-size: 18px;
-  border-radius: 18px 18px 0 0;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 14px 14px 0 0;
 }
 
 .scroll-wrapper {
   overflow-x: auto;
-  background: var(--card-bg);
-  padding: 22px 24px;
+  padding: 18px 20px;
 }
 
 /* === TRAINING TABLES === */
 .training-table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--border-gray);
+  border: 1px solid var(--border);
 }
 
 .training-table thead th {
-  background-color: var(--myk-orange-light);
+  background: var(--myk-orange-light);
   color: #222;
-  padding: 11px 10px;
-  text-align: left;
   font-weight: 600;
-  border-bottom: 2px solid var(--border-gray);
-  white-space: nowrap;
+  text-align: left;
+  padding: 9px;
+  border-bottom: 2px solid var(--border);
 }
 
 .training-table td {
-  border-bottom: 1px solid var(--border-gray);
-  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  padding: 7px 8px;
 }
 
 .training-table input,
 .training-table select {
   width: 100%;
-  padding: 5px;
+  padding: 4px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
 
 .training-table tfoot td {
-  background-color: var(--light-gray);
-  padding: 10px;
-  border-top: 2px solid var(--border-gray);
+  background: #f8f8f8;
+  padding: 8px;
   text-align: center;
+  border-top: 2px solid var(--border);
 }
 
-/* === TEXTAREA STYLES === */
+/* === ADD BUTTON === */
+.add-btn {
+  background: var(--myk-orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  line-height: 30px;
+  transition: background 0.25s;
+}
+.add-btn:hover {
+  background: var(--myk-orange-dark);
+}
+
+/* === TEXTAREA === */
 textarea {
   width: 100%;
-  min-height: 130px;
+  min-height: 100px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 8px;
   resize: vertical;
   font-family: inherit;
 }
@@ -275,15 +255,14 @@ textarea {
 /* === SUBMIT BUTTON === */
 #submitSummaryBtn {
   background: var(--myk-orange);
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 12px 32px;
-  font-size: 16px;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 15px;
   cursor: pointer;
   transition: background 0.25s;
 }
-
 #submitSummaryBtn:hover {
   background: var(--myk-orange-dark);
 }
@@ -293,25 +272,21 @@ textarea {
   #app {
     flex-direction: column;
   }
-
   #sidebar {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
   }
-
   #sidebar-nav {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
-
   .nav-btn {
     flex: 1 1 45%;
     text-align: center;
   }
-
   #content {
-    padding: 30px 20px;
+    padding: 24px;
   }
 }
