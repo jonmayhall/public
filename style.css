@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Final Visuals
+   myKaarma Interactive Training Checklist – Final Restored Table Layout
    ======================================================= */
 
 :root {
@@ -120,18 +120,17 @@ h1 {
 }
 
 /* === SECTION BLOCKS === */
-.section {
-  margin-bottom:35px;
-}
-.section-block {
+.section-block,
+.card {
   background:#fff;
+  border:1px solid var(--border);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  margin-bottom:25px;
-  border:1px solid var(--border);
+  margin-bottom:30px;
   overflow:hidden;
 }
-.section-block h2 {
+.section-block h2,
+.card h2 {
   background:var(--orange);
   color:#fff;
   margin:0;
@@ -141,6 +140,10 @@ h1 {
   border-top-left-radius:var(--radius);
   border-top-right-radius:var(--radius);
 }
+.section-block .checklist-row:first-of-type,
+.card .checklist-row:first-of-type {
+  border-top:1px solid var(--border);
+}
 
 /* === CHECKLIST ROWS === */
 .checklist-row {
@@ -149,6 +152,7 @@ h1 {
   align-items:center;
   padding:10px 16px;
   border-top:1px solid var(--border);
+  background:#fff;
 }
 .checklist-row label {
   flex:1;
@@ -177,85 +181,53 @@ textarea {
 }
 
 /* === TABLES === */
-.table-container {
-  width:100%;
-  background:#fff;
-  border:1px solid var(--border);
-  border-bottom:none;
-  border-radius:var(--radius) var(--radius) 0 0;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  margin:0;
-}
 .scroll-wrapper {
-  display:block;
   width:100%;
   overflow:auto;
+  background:#fff;
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  background:#fff;
 }
 .training-table {
+  width:100%;
   border-collapse:collapse;
   border-spacing:0;
-  width:max-content;
-  min-width:100%;
+  background:#fff;
 }
 .training-table th,
 .training-table td {
-  white-space:nowrap;
   text-align:center;
   font-size:13px;
   border-right:1px solid var(--border);
   border-bottom:1px solid var(--border);
   padding:8px 10px;
+  white-space:nowrap;
 }
 .training-table thead th {
   background:var(--light-orange);
   color:#fff;
   font-weight:600;
+  border:none;
+  border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
-  z-index:3;
-  border-radius:0;
+  z-index:2;
 }
 .training-table th:first-child,
 .training-table td:first-child {
-  position:sticky;
-  left:0;
-  z-index:4;
-  background:#fff;
   text-align:left;
-  width:260px;
-  min-width:260px;
-}
-.training-table td:first-child {
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.training-table td:first-child input[type="text"] {
-  flex:1;
-  padding:6px 8px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#f2f2f2;
-}
-.training-table input[type="text"],
-.training-table select {
-  width:100%;
-  box-sizing:border-box;
-  padding:6px 8px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#f2f2f2;
-  font-family:"Roboto",sans-serif;
-  font-size:13px;
 }
 .training-table tr:nth-child(odd){background:#fff;}
 .training-table tr:nth-child(even){background:#fafafa;}
 
-/* === TABLE FOOTER === */
+/* === TABLE FOOTERS === */
+.training-table tfoot td {
+  border:none;
+  text-align:center;
+  background:#fff;
+  padding:10px;
+  border-top:1px solid var(--border);
+}
 .table-footer {
   width:100%;
   border:1px solid var(--border);
@@ -265,20 +237,22 @@ textarea {
   text-align:left;
   padding:8px 12px;
 }
-.add-row, .add-btn {
+
+/* === ADD BUTTONS === */
+.add-btn, .add-row {
   background:var(--orange);
   color:#fff;
   border:none;
   border-radius:50%;
-  width:26px;
-  height:26px;
-  font-size:15px;
+  width:28px;
+  height:28px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 2px 6px rgba(243,111,33,0.3);
   transition:0.2s;
 }
-.add-row:hover, .add-btn:hover {
+.add-btn:hover, .add-row:hover {
   background:#ff8b42;
   transform:scale(1.1);
 }
