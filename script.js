@@ -1,81 +1,159 @@
 // =======================================================
-// myKaarma Interactive Checklist – Stable Navigation & Table Cloning
+// myKaarma Interactive Training Checklist
+// Full Functional JS – Restored Stable Build
 // =======================================================
 
-// Sidebar navigation
-window.addEventListener('DOMContentLoaded', () => {
-  const nav = document.getElementById('sidebar-nav');
-  const sections = document.querySelectorAll('.page-section');
+// Wait until the DOM is fully loaded
+window.addEventListener("DOMContentLoaded", () => {
 
-  if (nav) {
-    nav.addEventListener('click', (e) => {
-      const btn = e.target.closest('.nav-btn');
-      if (!btn) return;
+  // =======================================================
+  // SIDEBAR NAVIGATION
+  // =======================================================
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const sections = document.querySelectorAll(".page-section");
+
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active class from all buttons
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Hide all page sections, then show the selected one
+      sections.forEach((sec) => sec.classList.remove("active"));
       const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
+      if (target) target.classList.add("active");
 
-      nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      sections.forEach(sec => sec.classList.remove('active'));
-      target.classList.add('active');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll smoothly to the top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }
+  });
 
-  // Add-row handler: clone the LAST data row in this section's table body
-  document.querySelectorAll('.table-footer .add-row').forEach(button => {
-    button.addEventListener('click', () => {
-      const section = button.closest('.section');
-      if (!section) return;
-      const table = section.querySelector('table.training-table');
+  // =======================================================
+  // ADD-ROW FUNCTIONALITY FOR TABLES
+  // =======================================================
+  const addRowButtons = document.querySelectorAll(".add-row");
+  addRowButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const table = button.closest(".section").querySelector("table.training-table");
       if (!table) return;
 
       const tbody = table.tBodies[0];
       if (!tbody || !tbody.rows.length) return;
 
-      // find last row with real inputs to clone
-      const rowToClone = [...tbody.rows].slice(-1)[0].cloneNode(true);
+      // Clone the last row
+      const rowToClone = tbody.rows[tbody.rows.length - 1];
+      const newRow = rowToClone.cloneNode(true);
 
-      // reset fields in the clone
-      rowToClone.querySelectorAll('input, select').forEach(el => {
-        if (el.type === 'checkbox') el.checked = false;
-        else el.value = '';
+      // Reset all inputs and selects in the new row
+      newRow.querySelectorAll("input, select").forEach((el) => {
+        if (el.type === "checkbox") el.checked = false;
+        else el.value = "";
       });
 
-      tbody.appendChild(rowToClone);
+      // Append the new row to the table body
+      tbody.appendChild(newRow);
     });
   });
 
-  // Save all pages as PDF from Summary page button
-  const saveBtn = document.getElementById('savePDF');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p', 'pt', 'a4');
-      const pages = document.querySelectorAll('.page-section');
+  // =======================================================
+  // ADDITIONAL TRAINERS SECTION
+  // =======================================================
+  const addTrainerBtn = document.querySelector(".add-trainer-btn");
+  const trainerSection = document.getElementById("additionalTrainers");
 
-      const marginX = 30, marginY = 30, lineHeight = 14, maxWidth = 535;
+  if (addTrainerBtn && trainerSection) {
+    addTrainerBtn.addEventListener("click", () => {
+      const newTrainerRow = document.createElement("div");
+      newTrainerRow.classList.add("checklist-row");
+      newTrainerRow.style.paddingLeft = "40px";
+      newTrainerRow.innerHTML = `
+        <label>Additional Trainer</label>
+        <input type="text" placeholder="Trainer Name">
+      `;
+      trainerSection.appendChild(newTrainerRow);
+    });
+  }
+
+  // =======================================================
+  // ADDITIONAL POC SECTION (DEALERSHIP INFO PAGE)
+  // =======================================================
+  const addPocBtn = document.querySelector(".add-poc-btn");
+  const pocContainer = document.getElementById("additionalPOCs");
+
+  if (addPocBtn && pocContainer) {
+    addPocBtn.addEventListener("click", () => {
+      const block = document.createElement("div");
+      block.innerHTML = `
+        <div class="checklist-row" style="padding-left:40px;">
+          <label>Additional POC</label>
+          <input type="text" placeholder="Full Name">
+        </div>
+        <div class="checklist-row" style="padding-left:60px;">
+          <label>Cell</label>
+          <input type="text" placeholder="(xxx) xxx-xxxx">
+        </div>
+        <div class="checklist-row" style="padding-left:60px;">
+          <label>Email</label>
+          <input type="email" placeholder="example@email.com">
+        </div>
+      `;
+      pocContainer.appendChild(block);
+    });
+  }
+
+  // =======================================================
+  // AUTO-FILL TRAINING END DATE
+  // =======================================================
+  const startDateInput = document.querySelector("#trainingStartDate");
+  const endDateInput = document.querySelector("#trainingEndDate");
+
+  if (startDateInput && endDateInput) {
+    startDateInput.addEventListener("change", () => {
+      const startDate = new Date(startDateInput.value);
+      if (!isNaN(startDate)) {
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 2);
+
+        // Format YYYY-MM-DD
+        const formatted = endDate.toISOString().split("T")[0];
+        endDateInput.value = formatted;
+      }
+    });
+  }
+
+  // =======================================================
+  // SAVE AS PDF (Optional future use)
+  // =======================================================
+  const saveBtn = document.getElementById("savePDF");
+  if (saveBtn) {
+    saveBtn.addEventListener("click", async () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF("p", "pt", "a4");
+      const pages = document.querySelectorAll(".page-section");
+
+      const marginX = 30, marginY = 30, maxWidth = 535;
       let first = true;
 
-      pages.forEach(page => {
+      pages.forEach((page) => {
         if (!first) doc.addPage();
         first = false;
 
         // Title
-        doc.setFont('helvetica', 'bold');
+        const title = page.querySelector("h1")?.innerText || "Section";
+        doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
-        doc.text(page.querySelector('h1')?.innerText || 'Section', marginX, marginY);
+        doc.text(title, marginX, marginY);
 
-        // Dump text content (simple, reliable fallback)
-        const text = page.innerText.replace(/\s+\n/g, '\n').trim();
-        doc.setFont('helvetica', 'normal');
+        // Page text content
+        const text = page.innerText.replace(/\s+\n/g, "\n").trim();
+        doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
-        doc.text(doc.splitTextToSize(text, maxWidth), marginX, marginY + 24, { lineHeightFactor: 1.15 });
+        doc.text(doc.splitTextToSize(text, maxWidth), marginX, marginY + 24, {
+          lineHeightFactor: 1.15,
+        });
       });
 
-      doc.save('Training_Summary.pdf');
+      doc.save("Training_Summary.pdf");
     });
   }
 });
