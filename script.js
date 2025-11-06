@@ -3,8 +3,8 @@
    Updated: November 2025
    ======================================================= */
 
-window.addEventListener('DOMContentLoaded', () => {
-  /* === SIDEBAR NAVIGATION === */
+/* === SIDEBAR NAVIGATION (Stable) === */
+document.addEventListener('DOMContentLoaded', () => {
   const navButtons = document.querySelectorAll('.nav-btn');
   const sections = document.querySelectorAll('.page-section');
 
@@ -12,25 +12,35 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       navButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+
+      const targetId = btn.dataset.target;
       sections.forEach(sec => sec.classList.remove('active'));
-      const target = document.getElementById(btn.dataset.target);
-      if (target) target.classList.add('active');
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) targetSection.classList.add('active');
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 
-  /* === ADD ROW TO TABLES === */
+  /* === ADD ROW BUTTONS === */
   document.querySelectorAll('.add-row').forEach(button => {
     button.addEventListener('click', () => {
-      const table = button.closest('.section').querySelector('table');
-      if (!table) return;
-      const tbody = table.tBodies[0];
-      const rowClone = tbody.rows[tbody.rows.length - 1].cloneNode(true);
-      rowClone.querySelectorAll('input, select').forEach(el => {
-        if (el.type === 'checkbox') el.checked = false;
-        else el.value = '';
-      });
-      tbody.appendChild(rowClone);
+      const table = button.closest('.section')?.querySelector('table');
+      if (table) {
+        const tbody = table.tBodies[0];
+        const rowClone = tbody.rows[tbody.rows.length - 1].cloneNode(true);
+        rowClone.querySelectorAll('input, select').forEach(el => {
+          if (el.type === 'checkbox') el.checked = false;
+          else el.value = '';
+        });
+        tbody.appendChild(rowClone);
+      } else {
+        // For Additional Trainers add button
+        const parent = button.closest('.checklist-row');
+        const newRow = parent.cloneNode(true);
+        newRow.querySelector('input').value = '';
+        parent.after(newRow);
+      }
     });
   });
 
@@ -39,14 +49,12 @@ window.addEventListener('DOMContentLoaded', () => {
      ======================================================= */
   const pages = document.querySelectorAll('.page-section');
   pages.forEach(page => {
-    const statusBanner = document.createElement('div');
-    statusBanner.className = 'page-status';
-    statusBanner.textContent = 'Incomplete';
-    page.prepend(statusBanner);
+    const statusBanner = page.querySelector('.page-status');
+    if (!statusBanner) return;
 
     const updateStatus = () => {
-      const inputs = [...page.querySelectorAll('input, select, textarea')]
-        .filter(el => !el.closest('.section-block.comment-box')); // ignore notes sections
+      const inputs = [...page.querySelectorAll('input, select')]
+        .filter(el => !el.closest('.section-block.comment-box'));
       const filled = inputs.filter(el => {
         if (el.type === 'checkbox') return el.checked;
         return el.value.trim() !== '';
@@ -63,7 +71,6 @@ window.addEventListener('DOMContentLoaded', () => {
         statusBanner.style.borderColor = '#ccc';
       }
     };
-
     page.addEventListener('input', updateStatus);
     updateStatus();
   });
@@ -92,7 +99,24 @@ window.addEventListener('DOMContentLoaded', () => {
   updateHeader();
 
   /* =======================================================
-     TRAINER DROPDOWN + GOOGLE SHEETS SUBMIT
+     TRAINING END DATE AUTO-FILL (2 days after start)
+     ======================================================= */
+  const start = document.getElementById('trainingStart');
+  const end = document.getElementById('trainingEnd');
+  if (start && end) {
+    start.addEventListener('change', () => {
+      const sDate = new Date(start.value);
+      if (!isNaN(sDate)) {
+        const endDate = new Date(sDate);
+        endDate.setDate(sDate.getDate() + 2);
+        const formatted = endDate.toISOString().split('T')[0];
+        end.value = formatted;
+      }
+    });
+  }
+
+  /* =======================================================
+     GOOGLE SHEETS SUBMIT (Trainer sync)
      ======================================================= */
   const formURL = "https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec";
   const saveBtn = document.getElementById('savePDF') || document.getElementById('submitSummary');
@@ -157,8 +181,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    const allNotes = document.querySelectorAll('textarea');
-    allNotes.forEach(t => t.addEventListener('input', fillSummary));
+    document.querySelectorAll('textarea').forEach(t => t.addEventListener('input', fillSummary));
     fillSummary();
   }
 });
