@@ -1,20 +1,21 @@
 /* =======================================================
    myKaarma Interactive Training Checklist
-   Compact Classic Look – Nov 2025
+   Compact Classic UI – Original Morning Version
    ======================================================= */
 
 :root {
   --myk-orange: #e96b00;
-  --myk-orange-dark: #c75b00;
+  --myk-orange-dark: #c85d00;
   --myk-orange-light: #ffe2c4;
   --sidebar-gray: #e8e8e8;
   --border-gray: #d5d5d5;
-  --page-bg: #f4f4f4;
-  --shadow: 0 2px 6px rgba(0,0,0,0.06);
+  --page-bg: #f5f5f5;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* === GLOBAL === */
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -25,134 +26,228 @@ body {
 
 /* === TOP BAR === */
 #topbar {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: var(--myk-orange);
-  color: #fff; padding: 8px 22px;
-  box-shadow: var(--shadow); position: sticky; top: 0; z-index: 10;
+  color: #fff;
+  padding: 8px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
 }
-.top-logo { height: 36px; }
-#dealershipNameDisplay { font-weight:600; font-size:18px; }
 
-/* === LAYOUT === */
-#app { display:flex; min-height:calc(100vh - 60px); }
+.top-logo { height: 36px; }
+#dealershipNameDisplay { font-weight: 600; font-size: 18px; }
+
+/* === APP LAYOUT === */
+#app {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
 
 /* === SIDEBAR === */
 #sidebar {
-  width:230px; background:var(--sidebar-gray);
-  border-right:1px solid #ccc; padding:14px 12px;
+  width: 230px;
+  background: var(--sidebar-gray);
+  border-right: 1px solid #ccc;
+  padding: 14px 12px;
 }
-#sidebar-nav { display:flex; flex-direction:column; gap:8px; }
+
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .nav-btn {
-  background:#fff; border:1px solid #ccc; border-radius:8px;
-  font-size:14px; font-weight:500; text-align:left;
-  padding:8px 12px; color:#333; cursor:pointer; transition:all .2s;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  padding: 8px 12px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.nav-btn:hover { background:#f6f6f6; }
-.nav-btn.active { background:var(--myk-orange); color:#fff; border-color:var(--myk-orange-dark); }
+.nav-btn:hover { background: #f6f6f6; }
+.nav-btn.active {
+  background: var(--myk-orange);
+  color: #fff;
+  border-color: var(--myk-orange-dark);
+}
 
-/* === MAIN === */
-#content { flex:1; padding:36px 48px; }
-.page-section { display:none; }
-.page-section.active { display:block; }
+/* === MAIN CONTENT === */
+#content {
+  flex: 1;
+  padding: 36px 48px;
+}
+
+.page-section { display: none; }
+.page-section.active { display: block; }
+
 .page-section h1 {
-  color:var(--myk-orange); font-size:26px; font-weight:600;
-  margin:0 0 22px 0;
+  color: var(--myk-orange);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 22px 0;
 }
 
-/* === SECTIONS === */
+/* === SECTION BLOCKS === */
 .section-block {
-  background:#fff; border:1px solid var(--border-gray);
-  border-radius:14px; box-shadow:var(--shadow);
-  margin-bottom:28px; padding:18px 20px;
+  background: #fff;
+  border: 1px solid var(--border-gray);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  padding: 18px 20px;
 }
 .section-block h2 {
-  background:var(--myk-orange); color:#fff;
-  margin:-18px -20px 14px -20px; padding:10px 18px;
-  border-radius:14px 14px 0 0; font-size:16px; font-weight:600;
+  background: var(--myk-orange);
+  color: #fff;
+  margin: -18px -20px 14px -20px;
+  padding: 10px 18px;
+  border-radius: 14px 14px 0 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 .section-block.comment-box h2 {
-  background:var(--myk-orange-light); color:#333;
+  background: var(--myk-orange-light);
+  color: #333;
 }
 
-/* === ROWS === */
+/* === CHECKLIST ROWS === */
 .checklist-row {
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; margin-bottom:8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
 }
-.checklist-row label { flex:1; font-weight:500; }
+.checklist-row label {
+  flex: 1;
+  font-weight: 500;
+}
 .checklist-row select,
 .checklist-row input[type="text"],
 .checklist-row input[type="email"],
 .checklist-row input[type="date"] {
-  flex:0 0 210px; padding:5px 7px; border:1px solid #ccc;
-  border-radius:6px; font-size:14px;
+  flex: 0 0 210px;
+  padding: 5px 7px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 /* === TABLE CARDS === */
 .card {
-  background:#fff; border-radius:14px; box-shadow:var(--shadow);
-  margin-bottom:34px; overflow:hidden;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  margin-bottom: 34px;
+  overflow: hidden;
 }
 .card h2 {
-  background:var(--myk-orange); color:#fff;
-  margin:0; padding:10px 18px; font-size:16px;
-  border-radius:14px 14px 0 0;
+  background: var(--myk-orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 14px 14px 0 0;
+}
+.scroll-wrapper {
+  overflow-x: auto;
+  padding: 16px 18px;
 }
 
-/* === TABLES === */
-.scroll-wrapper { overflow-x:auto; padding:16px 18px; }
+/* === TRAINING TABLES === */
 .training-table {
-  width:100%; border-collapse:collapse;
-  border:1px solid var(--border-gray);
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-gray);
 }
 .training-table thead th {
-  background:var(--myk-orange-light); color:#222;
-  font-weight:600; text-align:left;
-  padding:8px 9px; border-bottom:2px solid var(--border-gray);
+  background: var(--myk-orange-light);
+  color: #222;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 9px;
+  border-bottom: 2px solid var(--border-gray);
 }
 .training-table td {
-  border-bottom:1px solid var(--border-gray);
-  padding:6px 8px;
+  border-bottom: 1px solid var(--border-gray);
+  padding: 6px 8px;
 }
 .training-table input,
 .training-table select {
-  width:100%; padding:4px; border-radius:6px;
-  border:1px solid #ccc; font-size:13px;
+  width: 100%;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
 }
 .training-table tfoot td {
-  background:#f9f9f9; text-align:center;
-  border-top:2px solid var(--border-gray);
-  padding:8px;
+  background: #f9f9f9;
+  text-align: center;
+  border-top: 2px solid var(--border-gray);
+  padding: 8px;
 }
 
 /* === ADD BUTTON === */
 .add-btn {
-  background:var(--myk-orange); color:#fff; border:none;
-  border-radius:50%; font-size:17px; width:30px; height:30px;
-  cursor:pointer; line-height:28px; transition:background .25s;
+  background: var(--myk-orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  line-height: 28px;
+  transition: background 0.25s;
 }
-.add-btn:hover { background:var(--myk-orange-dark); }
+.add-btn:hover { background: var(--myk-orange-dark); }
 
 /* === TEXTAREA === */
 textarea {
-  width:100%; min-height:95px; border:1px solid #ccc;
-  border-radius:8px; padding:8px; resize:vertical;
-  font-family:inherit;
+  width: 100%;
+  min-height: 95px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+  font-family: inherit;
 }
 
 /* === SUBMIT BUTTON === */
 #submitSummaryBtn {
-  background:var(--myk-orange); color:#fff; border:none;
-  border-radius:8px; padding:9px 22px;
-  font-size:15px; cursor:pointer; transition:background .25s;
+  background: var(--myk-orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.25s;
 }
-#submitSummaryBtn:hover { background:var(--myk-orange-dark); }
+#submitSummaryBtn:hover { background: var(--myk-orange-dark); }
 
 /* === RESPONSIVE === */
-@media (max-width:900px){
-  #app{flex-direction:column;}
-  #sidebar{width:100%;border-right:none;border-bottom:1px solid #ccc;}
-  #sidebar-nav{flex-direction:row;flex-wrap:wrap;gap:6px;}
-  .nav-btn{flex:1 1 45%;text-align:center;}
-  #content{padding:26px;}
+@media (max-width: 900px) {
+  #app { flex-direction: column; }
+  #sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+  #sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .nav-btn { flex: 1 1 45%; text-align: center; }
+  #content { padding: 26px; }
 }
