@@ -1,193 +1,159 @@
-// === Sidebar Navigation ===
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+// =======================================================
+// myKaarma Interactive Training Checklist
+// Full Functional JS – Restored Stable Build
+// =======================================================
 
-    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-    const target = document.getElementById(btn.dataset.target);
-    if (target) target.classList.add('active');
+// Wait until the DOM is fully loaded
+window.addEventListener("DOMContentLoaded", () => {
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
+  // =======================================================
+  // SIDEBAR NAVIGATION
+  // =======================================================
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const sections = document.querySelectorAll(".page-section");
 
-// === Add Row Buttons ===
-document.querySelectorAll('.add-row').forEach(button => {
-  button.addEventListener('click', () => {
-    const table = button.closest('.section, .section-block').querySelector('table');
-    if (!table) return;
-    const row = table.querySelector('tbody tr').cloneNode(true);
-    row.querySelectorAll('input, select').forEach(el => {
-      if (el.type === 'checkbox') el.checked = false;
-      else el.value = '';
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active class from all buttons
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Hide all page sections, then show the selected one
+      sections.forEach((sec) => sec.classList.remove("active"));
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.classList.add("active");
+
+      // Scroll smoothly to the top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    table.querySelector('tbody').appendChild(row);
   });
-});
 
-// === Add Additional POC ===
-document.querySelectorAll('.add-poc').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const section = btn.closest('.section-block');
-    const clone = section.querySelectorAll('.checklist-row')[3].cloneNode(true);
-    clone.querySelectorAll('input').forEach(i => (i.value = ''));
-    section.insertBefore(clone, btn.closest('.table-footer'));
-  });
-});
+  // =======================================================
+  // ADD-ROW FUNCTIONALITY FOR TABLES
+  // =======================================================
+  const addRowButtons = document.querySelectorAll(".add-row");
+  addRowButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const table = button.closest(".section").querySelector("table.training-table");
+      if (!table) return;
 
-// === Add Additional Trainer ===
-document.querySelectorAll('.add-trainer').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const section = btn.closest('.section-block');
-    const clone = section.querySelector('input[type="text"]').cloneNode(true);
-    clone.value = '';
-    const newRow = document.createElement('div');
-    newRow.classList.add('checklist-row');
-    newRow.style.paddingLeft = '40px';
-    const label = document.createElement('label');
-    label.textContent = 'Additional Trainers';
-    newRow.appendChild(label);
-    newRow.appendChild(clone);
-    section.insertBefore(newRow, btn.closest('.table-footer'));
-  });
-});
+      const tbody = table.tBodies[0];
+      if (!tbody || !tbody.rows.length) return;
 
-// === Auto-Fill Training End Date ===
-const startDate = document.getElementById('trainingStartDate');
-const endDate = document.getElementById('trainingEndDate');
-if (startDate && endDate) {
-  startDate.addEventListener('change', () => {
-    const start = new Date(startDate.value);
-    if (isNaN(start)) return;
-    const end = new Date(start);
-    end.setDate(start.getDate() + 2);
-    endDate.value = end.toISOString().split('T')[0];
-  });
-}
+      // Clone the last row
+      const rowToClone = tbody.rows[tbody.rows.length - 1];
+      const newRow = rowToClone.cloneNode(true);
 
-// === Auto Update Header with Dealer Group + Dealership Name ===
-const dealerGroupInput = document.getElementById('dealerGroup');
-const dealershipInput = document.getElementById('dealershipName');
-const displayName = document.getElementById('dealershipNameDisplay');
+      // Reset all inputs and selects in the new row
+      newRow.querySelectorAll("input, select").forEach((el) => {
+        if (el.type === "checkbox") el.checked = false;
+        else el.value = "";
+      });
 
-function updateHeaderName() {
-  const group = (dealerGroupInput?.value || '').trim();
-  const name = (dealershipInput?.value || '').trim();
-  const ignore = ['n/a', 'none', 'no', 'unknown', 'idk', "i don't know"];
-  if (!name) return (displayName.textContent = 'Dealership Name');
-  if (!group || ignore.includes(group.toLowerCase())) displayName.textContent = name;
-  else displayName.textContent = `${group} – ${name}`;
-}
-
-if (dealerGroupInput && dealershipInput) {
-  dealerGroupInput.addEventListener('input', updateHeaderName);
-  dealershipInput.addEventListener('input', updateHeaderName);
-}
-
-// === Page Completion + Timestamp ===
-const pages = document.querySelectorAll('.page-section');
-pages.forEach(page => {
-  const inputs = page.querySelectorAll('input[type="text"], input[type="date"], select');
-  const notes = page.querySelectorAll('textarea');
-  const banner = page.querySelector('.page-complete-banner');
-  const timestamp = page.querySelector('.timestamp');
-
-  function checkComplete() {
-    let complete = true;
-    inputs.forEach(el => {
-      if (!el.value) complete = false;
+      // Append the new row to the table body
+      tbody.appendChild(newRow);
     });
-    if (complete) {
-      banner.textContent = '✅ This page is complete.';
-      banner.classList.add('visible');
-      const now = new Date().toLocaleString();
-      timestamp.textContent = `Completed on ${now}`;
-    } else {
-      banner.classList.remove('visible');
-      timestamp.textContent = '';
-    }
+  });
+
+  // =======================================================
+  // ADDITIONAL TRAINERS SECTION
+  // =======================================================
+  const addTrainerBtn = document.querySelector(".add-trainer-btn");
+  const trainerSection = document.getElementById("additionalTrainers");
+
+  if (addTrainerBtn && trainerSection) {
+    addTrainerBtn.addEventListener("click", () => {
+      const newTrainerRow = document.createElement("div");
+      newTrainerRow.classList.add("checklist-row");
+      newTrainerRow.style.paddingLeft = "40px";
+      newTrainerRow.innerHTML = `
+        <label>Additional Trainer</label>
+        <input type="text" placeholder="Trainer Name">
+      `;
+      trainerSection.appendChild(newTrainerRow);
+    });
   }
 
-  inputs.forEach(el => el.addEventListener('input', checkComplete));
-});
+  // =======================================================
+  // ADDITIONAL POC SECTION (DEALERSHIP INFO PAGE)
+  // =======================================================
+  const addPocBtn = document.querySelector(".add-poc-btn");
+  const pocContainer = document.getElementById("additionalPOCs");
 
-// === Toast Notification ===
-const toast = document.createElement('div');
-toast.id = 'toast';
-document.body.appendChild(toast);
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('visible');
-  setTimeout(() => toast.classList.remove('visible'), 2000);
-}
-
-// === Notes Autofill into Summary ===
-function syncNotes() {
-  const pretrainingNotes = document.querySelector('#pretraining textarea')?.value || '';
-  const mondayNotes = document.querySelector('#monday-visit textarea')?.value || '';
-  const trainingNotes = document.querySelector('#training-checklist textarea')?.value || '';
-  const opNotes = document.querySelector('#opcodes-pricing textarea')?.value || '';
-  const dmsNotes = document.querySelector('#dms-integration textarea')?.value || '';
-  const postNotes = document.querySelector('#post-training textarea')?.value || '';
-
-  document.getElementById('summary-pretraining').value = `${pretrainingNotes}\n${mondayNotes}`;
-  document.getElementById('summary-tuesday').value = trainingNotes;
-  document.getElementById('summary-wednesday').value = opNotes;
-  document.getElementById('summary-dms').value = dmsNotes;
-  document.getElementById('summary-posttraining').value = postNotes;
-
-  showToast('✅ Notes updated in Training Summary');
-}
-
-document.querySelectorAll('textarea').forEach(t =>
-  t.addEventListener('input', () => {
-    syncNotes();
-  })
-);
-
-// === Save as PDF ===
-document.getElementById('savePDFBtn')?.addEventListener('click', async () => {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ orientation: 'p', unit: 'pt', format: 'letter' });
-
-  const pages = document.querySelectorAll('.page-section');
-  let y = 40;
-
-  for (const section of pages) {
-    const title = section.querySelector('h1').innerText;
-    pdf.setFontSize(14);
-    pdf.text(title, 40, y);
-    y += 20;
-
-    const content = section.innerText.trim().substring(0, 1000);
-    const split = pdf.splitTextToSize(content, 520);
-    pdf.setFontSize(10);
-    pdf.text(split, 40, y);
-    y += split.length * 12 + 20;
-
-    if (y > 700) {
-      pdf.addPage();
-      y = 40;
-    }
+  if (addPocBtn && pocContainer) {
+    addPocBtn.addEventListener("click", () => {
+      const block = document.createElement("div");
+      block.innerHTML = `
+        <div class="checklist-row" style="padding-left:40px;">
+          <label>Additional POC</label>
+          <input type="text" placeholder="Full Name">
+        </div>
+        <div class="checklist-row" style="padding-left:60px;">
+          <label>Cell</label>
+          <input type="text" placeholder="(xxx) xxx-xxxx">
+        </div>
+        <div class="checklist-row" style="padding-left:60px;">
+          <label>Email</label>
+          <input type="email" placeholder="example@email.com">
+        </div>
+      `;
+      pocContainer.appendChild(block);
+    });
   }
 
-  pdf.save('Training_Checklist.pdf');
-});
+  // =======================================================
+  // AUTO-FILL TRAINING END DATE
+  // =======================================================
+  const startDateInput = document.querySelector("#trainingStartDate");
+  const endDateInput = document.querySelector("#trainingEndDate");
 
-// === Submit to Google Sheets ===
-document.getElementById('submitGoogleBtn')?.addEventListener('click', () => {
-  const data = {};
-  document.querySelectorAll('input, select, textarea').forEach(el => {
-    const label = el.closest('.checklist-row')?.querySelector('label')?.textContent || el.id || 'unlabeled';
-    data[label] = el.value;
-  });
-  fetch('https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(res => res.text())
-  .then(() => showToast('✅ Submitted to Google Sheet'))
-  .catch(() => showToast('⚠️ Error submitting form'));
+  if (startDateInput && endDateInput) {
+    startDateInput.addEventListener("change", () => {
+      const startDate = new Date(startDateInput.value);
+      if (!isNaN(startDate)) {
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 2);
+
+        // Format YYYY-MM-DD
+        const formatted = endDate.toISOString().split("T")[0];
+        endDateInput.value = formatted;
+      }
+    });
+  }
+
+  // =======================================================
+  // SAVE AS PDF (Optional future use)
+  // =======================================================
+  const saveBtn = document.getElementById("savePDF");
+  if (saveBtn) {
+    saveBtn.addEventListener("click", async () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF("p", "pt", "a4");
+      const pages = document.querySelectorAll(".page-section");
+
+      const marginX = 30, marginY = 30, maxWidth = 535;
+      let first = true;
+
+      pages.forEach((page) => {
+        if (!first) doc.addPage();
+        first = false;
+
+        // Title
+        const title = page.querySelector("h1")?.innerText || "Section";
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        doc.text(title, marginX, marginY);
+
+        // Page text content
+        const text = page.innerText.replace(/\s+\n/g, "\n").trim();
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text(doc.splitTextToSize(text, maxWidth), marginX, marginY + 24, {
+          lineHeightFactor: 1.15,
+        });
+      });
+
+      doc.save("Training_Summary.pdf");
+    });
+  }
 });
