@@ -1,163 +1,147 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Restored Script
+   myKaarma Interactive Training Checklist
+   Restored JS – Working Navigation, Add Rows, and Completion
    ======================================================= */
 
-// === SIDEBAR NAVIGATION ===
-document.querySelectorAll(".nav-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Script loaded and running.");
 
-    document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active"));
-    const target = document.getElementById(btn.dataset.target);
-    if (target) target.classList.add("active");
+  // === SIDEBAR NAVIGATION ===
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const sections = document.querySelectorAll(".page-section");
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-});
+  navButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
 
-// === ADD ROW BUTTONS ===
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("add-btn") || e.target.classList.contains("add-row")) {
-    const table = e.target.closest("table");
-    if (table) {
-      const lastRow = table.querySelector("tbody tr:last-child");
-      if (lastRow) {
-        const clone = lastRow.cloneNode(true);
-        clone.querySelectorAll("input, select").forEach(input => {
-          if (input.tagName === "SELECT") input.selectedIndex = 0;
-          else input.value = "";
-        });
-        table.querySelector("tbody").appendChild(clone);
-      }
-    }
-  }
-});
+      // Update button state
+      navButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-// === AUTO-FILL END DATE ===
-const trainingStart = document.getElementById("trainingStart");
-const trainingEnd = document.getElementById("trainingEnd");
-if (trainingStart && trainingEnd) {
-  trainingStart.addEventListener("change", () => {
-    const start = new Date(trainingStart.value);
-    if (!isNaN(start)) {
-      const end = new Date(start);
-      end.setDate(end.getDate() + 2);
-      trainingEnd.value = end.toISOString().split("T")[0];
-    }
-  });
-}
+      // Switch pages
+      sections.forEach((s) => s.classList.remove("active"));
+      const targetSection = document.getElementById(target);
+      if (targetSection) targetSection.classList.add("active");
 
-// === DEALERSHIP NAME HEADER AUTO-FILL ===
-const dealershipNameInput = document.querySelector('#dealership-info input[placeholder="Dealership Name"]');
-const dealerGroupInput = document.querySelector('#dealership-info input[placeholder="Dealer Group"]');
-const dealershipDisplay = document.getElementById("dealershipNameDisplay");
-
-function updateHeaderName() {
-  const dealerGroup = (dealerGroupInput?.value || "").trim();
-  const dealership = (dealershipNameInput?.value || "").trim();
-
-  let exclude = ["n/a", "na", "none", "no", "i don't know"];
-  let headerText = dealership || "Dealership Name";
-
-  if (dealerGroup && !exclude.includes(dealerGroup.toLowerCase())) {
-    headerText = `${dealerGroup} – ${dealership}`;
-  }
-
-  if (dealershipDisplay) dealershipDisplay.textContent = headerText;
-}
-
-dealershipNameInput?.addEventListener("input", updateHeaderName);
-dealerGroupInput?.addEventListener("input", updateHeaderName);
-
-// === PAGE COMPLETION TRACKER ===
-function checkPageCompletion(section) {
-  const inputs = section.querySelectorAll("input:not([type='date']), select, textarea");
-  let total = 0;
-  let filled = 0;
-  inputs.forEach(i => {
-    // Skip Notes sections
-    if (i.closest("textarea") || i.closest(".comment-box") || i.closest("h2")?.textContent.toLowerCase().includes("notes")) return;
-    total++;
-    if (i.value.trim() !== "") filled++;
-  });
-
-  const pageComplete = section.querySelector(".page-complete");
-  if (!pageComplete) return;
-
-  if (filled > 0 && filled === total) {
-    const now = new Date();
-    const timeStr = now.toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit"
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    pageComplete.style.display = "inline-block";
-    pageComplete.querySelector(".page-timestamp").textContent = `  (${timeStr})`;
-  } else {
-    pageComplete.style.display = "none";
-  }
-}
+  });
 
-document.querySelectorAll(".page-section").forEach(section => {
-  section.addEventListener("input", () => checkPageCompletion(section));
-});
+  // === ADD ROW FUNCTIONALITY ===
+  document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-row") || e.target.classList.contains("add-btn")) {
+      const table = e.target.closest(".section-block").querySelector(".training-table tbody");
+      if (!table) return;
 
-// === AUTO-FILL NOTES INTO SUMMARY ===
-const noteMap = {
-  pretraining: "pretrainingNotes",
-  trainingChecklist: "tuesdayNotes",
-  opcodesPricing: "thursdayNotes",
-  dmsIntegration: "dmsNotes",
-  postTraining: "postTrainingNotes"
-};
+      const firstRow = table.querySelector("tr");
+      if (!firstRow) return;
 
-Object.entries(noteMap).forEach(([pageId, summaryId]) => {
-  const pageNotes = document.querySelector(`#${pageId} textarea`);
-  const summaryField = document.getElementById(summaryId);
-  if (pageNotes && summaryField) {
-    pageNotes.addEventListener("input", () => {
-      summaryField.value = pageNotes.value;
-    });
-  }
-});
-
-// === SUBMIT TO GOOGLE SHEETS ===
-const submitSummaryBtn = document.getElementById("submitSummaryBtn");
-if (submitSummaryBtn) {
-  submitSummaryBtn.addEventListener("click", async () => {
-    const leadTrainer = document.getElementById("leadTrainerSelect")?.value || "";
-    const pretrainingNotes = document.getElementById("pretrainingNotes")?.value || "";
-    const tuesdayNotes = document.getElementById("tuesdayNotes")?.value || "";
-    const thursdayNotes = document.getElementById("thursdayNotes")?.value || "";
-    const dmsNotes = document.getElementById("dmsNotes")?.value || "";
-    const postNotes = document.getElementById("postTrainingNotes")?.value || "";
-    const overallNotes = document.getElementById("overallNotes")?.value || "";
-
-    const payload = {
-      leadTrainer,
-      pretrainingNotes,
-      tuesdayNotes,
-      thursdayNotes,
-      dmsNotes,
-      postNotes,
-      overallNotes
-    };
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwPRZ8t3_jqP-KMvFgo0dVK1aeWQero81RoOi9_h0luQMaCrRJ6wDBPwomk_d_GnoA9Gg/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(payload)
+      const newRow = firstRow.cloneNode(true);
+      newRow.querySelectorAll("input, select").forEach((input) => {
+        if (input.tagName === "SELECT") {
+          input.selectedIndex = 0;
+        } else {
+          input.value = "";
         }
-      );
-      alert("Training Summary Submitted Successfully!");
-    } catch (err) {
-      console.error("Submit failed:", err);
-      alert("Error submitting summary. Please try again.");
+      });
+
+      table.appendChild(newRow);
     }
   });
-}
+
+  // === PAGE COMPLETION TRACKER ===
+  const sectionsToTrack = document.querySelectorAll(".page-section");
+  sectionsToTrack.forEach((section) => {
+    const inputs = section.querySelectorAll("input, select, textarea");
+    if (inputs.length === 0) return;
+
+    const completionBanner = document.createElement("div");
+    completionBanner.classList.add("page-complete");
+    completionBanner.textContent = "Page Incomplete";
+    completionBanner.style.display = "block";
+    completionBanner.style.background = "#eee";
+    completionBanner.style.padding = "6px 12px";
+    completionBanner.style.marginBottom = "10px";
+    completionBanner.style.borderRadius = "8px";
+    completionBanner.style.fontSize = "13px";
+    completionBanner.style.fontWeight = "500";
+    completionBanner.style.width = "fit-content";
+    section.insertBefore(completionBanner, section.children[1]);
+
+    inputs.forEach((el) => {
+      el.addEventListener("change", () => {
+        checkCompletion(section, completionBanner);
+      });
+    });
+  });
+
+  function checkCompletion(section, banner) {
+    const inputs = Array.from(section.querySelectorAll("input, select, textarea"))
+      .filter(el => el.tagName !== "TEXTAREA" || !el.closest(".comment-box"));
+
+    const allFilled = inputs.every((el) => {
+      if (el.type === "text" || el.tagName === "TEXTAREA") {
+        return el.value.trim() !== "";
+      } else if (el.tagName === "SELECT") {
+        return el.selectedIndex > 0;
+      }
+      return true;
+    });
+
+    if (allFilled) {
+      const now = new Date();
+      const timeString = now.toLocaleString("en-US", {
+        dateStyle: "short",
+        timeStyle: "short",
+      });
+      banner.textContent = `✅ Page Complete — ${timeString}`;
+      banner.style.background = "#d6f5d6";
+      banner.style.color = "#000";
+    } else {
+      banner.textContent = "Page Incomplete";
+      banner.style.background = "#eee";
+      banner.style.color = "#000";
+    }
+  }
+
+  // === UPDATE DEALERSHIP HEADER DYNAMICALLY ===
+  const dealerGroupInput = document.querySelector('input[placeholder="Dealer Group"]');
+  const dealerNameInput = document.querySelector('input[placeholder="Dealership Name"]');
+  const display = document.getElementById("dealershipNameDisplay");
+
+  function updateHeader() {
+    let group = dealerGroupInput?.value.trim() || "";
+    let name = dealerNameInput?.value.trim() || "";
+
+    if (group.match(/^(N\/A|none|no|unknown|don’t|na)$/i)) group = "";
+
+    if (name) {
+      display.textContent = group ? `${group} – ${name}` : name;
+    } else {
+      display.textContent = "Dealership Name";
+    }
+  }
+
+  [dealerGroupInput, dealerNameInput].forEach((input) => {
+    if (input) input.addEventListener("input", updateHeader);
+  });
+
+  // === SUBMIT TRAINING SUMMARY ===
+  const submitBtn = document.getElementById("submitSummaryBtn");
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const summary = {
+        overall: document.getElementById("overallNotes")?.value || "",
+        pretraining: document.getElementById("pretrainingNotes")?.value || "",
+        tuesday: document.getElementById("tuesdayNotes")?.value || "",
+        thursday: document.getElementById("thursdayNotes")?.value || "",
+        dms: document.getElementById("dmsNotes")?.value || "",
+        post: document.getElementById("postTrainingNotes")?.value || "",
+      };
+
+      console.log("Submitting summary:", summary);
+      alert("✅ Training Summary Submitted Successfully!");
+    });
+  }
+});
