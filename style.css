@@ -1,7 +1,9 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable Build (Nov 7, 2025)
+   myKaarma Interactive Training Checklist – Stable Build
+   Updated: November 7, 2025 (3:00 PM)
    ======================================================= */
 
+/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -13,10 +15,10 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE === */
+/* === BASE STRUCTURE === */
 html, body {
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -24,26 +26,41 @@ html, body {
 
 /* === TOP BAR === */
 #topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
+  background: linear-gradient(90deg, #000, #333);
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  gap: 30px;
+  padding: 0 40px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   z-index: 20;
-  padding: 0 40px;
 }
-.top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay { color: #fff; font-size: 18px; font-weight: 600; }
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
+#dealershipNameDisplay {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
 /* === APP LAYOUT === */
-#app { display: flex; min-height: 100vh; margin-top: 70px; }
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
+}
+
+/* === SIDEBAR === */
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
@@ -54,17 +71,21 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-nav { display: flex; flex-direction: column; gap: 6px; }
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .nav-btn {
   background: none;
   border: none;
   padding: 10px 12px;
-  font-size: 14px;
   text-align: left;
   border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--ink);
   cursor: pointer;
   transition: 0.2s;
-  color: var(--ink);
 }
 .nav-btn:hover,
 .nav-btn.active {
@@ -73,7 +94,7 @@ nav { display: flex; flex-direction: column; gap: 6px; }
   font-weight: 600;
 }
 
-/* === MAIN === */
+/* === MAIN AREA === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -90,9 +111,10 @@ main {
   margin: 0 auto 50px;
   width: 100%;
   max-width: 1250px;
-  box-sizing: border-box;
 }
-.page-section.active { display: block; }
+.page-section.active {
+  display: block;
+}
 h1 {
   color: var(--orange);
   margin-bottom: 20px;
@@ -101,15 +123,16 @@ h1 {
 }
 
 /* === SECTION BLOCKS === */
-.section { margin-bottom: 40px; }
+.section {
+  margin-bottom: 35px;
+}
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
-  border: 1px solid var(--orange);
-  font-size: 16px;
   border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 16px;
   line-height: 1.3;
 }
 .section-block {
@@ -126,45 +149,80 @@ h1 {
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* === TABLES === */
+/* === CHECKLIST ROWS === */
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+
+/* === TEXTAREA === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  font-family: inherit;
+}
+
+/* =======================================================
+   TABLE STYLING
+   ======================================================= */
 .table-container {
-  width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none;
   border-radius: 0;
-  box-shadow: var(--shadow);
   overflow: hidden;
+  box-shadow: var(--shadow);
   margin: 0;
 }
 .scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: auto;
+  max-height: 340px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: #fff;
 }
+
+/* === TABLE BASE === */
 .training-table {
   border-collapse: collapse;
-  border-spacing: 0;
   width: max-content;
   min-width: 100%;
+  border-spacing: 0;
 }
 .training-table th,
 .training-table td {
-  white-space: nowrap;
   text-align: center;
   font-size: 13px;
+  padding: 8px 10px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  white-space: nowrap;
 }
 
-/* === HEADER COLORS === */
+/* === TABLE HEADERS === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -172,33 +230,30 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 3;
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
+  border-bottom: 2px solid #e89b61;
 }
 
-/* === STICKY COLUMN === */
+/* === FIRST STICKY COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 4;
   background: #fff;
+  z-index: 4;
   text-align: left;
-  width: 260px;
-  min-width: 260px;
-  border-right: 1px solid var(--border);
+  width: 250px;
+  min-width: 250px;
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
   color: #fff;
 }
 
-/* === FIRST CELL (checkbox + text) === */
+/* === FIRST COLUMN CONTENT === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
@@ -206,45 +261,51 @@ h1 {
 }
 .training-table td:first-child input[type="text"] {
   flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  border-radius: 8px;
+  background: #f4f4f4;
+  padding: 6px 8px;
+  font-size: 13px;
 }
 
-/* === INPUTS & SELECTS === */
+/* === INPUTS INSIDE TABLE === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: 8px;
   border: 1px solid var(--border);
+  border-radius: 8px;
   background: #f2f2f2;
+  padding: 6px 8px;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  box-shadow: 0 0 3px rgba(243, 111, 33, 0.4);
   outline: none;
   background: #fff9f5;
 }
 
-/* === ROW STRIPES === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+/* === ROW STRIPING === */
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
 
 /* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
-  border: 1px solid var(--border);
   border-top: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   background: #fff;
-  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   padding: 8px 12px;
-  box-sizing: border-box;
   border-radius: 0 0 var(--radius) var(--radius);
 }
 .add-row {
@@ -257,25 +318,27 @@ h1 {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+  box-shadow: 0 2px 6px rgba(243, 111, 33, 0.3);
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
 
 /* === COMMENT BOX === */
 .section-block.comment-box {
   margin-top: 18px;
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: var(--shadow);
 }
 
-/* === FLOATING BUTTON === */
+/* === FLOATING SAVE BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
-  left: 25px;
+  right: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -286,7 +349,9 @@ h1 {
   box-shadow: var(--shadow);
   transition: 0.2s;
 }
-.floating-btn:hover { background: #ff8848; }
+.floating-btn:hover {
+  background: #ff8848;
+}
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
