@@ -1,24 +1,22 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Unified Stylesheet
-   Stable Version (Restored)
+   myKaarma Interactive Training Checklist – Full Stylesheet
    ======================================================= */
-
-/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
-  --card-bg: #fff;
+  --card-bg: #ffffff;
   --border: #dcdcdc;
   --ink: #222;
   --radius: 16px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE STRUCTURE === */
-html, body {
+html,
+body {
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -30,19 +28,14 @@ html, body {
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 20;
   padding: 0 40px;
-}
-.topbar-content {
-  display: flex;
-  align-items: center;
-  gap: 30px;
 }
 .top-logo {
   height: 42px;
@@ -62,15 +55,11 @@ html, body {
   margin-top: 70px;
   overflow-x: hidden;
 }
-
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px;
+  width: 200px;
   padding: 20px 8px;
   box-shadow: var(--shadow);
   position: fixed;
@@ -100,17 +89,15 @@ nav {
   color: var(--orange);
   font-weight: 600;
 }
-
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
 main {
   flex: 1;
-  margin-left: 190px;
+  margin-left: 200px;
   padding: 30px 40px;
   background: var(--gray-bg);
   box-sizing: border-box;
 }
+
+/* === SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -122,48 +109,49 @@ main {
   max-width: 1250px;
   box-sizing: border-box;
 }
-.page-section.active { display: block; }
+.page-section.active {
+  display: block;
+}
 h1 {
   color: var(--orange);
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 700;
 }
-
-/* =======================================================
-   SECTION BLOCKS
-   ======================================================= */
 .section {
   margin-bottom: 35px;
 }
+
+/* === HEADERS === */
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
-  border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
   line-height: 1.3;
+  border-radius: 16px 16px 0 0;
+  border: 1px solid var(--orange);
+  box-sizing: border-box;
 }
+
+/* === BLOCKS === */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 25px;
-  overflow: hidden;
   border: 1px solid var(--border);
 }
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
   font-size: 15px;
   font-weight: 600;
+  border-radius: 16px 16px 0 0;
 }
-
-/* === CHECKLIST ROWS === */
 .checklist-row {
   display: flex;
   justify-content: space-between;
@@ -185,7 +173,7 @@ h1 {
   background: #f4f4f4;
 }
 
-/* === TEXTAREAS === */
+/* === TEXTAREA === */
 textarea {
   width: calc(100% - 32px);
   margin: 16px;
@@ -194,40 +182,33 @@ textarea {
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
-  overflow: hidden;
   font-family: inherit;
 }
 
-/* =======================================================
-   TABLES
-   ======================================================= */
+/* === TABLES === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none;
   box-shadow: var(--shadow);
-  overflow: hidden;
   margin: 0;
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
 }
 .scroll-wrapper {
   display: block;
   width: 100%;
-  max-height: 340px;
   overflow: auto;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: none;
+  border-bottom: none;
   background: #fff;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
 }
-
-/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
   width: max-content;
   min-width: 100%;
+  table-layout: fixed;
 }
 .training-table th,
 .training-table td {
@@ -236,11 +217,12 @@ textarea {
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background-clip: padding-box;
   padding: 8px 10px;
 }
-
-/* === HEADER ROWS === */
+.training-table th:last-child,
+.training-table td:last-child {
+  border-right: none;
+}
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -248,14 +230,8 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  border-radius: 0;
+  border-top: none;
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -265,23 +241,11 @@ textarea {
   text-align: left;
   width: 250px;
   min-width: 250px;
-  padding: 6px 10px;
-  border-right: 1px solid var(--border);
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === CHECKBOX + TEXT FIELD COMBO === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
 }
 .training-table td:first-child input[type="text"] {
   flex: 1;
@@ -289,11 +253,7 @@ textarea {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
 }
-
-/* === INPUTS & SELECTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -305,55 +265,52 @@ textarea {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
+.training-table tr:nth-child(odd) {
+  background: #fff;
 }
-
-/* === ROW STRIPING === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
 
 /* === TABLE FOOTER === */
 .table-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   border: 1px solid var(--border);
   border-top: none;
   background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
   padding: 8px 12px;
-  margin: 0;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  border-radius: 0 0 16px 16px;
 }
+
+/* === ADD BUTTON === */
 .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
+  width: 28px;
+  height: 28px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+  box-shadow: 0 2px 6px rgba(243, 111, 33, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
 
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
-  right: 25px;
+  left: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -362,18 +319,8 @@ textarea {
   font-size: 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.2s;
+  z-index: 30;
 }
-.floating-btn:hover { background: #ff8848; }
-
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+.floating-btn:hover {
+  background: #ff8848;
 }
