@@ -8,15 +8,22 @@
   <!-- ✅ Latest stylesheet with cache-buster -->
   <link rel="stylesheet" href="style.css?v=20251107" />
 
-  <!-- ✅ Favicon (optional, but keeps GitHub Pages cleaner) -->
+  <!-- ✅ Favicon (optional) -->
   <link rel="icon" type="image/png" href="mykaarma_logo.png" />
 
   <!-- ✅ Include jsPDF library for PDF generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- ✅ External JavaScript file for navigation and dynamic row logic -->
+  <!-- ✅ External JavaScript file for navigation and table row logic -->
   <script src="script.js" defer></script>
 </head>
+
+<body>
+  <!-- === TOP BAR === -->
+  <header id="topbar">
+    <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
+    <div id="dealershipNameDisplay">Dealership Name</div>
+  </header>
 
   <div id="app">
     <!-- === SIDEBAR === -->
@@ -33,6 +40,7 @@
       </nav>
     </aside>
 
+    <!-- === MAIN CONTENT AREA === -->
     <main id="content">
       <!-- ========================================================= -->
       <!-- === PAGE 1 : PRE-TRAINING CHECKLIST === -->
