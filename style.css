@@ -103,9 +103,9 @@ main {
 }
 .page-section {
   display: none;
-  background: var(--card-bg);
+  background: transparent;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: none;
   padding: 28px 32px;
   margin: 0 auto 50px;
   width: 100%;
@@ -144,6 +144,7 @@ h1 {
   box-shadow: var(--shadow);
   margin-bottom: 25px;
   overflow: hidden;
+  position: relative;
 }
 .section-block h2 {
   background: var(--orange);
@@ -208,7 +209,7 @@ textarea {
   overflow: auto;
   background: #fff;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
 }
@@ -229,7 +230,7 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === TABLE HEADERS === */
+/* === TABLE HEADER === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -238,16 +239,11 @@ textarea {
   top: 0;
   z-index: 3;
   border: none;
+  border-radius: 0; /* flat across */
 }
 .training-table thead th:first-child,
 .training-table thead th:last-child {
   background: var(--light-orange);
-}
-.training-table thead th:first-child {
-  border-top-left-radius: var(--radius);
-}
-.training-table thead th:last-child {
-  border-top-right-radius: var(--radius);
 }
 
 /* === STICKY FIRST COLUMN === */
@@ -268,7 +264,7 @@ textarea {
   color: #fff;
 }
 
-/* === INPUTS & SELECTS IN TABLES === */
+/* === INPUTS & SELECTS IN TABLE === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -306,11 +302,11 @@ textarea {
   background: #fff9f5;
 }
 
-/* === STRIPING === */
+/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTERS === */
+/* === TABLE FOOTER === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -321,7 +317,6 @@ textarea {
   padding: 8px 12px;
   margin: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 .add-row {
   background: var(--orange);
