@@ -759,24 +759,44 @@
     <textarea placeholder="Outline remaining actions or follow-ups…"></textarea>
   </div>
 
+  <div class="section-block">
+    <h2>Information for CEM</h2>
+    <textarea placeholder="Information to share with CEM…"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>Champions &amp; Blockers</h2>
+    <textarea placeholder="Enter champions and blockers info…"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>Pre-Training &amp; Monday Visit Notes</h2>
+    <textarea placeholder="Autofill: Pre-Training and Monday notes here…"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>End of Day Training Summary - Tuesday</h2>
+    <textarea placeholder="Autofill Tuesday notes from Training Checklist…"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>End of Day Training Summary - Wednesday</h2>
+    <textarea placeholder="Autofill Wednesday notes from Training Checklist…"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>Opcode, Pricing, and Integrations Notes</h2>
+    <textarea placeholder="Autofill from Opcodes and DMS Integration notes…"></textarea>
+  </div>
+
   <button id="savePDF" class="floating-btn">Save as PDF</button>
 </section>
-      </section>
+
     </main>
   </div>
 
-  <!-- === SCRIPTS === -->
+  <!-- === Include JS === -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
-
-  <script>
-    // auto-update dealership name in header
-    document.addEventListener('input', (e) => {
-      if (e.target.id === 'dealer-name') {
-        const val = e.target.value.trim() || 'Dealership Name';
-        document.getElementById('dealershipNameDisplay').textContent = val;
-      }
-    });
-  </script>
 </body>
 </html>
