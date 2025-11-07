@@ -144,7 +144,7 @@
         </div>
       </section>
 
-     <!-- ========================================================= -->
+   <!-- ========================================================= -->
 <!-- === PAGE 5 : TRAINING CHECKLIST === -->
 <!-- ========================================================= -->
 <section id="training-checklist" class="page-section">
@@ -166,26 +166,24 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 3 Rows -->
-            ${Array.from({length:3}).map(() => `
+            <!-- 3 initial rows -->
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              ${Array.from({length:16}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
-            </tr>`).join('')}
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+            </tr>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+            </tr>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+            </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
   <!-- === Service Advisors === -->
@@ -204,29 +202,21 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 3 Rows -->
-            ${Array.from({length:3}).map(() => `
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              ${Array.from({length:15}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
-            </tr>`).join('')}
+            <!-- 3 initial rows -->
+            ${Array(3).fill(`
+              <tr>
+                <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
+                ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(15)}
+              </tr>
+            `).join('')}
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === Parts Representatives === -->
+  <!-- === Parts Reps === -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -242,29 +232,21 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 2 Rows -->
-            ${Array.from({length:2}).map(() => `
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
-              ${Array.from({length:13}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
-            </tr>`).join('')}
+            <!-- 2 initial rows -->
+            ${Array(2).fill(`
+              <tr>
+                <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
+                ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(13)}
+              </tr>
+            `).join('')}
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === BDC Representatives === -->
+  <!-- === BDC Reps === -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -280,22 +262,13 @@
           <tbody>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="BDC Rep Name"></td>
-              ${Array.from({length:6}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(6)}
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
   <!-- === Pickup & Delivery Dispatcher === -->
@@ -314,22 +287,13 @@
           <tbody>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td>
-              ${Array.from({length:7}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(7)}
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
   <!-- === Pickup & Delivery Drivers === -->
@@ -347,32 +311,23 @@
           <tbody>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Driver Name"></td>
-              ${Array.from({length:3}).map(()=>`
-                <td>
-                  <select>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Trained</option>
-                    <option>N/A</option>
-                  </select>
-                </td>`).join('')}
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(3)}
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 </section>
 
-<!-- ========================================================= -->
+      <!-- ========================================================= -->
 <!-- === PAGE 6 : OPCODES & PRICING === -->
 <!-- ========================================================= -->
 <section id="opcodes-pricing" class="page-section">
   <h1>Opcodes &amp; Pricing</h1>
 
-  <!-- === Opcodes Setup === -->
+  <!-- === OPCODES SETUP === -->
   <div class="section">
     <div class="section-header">Opcodes Setup</div>
     <div class="table-container">
@@ -392,23 +347,32 @@
             </tr>
           </thead>
           <tbody>
-            ${Array.from({length:3}).map(()=>`
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Service Name"></td>
-              ${Array.from({length:5}).map(()=>`<td><input type="text"></td>`).join('')}
+              <td><input type="checkbox"><input type="text" placeholder="2 Wheel Alignment"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Brake Fluid Exchange"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><input type="text"></td><td><input type="text"></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>`).join('')}
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option><option>N/A</option></select></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === MPI Opcodes === -->
+  <!-- === MPI OPCODES === -->
   <div class="section">
     <div class="section-header">MPI Opcodes</div>
     <div class="table-container">
@@ -423,18 +387,21 @@
             </tr>
           </thead>
           <tbody>
-            ${Array.from({length:2}).map(()=>`
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="MPI Line Name"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
+              <td><input type="checkbox"><input type="text" placeholder="Exterior Lights"></td>
+              <td><input type="text"></td><td><input type="text"></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>`).join('')}
+            </tr>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Front Brake Pads"></td>
+              <td><input type="text"></td><td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
     </div>
+    <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 </section>
 
