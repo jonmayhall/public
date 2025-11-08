@@ -1,10 +1,10 @@
 // =======================================================
-// myKaarma Interactive Training Checklist – FULL JS (Stable Build)
-// Version: November 2025
+// myKaarma Interactive Training Checklist – Stable JS
+// Version: v20251107C
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
-  // === SIDEBAR NAVIGATION ===
+  /* === SIDEBAR NAVIGATION === */
   const nav = document.getElementById('sidebar-nav');
   const sections = document.querySelectorAll('.page-section');
 
@@ -15,38 +15,32 @@ window.addEventListener('DOMContentLoaded', () => {
       const target = document.getElementById(btn.dataset.target);
       if (!target) return;
 
-      // Remove and add active class
       nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // Show selected section
       sections.forEach(sec => sec.classList.remove('active'));
       target.classList.add('active');
 
-      // Scroll to top on section switch
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // =======================================================
-  // === TABLE ADD-ROW FUNCTIONALITY ===
-  // =======================================================
+  /* === ADD ROW HANDLER FOR TABLES === */
   document.querySelectorAll('.table-footer .add-row').forEach(button => {
     button.addEventListener('click', () => {
       const section = button.closest('.section');
       if (!section) return;
-
       const table = section.querySelector('table.training-table');
       if (!table) return;
 
       const tbody = table.tBodies[0];
       if (!tbody || !tbody.rows.length) return;
 
-      // Clone last data row
-      const lastRow = tbody.rows[tbody.rows.length - 1];
-      const newRow = lastRow.cloneNode(true);
+      // Clone the last actual row
+      const rowToClone = tbody.rows[tbody.rows.length - 1];
+      const newRow = rowToClone.cloneNode(true);
 
-      // Reset all form elements
+      // Reset inputs
       newRow.querySelectorAll('input, select').forEach(el => {
         if (el.type === 'checkbox') el.checked = false;
         else el.value = '';
@@ -56,29 +50,23 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =======================================================
-  // === ADDITIONAL ROWS FOR NON-TABLE SECTIONS ===
-  // (e.g., Additional Trainers, Additional POC)
-  // =======================================================
-  document.querySelectorAll('.section-block .add-row').forEach(button => {
-    button.addEventListener('click', () => {
-      const block = button.closest('.section-block');
-      if (!block) return;
+  /* === ADDITIONAL TRAINERS & POC BUTTONS === */
+  document.querySelectorAll('.section-block .add-row').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.section-block');
+      if (!parent) return;
 
-      // Clone the last checklist-row before the button
-      const rows = block.querySelectorAll('.checklist-row');
-      const lastRow = rows[rows.length - 1];
-      if (!lastRow) return;
+      const input = parent.querySelector('input[type="text"]');
+      if (!input) return;
 
-      const clone = lastRow.cloneNode(true);
-      clone.querySelectorAll('input, select').forEach(el => el.value = '');
-      block.insertBefore(clone, button);
+      const clone = input.cloneNode(true);
+      clone.value = '';
+      clone.style.marginTop = '6px';
+      parent.insertBefore(clone, btn);
     });
   });
 
-  // =======================================================
-  // === SAVE ALL PAGES TO PDF ===
-  // =======================================================
+  /* === SAVE AS PDF (Training Summary Page) === */
   const saveBtn = document.getElementById('savePDF');
   if (saveBtn) {
     saveBtn.addEventListener('click', async () => {
@@ -86,41 +74,27 @@ window.addEventListener('DOMContentLoaded', () => {
       const doc = new jsPDF('p', 'pt', 'a4');
       const pages = document.querySelectorAll('.page-section');
 
-      const marginX = 30;
-      const marginY = 30;
-      const maxWidth = 535;
-      let firstPage = true;
+      const marginX = 30, marginY = 30, maxWidth = 535;
+      let first = true;
 
       for (const page of pages) {
-        if (!firstPage) doc.addPage();
-        firstPage = false;
+        if (!first) doc.addPage();
+        first = false;
 
-        // Page Title
         const title = page.querySelector('h1')?.innerText || 'Section';
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(16);
         doc.text(title, marginX, marginY);
 
-        // Extract text from page
-        const content = page.innerText.replace(/\s+\n/g, '\n').trim();
+        // Simplified page content (plain text export)
+        const text = page.innerText.replace(/\s+\n/g, '\n').trim();
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
-        doc.text(doc.splitTextToSize(content, maxWidth), marginX, marginY + 24, {
-          lineHeightFactor: 1.15
-        });
+        const lines = doc.splitTextToSize(text, maxWidth);
+        doc.text(lines, marginX, marginY + 24);
       }
 
       doc.save('Training_Summary.pdf');
-    });
-  }
-
-  // =======================================================
-  // === OPTIONAL: FLOATING BUTTON SMOOTH SCROLL ===
-  // =======================================================
-  const floatBtn = document.querySelector('.floating-btn');
-  if (floatBtn) {
-    floatBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });
