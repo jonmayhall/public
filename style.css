@@ -1,209 +1,238 @@
-/* ==========================
-   myKaarma – Interactive Training Checklist (Compact Modern Build)
-   ========================== */
+/* =======================================================
+   myKaarma Interactive Training Checklist – Stable Stylesheet
+   Version: Nov 7 2025 @ 3 PM
+   ======================================================= */
 
-/* --- GLOBAL --- */
-body {
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* === COLOR VARIABLES === */
+:root {
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --border: #dcdcdc;
+  --card-bg: #fff;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --radius: 16px;
+  --ink: #222;
+}
+
+/* === BASE STRUCTURE === */
+html, body {
   margin: 0;
-  background: #f7f7f9;
-  color: #222;
-  line-height: 1.45;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 1.4rem;
-  margin-bottom: 0.6em;
-  color: #222;
-}
-
-h2 {
-  font-size: 1.1rem;
-  margin: 0.5em 0;
-  color: #333;
-}
-
-input, select, textarea, button {
-  font-family: inherit;
-  font-size: 14px;
-}
-
-/* --- TOP BAR --- */
+/* === TOP BAR === */
 #topbar {
-  background: #ff6f00;
-  color: #fff;
-  padding: 8px 16px;
+  background: linear-gradient(90deg,#000,#333);
+  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 3px solid #e55f00;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
-.top-logo { height: 34px; }
+.top-logo { height: 42px; margin-right: 24px; }
+#dealershipNameDisplay { color:#fff;font-weight:600;font-size:18px; }
 
-/* --- LAYOUT --- */
-#app {
-  display: flex;
-  height: calc(100vh - 50px);
-}
-
-/* --- SIDEBAR --- */
+/* === LAYOUT === */
+#app { display:flex; min-height:100vh; margin-top:70px; }
 #sidebar {
-  width: 230px;
-  background: #2e2e2e;
-  color: #fff;
-  overflow-y: auto;
+  background:rgba(255,255,255,0.95);
+  width:190px;
+  border-right:1px solid var(--border);
+  box-shadow:var(--shadow);
+  padding:20px 8px;
+  position:fixed;top:70px;bottom:0;
+  overflow-y:auto;
 }
-
-#sidebar-nav {
-  display: flex;
-  flex-direction: column;
-}
-
 .nav-btn {
-  background: transparent;
-  color: #fff;
-  text-align: left;
-  padding: 12px 18px;
-  border: none;
-  border-bottom: 1px solid #3e3e3e;
-  font-size: 14px;
-  transition: background 0.2s;
+  background:none;
+  border:none;
+  text-align:left;
+  padding:10px 12px;
+  font-size:14px;
+  border-radius:var(--radius);
+  cursor:pointer;
+  color:var(--ink);
+  transition:0.2s;
 }
-
-.nav-btn:hover { background: #444; }
-.nav-btn.active { background: #ff6f00; }
-
-/* --- MAIN CONTENT --- */
-#content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 18px 26px;
+.nav-btn:hover, .nav-btn.active {
+  background:#fff3eb;
+  color:var(--orange);
+  font-weight:600;
 }
-
+main {
+  flex:1;
+  margin-left:190px;
+  padding:30px 40px;
+  background:var(--gray-bg);
+  box-sizing:border-box;
+}
 .page-section {
-  display: none;
-  animation: fadeIn 0.25s ease-in-out;
+  display:none;
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px 32px;
+  margin:0 auto 50px;
+  max-width:1250px;
 }
-.page-section.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* --- SECTION BLOCKS --- */
-.section, .section-block {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-  padding: 16px 18px;
-  margin-bottom: 20px;
+.page-section.active { display:block; }
+h1 {
+  color:var(--orange);
+  margin-bottom:20px;
+  font-size:24px;
+  font-weight:700;
 }
 
+/* =======================================================
+   TABLE STYLING
+   ======================================================= */
+.section { margin-bottom:40px; }
 .section-header {
-  background: #fdf3e3;
-  border-left: 5px solid #ff6f00;
-  padding: 8px 12px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
+  background:var(--orange);
+  color:#fff;
+  padding:10px 16px;
+  font-weight:600;
+  font-size:16px;
+  border-radius:var(--radius) var(--radius) 0 0;
 }
 
-/* --- CHECKLIST ROWS --- */
-.checklist-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  gap: 10px;
+.table-container {
+  background:#fff;
+  border:1px solid var(--border);
+  border-top:none;
+  box-shadow:var(--shadow);
+  overflow:hidden;
 }
-.checklist-row label { flex: 1; font-weight: 500; }
-.checklist-row input, .checklist-row select {
-  flex: 1;
-  padding: 4px 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.scroll-wrapper {
+  overflow:auto;
+  width:100%;
+  max-height:340px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
 }
 
-/* --- TABLES --- */
-.scroll-wrapper { overflow-x: auto; }
-
+/* === CORE TABLE === */
 .training-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 780px;
-  text-align: center;
+  border-collapse:collapse;
+  width:max-content;
+  min-width:100%;
+}
+.training-table th, .training-table td {
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:6px 8px;
+  text-align:center;
+  white-space:nowrap;
+  font-size:13px;
+  background-clip:padding-box;
 }
 
-.training-table th {
-  background: #fdf3e3;
-  border-bottom: 2px solid #ff6f00;
-  padding: 6px;
-  font-size: 13px;
+/* === HEADERS === */
+.training-table thead th {
+  background:var(--light-orange);
+  color:#fff;
+  font-weight:600;
+  position:sticky;
+  top:0;
+  z-index:2;
+}
+.training-table thead th:first-child {
+  background:var(--light-orange);
 }
 
-.training-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 5px;
+/* === STICKY FIRST COLUMN === */
+.training-table th:first-child,
+.training-table td:first-child {
+  position:sticky;
+  left:0;
+  background:#fff;
+  text-align:left;
+  z-index:3;
+  min-width:250px;
+}
+.training-table thead th:first-child {
+  background:var(--light-orange);
+  color:#fff;
 }
 
+/* === INPUTS === */
 .training-table input[type="text"],
 .training-table select {
-  width: 100%;
-  padding: 3px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 13px;
+  width:100%;
+  padding:6px 8px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:#f4f4f4;
+  font-size:13px;
+}
+.training-table input[type="checkbox"] {
+  transform:scale(1.1);
+  margin-right:6px;
 }
 
-/* --- ADD BUTTON --- */
-.add-row {
-  background: #ff6f00;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 15px;
-  line-height: 1;
-  padding: 4px 8px;
+/* === FIRST COLUMN COMBO (Checkbox + Name Field) === */
+.training-table td:first-child {
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-.add-row:hover { background: #e55f00; }
+.training-table td:first-child input[type="text"] {
+  flex:1;
+}
 
+/* === ROW COLORS === */
+.training-table tr:nth-child(odd){background:#fff;}
+.training-table tr:nth-child(even){background:#fafafa;}
+
+/* === TABLE FOOTER === */
 .table-footer {
-  background: #fff;
-  text-align: right;
-  padding: 6px 0 0;
+  background:#fff;
+  border:1px solid var(--border);
+  border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+  text-align:left;
+  padding:8px 12px;
+  box-sizing:border-box;
+}
+.add-row {
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:26px;
+  height:26px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+  box-shadow:0 2px 6px rgba(243,111,33,0.3);
+}
+.add-row:hover { background:#ff8b42; transform:scale(1.1); }
+
+/* === COMMENT BOX === */
+.section-block.comment-box {
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  border-radius:var(--radius);
+  margin-top:18px;
+  overflow:hidden;
 }
 
-/* --- TEXTAREAS --- */
-textarea {
-  width: 100%;
-  height: 110px;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 13px;
+/* === RESPONSIVE === */
+@media(max-width:900px){
+  #sidebar{width:150px;}
+  main{margin-left:150px;}
 }
-
-/* --- FLOATING BUTTONS --- */
-.floating-btn {
-  position: fixed;
-  bottom: 26px;
-  right: 40px;
-  background: #ff6f00;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 10px 20px;
-  font-size: 13px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-  z-index: 1000;
+@media(max-width:600px){
+  #sidebar{display:none;}
+  main{margin-left:0;}
 }
-
-.floating-btn:hover { background: #e55f00; }
-
-/* --- CLEAR BUTTON --- */
-.clear-btn {
-  right: 150px;
-  background: #555;
-}
-.clear-btn:hover { background: #333; }
