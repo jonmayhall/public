@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable Stylesheet
-   Version: v20251107-C  (footer + sticky alignment fix)
+   myKaarma Interactive Training Checklist – Unified Stylesheet
+   Version: v20251107E (Stable Table + Footer Fix)
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -18,7 +18,7 @@
 /* === BASE STRUCTURE === */
 html, body {
   margin: 0;
-  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -26,7 +26,7 @@ html, body {
 
 /* === TOP BAR === */
 #topbar {
-  background: linear-gradient(90deg,#000 0%,#333 100%);
+  background: linear-gradient(90deg, #000 0%, #333 100%);
   height: 70px;
   display: flex;
   align-items: center;
@@ -39,12 +39,15 @@ html, body {
   z-index: 20;
   padding: 0 40px;
 }
-.top-logo { height: 42px; object-fit: contain; }
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 /* === LAYOUT === */
@@ -70,7 +73,7 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-#sidebar-nav {
+nav {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -83,7 +86,7 @@ html, body {
   text-align: left;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
   color: var(--ink);
 }
 .nav-btn:hover,
@@ -115,7 +118,6 @@ main {
   box-sizing: border-box;
 }
 .page-section.active { display: block; }
-
 h1 {
   color: var(--orange);
   margin-bottom: 20px;
@@ -129,7 +131,6 @@ h1 {
 .section {
   margin-bottom: 35px;
 }
-
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -140,7 +141,6 @@ h1 {
   font-size: 16px;
   line-height: 1.3;
 }
-
 .section-block {
   background: #fff;
   border-radius: var(--radius);
@@ -151,7 +151,7 @@ h1 {
 }
 .section-block h2 {
   background: var(--orange);
-  color: #fff;
+  color: white;
   margin: 0;
   padding: 10px 16px;
   font-size: 15px;
@@ -194,51 +194,38 @@ textarea {
 }
 
 /* =======================================================
-   TABLES
+   TABLES (Stable Version)
    ======================================================= */
 .table-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  display: block;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none;
   border-radius: 0;
   box-shadow: var(--shadow);
+  margin-bottom: 30px;
   overflow: hidden;
-  margin: 0 0 18px 0;
 }
 .scroll-wrapper {
-  flex: 1 1 auto;
-  display: block;
-  width: 100%;
-  max-height: 340px;
   overflow: auto;
+  max-height: 340px;
   border-top: 1px solid var(--border);
-  background: #fff;
-  scrollbar-color: #ccc transparent;
-  scrollbar-width: thin;
+  border-bottom: none;
 }
-
-/* === CORE TABLE === */
 .training-table {
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   width: max-content;
   min-width: 100%;
+  border-spacing: 0;
 }
 .training-table th,
 .training-table td {
-  white-space: nowrap;
+  border: 1px solid var(--border);
   text-align: center;
   font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   padding: 8px 10px;
   background-clip: padding-box;
+  white-space: nowrap;
 }
-
-/* === HEADER ROWS === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -246,13 +233,9 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 !important;
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
-}
-
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -262,75 +245,32 @@ textarea {
   text-align: left;
   width: 280px;
   min-width: 280px;
-  padding: 6px 10px;
   border-right: 1px solid var(--border);
-  background-clip: border-box;
+  border-radius: 0 !important;
 }
-.training-table thead th:first-child {
-  background: var(--light-orange);
-  color: #fff;
+.training-table td:first-child,
+.training-table th:first-child {
+  box-shadow: 1px 0 0 0 var(--border);
 }
-
-/* === CHECKBOX + TEXT FIELD IN FIRST COLUMN === */
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-}
-.training-table td:first-child input[type="text"] {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-
-/* === INPUTS & SELECTS INSIDE TABLE === */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === TABLE FOOTER === */
 .table-footer {
-  flex-shrink: 0;
-  width: 100%;
-  border: 1px solid var(--border);
-  border-top: 1px solid var(--border);
   background: #fff;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: -1px;
   border-radius: 0 0 var(--radius) var(--radius);
-  text-align: left;
   padding: 8px 12px;
-  margin: 0;
   box-sizing: border-box;
-  position: relative;
-  top: -2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.add-row {
+.table-footer .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
@@ -340,20 +280,12 @@ textarea {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-  position: relative;
-  left: 4px;
 }
-.add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
 }
 
 /* =======================================================
@@ -371,7 +303,7 @@ textarea {
   font-size: 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: .2s;
+  transition: 0.2s;
 }
 .floating-btn:hover { background: #ff8848; }
 
@@ -386,108 +318,3 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
-/* === FINAL TABLE FOOTER + STICKY SYNC FIX === */
-.table-container {
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #fff;
-  margin-bottom: 28px;
-}
-
-.scroll-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 340px;
-  border-top: 1px solid var(--border);
-  border-bottom: none;
-}
-
-/* Core Table */
-.training-table {
-  border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
-  border-spacing: 0;
-}
-
-.training-table th,
-.training-table td {
-  border: 1px solid var(--border);
-  text-align: center;
-  font-size: 13px;
-  padding: 8px 10px;
-  background-clip: padding-box;
-  white-space: nowrap;
-}
-
-/* Header row */
-.training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Sticky column */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  background: #fff;
-  z-index: 4;
-  text-align: left;
-  width: 280px;
-  min-width: 280px;
-  border-right: 1px solid var(--border);
-  background-clip: border-box;
-}
-
-/* Ensure sticky column border lines up perfectly */
-.training-table td:first-child,
-.training-table th:first-child {
-  box-shadow: 1px 0 0 0 var(--border);
-}
-
-/* Table footer attached cleanly */
-.table-footer {
-  background: #fff;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  margin-top: -1px;
-  border-radius: 0 0 var(--radius) var(--radius);
-  padding: 8px 12px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.table-footer .add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-}
-
-.table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
-}
-
-/* Restore alternating row colors */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
