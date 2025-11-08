@@ -159,34 +159,12 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 3 Technician rows -->
+            <!-- Technician rows -->
+            ${[...Array(3)].map(() => `
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td colspan="16"></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td colspan="16"></td>
-            </tr>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
@@ -210,27 +188,11 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 3 Advisor rows -->
+            ${[...Array(3)].map(() => `
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-            </tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td><td colspan="15"></td></tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td><td colspan="15"></td></tr>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(15)}
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
@@ -254,9 +216,11 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 2 Parts rows -->
-            <tr><td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="13"></td></tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="13"></td></tr>
+            ${[...Array(2)].map(() => `
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(13)}
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
@@ -270,11 +234,12 @@
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
-          <thead>
-            <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Routing</th></tr>
-          </thead>
+          <thead><tr><th>Name</th><th>DMS ID</th><th>Login</th><th>Scheduler</th><th>Declined Services</th><th>ServiceConnect</th><th>Routing</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox"><input type="text" placeholder="BDC Rep Name"></td><td colspan="6"></td></tr>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="BDC Rep Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(6)}
+            </tr>
           </tbody>
         </table>
       </div>
@@ -289,7 +254,12 @@
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>Creating Trips</th><th>Customer Tab</th><th>Editing Trips</th><th>Adding Driver</th><th>Adding Loaners</th><th>Drivers View / Mobile App</th><th>Global View</th></tr></thead>
-          <tbody><tr><td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td><td colspan="7"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(7)}
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -303,7 +273,12 @@
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th></tr></thead>
-          <tbody><tr><td><input type="checkbox"><input type="text" placeholder="Driver Name"></td><td colspan="3"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Driver Name"></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(3)}
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -325,13 +300,15 @@
         <table class="training-table">
           <thead><tr><th>Service</th><th>Opcode</th><th>Hours</th><th>Customer Pay Labor Rate</th><th>Fixed Labor Rate</th><th>Labor Charged</th><th>Set Parts Charged</th><th>Parts Retail</th><th>ServiceCart Opcode</th></tr></thead>
           <tbody>
+            ${[...Array(3)].map(() => `
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="2 Wheel Alignment"></td>
+              <td><input type="checkbox"><input type="text" placeholder="Service" style="width:100%;"></td>
               <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
-              <td><input type="text"></td><td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+              <td><input type="text"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
@@ -347,11 +324,12 @@
         <table class="training-table">
           <thead><tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
           <tbody>
+            ${[...Array(2)].map(() => `
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Front Brake Pads"></td>
+              <td><input type="checkbox"><input type="text" placeholder="MPI Item" style="width:100%;"></td>
               <td><input type="text"></td><td><input type="text"></td>
               <td><select><option></option><option>Yes</option><option>No</option></select></td>
-            </tr>
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
