@@ -32,6 +32,7 @@ document.querySelectorAll(".add-row").forEach(button => {
     });
 
     table.querySelector("tbody").appendChild(clone);
+    saveFormState(); // immediately save new row structure
   });
 });
 
@@ -50,3 +51,50 @@ document.getElementById("savePDF")?.addEventListener("click", async () => {
     html2canvas: { scale: 0.7 }
   });
 });
+
+// === AUTO-SAVE & RESTORE ===
+const STORAGE_KEY = "myKaarmaTrainingData_v20251107";
+
+// Save all form field states
+function saveFormState() {
+  const data = {};
+  document.querySelectorAll("input, select, textarea").forEach((el, idx) => {
+    const key = el.name || `${el.tagName}_${idx}`;
+    if (el.type === "checkbox") {
+      data[key] = el.checked;
+    } else {
+      data[key] = el.value;
+    }
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// Restore saved data
+function loadFormState() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+  try {
+    const data = JSON.parse(saved);
+    document.querySelectorAll("input, select, textarea").forEach((el, idx) => {
+      const key = el.name || `${el.tagName}_${idx}`;
+      if (data[key] !== undefined) {
+        if (el.type === "checkbox") el.checked = data[key];
+        else el.value = data[key];
+      }
+    });
+  } catch (err) {
+    console.warn("Error loading saved form data:", err);
+  }
+}
+
+// Listen for changes
+["change", "input"].forEach(evt =>
+  document.addEventListener(evt, e => {
+    if (["INPUT", "SELECT", "TEXTAREA"].includes(e.target.tagName)) {
+      saveFormState();
+    }
+  })
+);
+
+// Load on start
+document.addEventListener("DOMContentLoaded", loadFormState);
