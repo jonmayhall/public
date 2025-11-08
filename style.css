@@ -386,3 +386,108 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === FINAL TABLE FOOTER + STICKY SYNC FIX === */
+.table-container {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 28px;
+}
+
+.scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 340px;
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+}
+
+/* Core Table */
+.training-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  border-spacing: 0;
+}
+
+.training-table th,
+.training-table td {
+  border: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  padding: 8px 10px;
+  background-clip: padding-box;
+  white-space: nowrap;
+}
+
+/* Header row */
+.training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Sticky column */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 4;
+  text-align: left;
+  width: 280px;
+  min-width: 280px;
+  border-right: 1px solid var(--border);
+  background-clip: border-box;
+}
+
+/* Ensure sticky column border lines up perfectly */
+.training-table td:first-child,
+.training-table th:first-child {
+  box-shadow: 1px 0 0 0 var(--border);
+}
+
+/* Table footer attached cleanly */
+.table-footer {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: -1px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 8px 12px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table-footer .add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
+
+/* Restore alternating row colors */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
