@@ -1,115 +1,102 @@
-// =======================================================
-// myKaarma Interactive Checklist – Stable Build JS
-// Updated: November 7, 2025
-// =======================================================
+/* ==========================
+   myKaarma – Interactive Training Checklist
+   (Stable Build + Auto-Save + Clear All)
+   ========================== */
 
-window.addEventListener("DOMContentLoaded", () => {
-  const nav = document.getElementById("sidebar-nav");
-  const sections = document.querySelectorAll(".page-section");
+// === SIDEBAR NAVIGATION ===
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active"));
+    const target = document.getElementById(btn.dataset.target);
+    if (target) target.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 
-  // === SIDEBAR NAVIGATION ===
-  if (nav) {
-    nav.addEventListener("click", (e) => {
-      const btn = e.target.closest(".nav-btn");
-      if (!btn) return;
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
-
-      nav.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      sections.forEach((sec) => sec.classList.remove("active"));
-      target.classList.add("active");
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+// === ADD ROW FUNCTIONALITY ===
+document.querySelectorAll(".add-row").forEach(button => {
+  button.addEventListener("click", e => {
+    const table = e.target.closest(".section, .section-block").querySelector("table");
+    if (!table) return;
+    const firstRow = table.querySelector("tbody tr");
+    if (!firstRow) return;
+    const clone = firstRow.cloneNode(true);
+    clone.querySelectorAll("input, select").forEach(el => {
+      if (el.type === "checkbox") el.checked = false;
+      else el.value = "";
     });
+    table.querySelector("tbody").appendChild(clone);
+    saveFormState();
+  });
+});
+
+// === SAVE AS PDF ===
+document.getElementById("savePDF")?.addEventListener("click", async () => {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
+  const content = document.getElementById("content");
+  await pdf.html(content, {
+    callback: pdfDoc => pdfDoc.save("Training_Checklist.pdf"),
+    margin: [20, 20, 20, 20],
+    autoPaging: "text",
+    html2canvas: { scale: 0.7 }
+  });
+});
+
+// === AUTO-SAVE & RESTORE ===
+const STORAGE_KEY = "myKaarmaTrainingData_v20251107";
+
+function saveFormState() {
+  const data = {};
+  document.querySelectorAll("input, select, textarea").forEach((el, i) => {
+    const key = el.name || `${el.tagName}_${i}`;
+    data[key] = el.type === "checkbox" ? el.checked : el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function loadFormState() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+  try {
+    const data = JSON.parse(saved);
+    document.querySelectorAll("input, select, textarea").forEach((el, i) => {
+      const key = el.name || `${el.tagName}_${i}`;
+      if (data[key] !== undefined) {
+        if (el.type === "checkbox") el.checked = data[key];
+        else el.value = data[key];
+      }
+    });
+  } catch (err) {
+    console.warn("Error loading saved form data:", err);
   }
+}
 
-  // === ADD ROW TO TRAINING TABLES ===
-  document.querySelectorAll(".table-footer .add-row:not([data-addtarget])").forEach((button) => {
-    button.addEventListener("click", () => {
-      const section = button.closest(".section");
-      if (!section) return;
-      const table = section.querySelector("table.training-table");
-      if (!table) return;
+["change", "input"].forEach(evt =>
+  document.addEventListener(evt, e => {
+    if (["INPUT", "SELECT", "TEXTAREA"].includes(e.target.tagName)) saveFormState();
+  })
+);
 
-      const tbody = table.tBodies[0];
-      if (!tbody || !tbody.rows.length) return;
-      const newRow = tbody.rows[0].cloneNode(true);
+document.addEventListener("DOMContentLoaded", loadFormState);
 
-      newRow.querySelectorAll("input, select").forEach((el) => {
-        if (el.type === "checkbox") el.checked = false;
-        else el.value = "";
-      });
-      tbody.appendChild(newRow);
+// === CLEAR ALL DATA BUTTON ===
+const clearBtn = document.createElement("button");
+clearBtn.id = "clearData";
+clearBtn.className = "floating-btn clear-btn";
+clearBtn.textContent = "Clear All Data";
+clearBtn.style.right = "180px"; // sits beside Save as PDF
+document.getElementById("training-summary")?.appendChild(clearBtn);
+
+clearBtn.addEventListener("click", () => {
+  if (confirm("Are you sure you want to clear all saved data? This cannot be undone.")) {
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll("input, select, textarea").forEach(el => {
+      if (el.type === "checkbox") el.checked = false;
+      else el.value = "";
     });
-  });
-
-  // === ADDITIONAL TRAINERS ===
-  document.querySelectorAll(".add-row[data-addtarget='additionalTrainer']").forEach((button) => {
-    button.addEventListener("click", () => {
-      const parent = button.closest(".section-block");
-      if (!parent) return;
-      const newLine = document.createElement("div");
-      newLine.className = "checklist-row indented";
-      newLine.innerHTML = `
-        <label>Additional Trainers</label>
-        <input type="text" />
-      `;
-      parent.insertBefore(newLine, button.parentElement);
-    });
-  });
-
-  // === ADDITIONAL POC ===
-  document.querySelectorAll(".add-row[data-addtarget='additionalPOC']").forEach((button) => {
-    button.addEventListener("click", () => {
-      const parent = button.closest(".section-block");
-      if (!parent) return;
-
-      const group = document.createElement("div");
-      group.innerHTML = `
-        <div class="checklist-row">
-          <label>Additional POC</label>
-          <input type="text" />
-        </div>
-        <div class="checklist-row indented">
-          <label>Cell:</label>
-          <input type="text" />
-        </div>
-        <div class="checklist-row indented">
-          <label>Email:</label>
-          <input type="text" />
-        </div>
-      `;
-      button.closest(".section-block").insertBefore(group, button.parentElement);
-    });
-  });
-
-  // === SAVE AS PDF ===
-  const saveBtn = document.getElementById("savePDF");
-  if (saveBtn) {
-    saveBtn.addEventListener("click", async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF("p", "pt", "a4");
-      const pages = document.querySelectorAll(".page-section");
-
-      const marginX = 30, marginY = 30, lineHeight = 14, maxWidth = 535;
-      let first = true;
-
-      pages.forEach((page) => {
-        if (!first) doc.addPage();
-        first = false;
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(16);
-        doc.text(page.querySelector("h1")?.innerText || "Section", marginX, marginY);
-
-        const text = page.innerText.replace(/\s+\n/g, "\n").trim();
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(10);
-        doc.text(doc.splitTextToSize(text, maxWidth), marginX, marginY + 24, { lineHeightFactor: 1.15 });
-      });
-
-      doc.save("Training_Summary.pdf");
-    });
+    alert("All saved data has been cleared.");
   }
 });
