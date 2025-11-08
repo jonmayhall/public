@@ -1,9 +1,7 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Final Visual Pass
-   Updated: November 7, 2025 – Stable Rounded Header & Table Alignment
+   myKaarma Interactive Training Checklist – Full Stylesheet
    ======================================================= */
 
-/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -12,13 +10,13 @@
   --border: #dcdcdc;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* === BASE STRUCTURE === */
+/* === BASE === */
 html, body {
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -38,33 +36,49 @@ html, body {
   padding: 0 40px;
 }
 .top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
+#dealershipNameDisplay { color: #fff; font-size: 18px; font-weight: 600; letter-spacing: .5px; }
+
+/* === APP LAYOUT === */
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
 }
 
 /* === SIDEBAR === */
-#app { display: flex; min-height: 100vh; margin-top: 70px; }
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
   padding: 20px 8px;
   box-shadow: var(--shadow);
   position: fixed;
-  top: 70px;
-  bottom: 0;
+  top: 70px; bottom: 0;
   overflow-y: auto;
 }
-nav { display: flex; flex-direction: column; gap: 6px; }
-.nav-btn {
-  background: none; border: none; padding: 10px 12px; font-size: 14px;
-  text-align: left; border-radius: var(--radius); cursor: pointer; transition: 0.2s;
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.nav-btn:hover, .nav-btn.active {
-  background: #fff3eb; color: var(--orange); font-weight: 600;
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: .2s;
+  color: var(--ink);
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
 }
 
 /* === MAIN CONTENT === */
@@ -73,7 +87,10 @@ main {
   margin-left: 190px;
   padding: 30px 40px;
   background: var(--gray-bg);
+  box-sizing: border-box;
 }
+
+/* === PAGE SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -81,7 +98,9 @@ main {
   box-shadow: var(--shadow);
   padding: 28px 32px;
   margin: 0 auto 50px;
+  width: 100%;
   max-width: 1250px;
+  box-sizing: border-box;
 }
 .page-section.active { display: block; }
 
@@ -92,24 +111,39 @@ h1 {
   font-weight: 700;
 }
 
-/* === SECTION HEADERS === */
-.section-header, .section-block h2 {
+/* === CARDS & SPACING === */
+.section {
+  margin-bottom: 40px; /* space between each table/card */
+}
+
+.section-header {
   background: var(--orange);
   color: #fff;
-  padding: 10px 16px;
   font-weight: 600;
+  padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
-  line-height: 1.3;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
+
 .section-block {
-  background: #fff;
-  border: 1px solid var(--border);
+  background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 25px;
-  overflow: hidden;
+  border: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.section-block h2 {
+  background: var(--orange);
+  color: #fff;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
 
 /* === CHECKLIST ROWS === */
@@ -120,8 +154,13 @@ h1 {
   padding: 10px 16px;
   border-top: 1px solid var(--border);
 }
-.checklist-row label { flex: 1; font-size: 14px; padding-right: 20px; }
-.checklist-row input, .checklist-row select {
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+.checklist-row input,
+.checklist-row select {
   width: 220px;
   padding: 8px 10px;
   border-radius: 10px;
@@ -138,37 +177,35 @@ textarea {
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
-  overflow: hidden;
   font-family: inherit;
 }
 
-/* =======================================================
-   TABLES
-   ======================================================= */
+/* === TABLES === */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  margin: 0;
+  margin-bottom: 20px;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
+
 .scroll-wrapper {
   display: block;
   width: 100%;
-  max-height: 340px;
   overflow: auto;
-  background: #fff;
   border-top: 1px solid var(--border);
-  border-bottom: none;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
 }
 
-/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
+  border-spacing: 0;
   width: max-content;
   min-width: 100%;
-  border-bottom: none;
 }
+
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -179,7 +216,6 @@ textarea {
   padding: 8px 10px;
 }
 
-/* === HEADER ROW === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -187,10 +223,8 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 3;
-  border-radius: 0;
 }
 
-/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -198,50 +232,38 @@ textarea {
   z-index: 4;
   background: #fff;
   text-align: left;
-  width: 260px;
-  min-width: 260px;
-  border-right: 1px solid var(--border);
-}
-.training-table thead th:first-child {
-  background: var(--light-orange);
+  width: 250px;
+  min-width: 250px;
 }
 
-/* === FIRST COLUMN CONTENT === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-}
+
 .training-table td:first-child input[type="text"] {
   flex: 1;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-size: 13px;
 }
 
-/* === INPUTS & SELECTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
+  box-sizing: border-box;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
+  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
+
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === TABLE FOOTER === */
 .table-footer {
@@ -249,12 +271,10 @@ textarea {
   border: 1px solid var(--border);
   border-top: none;
   background: #fff;
-  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
   padding: 8px 12px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: -2px;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
 }
 .add-row {
   background: var(--orange);
@@ -266,36 +286,15 @@ textarea {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
 
-/* =======================================================
-   CONTACT GROUPS (Dealership Info)
-   ======================================================= */
-.contact-group {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin: 10px 0 20px;
-  background: #fff;
-  box-shadow: var(--shadow);
-}
-.contact-group .checklist-row {
-  border-top: none;
-  border-bottom: 1px solid var(--border);
-}
-.contact-group .checklist-row:last-child {
-  border-bottom: none;
-}
-
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
-  right: 25px;
+  left: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -304,18 +303,18 @@ textarea {
   font-size: 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.2s;
 }
 .floating-btn:hover { background: #ff8848; }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
+/* === RESPONSIVE === */
 @media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
+  #sidebar { width: 160px; }
+  main { margin-left: 160px; padding: 20px; }
+  .training-table th:first-child,
+  .training-table td:first-child { min-width: 180px; }
 }
 @media (max-width: 600px) {
   #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+  main { margin: 0; padding: 15px; }
+  .page-section { padding: 20px; }
 }
