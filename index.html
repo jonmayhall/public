@@ -136,12 +136,12 @@
 </section>
 
 <!-- ========================================================= -->
-<!-- === PAGE 5 : TRAINING CHECKLIST === -->
+<!-- = PAGE 5 : TRAINING CHECKLIST = -->
 <!-- ========================================================= -->
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
 
-  <!-- === TECHNICIANS === -->
+  <!-- === Technicians === -->
   <div class="section">
     <div class="section-header">Technicians – Checklist</div>
     <div class="table-container">
@@ -157,17 +157,24 @@
             </tr>
           </thead>
           <tbody>
+            <!-- 3 rows -->
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+              <td class="name-cell"><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
+              <td colspan="16">
+                <select class="yn-select"></select>
+              </td>
             </tr>
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+              <td class="name-cell"><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
+              <td colspan="16">
+                <select class="yn-select"></select>
+              </td>
             </tr>
             <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
+              <td class="name-cell"><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
+              <td colspan="16">
+                <select class="yn-select"></select>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -176,7 +183,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === SERVICE ADVISORS === -->
+  <!-- === Service Advisors === -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -192,18 +199,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(15)}
-            </tr>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(15)}
-            </tr>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(15)}
-            </tr>
+            <!-- 3 rows -->
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Advisor Name"></td><td colspan="15"><select class="yn-select"></select></td></tr>
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Advisor Name"></td><td colspan="15"><select class="yn-select"></select></td></tr>
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Advisor Name"></td><td colspan="15"><select class="yn-select"></select></td></tr>
           </tbody>
         </table>
       </div>
@@ -211,7 +210,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === PARTS REPRESENTATIVES === -->
+  <!-- === Parts Representatives === -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -227,14 +226,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(13)}
-            </tr>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(13)}
-            </tr>
+            <!-- 2 rows -->
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="13"><select class="yn-select"></select></td></tr>
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="13"><select class="yn-select"></select></td></tr>
           </tbody>
         </table>
       </div>
@@ -242,7 +236,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === BDC REPRESENTATIVES === -->
+  <!-- === BDC Representatives === -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -256,10 +250,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="BDC Rep Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(6)}
-            </tr>
+            <!-- 1 row -->
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="BDC Rep Name"></td><td colspan="6"><select class="yn-select"></select></td></tr>
           </tbody>
         </table>
       </div>
@@ -267,9 +259,9 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DISPATCHER === -->
+  <!-- === Pickup & Delivery Dispatcher === -->
   <div class="section">
-    <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
+    <div class="section-header">Pickup &amp; Delivery Dispatcher – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
@@ -281,10 +273,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(7)}
-            </tr>
+            <!-- 1 row -->
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td><td colspan="7"><select class="yn-select"></select></td></tr>
           </tbody>
         </table>
       </div>
@@ -292,20 +282,21 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === PICKUP & DELIVERY DRIVERS === -->
+  <!-- === Pickup & Delivery Drivers === -->
   <div class="section">
-    <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
+    <div class="section-header">Pickup &amp; Delivery Drivers – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead>
-            <tr><th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th></tr>
+            <tr>
+              <th>Name</th>
+              <th>App Login</th><th>PU&amp;D</th><th>Notifications</th>
+            </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Driver Name"></td>
-              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(3)}
-            </tr>
+            <!-- 1 row -->
+            <tr><td class="name-cell"><input type="checkbox"><input type="text" placeholder="Driver Name"></td><td colspan="3"><select class="yn-select"></select></td></tr>
           </tbody>
         </table>
       </div>
