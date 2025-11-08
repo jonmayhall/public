@@ -1,6 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable Build
-   Version: 20251107 (Confirmed 3:00 PM)
+   myKaarma Interactive Training Checklist – Stable Style + Light Orange Sticky Header
+   Version: v20251109A
    ======================================================= */
 
 :root {
@@ -17,14 +17,15 @@
 /* === Base Layout === */
 html, body {
   margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
 }
 
+/* === Top Bar === */
 #topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
+  background: linear-gradient(90deg,#000 0%,#333 100%);
   height: 70px;
   display: flex;
   align-items: center;
@@ -64,11 +65,7 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
   background: none;
   border: none;
@@ -80,8 +77,7 @@ nav {
   transition: .2s;
   color: var(--ink);
 }
-.nav-btn:hover,
-.nav-btn.active {
+.nav-btn:hover, .nav-btn.active {
   background: #fff3eb;
   color: var(--orange);
   font-weight: 600;
@@ -115,9 +111,7 @@ h1 {
 }
 
 /* === Sections === */
-.section {
-  margin-bottom: 35px;
-}
+.section { margin-bottom: 35px; }
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -178,13 +172,15 @@ textarea {
   font-family: inherit;
 }
 
-/* === Tables === */
+/* =======================================================
+   TABLES
+   ======================================================= */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  margin: 0;
+  margin: 0 0 30px;
 }
 .scroll-wrapper {
   display: block;
@@ -222,12 +218,17 @@ textarea {
   position: sticky;
   left: 0;
   z-index: 4;
-  background: #fff;
   text-align: left;
   width: 250px;
   min-width: 250px;
+  border-right: 1px solid var(--border);
+}
+.training-table th:first-child {
+  background: var(--light-orange);  /* <== STICKY HEADER FIX */
+  color: #fff;
 }
 .training-table td:first-child {
+  background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -281,7 +282,7 @@ textarea {
 .floating-btn {
   position: fixed;
   top: 90px;
-  left: 25px;
+  right: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
