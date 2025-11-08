@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Stable Stylesheet
-   Version: v20251107-B (Sticky Column Clean Alignment)
+   Version: v20251107-C  (footer + sticky alignment fix)
    ======================================================= */
 
 /* === COLOR VARIABLES === */
@@ -197,6 +197,8 @@ textarea {
    TABLES
    ======================================================= */
 .table-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
@@ -207,12 +209,12 @@ textarea {
   margin: 0 0 18px 0;
 }
 .scroll-wrapper {
+  flex: 1 1 auto;
   display: block;
   width: 100%;
   max-height: 340px;
   overflow: auto;
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
   background: #fff;
   scrollbar-color: #ccc transparent;
   scrollbar-width: thin;
@@ -250,7 +252,7 @@ textarea {
   color: #fff;
 }
 
-/* === STICKY FIRST COLUMN (CLEAN ALIGNMENT) === */
+/* === STICKY FIRST COLUMN === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -262,7 +264,7 @@ textarea {
   min-width: 280px;
   padding: 6px 10px;
   border-right: 1px solid var(--border);
-  /* removed box-shadow to avoid visual offset */
+  background-clip: border-box;
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
@@ -315,15 +317,18 @@ textarea {
 
 /* === TABLE FOOTER === */
 .table-footer {
+  flex-shrink: 0;
   width: 100%;
   border: 1px solid var(--border);
-  border-top: none;
+  border-top: 1px solid var(--border);
   background: #fff;
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
-  margin: -1px 0 22px 0;
+  margin: 0;
   box-sizing: border-box;
+  position: relative;
+  top: -2px;
 }
 .add-row {
   background: var(--orange);
@@ -337,11 +342,10 @@ textarea {
   cursor: pointer;
   transition: .2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+  position: relative;
+  left: 4px;
 }
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
-}
+.add-row:hover { background: #ff8b42; transform: scale(1.1); }
 
 /* === COMMENT BOX === */
 .section-block.comment-box {
