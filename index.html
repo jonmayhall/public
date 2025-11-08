@@ -141,7 +141,7 @@
 <section id="training-checklist" class="page-section">
   <h1>Training Checklist</h1>
 
-  <!-- === Technicians Table === -->
+  <!-- === TECHNICIANS === -->
   <div class="section">
     <div class="section-header">Technicians – Checklist</div>
     <div class="table-container">
@@ -159,32 +159,15 @@
           <tbody>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
             </tr>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <!-- remaining cells identical -->
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
             </tr>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <!-- remaining cells identical -->
+              ${'<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'.repeat(16)}
             </tr>
           </tbody>
         </table>
@@ -193,7 +176,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-    <!-- === Service Advisors – Checklist === -->
+  <!-- === SERVICE ADVISORS === -->
   <div class="section">
     <div class="section-header">Service Advisors – Checklist</div>
     <div class="table-container">
@@ -228,7 +211,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === Parts Representatives – Checklist === -->
+  <!-- === PARTS REPRESENTATIVES === -->
   <div class="section">
     <div class="section-header">Parts Representatives – Checklist</div>
     <div class="table-container">
@@ -259,7 +242,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === BDC Representatives – Checklist === -->
+  <!-- === BDC REPRESENTATIVES === -->
   <div class="section">
     <div class="section-header">BDC Representatives – Checklist</div>
     <div class="table-container">
@@ -284,7 +267,7 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === Pickup & Delivery Dispatcher === -->
+  <!-- === PICKUP & DELIVERY DISPATCHER === -->
   <div class="section">
     <div class="section-header">Pickup & Delivery Dispatcher – Checklist</div>
     <div class="table-container">
@@ -309,16 +292,14 @@
     <div class="table-footer"><button class="add-row" type="button">+</button></div>
   </div>
 
-  <!-- === Pickup & Delivery Drivers === -->
+  <!-- === PICKUP & DELIVERY DRIVERS === -->
   <div class="section">
     <div class="section-header">Pickup & Delivery Drivers – Checklist</div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead>
-            <tr>
-              <th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th>
-            </tr>
+            <tr><th>Name</th><th>App Login</th><th>PU&amp;D</th><th>Notifications</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -373,9 +354,7 @@
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table">
-          <thead>
-            <tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr>
-          </thead>
+          <thead><tr><th>MPI Line</th><th>Opcode</th><th>MPI Line #</th><th>Preselected Opcode</th></tr></thead>
           <tbody>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Exterior Lights" /></td>
