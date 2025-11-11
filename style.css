@@ -1,5 +1,5 @@
 /* =======================================================
-myKaarma Interactive Training Checklist – Stable Build v20251110H3
+myKaarma Interactive Training Checklist – Stable Build v20251110H4
 ======================================================= */
 
 :root {
@@ -172,13 +172,13 @@ box-sizing: border-box;
 }
 
 /* =======================================================
-TABLES – FLUSH FOOTER, SQUARE BODY, ROUNDED HEADERS
+TABLES – FLUSH FOOTER, SQUARE HEADERS, ROUNDED CONTAINER
 ======================================================= */
 .table-container {
 width: 100%;
 background: #fff;
 border: 1px solid var(--border);
-border-radius: 0;
+border-radius: var(--radius);
 box-shadow: var(--shadow);
 margin-bottom: 40px;
 overflow: hidden;
@@ -215,7 +215,7 @@ border-bottom: 1px solid var(--border);
 padding: 8px 10px;
 }
 
-/* Light-orange header with rounded top corners */
+/* Light-orange header (square corners) */
 .training-table thead th {
 background: var(--light-orange);
 color: #fff;
@@ -224,14 +224,6 @@ position: sticky;
 top: 0;
 z-index: 3;
 border-radius: 0;
-}
-
-/* Add rounded top corners only to first and last header cells */
-.training-table thead tr:first-child th:first-child {
-border-top-left-radius: var(--radius);
-}
-.training-table thead tr:first-child th:last-child {
-border-top-right-radius: var(--radius);
 }
 
 /* Sticky first column */
@@ -247,7 +239,6 @@ min-width: 260px;
 }
 .training-table thead th:first-child {
 background: var(--light-orange);
-color: #fff;
 }
 
 /* === INPUTS === */
@@ -296,21 +287,16 @@ background: #fff3eb;
 transition: background 0.2s ease;
 }
 
-/* === FOOTER (NO FLOATING) === */
+/* === FOOTER (FLUSH + ROUNDED BOTTOM) === */
 .table-footer {
 width: 100%;
 background: #fff;
-border-top: none;
-border-left: 1px solid var(--border);
-border-right: 1px solid var(--border);
-border-bottom: 1px solid var(--border);
-border-radius: 0 0 var(--radius) var(--radius);
+border-top: 1px solid var(--border);
 padding: 8px 12px;
-box-sizing: border-box;
 text-align: left;
-margin-top: -1px;
 display: flex;
 align-items: center;
+border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .add-row {
