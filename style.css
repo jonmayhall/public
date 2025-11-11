@@ -1,5 +1,5 @@
 /* =======================================================
-myKaarma Interactive Training Checklist – Stable Build v20251110H4
+myKaarma Interactive Training Checklist – Stable Build v20251110H5
 ======================================================= */
 
 :root {
@@ -215,7 +215,7 @@ border-bottom: 1px solid var(--border);
 padding: 8px 10px;
 }
 
-/* Light-orange header (square corners) */
+/* Light-orange header (completely square) */
 .training-table thead th {
 background: var(--light-orange);
 color: #fff;
@@ -224,6 +224,7 @@ position: sticky;
 top: 0;
 z-index: 3;
 border-radius: 0;
+border-top: none;
 }
 
 /* Sticky first column */
@@ -260,16 +261,28 @@ background: #f2f2f2;
 font-size: 13px;
 }
 
-.training-table input[type="text"],
+/* === Dropdown Cell Normalization === */
 .training-table select {
 width: 100%;
-box-sizing: border-box;
+min-width: 100px;
 padding: 6px 8px;
 border-radius: 8px;
 border: 1px solid var(--border);
 background: #f2f2f2;
 font-size: 13px;
+box-sizing: border-box;
 }
+.training-table td select:empty::after {
+content: " ";
+}
+
+/* Enforce dropdowns on all data cells except name column */
+.training-table td:not(:first-child):empty::before {
+content: "▼";
+color: transparent;
+}
+
+/* Focus & hover behavior */
 .training-table input[type="text"]:focus,
 .training-table select:focus {
 border-color: var(--orange);
