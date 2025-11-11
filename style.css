@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111T
+   myKaarma Interactive Training Checklist – Full CSS v20251111U
    ======================================================= */
 
 :root {
@@ -24,8 +24,6 @@ html, body {
   color: var(--ink);
   overflow-x: hidden;
 }
-
-/* Remove italics globally */
 * { font-style: normal !important; }
 em, i { font-style: normal !important; }
 
@@ -113,7 +111,6 @@ main {
   background: var(--gray-bg);
   box-sizing: border-box;
 }
-
 .page-section h1 {
   color: var(--orange);
   font-size: 26px;
@@ -133,7 +130,6 @@ main {
   border-radius: 3px;
   box-shadow: 0 1px 4px rgba(243,111,33,0.4);
 }
-
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -184,14 +180,13 @@ main {
   font-size: 14px;
   padding-left: 25px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0; /* subtle gray divider */
+  border-bottom: 1px solid #e0e0e0;
 }
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
   margin-bottom: 8px;
   padding-bottom: 0;
 }
-
 .checklist-row label {
   flex: 0 0 260px;
   font-weight: 500;
@@ -211,27 +206,6 @@ main {
   font-size: 12px;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
-  appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--orange) 50%),
-    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
-  background-position:
-    calc(100% - 18px) calc(50% - 3px),
-    calc(100% - 12px) calc(50% - 3px);
-  background-size: 6px 6px, 6px 6px;
-  background-repeat: no-repeat;
-}
-.section-block .checklist-row input[type="text"],
-.section-block .checklist-row input[type="number"],
-.section-block .checklist-row input[type="email"] {
-  background-image: none;
-}
-.section-block .checklist-row input:focus,
-.section-block .checklist-row select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.35);
-  outline: none;
-  background: #fff9f5;
 }
 .section-block textarea {
   width: 70%;
@@ -243,55 +217,6 @@ main {
   font-size: 12px;
   box-sizing: border-box;
   resize: vertical;
-}
-.section-block textarea:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.35);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* === Integrated Add Button === */
-.section-block .checklist-row:has(.add-row) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-left: 25px;
-}
-.section-block .checklist-row:has(.add-row) input[type="text"] {
-  flex: 0 0 250px;
-  width: 250px;
-  padding: 6px 38px 6px 10px;
-  border-radius: var(--input-radius);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 12px;
-  margin-left: auto;
-}
-.section-block .checklist-row .add-row {
-  position: relative;
-  margin-left: -34px;
-  width: 30px;
-  height: 30px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: var(--input-radius);
-  border-bottom-right-radius: var(--input-radius);
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--orange);
-  color: #fff;
-  border: 1px solid var(--orange);
-  cursor: pointer;
-  transition: 0.2s;
-}
-.section-block .checklist-row .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
 }
 
 /* =======================================================
@@ -356,21 +281,26 @@ main {
   z-index: 5;
   text-align: center;
 }
-.training-table tbody td:first-child {
-  background: #fff;
-  text-align: left;
-}
+
+/* Wider first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  width: 260px;
+  width: 300px; /* widened from 260px */
 }
+.training-table tbody td:first-child {
+  background: #fff;
+  text-align: left;
+  padding-left: 12px;
+}
+
+/* Inputs/selects inside table */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 115px;
-  padding: 6px 8px;
+  min-width: 125px;
+  padding: 7px 10px;
   border-radius: var(--input-radius);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -378,6 +308,14 @@ main {
   text-align: center;
   box-sizing: border-box;
 }
+
+/* Slightly larger text box for Name column */
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
@@ -385,8 +323,10 @@ main {
   outline: none;
   background: #fff9f5;
 }
+
 .training-table tr:nth-child(odd){background:#fff;}
 .training-table tr:nth-child(even){background:#fafafa;}
+
 .table-footer {
   width: 100%;
   background: #fff;
