@@ -5,12 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- CSS with cache-buster -->
-  <link rel="stylesheet" href="style.css?v=20251110H">
+  <!-- === Auto Cache-Buster for CSS === -->
+  <script>
+    const cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = "style.css?v=" + new Date().toISOString().replace(/[-:.TZ]/g,"");
+    document.head.appendChild(cssLink);
+  </script>
 
   <!-- jsPDF + main JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="script.js?v=20251107C" defer></script>
+  <script src="script.js?v=20251107C" defer></script>
 </head>
 
 <body>
