@@ -13,9 +13,12 @@
     document.head.appendChild(cssLink);
   </script>
 
-  <!-- jsPDF + main JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js?v=20251107C" defer></script>
+  <script>
+  const js = document.createElement("script");
+  js.src = "script.js?v=" + new Date().toISOString().replace(/[-:.TZ]/g,"");
+  js.defer = true;
+  document.head.appendChild(js);
+</script>
 </head>
 
 <body>
