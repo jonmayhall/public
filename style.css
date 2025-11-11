@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111A
+   myKaarma Interactive Training Checklist – Full CSS v20251111B
    ======================================================= */
 
 :root {
@@ -135,6 +135,7 @@ h1 {
   font-size: 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
+  border-bottom: none; /* clean attach to table */
 }
 
 /* =======================================================
@@ -144,7 +145,8 @@ h1 {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-top: none; /* attached directly to header */
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 40px;
   overflow: hidden;
@@ -237,22 +239,22 @@ h1 {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER === */
+/* === TABLE FOOTER (ATTACHED CLEANLY) === */
 .table-footer {
   width: 100%;
   background: #fff;
-  border-top: none;
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0; /* handled by container */
   padding: 8px 12px;
   box-sizing: border-box;
   text-align: left;
-  margin-top: -1px;
   display: flex;
   align-items: center;
+  margin-top: 0;
 }
+
+/* Add-row button */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -277,8 +279,6 @@ h1 {
 .training-table select {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-/* Base states */
 .training-table select option { color: #000; }
 
 /* === User Acceptance === */
