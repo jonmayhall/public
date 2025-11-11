@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111AB
+   myKaarma Interactive Training Checklist – Full CSS v20251111AC
    ======================================================= */
 
 :root {
@@ -14,7 +14,9 @@
   --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* === BASE === */
+/* =======================================================
+   BASE & RESET
+   ======================================================= */
 html, body {
   margin: 0;
   font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -24,7 +26,9 @@ html, body {
 }
 *, em, i { font-style: normal !important; }
 
-/* === TOP BAR === */
+/* =======================================================
+   TOP BAR
+   ======================================================= */
 #topbar {
   background: linear-gradient(90deg, #000 0%, #333 100%);
   height: 70px;
@@ -32,46 +36,95 @@ html, body {
   align-items: center;
   padding: 0 40px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
 }
-.topbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 .top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay { color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; }
+#dealershipNameDisplay {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
-/* === SIDEBAR === */
-#app { display: flex; min-height: 100vh; margin-top: 70px; overflow-x: hidden; }
+/* =======================================================
+   SIDEBAR
+   ======================================================= */
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
+}
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px; padding: 20px 8px;
+  width: 190px;
+  padding: 20px 8px;
   box-shadow: var(--shadow);
-  position: fixed; top: 70px; bottom: 0;
-  overflow-y: auto; border-top-right-radius: var(--radius);
+  position: fixed;
+  top: 70px; bottom: 0;
+  overflow-y: auto;
+  border-top-right-radius: var(--radius);
 }
-#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .nav-btn {
-  background: none; border: none; padding: 10px 12px;
-  font-size: 14px; text-align: left; border-radius: var(--input-radius);
-  cursor: pointer; color: var(--ink); transition: 0.2s;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: var(--input-radius);
+  cursor: pointer;
+  color: var(--ink);
+  transition: 0.2s;
 }
-.nav-btn:hover, .nav-btn.active {
-  background: #fff3eb; color: var(--orange); font-weight: 600;
+.nav-btn:hover,
+.nav-btn.active {
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
 }
 
-/* === MAIN CONTENT === */
-main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-bg); box-sizing: border-box; }
+/* =======================================================
+   MAIN CONTENT & PAGE SECTIONS
+   ======================================================= */
+main {
+  flex: 1;
+  margin-left: 190px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
+  box-sizing: border-box;
+}
 .page-section {
-  display: none; background: var(--card-bg); border-radius: var(--radius);
-  box-shadow: var(--shadow); padding: 22px 32px 28px;
-  margin: 0 auto 50px; width: 100%; max-width: 1250px; box-sizing: border-box;
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 32px 28px;
+  margin: 0 auto 50px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
 }
 .page-section.active { display: block; }
 
 /* =======================================================
-   PAGE TITLES – Left aligned + long orange underline
+   PAGE TITLES – Left aligned + longer orange underline
    ======================================================= */
 .page-section h1 {
   color: var(--orange);
@@ -85,7 +138,7 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
 .page-section h1::after {
   content: "";
   display: block;
-  width: 180px;   /* extended ~½ inch longer */
+  width: 260px;      /* longer underline */
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
@@ -103,6 +156,7 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   padding: 0 22px 14px;
   margin-bottom: 24px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .section-block h2 {
   margin: 0 0 16px;
@@ -133,6 +187,8 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   margin-bottom: 8px;
   padding-bottom: 0;
 }
+
+/* Label spans across, input anchored right */
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
@@ -140,6 +196,8 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   padding-right: 16px;
   white-space: normal;
 }
+
+/* Standard inputs & selects (right aligned) */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -175,6 +233,50 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
 }
 
 /* =======================================================
+   INTEGRATED + BUTTON ROW (non-table pages)
+   ======================================================= */
+/* For rows like "Additional Trainers" with plus button */
+.section-block .checklist-row:has(.add-row) {
+  position: relative;
+}
+
+.section-block .checklist-row:has(.add-row) input[type="text"] {
+  flex: 0 0 260px;
+  width: 260px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 7px 36px 7px 10px; /* space for circle inside right edge */
+  border-radius: var(--input-radius);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+}
+
+.section-block .checklist-row .add-row {
+  position: absolute;
+  right: 34px;                 /* sits over the right inner edge of input */
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-block .checklist-row .add-row:hover {
+  background: #ff8b42;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* =======================================================
    TABLE SECTIONS
    ======================================================= */
 .section { margin-bottom: 40px; }
@@ -199,8 +301,13 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   overflow: hidden;
 }
 .scroll-wrapper { display: block; width: 100%; overflow-x: auto; background: #fff; }
-.training-table { border-collapse: collapse; width: 100%; }
-.training-table th, .training-table td {
+
+.training-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.training-table th,
+.training-table td {
   white-space: nowrap;
   text-align: center;
   font-size: 13px;
@@ -209,7 +316,7 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   padding: 8px 10px;
 }
 
-/* Sticky header row */
+/* Sticky header */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -226,7 +333,6 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   left: 0;
   width: 285px;
   min-width: 285px;
-  text-align: left;
 }
 .training-table thead th:first-child {
   text-align: center;
@@ -237,17 +343,13 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   align-items: center;
   gap: 8px;
   padding-left: 10px;
-  padding-right: 8px; /* more right-side padding for checkbox */
+  padding-right: 10px;
 }
-
-/* Checkbox spacing */
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
   transform: scale(1.1);
-  margin-right: 6px; /* added space */
+  margin-right: 6px;
 }
-
-/* Name text input */
 .training-table td:first-child input[type="text"] {
   width: 95%;
   padding: 7px 10px;
@@ -255,14 +357,19 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   border-radius: var(--input-radius);
 }
 
-/* User Acceptance column (2nd column) width widened */
+/* User Acceptance column (2nd col) - wide enough for full text */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  width: 180px;
-  min-width: 180px;
+  width: 190px;
+  min-width: 190px;
 }
 
-/* Inputs / selects inside tables */
+/* Ensure all dropdown columns can show "Not Trained" fully */
+.training-table select {
+  min-width: 130px;  /* guarantee label visibility */
+}
+
+/* Inputs / selects in table */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -281,8 +388,10 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   outline: none;
   background: #fff9f5;
 }
-.training-table tr:nth-child(odd){background:#fff;}
-.training-table tr:nth-child(even){background:#fafafa;}
+
+/* Row striping */
+.training-table tr:nth-child(odd) { background:#fff; }
+.training-table tr:nth-child(even){ background:#fafafa; }
 
 /* =======================================================
    TABLE FOOTER
@@ -296,6 +405,7 @@ main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-b
   align-items: center;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
+  box-sizing: border-box;
 }
 .table-footer .add-row {
   background: var(--orange);
