@@ -327,3 +327,48 @@ textarea {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
 }
+/* === TABLE CONTAINER (FIXED FOOTER ATTACHMENT) === */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 30px; /* space between tables */
+  display: flex;
+  flex-direction: column;
+}
+
+/* The scrollable area stays locked above footer */
+.scroll-wrapper {
+  flex: 1 1 auto;
+  overflow: auto;
+  max-height: 340px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  scrollbar-color: #ccc transparent;
+  scrollbar-width: thin;
+}
+
+/* === TABLE FOOTER (FLUSH & FIXED ATTACHMENT) === */
+.table-footer {
+  flex-shrink: 0;
+  width: 100%;
+  background: #fff;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  text-align: left;
+  padding: 8px 12px;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  bottom: 0;
+}
