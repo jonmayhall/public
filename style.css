@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111J
+   myKaarma Interactive Training Checklist – Full CSS v20251111M
    ======================================================= */
 
 :root {
@@ -9,7 +9,8 @@
   --card-bg: #fff;
   --border: #dcdcdc;
   --ink: #222;
-  --radius: 16px;
+  --radius: 18px;
+  --input-radius: 14px;
   --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
@@ -36,6 +37,8 @@ body {
   left: 0;
   right: 0;
   z-index: 20;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
 }
 
 .topbar-content {
@@ -76,6 +79,7 @@ body {
   top: 70px;
   bottom: 0;
   overflow-y: auto;
+  border-top-right-radius: var(--radius);
 }
 
 #sidebar-nav {
@@ -90,7 +94,7 @@ body {
   padding: 10px 12px;
   font-size: 14px;
   text-align: left;
-  border-radius: var(--radius);
+  border-radius: var(--input-radius);
   cursor: pointer;
   color: var(--ink);
   transition: 0.2s;
@@ -173,7 +177,7 @@ h1 {
   gap: 12px;
   margin-bottom: 8px;
   font-size: 14px;
-  padding-left: 25px; /* ~1 inch indent */
+  padding-left: 25px;
 }
 
 .checklist-row label {
@@ -194,18 +198,25 @@ h1 {
   width: 220px;
   margin-left: auto;
   margin-right: 0;
-  padding: 4px 6px;
-  border-radius: 6px;
+  padding: 6px 8px;
+  border-radius: var(--input-radius);
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f7f7f7;
   font-size: 12px;
   box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none; /* hide native arrow */
+  background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), 
+                    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
 .section-block .checklist-row input:focus,
 .section-block .checklist-row select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.35);
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
   outline: none;
   background: #fff9f5;
 }
@@ -215,7 +226,7 @@ h1 {
   width: 70%;
   margin-left: auto;
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: var(--input-radius);
   border: 1px solid var(--border);
   background: #f7f7f7;
   font-size: 12px;
@@ -225,7 +236,7 @@ h1 {
 
 .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.35);
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
   outline: none;
   background: #fff9f5;
 }
@@ -234,7 +245,6 @@ h1 {
    INTEGRATED ADD BUTTON (for all non-table rows)
    ======================================================= */
 
-/* Applies to any checklist-row containing an add button */
 .section-block .checklist-row:has(.add-row) {
   display: flex;
   align-items: center;
@@ -248,25 +258,25 @@ h1 {
   flex: 0 0 250px;
   width: 250px;
   position: relative;
-  padding: 6px 38px 6px 8px; /* space for button inside */
-  border-radius: 6px;
+  padding: 6px 38px 6px 10px;
+  border-radius: var(--input-radius);
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f7f7f7;
   font-size: 12px;
   box-sizing: border-box;
   margin-left: auto;
 }
 
-/* Integrated + button visually attached to input */
+/* Integrated + button visually attached */
 .section-block .checklist-row .add-row {
   position: relative;
   margin-left: -34px;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-top-right-radius: var(--input-radius);
+  border-bottom-right-radius: var(--input-radius);
   font-size: 18px;
   font-weight: 600;
   display: flex;
@@ -286,35 +296,7 @@ h1 {
 }
 
 /* =======================================================
-   DEFAULT ADD BUTTON (for any remaining uses)
-   ======================================================= */
-
-.section-block > .add-row:not(.checklist-row .add-row) {
-  margin-left: auto;
-  margin-right: 25px;
-}
-
-.add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-}
-
-.add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.1);
-}
-
-/* =======================================================
-   TABLE SECTIONS (Training, Opcodes, DMS, etc.)
+   TABLES
    ======================================================= */
 
 .section {
@@ -349,12 +331,14 @@ h1 {
   width: 100%;
   overflow-x: auto;
   background: #fff;
+  border-radius: var(--radius);
 }
 
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  border-radius: var(--radius);
 }
 
 /* Table cells */
@@ -376,6 +360,8 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 3;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
 }
 
 /* Sticky first column */
@@ -389,30 +375,30 @@ h1 {
   width: 260px;
 }
 
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 /* Inputs/selects */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
   min-width: 115px;
   padding: 6px 8px;
-  border-radius: 8px;
+  border-radius: var(--input-radius);
   border: 1px solid var(--border);
-  background: #f2f2f2;
+  background: #f7f7f7;
   font-size: 13px;
   text-align: center;
   box-sizing: border-box;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), 
+                    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
   outline: none;
   background: #fff9f5;
 }
@@ -429,6 +415,8 @@ h1 {
   padding: 8px 12px;
   display: flex;
   align-items: center;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
 }
 
 /* =======================================================
@@ -460,16 +448,12 @@ h1 {
    SCROLLBAR
    ======================================================= */
 
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
+.scroll-wrapper::-webkit-scrollbar { height: 8px; }
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
 
 /* =======================================================
    RESPONSIVE
