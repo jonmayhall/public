@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111H
+   myKaarma Interactive Training Checklist – Full CSS v20251111J
    ======================================================= */
 
 :root {
@@ -139,8 +139,6 @@ h1 {
 
 /* =======================================================
    NON-TABLE PAGES
-   (Onsite, Dealership Info, Pre-Training, Monday,
-    Post-Training, Training Summary)
    ======================================================= */
 
 .section-block {
@@ -154,7 +152,7 @@ h1 {
   overflow: hidden;
 }
 
-/* Orange header strip per card */
+/* Orange header strip */
 .section-block h2 {
   margin: 0 0 14px;
   padding: 10px 16px;
@@ -168,14 +166,14 @@ h1 {
   border-bottom: 1px solid var(--border);
 }
 
-/* Each question row */
+/* Checklist rows */
 .checklist-row {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 8px;
   font-size: 14px;
-  padding-left: 25px; /* indent questions ~1 inch */
+  padding-left: 25px; /* ~1 inch indent */
 }
 
 .checklist-row label {
@@ -187,7 +185,7 @@ h1 {
   font-weight: 400;
 }
 
-/* Compact controls on right side (default for non-table) */
+/* Compact right-aligned inputs/dropdowns */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -212,7 +210,7 @@ h1 {
   background: #fff9f5;
 }
 
-/* === Textareas in non-table sections === */
+/* Textareas */
 .section-block textarea {
   width: 70%;
   margin-left: auto;
@@ -233,35 +231,42 @@ h1 {
 }
 
 /* =======================================================
-   ADDITIONAL TRAINERS ROW - SPECIAL ALIGNMENT
-   (Textbox far right, + aligned & uniform)
+   INTEGRATED ADD BUTTON (for all non-table rows)
    ======================================================= */
 
-.section-block .checklist-row:has(label:contains("Additional Trainers")),
-.section-block .checklist-row:has(label[for="additional-trainers"]) {
-  gap: 10px;
+/* Applies to any checklist-row containing an add button */
+.section-block .checklist-row:has(.add-row) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-left: 25px;
 }
 
-/* For the Additional Trainers row specifically */
-.section-block .checklist-row:has(label:contains("Additional Trainers")) input[type="text"],
-.section-block .checklist-row:has(label[for="additional-trainers"]) input[type="text"] {
-  flex: 0 0 220px;
-  width: 220px;
-  margin-left: auto;   /* push field to far right */
-  margin-right: 0;
-  padding: 6px 8px;
-  height: 28px;
+/* Input with built-in space for + button */
+.section-block .checklist-row:has(.add-row) input[type="text"] {
+  flex: 0 0 250px;
+  width: 250px;
+  position: relative;
+  padding: 6px 38px 6px 8px; /* space for button inside */
   border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #f2f2f2;
+  font-size: 12px;
+  box-sizing: border-box;
+  margin-left: auto;
 }
 
-/* Rectangular, aligned "+" button next to that input */
-.section-block .checklist-row:has(label:contains("Additional Trainers")) .add-row,
-.section-block .checklist-row:has(label[for="additional-trainers"]) .add-row {
-  margin: 0;
-  margin-left: 6px;
-  width: 32px;
+/* Integrated + button visually attached to input */
+.section-block .checklist-row .add-row {
+  position: relative;
+  margin-left: -34px;
+  width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   font-size: 18px;
   font-weight: 600;
   display: flex;
@@ -269,28 +274,19 @@ h1 {
   justify-content: center;
   background: var(--orange);
   color: #fff;
-  border: none;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.25);
+  border: 1px solid var(--orange);
+  box-shadow: none;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.section-block .checklist-row:has(label:contains("Additional Trainers")) .add-row:hover,
-.section-block .checklist-row:has(label[for="additional-trainers"]) .add-row:hover {
+.section-block .checklist-row .add-row:hover {
   background: #ff8b42;
   transform: scale(1.05);
 }
 
-/* Fallback for environments without :has/:contains:
-   Align any add-row in a checklist-row cleanly to input */
-.section-block .checklist-row .add-row {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* =======================================================
-   NON-TABLE "+"" BUTTONS OUTSIDE ROWS (e.g. extra contacts)
+   DEFAULT ADD BUTTON (for any remaining uses)
    ======================================================= */
 
 .section-block > .add-row:not(.checklist-row .add-row) {
@@ -298,7 +294,6 @@ h1 {
   margin-right: 25px;
 }
 
-/* Default add-row styling (used by tables; overridden above when scoped) */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -337,7 +332,7 @@ h1 {
   border-bottom: none;
 }
 
-/* === TABLE CARD === */
+/* Table container */
 .table-container {
   width: 100%;
   background: #fff;
@@ -362,7 +357,7 @@ h1 {
   width: 100%;
 }
 
-/* Cells */
+/* Table cells */
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -373,12 +368,11 @@ h1 {
   padding: 8px 10px;
 }
 
-/* Header row */
+/* Header */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  border-radius: 0;
   position: sticky;
   top: 0;
   z-index: 3;
@@ -401,12 +395,7 @@ h1 {
   gap: 6px;
 }
 
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-}
-
-/* Inputs/selects in tables */
+/* Inputs/selects */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -432,13 +421,12 @@ h1 {
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* Footer under tables */
+/* Footer */
 .table-footer {
   width: 100%;
   background: #fff;
   border-top: 1px solid var(--border);
   padding: 8px 12px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
 }
