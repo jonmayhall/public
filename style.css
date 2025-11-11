@@ -336,3 +336,15 @@ main { margin-left: 150px; padding: 20px; }
 #sidebar { display: none; }
 main { margin-left: 0; padding: 20px; }
 }
+/* === FINAL FOOTER EDGE FIX === */
+.table-container {
+  border-bottom: none;                   /* hides squared edge */
+  border-radius: 0 0 var(--radius) var(--radius); /* matches footer curve */
+  background: transparent;               /* removes layered background */
+  position: relative;
+  overflow: visible;
+}
+
+.table-footer {
+  z-index: 5;                            /* ensure footer is above container */
+}
