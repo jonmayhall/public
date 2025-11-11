@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111M
+   myKaarma Interactive Training Checklist – Full CSS v20251111N
    ======================================================= */
 
 :root {
@@ -116,13 +116,35 @@ main {
   box-sizing: border-box;
 }
 
+/* === PAGE TITLES (H1) === */
+.page-section h1 {
+  color: var(--orange);
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  margin: 0 0 18px 4px;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+.page-section h1::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: var(--orange);
+  margin-top: 6px;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.4);
+}
+
 /* === PAGE CONTAINER CARD === */
 .page-section {
   display: none;
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 28px 32px 30px;
+  padding: 22px 32px 28px;
   margin: 0 auto 50px;
   width: 100%;
   max-width: 1250px;
@@ -131,14 +153,6 @@ main {
 
 .page-section.active {
   display: block;
-}
-
-h1 {
-  color: var(--orange);
-  margin: 0 0 22px;
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
 }
 
 /* =======================================================
@@ -205,12 +219,22 @@ h1 {
   font-size: 12px;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
-  appearance: none; /* hide native arrow */
-  background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), 
-                    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
-  background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--orange) 50%),
+    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
+}
+
+/* Only show arrow styling for selects, not text inputs */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"] {
+  background-image: none;
 }
 
 .section-block .checklist-row input:focus,
@@ -242,7 +266,7 @@ h1 {
 }
 
 /* =======================================================
-   INTEGRATED ADD BUTTON (for all non-table rows)
+   INTEGRATED ADD BUTTON (non-table rows)
    ======================================================= */
 
 .section-block .checklist-row:has(.add-row) {
@@ -267,7 +291,7 @@ h1 {
   margin-left: auto;
 }
 
-/* Integrated + button visually attached */
+/* Integrated + button attached to input */
 .section-block .checklist-row .add-row {
   position: relative;
   margin-left: -34px;
@@ -295,8 +319,34 @@ h1 {
   transform: scale(1.05);
 }
 
+/* Standalone add-row in section-block (rare) */
+.section-block > .add-row:not(.checklist-row .add-row) {
+  margin-left: auto;
+  margin-right: 25px;
+}
+
+/* Base add-row fallback */
+.add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.3);
+}
+
+.add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.1);
+}
+
 /* =======================================================
-   TABLES
+   TABLE SECTIONS
    ======================================================= */
 
 .section {
@@ -331,17 +381,16 @@ h1 {
   width: 100%;
   overflow-x: auto;
   background: #fff;
-  border-radius: var(--radius);
 }
 
+/* Table */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  border-radius: var(--radius);
 }
 
-/* Table cells */
+/* Cells */
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -352,7 +401,7 @@ h1 {
   padding: 8px 10px;
 }
 
-/* Header */
+/* Header row */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -360,8 +409,6 @@ h1 {
   position: sticky;
   top: 0;
   z-index: 3;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
 }
 
 /* Sticky first column */
@@ -375,7 +422,14 @@ h1 {
   width: 260px;
 }
 
-/* Inputs/selects */
+/* First column cell content */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Inputs/selects in table */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -388,11 +442,18 @@ h1 {
   text-align: center;
   box-sizing: border-box;
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), 
-                    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
-  background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--orange) 50%),
+    linear-gradient(135deg, var(--orange) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
+}
+
+.training-table input[type="text"] {
+  background-image: none;
 }
 
 .training-table input[type="text"]:focus,
@@ -463,6 +524,7 @@ h1 {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
 }
+
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
