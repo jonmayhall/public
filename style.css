@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111Y
+   myKaarma Interactive Training Checklist – Full CSS v20251111Z
    ======================================================= */
 
 :root {
@@ -14,308 +14,185 @@
   --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* =======================================================
-   GLOBAL FONT & STYLE RESET
-   ======================================================= */
-html,
-body {
+/* === BASE === */
+html, body {
   margin: 0;
   font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
 }
+*,
+em, i { font-style: normal !important; }
 
-/* No italics anywhere */
-* {
-  font-style: normal !important;
-}
-em,
-i {
-  font-style: normal !important;
-}
-
-/* =======================================================
-   TOP BAR
-   ======================================================= */
+/* === TOP BAR === */
 #topbar {
   background: linear-gradient(90deg, #000 0%, #333 100%);
   height: 70px;
   display: flex;
   align-items: center;
   padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
 }
-
-.topbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
-
+.top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
 }
 
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
-}
-
+/* === SIDEBAR === */
+#app { display: flex; min-height: 100vh; margin-top: 70px; overflow-x: hidden; }
 #sidebar {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
+  width: 190px; padding: 20px 8px;
   box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px;
-  bottom: 0;
-  overflow-y: auto;
-  border-top-right-radius: var(--radius);
+  position: fixed; top: 70px; bottom: 0;
+  overflow-y: auto; border-top-right-radius: var(--radius);
 }
-
-#sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
+#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--input-radius);
-  cursor: pointer;
-  color: var(--ink);
-  transition: 0.2s;
+  background: none; border: none; padding: 10px 12px; font-size: 14px;
+  text-align: left; border-radius: var(--input-radius);
+  cursor: pointer; color: var(--ink); transition: 0.2s;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: #fff3eb; color: var(--orange); font-weight: 600;
 }
 
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
-}
-
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
+/* === MAIN CONTENT === */
 main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  background: var(--gray-bg);
-  box-sizing: border-box;
+  flex: 1; margin-left: 190px; padding: 30px 40px;
+  background: var(--gray-bg); box-sizing: border-box;
 }
-
-/* Page container card */
 .page-section {
-  display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px 32px 28px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
-  position: relative;
+  display: none; background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 22px 32px 28px;
+  margin: 0 auto 50px; width: 100%; max-width: 1250px; box-sizing: border-box;
 }
-
-.page-section.active {
-  display: block;
-}
+.page-section.active { display: block; }
 
 /* =======================================================
-   PAGE TITLE HEADER BAR (BLACK → GRAY, STRAIGHT)
+   PAGE TITLES – Orange underline style
    ======================================================= */
 .page-section h1 {
-  background: linear-gradient(90deg, #000 0%, #444 100%);
-  color: #fff;
-  font-size: 22px;
+  color: var(--orange);
+  font-size: 26px;
   font-weight: 700;
-  margin: -22px -32px 20px -32px; /* stretch full width of card */
-  padding: 14px 32px;
-  border-radius: 0; /* straight across, no rounding */
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  text-align: left;
+  text-align: center;
+  margin: 10px 0 30px;
+  position: relative;
 }
-
-/* Remove old orange underline */
 .page-section h1::after {
-  content: none;
+  content: "";
+  display: block;
+  width: 160px;           /* twice as long */
+  height: 4px;
+  background: var(--orange);
+  margin: 8px auto 0;
+  border-radius: 2px;
 }
 
 /* =======================================================
-   NON-TABLE PAGES – SECTION BLOCKS
+   NON-TABLE SECTIONS
    ======================================================= */
 .section-block {
   background: #fff;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  padding: 0 18px 14px;
+  padding: 0 22px 14px;
   margin-bottom: 24px;
   box-sizing: border-box;
-  overflow: hidden;
 }
-
-/* Keep these orange (sub-headers inside pages) */
 .section-block h2 {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   padding: 10px 16px;
   background: var(--orange);
   color: #fff;
   font-size: 16px;
   font-weight: 600;
-  margin-left: -18px;
-  margin-right: -18px;
+  margin-left: -22px;
+  margin-right: -22px;
   border-bottom: 1px solid var(--border);
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* =======================================================
-   QUESTION ROW SPACING & DIVIDERS
-   ======================================================= */
+/* === Question Rows === */
 .checklist-row {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 14px;
   font-size: 14px;
-  padding-left: 25px;
+  padding-left: 35px;
   padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0;
 }
-
 .section-block .checklist-row:last-of-type {
-  border-bottom: none;
-  margin-bottom: 8px;
-  padding-bottom: 0;
+  border-bottom: none; margin-bottom: 8px; padding-bottom: 0;
 }
-
 .checklist-row label {
-  flex: 0 0 260px;
+  flex: 0 0 280px;   /* narrower label */
   font-weight: 500;
+  text-align: left;
 }
 
-/* Inputs & dropdowns on non-table pages */
+/* Inputs / selects */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
 .section-block .checklist-row select {
-  flex: 0 0 220px;
-  width: 220px;
-  margin-left: auto;
-  margin-right: 0;
-  padding: 6px 8px;
+  flex: 1;
+  max-width: 420px;
+  padding: 7px 10px;
   border-radius: var(--input-radius);
   border: 1px solid var(--border);
   background: #f7f7f7;
-  font-size: 12px;
+  font-size: 13px;
   box-sizing: border-box;
-  transition: all 0.2s ease-in-out;
 }
-
 .section-block textarea {
-  width: 70%;
+  width: 90%;
   margin-left: auto;
   padding: 8px 10px;
   border-radius: var(--input-radius);
   border: 1px solid var(--border);
   background: #f7f7f7;
-  font-size: 12px;
-  box-sizing: border-box;
+  font-size: 13px;
   resize: vertical;
 }
-
-.section-block .checklist-row input:focus,
-.section-block .checklist-row select:focus,
-.section-block textarea:focus {
+.section-block input:focus, .section-block select:focus, .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243, 111, 33, 0.35);
-  outline: none;
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
   background: #fff9f5;
 }
 
-/* Integrated Add Button on non-table pages */
-.section-block .checklist-row:has(.add-row) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-left: 25px;
-}
-
-.section-block .checklist-row:has(.add-row) input[type="text"] {
-  flex: 0 0 250px;
-  width: 250px;
-  padding: 6px 38px 6px 10px;
-  border-radius: var(--input-radius);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 12px;
-  margin-left: auto;
-}
-
+/* === Add button inside rows === */
 .section-block .checklist-row .add-row {
-  position: relative;
-  margin-left: -34px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 8px;
   background: var(--orange);
   color: #fff;
   border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 1px 4px rgba(243, 111, 33, 0.25);
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
 }
-
 .section-block .checklist-row .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
+  background: #ff8b42; transform: scale(1.05);
 }
 
 /* =======================================================
    TABLE SECTIONS
    ======================================================= */
-.section {
-  margin-bottom: 40px;
-}
-
-/* Keep these as orange section headers for grouped tables */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -326,7 +203,6 @@ main {
   border: 1px solid var(--orange);
   border-bottom: none;
 }
-
 .table-container {
   width: 100%;
   background: #fff;
@@ -336,24 +212,12 @@ main {
   box-shadow: var(--shadow);
   margin-bottom: 40px;
   overflow: hidden;
-  position: relative;
 }
-
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  background: #fff;
-}
-
 .training-table {
   border-collapse: collapse;
-  border-spacing: 0;
   width: 100%;
 }
-
-.training-table th,
-.training-table td {
+.training-table th, .training-table td {
   white-space: nowrap;
   text-align: center;
   font-size: 13px;
@@ -362,7 +226,7 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header row */
+/* Sticky header and first column */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -371,83 +235,52 @@ main {
   top: 0;
   z-index: 3;
 }
-
-/* First column header (Name) sticky & centered */
+.training-table th:first-child, .training-table td:first-child {
+  position: sticky;
+  left: 0;
+  width: 320px;              /* widened */
+  min-width: 320px;
+  text-align: left;
+}
 .training-table thead th:first-child {
   background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  left: 0;
-  z-index: 5;
   text-align: center;
 }
-
-/* First column cells sticky, restored width */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  width: 260px;
+.training-table td:first-child input[type="text"] {
+  width: 96%;
+  padding: 7px 10px;
+  font-size: 13px;
 }
 
-.training-table tbody td:first-child {
-  background: #fff;
-  text-align: left;
-  padding-left: 12px;
-}
-
-/* Inputs/selects inside tables */
-.training-table input[type="text"],
-.training-table select {
+/* Inputs inside table */
+.training-table input[type="text"], .training-table select {
   width: 100%;
-  min-width: 115px;
   padding: 6px 8px;
   border-radius: var(--input-radius);
   border: 1px solid var(--border);
   background: #f7f7f7;
   font-size: 13px;
   text-align: center;
-  box-sizing: border-box;
 }
-
-.training-table td:first-child input[type="text"] {
-  width: 95%;
-  padding: 7px 10px;
-  font-size: 13px;
-}
-
-.training-table input[type="text"]:focus,
-.training-table select:focus {
+.training-table input:focus, .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243, 111, 33, 0.4);
-  outline: none;
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
   background: #fff9f5;
 }
+.training-table tr:nth-child(odd){background:#fff;}
+.training-table tr:nth-child(even){background:#fafafa;}
 
-/* Row striping */
-.training-table tr:nth-child(odd) {
-  background: #fff;
-}
-.training-table tr:nth-child(even) {
-  background: #fafafa;
-}
-
-/* =======================================================
-   TABLE FOOTER – SMALLER, WITH LIGHT GRAY BACKGROUND
-   ======================================================= */
+/* Table footer */
 .table-footer {
   width: 100%;
-  background: #f5f5f5; /* subtle separation from table body */
+  background: #f5f5f5;
   border-top: 1px solid var(--border);
   padding: 6px 10px;
   display: flex;
   align-items: center;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-  box-sizing: border-box;
 }
-
 .table-footer .add-row {
   background: var(--orange);
   color: #fff;
@@ -459,71 +292,25 @@ main {
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(243, 111, 33, 0.25);
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
 }
-
 .table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
+  background: #ff8b42; transform: scale(1.05);
 }
 
-/* =======================================================
-   SAVE AS PDF BUTTON
-   ======================================================= */
-.floating-btn {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  padding: 8px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  background: var(--orange);
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(243, 111, 33, 0.35);
-  transition: 0.2s;
-}
-
-.floating-btn:hover {
-  background: #ff8b42;
-  transform: translateY(-1px);
-}
-
-/* =======================================================
-   SCROLLBAR
-   ======================================================= */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
+/* Scrollbar */
+.scroll-wrapper::-webkit-scrollbar { height: 8px; }
 .scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
+  background-color: #ccc; border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar {
-    width: 150px;
-  }
-  main {
-    margin-left: 150px;
-    padding: 20px;
-  }
+/* Responsive */
+@media (max-width:900px){
+  #sidebar{width:150px;}
+  main{margin-left:150px;padding:20px;}
 }
-
-@media (max-width: 600px) {
-  #sidebar {
-    display: none;
-  }
-  main {
-    margin-left: 0;
-    padding: 20px;
-  }
+@media (max-width:600px){
+  #sidebar{display:none;}
+  main{margin-left:0;padding:20px;}
 }
