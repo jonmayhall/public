@@ -1,6 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable Build
-   Version: 20251110-Stable
+   myKaarma Interactive Training Checklist – Stable v20251110F
    ======================================================= */
 
 :root {
@@ -11,7 +10,7 @@
   --border: #dcdcdc;
   --ink: #222;
   --radius: 16px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* === BASE === */
@@ -100,7 +99,16 @@ main {
 }
 .page-section.active { display: block; }
 
-/* === SECTION HEADERS === */
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* === SECTION BLOCKS === */
+.section { margin-bottom: 40px; } /* Spacing between tables */
+
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -112,16 +120,74 @@ main {
   border: 1px solid var(--orange);
 }
 
-/* === TABLE CONTAINER === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 35px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.section-block h2 {
+  background: var(--orange);
+  color: white;
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* === CHECKLIST ROWS === */
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
+.checklist-row input,
+.checklist-row select {
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+  box-sizing: border-box;
+}
+
+/* === TEXTAREAS === */
+textarea {
+  width: calc(100% - 32px);
+  margin: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  resize: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* =======================================================
+   TABLES – Stable Format with Spacing
+   ======================================================= */
 .table-container {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
   border-top: none;
-  overflow: hidden;
   border-radius: 0;
   box-shadow: var(--shadow);
-  margin: 0;
+  overflow: hidden;
+  margin-bottom: 30px; /* Add spacing between tables */
 }
 
 .scroll-wrapper {
@@ -135,12 +201,14 @@ main {
   scrollbar-width: thin;
 }
 
-/* === TABLES === */
+/* === CORE TABLE === */
 .training-table {
   border-collapse: collapse;
+  border-spacing: 0;
   width: max-content;
   min-width: 100%;
 }
+
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -152,7 +220,6 @@ main {
   padding: 8px 10px;
 }
 
-/* Header row */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -179,7 +246,7 @@ main {
   color: #fff;
 }
 
-/* Checkbox + name */
+/* === FIRST COLUMN INPUTS === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -195,11 +262,10 @@ main {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 
-/* Cells & selects */
+/* === CELL INPUTS === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -208,7 +274,6 @@ main {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
 .training-table input[type="text"]:focus,
@@ -219,10 +284,11 @@ main {
   background: #fff9f5;
 }
 
+/* === ROW STRIPING === */
 .training-table tr:nth-child(odd) { background: #fff; }
 .training-table tr:nth-child(even) { background: #fafafa; }
 
-/* === TABLE FOOTER === */
+/* === TABLE FOOTER (ATTACHED) === */
 .table-footer {
   width: 100%;
   border: 1px solid var(--border);
@@ -231,7 +297,7 @@ main {
   border-radius: 0 0 var(--radius) var(--radius);
   text-align: left;
   padding: 8px 12px;
-  margin: 0;
+  margin-top: -1px;
   box-sizing: border-box;
 }
 
@@ -249,25 +315,6 @@ main {
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
 .add-row:hover { background: #ff8b42; transform: scale(1.1); }
-
-/* === OTHER ELEMENTS === */
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-.section-block h2 {
-  background: var(--orange);
-  color: white;
-  margin: 0;
-  padding: 10px 16px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
 
 /* Responsive */
 @media (max-width: 900px) {
