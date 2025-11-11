@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111S
+   myKaarma Interactive Training Checklist – Full CSS v20251111T
    ======================================================= */
 
 :root {
@@ -172,14 +172,26 @@ main {
   margin-right: -18px;
   border-bottom: 1px solid var(--border);
 }
+
+/* =======================================================
+   QUESTION ROW SPACING & DIVIDERS
+   ======================================================= */
 .checklist-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   font-size: 14px;
   padding-left: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0; /* subtle gray divider */
 }
+.section-block .checklist-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+
 .checklist-row label {
   flex: 0 0 260px;
   font-weight: 500;
@@ -296,7 +308,6 @@ main {
   border: 1px solid var(--orange);
   border-bottom: none;
 }
-
 .table-container {
   width: 100%;
   background: #fff;
@@ -314,7 +325,6 @@ main {
   overflow-x: auto;
   background: #fff;
 }
-
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -329,8 +339,6 @@ main {
   border-bottom: 1px solid var(--border);
   padding: 8px 10px;
 }
-
-/* Header row */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -339,8 +347,6 @@ main {
   top: 0;
   z-index: 3;
 }
-
-/* First-column header centered */
 .training-table thead th:first-child {
   background: var(--light-orange);
   color: #fff;
@@ -354,16 +360,12 @@ main {
   background: #fff;
   text-align: left;
 }
-
-/* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   width: 260px;
 }
-
-/* Inputs/selects */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -385,7 +387,6 @@ main {
 }
 .training-table tr:nth-child(odd){background:#fff;}
 .training-table tr:nth-child(even){background:#fafafa;}
-
 .table-footer {
   width: 100%;
   background: #fff;
