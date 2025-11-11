@@ -1,9 +1,8 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Unified Stylesheet
-   Updated November 2025 (stable + footer fix)
+   myKaarma Interactive Training Checklist – Full CSS
+   Updated: 2025-11-09D
    ======================================================= */
 
-/* === COLOR VARIABLES === */
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
@@ -15,13 +14,20 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* === BASE STRUCTURE === */
+/* === GLOBAL LAYOUT === */
 html, body {
   margin: 0;
   font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
+}
+
+h1 {
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 /* === TOP BAR === */
@@ -31,43 +37,29 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 20;
   padding: 0 40px;
 }
-.topbar-content {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-.top-logo {
-  height: 42px;
-  object-fit: contain;
-}
+.top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
 }
 
-/* === LAYOUT === */
+/* === SIDEBAR === */
 #app {
   display: flex;
   min-height: 100vh;
   margin-top: 70px;
   overflow-x: hidden;
 }
-
-/* =======================================================
-   SIDEBAR
-   ======================================================= */
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
@@ -78,11 +70,7 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
   background: none;
   border: none;
@@ -91,7 +79,7 @@ nav {
   text-align: left;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.2s;
+  transition: .2s;
   color: var(--ink);
 }
 .nav-btn:hover,
@@ -101,9 +89,7 @@ nav {
   font-weight: 600;
 }
 
-/* =======================================================
-   MAIN CONTENT
-   ======================================================= */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -111,6 +97,8 @@ main {
   background: var(--gray-bg);
   box-sizing: border-box;
 }
+
+/* === PAGE SECTIONS === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -123,40 +111,29 @@ main {
   box-sizing: border-box;
 }
 .page-section.active { display: block; }
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 700;
-}
 
-/* =======================================================
-   SECTION BLOCKS
-   ======================================================= */
-.section {
-  margin-bottom: 35px;
-}
+/* === SECTION HEADERS === */
+.section { margin-bottom: 35px; }
 .section-header {
   background: var(--orange);
   color: #fff;
   font-weight: 600;
   padding: 10px 16px;
   border: 1px solid var(--orange);
-  border-radius: var(--radius) var(--radius) 0 0;
   font-size: 16px;
   line-height: 1.3;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 .section-block {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 25px;
-  overflow: hidden;
   border: 1px solid var(--border);
 }
 .section-block h2 {
   background: var(--orange);
-  color: white;
+  color: #fff;
   margin: 0;
   padding: 10px 16px;
   font-size: 15px;
@@ -195,21 +172,21 @@ textarea {
   border: 1px solid var(--border);
   background: #fafafa;
   resize: none;
-  overflow: hidden;
   font-family: inherit;
 }
 
 /* =======================================================
-   TABLES
+   TABLES (Final Stable Version)
    ======================================================= */
 .table-container {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0;
   overflow: hidden;
   margin-bottom: 35px;
 }
+
 .scroll-wrapper {
   flex: 1;
   overflow: auto;
@@ -233,6 +210,8 @@ textarea {
   background-clip: padding-box;
   padding: 8px 10px;
 }
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
 /* === HEADER ROWS === */
 .training-table thead th {
@@ -263,27 +242,7 @@ textarea {
   color: #fff;
 }
 
-/* === FIRST COLUMN WITH CHECKBOX + TEXT === */
-.training-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-}
-.training-table td:first-child input[type="text"] {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #f2f2f2;
-  font-family: "Roboto", sans-serif;
-  font-size: 13px;
-}
-
-/* === INPUTS & SELECTS === */
+/* === INPUTS INSIDE TABLES === */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -295,29 +254,23 @@ textarea {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
+.training-table td:first-child input[type="text"] {
+  flex: 1;
+  padding: 6px 8px;
 }
 
-/* === ROW STRIPING === */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* === TABLE FOOTER (FIXED FLUSH) === */
+/* === FOOTER FIXED FLUSH === */
 .table-footer {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  margin-top: -1px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: #fff;
-  border-top: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
   padding: 8px 12px;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-sizing: border-box;
-  margin: 0;
 }
 .add-row {
   background: var(--orange);
@@ -331,29 +284,17 @@ textarea {
   cursor: pointer;
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-  position: relative;
 }
 .add-row:hover {
   background: #ff8b42;
   transform: scale(1.1);
 }
 
-/* === COMMENT BOX === */
-.section-block.comment-box {
-  margin-top: 18px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-/* =======================================================
-   FLOATING SAVE BUTTON
-   ======================================================= */
+/* === FLOATING BUTTON === */
 .floating-btn {
   position: fixed;
   top: 90px;
-  right: 25px;
+  left: 25px;
   background: var(--orange);
   color: #fff;
   border: none;
@@ -362,18 +303,5 @@ textarea {
   font-size: 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: 0.2s;
 }
 .floating-btn:hover { background: #ff8848; }
-
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
