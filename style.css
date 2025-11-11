@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111AC
+   myKaarma Interactive Training Checklist – Full CSS v20251111AE
    ======================================================= */
 
 :root {
@@ -17,14 +17,19 @@
 /* =======================================================
    BASE & RESET
    ======================================================= */
-html, body {
+html,
+body {
   margin: 0;
   font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
 }
-*, em, i { font-style: normal !important; }
+*,
+em,
+i {
+  font-style: normal !important;
+}
 
 /* =======================================================
    TOP BAR
@@ -35,9 +40,11 @@ html, body {
   display: flex;
   align-items: center;
   padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
@@ -48,7 +55,10 @@ html, body {
   justify-content: space-between;
   width: 100%;
 }
-.top-logo { height: 42px; object-fit: contain; }
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
 #dealershipNameDisplay {
   color: #fff;
   font-size: 18px;
@@ -66,14 +76,15 @@ html, body {
   overflow-x: hidden;
 }
 #sidebar {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
   width: 190px;
   padding: 20px 8px;
   box-shadow: var(--shadow);
   position: fixed;
-  top: 70px; bottom: 0;
+  top: 70px;
+  bottom: 0;
   overflow-y: auto;
   border-top-right-radius: var(--radius);
 }
@@ -121,10 +132,12 @@ main {
   max-width: 1250px;
   box-sizing: border-box;
 }
-.page-section.active { display: block; }
+.page-section.active {
+  display: block;
+}
 
 /* =======================================================
-   PAGE TITLES – Left aligned + longer orange underline
+   PAGE TITLES – Left aligned + long orange underline
    ======================================================= */
 .page-section h1 {
   color: var(--orange);
@@ -138,7 +151,7 @@ main {
 .page-section h1::after {
   content: "";
   display: block;
-  width: 260px;      /* longer underline */
+  width: 260px;
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
@@ -146,7 +159,7 @@ main {
 }
 
 /* =======================================================
-   NON-TABLE SECTIONS
+   NON-TABLE SECTIONS (Cards + Rows)
    ======================================================= */
 .section-block {
   background: #fff;
@@ -157,6 +170,7 @@ main {
   margin-bottom: 24px;
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 }
 .section-block h2 {
   margin: 0 0 16px;
@@ -171,7 +185,7 @@ main {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* Question rows */
+/* Generic checklist row */
 .checklist-row {
   display: flex;
   align-items: center;
@@ -188,7 +202,7 @@ main {
   padding-bottom: 0;
 }
 
-/* Label spans across, input anchored right */
+/* Label spans, input right-aligned */
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
@@ -196,8 +210,6 @@ main {
   padding-right: 16px;
   white-space: normal;
 }
-
-/* Standard inputs & selects (right aligned) */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -227,33 +239,36 @@ main {
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.35);
+  box-shadow: 0 0 4px rgba(243, 111, 33, 0.35);
   outline: none;
   background: #fff9f5;
 }
 
 /* =======================================================
-   INTEGRATED + BUTTON ROW (non-table pages)
+   DEALERSHIP CONTACTS – NAME DIVIDERS
    ======================================================= */
-/* For rows like "Additional Trainers" with plus button */
-.section-block .checklist-row:has(.add-row) {
+/* Any row with a Name input gets a divider above (applies to main + cloned rows) */
+.section-block .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 1px solid #dcdcdc;
+  padding-top: 12px;
+  margin-top: 6px;
+}
+
+/* =======================================================
+   INTEGRATED + BUTTON – NON-TABLE TEXTBOXES
+   (e.g., Additional Trainers, Additional POC)
+   ======================================================= */
+
+/* For rows where + is inside the checklist-row (Additional Trainers style) */
+.section-block .checklist-row:has(> .add-row) {
   position: relative;
 }
-
-.section-block .checklist-row:has(.add-row) input[type="text"] {
-  flex: 0 0 260px;
-  width: 260px;
-  margin-left: auto;
-  margin-right: 0;
-  padding: 7px 36px 7px 10px; /* space for circle inside right edge */
-  border-radius: var(--input-radius);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  padding-right: 38px;
 }
-
-.section-block .checklist-row .add-row {
+.section-block .checklist-row > .add-row {
   position: absolute;
-  right: 34px;                 /* sits over the right inner edge of input */
+  right: 34px;
   top: 50%;
   transform: translateY(-50%);
   background: var(--orange);
@@ -266,20 +281,48 @@ main {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+  box-shadow: 0 1px 3px rgba(243, 111, 33, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.section-block .checklist-row .add-row:hover {
+.section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
   transform: translateY(-50%) scale(1.05);
+}
+
+/* For blocks where + is a standalone button at the bottom (e.g., Dealership Contacts)
+   Treat it as integrated into the last Name textbox (Additional POC) */
+.section-block > .add-row {
+  position: absolute;
+  right: 34px;
+  bottom: 32px; /* aligns near the last Name input (Additional POC) */
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 1px 3px rgba(243, 111, 33, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-block > .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
 }
 
 /* =======================================================
    TABLE SECTIONS
    ======================================================= */
-.section { margin-bottom: 40px; }
+.section {
+  margin-bottom: 40px;
+}
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -290,6 +333,7 @@ main {
   border: 1px solid var(--orange);
   border-bottom: none;
 }
+
 .table-container {
   width: 100%;
   background: #fff;
@@ -300,8 +344,12 @@ main {
   margin-bottom: 40px;
   overflow: hidden;
 }
-.scroll-wrapper { display: block; width: 100%; overflow-x: auto; background: #fff; }
-
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+}
 .training-table {
   border-collapse: collapse;
   width: 100%;
@@ -357,7 +405,7 @@ main {
   border-radius: var(--input-radius);
 }
 
-/* User Acceptance column (2nd col) - wide enough for full text */
+/* User Acceptance column (2nd col) wide enough */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
   width: 190px;
@@ -366,10 +414,10 @@ main {
 
 /* Ensure all dropdown columns can show "Not Trained" fully */
 .training-table select {
-  min-width: 130px;  /* guarantee label visibility */
+  min-width: 130px;
 }
 
-/* Inputs / selects in table */
+/* Table inputs */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -384,14 +432,18 @@ main {
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  box-shadow: 0 0 4px rgba(243, 111, 33, 0.4);
   outline: none;
   background: #fff9f5;
 }
 
 /* Row striping */
-.training-table tr:nth-child(odd) { background:#fff; }
-.training-table tr:nth-child(even){ background:#fafafa; }
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
 
 /* =======================================================
    TABLE FOOTER
@@ -418,7 +470,7 @@ main {
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+  box-shadow: 0 1px 3px rgba(243, 111, 33, 0.25);
 }
 .table-footer .add-row:hover {
   background: #ff8b42;
@@ -428,21 +480,35 @@ main {
 /* =======================================================
    SCROLLBAR
    ======================================================= */
-.scroll-wrapper::-webkit-scrollbar { height: 8px; }
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
 @media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
+  #sidebar {
+    width: 150px;
+  }
+  main {
+    margin-left: 150px;
+    padding: 20px;
+  }
 }
 @media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+  #sidebar {
+    display: none;
+  }
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
 }
