@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111E
+   myKaarma Interactive Training Checklist – Full CSS v20251111F
    ======================================================= */
 
 :root {
@@ -151,7 +151,7 @@ h1 {
   padding: 0 18px 14px;
   margin-bottom: 24px;
   box-sizing: border-box;
-  overflow: hidden; /* so header radius is clean */
+  overflow: hidden;
 }
 
 /* Orange strip header for block title */
@@ -168,7 +168,7 @@ h1 {
   border-bottom: 1px solid var(--border);
 }
 
-/* Rows with label left, field right */
+/* Rows: label left, compact field right */
 .checklist-row {
   display: flex;
   align-items: center;
@@ -182,41 +182,44 @@ h1 {
   font-weight: 500;
 }
 
+/* small hint text */
 .checklist-row em {
   font-weight: 400;
 }
 
-/* Inputs/selects aligned to the right of label */
-.checklist-row input[type="text"],
-.checklist-row input[type="number"],
-.checklist-row input[type="email"],
-.checklist-row select {
-  flex: 1;
-  padding: 6px 8px;
-  border-radius: 8px;
+/* Compact inputs & dropdowns on right side */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"],
+.section-block .checklist-row select {
+  flex: 0 0 220px;          /* fixed, smaller */
+  width: 220px;
+  margin-left: auto;        /* pushes to right edge of card */
+  padding: 4px 6px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background: #f2f2f2;
-  font-size: 13px;
+  font-size: 12px;
   box-sizing: border-box;
 }
 
-.checklist-row input:focus,
-.checklist-row select:focus {
+.section-block .checklist-row input:focus,
+.section-block .checklist-row select:focus {
   border-color: var(--orange);
   box-shadow: 0 0 3px rgba(243,111,33,0.35);
   outline: none;
   background: #fff9f5;
 }
 
-/* Textareas inside blocks */
+/* Textareas: also right-aligned and smaller width */
 .section-block textarea {
-  width: 100%;
-  min-height: 90px;
-  padding: 10px 12px;
-  border-radius: 8px;
+  width: 70%;
+  margin-left: auto;        /* align to right side of card */
+  padding: 8px 10px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   background: #f7f7f7;
-  font-size: 13px;
+  font-size: 12px;
   box-sizing: border-box;
   resize: vertical;
 }
@@ -228,14 +231,11 @@ h1 {
   background: #fff9f5;
 }
 
-/* For note labels above textarea */
-.checklist-row + textarea {
-  margin-top: 4px;
-}
-
-/* The small "+” buttons in these blocks */
+/* "+" buttons inside non-table blocks: line up under right-side fields */
 .section-block .add-row {
-  margin-left: 260px; /* aligns under fields on the right */
+  margin-left: auto;
+  margin-right: 0;
+  display: inline-flex;
 }
 
 /* =======================================================
@@ -255,7 +255,7 @@ h1 {
   font-size: 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
-  border-bottom: none; /* attaches to table-container */
+  border-bottom: none;
 }
 
 /* =======================================================
@@ -266,7 +266,7 @@ h1 {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none; /* sits right under .section-header */
+  border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 40px;
@@ -324,7 +324,6 @@ h1 {
 .training-table thead th:first-child {
   background: var(--light-orange);
   color: #fff;
-  text-align: center;
 }
 
 /* First column content */
@@ -339,7 +338,7 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Inputs/selects in tables */
+/* Inputs/selects in tables (unchanged, full-width per column) */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
@@ -362,14 +361,10 @@ h1 {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) {
-  background: #fff;
-}
-.training-table tr:nth-child(even) {
-  background: #fafafa;
-}
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-/* Table footer attached cleanly */
+/* Table footer */
 .table-footer {
   width: 100%;
   background: #fff;
@@ -405,73 +400,55 @@ h1 {
 }
 
 /* =======================================================
-   DROPDOWN VISUAL STATES (best-effort option styling)
+   DROPDOWN VISUAL STATES (tables only)
    ======================================================= */
 
 .training-table select {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.training-table select option {
-  color: #000;
-}
+.training-table select option { color: #000; }
 
-/* These :contains selectors are non-standard but harmless fallbacks */
+/* (Non-standard :contains kept as best-effort) */
 
 /* User Acceptance */
 .training-table select option[value="Fully Adopted"],
 .training-table select option:contains("Fully Adopted") {
-  background: #28a745;
-  color: #fff;
+  background: #28a745; color: #fff;
 }
-
 .training-table select option[value="Mostly Adopted"],
 .training-table select option:contains("Mostly Adopted") {
-  background: #20c997;
-  color: #fff;
+  background: #20c997; color: #fff;
 }
-
 .training-table select option[value="Neutral / Mixed"],
 .training-table select option:contains("Neutral / Mixed") {
-  background: #ffc107;
-  color: #000;
+  background: #ffc107; color: #000;
 }
-
 .training-table select option[value="Needs Support"],
 .training-table select option:contains("Needs Support") {
-  background: #dc3545;
-  color: #fff;
+  background: #dc3545; color: #fff;
 }
-
 .training-table select option[value="Not Accepted"],
 .training-table select option:contains("Not Accepted") {
-  background: #b21f2d;
-  color: #fff;
+  background: #b21f2d; color: #fff;
 }
 
-/* Generic Yes/No/etc */
+/* Generic responses */
 .training-table select option[value="Yes"],
 .training-table select option:contains("Yes") {
-  background: #28a745;
-  color: #fff;
+  background: #28a745; color: #fff;
 }
-
 .training-table select option[value="No"],
 .training-table select option:contains("No") {
-  background: #dc3545;
-  color: #fff;
+  background: #dc3545; color: #fff;
 }
-
 .training-table select option[value="Not Trained"],
 .training-table select option:contains("Not Trained") {
-  background: #007bff;
-  color: #fff;
+  background: #007bff; color: #fff;
 }
-
 .training-table select option[value="N/A"],
 .training-table select option:contains("N/A") {
-  background: #6c757d;
-  color: #fff;
+  background: #6c757d; color: #fff;
 }
 
 /* =======================================================
@@ -506,12 +483,10 @@ h1 {
 .scroll-wrapper::-webkit-scrollbar {
   height: 8px;
 }
-
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 4px;
 }
-
 .scroll-wrapper::-webkit-scrollbar-thumb:hover {
   background-color: #999;
 }
