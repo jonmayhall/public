@@ -397,45 +397,17 @@
           </thead>
           <tbody>
             <!-- 3 blank rows -->
-            <!-- Row 1 -->
+            <% for(let i=0;i<3;i++){ %>
             <tr>
               <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <!-- 16 dropdown columns -->
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-              <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+              <% for(let j=0;j<16;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
             </tr>
-            <!-- Row 2 -->
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <!-- repeat 16 dropdowns -->
-              <td colspan="16">
-                <div style="display:flex;gap:2px;justify-content:space-between;">
-                  <select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select>
-                  <select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select>
-                  <select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select>
-                  <select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select>
-                </div>
-              </td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-              <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-              <td colspan="16"></td>
-            </tr>
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -460,12 +432,17 @@
           </thead>
           <tbody>
             <!-- 3 blank rows -->
-            <tr><td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              <td colspan="15"></td></tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              <td colspan="15"></td></tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-              <td colspan="15"></td></tr>
+            <% for(let i=0;i<3;i++){ %>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
+              <% for(let j=0;j<15;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -484,9 +461,17 @@
             <tr><th>Name</th><th>DMS ID</th><th>Login</th><th>ShopChat / Techs</th><th>Parts Requests</th><th>Notifications</th></tr>
           </thead>
           <tbody>
-            <!-- 2 blank rows -->
-            <tr><td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="5"></td></tr>
-            <tr><td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td><td colspan="5"></td></tr>
+            <% for(let i=0;i<2;i++){ %>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
+              <% for(let j=0;j<5;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
+            </tr>
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -502,7 +487,17 @@
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>Customer Communication</th><th>Text / Email Templates</th><th>Scheduler Usage</th></tr></thead>
-          <tbody><tr><td><input type="checkbox"><input type="text" placeholder="BDC Name"></td><td colspan="3"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="BDC Name"></td>
+              <% for(let j=0;j<3;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="table-footer"><button class="add-row" type="button">+</button></div>
@@ -517,7 +512,17 @@
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>App Login</th><th>Routing</th><th>Notifications</th></tr></thead>
-          <tbody><tr><td><input type="checkbox"><input type="text" placeholder="Driver Name"></td><td colspan="3"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Driver Name"></td>
+              <% for(let j=0;j<3;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="table-footer"><button class="add-row" type="button">+</button></div>
@@ -532,7 +537,17 @@
       <div class="scroll-wrapper">
         <table class="training-table">
           <thead><tr><th>Name</th><th>Dispatching</th><th>Route Management</th><th>Notifications</th></tr></thead>
-          <tbody><tr><td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td><td colspan="3"></td></tr></tbody>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"><input type="text" placeholder="Dispatcher Name"></td>
+              <% for(let j=0;j<3;j++){ %>
+                <td><select>
+                  <option></option><option>Yes</option><option>No</option>
+                  <option>Not Trained</option><option>N/A</option>
+                </select></td>
+              <% } %>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="table-footer"><button class="add-row" type="button">+</button></div>
@@ -558,8 +573,14 @@
         <table class="training-table">
           <thead><tr><th>Opcode</th><th>Description</th><th>Labor Charged</th><th>Set Parts Charged</th><th>Preselected Opcode</th></tr></thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Opcode"></td><td><input type="text" placeholder="Description"></td><td><select><option></option><option>Yes</option><option>No</option></select></td><td><select><option></option><option>Yes</option><option>No</option></select></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
-            <tr><td><input type="text" placeholder="Opcode"></td><td><input type="text" placeholder="Description"></td><td><select><option></option><option>Yes</option><option>No</option></select></td><td><select><option></option><option>Yes</option><option>No</option></select></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
+            <tr><td><input type="text" placeholder="Opcode"></td><td><input type="text" placeholder="Description"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
+            <tr><td><input type="text" placeholder="Opcode"></td><td><input type="text" placeholder="Description"></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td>
+              <td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
           </tbody>
         </table>
       </div>
@@ -576,16 +597,16 @@
         <table class="training-table">
           <thead><tr><th>Part Number</th><th>Description</th><th>List Price</th><th>Cost</th><th>Markup %</th><th>Verified?</th></tr></thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Part #"></td><td><input type="text" placeholder="Description"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="number" placeholder="%"></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
-            <tr><td><input type="text" placeholder="Part #"></td><td><input type="text" placeholder="Description"></td><td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td><td><input type="number" placeholder="%"></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
+            <tr><td><input type="text" placeholder="Part #"></td><td><input type="text" placeholder="Description"></td>
+              <td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td>
+              <td><input type="number" placeholder="%"></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
+            <tr><td><input type="text" placeholder="Part #"></td><td><input type="text" placeholder="Description"></td>
+              <td><input type="text" placeholder="$0.00"></td><td><input type="text" placeholder="$0.00"></td>
+              <td><input type="number" placeholder="%"></td><td><select><option></option><option>Yes</option><option>No</option></select></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="table-footer"><button class="add-row" type="button">+</button></div>
-    </div>
-  </div>
-</section>
-
+      <div class="table-footer"><button class="add-row" type="button">
 
 <!-- ========================================================= -->
 <!-- === PAGE 7 : DMS INTEGRATION === -->
