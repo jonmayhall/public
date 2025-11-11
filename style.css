@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111D
+   myKaarma Interactive Training Checklist – Full CSS v20251111E
    ======================================================= */
 
 :root {
@@ -103,7 +103,7 @@ body {
   font-weight: 600;
 }
 
-/* === MAIN CONTENT WRAPPER === */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
@@ -112,7 +112,7 @@ main {
   box-sizing: border-box;
 }
 
-/* === PAGE CARD === */
+/* === PAGE CONTAINER CARD === */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -138,9 +138,9 @@ h1 {
 }
 
 /* =======================================================
-   GENERIC CARD BLOCKS (NON-TABLE CONTENT)
-   Used on: Onsite, Dealership Info, Pre-Training, Monday,
-            Post-Training, Training Summary
+   GENERIC CARD BLOCKS (NON-TABLE PAGES)
+   Onsite, Dealership Info, Pre-Training, Monday,
+   Post-Training, Training Summary
    ======================================================= */
 
 .section-block {
@@ -148,18 +148,27 @@ h1 {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  padding: 16px 18px 14px;
+  padding: 0 18px 14px;
   margin-bottom: 24px;
   box-sizing: border-box;
+  overflow: hidden; /* so header radius is clean */
 }
 
+/* Orange strip header for block title */
 .section-block h2 {
-  margin: 0 0 12px;
-  font-size: 17px;
+  margin: 0 0 14px;
+  padding: 10px 16px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--orange);
+  border-radius: var(--radius) var(--radius) 0 0;
+  margin-left: -18px;
+  margin-right: -18px;
+  border-bottom: 1px solid var(--border);
 }
 
+/* Rows with label left, field right */
 .checklist-row {
   display: flex;
   align-items: center;
@@ -177,7 +186,7 @@ h1 {
   font-weight: 400;
 }
 
-/* Inputs/selects in non-table blocks */
+/* Inputs/selects aligned to the right of label */
 .checklist-row input[type="text"],
 .checklist-row input[type="number"],
 .checklist-row input[type="email"],
@@ -199,7 +208,7 @@ h1 {
   background: #fff9f5;
 }
 
-/* Textareas in blocks */
+/* Textareas inside blocks */
 .section-block textarea {
   width: 100%;
   min-height: 90px;
@@ -219,9 +228,19 @@ h1 {
   background: #fff9f5;
 }
 
+/* For note labels above textarea */
+.checklist-row + textarea {
+  margin-top: 4px;
+}
+
+/* The small "+” buttons in these blocks */
+.section-block .add-row {
+  margin-left: 260px; /* aligns under fields on the right */
+}
+
 /* =======================================================
-   SECTION + ORANGE HEADERS FOR TABLE GROUPS
-   (Training Checklist, Opcodes, DMS, etc.)
+   SECTION HEADERS FOR TABLE GROUPS
+   (Training Checklist, Opcodes, DMS Integration, etc.)
    ======================================================= */
 
 .section {
@@ -236,7 +255,7 @@ h1 {
   font-size: 16px;
   border-radius: var(--radius) var(--radius) 0 0;
   border: 1px solid var(--orange);
-  border-bottom: none; /* attaches cleanly to table card */
+  border-bottom: none; /* attaches to table-container */
 }
 
 /* =======================================================
@@ -247,7 +266,7 @@ h1 {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-top: none; /* attaches directly under section-header */
+  border-top: none; /* sits right under .section-header */
   border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 40px;
@@ -308,7 +327,7 @@ h1 {
   text-align: center;
 }
 
-/* First column content (checkbox + text) */
+/* First column content */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -342,7 +361,7 @@ h1 {
   background: #fff9f5;
 }
 
-/* Alternating row colors */
+/* Alternating rows */
 .training-table tr:nth-child(odd) {
   background: #fff;
 }
@@ -350,7 +369,7 @@ h1 {
   background: #fafafa;
 }
 
-/* Table footer: + button bar attached to same card */
+/* Table footer attached cleanly */
 .table-footer {
   width: 100%;
   background: #fff;
@@ -365,7 +384,7 @@ h1 {
   margin-top: 0;
 }
 
-/* Add-row button */
+/* Add-row button (tables) */
 .add-row {
   background: var(--orange);
   color: #fff;
@@ -386,7 +405,7 @@ h1 {
 }
 
 /* =======================================================
-   DROPDOWN VISUAL STATES (OPTION BACKGROUNDS)
+   DROPDOWN VISUAL STATES (best-effort option styling)
    ======================================================= */
 
 .training-table select {
@@ -397,7 +416,9 @@ h1 {
   color: #000;
 }
 
-/* User Acceptance scale */
+/* These :contains selectors are non-standard but harmless fallbacks */
+
+/* User Acceptance */
 .training-table select option[value="Fully Adopted"],
 .training-table select option:contains("Fully Adopted") {
   background: #28a745;
@@ -428,7 +449,7 @@ h1 {
   color: #fff;
 }
 
-/* Generic training responses */
+/* Generic Yes/No/etc */
 .training-table select option[value="Yes"],
 .training-table select option:contains("Yes") {
   background: #28a745;
@@ -454,7 +475,7 @@ h1 {
 }
 
 /* =======================================================
-   SAVE AS PDF BUTTON (TRAINING SUMMARY PAGE)
+   SAVE AS PDF BUTTON
    ======================================================= */
 
 .floating-btn {
