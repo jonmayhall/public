@@ -1,5 +1,5 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111AG
+   myKaarma Interactive Training Checklist – Full CSS v20251111AG-2
    ======================================================= */
 
 :root {
@@ -24,9 +24,7 @@ html, body {
   color: var(--ink);
   overflow-x: hidden;
 }
-*, em, i {
-  font-style: normal !important;
-}
+*, em, i { font-style: normal !important; }
 
 /* =======================================================
    TOP BAR
@@ -38,90 +36,43 @@ html, body {
   align-items: center;
   padding: 0 40px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 20;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
 }
-.topbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
+.topbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
 .top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
+#dealershipNameDisplay { color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; }
 
 /* =======================================================
    SIDEBAR
    ======================================================= */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
-}
+#app { display: flex; min-height: 100vh; margin-top: 70px; overflow-x: hidden; }
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
+  width: 190px; padding: 20px 8px;
   box-shadow: var(--shadow);
-  position: fixed;
-  top: 70px; bottom: 0;
-  overflow-y: auto;
-  border-top-right-radius: var(--radius);
+  position: fixed; top: 70px; bottom: 0;
+  overflow-y: auto; border-top-right-radius: var(--radius);
 }
-#sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
-  text-align: left;
-  border-radius: var(--input-radius);
-  cursor: pointer;
-  color: var(--ink);
-  transition: 0.2s;
+  background: none; border: none; padding: 10px 12px;
+  font-size: 14px; text-align: left; border-radius: var(--input-radius);
+  cursor: pointer; color: var(--ink); transition: 0.2s;
 }
-.nav-btn:hover,
-.nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
-}
+.nav-btn:hover, .nav-btn.active { background: #fff3eb; color: var(--orange); font-weight: 600; }
 
 /* =======================================================
    MAIN CONTENT & PAGE SECTIONS
    ======================================================= */
-main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  background: var(--gray-bg);
-  box-sizing: border-box;
-}
+main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-bg); box-sizing: border-box; }
 .page-section {
-  display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px 32px 28px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
+  display: none; background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 22px 32px 28px;
+  margin: 0 auto 50px; width: 100%; max-width: 1250px; box-sizing: border-box;
 }
 .page-section.active { display: block; }
 
@@ -140,7 +91,7 @@ main {
 .page-section h1::after {
   content: "";
   display: block;
-  width: 260px;
+  width: 260px;          /* long underline */
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
@@ -185,13 +136,9 @@ main {
   padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0;
 }
-.section-block .checklist-row:last-of-type {
-  border-bottom: none;
-  margin-bottom: 8px;
-  padding-bottom: 0;
-}
+.section-block .checklist-row:last-of-type { border-bottom: none; margin-bottom: 8px; padding-bottom: 0; }
 
-/* Label spans, input anchored right */
+/* Label spans, input right-aligned */
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
@@ -234,38 +181,43 @@ main {
 }
 
 /* =======================================================
-   DEALERSHIP CONTACTS – Stronger name dividers
+   DEALERSHIP CONTACTS – Stronger Name Dividers
    ======================================================= */
-/* Each Name row (including added) has a bolder divider above */
+/* Applies to any Name row in the 2nd section-block (Contacts) on the Dealership Information page */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #c0c0c0;
+  border-top: 2px solid #bdbdbd;
   padding-top: 12px;
   margin-top: 8px;
 }
 
 /* =======================================================
-   INTEGRATED + BUTTONS (NON-TABLE)
+   INTEGRATED + BUTTON (Right-inside pill)
    ======================================================= */
-/* For any row where the + is inside the same checklist-row (e.g. Additional Trainers) */
+/* Any checklist row with a .add-row inside becomes integrated */
+.section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   position: relative;
 }
+/* Reserve space inside the input for the button */
+.section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 46px;
+  padding-right: 52px;
 }
+/* The + button: fully rounded, larger, flush inside the right edge */
 .section-block .checklist-row > .add-row {
   position: absolute;
-  right: 4px;
+  right: 4px; /* visually inside the input edge */
   top: 50%;
   transform: translateY(-50%);
   background: var(--orange);
   color: #fff;
   border: none;
-  border-radius: 999px; /* fully rounded */
-  width: 30px;
-  height: 30px;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1;
   cursor: pointer;
   transition: 0.2s ease-in-out;
   box-shadow: 0 1px 4px rgba(243,111,33,0.25);
@@ -278,205 +230,17 @@ main {
   transform: translateY(-50%) scale(1.06);
 }
 
-/* === SPECIFIC: Additional POC in Dealership Contacts === */
-/* Treat the bottom + button in Dealership Contacts as integrated into Additional POC Name */
-#dealership-info .section-block:nth-of-type(2) {
-  position: relative;
-}
-#dealership-info .section-block:nth-of-type(2) .checklist-row input[placeholder="Name"] {
-  padding-right: 46px; /* all Name fields in contacts get room; ensures POC fits */
-}
-#dealership-info .section-block:nth-of-type(2) > .add-row {
-  position: absolute;
-  right: 4px;
-  /* visually aligned to sit flush inside the Additional POC Name textbox */
-  /* tuned for the layout: adjust if your content order changes */
-  bottom: 128px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#dealership-info .section-block:nth-of-type(2) > .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.06);
-}
-
 /* =======================================================
-   TABLE SECTIONS
+   (TABLE styles omitted here because these two pages don't render tables)
+   If you paste this into your global CSS, keep your existing
+   table styles below this comment.
    ======================================================= */
-.section {
-  margin-bottom: 40px;
-}
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange);
-  border-bottom: none;
-}
-
-.table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 40px;
-  overflow: hidden;
-}
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  background: #fff;
-}
-
-.training-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
-}
-
-/* Sticky header */
-.training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-}
-
-/* First sticky column (Name) */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  width: 285px;
-  min-width: 285px;
-}
-.training-table thead th:first-child {
-  text-align: center;
-}
-.training-table td:first-child {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-  margin-right: 6px;
-}
-.training-table td:first-child input[type="text"] {
-  width: 95%;
-  padding: 7px 10px;
-  font-size: 13px;
-  border-radius: var(--input-radius);
-}
-
-/* User Acceptance column */
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  width: 190px;
-  min-width: 190px;
-}
-
-/* Ensure dropdown fits “Not Trained” */
-.training-table select {
-  min-width: 130px;
-}
-
-/* Table inputs */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  padding: 6px 8px;
-  border-radius: var(--input-radius);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
-  text-align: center;
-  box-sizing: border-box;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* Row striping */
-.training-table tr:nth-child(odd) { background:#fff; }
-.training-table tr:nth-child(even){ background:#fafafa; }
-
-/* =======================================================
-   TABLE FOOTER
-   ======================================================= */
-.table-footer {
-  width: 100%;
-  background: #f5f5f5;
-  border-top: 1px solid var(--border);
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-  box-sizing: border-box;
-}
-.table-footer .add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
-}
-.table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
 
 /* =======================================================
    SCROLLBAR
    ======================================================= */
 .scroll-wrapper::-webkit-scrollbar { height: 8px; }
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
+.scroll-wrapper::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 6px; }
 .scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
 
 /* =======================================================
