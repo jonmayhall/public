@@ -1013,6 +1013,64 @@
 
     </main>
   </div>
+<script>
+  // --- Robust sidebar navigation with auto-stub sections ---
+  (function () {
+    const btns = Array.from(document.querySelectorAll('#sidebar-nav .nav-btn'));
+
+    // Ensure a section exists for each button; if not, create a stub so nav always works
+    btns.forEach(btn => {
+      const id = btn.dataset.target;
+      if (!id) return;
+
+      let sec = document.getElementById(id);
+      if (!sec) {
+        sec = document.createElement('section');
+        sec.id = id;
+        sec.className = 'page-section';
+        sec.innerHTML = `<h1>${btn.textContent.trim()}</h1>
+          <div class="section-block">
+            <h2>Coming Soon</h2>
+            <div class="checklist-row">
+              <label>This page hasn't been added yet. Add your content here.</label>
+              <input type="text" placeholder="Optional note">
+            </div>
+          </div>`;
+        document.getElementById('content').appendChild(sec);
+      }
+    });
+
+    function activate(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = btns.find(b => b.dataset.target === targetId);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      target.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Click handling
+    document.getElementById('sidebar-nav')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.nav-btn');
+      if (!btn) return;
+      const targetId = btn.dataset.target;
+      if (!targetId) return;
+      activate(targetId);
+    });
+
+    // Initial activation: respect any section already marked active, else the first button
+    const currentActive = document.querySelector('.page-section.active');
+    if (!currentActive) {
+      const firstBtn = btns[0];
+      if (firstBtn?.dataset.target) activate(firstBtn.dataset.target);
+    }
+  })();
+</script>
 
 </body>
 </html>
