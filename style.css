@@ -2,244 +2,101 @@
    myKaarma Interactive Training Checklist – Full CSS v20251111AH
    ======================================================= */
 
-:root {
-  --orange: #f36f21;
-  --light-orange: #f8b17b;
-  --gray-bg: #d7d7d7;
-  --card-bg: #fff;
-  --border: #dcdcdc;
-  --ink: #222;
-  --radius: 18px;
-  --input-radius: 14px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+:root{
+  --orange:#f36f21;
+  --light-orange:#f8b17b;
+  --gray-bg:#d7d7d7;
+  --card-bg:#fff;
+  --border:#dcdcdc;
+  --ink:#222;
+  --radius:18px;
+  --input-radius:14px;
+  --shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* === BASE === */
-html, body {
-  margin: 0;
-  font-family: "Roboto", "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
-}
-*, em, i { font-style: normal !important; }
+/* BASE */
+html,body{margin:0;font-family:"Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--gray-bg);color:var(--ink);overflow-x:hidden}
+*,em,i{font-style:normal!important}
 
-/* === TOP BAR === */
-#topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
-  height: 70px;
-  display: flex; align-items: center;
-  padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-}
-.topbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-.top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay { color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 0.5px; }
+/* TOPBAR */
+#topbar{background:linear-gradient(90deg,#000 0%,#333 100%);height:70px;display:flex;align-items:center;padding:0 40px;box-shadow:0 2px 10px rgba(0,0,0,0.25);position:fixed;top:0;left:0;right:0;z-index:20;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius)}
+.topbar-content{display:flex;align-items:center;justify-content:space-between;width:100%}
+.top-logo{height:42px;object-fit:contain}
+#dealershipNameDisplay{color:#fff;font-size:18px;font-weight:600;letter-spacing:0.5px}
 
-/* === LAYOUT === */
-#app { display: flex; min-height: 100vh; margin-top: 70px; overflow-x: hidden; }
+/* LAYOUT */
+#app{display:flex;min-height:100vh;margin-top:70px;overflow-x:hidden}
+#sidebar{background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);border-right:1px solid var(--border);width:190px;padding:20px 8px;box-shadow:var(--shadow);position:fixed;top:70px;bottom:0;overflow-y:auto;border-top-right-radius:var(--radius)}
+#sidebar-nav{display:flex;flex-direction:column;gap:6px}
+.nav-btn{background:none;border:none;padding:10px 12px;font-size:14px;text-align:left;border-radius:var(--input-radius);cursor:pointer;color:var(--ink);transition:0.2s}
+.nav-btn:hover,.nav-btn.active{background:#fff3eb;color:var(--orange);font-weight:600}
 
-#sidebar {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
-  width: 190px; padding: 20px 8px;
-  box-shadow: var(--shadow);
-  position: fixed; top: 70px; bottom: 0;
-  overflow-y: auto;
-  border-top-right-radius: var(--radius);
-}
-#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
-.nav-btn {
-  background: none; border: none; padding: 10px 12px;
-  font-size: 14px; text-align: left; border-radius: var(--input-radius);
-  cursor: pointer; color: var(--ink); transition: 0.2s;
-}
-.nav-btn:hover, .nav-btn.active { background: #fff3eb; color: var(--orange); font-weight: 600; }
+/* MAIN */
+main{flex:1;margin-left:190px;padding:30px 40px;background:var(--gray-bg);box-sizing:border-box}
+.page-section{display:none;background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 32px 28px;margin:0 auto 50px;width:100%;max-width:1250px;box-sizing:border-box}
+.page-section.active{display:block}
 
-/* === MAIN CONTENT === */
-main { flex: 1; margin-left: 190px; padding: 30px 40px; background: var(--gray-bg); box-sizing: border-box; }
+/* PAGE TITLES */
+.page-section h1{color:var(--orange);font-size:26px;font-weight:700;text-align:left;margin:4px 0 22px 4px;position:relative;letter-spacing:0.3px}
+.page-section h1::after{content:"";display:block;width:260px;height:4px;background:var(--orange);margin-top:8px;border-radius:2px}
 
-.page-section {
-  display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px 32px 28px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
-}
-.page-section.active { display: block; }
+/* CARDS */
+.section-block{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:0 22px 14px;margin-bottom:24px;box-sizing:border-box;overflow:hidden;position:relative}
+.section-block h2{margin:0 0 16px;padding:10px 16px;background:var(--orange);color:#fff;font-size:16px;font-weight:600;margin-left:-22px;margin-right:-22px;border-bottom:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0}
 
-/* === PAGE TITLES === */
-.page-section h1 {
-  color: var(--orange);
-  font-size: 26px;
-  font-weight: 700;
-  text-align: left;
-  margin: 4px 0 22px 4px;
-  position: relative;
-  letter-spacing: 0.3px;
-}
-.page-section h1::after {
-  content: "";
-  display: block;
-  width: 260px;
-  height: 4px;
-  background: var(--orange);
-  margin-top: 8px;
-  border-radius: 2px;
-}
+/* ROWS */
+.checklist-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:14px;padding-left:30px;padding-bottom:10px;border-bottom:1px solid #e0e0e0}
+.section-block .checklist-row:last-of-type{border-bottom:none;margin-bottom:8px;padding-bottom:0}
+.checklist-row label{flex:1 1 auto;font-weight:500;text-align:left;padding-right:16px;white-space:normal}
+.section-block .checklist-row input[type="text"],.section-block .checklist-row input[type="number"],.section-block .checklist-row input[type="email"],.section-block .checklist-row select{flex:0 0 260px;width:260px;margin-left:auto;margin-right:0;padding:7px 10px;border-radius:var(--input-radius);border:1px solid var(--border);background:#f7f7f7;font-size:13px;box-sizing:border-box}
+.section-block textarea{width:90%;margin-left:auto;padding:8px 10px;border-radius:var(--input-radius);border:1px solid var(--border);background:#f7f7f7;font-size:13px;resize:vertical}
+.section-block input:focus,.section-block select:focus,.section-block textarea:focus{border-color:var(--orange);box-shadow:0 0 4px rgba(243,111,33,0.35);outline:none;background:#fff9f5}
 
-/* === NON-TABLE CARDS === */
-.section-block {
-  background: #fff;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  padding: 0 22px 14px;
-  margin-bottom: 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-}
-.section-block h2 {
-  margin: 0 0 16px;
-  padding: 10px 16px;
-  background: var(--orange);
-  color: #fff; font-size: 16px; font-weight: 600;
-  margin-left: -22px; margin-right: -22px;
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
+/* DEALERSHIP CONTACTS - stronger dividers for Name rows */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) { border-top:2px solid #bdbdbd; padding-top:12px; margin-top:8px; }
 
-/* Question rows */
-.checklist-row {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 14px; font-size: 14px;
-  padding-left: 30px; padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
-}
-.section-block .checklist-row:last-of-type { border-bottom: none; margin-bottom: 8px; padding-bottom: 0; }
+/* INTEGRATED + button style */
+.section-block .checklist-row.integrated-plus, .section-block .checklist-row:has(> .add-row){position:relative}
+.section-block .checklist-row.integrated-plus input[type="text"], .section-block .checklist-row:has(> .add-row) input[type="text"]{padding-right:52px}
+.section-block .checklist-row > .add-row{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:var(--orange);color:#fff;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;font-weight:700;line-height:1;cursor:pointer;transition:0.2s ease-in-out;box-shadow:0 1px 4px rgba(243,111,33,0.25);display:flex;align-items:center;justify-content:center}
+.section-block .checklist-row > .add-row:hover{background:#ff8b42;transform:translateY(-50%) scale(1.06)}
 
-.checklist-row label {
-  flex: 1 1 auto; font-weight: 500; text-align: left; padding-right: 16px; white-space: normal;
-}
-.section-block .checklist-row input[type="text"],
-.section-block .checklist-row input[type="number"],
-.section-block .checklist-row input[type="email"],
-.section-block .checklist-row select {
-  flex: 0 0 260px; width: 260px; margin-left: auto; margin-right: 0;
-  padding: 7px 10px; border-radius: var(--input-radius);
-  border: 1px solid var(--border); background: #f7f7f7; font-size: 13px; box-sizing: border-box;
-}
-.section-block textarea {
-  width: 90%; margin-left: auto; padding: 8px 10px;
-  border-radius: var(--input-radius); border: 1px solid var(--border);
-  background: #f7f7f7; font-size: 13px; resize: vertical;
-}
-.section-block input:focus, .section-block select:focus, .section-block textarea:focus {
-  border-color: var(--orange); box-shadow: 0 0 4px rgba(243,111,33,0.35); outline: none; background: #fff9f5;
-}
+/* TABLES */
+.section{margin-bottom:40px}
+.section-header{background:var(--orange);color:#fff;font-weight:600;padding:10px 16px;font-size:16px;border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--orange);border-bottom:none}
+.table-container{width:100%;background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);margin-bottom:40px;overflow:hidden}
+.scroll-wrapper{display:block;width:100%;overflow-x:auto;background:#fff}
+.training-table{border-collapse:collapse;width:100%}
+.training-table th,.training-table td{white-space:nowrap;text-align:center;font-size:13px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 10px}
+.training-table thead th{background:var(--light-orange);color:#fff;font-weight:600;position:sticky;top:0;z-index:3}
+.training-table th:first-child, .training-table td:first-child{position:sticky;left:0;width:285px;min-width:285px}
+.training-table thead th:first-child{text-align:center}
+.training-table td:first-child{background:#fff;display:flex;align-items:center;gap:8px;padding-left:10px;padding-right:10px}
+.training-table td:first-child input[type="checkbox"]{flex-shrink:0;transform:scale(1.1);margin-right:6px}
+.training-table td:first-child input[type="text"]{width:95%;padding:7px 10px;font-size:13px;border-radius:var(--input-radius)}
+.training-table th:nth-child(2), .training-table td:nth-child(2){width:190px;min-width:190px}
+.training-table select{min-width:130px}
+.training-table input[type="text"], .training-table select{width:100%;padding:6px 8px;border-radius:var(--input-radius);border:1px solid var(--border);background:#f7f7f7;font-size:13px;text-align:center;box-sizing:border-box}
+.training-table input[type="text"]:focus, .training-table select:focus{border-color:var(--orange);box-shadow:0 0 4px rgba(243,111,33,0.4);outline:none;background:#fff9f5}
+.training-table tr:nth-child(odd){background:#fff}
+.training-table tr:nth-child(even){background:#fafafa}
 
-/* === Stronger dividers for Dealership Contacts name rows === */
-#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 12px; margin-top: 8px;
-}
+/* TABLE FOOTER */
+.table-footer{width:100%;background:#f5f5f5;border-top:1px solid var(--border);padding:6px 10px;display:flex;align-items:center;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);box-sizing:border-box}
+.table-footer .add-row{background:var(--orange);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:14px;font-weight:bold;cursor:pointer;transition:0.2s;box-shadow:0 1px 3px rgba(243,111,33,0.25)}
+.table-footer .add-row:hover{background:#ff8b42;transform:scale(1.05)}
 
-/* === INTEGRATED + BUTTON (right-inside input) === */
-.section-block .checklist-row.integrated-plus,
-.section-block .checklist-row:has(> .add-row) { position: relative; }
-.section-block .checklist-row.integrated-plus input[type="text"],
-.section-block .checklist-row:has(> .add-row) input[type="text"] { padding-right: 52px; }
+/* FLOATING BUTTON (PDF) */
+.floating-btn{position:fixed;right:24px;bottom:24px;background:var(--orange);color:#fff;border:none;padding:10px 14px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.12);cursor:pointer}
 
-.section-block .checklist-row > .add-row {
-  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
-  background: var(--orange); color: #fff; border: none;
-  border-radius: 999px; width: 32px; height: 32px; font-size: 18px; font-weight: 700; line-height: 1;
-  cursor: pointer; transition: 0.2s ease-in-out; box-shadow: 0 1px 4px rgba(243,111,33,0.25);
-  display: flex; align-items: center; justify-content: center;
-}
-.section-block .checklist-row > .add-row:hover { background: #ff8b42; transform: translateY(-50%) scale(1.06); }
+/* FOOTER */
+#footer{padding:24px;text-align:center;color:#666;font-size:13px}
 
-/* === TABLES (kept so other pages render correctly) === */
-.section { margin-bottom: 40px; }
-.section-header {
-  background: var(--orange); color: #fff; font-weight: 600;
-  padding: 10px 16px; font-size: 16px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  border: 1px solid var(--orange); border-bottom: none;
-}
-.table-container {
-  width: 100%; background: #fff; border: 1px solid var(--border);
-  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
-  box-shadow: var(--shadow); margin-bottom: 40px; overflow: hidden;
-}
-.scroll-wrapper { display: block; width: 100%; overflow-x: auto; background: #fff; }
+/* SCROLLBAR */
+.scroll-wrapper::-webkit-scrollbar{height:8px}
+.scroll-wrapper::-webkit-scrollbar-thumb{background-color:#ccc;border-radius:6px}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover{background-color:#999}
 
-.training-table { border-collapse: collapse; width: 100%; }
-.training-table th, .training-table td {
-  white-space: nowrap; text-align: center; font-size: 13px;
-  border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
-}
-.training-table thead th {
-  background: var(--light-orange); color: #fff; font-weight: 600;
-  position: sticky; top: 0; z-index: 3;
-}
-.training-table th:first-child, .training-table td:first-child {
-  position: sticky; left: 0; width: 285px; min-width: 285px;
-}
-.training-table thead th:first-child { text-align: center; }
-.training-table td:first-child {
-  background: #fff; display: flex; align-items: center; gap: 8px;
-  padding-left: 10px; padding-right: 10px;
-}
-.training-table td:first-child input[type="checkbox"] { flex-shrink: 0; transform: scale(1.1); margin-right: 6px; }
-.training-table td:first-child input[type="text"] { width: 95%; padding: 7px 10px; font-size: 13px; border-radius: var(--input-radius); }
-
-.training-table th:nth-child(2), .training-table td:nth-child(2) { width: 190px; min-width: 190px; }
-.training-table select { min-width: 130px; }
-
-.training-table input[type="text"], .training-table select {
-  width: 100%; padding: 6px 8px; border-radius: var(--input-radius);
-  border: 1px solid var(--border); background: #f7f7f7; font-size: 13px; text-align: center; box-sizing: border-box;
-}
-.training-table input[type="text"]:focus, .training-table select:focus {
-  border-color: var(--orange); box-shadow: 0 0 4px rgba(243,111,33,0.4); outline: none; background: #fff9f5;
-}
-.training-table tr:nth-child(odd){ background:#fff; }
-.training-table tr:nth-child(even){ background:#fafafa; }
-
-.table-footer {
-  width: 100%; background: #f5f5f5; border-top: 1px solid var(--border);
-  padding: 6px 10px; display: flex; align-items: center;
-  border-bottom-left-radius: var(--radius); border-bottom-right-radius: var(--radius); box-sizing: border-box;
-}
-.table-footer .add-row {
-  background: var(--orange); color: #fff; border: none; border-radius: 50%;
-  width: 22px; height: 22px; font-size: 14px; font-weight: bold;
-  cursor: pointer; transition: 0.2s; box-shadow: 0 1px 3px rgba(243,111,33,0.25);
-}
-.table-footer .add-row:hover { background: #ff8b42; transform: scale(1.05); }
-
-/* === SCROLLBAR === */
-.scroll-wrapper::-webkit-scrollbar { height: 8px; }
-.scroll-wrapper::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 6px; }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
-}
+/* RESPONSIVE */
+@media (max-width:900px){#sidebar{width:150px}main{margin-left:150px;padding:20px}}
+@media (max-width:600px){#sidebar{display:none}main{margin-left:0;padding:20px}}
