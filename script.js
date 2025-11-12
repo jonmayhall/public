@@ -1,100 +1,54 @@
-// =======================================================
-// myKaarma Interactive Training Checklist – Stable JS
-// Version: v20251107C
-// =======================================================
+// =========================================================
+// === myKaarma Interactive Training Checklist JS ===
+// =========================================================
 
-window.addEventListener('DOMContentLoaded', () => {
-  /* === SIDEBAR NAVIGATION === */
-  const nav = document.getElementById('sidebar-nav');
-  const sections = document.querySelectorAll('.page-section');
+// Wait until DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const pages = document.querySelectorAll(".page-section");
+  const menuButtons = document.querySelectorAll(".menu-button");
 
-  if (nav) {
-    nav.addEventListener('click', (e) => {
-      const btn = e.target.closest('.nav-btn');
-      if (!btn) return;
-      const target = document.getElementById(btn.dataset.target);
-      if (!target) return;
+  // Hide all pages initially except the first one
+  pages.forEach((page, index) => {
+    page.style.display = index === 0 ? "block" : "none";
+  });
 
-      nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Menu button click handling
+  menuButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+      const targetPage = document.querySelector(`#${targetId}`);
 
-      sections.forEach(sec => sec.classList.remove('active'));
-      target.classList.add('active');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  /* === ADD ROW HANDLER FOR TABLES === */
-  document.querySelectorAll('.table-footer .add-row').forEach(button => {
-    button.addEventListener('click', () => {
-      const section = button.closest('.section');
-      if (!section) return;
-      const table = section.querySelector('table.training-table');
-      if (!table) return;
-
-      const tbody = table.tBodies[0];
-      if (!tbody || !tbody.rows.length) return;
-
-      // Clone the last actual row
-      const rowToClone = tbody.rows[tbody.rows.length - 1];
-      const newRow = rowToClone.cloneNode(true);
-
-      // Reset inputs
-      newRow.querySelectorAll('input, select').forEach(el => {
-        if (el.type === 'checkbox') el.checked = false;
-        else el.value = '';
+      // Hide all pages
+      pages.forEach(page => {
+        page.style.display = "none";
       });
 
-      tbody.appendChild(newRow);
-    });
-  });
-
-  /* === ADDITIONAL TRAINERS & POC BUTTONS === */
-  document.querySelectorAll('.section-block .add-row').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const parent = btn.closest('.section-block');
-      if (!parent) return;
-
-      const input = parent.querySelector('input[type="text"]');
-      if (!input) return;
-
-      const clone = input.cloneNode(true);
-      clone.value = '';
-      clone.style.marginTop = '6px';
-      parent.insertBefore(clone, btn);
-    });
-  });
-
-  /* === SAVE AS PDF (Training Summary Page) === */
-  const saveBtn = document.getElementById('savePDF');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', async () => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p', 'pt', 'a4');
-      const pages = document.querySelectorAll('.page-section');
-
-      const marginX = 30, marginY = 30, maxWidth = 535;
-      let first = true;
-
-      for (const page of pages) {
-        if (!first) doc.addPage();
-        first = false;
-
-        const title = page.querySelector('h1')?.innerText || 'Section';
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(16);
-        doc.text(title, marginX, marginY);
-
-        // Simplified page content (plain text export)
-        const text = page.innerText.replace(/\s+\n/g, '\n').trim();
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(10);
-        const lines = doc.splitTextToSize(text, maxWidth);
-        doc.text(lines, marginX, marginY + 24);
+      // Show target page
+      if (targetPage) {
+        targetPage.style.display = "block";
+        window.scrollTo(0, 0); // scroll to top of page
       }
 
-      doc.save('Training_Summary.pdf');
+      // Update active button styling
+      menuButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
     });
-  }
+  });
+
+  // =========================================================
+  // === Dynamic Add Buttons (for Trainers & POC fields) ===
+  // =========================================================
+  const addButtons = document.querySelectorAll(".add-btn");
+
+  addButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const parent = button.closest(".form-row");
+      if (parent) {
+        const clone = parent.cloneNode(true);
+        const input = clone.querySelector("input");
+        if (input) input.value = "";
+        parent.parentNode.insertBefore(clone, parent.nextSibling);
+      }
+    });
+  });
 });
