@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css?v=20251111B">
-
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <!-- Main JS -->
-  <script src="script.js?v=20251107C" defer></script>
+  <!-- Use the CSS below (paste into style.css) -->
+  <link rel="stylesheet" href="style.css?v=20251111AG-2">
 </head>
 <body>
 
-  <!-- TOP BAR -->
+  <!-- === TOP BAR === -->
   <header id="topbar">
     <div class="topbar-content">
       <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
@@ -25,24 +19,16 @@
   </header>
 
   <div id="app">
-    <!-- SIDEBAR -->
+    <!-- === SIDEBAR === -->
     <aside id="sidebar">
       <nav id="sidebar-nav">
         <button class="nav-btn active" data-target="onsite-trainers">Onsite Trainers &amp; CEM</button>
         <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
-        <button class="nav-btn" data-target="monday-visit">Monday Visit</button>
-        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-        <button class="nav-btn" data-target="opcodes-pricing">Opcodes &amp; Pricing</button>
-        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-        <button class="nav-btn" data-target="post-training">Post-Training Checklist</button>
-        <button class="nav-btn" data-target="training-summary">Training Summary</button>
       </nav>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- === MAIN === -->
     <main id="content">
-
       <!-- ========================================================= -->
       <!-- PAGE 1: ONSITE TRAINERS & CEM -->
       <!-- ========================================================= -->
@@ -51,14 +37,17 @@
 
         <div class="section-block">
           <h2>Trainer Information</h2>
+
           <div class="checklist-row">
             <label>Lead Trainer</label>
             <input type="text" placeholder="Lead Trainer Name">
           </div>
-          <div class="checklist-row">
+
+          <!-- Integrated '+' INSIDE the right side of the textbox -->
+          <div class="checklist-row integrated-plus">
             <label>Additional Trainers</label>
             <input type="text" placeholder="Additional Trainer Name">
-            <button class="add-row" type="button">+</button>
+            <button class="add-row" type="button" aria-label="Add Trainer">+</button>
           </div>
         </div>
 
@@ -95,6 +84,8 @@
 
         <div class="section-block">
           <h2>Dealership Contacts</h2>
+
+          <!-- Strong divider above each Name row (applies to clones too) -->
           <div class="checklist-row"><label>Service Manager</label><input type="text" placeholder="Name"></div>
           <div class="checklist-row" style="padding-left:30px;"><label>Cell</label><input type="text" placeholder="Cell"></div>
           <div class="checklist-row" style="padding-left:30px;"><label>Email</label><input type="email" placeholder="Email"></div>
@@ -107,11 +98,14 @@
           <div class="checklist-row" style="padding-left:30px;"><label>Cell</label><input type="text" placeholder="Cell"></div>
           <div class="checklist-row" style="padding-left:30px;"><label>Email</label><input type="email" placeholder="Email"></div>
 
-          <div class="checklist-row"><label>Additional POC</label><input type="text" placeholder="Name"></div>
+          <!-- Integrated '+' INSIDE the right side of the Additional POC Name textbox -->
+          <div class="checklist-row integrated-plus">
+            <label>Additional POC</label>
+            <input type="text" placeholder="Name">
+            <button class="add-row" type="button" aria-label="Add POC">+</button>
+          </div>
           <div class="checklist-row" style="padding-left:30px;"><label>Cell</label><input type="text" placeholder="Cell"></div>
           <div class="checklist-row" style="padding-left:30px;"><label>Email</label><input type="email" placeholder="Email"></div>
-
-          <button class="add-row" type="button">+</button>
         </div>
 
         <div class="section-block">
@@ -119,6 +113,43 @@
           <textarea placeholder="Type any relevant notes here..."></textarea>
         </div>
       </section>
+    </main>
+  </div>
+
+  <!-- Minimal JS: nav + integrated '+' cloning -->
+  <script>
+    // Sidebar navigation
+    document.getElementById('sidebar-nav')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.nav-btn');
+      if (!btn) return;
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Integrated + buttons (clone just the input inside same checklist-row)
+    document.addEventListener('click', (e) => {
+      const addBtn = e.target.closest('.checklist-row .add-row');
+      if (!addBtn) return;
+      const row = addBtn.closest('.checklist-row');
+      const input = row.querySelector('input[type="text"]');
+      if (!input) return;
+
+      const clone = input.cloneNode(true);
+      clone.value = '';
+      clone.style.marginTop = '6px';
+      // Insert new input above the button to keep the plus at the bottom-most field
+      row.insertBefore(clone, addBtn);
+      // OPTIONAL: keep focus on the newly created field
+      clone.focus();
+    });
+  </script>
+</body>
+</html>
 
       <!-- ========================================================= -->
       <!-- PAGE 3: PRE-TRAINING CHECKLIST -->
