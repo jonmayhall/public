@@ -5,24 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- Use the CSS below (paste into style.css) -->
-  <link rel="stylesheet" href="style.css?v=20251111AG-2">
+  <!-- === Stylesheet === -->
+  <link rel="stylesheet" href="style.css?v=20251111AH">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body>
 
+<body>
   <!-- === TOP BAR === -->
   <header id="topbar">
     <div class="topbar-content">
       <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
       <div id="dealershipNameDisplay" class="dealership-name">Dealership Name</div>
-      <section id="pretraining" class="page-section"><h1>Pre-Training Checklist</h1><!-- your existing content here --></section>
-      <section id="monday-visit" class="page-section"><h1>Monday Visit</h1><!-- your existing content here --></section>
-      <section id="training-checklist" class="page-section"><h1>Training Checklist</h1><!-- your existing tables here --></section>
-      <section id="opcodes-pricing" class="page-section"><h1>Opcodes &amp; Pricing</h1><!-- your existing content here --></section>
-      <section id="dms-integration" class="page-section"><h1>DMS Integration</h1><!-- your existing content here --></section>
-      <section id="post-training" class="page-section"><h1>Post-Training Checklist</h1><!-- your existing content here --></section>
-      <section id="training-summary" class="page-section"><h1>Training Summary</h1><!-- your existing content here --></section>
-
     </div>
   </header>
 
@@ -32,6 +25,13 @@
       <nav id="sidebar-nav">
         <button class="nav-btn active" data-target="onsite-trainers">Onsite Trainers &amp; CEM</button>
         <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
+        <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
+        <button class="nav-btn" data-target="monday-visit">Monday Visit</button>
+        <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
+        <button class="nav-btn" data-target="opcodes-pricing">Opcodes &amp; Pricing</button>
+        <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
+        <button class="nav-btn" data-target="post-training">Post-Training Checklist</button>
+        <button class="nav-btn" data-target="training-summary">Training Summary</button>
       </nav>
     </aside>
 
