@@ -42,7 +42,12 @@ html, body {
   inset: 0 0 auto 0;
   z-index: 20;
 }
-.topbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 .top-logo { height: 42px; object-fit: contain; }
 #dealershipNameDisplay { color:#fff; font-size:18px; font-weight:600; }
 
@@ -291,7 +296,7 @@ main {
   z-index: 3;
 }
 
-/* Sticky first column */
+/* Sticky first column (default behavior for most tables) */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -306,6 +311,52 @@ main {
   align-items: center;
   gap: 8px;
   text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* First-column checkbox + name styling (page 5 tables) */
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+  margin-right: 10px;
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  text-align: left;
+}
+
+/* Wider User Acceptance column */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 205px;
+  min-width: 205px;
+}
+
+/* Inputs/Selects inside table cells (page 5 & 6 formatting) */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  min-width: 150px;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
 }
 
 /* Alternating rows */
@@ -377,14 +428,14 @@ main {
    DMS TABLE FIXES — ONLY FOR .dms-table
 ======================================================= */
 
-/* smaller sticky first column */
+/* smaller sticky first column so it doesn't look huge */
 .dms-table th:first-child,
 .dms-table td:first-child {
   width: 160px !important;
   min-width: 160px !important;
 }
 
-/* undo flex layout */
+/* undo flex layout for first column in DMS tables */
 .dms-table td:first-child {
   display: table-cell !important;
   padding-left: 10px;
@@ -393,16 +444,24 @@ main {
   text-align: left;
 }
 
-/* sticky header background fix */
+/* sticky header background fix for first column header */
 .dms-table thead th:first-child {
   background: var(--light-orange) !important;
   color: #fff !important;
 }
 
-/* allow wrapping headers */
+/* allow wrapping headers for DMS */
 .dms-table th {
   white-space: normal;
   line-height: 1.2;
+}
+
+/* Make the Parts Availability & Pricing (ServiceCart) column narrow
+   enough that the header naturally breaks into 3 lines */
+.dms-table th:nth-child(12),
+.dms-table td:nth-child(12) {
+  width: 135px !important;
+  min-width: 135px !important;
 }
 
 /* On-Demand / (if any appointments…) formatter */
@@ -419,7 +478,7 @@ main {
    SMALL WHITE PARENTHESES TEXT IN HEADER CELLS
 ======================================================= */
 
-/* all tables */
+/* all tables – small white sub-labels under main header text */
 .training-table thead th .muted-note {
   font-size: 10px !important;
   color: #fff !important;
@@ -428,7 +487,7 @@ main {
   margin-top: 2px;
 }
 
-/* DMS tables explicitly */
+/* DMS tables explicitly (kept in sync) */
 .dms-table thead th .muted-note {
   font-size: 10px !important;
   color: #fff !important;
