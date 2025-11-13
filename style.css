@@ -23,7 +23,8 @@ html, body {
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: hidden;
+  /* remove overflow-x:hidden so last columns aren't clipped */
+  overflow-x: auto;
 }
 
 *, em, i {
@@ -56,7 +57,7 @@ html, body {
   display: flex;
   min-height: 100vh;
   margin-top: 70px;
-  overflow-x: hidden;
+  overflow-x: hidden; /* safe because inner wrappers handle scroll */
 }
 
 #sidebar {
@@ -263,18 +264,20 @@ main {
   border-top: none;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow-x: auto; /* safety: allow scroll if wrapper misses */
 }
 
 .scroll-wrapper {
+  display: block;
+  width: 100%;
   overflow-x: auto;
   background: #fff;
 }
 
 .training-table {
   border-collapse: collapse;
-  width: 100%;
-  min-width: 100%;
+  width: max-content;  /* grow to fit columns */
+  min-width: 100%;     /* but at least full card width */
 }
 .training-table th,
 .training-table td {
@@ -342,7 +345,7 @@ main {
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 150px;
+  min-width: 140px; /* slightly smaller to help fit more columns */
   box-sizing: border-box;
   padding: 6px 8px;
   border-radius: var(--radius-sm);
@@ -444,17 +447,18 @@ main {
   text-align: left;
 }
 
-/* sticky header background fix for first column header */
+/* DMS header row – thinner + slightly smaller font */
+.dms-table thead th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+/* keep first header cell also light orange (matching row) */
 .dms-table thead th:first-child {
   background: var(--light-orange) !important;
   color: #fff !important;
-}
-
-/* DMS header row – thinner height only on DMS tables */
-.dms-table thead th {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  line-height: 1.1;
 }
 
 /* allow wrapping headers for DMS */
@@ -482,8 +486,8 @@ main {
 
 /* Automate row – slightly taller to match Reynolds */
 .dms-automate-row td {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 /* =======================================================
