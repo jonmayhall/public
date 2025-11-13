@@ -490,3 +490,20 @@ main {
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
+}
+
+/* ===== DMS tweaks ===== */
+
+/* make subtitle in orange section headers white */
+.section-header .muted-note {
+  color: #fff !important;
+}
+
+/* smaller line for "(if any appointments are scheduled)" under On-Demand */
+.dms-note {
+  display: block;
+  font-size: 10px;
+  color: #555;
+  margin-top: 2px;
+  line-height: 1.2;
+}
