@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – CSS
-   Base: v20251111A + non-table card layout
+   Stable tables + restored visuals
    ======================================================= */
 
 :root {
@@ -18,7 +18,8 @@
 html, body {
   margin: 0;
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  background: var(--gray-bg);
+  /* Bring back darker gradient background */
+  background: radial-gradient(circle at top, #444 0, #222 35%, #111 65%, #000 100%);
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -97,10 +98,12 @@ main {
   flex: 1;
   margin-left: 190px;
   padding: 30px 40px;
-  background: var(--gray-bg);
+  /* Darker background behind cards */
+  background: radial-gradient(circle at top, #444 0, #222 35%, #111 65%, #000 100%);
   box-sizing: border-box;
 }
 
+/* PAGE CARDS */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -116,18 +119,32 @@ main {
   display: block;
 }
 
-h1 {
-  color: var(--orange);
-  margin-bottom: 20px;
+/* === PAGE TITLES – restored black bar + orange underline, left aligned === */
+.page-section h1 {
+  margin: 0 0 16px;
   font-size: 24px;
   font-weight: 700;
-  text-align: center;
+  color: #fff;
+  background: #000;
+  padding: 10px 16px;
+  display: inline-block;
+  border-radius: 0;
+  border-bottom: 3px solid var(--orange);
+  text-align: left;
+}
+
+/* extra orange line under the title */
+.page-section h1::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 180px; /* slightly longer orange line */
+  background: var(--orange);
+  margin-top: 4px;
 }
 
 /* =======================================================
    NON-TABLE CARDS & QUESTIONS
-   (Onsite Trainers, Dealership Info, Pre-Training, Monday,
-    Post-Training, Training Summary, etc.)
    ======================================================= */
 
 /* Card inside a page */
@@ -167,7 +184,7 @@ h1 {
   font-size: 14px;
 }
 
-/* Right-side small inputs / dropdowns */
+/* Right-side inputs / dropdowns */
 .checklist-row input[type="text"],
 .checklist-row input[type="number"],
 .checklist-row input[type="email"],
@@ -251,7 +268,7 @@ h1 {
 }
 
 /* =======================================================
-   TABLES  (unchanged from stable version)
+   TABLES  (kept as in stable version)
    ======================================================= */
 
 .section {
@@ -339,7 +356,7 @@ h1 {
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
   transform: scale(1.1);
-  margin-right: 4px;  /* a little space after checkbox */
+  margin-right: 4px;  /* space to the right of checkbox */
 }
 .training-table input[type="text"],
 .training-table select {
@@ -399,7 +416,7 @@ h1 {
 }
 
 /* =======================================================
-   DROPDOWN COLORS (hint only, browser-dependent)
+   DROPDOWN COLORS
    ======================================================= */
 .training-table select {
   transition: background-color 0.2s ease, color 0.2s ease;
