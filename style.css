@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + DMS + Header + Layout Fixes
+   Stable Build — v20251112 + Layout Tightening
    ======================================================= */
 
 :root {
@@ -27,7 +27,12 @@ html, body {
   overflow-x: auto;
 }
 
-*, em, i {
+/* global box-sizing so textareas / inputs don't bleed */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+em, i {
   font-style: normal !important;
 }
 
@@ -111,7 +116,7 @@ main {
   padding: 22px 32px 28px;
   margin: 0 auto 50px;
   width: 100%;
-  max-width: 1250px;
+  max-width: 1100px;  /* narrower cards */
 }
 .page-section.active { display: block; }
 
@@ -159,11 +164,11 @@ main {
 .checklist-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 8px;              /* smaller gap between label and input */
+  margin-bottom: 10px;
   font-size: 14px;
-  padding-left: 40px;
-  padding-bottom: 10px;
+  padding-left: 26px;    /* tighter indent */
+  padding-bottom: 6px;
   border-bottom: 1px solid #e0e0e0;
 }
 .section-block .checklist-row:last-of-type {
@@ -173,17 +178,18 @@ main {
 }
 
 .checklist-row label {
-  flex: 1;
+  flex: 1 1 auto;
   font-weight: 500;
-  padding-right: 16px;
+  padding-right: 8px;    /* less space after question */
 }
 
+/* Right-side inputs – slightly narrower and closer */
 .section-block input[type="text"],
 .section-block input[type="number"],
 .section-block input[type="email"],
 .section-block select {
-  flex: 0 0 260px;
-  width: 260px;
+  flex: 0 0 230px;       /* was 260px – closer to text */
+  width: 230px;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
@@ -191,7 +197,7 @@ main {
   font-size: 13px;
 }
 
-/* ===== Notes / Additional Comments textareas (wider) ===== */
+/* ===== Notes / Additional Comments textareas (wider, no bleed) ===== */
 .section-block textarea {
   width: 100%;
   max-width: 100%;
