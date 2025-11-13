@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + DMS sticky fix
+   Stable Build — v20251112 + DMS Fix + Header Notes Fix
    ======================================================= */
 
 :root {
@@ -231,7 +231,7 @@ main {
 
 /* =======================================================
    TABLES
-======================================================= */
+========================================================= */
 
 .section { margin-bottom: 40px; }
 
@@ -291,7 +291,7 @@ main {
   z-index: 3;
 }
 
-/* Sticky first column for ALL training tables */
+/* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -305,6 +305,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
+  text-align: left;
 }
 
 /* Alternating rows */
@@ -376,29 +377,35 @@ main {
    DMS TABLE FIXES — ONLY FOR .dms-table
 ======================================================= */
 
-/* Prevent the huge 270px sticky column width */
+/* smaller sticky first column */
 .dms-table th:first-child,
 .dms-table td:first-child {
   width: 160px !important;
   min-width: 160px !important;
 }
 
-/* Remove flex layout from name column — makes spacing normal */
+/* undo flex layout */
 .dms-table td:first-child {
   display: table-cell !important;
-  text-align: left;
   padding-left: 10px;
   padding-right: 10px;
   background: #fff;
+  text-align: left;
 }
 
-/* Allow multi-line headers */
+/* sticky header background fix */
+.dms-table thead th:first-child {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+
+/* allow wrapping headers */
 .dms-table th {
   white-space: normal;
   line-height: 1.2;
 }
 
-/* On-Demand + small note */
+/* On-Demand / (if any appointments…) formatter */
 .dms-main { display: block; }
 .dms-note {
   display: block;
@@ -406,4 +413,26 @@ main {
   color: #555;
   margin-top: 2px;
   line-height: 1.2;
+}
+
+/* =======================================================
+   SMALL WHITE PARENTHESES TEXT IN HEADER CELLS
+======================================================= */
+
+/* all tables */
+.training-table thead th .muted-note {
+  font-size: 10px !important;
+  color: #fff !important;
+  line-height: 1.1 !important;
+  display: block;
+  margin-top: 2px;
+}
+
+/* DMS tables explicitly */
+.dms-table thead th .muted-note {
+  font-size: 10px !important;
+  color: #fff !important;
+  line-height: 1.1 !important;
+  display: block;
+  margin-top: 2px;
 }
