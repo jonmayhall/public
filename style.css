@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + DMS Fix + Header Notes Fix
+   Stable Build — v20251112 + DMS Fixes + Header Notes Fix
    ======================================================= */
 
 :root {
@@ -286,17 +286,17 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header */
+/* Sticky header (all tables, including page 5/6 & DMS) */
 .training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
+  background: var(--light-orange) !important;
+  color: #fff !important;
   font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 3;
 }
 
-/* Sticky first column (default behavior for most tables) */
+/* Sticky first column default behavior (page 5 & 6, etc.) */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -450,14 +450,20 @@ main {
   color: #fff !important;
 }
 
+/* DMS header row – thinner height only on DMS tables */
+.dms-table thead th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  line-height: 1.1;
+}
+
 /* allow wrapping headers for DMS */
 .dms-table th {
   white-space: normal;
-  line-height: 1.2;
 }
 
-/* Make the Parts Availability & Pricing (ServiceCart) column narrow
-   enough that the header naturally breaks into 3 lines */
+/* Make the Parts Availability & Pricing (ServiceCart) column
+   narrow enough that the header naturally breaks into ~3 lines */
 .dms-table th:nth-child(12),
 .dms-table td:nth-child(12) {
   width: 135px !important;
@@ -472,6 +478,12 @@ main {
   color: #555;
   margin-top: 2px;
   line-height: 1.2;
+}
+
+/* Automate row – slightly taller to match Reynolds */
+.dms-automate-row td {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* =======================================================
