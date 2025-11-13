@@ -1,24 +1,23 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Stable CSS
+   myKaarma Interactive Training Checklist – Full CSS v20251111A
    ======================================================= */
 
 :root {
   --orange: #f36f21;
   --light-orange: #f8b17b;
   --gray-bg: #d7d7d7;
-  --card-bg: #ffffff;
+  --card-bg: #fff;
   --border: #dcdcdc;
-  --ink: #222222;
-  --radius: 18px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.12);
+  --ink: #222;
+  --radius: 16px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* === BASE === */
 html, body {
   margin: 0;
-  padding: 0;
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  background: radial-gradient(circle at top, #444 0, #111 40%, #000 100%);
+  background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
 }
@@ -31,27 +30,17 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 20;
 }
-
-.topbar-content {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
 .top-logo {
   height: 42px;
   object-fit: contain;
 }
-
 #dealershipNameDisplay {
-  color: #ffffff;
+  color: #fff;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -62,9 +51,9 @@ html, body {
   display: flex;
   min-height: 100vh;
   margin-top: 70px;
+  overflow-x: hidden;
 }
 
-/* SIDEBAR */
 #sidebar {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
@@ -76,7 +65,6 @@ html, body {
   top: 70px;
   bottom: 0;
   overflow-y: auto;
-  z-index: 10;
 }
 
 #sidebar-nav {
@@ -96,7 +84,6 @@ html, body {
   color: var(--ink);
   transition: 0.2s;
 }
-
 .nav-btn:hover,
 .nav-btn.active {
   background: #fff3eb;
@@ -104,183 +91,45 @@ html, body {
   font-weight: 600;
 }
 
-/* MAIN CONTENT AREA */
+/* === MAIN CONTENT === */
 main {
   flex: 1;
   margin-left: 190px;
-  padding: 30px 40px 60px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
   box-sizing: border-box;
-  background:
-    radial-gradient(circle at top left, #444 0, #222 40%, #111 60%, #000 100%);
 }
 
-/* PAGE CARDS */
 .page-section {
   display: none;
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 28px 32px 36px;
-  margin: 0 auto 40px;
+  padding: 28px 32px;
+  margin: 0 auto 50px;
   width: 100%;
   max-width: 1250px;
   box-sizing: border-box;
 }
-
 .page-section.active {
   display: block;
 }
 
-/* PAGE TITLES */
-.page-section h1 {
-  margin: 0 0 14px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffffff;
-  padding: 12px 18px;
-  background: #000;
-  border-bottom: 3px solid var(--orange);
-  display: inline-block;
-  border-radius: 0;
-}
-
-.page-section h1::after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 200px; /* longer orange underline */
-  background: var(--orange);
-  margin-top: 4px;
-}
-
-/* SECTION BLOCKS (non-table cards inside a page) */
-.section-block {
-  background: #f9f9f9;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  padding: 18px 22px 20px;
-  margin-top: 20px;
-}
-
-.section-block h2 {
-  margin: 0 0 14px;
-  font-size: 18px;
-  font-weight: 600;
+h1 {
   color: var(--orange);
-}
-
-/* QUESTION ROWS */
-.checklist-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #ececec;
-}
-
-.checklist-row:last-child {
-  border-bottom: none;
-}
-
-/* Labels stretch to give questions room to read mostly on one line */
-.checklist-row > label {
-  flex: 1 1 auto;
-  font-size: 14px;
-}
-
-/* Standard inputs & selects on non-table pages */
-.checklist-row input[type="text"],
-.checklist-row input[type="number"],
-.checklist-row input[type="email"],
-.checklist-row select {
-  flex: 0 0 260px;
-  max-width: 260px;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  box-sizing: border-box;
-}
-
-.checklist-row select {
-  text-align-last: center;
-}
-
-/* Textareas inside section blocks */
-.section-block textarea {
-  width: 100%;
-  min-height: 100px;
-  resize: vertical;
-  margin-top: 8px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
-/* Integrated input + plus button (Additional Trainers / POC / Champions & Blockers) */
-.integrated-input {
-  position: relative;
-  flex: 0 0 260px;
-  max-width: 260px;
-}
-
-.integrated-input input[type="text"] {
-  width: 100%;
-  padding: 6px 36px 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  box-sizing: border-box;
-}
-
-.integrated-input .add-row {
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: none;
-  background: var(--orange);
-  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
-.integrated-input .add-row:hover {
-  background: #ff8b42;
-}
-
-/* Stronger divider between contact blocks */
-.contact-divider {
-  border-top: 2px solid #dddddd;
-  padding-top: 12px;
-  margin-top: 10px;
-}
-
-/* =======================================================
-   TABLES
-   ======================================================= */
-
+/* === SECTION HEADERS === */
 .section {
-  margin-top: 26px;
+  margin-bottom: 40px;
 }
-
-/* Orange header bar above each table */
 .section-header {
   background: var(--orange);
-  color: #ffffff;
+  color: #fff;
   font-weight: 600;
   padding: 10px 16px;
   font-size: 16px;
@@ -288,13 +137,16 @@ main {
   border: 1px solid var(--orange);
 }
 
+/* =======================================================
+   TABLES
+   ======================================================= */
 .table-container {
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0;
   box-shadow: var(--shadow);
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   overflow: hidden;
 }
 
@@ -302,10 +154,9 @@ main {
   display: block;
   width: 100%;
   overflow-x: auto;
-  background: #ffffff;
+  background: #fff;
 }
 
-/* Base table */
 .training-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -323,66 +174,57 @@ main {
   padding: 8px 10px;
 }
 
-/* Header row: sticky, light orange, square */
+/* === HEADERS (SQUARE, CENTERED) === */
 .training-table thead th {
   background: var(--light-orange);
-  color: #ffffff;
+  color: #fff;
   font-weight: 600;
+  border-radius: 0;
   position: sticky;
   top: 0;
   z-index: 3;
+  text-align: center;
 }
 
-/* Sticky first column (name column) */
+/* === Sticky First Column === */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   z-index: 4;
-  background: #ffffff;
+  background: #fff;
   text-align: left;
   width: 260px;
   min-width: 260px;
 }
-
 .training-table thead th:first-child {
-  background: var(--light-orange); /* same as header */
-  color: #ffffff;
-  text-align: center; /* centered header text in first column */
+  background: var(--light-orange);
+  color: #fff;
+  text-align: center;
 }
 
-/* First column content (checkbox + name input) */
+/* === INPUTS / SELECTS === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-left: 10px;
+  gap: 6px;
 }
-
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
-  transform: scale(1.15);
-  margin-right: 4px; /* extra padding to the right of checkbox */
+  transform: scale(1.1);
 }
-
-.training-table td:first-child input[type="text"] {
-  flex: 1 1 auto;
-}
-
-/* Inputs & selects inside tables */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 130px; /* wide enough for "Not Trained" text */
+  min-width: 115px;
   box-sizing: border-box;
   padding: 6px 8px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: #f2f2f2;
   font-size: 13px;
   text-align: center;
 }
-
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
@@ -391,126 +233,102 @@ main {
   background: #fff9f5;
 }
 
-/* Alternating row colors */
-.training-table tbody tr:nth-child(odd) {
-  background: #ffffff;
-}
-.training-table tbody tr:nth-child(even) {
-  background: #fafafa;
-}
+/* Alternating row color */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-/* Table footer with + button */
+/* === TABLE FOOTER === */
 .table-footer {
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   border-top: none;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   border-radius: 0 0 var(--radius) var(--radius);
-  padding: 6px 10px;
+  padding: 8px 12px;
   box-sizing: border-box;
+  text-align: left;
   display: flex;
   align-items: center;
 }
-
-/* Table add-row button (rounded orange circle, smaller) */
-.table-footer .add-row {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: none;
+.add-row {
   background: var(--orange);
-  color: #ffffff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.table-footer .add-row:hover {
+.add-row:hover {
   background: #ff8b42;
+  transform: scale(1.1);
 }
 
 /* =======================================================
-   SELECT OPTION COLOR HINTS (browsers differ, but harmless)
+   DROPDOWN DYNAMIC COLORS
    ======================================================= */
-
 .training-table select {
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Base states */
+.training-table select option { color: #000; }
+
+/* === User Acceptance === */
+.training-table select option[value="Fully Adopted"] {
+  background: #28a745; color: #fff;
+}
+.training-table select option[value="Mostly Adopted"] {
+  background: #20c997; color: #fff;
+}
+.training-table select option[value="Neutral / Mixed"] {
+  background: #ffc107; color: #000;
+}
+.training-table select option[value="Needs Support"] {
+  background: #dc3545; color: #fff;
+}
+.training-table select option[value="Not Accepted"] {
+  background: #b21f2d; color: #fff;
+}
+
+/* === Training Responses === */
+.training-table select option[value="Yes"] {
+  background: #28a745; color: #fff;
+}
+.training-table select option[value="No"] {
+  background: #dc3545; color: #fff;
+}
+.training-table select option[value="Not Trained"] {
+  background: #007bff; color: #fff;
+}
+.training-table select option[value="N/A"] {
+  background: #6c757d; color: #fff;
 }
 
 /* =======================================================
    SCROLLBAR
    ======================================================= */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
+.scroll-wrapper::-webkit-scrollbar { height: 8px; }
 .scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: #cccccc;
+  background-color: #ccc;
   border-radius: 4px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999999;
-}
-
-/* =======================================================
-   FLOATING BUTTON (Save as PDF)
-   ======================================================= */
-.floating-btn {
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: none;
-  background: var(--orange);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(243,111,33,0.4);
-}
-
-.floating-btn:hover {
-  background: #ff8b42;
-}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
 @media (max-width: 900px) {
-  #sidebar {
-    width: 150px;
-  }
-  main {
-    margin-left: 150px;
-    padding: 24px;
-  }
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
 }
-
 @media (max-width: 600px) {
-  #sidebar {
-    display: none;
-  }
-  main {
-    margin-left: 0;
-    padding: 20px;
-  }
-  .checklist-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .checklist-row input[type="text"],
-  .checklist-row input[type="number"],
-  .checklist-row input[type="email"],
-  .checklist-row select,
-  .integrated-input {
-    flex: 1 1 auto;
-    max-width: 100%;
-    width: 100%;
-  }
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
