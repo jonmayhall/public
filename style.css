@@ -1,479 +1,293 @@
-/* =======================================================
-   myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 (adjusted)
-   ======================================================= */
-
-:root {
-  --orange: #f36f21;
-  --light-orange: #f8b17b;
-  --gray-bg: #d7d7d7;
-  --card-bg: #fff;
-  --border: #dcdcdc;
-  --ink: #222;
-
-  --radius-lg: 18px;       /* cards */
-  --radius-sm: 14px;       /* inputs / buttons */
-
-  --shadow: 0 2px 8px rgba(0,0,0,0.10);
-}
-
-/* ===== BASE ===== */
-html, body {
+/* ========================================================= */
+/* GLOBAL LAYOUT / RESET                                      */
+/* ========================================================= */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  background: var(--gray-bg);
-  color: var(--ink);
-  overflow-x: hidden;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
-*, em, i { font-style: normal !important; }  /* no italics anywhere */
 
-/* ===== TOP BAR ===== */
+body {
+  background: #f5f5f5;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ========================================================= */
+/* TOP BAR                                                     */
+/* ========================================================= */
 #topbar {
-  background: linear-gradient(90deg, #000 0%, #333 100%);
-  height: 70px;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  padding: 0 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-  position: fixed;
-  inset: 0 0 auto 0; /* top:0; left:0; right:0 */
-  z-index: 20;
-  border-radius: 0; /* straight across, not rounded */
 }
+
 .topbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
 }
+
 .top-logo {
-  height: 42px;
-  object-fit: contain;
-}
-#dealershipNameDisplay {
-  color:#fff;
-  font-size:18px;
-  font-weight:600;
-  letter-spacing:.5px;
+  height: 40px;
+  margin-right: 20px;
 }
 
-/* ===== LAYOUT ===== */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: hidden;
+.dealership-name {
+  font-size: 20px;
+  font-weight: 500;
 }
 
+/* ========================================================= */
+/* SIDEBAR                                                     */
+/* ========================================================= */
 #sidebar {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
-  width: 190px;
-  padding: 20px 8px;
-  box-shadow: var(--shadow);
+  width: 240px;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px 0;
   position: fixed;
-  top: 70px;
+  top: 60px;
   bottom: 0;
   overflow-y: auto;
 }
+
 #sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
 .nav-btn {
-  background: none;
-  border: none;
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: 12px 18px;
   text-align: left;
-  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 16px;
   cursor: pointer;
-  color: var(--ink);
-  transition: .2s;
+  border-left: 4px solid transparent;
+  transition: 0.2s;
 }
-.nav-btn:hover,
+
+.nav-btn:hover {
+  background: #333;
+}
+
 .nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
-  font-weight: 600;
+  background: #333;
+  border-left: 4px solid #ff6200;
 }
 
-main {
-  flex: 1;
-  margin-left: 190px;
-  padding: 30px 40px;
-  background: var(--gray-bg);
-  box-sizing: border-box;
+/* ========================================================= */
+/* MAIN CONTENT                                                */
+/* ========================================================= */
+#content {
+  margin-left: 240px;
+  padding: 30px;
+  padding-bottom: 100px;
 }
 
-/* ===== PAGE SECTIONS / CARDS ===== */
 .page-section {
   display: none;
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  padding: 22px 32px 28px;
-  margin: 0 auto 50px;
-  width: 100%;
-  max-width: 1250px;
-  box-sizing: border-box;
 }
+
 .page-section.active {
   display: block;
 }
 
-/* Page titles: Left aligned with longer orange underline */
+/* ========================================================= */
+/* PAGE TITLES                                                 */
+/* ========================================================= */
 .page-section h1 {
-  color: var(--orange);
-  margin: 4px 0 22px 4px;
-  font-size: 26px;
-  font-weight: 700;
-  text-align: left;
-  letter-spacing: .3px;
-  position: relative;
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #000;
 }
+
 .page-section h1::after {
   content: "";
   display: block;
-  width: 360px;             /* longer underline */
+  width: 180px; /* longer orange underline */
   height: 4px;
-  background: var(--orange);
-  margin-top: 8px;
-  border-radius: 2px;
+  background: #ff6200;
+  margin-top: 6px;
+  border-radius: 4px;
 }
 
-/* Section blocks (non-table cards) */
-.section-block {
+/* ========================================================= */
+/* CARDS / SECTIONS                                            */
+/* ========================================================= */
+.section-block,
+.section {
   background: #fff;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  padding: 0 22px 14px;
-  margin-bottom: 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-}
-.section-block h2 {
-  margin: 0 0 16px;
-  padding: 10px 16px;
-  background: var(--orange);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  margin-left: -22px;
-  margin-right: -22px;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
-/* ===== NON-TABLE ROWS (Q&A lines) ===== */
+.section-header {
+  background: #ff6200;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 14px;
+}
+
+/* ========================================================= */
+/* FORM ELEMENTS — SPACING + ROW DIVIDERS ADDED               */
+/* ========================================================= */
 .checklist-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-  font-size: 14px;
-  padding-left: 40px;      /* base indent */
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
+  margin-bottom: 14px;       /* MORE VERTICAL SPACE */
+  padding-bottom: 10px;      /* space before divider */
+  border-bottom: 1px solid #e5e5e5; /* LIGHT GRAY DIVIDER */
 }
-.section-block .checklist-row:last-of-type {
-  border-bottom: none;
-  margin-bottom: 8px;
-  padding-bottom: 0;
+
+.section-block .checklist-row:last-child {
+  border-bottom: none; /* clean ending */
 }
+
 .checklist-row label {
-  flex: 1 1 auto;
+  width: 300px;
   font-weight: 500;
-  text-align: left;
-  padding-right: 16px;
-  white-space: normal;
+  margin-right: 20px; /* MORE SPACE BETWEEN LABEL + INPUT */
 }
 
-/* Inputs on the RIGHT and smaller */
-.section-block .checklist-row input[type="text"],
-.section-block .checklist-row input[type="number"],
-.section-block .checklist-row input[type="email"],
-.section-block .checklist-row input[type="date"],
-.section-block .checklist-row select {
-  flex: 0 0 260px;
-  width: 260px;
-  margin-left: auto;       /* push to right */
-  margin-right: 0;
-  padding: 7px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
-  box-sizing: border-box;
-}
-.section-block textarea {
-  width: 90%;
-  margin-left: auto;
+.checklist-row input,
+.checklist-row select,
+textarea {
+  flex: 1;
   padding: 8px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* rounded boxes */
+  font-size: 15px;
+}
+
+/* ========================================================= */
+/* TEXTAREAS                                                   */
+/* ========================================================= */
+textarea {
+  width: 100%;
+  height: 110px;
   resize: vertical;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
-/* Focus */
-.section-block input:focus,
-.section-block select:focus,
-.section-block textarea:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.35);
-  outline: none;
-  background: #fff9f5;
-}
-
-/* ===== Dealership Contacts — stronger divider before each Name row ===== */
-/* FIXED: Contacts block is the 3rd section-block in #dealership-info */
-#dealership-info .section-block:nth-of-type(3) .checklist-row input[placeholder="Name"] {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 12px;
-  margin-top: 8px;
-}
-
-/* ===== Integrated “+” button INSIDE certain inputs ===== */
-.section-block .checklist-row.integrated-plus,
-.section-block .checklist-row:has(> .add-row) {
+/* ========================================================= */
+/* INTEGRATED PLUS BUTTONS                                     */
+/* ========================================================= */
+.integrated-plus {
   position: relative;
 }
-.section-block .checklist-row.integrated-plus input[type="text"],
-.section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 56px; /* space for the button inside */
+
+.integrated-plus input {
+  padding-right: 45px;
 }
-.section-block .checklist-row > .add-row {
+
+.integrated-plus .add-row {
   position: absolute;
-  right: 4px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--orange);
-  color: #fff;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
   border: none;
-  border-radius: 999px;         /* as rounded as possible */
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-  transition: .18s ease-in-out;
-  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.section-block .checklist-row > .add-row:hover {
-  background: #ff8b42;
-  transform: translateY(-50%) scale(1.06);
-}
-
-/* =======================================================
-   TABLES
-   ======================================================= */
-.section {
-  margin-bottom: 40px;
-}
-.section-header {
-  background: var(--orange);
+  background: #ff6200;
   color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  border: 1px solid var(--orange);
-  border-bottom: none;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-/* Table Card */
+/* ========================================================= */
+/* TABLES (TRAINING CHECKLIST)                                */
+/* ========================================================= */
 .table-container {
-  width: 100%;
   background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  box-shadow: var(--shadow);
-  margin-bottom: 40px;
-  overflow: hidden;
+  border-radius: 10px;
+  padding: 0;
+  margin-bottom: 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
 .scroll-wrapper {
-  display: block;
-  width: 100%;
   overflow-x: auto;
-  background: #fff;
 }
 
-/* Table */
 .training-table {
-  border-collapse: collapse;
   width: 100%;
-  min-width: 100%;
-}
-.training-table th,
-.training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  border-collapse: collapse;
 }
 
-/* Sticky header — LIGHT ORANGE (including first column header) */
-.training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
+.training-table th {
+  background: #ffb07c; /* light orange sticky */
+  color: #000;
   font-weight: 600;
+  text-align: center;
+  padding: 10px;
   position: sticky;
   top: 0;
   z-index: 3;
 }
 
-/* Sticky first column (header centered; body cells white) */
-.training-table th:first-child,
-.training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
-  width: 270px;                /* name column slightly smaller but roomy */
-  min-width: 270px;
-}
-.training-table thead th:first-child {
-  text-align: center;          /* centered header title */
-}
-.training-table td:first-child {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-  margin-right: 10px;          /* more right padding for checkbox */
-}
-.training-table td:first-child input[type="text"] {
-  width: 95%;
-  padding: 7px 10px;
-  font-size: 13px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  text-align: left;
+.training-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
-/* Column widths to comfortably show longest options */
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  width: 205px;                /* User Acceptance — wide enough */
-  min-width: 205px;
-}
-
-/* Inputs/Selects inside table cells */
-.training-table input[type="text"],
-.training-table select {
-  width: 100%;
-  min-width: 150px;            /* ensure "Not Trained" fully visible */
-  box-sizing: border-box;
-  padding: 6px 8px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
+/* Name column wider */
+.training-table td:first-child,
+.training-table th:first-child {
+  min-width: 220px;
   text-align: center;
 }
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
+
+.training-table input[type=text] {
+  width: 95%;
+  border-radius: 8px;
 }
 
-/* Alternating rows */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
-
-/* Table footer + "+" button (smaller & round) */
+/* Footer row */
 .table-footer {
-  width: 100%;
-  background: #f5f5f5;
-  border-top: 1px solid var(--border);
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  border-bottom-left-radius: var(--radius-lg);
-  border-bottom-right-radius: var(--radius-lg);
-  box-sizing: border-box;
+  padding: 12px;
+  text-align: center;
 }
+
 .table-footer .add-row {
-  background: var(--orange);
-  color: #fff;
+  height: 30px;
+  width: 30px;
+  background: #ff6200;
   border: none;
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
   cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
-}
-.table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
 }
 
-/* ===== Scrollbar (horizontal) ===== */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-}
-
-/* ===== Floating PDF button (summary page) ===== */
+/* ========================================================= */
+/* FLOATING PDF BUTTON                                         */
+/* ========================================================= */
 .floating-btn {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  background: var(--orange);
+  bottom: 26px;
+  right: 26px;
+  background: #ff6200;
   color: #fff;
   border: none;
-  padding: 10px 14px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-size: 16px;
   cursor: pointer;
-}
-
-/* ===== Footer ===== */
-#footer {
-  padding: 24px;
-  text-align: center;
-  color: #666;
-  font-size: 13px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
 }
