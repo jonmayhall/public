@@ -500,10 +500,11 @@ main {
   line-height: 1.2;
 }
 
-/* Automate row – match height of Reynolds row above */
+/* Automate row – slightly taller than Reynolds but not oversized */
 .dms-automate-row td {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
 }
 
 /* =======================================================
