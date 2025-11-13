@@ -1,10 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112E
-   - Dark wide sidebar (simpler spacing)
-   - Tables & + buttons fixed
-   - PDF button under title
-   - Stronger dividers for Blockers & contacts
+   Stable Build — v20251112F
    ======================================================= */
 
 :root {
@@ -95,7 +91,7 @@ em, i {
   gap: 6px;
 }
 
-/* Menu buttons – revert to simpler look */
+/* Menu buttons – simpler look */
 .nav-btn {
   background: none;
   border: none;
@@ -108,7 +104,7 @@ em, i {
   transition: .2s;
 }
 
-/* Hover & Active state (like earlier dark version) */
+/* Hover & Active state (dark version) */
 .nav-btn:hover,
 .nav-btn.active {
   background: rgba(255,255,255,0.08);
@@ -258,35 +254,46 @@ main {
 }
 
 /* ===== Integrated "+" buttons inside checklist rows (non-tables) ===== */
+/* Make the input + button look like one smooth pill control */
+
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
-  position: relative;
+  align-items: center;
 }
 
-/* input padding to make space for integrated + */
+/* Input side of pill */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 40px;
+  height: 34px;
+  border-radius: 999px 0 0 999px;
+  padding-right: 0;                   /* text only on left */
 }
 
-/* Smaller, flush + button that feels attached to the textbox */
+/* Keep a small wrapper for the control on the right */
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  flex: 0 0 260px;
+}
+
+/* Button side of pill */
 .section-block .checklist-row > .add-row {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;                   /* no absolute – sits next to input */
+  margin-left: -1px;                  /* overlap borders so seam disappears */
   background: var(--orange);
   color: #fff;
-  border: none;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; /* rounded only on the outside edge */
-  width: 30px;
-  height: 26px;
+  border: 1px solid var(--orange);
+  border-radius: 0 999px 999px 0;     /* round outer side only */
+  width: 34px;
+  height: 34px;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
   padding: 0;
   cursor: pointer;
-  box-shadow: none; /* smooth, solid piece with the input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
 }
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
@@ -294,16 +301,14 @@ main {
 
 /* ===== Stronger dividers in specific areas ===== */
 
-/* Dealership Contacts: thicker line before each new "Name" block
-   (Service Manager, Parts Manager, General Manager, Additional POC) */
+/* Dealership Contacts: thicker line before each new "Name" block */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
   border-top: 2px solid #bdbdbd;
   padding-top: 12px;
   margin-top: 8px;
 }
 
-/* Blockers section (the row that starts the Blockers group uses inline margin-top:16px)
-   → add thicker divider above it */
+/* Blockers group separator (the row with inline margin-top:16px) */
 .section-block .checklist-row[style*="margin-top:16px"] {
   border-top: 2px solid #bdbdbd;
   padding-top: 10px;
