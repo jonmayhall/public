@@ -1,6 +1,10 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — Polished Sidebar (Option B+) + Layout + DMS
+   Stable Build — v20251112D
+   - Dark Sidebar (wider)
+   - Tables fixed
+   - Add buttons fixed
+   - PDF button below title
    ======================================================= */
 
 :root {
@@ -23,12 +27,18 @@ html, body {
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: auto;
+  overflow-x: auto; /* prevent cutoff of far-right table columns */
 }
 
-/* global box-sizing */
-*, *::before, *::after { box-sizing: border-box; }
-em, i { font-style: normal !important; }
+/* global box-sizing so textareas / inputs don't bleed */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* no italics by default */
+em, i {
+  font-style: normal !important;
+}
 
 /* ===== TOP BAR ===== */
 #topbar {
@@ -48,8 +58,15 @@ em, i { font-style: normal !important; }
   justify-content: space-between;
   width: 100%;
 }
-.top-logo { height: 42px; }
-#dealershipNameDisplay { color:#fff; font-size:18px; font-weight:600; }
+.top-logo {
+  height: 42px;
+  object-fit: contain;
+}
+#dealershipNameDisplay {
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+}
 
 /* ===== LAYOUT WRAPPER ===== */
 #app {
@@ -59,23 +76,17 @@ em, i { font-style: normal !important; }
   overflow-x: visible;
 }
 
-/* =======================================================
-   POLISHED WIDE SIDEBAR (220px)
-   ======================================================= */
-
+/* ===== SIDEBAR – Dark, Wider ===== */
 #sidebar {
-  width: 220px;                        /* WIDER */
   background: #2a2d32;
   border-right: 1px solid #1f2125;
-  padding: 26px 14px;
+  width: 220px;              /* widened */
+  padding: 24px 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
   position: fixed;
   top: 70px;
   bottom: 0;
   overflow-y: auto;
-
-  /* Premium depth */
-  box-shadow: 0 0 25px rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
 }
 
 #sidebar-nav {
@@ -84,32 +95,26 @@ em, i { font-style: normal !important; }
   gap: 6px;
 }
 
-/* Menu Buttons — polished */
+/* Menu buttons */
 .nav-btn {
-  width: 100%;
   background: transparent;
   border: none;
-  padding: 11px 14px;
-  font-size: 15px;
+  padding: 10px 14px;
+  font-size: 14px;
   text-align: left;
-
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-
-  color: #e9eaec;
+  color: #e5e7ea;
+  letter-spacing: 0.2px;
+  border-left: 4px solid transparent;
   transition:
     background 0.18s ease,
     color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.12s ease,
     border-left-color 0.18s ease;
-  
-  border-left: 4px solid transparent;
-
-  letter-spacing: 0.2px;
 }
 
-/* Hover */
 .nav-btn:hover {
   background: rgba(255,255,255,0.08);
   color: #ffffff;
@@ -117,17 +122,17 @@ em, i { font-style: normal !important; }
   transform: translateX(2px);
 }
 
-/* Active */
 .nav-btn.active {
   background: rgba(255,255,255,0.15);
   color: var(--orange);
   font-weight: 600;
   border-left-color: var(--orange);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25),
-              0 1px 4px rgba(0,0,0,0.55);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.22),
+    0 1px 4px rgba(0,0,0,0.55);
 }
 
-/* MAIN CONTENT shifts with sidebar */
+/* ===== MAIN CONTENT ===== */
 main {
   flex: 1;
   margin-left: 220px;  /* match sidebar width */
@@ -144,14 +149,17 @@ main {
   box-shadow: var(--shadow);
   padding: 22px 32px 28px;
   margin: 0 auto 50px;
+  width: 100%;
   max-width: 1100px;
 }
-.page-section.active { display: block; }
+.page-section.active {
+  display: block;
+}
 
-/* Title */
+/* Page titles */
 .page-section h1 {
   color: var(--orange);
-  margin: 4px 0 22px 4px;
+  margin: 4px 0 16px 4px;
   font-size: 26px;
   font-weight: 700;
   position: relative;
@@ -166,7 +174,25 @@ main {
   border-radius: 2px;
 }
 
-/* ===== SECTION BLOCKS ===== */
+/* ===== PDF BUTTON (below title, pill-shaped) ===== */
+.floating-btn {
+  display: inline-block;
+  margin: 0 0 20px 4px;    /* directly under title, left edge */
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;    /* pill shape */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.floating-btn:hover {
+  background: #ff8b42;
+}
+
+/* ===== SECTION BLOCKS (cards inside pages) ===== */
 .section-block {
   background: #fff;
   border-radius: var(--radius-lg);
@@ -188,7 +214,7 @@ main {
   margin-right: -22px;
 }
 
-/* ===== CHECKLIST ROWS ===== */
+/* ===== CHECKLIST ROWS (label + input) ===== */
 .checklist-row {
   display: flex;
   align-items: center;
@@ -199,13 +225,19 @@ main {
   padding-bottom: 6px;
   border-bottom: 1px solid #e0e0e0;
 }
+.section-block .checklist-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+
 .checklist-row label {
-  flex: 1;
+  flex: 1 1 auto;
   font-weight: 500;
   padding-right: 8px;
 }
 
-/* Inputs */
+/* Right-side inputs */
 .section-block input[type="text"],
 .section-block input[type="number"],
 .section-block input[type="email"],
@@ -219,11 +251,12 @@ main {
   font-size: 13px;
 }
 
-/* Textareas */
+/* Textareas (comments / notes) */
 .section-block textarea {
   width: 100%;
-  padding: 10px 14px;
+  max-width: 100%;
   margin: 0;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -237,4 +270,327 @@ main {
   border-color: var(--orange);
   box-shadow: 0 0 4px rgba(243,111,33,0.35);
   background: #fff9f5;
+}
+
+/* ===== Integrated "+" buttons inside checklist rows ===== */
+.section-block .checklist-row.integrated-plus,
+.section-block .checklist-row:has(> .add-row) {
+  position: relative;
+}
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  padding-right: 56px;
+}
+.section-block .checklist-row > .add-row {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+}
+.section-block .checklist-row > .add-row:hover {
+  background: #ff8b42;
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* =======================================================
+   TABLES (all training / DMS tables)
+   ======================================================= */
+
+.section {
+  margin-bottom: 40px;
+}
+
+/* Section header above tables */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
+}
+.section-header .muted-note {
+  color: #fff !important;
+}
+
+/* Table card container */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+/* Scroll wrapper for wide tables */
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+}
+
+/* Core table */
+.training-table {
+  border-collapse: collapse;
+  width: max-content;   /* grows to fit all columns */
+  min-width: 100%;      /* never smaller than container */
+}
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+}
+
+/* Sticky headers (all tables) */
+.training-table thead th {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+/* Sticky first column (all tables) */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  width: 270px;
+  min-width: 270px;
+}
+
+/* First-column background follows zebra striping */
+.training-table tbody td:first-child {
+  background-color: inherit;
+}
+
+/* First-column cell structure for training tables (checkbox + name) */
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+  margin-right: 10px;
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  text-align: left;
+}
+
+/* Wider User Acceptance column */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 205px;
+  min-width: 205px;
+}
+
+/* Inputs / selects inside table cells */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  min-width: 140px;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* Zebra striping */
+.training-table tbody tr:nth-child(odd) { background: #fff; }
+.training-table tbody tr:nth-child(even) { background: #fafafa; }
+
+/* Table footer and orange "+" button */
+.table-footer {
+  width: 100%;
+  background: #f5f5f5;
+  border-top: 1px solid var(--border);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  box-sizing: border-box;
+}
+.table-footer .add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+}
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
+
+/* Scrollbar styling */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+/* =======================================================
+   DMS TABLE-SPECIFIC TWEAKS (.dms-table)
+   ======================================================= */
+
+/* smaller sticky first column in DMS tables */
+.dms-table th:first-child,
+.dms-table td:first-child {
+  width: 160px !important;
+  min-width: 160px !important;
+}
+
+/* revert flex from generic training table for DMS name column */
+.dms-table td:first-child {
+  display: table-cell !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+/* DMS sticky first column follows zebra too */
+.dms-table tbody td:first-child {
+  background-color: inherit;
+}
+
+/* DMS header row – thinner, slightly smaller font */
+.dms-table thead th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+/* First header cell in DMS stays light orange like rest */
+.dms-table thead th:first-child {
+  background: var(--light-orange) !important;
+  color: #fff !important;
+}
+
+/* Allow wrapping header text in DMS */
+.dms-table th {
+  white-space: normal;
+}
+
+/* Make the Customer Pull column (2nd) narrower */
+.dms-table th:nth-child(2),
+.dms-table td:nth-child(2) {
+  width: 90px !important;
+  min-width: 90px !important;
+}
+
+/* Parts Availability & Pricing (ServiceCart) column narrower (12th) */
+.dms-table th:nth-child(12),
+.dms-table td:nth-child(12) {
+  width: 135px !important;
+  min-width: 135px !important;
+}
+
+/* On Demand / (if any appointments are scheduled) formatting */
+.dms-main {
+  display: block;
+}
+.dms-note {
+  display: block;
+  font-size: 10px;
+  color: #555;
+  margin-top: 2px;
+  line-height: 1.2;
+}
+
+/* Automate row slightly taller than default (but not huge) */
+.dms-automate-row td {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* =======================================================
+   SMALL WHITE PARENTHESIS TEXT IN HEADER CELLS
+   ======================================================= */
+
+.training-table thead th .muted-note {
+  font-size: 10px !important;
+  color: #fff !important;
+  line-height: 1.1 !important;
+  display: block;
+  margin-top: 2px;
+}
+.dms-table thead th .muted-note {
+  font-size: 10px !important;
+  color: #fff !important;
+  line-height: 1.1 !important;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ===== Muted note outside headers ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic !important;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  #sidebar { width: 150px; }
+  main { margin-left: 150px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 20px; }
 }
