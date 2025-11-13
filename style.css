@@ -1,10 +1,10 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112D
-   - Dark Sidebar (wider)
-   - Tables fixed
-   - Add buttons fixed
-   - PDF button below title
+   Stable Build — v20251112E
+   - Dark wide sidebar (simpler spacing)
+   - Tables & + buttons fixed
+   - PDF button under title
+   - Stronger dividers for Blockers & contacts
    ======================================================= */
 
 :root {
@@ -76,13 +76,13 @@ em, i {
   overflow-x: visible;
 }
 
-/* ===== SIDEBAR – Dark, Wider ===== */
+/* ===== SIDEBAR – Dark, Wider, Simple Spacing ===== */
 #sidebar {
   background: #2a2d32;
   border-right: 1px solid #1f2125;
   width: 220px;              /* widened */
-  padding: 24px 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  padding: 20px 8px;
+  box-shadow: var(--shadow);
   position: fixed;
   top: 70px;
   bottom: 0;
@@ -95,41 +95,26 @@ em, i {
   gap: 6px;
 }
 
-/* Menu buttons */
+/* Menu buttons – revert to simpler look */
 .nav-btn {
-  background: transparent;
+  background: none;
   border: none;
-  padding: 10px 14px;
+  padding: 10px 12px;
   font-size: 14px;
   text-align: left;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  color: #e5e7ea;
-  letter-spacing: 0.2px;
-  border-left: 4px solid transparent;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.12s ease,
-    border-left-color 0.18s ease;
+  color: #e6e6e6;
+  transition: .2s;
 }
 
-.nav-btn:hover {
-  background: rgba(255,255,255,0.08);
-  color: #ffffff;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
-  transform: translateX(2px);
-}
-
+/* Hover & Active state (like earlier dark version) */
+.nav-btn:hover,
 .nav-btn.active {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
   color: var(--orange);
   font-weight: 600;
-  border-left-color: var(--orange);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.22),
-    0 1px 4px rgba(0,0,0,0.55);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.45);
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -272,35 +257,57 @@ main {
   background: #fff9f5;
 }
 
-/* ===== Integrated "+" buttons inside checklist rows ===== */
+/* ===== Integrated "+" buttons inside checklist rows (non-tables) ===== */
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   position: relative;
 }
+
+/* input padding to make space for integrated + */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 56px;
+  padding-right: 40px;
 }
+
+/* Smaller, flush + button that feels attached to the textbox */
 .section-block .checklist-row > .add-row {
   position: absolute;
-  right: 4px;
+  right: 5px;
   top: 50%;
   transform: translateY(-50%);
   background: var(--orange);
   color: #fff;
   border: none;
-  border-radius: 999px;
-  width: 34px;
-  height: 34px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; /* rounded only on the outside edge */
+  width: 30px;
+  height: 26px;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
+  padding: 0;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+  box-shadow: none; /* smooth, solid piece with the input */
 }
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
-  transform: translateY(-50%) scale(1.06);
+}
+
+/* ===== Stronger dividers in specific areas ===== */
+
+/* Dealership Contacts: thicker line before each new "Name" block
+   (Service Manager, Parts Manager, General Manager, Additional POC) */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #bdbdbd;
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+/* Blockers section (the row that starts the Blockers group uses inline margin-top:16px)
+   → add thicker divider above it */
+.section-block .checklist-row[style*="margin-top:16px"] {
+  border-top: 2px solid #bdbdbd;
+  padding-top: 10px;
+  margin-top: 12px !important;
 }
 
 /* =======================================================
@@ -443,7 +450,7 @@ main {
 .training-table tbody tr:nth-child(odd) { background: #fff; }
 .training-table tbody tr:nth-child(even) { background: #fafafa; }
 
-/* Table footer and orange "+" button */
+/* Table footer and orange "+" button (tables only) */
 .table-footer {
   width: 100%;
   background: #f5f5f5;
