@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + Layout Tightening
+   Stable Build — v20251112 + DMS + Layout + Sidebar Gray
    ======================================================= */
 
 :root {
@@ -66,9 +66,9 @@ em, i {
   overflow-x: visible;
 }
 
+/* ===== SIDEBAR – Light Gray Modern Style ===== */
 #sidebar {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(6px);
+  background: #f4f4f4;
   border-right: 1px solid var(--border);
   width: 190px;
   padding: 20px 8px;
@@ -81,6 +81,7 @@ em, i {
 
 #sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
 
+/* Menu buttons */
 .nav-btn {
   background: none;
   border: none;
@@ -92,11 +93,14 @@ em, i {
   color: var(--ink);
   transition: .2s;
 }
+
+/* Hover & Active state pop more against light gray */
 .nav-btn:hover,
 .nav-btn.active {
-  background: #fff3eb;
+  background: #fff;
   color: var(--orange);
   font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 main {
