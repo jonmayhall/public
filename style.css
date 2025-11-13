@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 (with light spacing tweaks)
+   Stable Build — v20251112 + muted-note
    ======================================================= */
 
 :root {
@@ -25,7 +25,11 @@ html, body {
   color: var(--ink);
   overflow-x: hidden;
 }
-*, em, i { font-style: normal !important; }  /* no italics anywhere */
+
+/* no italics anywhere by default */
+*, em, i { 
+  font-style: normal !important;
+}
 
 /* ===== TOP BAR ===== */
 #topbar {
@@ -40,12 +44,30 @@ html, body {
   z-index: 20;
   border-radius: 0; /* straight across, not rounded */
 }
-.topbar-content { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-.top-logo { height: 42px; object-fit: contain; }
-#dealershipNameDisplay { color:#fff; font-size:18px; font-weight:600; letter-spacing:.5px; }
+.topbar-content { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
+}
+.top-logo { 
+  height: 42px; 
+  object-fit: contain; 
+}
+#dealershipNameDisplay { 
+  color:#fff; 
+  font-size:18px; 
+  font-weight:600; 
+  letter-spacing:.5px; 
+}
 
 /* ===== LAYOUT ===== */
-#app { display: flex; min-height: 100vh; margin-top: 70px; overflow-x: hidden; }
+#app { 
+  display: flex; 
+  min-height: 100vh; 
+  margin-top: 70px; 
+  overflow-x: hidden; 
+}
 
 #sidebar {
   background: rgba(255,255,255,0.92);
@@ -59,7 +81,11 @@ html, body {
   bottom: 0;
   overflow-y: auto;
 }
-#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
+#sidebar-nav { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+}
 
 .nav-btn {
   background: none;
@@ -98,7 +124,9 @@ main {
   max-width: 1250px;
   box-sizing: border-box;
 }
-.page-section.active { display: block; }
+.page-section.active { 
+  display: block; 
+}
 
 /* Page titles: Left aligned with longer orange underline */
 .page-section h1 {
@@ -149,25 +177,24 @@ main {
 .checklist-row {
   display: flex;
   align-items: center;
-  gap: 14px;              /* slightly more space between elements */
-  margin-bottom: 18px;    /* a bit more vertical space */
+  gap: 12px;
+  margin-bottom: 14px;
   font-size: 14px;
-  padding-left: 40px;     /* ~about an inch visual indent */
-  padding-bottom: 12px;   /* slightly more padding */
+  padding-left: 40px;      /* ~about an inch visual indent */
+  padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
 }
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   padding-bottom: 0;
 }
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
   text-align: left;
-  padding-right: 18px;    /* tiny bit more room away from input */
+  padding-right: 16px;
   white-space: normal;
-  line-height: 1.35;      /* makes multi-line questions less cramped */
 }
 
 /* Inputs on the RIGHT and smaller */
@@ -217,7 +244,9 @@ main {
 
 /* ===== Integrated “+” button INSIDE certain inputs ===== */
 .section-block .checklist-row.integrated-plus,
-.section-block .checklist-row:has(> .add-row) { position: relative; }
+.section-block .checklist-row:has(> .add-row) { 
+  position: relative; 
+}
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   padding-right: 56px; /* space for the button inside */
@@ -251,7 +280,9 @@ main {
 /* =======================================================
    TABLES
    ======================================================= */
-.section { margin-bottom: 40px; }
+.section { 
+  margin-bottom: 40px; 
+}
 
 .section-header {
   background: var(--orange);
@@ -318,7 +349,9 @@ main {
   width: 270px;                /* name column slightly smaller but roomy */
   min-width: 270px;
 }
-.training-table thead th:first-child { text-align: center; } /* centered header title */
+.training-table thead th:first-child { 
+  text-align: center;          /* centered header title */ 
+}
 .training-table td:first-child {
   background: #fff;
   display: flex;
@@ -371,8 +404,12 @@ main {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
+}
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
+}
 
 /* Table footer + "+" button (smaller & round) */
 .table-footer {
@@ -405,12 +442,16 @@ main {
 }
 
 /* ===== Scrollbar (horizontal) ===== */
-.scroll-wrapper::-webkit-scrollbar { height: 8px; }
+.scroll-wrapper::-webkit-scrollbar { 
+  height: 8px; 
+}
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover { background-color: #999; }
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
+}
 
 /* ===== Floating PDF button (summary page) ===== */
 .floating-btn {
@@ -427,7 +468,19 @@ main {
 }
 
 /* ===== Footer ===== */
-#footer { padding: 24px; text-align: center; color: #666; font-size: 13px; }
+#footer { 
+  padding: 24px; 
+  text-align: center; 
+  color: #666; 
+  font-size: 13px; 
+}
+
+/* ===== Muted note (for text inside parentheses) ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic !important;   /* override global reset */
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
