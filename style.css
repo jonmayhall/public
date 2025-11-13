@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + DMS + Layout + Sidebar Gray
+   Stable Build — v20251112 + DMS + Layout + Sidebar Dark B
    ======================================================= */
 
 :root {
@@ -66,43 +66,57 @@ em, i {
   overflow-x: visible;
 }
 
-/* ===== SIDEBAR – Light Gray Modern Style ===== */
+/* ===== SIDEBAR – Soft Charcoal Modern Style (Option B) ===== */
 #sidebar {
-  background: #f4f4f4;
-  border-right: 1px solid var(--border);
+  background: #2a2d32;
+  border-right: 1px solid #1f2125;
   width: 190px;
   padding: 20px 8px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 18px rgba(0,0,0,0.35);
   position: fixed;
   top: 70px;
   bottom: 0;
   overflow-y: auto;
+  backdrop-filter: blur(8px);
 }
 
-#sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
+#sidebar-nav { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+}
 
 /* Menu buttons */
 .nav-btn {
-  background: none;
+  background: transparent;
   border: none;
-  padding: 10px 12px;
+  padding: 9px 12px;
   font-size: 14px;
   text-align: left;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  color: var(--ink);
-  transition: .2s;
+  color: #e5e7ea;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease, border-left-color 0.18s ease;
+  border-left: 3px solid transparent;
 }
 
-/* Hover & Active state pop more against light gray */
-.nav-btn:hover,
+/* Hover & Active states – crisp orange + subtle lift */
+.nav-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.45);
+  transform: translateX(1px);
+}
+
 .nav-btn.active {
-  background: #fff;
+  background: rgba(255,255,255,0.09);
   color: var(--orange);
   font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-left-color: var(--orange);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
+/* MAIN CONTENT */
 main {
   flex: 1;
   margin-left: 190px;
