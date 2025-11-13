@@ -1,5 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111A
+   myKaarma Interactive Training Checklist – CSS
+   Base: v20251111A + non-table card layout
    ======================================================= */
 
 :root {
@@ -123,7 +124,136 @@ h1 {
   text-align: center;
 }
 
-/* === SECTION HEADERS === */
+/* =======================================================
+   NON-TABLE CARDS & QUESTIONS
+   (Onsite Trainers, Dealership Info, Pre-Training, Monday,
+    Post-Training, Training Summary, etc.)
+   ======================================================= */
+
+/* Card inside a page */
+.section-block {
+  background: #f9f9f9;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 18px 22px 20px;
+  margin-top: 18px;
+}
+
+.section-block h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--orange);
+}
+
+/* Each question row */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ececec;
+}
+
+.checklist-row:last-child {
+  border-bottom: none;
+}
+
+/* Question text: give it room so most fit on one line */
+.checklist-row > label {
+  flex: 1 1 auto;
+  font-size: 14px;
+}
+
+/* Right-side small inputs / dropdowns */
+.checklist-row input[type="text"],
+.checklist-row input[type="number"],
+.checklist-row input[type="email"],
+.checklist-row select {
+  flex: 0 0 260px;
+  max-width: 260px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.checklist-row select {
+  text-align-last: center;
+}
+
+/* Textareas in cards (Additional Comments, etc.) */
+.section-block textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Stronger divider between each contact name section on Dealership Contacts */
+.contact-divider {
+  border-top: 2px solid #ddd;
+  padding-top: 12px;
+  margin-top: 10px;
+}
+
+/* =======================================================
+   INTEGRATED INPUT + PLUS BUTTON
+   (Additional Trainers, Additional POC, Champions & Blockers)
+   ======================================================= */
+
+.integrated-input {
+  position: relative;
+  flex: 0 0 260px;
+  max-width: 260px;
+}
+
+.integrated-input input[type="text"] {
+  width: 100%;
+  padding: 6px 38px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.integrated-input .add-row {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.integrated-input .add-row:hover {
+  background: #ff8b42;
+}
+
+/* =======================================================
+   TABLES  (unchanged from stable version)
+   ======================================================= */
+
 .section {
   margin-bottom: 40px;
 }
@@ -137,9 +267,6 @@ h1 {
   border: 1px solid var(--orange);
 }
 
-/* =======================================================
-   TABLES
-   ======================================================= */
 .table-container {
   width: 100%;
   background: #fff;
@@ -212,6 +339,7 @@ h1 {
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
   transform: scale(1.1);
+  margin-right: 4px;  /* a little space after checkbox */
 }
 .training-table input[type="text"],
 .training-table select {
@@ -252,7 +380,7 @@ h1 {
   display: flex;
   align-items: center;
 }
-.add-row {
+.table-footer .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
@@ -265,22 +393,19 @@ h1 {
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
-.add-row:hover {
+.table-footer .add-row:hover {
   background: #ff8b42;
   transform: scale(1.1);
 }
 
 /* =======================================================
-   DROPDOWN DYNAMIC COLORS
+   DROPDOWN COLORS (hint only, browser-dependent)
    ======================================================= */
 .training-table select {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Base states */
-.training-table select option { color: #000; }
-
-/* === User Acceptance === */
+/* User Acceptance */
 .training-table select option[value="Fully Adopted"] {
   background: #28a745; color: #fff;
 }
@@ -296,8 +421,7 @@ h1 {
 .training-table select option[value="Not Accepted"] {
   background: #b21f2d; color: #fff;
 }
-
-/* === Training Responses === */
+/* Training responses */
 .training-table select option[value="Yes"] {
   background: #28a745; color: #fff;
 }
@@ -328,7 +452,22 @@ h1 {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
 }
+
 @media (max-width: 600px) {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 20px; }
+
+  .checklist-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .checklist-row input[type="text"],
+  .checklist-row input[type="number"],
+  .checklist-row input[type="email"],
+  .checklist-row select,
+  .integrated-input {
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
+  }
 }
