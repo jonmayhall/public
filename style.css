@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + DMS Fixes + Header Notes Fix
+   Stable Build — v20251112 + DMS + Header + Layout Fixes
    ======================================================= */
 
 :root {
@@ -23,7 +23,7 @@ html, body {
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  /* remove overflow-x:hidden so last columns aren't clipped */
+  /* allow horizontal scroll so far-right columns are never clipped */
   overflow-x: auto;
 }
 
@@ -57,7 +57,8 @@ html, body {
   display: flex;
   min-height: 100vh;
   margin-top: 70px;
-  overflow-x: hidden; /* safe because inner wrappers handle scroll */
+  /* allow app to scroll horizontally if needed */
+  overflow-x: visible;
 }
 
 #sidebar {
@@ -264,7 +265,7 @@ main {
   border-top: none;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow);
-  overflow-x: auto; /* safety: allow scroll if wrapper misses */
+  overflow-x: auto; /* extra safety */
 }
 
 .scroll-wrapper {
@@ -276,8 +277,8 @@ main {
 
 .training-table {
   border-collapse: collapse;
-  width: max-content;  /* grow to fit columns */
-  min-width: 100%;     /* but at least full card width */
+  width: max-content;   /* grow to fit all columns */
+  min-width: 100%;      /* but at least fill card */
 }
 .training-table th,
 .training-table td {
@@ -307,8 +308,14 @@ main {
   z-index: 4;
   width: 270px;
   min-width: 270px;
-  background: #fff;
 }
+
+/* Make sticky body cells follow zebra striping, not stay solid white */
+.training-table tbody td:first-child {
+  background-color: inherit;
+}
+
+/* First-column checkbox + name styling (page 5 tables) */
 .training-table td:first-child {
   display: flex;
   align-items: center;
@@ -317,8 +324,6 @@ main {
   padding-left: 10px;
   padding-right: 10px;
 }
-
-/* First-column checkbox + name styling (page 5 tables) */
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
   transform: scale(1.1);
@@ -345,7 +350,7 @@ main {
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 140px; /* slightly smaller to help fit more columns */
+  min-width: 140px;
   box-sizing: border-box;
   padding: 6px 8px;
   border-radius: var(--radius-sm);
@@ -363,8 +368,8 @@ main {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tbody tr:nth-child(odd) { background: #fff; }
+.training-table tbody tr:nth-child(even) { background: #fafafa; }
 
 /* Footer + button */
 .table-footer {
@@ -438,13 +443,17 @@ main {
   min-width: 160px !important;
 }
 
-/* undo flex layout for first column in DMS tables */
+/* undo flex layout for first column in DMS tables, still sticky via parent rule */
 .dms-table td:first-child {
   display: table-cell !important;
   padding-left: 10px;
   padding-right: 10px;
-  background: #fff;
   text-align: left;
+}
+
+/* match zebra striping for sticky first column in DMS tables */
+.dms-table tbody td:first-child {
+  background-color: inherit;
 }
 
 /* DMS header row – thinner + slightly smaller font */
@@ -466,8 +475,15 @@ main {
   white-space: normal;
 }
 
+/* Make the Customer Pull columns thinner (column 2 in DMS) */
+.dms-table th:nth-child(2),
+.dms-table td:nth-child(2) {
+  width: 90px !important;
+  min-width: 90px !important;
+}
+
 /* Make the Parts Availability & Pricing (ServiceCart) column
-   narrow enough that the header naturally breaks into ~3 lines */
+   narrow enough that the header naturally breaks into ~3 lines (column 12) */
 .dms-table th:nth-child(12),
 .dms-table td:nth-child(12) {
   width: 135px !important;
@@ -484,10 +500,10 @@ main {
   line-height: 1.2;
 }
 
-/* Automate row – slightly taller to match Reynolds */
+/* Automate row – a bit taller to match Reynolds */
 .dms-automate-row td {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 /* =======================================================
