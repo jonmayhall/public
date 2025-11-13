@@ -1,5 +1,6 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Full CSS v20251111A
+   myKaarma Interactive Training Checklist – Stable CSS
+   Version: B (Saved Stable Build)
    ======================================================= */
 
 :root {
@@ -117,13 +118,101 @@ main {
 
 h1 {
   color: var(--orange);
-  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 700;
-  text-align: center;
+  text-align: left;
+  margin: 0 0 6px 0;
+  padding: 0;
 }
 
-/* === SECTION HEADERS === */
+h1::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 4px;
+  background: var(--orange);
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* === NON-TABLE CARDS === */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+.section-block h2 {
+  margin: 0 0 14px 0;
+  color: var(--orange);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.checklist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.checklist-row label {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.checklist-row input[type="text"],
+.checklist-row input[type="email"],
+.checklist-row input[type="number"],
+.checklist-row select,
+.section-block textarea {
+  flex: 0 0 280px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f5f5f5;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.section-block textarea {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+}
+
+/* === Integrated + Buttons (Additional Trainers / POC) === */
+.integrated-input {
+  position: relative;
+  display: flex;
+  width: 280px;
+}
+
+.integrated-input input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.integrated-input button {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--orange);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(243,111,33,0.35);
+}
+
+/* === SECTION HEADERS FOR TABLE BLOCKS === */
 .section {
   margin-bottom: 40px;
 }
@@ -144,46 +233,40 @@ h1 {
   width: 100%;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 40px;
   overflow: hidden;
 }
 
 .scroll-wrapper {
-  display: block;
-  width: 100%;
   overflow-x: auto;
   background: #fff;
 }
 
 .training-table {
-  border-collapse: collapse;
-  border-spacing: 0;
   width: 100%;
-  min-width: 100%;
+  border-collapse: collapse;
 }
 
 .training-table th,
 .training-table td {
   white-space: nowrap;
+  padding: 8px 10px;
   text-align: center;
-  font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  font-size: 13px;
 }
 
-/* === HEADERS (SQUARE, CENTERED) === */
+/* === Sticky Header === */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  border-radius: 0;
   position: sticky;
   top: 0;
   z-index: 3;
-  text-align: center;
 }
 
 /* === Sticky First Column === */
@@ -191,11 +274,10 @@ h1 {
 .training-table td:first-child {
   position: sticky;
   left: 0;
-  z-index: 4;
   background: #fff;
-  text-align: left;
-  width: 260px;
+  z-index: 4;
   min-width: 260px;
+  text-align: left;
 }
 .training-table thead th:first-child {
   background: var(--light-orange);
@@ -203,21 +285,20 @@ h1 {
   text-align: center;
 }
 
-/* === INPUTS / SELECTS === */
+/* === Name Column Inputs === */
 .training-table td:first-child {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 .training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
   transform: scale(1.1);
 }
+
+/* === Table Inputs === */
 .training-table input[type="text"],
 .training-table select {
-  width: 100%;
   min-width: 115px;
-  box-sizing: border-box;
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid var(--border);
@@ -228,8 +309,6 @@ h1 {
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 3px rgba(243,111,33,0.4);
-  outline: none;
   background: #fff9f5;
 }
 
@@ -239,19 +318,13 @@ h1 {
 
 /* === TABLE FOOTER === */
 .table-footer {
-  width: 100%;
+  padding: 8px 12px;
   background: #fff;
-  border-top: none;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   border-radius: 0 0 var(--radius) var(--radius);
-  padding: 8px 12px;
-  box-sizing: border-box;
   text-align: left;
-  margin-top: -1px;
-  display: flex;
-  align-items: center;
 }
 .add-row {
   background: var(--orange);
@@ -260,65 +333,12 @@ h1 {
   border-radius: 50%;
   width: 26px;
   height: 26px;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.2s;
   box-shadow: 0 2px 6px rgba(243,111,33,0.3);
 }
 .add-row:hover {
   background: #ff8b42;
-  transform: scale(1.1);
-}
-
-/* =======================================================
-   DROPDOWN DYNAMIC COLORS
-   ======================================================= */
-.training-table select {
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Base states */
-.training-table select option { color: #000; }
-
-/* === User Acceptance === */
-.training-table select option[value="Fully Adopted"],
-.training-table select option:contains("Fully Adopted") {
-  background: #28a745; color: #fff;
-}
-.training-table select option[value="Mostly Adopted"],
-.training-table select option:contains("Mostly Adopted") {
-  background: #20c997; color: #fff;
-}
-.training-table select option[value="Neutral / Mixed"],
-.training-table select option:contains("Neutral / Mixed") {
-  background: #ffc107; color: #000;
-}
-.training-table select option[value="Needs Support"],
-.training-table select option:contains("Needs Support") {
-  background: #dc3545; color: #fff;
-}
-.training-table select option[value="Not Accepted"],
-.training-table select option:contains("Not Accepted") {
-  background: #b21f2d; color: #fff;
-}
-
-/* === Training Responses === */
-.training-table select option[value="Yes"],
-.training-table select option:contains("Yes") {
-  background: #28a745; color: #fff;
-}
-.training-table select option[value="No"],
-.training-table select option:contains("No") {
-  background: #dc3545; color: #fff;
-}
-.training-table select option[value="Not Trained"],
-.training-table select option:contains("Not Trained") {
-  background: #007bff; color: #fff;
-}
-.training-table select option[value="N/A"],
-.training-table select option:contains("N/A") {
-  background: #6c757d; color: #fff;
 }
 
 /* =======================================================
