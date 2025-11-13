@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112 + muted-note
+   Stable Build — v20251112 + muted-note + cell-stack
    ======================================================= */
 
 :root {
@@ -409,6 +409,19 @@ main {
 }
 .training-table tr:nth-child(even) { 
   background: #fafafa; 
+}
+
+/* Stacked text inside table cells (e.g., On-Demand + small line) */
+.cell-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  white-space: normal;
+}
+.cell-stack .cell-subtext {
+  font-size: 10px;
+  color: #555;
+  margin-top: 2px;
 }
 
 /* Table footer + "+" button (smaller & round) */
