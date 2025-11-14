@@ -1138,260 +1138,369 @@
       </div>
     </section>
 
- <!-- ========================================================= -->
+<!-- ========================================================= -->
 <!-- PAGE 7: DMS INTEGRATION                                   -->
 <!-- ========================================================= -->
 <section id="dms-integration" class="page-section">
   <h1>DMS Integration</h1>
   <p class="page-subtitle">
-    Document how customers, vehicles, appointments, ROs, invoices, and history move between myKaarma and the DMS.
+    High-level reference for how customers, vehicles, appointments, ROs, parts, and history move between myKaarma and each DMS.
   </p>
 
-  <!-- PUSH-BASED DMS (myKaarma → DMS) -->
+  <!-- OVERVIEW / LEGEND -->
+  <div class="section-block">
+    <h2>Integration Overview</h2>
+    <div class="checklist-row">
+      <label>Auto</label>
+      <span>Data moves automatically on a fixed cadence or system trigger.</span>
+    </div>
+    <div class="checklist-row">
+      <label>On-Demand</label>
+      <span>Data moves when a user or workflow initiates the action in myKaarma.</span>
+    </div>
+    <div class="checklist-row">
+      <label>With RO</label>
+      <span>Data is pulled or pushed when the repair order is created or updated.</span>
+    </div>
+    <div class="checklist-row">
+      <label>Planned</label>
+      <span>Supported by the integration, but not fully live or enabled in all stores.</span>
+    </div>
+    <div class="checklist-row">
+      <label>N/A</label>
+      <span>Functionality is not supported for this integration.</span>
+    </div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- PUSH-BASED DMS (myKaarma → DMS)                       -->
+  <!-- ===================================================== -->
   <div class="section">
     <div class="section-header">
-      Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span>
+      <span class="section-badge">1</span>
+      <span>Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span></span>
     </div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table class="training-table dms-table">
-          <thead>
-            <tr>
-              <th>DMS</th>
-              <th>Customer<br>Pull</th>
-              <th>Customer<br>Push</th>
-              <th>Vehicle<br>Pull</th>
-              <th>Vehicle<br>Push</th>
-              <th>Appointment<br>Pull</th>
-              <th>Appointment<br>Push</th>
-              <th>RO<br>Pull</th>
-              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
-              <th>Parts Invoices<br>Pull</th>
-              <th>Parts Availability &amp;<br>Pricing<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>Special Order<br>Pull</th>
-              <th>F &amp; I Sales<br>History</th>
-              <th>Opcodes<br>Pull</th>
-              <th>Historical RO<br>Pull Capability</th>
-              <th>Historical Customer<br>Pull Capability</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Reynolds -->
-            <tr>
-              <td>Reynolds</td>
-              <td>Happens Automatically</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Comes with RO</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Happens Automatically</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>Happens Automatically</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Yes, Happens Automatically</td>
-              <td>N/A</td>
-            </tr>
 
-            <!-- Automate -->
-            <tr class="dms-automate-row">
-              <td>Automate</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Comes with RO</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Reynolds -->
+    <div class="section-block">
+      <h2>Reynolds</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customer updates push from myKaarma automatically; customer data is also available as part of RO traffic.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicle details are pushed with RO activity; updates flow as part of the same process.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>
+                  Appointments push on-demand from myKaarma into Reynolds<br>
+                  <span class="muted-note">(if any appointments are scheduled)</span>.
+                </td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>
+                  RO information can be sent on-demand or as part of check-in and workflow completion steps.
+                </td>
+              </tr>
+              <tr>
+                <td>Parts Invoices</td>
+                <td>Parts invoice data can flow automatically from myKaarma to Reynolds when enabled in the workflow.</td>
+              </tr>
+              <tr>
+                <td>Opcodes &amp; History</td>
+                <td>myKaarma respects DMS labor codes/opcodes; RO and F&amp;I history is available via RO activity and nightly processes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Automate -->
+    <div class="section-block">
+      <h2>Automate</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customer data pushes automatically from myKaarma into Automate for supported workflows.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicle information is included with RO/customer updates where supported.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointment activity can be reflected in the DMS where configured; not all scenarios are supported.</td>
+              </tr>
+              <tr>
+                <td>ROs &amp; Parts</td>
+                <td>No direct RO or parts invoice writeback from myKaarma into Automate; most flows remain DMS-driven.</td>
+              </tr>
+              <tr>
+                <td>History / Opcodes</td>
+                <td>Usage is primarily focused on customer and RO presentation in myKaarma; little writeback beyond that.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- PULL-BASED DMS (myKaarma pulling from DMS) -->
+  <!-- ===================================================== -->
+  <!-- PULL-BASED DMS (DMS → myKaarma)                       -->
+  <!-- ===================================================== -->
   <div class="section">
     <div class="section-header">
-      Pull-Based DMS <span class="muted-note">(myKaarma pulling information from DMS)</span>
+      <span class="section-badge">2</span>
+      <span>Pull-Based DMS <span class="muted-note">(DMS → myKaarma)</span></span>
     </div>
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table class="training-table dms-table">
-          <thead>
-            <tr>
-              <th>DMS</th>
-              <th>Customer<br>Pull</th>
-              <th>Customer<br>Push</th>
-              <th>Vehicle<br>Pull</th>
-              <th>Vehicle<br>Push</th>
-              <th>Appointment<br>Pull</th>
-              <th>Appointment<br>Push</th>
-              <th>RO<br>Pull</th>
-              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
-              <th>Parts Invoices<br>Pull</th>
-              <th>Parts Availability &amp;<br>Pricing<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>Special Order<br>Pull</th>
-              <th>F &amp; I Sales<br>History</th>
-              <th>Opcodes<br>Pull</th>
-              <th>Historical RO<br>Pull Capability</th>
-              <th>Historical Customer<br>Pull Capability</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- CDK -->
-            <tr>
-              <td>CDK</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>
-                Nightly sync and historical<br>
-                <span class="muted-note">(2 years)</span>
-              </td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>N/A</td>
-            </tr>
 
-            <!-- Dealertrack / Arkona -->
-            <tr>
-              <td>Dealertrack/Arkona</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>Yes, On-Demand</td>
-            </tr>
+    <!-- CDK -->
+    <div class="section-block">
+      <h2>CDK</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customer records pull from CDK every 15 minutes; historical customers can be pulled on-demand.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicle data comes with the RO from CDK; updates follow RO traffic.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointments pull every 15 minutes from CDK; myKaarma can also trigger on-demand updates for active days.</td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>ROs pull every 5 minutes; writeback to CDK is on-demand from ServiceCart and Check-In flows.</td>
+              </tr>
+              <tr>
+                <td>Parts &amp; Pricing</td>
+                <td>Parts invoices pull every 15 minutes; parts pricing and availability can be refreshed on-demand from ServiceCart.</td>
+              </tr>
+              <tr>
+                <td>F &amp; I / History</td>
+                <td>
+                  F&amp;I sales history syncs nightly with up to ~2 years of history; RO history is refreshed nightly as well.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-            <!-- Lightyear / Dealerbuilt -->
-            <tr>
-              <td>Lightyear/Dealerbuilt</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>Yes, On-Demand</td>
-            </tr>
+    <!-- Dealertrack / Arkona -->
+    <div class="section-block">
+      <h2>Dealertrack / Arkona</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customers pull every 5 minutes; historical customers are available on-demand.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicles can be pulled on-demand and are commonly loaded with RO traffic.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointments pull every 15 minutes; myKaarma can trigger additional updates as needed.</td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>ROs pull every 2 minutes; writeback from ServiceCart and Check-In is on-demand.</td>
+              </tr>
+              <tr>
+                <td>Parts &amp; Pricing</td>
+                <td>Parts invoices pull every 15 minutes; ServiceCart can request pricing and availability on-demand.</td>
+              </tr>
+              <tr>
+                <td>History</td>
+                <td>RO and customer history are synced nightly; historical RO pulls are available on-demand when configured.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-            <!-- PBS -->
-            <tr>
-              <td>PBS</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>N/A</td>
-            </tr>
+    <!-- Lightyear / Dealerbuilt -->
+    <div class="section-block">
+      <h2>Lightyear / Dealerbuilt</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customers pull every 5 minutes; historical customers can be accessed where configured.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicles come with RO activity; updates are tied to RO refresh cycles.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointments pull every 5 minutes for supported stores.</td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>ROs pull every 2 minutes; writeback behavior for RO information is on-demand from myKaarma.</td>
+              </tr>
+              <tr>
+                <td>Parts</td>
+                <td>Parts invoices pull every 5 minutes; pricing may not be fully integrated for all stores.</td>
+              </tr>
+              <tr>
+                <td>History</td>
+                <td>Nightly sync for RO history; customer and RO details can be refreshed on-demand if enabled.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-            <!-- Tekion -->
-            <tr>
-              <td>Tekion</td>
-              <td>Comes with RO</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-              <td>
-                On-Demand<br>
-                <span class="muted-note">(if any appointments are scheduled)</span>
-              </td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>N/A</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Yes, once during deployment</td>
-              <td>N/A</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- PBS -->
+    <div class="section-block">
+      <h2>PBS</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customer pull is limited; most customer data flows from active ROs and appointment activity.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicle push/pull is focused around RO and appointment flows rather than standalone sync.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointments pull every 5 minutes; push behavior is on-demand from myKaarma where supported.</td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>ROs pull every 2 minutes and write back on-demand from ServiceCart and Check-In.</td>
+              </tr>
+              <tr>
+                <td>Parts</td>
+                <td>Parts invoices are not fully pulled for all PBS configurations; special orders may rely on on-demand lookups.</td>
+              </tr>
+              <tr>
+                <td>History</td>
+                <td>RO history syncs nightly; customer history pull capability is on-demand for supported stores.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tekion -->
+    <div class="section-block">
+      <h2>Tekion</h2>
+      <div class="table-container">
+        <div class="scroll-wrapper">
+          <table class="training-table dms-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers</td>
+                <td>Customers arrive with the RO from Tekion; myKaarma does not run an independent scheduled customer pull.</td>
+              </tr>
+              <tr>
+                <td>Vehicles</td>
+                <td>Vehicles also come with the RO; updates follow Tekion RO changes.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Appointments pull every 5 minutes; push/writeback behavior is on-demand and partially planned.</td>
+              </tr>
+              <tr>
+                <td>ROs</td>
+                <td>ROs pull every 5 minutes; writeback and check-in creation features are planned or enabled per store.</td>
+              </tr>
+              <tr>
+                <td>Parts &amp; Pricing</td>
+                <td>
+                  Parts invoices, availability, and pricing are supported in the integration roadmap and may be live in limited deployments.
+                </td>
+              </tr>
+              <tr>
+                <td>History</td>
+                <td>
+                  Historical RO and F&amp;I data can be loaded once during deployment; ongoing syncs follow Tekion integration design.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Integration Notes -->
+  <!-- INTEGRATION NOTES -->
   <div class="section-block">
     <h2>Integration Notes</h2>
     <textarea placeholder="Type integration notes here …"></textarea>
