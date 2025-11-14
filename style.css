@@ -279,54 +279,56 @@ main {
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button (perfect alignment fix) ===== */
+/* ===== Integrated “+” button rows (same textbox size & alignment) ===== */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
-  position: relative; 
   display: flex;
   align-items: center;
-  gap: 0;
-  padding-left: 40px; /* same as other rows */
+  gap: 12px;
+  /* keep same padding-left as normal checklist-row via base class */
 }
 
-/* Label aligned with others */
+/* Label stays exactly like other rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
 }
 
-/* Input aligned & same height */
+/* Textbox: EXACT same size as all others, just with flat right edge */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 260px;
-  height: 36px;
-  border-top-right-radius: 0;
+  flex: 0 0 260px;           /* same as default */
+  width: 260px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border-top-right-radius: 0;   /* straight edge where it meets + */
   border-bottom-right-radius: 0;
-  margin: 0;
 }
 
-/* Plus button — same height, flush, straight shared edge */
+/* Plus button: same vertical size, attached on the right, doesn’t change textbox width */
 .section-block .checklist-row > .add-row {
-  position: static;
-  height: 36px;
-  width: 36px;
-  padding: 0;
-  margin: 0;
-
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--orange);
   color: #fff;
-  font-weight: 700;
-  font-size: 18px;
+  border: none;
+  cursor: pointer;
+
+  height: 32px;                 /* visually matches input height (7+7+18 line) */
+  min-width: 32px;
+  padding: 0 10px;
+  margin-left: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: none;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;  /* only outer corners rounded */
   box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+  font-weight: 700;
+  font-size: 18px;
 }
 
 /* Hover */
