@@ -279,50 +279,54 @@ main {
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button (straight-edge join) ===== */
+/* ===== Integrated “+” button (perfect alignment fix) ===== */
+
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   position: relative; 
   display: flex;
   align-items: center;
-  gap: 0; /* no gap between input and button */
+  gap: 0;
+  padding-left: 40px; /* same as other rows */
 }
 
-/* Keep space between label and input for these rows */
+/* Label aligned with others */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
-  margin-right: 12px;
+  flex: 1 1 auto;
+  padding-right: 16px;
 }
 
-/* Input: straight right edge */
+/* Input aligned & same height */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 10px;
+  flex: 0 0 260px;
+  height: 36px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  flex: 0 0 260px;
+  margin: 0;
 }
 
-/* + Button: straight left edge, rounded outside, flush with input */
+/* Plus button — same height, flush, straight shared edge */
 .section-block .checklist-row > .add-row {
   position: static;
-  margin-left: 0;
   height: 36px;
-  min-width: 44px;
-  padding: 0 12px;
+  width: 36px;
+  padding: 0;
+  margin: 0;
 
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--orange);
   color: #fff;
   font-weight: 700;
   font-size: 18px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border: none;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
 }
 
 /* Hover */
