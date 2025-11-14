@@ -1,6 +1,6 @@
 // =======================================================
 // myKaarma Interactive Training Checklist – FULL JS
-// Stable + Support Ticket logic
+// Stable + Support Ticket logic + Status Auto-Move
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -54,12 +54,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* === SUPPORT TICKET PAGE – GROUP SETUP === */
   const supportSection = document.getElementById('support-ticket');
+  let openTicketsBlock = null;
+  let closedTicketsBlock = null;
+
   if (supportSection) {
-    // For each section-block (Open / Closed), wrap its ticket fields into a .ticket-group
     const ticketBlocks = supportSection.querySelectorAll('.section-block');
+    openTicketsBlock = ticketBlocks[0] || null;
+    closedTicketsBlock = ticketBlocks[1] || null;
+
+    // For each section-block (Open / Closed), wrap its ticket fields into a .ticket-group
     ticketBlocks.forEach(block => {
-      // Avoid double-wrapping if already processed
-      if (block.querySelector('.ticket-group')) return;
+      if (block.querySelector('.ticket-group')) return; // avoid double-wrap
 
       const children = Array.from(block.children).filter(el => !el.matches('h2'));
       if (!children.length) return;
@@ -73,7 +78,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   /* === ADDITIONAL TRAINERS / POC / CHAMPIONS / SUPPORT TICKETS === */
-  // Use event delegation so cloned "+" buttons also work
+  // Event delegation so cloned "+" buttons also work
   document.querySelectorAll('.section-block').forEach(sectionBlock => {
     sectionBlock.addEventListener('click', (event) => {
       const btn = event.target.closest('.add-row');
@@ -94,16 +99,21 @@ window.addEventListener('DOMContentLoaded', () => {
           el.value = '';
         });
 
+        // Reset ticket status to Open and enabled
+        const statusSelect = newGroup.querySelector('.ticket-status');
+        if (statusSelect) {
+          statusSelect.disabled = false;
+          statusSelect.value = 'Open';
+        }
+
         block.appendChild(newGroup);
         return;
       }
 
       // Default behavior for other integrated-plus buttons:
-      // clone the associated text input inside that section-block.
       const parent = btn.closest('.checklist-row, .section-block');
       if (!parent) return;
 
-      // Prefer the input immediately before the button
       let input = btn.previousElementSibling;
       if (!input || input.tagName !== 'INPUT') {
         input = parent.querySelector('input[type="text"]');
@@ -113,11 +123,29 @@ window.addEventListener('DOMContentLoaded', () => {
       const clone = input.cloneNode(true);
       clone.value = '';
       clone.style.marginTop = '6px';
-
-      // Insert the cloned input just before the button
       btn.parentNode.insertBefore(clone, btn);
     });
   });
+
+  /* === STATUS CHANGE HANDLER – MOVE CLOSED TICKETS === */
+  if (supportSection && openTicketsBlock && closedTicketsBlock) {
+    supportSection.addEventListener('change', (e) => {
+      const select = e.target;
+      if (!select.classList.contains('ticket-status')) return;
+
+      const group = select.closest('.ticket-group');
+      if (!group) return;
+
+      const isInOpen = openTicketsBlock.contains(group);
+
+      // When a ticket in the Open block is set to "Closed",
+      // move it to the Closed block and lock the status.
+      if (isInOpen && select.value === 'Closed') {
+        closedTicketsBlock.appendChild(group);
+        select.disabled = true;
+      }
+    });
+  }
 
   /* === SAVE AS PDF (Training Summary Page) === */
   const saveBtn = document.getElementById('savePDF');
@@ -139,7 +167,6 @@ window.addEventListener('DOMContentLoaded', () => {
         doc.setFontSize(16);
         doc.text(title, marginX, marginY);
 
-        // Simplified page content (plain text export)
         const text = page.innerText.replace(/\s+\n/g, '\n').trim();
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
