@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Sleek Stable Build — v20251112K-FINAL
+   Sleek Stable Build — v20251112K-FINAL + 2-column layout
    ======================================================= */
 
 :root {
@@ -125,10 +125,11 @@ em, i {
   box-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
 
+/* Hide menu icons completely (in case any remain in HTML) */
 .nav-icon {
-  font-size: 14px;
-  flex-shrink: 0;
+  display: none;
 }
+
 .nav-label {
   flex: 1 1 auto;
 }
@@ -198,7 +199,7 @@ main {
   background: #ff8b42;
 }
 
-/* ===== SECTION BLOCKS ===== */
+/* ===== SECTION BLOCKS (cards) ===== */
 .section-block {
   background: #fff;
   border-radius: var(--radius-lg);
@@ -229,7 +230,7 @@ main {
   position: absolute;
   left: 0;
   bottom: -1px;
-  width: 42px;
+  width: 126px;  /* 3x longer than earlier 42px */
   height: 2px;
   background: var(--orange);
   border-radius: 999px;
@@ -378,7 +379,7 @@ main {
   color: #fff !important;
 }
 
-/* Optional step badge (only if you add it in HTML) */
+/* Optional badge if you ever add it in HTML */
 .section-badge {
   display: inline-flex;
   align-items: center;
@@ -612,7 +613,7 @@ main {
   font-style: italic !important;
 }
 
-/* ===== Training Summary Status Bar ===== */
+/* ===== Training Summary Status Bar (optional) ===== */
 .summary-status-bar {
   display: flex;
   flex-wrap: wrap;
@@ -640,7 +641,43 @@ main {
   color: #b02222;
 }
 
-/* ===== Responsive ===== */
+/* =======================================================
+   Two-column layout for cards on pages 1,2,3,4,8,9
+   (sections marked with .form-layout in HTML)
+   ======================================================= */
+
+.page-section.form-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* Cards (.section-block) go side by side */
+.page-section.form-layout > .section-block {
+  width: calc(50% - 12px);
+}
+
+/* Any table-based sections still span full width */
+.page-section.form-layout > .section {
+  width: 100%;
+}
+
+/* Textareas still respect card width */
+.page-section.form-layout .section-block textarea {
+  width: 100%;
+}
+
+/* On smaller screens, fall back to single column */
+@media (max-width: 900px) {
+  .page-section.form-layout {
+    display: block;
+  }
+  .page-section.form-layout > .section-block {
+    width: 100%;
+  }
+}
+
+/* ===== Responsive for whole layout ===== */
 @media (max-width: 900px) {
   #sidebar { width: 150px; }
   main { margin-left: 150px; padding: 20px; }
