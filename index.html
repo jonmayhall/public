@@ -1156,7 +1156,7 @@
       </div>
     </section>
 
-   <!-- ========================================================= -->
+<!-- ========================================================= -->
 <!-- PAGE 7: SUPPORT TICKET                                    -->
 <!-- ========================================================= -->
 <section id="support-ticket" class="page-section">
@@ -1168,7 +1168,7 @@
   <!-- ============================= -->
   <!-- OPEN SUPPORT TICKETS BLOCK    -->
   <!-- ============================= -->
-  <div class="section-block">
+  <div class="section-block" id="open-ticket-block">
     <h2>Open Support Tickets</h2>
 
     <!-- Ticket Group Template -->
@@ -1201,7 +1201,7 @@
   <!-- ============================= -->
   <!-- CLOSED SUPPORT TICKETS BLOCK  -->
   <!-- ============================= -->
-  <div class="section-block">
+  <div class="section-block" id="closed-ticket-block">
     <h2>Closed Support Tickets</h2>
 
     <!-- Ticket Group Template for Closed -->
@@ -1213,11 +1213,7 @@
 
     <div class="checklist-row">
       <label>Ticket Status</label>
-      <select class="ticket-status" disabled>
-        <option>Open</option>
-        <option>Tier Two</option>
-        <option selected>Closed</option>
-      </select>
+      <span class="closed-badge">Closed</span>
     </div>
 
     <div class="checklist-row">
