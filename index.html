@@ -21,46 +21,64 @@
 
 <div id="app">
   <!-- SIDEBAR -->
-  <aside id="sidebar">
-    <nav id="sidebar-nav">
-      <button class="nav-btn active" data-target="onsite-trainers">
-        <span class="nav-icon">👥</span>
-        <span class="nav-label">Onsite Trainers &amp; CEM</span>
-      </button>
-      <button class="nav-btn" data-target="dealership-info">
-        <span class="nav-icon">🏢</span>
-        <span class="nav-label">Dealership Information</span>
-      </button>
-      <button class="nav-btn" data-target="pretraining">
-        <span class="nav-icon">✅</span>
-        <span class="nav-label">Pre-Training Checklist</span>
-      </button>
-      <button class="nav-btn" data-target="monday-visit">
-        <span class="nav-icon">📅</span>
-        <span class="nav-label">Monday Visit</span>
-      </button>
-      <button class="nav-btn" data-target="training-checklist">
-        <span class="nav-icon">📋</span>
-        <span class="nav-label">Training Checklist</span>
-      </button>
-      <button class="nav-btn" data-target="opcodes-pricing">
-        <span class="nav-icon">💲</span>
-        <span class="nav-label">Opcodes &amp; Pricing</span>
-      </button>
-      <button class="nav-btn" data-target="dms-integration">
-        <span class="nav-icon">🔗</span>
-        <span class="nav-label">DMS Integration</span>
-      </button>
-      <button class="nav-btn" data-target="post-training">
-        <span class="nav-icon">🔁</span>
-        <span class="nav-label">Post-Training Checklist</span>
-      </button>
-      <button class="nav-btn" data-target="training-summary">
-        <span class="nav-icon">📄</span>
-        <span class="nav-label">Training Summary</span>
-      </button>
-    </nav>
-  </aside>
+  
+ <aside id="sidebar">
+  <nav id="sidebar-nav">
+    <button class="nav-btn active" data-target="onsite-trainers">
+      <span class="nav-icon">👥</span>
+      <span class="nav-label">Onsite Trainers &amp; CEM</span>
+    </button>
+
+    <button class="nav-btn" data-target="dealership-info">
+      <span class="nav-icon">🏢</span>
+      <span class="nav-label">Dealership Information</span>
+    </button>
+
+    <button class="nav-btn" data-target="pretraining">
+      <span class="nav-icon">✅</span>
+      <span class="nav-label">Pre-Training Checklist</span>
+    </button>
+
+    <button class="nav-btn" data-target="monday-visit">
+      <span class="nav-icon">📅</span>
+      <span class="nav-label">Monday Visit</span>
+    </button>
+
+    <button class="nav-btn" data-target="training-checklist">
+      <span class="nav-icon">📋</span>
+      <span class="nav-label">Training Checklist</span>
+    </button>
+
+    <button class="nav-btn" data-target="opcodes-pricing">
+      <span class="nav-icon">💲</span>
+      <span class="nav-label">Opcodes &amp; Pricing</span>
+    </button>
+
+    <!-- ⭐ NEW PAGE 7: SUPPORT TICKET -->
+    <button class="nav-btn" data-target="support-ticket">
+      <span class="nav-icon">🛠️</span>
+      <span class="nav-label">Support Ticket</span>
+    </button>
+
+    <!-- PAGE 8 -->
+    <button class="nav-btn" data-target="dms-integration">
+      <span class="nav-icon">🔗</span>
+      <span class="nav-label">DMS Integration</span>
+    </button>
+
+    <!-- PAGE 9 -->
+    <button class="nav-btn" data-target="post-training">
+      <span class="nav-icon">🔁</span>
+      <span class="nav-label">Post-Training Checklist</span>
+    </button>
+
+    <!-- PAGE 10 -->
+    <button class="nav-btn" data-target="training-summary">
+      <span class="nav-icon">📄</span>
+      <span class="nav-label">Training Summary</span>
+    </button>
+  </nav>
+</aside>
 
   <!-- MAIN CONTENT -->
   <main id="content">
@@ -1139,7 +1157,59 @@
     </section>
 
     <!-- ========================================================= -->
-<!-- PAGE 7: DMS INTEGRATION                                   -->
+<!-- PAGE 7: SUPPORT TICKET                                    -->
+<!-- ========================================================= -->
+<section id="support-ticket" class="page-section">
+  <h1>Support Ticket</h1>
+  <p class="page-subtitle">
+    Track open and closed support tickets related to this dealership and training rollout.
+  </p>
+
+  <!-- Open Support Tickets -->
+  <div class="section-block">
+    <h2>Open Support Tickets</h2>
+
+    <div class="checklist-row integrated-plus">
+      <label>Support Ticket Number</label>
+      <input type="text" placeholder="Ticket #">
+      <button class="add-row" type="button">+</button>
+    </div>
+
+    <div class="checklist-row">
+      <label>Issue Summary</label>
+      <input type="text" placeholder="Short summary of the issue">
+    </div>
+
+    <div class="checklist-row">
+      <label>Detailed Description</label>
+    </div>
+    <textarea placeholder="Full description, steps to reproduce, impact, related users or roles, and any troubleshooting already performed …"></textarea>
+  </div>
+
+  <!-- Closed Support Tickets -->
+  <div class="section-block">
+    <h2>Closed Support Tickets</h2>
+
+    <div class="checklist-row integrated-plus">
+      <label>Support Ticket Number</label>
+      <input type="text" placeholder="Ticket #">
+      <button class="add-row" type="button">+</button>
+    </div>
+
+    <div class="checklist-row">
+      <label>Issue Summary</label>
+      <input type="text" placeholder="Short summary of the resolved issue">
+    </div>
+
+    <div class="checklist-row">
+      <label>Resolution / Notes</label>
+    </div>
+    <textarea placeholder="Description of the resolution, who handled it, any permanent fixes put in place, and follow-up items …"></textarea>
+  </div>
+</section>
+
+    <!-- ========================================================= -->
+<!-- PAGE 8: DMS INTEGRATION                                   -->
 <!-- ========================================================= -->
 <section id="dms-integration" class="page-section">
   <h1>DMS Integration</h1>
@@ -1298,148 +1368,147 @@
 </section>
 
     <!-- ========================================================= -->
-    <!-- PAGE 8: POST-TRAINING CHECKLIST                           -->
-    <!-- ========================================================= -->
-    <section id="post-training" class="page-section">
-      <h1>Post-Training Checklist</h1>
-      <p class="page-subtitle">
-        Confirm workflows are live, notifications work, and ownership is clear after go-live.
-      </p>
+<!-- PAGE 9: POST-TRAINING CHECKLIST                          -->
+<!-- ========================================================= -->
+<section id="post-training" class="page-section">
+  <h1>Post-Training Checklist</h1>
 
-      <div class="section-block">
-        <h2>Post-Training Follow-Up</h2>
-        <div class="checklist-row">
-          <label>Has the dealership implemented all recommended workflows?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-        </div>
-        <div class="checklist-row">
-          <label>Have all users completed their final training verification?</label>
-          <select><option></option><option>Yes</option><option>No</option></select>
-        </div>
-        <div class="checklist-row">
-          <label>Are notification rules <span class="muted-note">(ServiceConnect)</span> active and tested?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-        </div>
-        <div class="checklist-row">
-          <label>Are parts pricing rules verified across common opcodes?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-        </div>
-        <div class="checklist-row">
-          <label>Is the scheduler operating as expected <span class="muted-note">(capacity, teams, routing)</span>?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-        </div>
-      </div>
+  <!-- Post-Training Follow-Up -->
+  <div class="section-block">
+    <h2>Post-Training Follow-Up</h2>
+    <div class="checklist-row">
+      <label>Has the dealership implemented all recommended workflows?</label>
+      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
+    </div>
+    <div class="checklist-row">
+      <label>Have all users completed their final training verification?</label>
+      <select><option></option><option>Yes</option><option>No</option></select>
+    </div>
+    <div class="checklist-row">
+      <label>Are notification rules <span class="muted-note">(ServiceConnect)</span> active and tested?</label>
+      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
+    </div>
+    <div class="checklist-row">
+      <label>Are parts pricing rules verified across common opcodes?</label>
+      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
+    </div>
+    <div class="checklist-row">
+      <label>Is the scheduler operating as expected <span class="muted-note">(capacity, teams, routing)</span>?</label>
+      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
+    </div>
+  </div>
 
-      <div class="section-block">
-        <h2>Additional Comments — Post-Training Follow-Up</h2>
-        <textarea placeholder="Comments or notes related to Post-Training Follow-Up …"></textarea>
-      </div>
+  <div class="section-block">
+    <h2>Additional Comments — Post-Training Follow-Up</h2>
+    <textarea placeholder="Comments or notes related to Post-Training Follow-Up …"></textarea>
+  </div>
 
-      <div class="section-block">
-        <h2>Champions &amp; Blockers</h2>
+  <!-- Champions & Blockers -->
+  <div class="section-block">
+    <h2>Champions &amp; Blockers</h2>
 
-        <div class="checklist-row">
-          <label>Champion</label>
-        </div>
+    <!-- Champion group -->
+    <div class="checklist-row">
+      <label>Champion</label>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Advisors</label>
-          <input type="text" placeholder="Advisor Champion">
-          <button class="add-row" type="button">+</button>
-        </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Advisors</label>
+      <input type="text" placeholder="Advisor Champion">
+      <button class="add-row" type="button">+</button>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Techs</label>
-          <input type="text" placeholder="Tech Champion">
-          <button class="add-row" type="button">+</button>
-        </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Techs</label>
+      <input type="text" placeholder="Tech Champion">
+      <button class="add-row" type="button">+</button>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Parts Reps</label>
-          <input type="text" placeholder="Parts Champion">
-          <button class="add-row" type="button">+</button>
-        </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Parts Reps</label>
+      <input type="text" placeholder="Parts Champion">
+      <button class="add-row" type="button">+</button>
+    </div>
 
-        <div class="checklist-row" style="margin-top:16px;">
-          <label>Blockers</label>
-        </div>
+    <!-- Blockers group -->
+    <div class="checklist-row" style="margin-top:16px;">
+      <label>Blockers</label>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Advisors</label>
-          <input type="text" placeholder="Advisor Blocker">
-          <button class="add-row" type="button">+</button>
-        </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Advisors</label>
+      <input type="text" placeholder="Advisor Blocker">
+      <button class="add-row" type="button">+</button>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Techs</label>
-          <input type="text" placeholder="Tech Blocker">
-          <button class="add-row" type="button">+</button>
-        </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Techs</label>
+      <input type="text" placeholder="Tech Blocker">
+      <button class="add-row" type="button">+</button>
+    </div>
 
-        <div class="checklist-row integrated-plus" style="padding-left:60px;">
-          <label>Parts Reps</label>
-          <input type="text" placeholder="Parts Blocker">
-          <button class="add-row" type="button">+</button>
-        </div>
-      </div>
+    <div class="checklist-row integrated-plus" style="padding-left:60px;">
+      <label>Parts Reps</label>
+      <input type="text" placeholder="Parts Blocker">
+      <button class="add-row" type="button">+</button>
+    </div>
+  </div>
 
-      <div class="section-block">
-        <h2>Additional Comments — Champions &amp; Blockers</h2>
-        <textarea placeholder="Comments related to champions and blockers …"></textarea>
-      </div>
-    </section>
+  <div class="section-block">
+    <h2>Additional Comments — Champions &amp; Blockers</h2>
+    <textarea placeholder="Comments related to champions and blockers …"></textarea>
+  </div>
+</section>
 
-    <!-- ========================================================= -->
-    <!-- PAGE 9: TRAINING SUMMARY                                  -->
-    <!-- ========================================================= -->
-    <section id="training-summary" class="page-section">
-      <h1>Training Summary</h1>
-      <p class="page-subtitle">
-        Final overview of training progress, champions, blockers, and follow-up items.
-      </p>
+   <!-- ========================================================= -->
+<!-- PAGE 10: TRAINING SUMMARY                                 -->
+<!-- ========================================================= -->
+<section id="training-summary" class="page-section">
+  <h1>Training Summary</h1>
+  <button id="savePDF" class="floating-btn">Save as PDF</button>
 
-      <div class="summary-status-bar">
-        <span>Dealership: <strong id="summaryDealershipName">Dealership Name</strong></span>
-        <span>Training Dates: <span id="summaryTrainingDates">[Add Dates]</span></span>
-        <span class="status-pill status-good" id="summaryStatus">Go-Live Ready</span>
-      </div>
+  <div class="section-block">
+    <h2>Training Summary</h2>
+    <textarea placeholder="Summary of overall training progress …"></textarea>
+  </div>
 
-      <button id="savePDF" class="floating-btn">Save as PDF</button>
+  <div class="section-block">
+    <h2>Information for CEM</h2>
+    <textarea placeholder="Information to share with CEM …"></textarea>
+  </div>
 
-      <div class="section-block">
-        <h2>Training Summary</h2>
-        <textarea placeholder="Summary of overall training progress …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>Information for CEM</h2>
-        <textarea placeholder="Information to share with CEM …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>Champions &amp; Blockers</h2>
-        <textarea placeholder="Champions and blockers info …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>Pre-Training &amp; Monday Visit Notes</h2>
-        <textarea placeholder="Pre-Training and Monday notes …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>End-of-Day Summary – Tuesday</h2>
-        <textarea placeholder="Tuesday notes …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>End-of-Day Summary – Wednesday</h2>
-        <textarea placeholder="Wednesday notes …"></textarea>
-      </div>
-      <div class="section-block">
-        <h2>Opcode, Pricing &amp; Integration Notes</h2>
-        <textarea placeholder="Autofill from Opcodes and DMS Integration notes …"></textarea>
-      </div>
-    </section>
+  <div class="section-block">
+    <h2>Champions &amp; Blockers</h2>
+    <textarea placeholder="Champions and blockers info …"></textarea>
+  </div>
 
-  </main>
-</div>
+  <div class="section-block">
+    <h2>Pre-Training &amp; Monday Visit Notes</h2>
+    <textarea placeholder="Pre-Training and Monday notes …"></textarea>
+  </div>
 
+  <div class="section-block">
+    <h2>End-of-Day Summary – Tuesday</h2>
+    <textarea placeholder="Tuesday notes …"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>End-of-Day Summary – Wednesday</h2>
+    <textarea placeholder="Wednesday notes …"></textarea>
+  </div>
+
+  <div class="section-block">
+    <h2>Opcode, Pricing &amp; Integration Notes</h2>
+    <textarea placeholder="Autofill from Opcodes and DMS Integration notes …"></textarea>
+  </div>
+</section>
+
+</main>
+</div> <!-- #app -->
+
+<!-- jsPDF & script (kept as in your layout) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js?v=20251107C"></script>
+
 </body>
 </html>
