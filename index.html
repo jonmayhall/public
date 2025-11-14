@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <link rel="stylesheet" href="style.css?v=20251110K">
+  <link rel="stylesheet" href="style.css?v=20251112K">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js?v=20251107C" defer></script>
@@ -23,15 +23,42 @@
   <!-- SIDEBAR -->
   <aside id="sidebar">
     <nav id="sidebar-nav">
-      <button class="nav-btn active" data-target="onsite-trainers">Onsite Trainers &amp; CEM</button>
-      <button class="nav-btn" data-target="dealership-info">Dealership Information</button>
-      <button class="nav-btn" data-target="pretraining">Pre-Training Checklist</button>
-      <button class="nav-btn" data-target="monday-visit">Monday Visit</button>
-      <button class="nav-btn" data-target="training-checklist">Training Checklist</button>
-      <button class="nav-btn" data-target="opcodes-pricing">Opcodes &amp; Pricing</button>
-      <button class="nav-btn" data-target="dms-integration">DMS Integration</button>
-      <button class="nav-btn" data-target="post-training">Post-Training Checklist</button>
-      <button class="nav-btn" data-target="training-summary">Training Summary</button>
+      <button class="nav-btn active" data-target="onsite-trainers">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Onsite Trainers &amp; CEM</span>
+      </button>
+      <button class="nav-btn" data-target="dealership-info">
+        <span class="nav-icon">🏢</span>
+        <span class="nav-label">Dealership Information</span>
+      </button>
+      <button class="nav-btn" data-target="pretraining">
+        <span class="nav-icon">✅</span>
+        <span class="nav-label">Pre-Training Checklist</span>
+      </button>
+      <button class="nav-btn" data-target="monday-visit">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Monday Visit</span>
+      </button>
+      <button class="nav-btn" data-target="training-checklist">
+        <span class="nav-icon">📋</span>
+        <span class="nav-label">Training Checklist</span>
+      </button>
+      <button class="nav-btn" data-target="opcodes-pricing">
+        <span class="nav-icon">💲</span>
+        <span class="nav-label">Opcodes &amp; Pricing</span>
+      </button>
+      <button class="nav-btn" data-target="dms-integration">
+        <span class="nav-icon">🔗</span>
+        <span class="nav-label">DMS Integration</span>
+      </button>
+      <button class="nav-btn" data-target="post-training">
+        <span class="nav-icon">🔁</span>
+        <span class="nav-label">Post-Training Checklist</span>
+      </button>
+      <button class="nav-btn" data-target="training-summary">
+        <span class="nav-icon">📄</span>
+        <span class="nav-label">Training Summary</span>
+      </button>
     </nav>
   </aside>
 
@@ -43,6 +70,9 @@
     <!-- ========================================================= -->
     <section id="onsite-trainers" class="page-section active">
       <h1>Onsite Trainers &amp; CEM</h1>
+      <p class="page-subtitle">
+        Capture who is onsite, who owns follow-up, and how training will be supported.
+      </p>
 
       <div class="section-block">
         <h2>Trainer Information</h2>
@@ -67,7 +97,6 @@
         </div>
       </div>
 
-      <!-- ONE overall comments card for this page -->
       <div class="section-block">
         <h2>Additional Comments — Onsite Trainers &amp; CEM</h2>
         <textarea placeholder="Notes regarding trainers and CEM …"></textarea>
@@ -79,6 +108,9 @@
     <!-- ========================================================= -->
     <section id="dealership-info" class="page-section">
       <h1>Dealership Information</h1>
+      <p class="page-subtitle">
+        Confirm core dealership details, key contacts, and layout before training.
+      </p>
 
       <!-- General Info -->
       <div class="section-block">
@@ -109,8 +141,6 @@
           <label>DMS</label>
           <input type="text" placeholder="DMS Provider">
         </div>
-
-        <!-- City / State / Zip removed previously -->
 
         <div class="checklist-row">
           <label>Time Zone</label>
@@ -207,6 +237,9 @@
     <!-- ========================================================= -->
     <section id="pretraining" class="page-section">
       <h1>Pre-Training Checklist</h1>
+      <p class="page-subtitle">
+        Validate integrations, Salesforce notes, and readiness before arriving onsite.
+      </p>
 
       <!-- Salesforce Notes -->
       <div class="section-block">
@@ -368,88 +401,94 @@
       </div>
     </section>
 
-     <!-- ========================================================= -->
-<!-- PAGE 4: MONDAY VISIT                                      -->
-<!-- ========================================================= -->
-<section id="monday-visit" class="page-section">
-  <h1>Monday Visit</h1>
+    <!-- ========================================================= -->
+    <!-- PAGE 4: MONDAY VISIT                                      -->
+    <!-- ========================================================= -->
+    <section id="monday-visit" class="page-section">
+      <h1>Monday Visit</h1>
+      <p class="page-subtitle">
+        Align expectations, confirm MCI process, and identify device gaps on day one.
+      </p>
 
-  <div class="section-block">
-    <h2>Dealership Expectations</h2>
-    <div class="checklist-row">
-      <label>Was the dealership prepared for MCI before arrival?</label>
-      <select><option></option><option>Yes</option><option>No</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Who is involved in the MCI process?</label>
-      <select>
-        <option></option>
-        <option>Advisors</option>
-        <option>Porters</option>
-        <option>Advisors &amp; Porters</option>
-      </select>
-    </div>
-  </div>
+      <div class="section-block">
+        <h2>Dealership Expectations</h2>
+        <div class="checklist-row">
+          <label>Was the dealership prepared for MCI before arrival?</label>
+          <select><option></option><option>Yes</option><option>No</option></select>
+        </div>
+        <div class="checklist-row">
+          <label>Who is involved in the MCI process?</label>
+          <select>
+            <option></option>
+            <option>Advisors</option>
+            <option>Porters</option>
+            <option>Advisors &amp; Porters</option>
+          </select>
+        </div>
+      </div>
 
-  <div class="section-block">
-    <h2>Additional Comments — Dealership Expectations</h2>
-    <textarea placeholder="Comments for Dealership Expectations …"></textarea>
-  </div>
+      <div class="section-block">
+        <h2>Additional Comments — Dealership Expectations</h2>
+        <textarea placeholder="Comments for Dealership Expectations …"></textarea>
+      </div>
 
-  <div class="section-block">
-    <h2>Scheduled CEM Call</h2>
-    <div class="checklist-row">
-      <label>Did you set up the CEM call for Thursday with SD / SM / PM / BDC <span class="muted-note">(if onsite)</span>?</label>
-      <select><option></option><option>Yes</option><option>No</option></select>
-    </div>
-  </div>
+      <div class="section-block">
+        <h2>Scheduled CEM Call</h2>
+        <div class="checklist-row">
+          <label>Did you set up the CEM call for Thursday with SD / SM / PM / BDC <span class="muted-note">(if onsite)</span>?</label>
+          <select><option></option><option>Yes</option><option>No</option></select>
+        </div>
+      </div>
 
-  <div class="section-block">
-    <h2>Additional Comments — Scheduled CEM Call</h2>
-    <textarea placeholder="Comments for CEM Call …"></textarea>
-  </div>
+      <div class="section-block">
+        <h2>Additional Comments — Scheduled CEM Call</h2>
+        <textarea placeholder="Comments for CEM Call …"></textarea>
+      </div>
 
-  <div class="section-block">
-    <h2>iOS Devices</h2>
+      <div class="section-block">
+        <h2>iOS Devices</h2>
+        <div class="checklist-row">
+          <label>Do all technicians have iOS devices?</label>
+          <select><option></option><option>Yes</option><option>No</option></select>
+        </div>
 
-    <!-- Tech devices -->
-    <div class="checklist-row">
-      <label>Do all technicians have iOS devices?</label>
-      <select><option></option><option>Yes</option><option>No</option></select>
-    </div>
+        <div class="checklist-row" style="padding-left:60px;">
+          <label>How many iOS devices are they short?</label>
+          <input type="number">
+        </div>
+      </div>
 
-    <div class="checklist-row" style="padding-left:60px;">
-      <label>How many iOS devices are they short?</label>
-      <input type="number">
-    </div>
+      <div class="checklist-row">
+        <label>Do all of the advisors have iOS devices?</label>
+        <select><option></option><option>Yes</option><option>No</option></select>
+      </div>
 
-    <!-- Advisor devices -->
-    <div class="checklist-row">
-      <label>Do all of the advisors have iOS devices?</label>
-      <select><option></option><option>Yes</option><option>No</option></select>
-    </div>
+      <div class="checklist-row" style="padding-left:60px;">
+        <label>How many iOS devices are they short?</label>
+        <input type="number">
+      </div>
 
-    <div class="checklist-row" style="padding-left:60px;">
-      <label>How many iOS devices are they short?</label>
-      <input type="number">
-    </div>
-  </div>
-
-  <div class="section-block">
-    <h2>Additional Comments — iOS Devices</h2>
-    <textarea placeholder="Comments for iOS Devices …"></textarea>
-  </div>
-</section>
+      <div class="section-block">
+        <h2>Additional Comments — iOS Devices</h2>
+        <textarea placeholder="Comments for iOS Devices …"></textarea>
+      </div>
+    </section>
 
     <!-- ========================================================= -->
     <!-- PAGE 5 : TRAINING CHECKLIST                               -->
     <!-- ========================================================= -->
     <section id="training-checklist" class="page-section">
       <h1>Training Checklist</h1>
+      <p class="page-subtitle">
+        Track adoption by role and ensure every user can work confidently in myKaarma.
+      </p>
 
       <!-- Technicians – Checklist -->
       <div class="section">
-        <div class="section-header">Technicians – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">1</span>
+          <span>Technicians – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -476,7 +515,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Row 1 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
                   <td>
@@ -489,24 +527,11 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  <!-- all the Yes/No/Not Trained/N/A cells -->
+                  ${Array.from({ length: 16 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
-                <!-- Row 2 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
                   <td>
@@ -519,52 +544,9 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                </tr>
-                <!-- Row 3 -->
-                <tr>
-                  <td><input type="checkbox"><input type="text" placeholder="Technician Name"></td>
-                  <td>
-                    <select>
-                      <option></option>
-                      <option>Fully Adopted</option>
-                      <option>Mostly Adopted</option>
-                      <option>Neutral / Mixed</option>
-                      <option>Needs Support</option>
-                      <option>Not Accepted</option>
-                    </select>
-                  </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 16 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
               </tbody>
             </table>
@@ -582,7 +564,10 @@
 
       <!-- Service Advisors – Checklist -->
       <div class="section">
-        <div class="section-header">Service Advisors – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">2</span>
+          <span>Service Advisors – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -609,7 +594,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Row 1 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
                   <td>
@@ -622,24 +606,10 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 16 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
-                <!-- Row 2 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
                   <td>
@@ -652,54 +622,10 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 16 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
-                <!-- Row 3 -->
-<tr>
-  <td><input type="checkbox"><input type="text" placeholder="Advisor Name"></td>
-  <td>
-    <select>
-      <option></option>
-      <option>Fully Adopted</option>
-      <option>Mostly Adopted</option>
-      <option>Neutral / Mixed</option>
-      <option>Needs Support</option>
-      <option>Not Accepted</option>
-    </select>
-  </td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-</tr>
-
               </tbody>
             </table>
           </div>
@@ -716,7 +642,10 @@
 
       <!-- Parts Representatives – Checklist -->
       <div class="section">
-        <div class="section-header">Parts Representatives – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">3</span>
+          <span>Parts Representatives – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -741,7 +670,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Row 1 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
                   <td>
@@ -754,22 +682,10 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 14 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
-                <!-- Row 2 -->
                 <tr>
                   <td><input type="checkbox"><input type="text" placeholder="Parts Rep Name"></td>
                   <td>
@@ -782,20 +698,9 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 14 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
               </tbody>
             </table>
@@ -813,7 +718,10 @@
 
       <!-- BDC / Scheduler – Checklist -->
       <div class="section">
-        <div class="section-header">BDC / Scheduler – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">4</span>
+          <span>BDC / Scheduler – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -842,12 +750,9 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 6 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
               </tbody>
             </table>
@@ -865,7 +770,10 @@
 
       <!-- Drivers – Checklist -->
       <div class="section">
-        <div class="section-header">Drivers – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">5</span>
+          <span>Drivers – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -895,13 +803,9 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 7 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
               </tbody>
             </table>
@@ -919,7 +823,10 @@
 
       <!-- Dispatcher – Checklist -->
       <div class="section">
-        <div class="section-header">Dispatcher – Checklist</div>
+        <div class="section-header">
+          <span class="section-badge">6</span>
+          <span>Dispatcher – Checklist</span>
+        </div>
         <div class="table-container">
           <div class="scroll-wrapper">
             <table class="training-table">
@@ -949,13 +856,9 @@
                       <option>Not Accepted</option>
                     </select>
                   </td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                  ${Array.from({ length: 7 }).map(() =>
+                    '<td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>'
+                  ).join('')}
                 </tr>
               </tbody>
             </table>
@@ -972,11 +875,14 @@
       </div>
     </section>
 
-        <!-- ========================================================= -->
+    <!-- ========================================================= -->
     <!-- PAGE 6: OPCODES & PRICING                                 -->
     <!-- ========================================================= -->
     <section id="opcodes-pricing" class="page-section">
       <h1>Opcodes &amp; Pricing</h1>
+      <p class="page-subtitle">
+        Verify opcodes, pricing, and parts margins support accurate inspections and MPIs.
+      </p>
 
       <!-- Labor Opcodes -->
       <div class="section">
@@ -1080,296 +986,105 @@
         <h2>Additional Comments — Parts Pricing Verification</h2>
         <textarea placeholder="Notes specific to parts pricing verification …"></textarea>
       </div>
-
-      <!-- Entire "Opcode & Pricing Notes" card was removed -->
-
     </section>
 
-<!-- ========================================================= -->
-<!-- PAGE 7: DMS INTEGRATION                                   -->
-<!-- ========================================================= -->
-<section id="dms-integration" class="page-section">
-  <h1>DMS Integration</h1>
+    <!-- ========================================================= -->
+    <!-- PAGE 7: DMS INTEGRATION                                   -->
+    <!-- ========================================================= -->
+    <section id="dms-integration" class="page-section">
+      <h1>DMS Integration</h1>
+      <p class="page-subtitle">
+        Document how customers, ROs, payments, and opcodes move between myKaarma and the DMS.
+      </p>
 
-  <!-- PUSH-BASED DMS TABLE (myKaarma → DMS) -->
-  <div class="section">
-    <div class="section-header">
-      Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span>
-    </div>
-
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table class="training-table dms-table">
-          <thead>
-            <tr>
-              <th>DMS</th>
-              <th>Customer<br>Pull</th>
-              <th>Customer<br>Push</th>
-              <th>Vehicle<br>Pull</th>
-              <th>Vehicle<br>Push</th>
-              <th>Appointment<br>Pull</th>
-              <th>Appointment<br>Push</th>
-              <th>RO<br>Pull</th>
-              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
-              <th>Parts Invoices<br>Pull</th>
-              <th>Parts Availability &amp; Pricing<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>Special Order<br>Pull</th>
-              <th>F &amp; I<br>Sales History</th>
-              <th>Opcodes<br>Pull</th>
-              <th>Historical RO<br>Pull Capability</th>
-              <th>Historical Customer<br>Pull Capability</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <!-- ROW: REYNOLDS -->
-            <tr>
-              <td>Reynolds</td>
-              <td>Happens Automatically</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Comes with RO</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Happens Automatically</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>Happens Automatically</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Yes, Happens Automatically</td>
-              <td>N/A</td>
-            </tr>
-
-            <!-- ROW: AUTOMATE (with custom height class) -->
-            <tr class="dms-automate-row">
-              <td>Automate</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Comes with RO</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>Happens Automatically</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-            </tr>
-
-          </tbody>
-        </table>
+      <div class="section">
+        <div class="section-header">Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span></div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table class="training-table dms-table">
+              <thead>
+                <tr>
+                  <th>Integration Type</th>
+                  <th>Customer Pull</th>
+                  <th>RO Push</th>
+                  <th>Parts Invoices</th>
+                  <th>Opcodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Reynolds</td>
+                  <td>Auto</td>
+                  <td>
+                    <span class="dms-main">On Demand</span>
+                    <span class="dms-note">(if any appointments are scheduled)</span>
+                  </td>
+                  <td>Auto</td>
+                  <td>Yes</td>
+                </tr>
+                <tr class="dms-automate-row">
+                  <td>Automate</td>
+                  <td>Auto</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- PULL-BASED DMS TABLE (DMS → myKaarma) -->
-  <div class="section">
-    <div class="section-header">
-      Pull-Based DMS <span class="muted-note">(DMS → myKaarma)</span>
-    </div>
-
-    <div class="table-container">
-      <div class="scroll-wrapper">
-        <table class="training-table dms-table">
-          <thead>
-            <tr>
-              <th>DMS</th>
-              <th>Customer<br>Pull</th>
-              <th>Customer<br>Push</th>
-              <th>Vehicle<br>Pull</th>
-              <th>Vehicle<br>Push</th>
-              <th>Appointment<br>Pull</th>
-              <th>Appointment<br>Push</th>
-              <th>RO<br>Pull</th>
-              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
-              <th>Parts Invoices<br>Pull</th>
-              <th>Parts Availability &amp; Pricing<br><span class="muted-note">(ServiceCart)</span></th>
-              <th>Special Order<br>Pull</th>
-              <th>F &amp; I<br>Sales History</th>
-              <th>Opcodes<br>Pull</th>
-              <th>Historical RO<br>Pull Capability</th>
-              <th>Historical Customer<br>Pull Capability</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <!-- CDK -->
-            <tr>
-              <td>CDK</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>Nightly sync and historical (2 years)</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>N/A</td>
-            </tr>
-
-            <!-- Dealertrack -->
-            <tr>
-              <td>Dealertrack / Arkona</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 15 minutes</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>Yes, On-Demand</td>
-            </tr>
-
-            <!-- Lightyear / Dealerbuilt -->
-            <tr>
-              <td>Lightyear / Dealerbuilt</td>
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>Yes, On-Demand</td>
-            </tr>
-
-            <!-- PBS -->
-            <tr>
-              <td>PBS</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 2 minutes</td>
-              <td>On-Demand</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>On-Demand</td>
-              <td>N/A</td>
-              <td>N/A</td>
-              <td>Nightly sync</td>
-              <td>Yes, On-Demand</td>
-              <td>N/A</td>
-            </tr>
-
-            <!-- Tekion -->
-            <tr>
-              <td>Tekion</td>
-              <td>Comes with RO</td>
-              <td>On-Demand</td>
-              <td>Comes with RO</td>
-
-              <td>
-                <span class="dms-main">On-Demand</span>
-                <span class="dms-note">(if any appointments are scheduled)</span>
-              </td>
-
-              <td>Every 5 minutes</td>
-              <td>On-Demand</td>
-              <td>Every 5 minutes</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>N/A</td>
-              <td>Planned</td>
-              <td>Planned</td>
-              <td>Yes, once during deployment</td>
-              <td>N/A</td>
-            </tr>
-
-          </tbody>
-        </table>
+      <div class="section">
+        <div class="section-header">Pull-Based DMS <span class="muted-note">(DMS → myKaarma)</span></div>
+        <div class="table-container">
+          <div class="scroll-wrapper">
+            <table class="training-table dms-table">
+              <thead>
+                <tr>
+                  <th>DMS Provider</th>
+                  <th>Customer Pull</th>
+                  <th>RO Pull</th>
+                  <th>Writeback</th>
+                  <th>Opcodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CDK</td>
+                  <td>15 min</td>
+                  <td>5 min</td>
+                  <td>On Demand</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td>Tekion</td>
+                  <td>With RO</td>
+                  <td>5 min</td>
+                  <td>Planned</td>
+                  <td>Yes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Integration Notes -->
-  <div class="section-block">
-    <h2>Integration Notes</h2>
-    <textarea placeholder="Type integration notes here …"></textarea>
-  </div>
-</section>
+      <div class="section-block">
+        <h2>Integration Notes</h2>
+        <textarea placeholder="Type integration notes here …"></textarea>
+      </div>
+    </section>
 
     <!-- ========================================================= -->
     <!-- PAGE 8: POST-TRAINING CHECKLIST                           -->
     <!-- ========================================================= -->
     <section id="post-training" class="page-section">
       <h1>Post-Training Checklist</h1>
+      <p class="page-subtitle">
+        Confirm workflows are live, notifications work, and ownership is clear after go-live.
+      </p>
 
-      <!-- Post-Training Follow-Up -->
       <div class="section-block">
         <h2>Post-Training Follow-Up</h2>
         <div class="checklist-row">
@@ -1399,11 +1114,9 @@
         <textarea placeholder="Comments or notes related to Post-Training Follow-Up …"></textarea>
       </div>
 
-      <!-- Champions & Blockers -->
       <div class="section-block">
         <h2>Champions &amp; Blockers</h2>
 
-        <!-- Champion group -->
         <div class="checklist-row">
           <label>Champion</label>
         </div>
@@ -1426,7 +1139,6 @@
           <button class="add-row" type="button">+</button>
         </div>
 
-        <!-- Blockers group -->
         <div class="checklist-row" style="margin-top:16px;">
           <label>Blockers</label>
         </div>
@@ -1460,8 +1172,18 @@
     <!-- PAGE 9: TRAINING SUMMARY                                  -->
     <!-- ========================================================= -->
     <section id="training-summary" class="page-section">
-      <button id="savePDF" class="floating-btn">Save as PDF</button>
       <h1>Training Summary</h1>
+      <p class="page-subtitle">
+        Final overview of training progress, champions, blockers, and follow-up items.
+      </p>
+
+      <div class="summary-status-bar">
+        <span>Dealership: <strong id="summaryDealershipName">Dealership Name</strong></span>
+        <span>Training Dates: <span id="summaryTrainingDates">[Add Dates]</span></span>
+        <span class="status-pill status-good" id="summaryStatus">Go-Live Ready</span>
+      </div>
+
+      <button id="savePDF" class="floating-btn">Save as PDF</button>
 
       <div class="section-block">
         <h2>Training Summary</h2>
@@ -1496,5 +1218,7 @@
   </main>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js?v=20251107C"></script>
 </body>
 </html>
