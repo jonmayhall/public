@@ -279,42 +279,56 @@ main {
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button (pill look) ===== */
+/* ===== Integrated “+” button (straight-edge join) ===== */
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   position: relative; 
-}
-.section-block .checklist-row.integrated-plus input[type="text"],
-.section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 0; /* no gap between input and button */
 }
 
-/* Pill-style + button touching input edge */
+/* Keep space between label and input for these rows */
+.section-block .checklist-row.integrated-plus label,
+.section-block .checklist-row:has(> .add-row) label {
+  margin-right: 12px;
+}
+
+/* Input: straight right edge */
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  padding-right: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  flex: 0 0 260px;
+}
+
+/* + Button: straight left edge, rounded outside, flush with input */
 .section-block .checklist-row > .add-row {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;
+  margin-left: 0;
+  height: 36px;
+  min-width: 44px;
+  padding: 0 12px;
+
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--orange);
   color: #fff;
-  border: none;
-  border-radius: 999px;
-  width: 34px;
-  height: 26px;
-  font-size: 18px;
   font-weight: 700;
-  line-height: 1;
+  font-size: 18px;
+  border: none;
   cursor: pointer;
-  transition: .18s ease-in-out;
   box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 2px;
 }
+
+/* Hover */
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
-  transform: translateY(-50%) scale(1.06);
+  transform: scale(1.03);
 }
 
 /* =======================================================
