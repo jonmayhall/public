@@ -1138,93 +1138,138 @@
       </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- PAGE 7: DMS INTEGRATION                                   -->
-    <!-- ========================================================= -->
-    <section id="dms-integration" class="page-section">
-      <h1>DMS Integration</h1>
-      <p class="page-subtitle">
-        Document how customers, ROs, payments, and opcodes move between myKaarma and the DMS.
-      </p>
+   <!-- ========================================================= -->
+<!-- PAGE 7: DMS INTEGRATION                                   -->
+<!-- ========================================================= -->
+<section id="dms-integration" class="page-section">
+  <h1>DMS Integration</h1>
+  <p class="page-subtitle">
+    Document how customers, ROs, invoices, payments, and opcodes move between myKaarma and the DMS.
+  </p>
 
-      <div class="section">
-        <div class="section-header">Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span></div>
-        <div class="table-container">
-          <div class="scroll-wrapper">
-            <table class="training-table dms-table">
-              <thead>
-                <tr>
-                  <th>Integration Type</th>
-                  <th>Customer Pull</th>
-                  <th>RO Push</th>
-                  <th>Parts Invoices</th>
-                  <th>Opcodes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Reynolds</td>
-                  <td>Auto</td>
-                  <td>
-                    <span class="dms-main">On Demand</span>
-                    <span class="dms-note">(if any appointments are scheduled)</span>
-                  </td>
-                  <td>Auto</td>
-                  <td>Yes</td>
-                </tr>
-                <tr class="dms-automate-row">
-                  <td>Automate</td>
-                  <td>Auto</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+  <!-- Optional quick legend -->
+  <div class="section-block">
+    <h2>Legend</h2>
+    <div class="checklist-row">
+      <label>Auto</label>
+      <span>Data moves automatically on a fixed cadence or trigger.</span>
+    </div>
+    <div class="checklist-row">
+      <label>On Demand</label>
+      <span>Data moves when initiated by an action in myKaarma or the DMS.</span>
+    </div>
+    <div class="checklist-row">
+      <label>With RO</label>
+      <span>Data moves when the repair order is created or updated.</span>
+    </div>
+    <div class="checklist-row">
+      <label>N/A</label>
+      <span>Functionality is not supported for this integration.</span>
+    </div>
+  </div>
 
-      <div class="section">
-        <div class="section-header">Pull-Based DMS <span class="muted-note">(DMS → myKaarma)</span></div>
-        <div class="table-container">
-          <div class="scroll-wrapper">
-            <table class="training-table dms-table">
-              <thead>
-                <tr>
-                  <th>DMS Provider</th>
-                  <th>Customer Pull</th>
-                  <th>RO Pull</th>
-                  <th>Writeback</th>
-                  <th>Opcodes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>CDK</td>
-                  <td>15 min</td>
-                  <td>5 min</td>
-                  <td>On Demand</td>
-                  <td>Yes</td>
-                </tr>
-                <tr>
-                  <td>Tekion</td>
-                  <td>With RO</td>
-                  <td>5 min</td>
-                  <td>Planned</td>
-                  <td>Yes</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+  <!-- Unified DMS Integration Matrix -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">1</span>
+      <span>DMS Integration Matrix</span>
+    </div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table dms-table">
+          <thead>
+            <tr>
+              <th>DMS Provider</th>
+              <th>Direction</th>
+              <th>Customers</th>
+              <th>ROs</th>
+              <th>Parts Invoices</th>
+              <th>Payments</th>
+              <th>Opcodes</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Push-based examples (myKaarma → DMS) -->
+            <tr>
+              <td>Reynolds</td>
+              <td>myKaarma → DMS</td>
+              <td>Auto</td>
+              <td>
+                On Demand
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Auto</td>
+              <td>N/A</td>
+              <td>Yes</td>
+              <td>RO push occurs only when calendar appointments exist.</td>
+            </tr>
+            <tr>
+              <td>Automate</td>
+              <td>myKaarma → DMS</td>
+              <td>Auto</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>Customer data sync only; no RO or invoice writeback.</td>
+            </tr>
 
-      <div class="section-block">
-        <h2>Integration Notes</h2>
-        <textarea placeholder="Type integration notes here …"></textarea>
+            <!-- Pull-based examples (DMS → myKaarma) -->
+            <tr>
+              <td>CDK</td>
+              <td>DMS → myKaarma</td>
+              <td>15 min</td>
+              <td>5 min</td>
+              <td>N/A</td>
+              <td>On Demand</td>
+              <td>Yes</td>
+              <td>ROs pull every 5 minutes; writeback/payment behavior is on demand.</td>
+            </tr>
+            <tr>
+              <td>Tekion</td>
+              <td>DMS → myKaarma</td>
+              <td>With RO</td>
+              <td>5 min</td>
+              <td>N/A</td>
+              <td>Planned</td>
+              <td>Yes</td>
+              <td>Customer data arrives with RO; writeback planned but not fully live.</td>
+            </tr>
+
+            <!-- Extra blank rows for future DMS entries (view-only text) -->
+            <tr>
+              <td>Other DMS 1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Other DMS 2</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <!-- Integration Notes -->
+  <div class="section-block">
+    <h2>Integration Notes</h2>
+    <textarea placeholder="Type integration notes here …"></textarea>
+  </div>
+</section>
 
     <!-- ========================================================= -->
     <!-- PAGE 8: POST-TRAINING CHECKLIST                           -->
