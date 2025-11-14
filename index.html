@@ -1138,125 +1138,252 @@
       </div>
     </section>
 
-   <!-- ========================================================= -->
+ <!-- ========================================================= -->
 <!-- PAGE 7: DMS INTEGRATION                                   -->
 <!-- ========================================================= -->
 <section id="dms-integration" class="page-section">
   <h1>DMS Integration</h1>
   <p class="page-subtitle">
-    Document how customers, ROs, invoices, payments, and opcodes move between myKaarma and the DMS.
+    Document how customers, vehicles, appointments, ROs, invoices, and history move between myKaarma and the DMS.
   </p>
 
-  <!-- Optional quick legend -->
-  <div class="section-block">
-    <h2>Legend</h2>
-    <div class="checklist-row">
-      <label>Auto</label>
-      <span>Data moves automatically on a fixed cadence or trigger.</span>
-    </div>
-    <div class="checklist-row">
-      <label>On Demand</label>
-      <span>Data moves when initiated by an action in myKaarma or the DMS.</span>
-    </div>
-    <div class="checklist-row">
-      <label>With RO</label>
-      <span>Data moves when the repair order is created or updated.</span>
-    </div>
-    <div class="checklist-row">
-      <label>N/A</label>
-      <span>Functionality is not supported for this integration.</span>
-    </div>
-  </div>
-
-  <!-- Unified DMS Integration Matrix -->
+  <!-- PUSH-BASED DMS (myKaarma → DMS) -->
   <div class="section">
     <div class="section-header">
-      <span class="section-badge">1</span>
-      <span>DMS Integration Matrix</span>
+      Push-Based DMS <span class="muted-note">(myKaarma → DMS)</span>
     </div>
     <div class="table-container">
       <div class="scroll-wrapper">
         <table class="training-table dms-table">
           <thead>
             <tr>
-              <th>DMS Provider</th>
-              <th>Direction</th>
-              <th>Customers</th>
-              <th>ROs</th>
-              <th>Parts Invoices</th>
-              <th>Payments</th>
-              <th>Opcodes</th>
-              <th>Notes</th>
+              <th>DMS</th>
+              <th>Customer<br>Pull</th>
+              <th>Customer<br>Push</th>
+              <th>Vehicle<br>Pull</th>
+              <th>Vehicle<br>Push</th>
+              <th>Appointment<br>Pull</th>
+              <th>Appointment<br>Push</th>
+              <th>RO<br>Pull</th>
+              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
+              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
+              <th>Parts Invoices<br>Pull</th>
+              <th>Parts Availability &amp;<br>Pricing<br><span class="muted-note">(ServiceCart)</span></th>
+              <th>Special Order<br>Pull</th>
+              <th>F &amp; I Sales<br>History</th>
+              <th>Opcodes<br>Pull</th>
+              <th>Historical RO<br>Pull Capability</th>
+              <th>Historical Customer<br>Pull Capability</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Push-based examples (myKaarma → DMS) -->
+            <!-- Reynolds -->
             <tr>
               <td>Reynolds</td>
-              <td>myKaarma → DMS</td>
-              <td>Auto</td>
+              <td>Happens Automatically</td>
               <td>
-                On Demand
+                On-Demand<br>
                 <span class="muted-note">(if any appointments are scheduled)</span>
               </td>
-              <td>Auto</td>
+              <td>Comes with RO</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Happens Automatically</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Happens Automatically</td>
               <td>N/A</td>
-              <td>Yes</td>
-              <td>RO push occurs only when calendar appointments exist.</td>
-            </tr>
-            <tr>
-              <td>Automate</td>
-              <td>myKaarma → DMS</td>
-              <td>Auto</td>
+              <td>On-Demand</td>
+              <td>Happens Automatically</td>
+              <td>On-Demand</td>
               <td>N/A</td>
+              <td>Happens Automatically</td>
               <td>N/A</td>
+              <td>Yes, Happens Automatically</td>
               <td>N/A</td>
-              <td>N/A</td>
-              <td>Customer data sync only; no RO or invoice writeback.</td>
             </tr>
 
-            <!-- Pull-based examples (DMS → myKaarma) -->
+            <!-- Automate -->
+            <tr class="dms-automate-row">
+              <td>Automate</td>
+              <td>Happens Automatically</td>
+              <td>N/A</td>
+              <td>Comes with RO</td>
+              <td>N/A</td>
+              <td>Happens Automatically</td>
+              <td>N/A</td>
+              <td>Happens Automatically</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PULL-BASED DMS (myKaarma pulling from DMS) -->
+  <div class="section">
+    <div class="section-header">
+      Pull-Based DMS <span class="muted-note">(myKaarma pulling information from DMS)</span>
+    </div>
+    <div class="table-container">
+      <div class="scroll-wrapper">
+        <table class="training-table dms-table">
+          <thead>
+            <tr>
+              <th>DMS</th>
+              <th>Customer<br>Pull</th>
+              <th>Customer<br>Push</th>
+              <th>Vehicle<br>Pull</th>
+              <th>Vehicle<br>Push</th>
+              <th>Appointment<br>Pull</th>
+              <th>Appointment<br>Push</th>
+              <th>RO<br>Pull</th>
+              <th>RO Writeback<br><span class="muted-note">(ServiceCart)</span></th>
+              <th>RO Creation<br><span class="muted-note">(Check-in)</span></th>
+              <th>Parts Invoices<br>Pull</th>
+              <th>Parts Availability &amp;<br>Pricing<br><span class="muted-note">(ServiceCart)</span></th>
+              <th>Special Order<br>Pull</th>
+              <th>F &amp; I Sales<br>History</th>
+              <th>Opcodes<br>Pull</th>
+              <th>Historical RO<br>Pull Capability</th>
+              <th>Historical Customer<br>Pull Capability</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- CDK -->
             <tr>
               <td>CDK</td>
-              <td>DMS → myKaarma</td>
-              <td>15 min</td>
-              <td>5 min</td>
+              <td>Every 15 minutes</td>
+              <td>On-Demand</td>
+              <td>Comes with RO</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Every 15 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>On-Demand</td>
+              <td>Every 15 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 15 minutes</td>
+              <td>
+                Nightly sync and historical<br>
+                <span class="muted-note">(2 years)</span>
+              </td>
+              <td>Nightly sync</td>
+              <td>Yes, On-Demand</td>
               <td>N/A</td>
-              <td>On Demand</td>
-              <td>Yes</td>
-              <td>ROs pull every 5 minutes; writeback/payment behavior is on demand.</td>
-            </tr>
-            <tr>
-              <td>Tekion</td>
-              <td>DMS → myKaarma</td>
-              <td>With RO</td>
-              <td>5 min</td>
-              <td>N/A</td>
-              <td>Planned</td>
-              <td>Yes</td>
-              <td>Customer data arrives with RO; writeback planned but not fully live.</td>
             </tr>
 
-            <!-- Extra blank rows for future DMS entries (view-only text) -->
+            <!-- Dealertrack / Arkona -->
             <tr>
-              <td>Other DMS 1</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Dealertrack/Arkona</td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>On-Demand</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Every 15 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 2 minutes</td>
+              <td>On-Demand</td>
+              <td>On-Demand</td>
+              <td>Every 15 minutes</td>
+              <td>On-Demand</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>Nightly sync</td>
+              <td>Yes, On-Demand</td>
+              <td>Yes, On-Demand</td>
             </tr>
+
+            <!-- Lightyear / Dealerbuilt -->
             <tr>
-              <td>Other DMS 2</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Lightyear/Dealerbuilt</td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>Comes with RO</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 2 minutes</td>
+              <td>On-Demand</td>
+              <td>On-Demand</td>
+              <td>Every 5 minutes</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>Nightly sync</td>
+              <td>Yes, On-Demand</td>
+              <td>Yes, On-Demand</td>
+            </tr>
+
+            <!-- PBS -->
+            <tr>
+              <td>PBS</td>
+              <td>N/A</td>
+              <td>On-Demand</td>
+              <td>N/A</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 2 minutes</td>
+              <td>On-Demand</td>
+              <td>On-Demand</td>
+              <td>N/A</td>
+              <td>On-Demand</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>Nightly sync</td>
+              <td>Yes, On-Demand</td>
+              <td>N/A</td>
+            </tr>
+
+            <!-- Tekion -->
+            <tr>
+              <td>Tekion</td>
+              <td>Comes with RO</td>
+              <td>On-Demand</td>
+              <td>Comes with RO</td>
+              <td>
+                On-Demand<br>
+                <span class="muted-note">(if any appointments are scheduled)</span>
+              </td>
+              <td>Every 5 minutes</td>
+              <td>On-Demand</td>
+              <td>Every 5 minutes</td>
+              <td>Planned</td>
+              <td>Planned</td>
+              <td>Planned</td>
+              <td>Planned</td>
+              <td>N/A</td>
+              <td>Planned</td>
+              <td>Planned</td>
+              <td>Yes, once during deployment</td>
+              <td>N/A</td>
             </tr>
           </tbody>
         </table>
