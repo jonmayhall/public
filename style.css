@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Sleek Build — v20251112K+
+   Sleek Stable Build — v20251112K-FINAL
    ======================================================= */
 
 :root {
@@ -23,7 +23,7 @@ html, body {
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: auto;
+  overflow-x: auto; /* allows horizontal scroll instead of cutting off columns */
 }
 
 *, *::before, *::after {
@@ -235,13 +235,6 @@ main {
   border-radius: 999px;
 }
 
-/* ===== OPTIONAL GRID ===== */
-.grid-2 {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-}
-
 /* ===== CHECKLIST ROWS ===== */
 .checklist-row {
   display: flex;
@@ -341,7 +334,7 @@ main {
   background: #ff8b42;
 }
 
-/* ===== Stronger dividers ===== */
+/* ===== Stronger dividers in specific areas ===== */
 #dealership-info .section-block:nth-of-type(2)
   .checklist-row:has(input[placeholder="Name"]) {
   border-top: 2px solid #bdbdbd;
@@ -356,7 +349,7 @@ main {
 }
 
 /* =======================================================
-   TABLES
+   TABLES (all pages)
    ======================================================= */
 .section {
   margin-bottom: 40px;
@@ -385,6 +378,7 @@ main {
   color: #fff !important;
 }
 
+/* Optional step badge (only if you add it in HTML) */
 .section-badge {
   display: inline-flex;
   align-items: center;
@@ -449,6 +443,7 @@ main {
   min-width: 270px;
 }
 
+/* For non-DMS tables, first column has checkbox + name input */
 .training-table tbody td:first-child {
   background-color: inherit;
 }
@@ -544,7 +539,11 @@ main {
   background-color: #999;
 }
 
-/* ===== DMS TABLE TWEAKS ===== */
+/* =======================================================
+   DMS TABLE-SPECIFIC OVERRIDES
+   ======================================================= */
+
+/* For DMS tables we want a normal first column, not checkbox + text input */
 .dms-table th:first-child,
 .dms-table td:first-child {
   width: 160px !important;
@@ -570,17 +569,15 @@ main {
 .dms-table th {
   white-space: normal;
 }
+
+/* Make Customer Pull column a bit thinner */
 .dms-table th:nth-child(2),
 .dms-table td:nth-child(2) {
   width: 90px !important;
   min-width: 90px !important;
 }
-.dms-table th:nth-child(12),
-.dms-table td:nth-child(12) {
-  width: 135px !important;
-  min-width: 135px !important;
-}
 
+/* On Demand + note formatting */
 .dms-main {
   display: block;
 }
@@ -591,12 +588,14 @@ main {
   margin-top: 2px;
   line-height: 1.2;
 }
+
+/* Automate row slightly taller but not huge */
 .dms-automate-row td {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
 
-/* ===== SMALL WHITE PARENTHESIS TEXT IN HEADER CELLS ===== */
+/* ===== Header parentheses text ===== */
 .training-table thead th .muted-note,
 .dms-table thead th .muted-note {
   font-size: 10px !important;
@@ -606,7 +605,7 @@ main {
   margin-top: 2px;
 }
 
-/* ===== Muted note outside headers ===== */
+/* ===== Muted note in body text ===== */
 .muted-note {
   font-size: 0.9em;
   color: #666;
