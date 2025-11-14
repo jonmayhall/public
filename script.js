@@ -73,12 +73,17 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   /* === ADDITIONAL TRAINERS / POC / CHAMPIONS / SUPPORT TICKETS === */
-  document.querySelectorAll('.section-block .add-row').forEach(btn => {
-    btn.addEventListener('click', () => {
+  // Use event delegation so cloned "+" buttons also work
+  document.querySelectorAll('.section-block').forEach(sectionBlock => {
+    sectionBlock.addEventListener('click', (event) => {
+      const btn = event.target.closest('.add-row');
+      if (!btn || !sectionBlock.contains(btn)) return;
+
       // If this "+" is on the Support Ticket page, clone the FULL ticket group
       if (btn.closest('#support-ticket')) {
         const block = btn.closest('.section-block');
         if (!block) return;
+
         const group = btn.closest('.ticket-group');
         if (!group) return;
 
@@ -95,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       // Default behavior for other integrated-plus buttons:
       // clone the associated text input inside that section-block.
-      const parent = btn.closest('.section-block');
+      const parent = btn.closest('.checklist-row, .section-block');
       if (!parent) return;
 
       // Prefer the input immediately before the button
@@ -108,7 +113,9 @@ window.addEventListener('DOMContentLoaded', () => {
       const clone = input.cloneNode(true);
       clone.value = '';
       clone.style.marginTop = '6px';
-      parent.insertBefore(clone, btn);
+
+      // Insert the cloned input just before the button
+      btn.parentNode.insertBefore(clone, btn);
     });
   });
 
