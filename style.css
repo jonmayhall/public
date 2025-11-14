@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Sleek Stable Build — v20251112K-FINAL + 2-column layout
+   Unified / Polished Build
    ======================================================= */
 
 :root {
@@ -11,8 +11,8 @@
   --border: #dcdcdc;
   --ink: #222;
 
-  --radius-lg: 14px;
-  --radius-sm: 10px;
+  --radius-lg: 18px;       /* cards */
+  --radius-sm: 14px;       /* inputs / buttons */
 
   --shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
@@ -23,14 +23,11 @@ html, body {
   font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
   background: var(--gray-bg);
   color: var(--ink);
-  overflow-x: auto; /* allows horizontal scroll instead of cutting off columns */
+  overflow-x: hidden;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-em, i {
+/* no italics anywhere by default */
+*, em, i { 
   font-style: normal !important;
 }
 
@@ -43,107 +40,79 @@ em, i {
   padding: 0 40px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   position: fixed;
-  inset: 0 0 auto 0;
+  inset: 0 0 auto 0; /* top:0; left:0; right:0 */
   z-index: 20;
+  border-radius: 0; /* straight across, not rounded */
 }
-.topbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+.topbar-content { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
 }
-.top-logo {
-  height: 42px;
-  object-fit: contain;
+.top-logo { 
+  height: 42px; 
+  object-fit: contain; 
 }
-#dealershipNameDisplay {
-  color:#fff;
-  font-size:18px;
-  font-weight:600;
-}
-
-/* ===== LAYOUT WRAPPER ===== */
-#app {
-  display: flex;
-  min-height: 100vh;
-  margin-top: 70px;
-  overflow-x: visible;
+#dealershipNameDisplay { 
+  color:#fff; 
+  font-size:18px; 
+  font-weight:600; 
+  letter-spacing:.5px; 
 }
 
-/* =======================================================
-   SIDEBAR – Modern, Dark, 220px
-   ======================================================= */
+/* ===== LAYOUT ===== */
+#app { 
+  display: flex; 
+  min-height: 100vh; 
+  margin-top: 70px; 
+  overflow-x: hidden; 
+}
 
 #sidebar {
-  width: 220px;
-  background: linear-gradient(180deg, #1f2227 0%, #15171b 100%);
-  border-right: 1px solid #111318;
-  padding: 22px 10px;
-  box-shadow: 0 0 22px rgba(0,0,0,0.55);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(6px);
+  border-right: 1px solid var(--border);
+  width: 210px;
+  padding: 20px 10px;
+  box-shadow: var(--shadow);
   position: fixed;
   top: 70px;
   bottom: 0;
   overflow-y: auto;
 }
-
-#sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+#sidebar-nav { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
 }
 
 .nav-btn {
-  background: transparent;
+  background: none;
   border: none;
-  padding: 8px 12px;
-  font-size: 12px;
+  padding: 9px 12px;
+  font-size: 14px;
   text-align: left;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  color: #d3d7df;
-  letter-spacing: 0.2px;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.10s ease;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: var(--ink);
+  transition: .2s;
 }
-.nav-btn:hover {
-  background: rgba(255,255,255,0.06);
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  transform: translateX(2px);
-}
-.nav-btn.active {
-  background: rgba(255,255,255,0.12);
+.nav-btn:hover, .nav-btn.active {
+  background: #fff3eb;
   color: var(--orange);
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
 
-/* Hide menu icons completely (in case any remain in HTML) */
-.nav-icon {
-  display: none;
-}
-
-.nav-label {
-  flex: 1 1 auto;
-}
-
-/* ===== MAIN CONTENT ===== */
 main {
   flex: 1;
-  margin-left: 220px;
+  margin-left: 210px;
   padding: 30px 40px;
   background: var(--gray-bg);
   box-sizing: border-box;
 }
 
-/* ===== PAGE SECTIONS ===== */
+/* ===== PAGE SECTIONS / CARDS ===== */
 .page-section {
   display: none;
   background: var(--card-bg);
@@ -152,134 +121,137 @@ main {
   padding: 22px 32px 28px;
   margin: 0 auto 50px;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1250px;
+  box-sizing: border-box;
 }
-.page-section.active {
-  display: block;
+.page-section.active { 
+  display: block; 
 }
 
+/* Page titles: Left aligned with longer orange underline */
 .page-section h1 {
   color: var(--orange);
-  margin: 4px 0 10px 4px;
+  margin: 4px 0 8px 4px;
   font-size: 26px;
   font-weight: 700;
+  text-align: left;
+  letter-spacing: .3px;
   position: relative;
 }
 .page-section h1::after {
   content: "";
   display: block;
-  width: 360px;
+  width: 360px;             /* longer underline */
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
   border-radius: 2px;
 }
 
+/* Optional page subtitle under h1 */
 .page-subtitle {
-  margin: 2px 0 18px 4px;
+  margin: 4px 0 20px 4px;
   font-size: 13px;
-  color: #666;
+  color: #555;
 }
 
-/* ===== PDF BUTTON ===== */
-.floating-btn {
-  display: inline-block;
-  margin: 0 0 20px 4px;
+/* Section headers used above tables and some grouped content */
+.section-header {
   background: var(--orange);
   color: #fff;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.floating-btn:hover {
-  background: #ff8b42;
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.8);
+  font-size: 12px;
+  font-weight: 600;
 }
 
-/* ===== SECTION BLOCKS (cards) ===== */
+/* Section blocks (non-table cards) */
 .section-block {
   background: #fff;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  padding: 12px 22px 16px;
-  margin-bottom: 32px;
-  transition: box-shadow 0.18s ease, transform 0.12s ease;
-}
-.section-block:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-  transform: translateY(-1px);
-}
-
-.section-block h2 {
-  margin: 0 0 14px;
-  padding: 4px 0 10px;
-  background: transparent;
-  color: var(--orange);
-  font-size: 15px;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
-  border-radius: 0;
+  padding: 0 22px 14px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
   position: relative;
 }
-.section-block h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 126px;  /* 3x longer than earlier 42px */
-  height: 2px;
+.section-block h2 {
+  margin: 0 0 16px;
+  padding: 10px 16px;
   background: var(--orange);
-  border-radius: 999px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-left: -22px;
+  margin-right: -22px;
 }
 
-/* ===== CHECKLIST ROWS ===== */
+/* ===== NON-TABLE ROWS (Q&A lines) ===== */
 .checklist-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 14px;
   font-size: 14px;
-  padding-left: 20px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #e0e0e0;
+  padding-left: 40px;      /* ~about an inch visual indent */
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
 }
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
   margin-bottom: 8px;
   padding-bottom: 0;
 }
-
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
-  padding-right: 8px;
-  font-size: 13px;
-  color: #555;
+  text-align: left;
+  padding-right: 16px;
+  white-space: normal;
 }
 
-.section-block input[type="text"],
-.section-block input[type="number"],
-.section-block input[type="email"],
-.section-block select {
-  flex: 0 0 230px;
-  width: 230px;
+/* Inputs on the RIGHT and smaller */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"],
+.section-block .checklist-row input[type="date"],
+.section-block .checklist-row select {
+  flex: 0 0 260px;
+  width: 260px;
+  margin-left: auto;       /* push to right */
+  margin-right: 0;
   padding: 7px 10px;
-  height: 32px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
   font-size: 13px;
+  box-sizing: border-box;
 }
-
 .section-block textarea {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 10px 14px;
+  width: 96%;
+  margin: 6px auto 10px;
+  display: block;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -287,112 +259,66 @@ main {
   resize: vertical;
 }
 
+/* Focus */
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
   box-shadow: 0 0 4px rgba(243,111,33,0.35);
+  outline: none;
   background: #fff9f5;
 }
 
-/* ===== Integrated "+" pill (non-table) ===== */
-.section-block .checklist-row.integrated-plus,
-.section-block .checklist-row:has(> .add-row) {
-  align-items: center;
+/* ===== Dealership Contacts — stronger divider before each Name row ===== */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #bdbdbd;  /* bolder divide */
+  padding-top: 12px;
+  margin-top: 8px;
 }
 
+/* ===== Integrated “+” button INSIDE certain inputs ===== */
+.section-block .checklist-row.integrated-plus,
+.section-block .checklist-row:has(> .add-row) { 
+  position: relative; 
+}
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  height: 32px;
-  padding: 7px 10px;
-  font-size: 13px;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  flex: 0 0 200px;
-  width: 200px;
+  padding-right: 56px; /* space for the button inside */
 }
-
 .section-block .checklist-row > .add-row {
-  position: static;
-  margin-left: -1px;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   background: var(--orange);
   color: #fff;
-  border: 1px solid var(--orange);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  width: 31px;
+  border: none;
+  border-radius: 999px;         /* pill */
+  width: 32px;
   height: 32px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
-  padding: 0;
   cursor: pointer;
+  transition: .18s ease-in-out;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
-}
-
-/* ===== Stronger dividers in specific areas ===== */
-#dealership-info .section-block:nth-of-type(2)
-  .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 12px;
-  margin-top: 8px;
-}
-
-.section-block .checklist-row[style*="margin-top:16px"] {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 10px;
-  margin-top: 12px !important;
+  transform: translateY(-50%) scale(1.06);
 }
 
 /* =======================================================
-   TABLES (all pages)
+   TABLES
    ======================================================= */
-.section {
-  margin-bottom: 40px;
-  transition: box-shadow 0.18s ease, transform 0.12s ease;
-}
-.section:hover {
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-  transform: translateY(-1px);
+.section { 
+  margin-bottom: 40px; 
 }
 
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 8px 16px;
-  font-size: 16px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  border: 1px solid var(--orange);
-  border-bottom: none;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-header .muted-note {
-  color: #fff !important;
-}
-
-/* Optional badge if you ever add it in HTML */
-.section-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  font-size: 11px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  flex-shrink: 0;
-}
-
+/* Table Card */
 .table-container {
   width: 100%;
   background: #fff;
@@ -411,83 +337,91 @@ main {
   background: #fff;
 }
 
+/* Table */
 .training-table {
   border-collapse: collapse;
-  width: max-content;
+  width: 100%;
   min-width: 100%;
 }
 .training-table th,
 .training-table td {
   white-space: nowrap;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 6px 8px;
+  padding: 8px 10px;
 }
 
+/* Sticky header — LIGHT ORANGE (including first column header) */
 .training-table thead th {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 12px;
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 3;
 }
 
+/* Smaller white text for notes inside header cells */
+.training-table thead th .muted-note {
+  font-size: 0.8em;
+  color: #fff;
+}
+
+/* Sticky first column (header centered; body cells white) */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   z-index: 4;
-  width: 270px;
+  width: 270px;                /* name column slightly smaller but roomy */
   min-width: 270px;
 }
-
-/* For non-DMS tables, first column has checkbox + name input */
-.training-table tbody td:first-child {
-  background-color: inherit;
+.training-table thead th:first-child { 
+  text-align: center;          /* centered header title */ 
 }
-
 .training-table td:first-child {
+  background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
-  text-align: left;
   padding-left: 10px;
   padding-right: 10px;
 }
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
   transform: scale(1.1);
-  margin-right: 10px;
+  margin-right: 10px;          /* more right padding for checkbox */
 }
 .training-table td:first-child input[type="text"] {
   width: 95%;
   padding: 7px 10px;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
   text-align: left;
 }
 
+/* Column widths to comfortably show longest options */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  width: 205px;
+  width: 205px;                /* User Acceptance — wide enough */
   min-width: 205px;
 }
 
+/* Inputs/Selects inside table cells */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 140px;
+  min-width: 150px;            /* ensure "Not Trained" is fully visible */
   box-sizing: border-box;
-  padding: 4px 6px;
+  padding: 6px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 }
 .training-table input[type="text"]:focus,
@@ -498,9 +432,15 @@ main {
   background: #fff9f5;
 }
 
-.training-table tbody tr:nth-child(odd) { background: #fff; }
-.training-table tbody tr:nth-child(even) { background: #fafafa; }
+/* Alternating rows */
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
+}
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
+}
 
+/* Table footer + "+" button (smaller & round) */
 .table-footer {
   width: 100%;
   background: #f5f5f5;
@@ -522,6 +462,7 @@ main {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  transition: .2s;
   box-shadow: 0 1px 3px rgba(243,111,33,0.25);
 }
 .table-footer .add-row:hover {
@@ -529,160 +470,155 @@ main {
   transform: scale(1.05);
 }
 
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
+/* ===== Scrollbar (horizontal) ===== */
+.scroll-wrapper::-webkit-scrollbar { 
+  height: 8px; 
 }
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
 }
 
-/* =======================================================
-   DMS TABLE-SPECIFIC OVERRIDES
-   ======================================================= */
-
-/* For DMS tables we want a normal first column, not checkbox + text input */
-.dms-table th:first-child,
-.dms-table td:first-child {
-  width: 160px !important;
-  min-width: 160px !important;
+/* ===== Floating PDF button (summary page) ===== */
+/* Now inline, pill-shaped, orange, under/near title (not fixed) */
+.floating-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 16px 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.dms-table td:first-child {
-  display: table-cell !important;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: left;
-}
-.dms-table tbody td:first-child {
-  background-color: inherit;
-}
-.dms-table thead th {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-.dms-table thead th:first-child {
-  background: var(--light-orange) !important;
-  color: #fff !important;
-}
-.dms-table th {
-  white-space: normal;
+.floating-btn:hover {
+  background: #ff8b42;
 }
 
-/* Make Customer Pull column a bit thinner */
-.dms-table th:nth-child(2),
-.dms-table td:nth-child(2) {
-  width: 90px !important;
-  min-width: 90px !important;
+/* ===== Footer ===== */
+#footer { 
+  padding: 24px; 
+  text-align: center; 
+  color: #666; 
+  font-size: 13px; 
 }
 
-/* On Demand + note formatting */
-.dms-main {
-  display: block;
-}
-.dms-note {
-  display: block;
-  font-size: 10px;
-  color: #555;
-  margin-top: 2px;
-  line-height: 1.2;
-}
-
-/* Automate row slightly taller but not huge */
-.dms-automate-row td {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-}
-
-/* ===== Header parentheses text ===== */
-.training-table thead th .muted-note,
-.dms-table thead th .muted-note {
-  font-size: 10px !important;
-  color: #fff !important;
-  line-height: 1.1 !important;
-  display: block;
-  margin-top: 2px;
-}
-
-/* ===== Muted note in body text ===== */
+/* ===== Muted note (for text inside parentheses) ===== */
 .muted-note {
   font-size: 0.9em;
   color: #666;
-  font-style: italic !important;
-}
-
-/* ===== Training Summary Status Bar (optional) ===== */
-.summary-status-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  font-size: 12px;
-  color: #555;
-  margin: 4px 0 16px 4px;
-}
-.status-pill {
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-}
-.status-good {
-  background: #e6f6ea;
-  color: #1f7a35;
-}
-.status-warning {
-  background: #fff6e0;
-  color: #a86a00;
-}
-.status-risk {
-  background: #ffe6e3;
-  color: #b02222;
+  font-style: italic !important;   /* override global reset */
 }
 
 /* =======================================================
-   Two-column layout for cards on pages 1,2,3,4,8,9
-   (sections marked with .form-layout in HTML)
+   DMS PAGE – SPACING & POLISH
    ======================================================= */
 
-.page-section.form-layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+/* Overview block spacing */
+.dms-overview-block {
+  margin-bottom: 28px;
 }
 
-/* Cards (.section-block) go side by side */
-.page-section.form-layout > .section-block {
-  width: calc(50% - 12px);
+/* Legend for DMS */
+.dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
 }
 
-/* Any table-based sections still span full width */
-.page-section.form-layout > .section {
+/* Each DMS provider block (no card border, just clean spacing) */
+.dms-provider-block {
+  margin: 20px 0 26px;
+  padding: 12px 0 4px;
+  border: none;
+  box-shadow: none !important;
+}
+
+/* Subtle divider line between providers, but not above the first one */
+.dms-provider-block + .dms-provider-block {
+  border-top: 1px solid #e3e3e3;
+  padding-top: 18px;
+}
+
+/* Provider titles */
+.dms-provider-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Clean 2-column DMS tables */
+.clean-dms-table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
 }
 
-/* Textareas still respect card width */
-.page-section.form-layout .section-block textarea {
-  width: 100%;
+/* Turn off sticky behavior inside the DMS tables only */
+.clean-dms-table th,
+.clean-dms-table td {
+  position: static !important;
 }
 
-/* On smaller screens, fall back to single column */
+/* Left column (labels) */
+.clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #444;
+}
+
+/* Right column (descriptions) */
+.clean-dms-table td {
+  padding: 6px 12px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Slight zebra striping for readability */
+.clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+.clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Muted notes inside DMS tables */
+.clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
+}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
 @media (max-width: 900px) {
-  .page-section.form-layout {
-    display: block;
-  }
-  .page-section.form-layout > .section-block {
-    width: 100%;
-  }
-}
-
-/* ===== Responsive for whole layout ===== */
-@media (max-width: 900px) {
-  #sidebar { width: 150px; }
-  main { margin-left: 150px; padding: 20px; }
+  #sidebar { width: 170px; }
+  main { margin-left: 170px; padding: 20px; }
 }
 @media (max-width: 600px) {
   #sidebar { display: none; }
-  main { margin-left: 0; padding: 20px; }
+  main { margin-left: 0; padding: 16px; }
 }
