@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Stable Build — v20251112F
+   Stable Build — v20251112G
    ======================================================= */
 
 :root {
@@ -26,7 +26,7 @@ html, body {
   overflow-x: auto; /* prevent cutoff of far-right table columns */
 }
 
-/* global box-sizing so textareas / inputs don't bleed */
+/* global box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -218,7 +218,7 @@ main {
   padding-right: 8px;
 }
 
-/* Right-side inputs */
+/* Right-side inputs – GLOBAL standard text box */
 .section-block input[type="text"],
 .section-block input[type="number"],
 .section-block input[type="email"],
@@ -226,6 +226,7 @@ main {
   flex: 0 0 230px;
   width: 230px;
   padding: 7px 10px;
+  height: 32px;                   /* standard height for ALL text boxes */
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -254,38 +255,34 @@ main {
 }
 
 /* ===== Integrated "+" buttons inside checklist rows (non-tables) ===== */
-/* Make the input + button look like one smooth pill control */
+/* Make the input + button look like one smooth control, but
+   keep the SAME height as the other text boxes. */
 
+/* Align everything nicely */
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   align-items: center;
 }
 
-/* Input side of pill */
+/* Input side of pill — only change radius + flex, NOT height/padding */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  height: 34px;
-  border-radius: 999px 0 0 999px;
-  padding-right: 0;                   /* text only on left */
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  flex: 0 0 230px;                 /* same width as standard inputs */
+  padding-right: 10px;             /* normal padding */
 }
 
-/* Keep a small wrapper for the control on the right */
-.section-block .checklist-row.integrated-plus input[type="text"],
-.section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 260px;
-}
-
-/* Button side of pill */
+/* Button side of pill – same height as input */
 .section-block .checklist-row > .add-row {
-  position: static;                   /* no absolute – sits next to input */
-  margin-left: -1px;                  /* overlap borders so seam disappears */
+  position: static;
+  margin-left: -1px;               /* overlap borders so seam disappears */
   background: var(--orange);
   color: #fff;
   border: 1px solid var(--orange);
-  border-radius: 0 999px 999px 0;     /* round outer side only */
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  width: 32px;
+  height: 32px;                    /* EXACT same as input height */
+  font-size: 16px;
   font-weight: 700;
   line-height: 1;
   padding: 0;
