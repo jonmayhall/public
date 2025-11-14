@@ -1,6 +1,6 @@
 // =======================================================
 // myKaarma Interactive Training Checklist – FULL JS
-// Stable + Support Ticket logic + Status Auto-Move
+// Stable + Support Ticket logic + Status Auto-Move & Badge
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -58,14 +58,15 @@ window.addEventListener('DOMContentLoaded', () => {
   let closedTicketsBlock = null;
 
   if (supportSection) {
+    openTicketsBlock = supportSection.querySelector('#open-ticket-block');
+    closedTicketsBlock = supportSection.querySelector('#closed-ticket-block');
+
     const ticketBlocks = supportSection.querySelectorAll('.section-block');
-    openTicketsBlock = ticketBlocks[0] || null;
-    closedTicketsBlock = ticketBlocks[1] || null;
-
-    // For each section-block (Open / Closed), wrap its ticket fields into a .ticket-group
     ticketBlocks.forEach(block => {
-      if (block.querySelector('.ticket-group')) return; // avoid double-wrap
+      // Avoid double-wrapping if already processed
+      if (block.querySelector('.ticket-group')) return;
 
+      // Wrap everything except <h2> into a ticket-group
       const children = Array.from(block.children).filter(el => !el.matches('h2'));
       if (!children.length) return;
 
@@ -78,13 +79,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   /* === ADDITIONAL TRAINERS / POC / CHAMPIONS / SUPPORT TICKETS === */
-  // Event delegation so cloned "+" buttons also work
+  // Use event delegation so cloned "+" buttons also work
   document.querySelectorAll('.section-block').forEach(sectionBlock => {
     sectionBlock.addEventListener('click', (event) => {
       const btn = event.target.closest('.add-row');
       if (!btn || !sectionBlock.contains(btn)) return;
 
-      // If this "+" is on the Support Ticket page, clone the FULL ticket group
+      // SPECIAL: Support Ticket page → clone whole ticket group
       if (btn.closest('#support-ticket')) {
         const block = btn.closest('.section-block');
         if (!block) return;
@@ -99,21 +100,25 @@ window.addEventListener('DOMContentLoaded', () => {
           el.value = '';
         });
 
-        // Reset ticket status to Open and enabled
-        const statusSelect = newGroup.querySelector('.ticket-status');
-        if (statusSelect) {
-          statusSelect.disabled = false;
-          statusSelect.value = 'Open';
+        // If this is in the OPEN block, we should have a dropdown status
+        if (openTicketsBlock && openTicketsBlock.contains(block)) {
+          const statusSelect = newGroup.querySelector('.ticket-status');
+          if (statusSelect) {
+            statusSelect.disabled = false;
+            statusSelect.value = 'Open';
+          }
         }
 
+        // If in the CLOSED block, keep the closed badge as-is
         block.appendChild(newGroup);
         return;
       }
 
-      // Default behavior for other integrated-plus buttons:
+      // DEFAULT: other integrated-plus buttons just clone a text input
       const parent = btn.closest('.checklist-row, .section-block');
       if (!parent) return;
 
+      // Prefer the input immediately before the button
       let input = btn.previousElementSibling;
       if (!input || input.tagName !== 'INPUT') {
         input = parent.querySelector('input[type="text"]');
@@ -123,6 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const clone = input.cloneNode(true);
       clone.value = '';
       clone.style.marginTop = '6px';
+
       btn.parentNode.insertBefore(clone, btn);
     });
   });
@@ -138,11 +144,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const isInOpen = openTicketsBlock.contains(group);
 
-      // When a ticket in the Open block is set to "Closed",
-      // move it to the Closed block and lock the status.
+      // If a ticket in the Open block is set to "Closed" → move it and show badge
       if (isInOpen && select.value === 'Closed') {
+        const statusRow = select.closest('.checklist-row');
+
+        // Create and insert badge
+        const badge = document.createElement('span');
+        badge.className = 'closed-badge';
+        badge.textContent = 'Closed';
+
+        select.replaceWith(badge);
+
+        // Move entire group to the Closed Tickets block
         closedTicketsBlock.appendChild(group);
-        select.disabled = true;
       }
     });
   }
@@ -167,6 +181,7 @@ window.addEventListener('DOMContentLoaded', () => {
         doc.setFontSize(16);
         doc.text(title, marginX, marginY);
 
+        // Simplified page content (plain text export)
         const text = page.innerText.replace(/\s+\n/g, '\n').trim();
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
