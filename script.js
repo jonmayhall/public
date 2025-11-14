@@ -1,6 +1,6 @@
 // =======================================================
-// myKaarma Interactive Training Checklist – Stable JS
-// Version: v20251107C
+// myKaarma Interactive Training Checklist – FULL JS
+// Stable + Support Ticket logic
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -15,9 +15,11 @@ window.addEventListener('DOMContentLoaded', () => {
       const target = document.getElementById(btn.dataset.target);
       if (!target) return;
 
+      // Highlight active nav
       nav.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
+      // Swap page
       sections.forEach(sec => sec.classList.remove('active'));
       target.classList.add('active');
 
@@ -25,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* === ADD ROW HANDLER FOR TABLES === */
+  /* === ADD ROW HANDLER FOR TRAINING TABLES === */
   document.querySelectorAll('.table-footer .add-row').forEach(button => {
     button.addEventListener('click', () => {
       const section = button.closest('.section');
@@ -50,13 +52,57 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* === ADDITIONAL TRAINERS & POC BUTTONS === */
+  /* === SUPPORT TICKET PAGE – GROUP SETUP === */
+  const supportSection = document.getElementById('support-ticket');
+  if (supportSection) {
+    // For each section-block (Open / Closed), wrap its ticket fields into a .ticket-group
+    const ticketBlocks = supportSection.querySelectorAll('.section-block');
+    ticketBlocks.forEach(block => {
+      // Avoid double-wrapping if already processed
+      if (block.querySelector('.ticket-group')) return;
+
+      const children = Array.from(block.children).filter(el => !el.matches('h2'));
+      if (!children.length) return;
+
+      const groupWrapper = document.createElement('div');
+      groupWrapper.className = 'ticket-group';
+
+      children.forEach(el => groupWrapper.appendChild(el));
+      block.appendChild(groupWrapper);
+    });
+  }
+
+  /* === ADDITIONAL TRAINERS / POC / CHAMPIONS / SUPPORT TICKETS === */
   document.querySelectorAll('.section-block .add-row').forEach(btn => {
     btn.addEventListener('click', () => {
+      // If this "+" is on the Support Ticket page, clone the FULL ticket group
+      if (btn.closest('#support-ticket')) {
+        const block = btn.closest('.section-block');
+        if (!block) return;
+        const group = btn.closest('.ticket-group');
+        if (!group) return;
+
+        const newGroup = group.cloneNode(true);
+
+        // Clear all text inputs and textareas in the new group
+        newGroup.querySelectorAll('input[type="text"], textarea').forEach(el => {
+          el.value = '';
+        });
+
+        block.appendChild(newGroup);
+        return;
+      }
+
+      // Default behavior for other integrated-plus buttons:
+      // clone the associated text input inside that section-block.
       const parent = btn.closest('.section-block');
       if (!parent) return;
 
-      const input = parent.querySelector('input[type="text"]');
+      // Prefer the input immediately before the button
+      let input = btn.previousElementSibling;
+      if (!input || input.tagName !== 'INPUT') {
+        input = parent.querySelector('input[type="text"]');
+      }
       if (!input) return;
 
       const clone = input.cloneNode(true);
