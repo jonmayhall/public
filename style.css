@@ -216,6 +216,7 @@ main {
   padding-left: 40px;      /* ~about an inch visual indent */
   padding-bottom: 10px;
   border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
+  position: relative;
 }
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
@@ -276,26 +277,29 @@ main {
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button INSIDE certain inputs ===== */
+/* ===== Integrated “+” button INSIDE certain inputs (pill look, touching edge) ===== */
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   position: relative; 
 }
+
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  padding-right: 56px; /* space for the button inside */
+  padding-right: 60px; /* room for pill button */
 }
+
+/* Pill-style + button that visually touches the right edge of the textbox */
 .section-block .checklist-row > .add-row {
   position: absolute;
-  right: 4px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: var(--orange);
   color: #fff;
   border: none;
   border-radius: 999px;         /* pill */
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 26px;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
@@ -305,6 +309,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 2px;
 }
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
@@ -609,6 +614,20 @@ main {
   display: inline-block;
   font-size: 0.85em;
   color: #777;
+}
+
+/* =======================================================
+   SUPPORT TICKET PAGE – CLEAR GROUP DIVIDE
+   ======================================================= */
+
+#support-ticket .ticket-group {
+  padding: 10px 0 6px;
+}
+
+#support-ticket .ticket-group + .ticket-group {
+  border-top: 2px solid #bdbdbd;   /* clear divider between groups */
+  margin-top: 16px;
+  padding-top: 14px;
 }
 
 /* =======================================================
