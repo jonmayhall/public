@@ -369,11 +369,20 @@ main {
   background: #fff9f5;
 }
 
-/* stronger divider before each Name row in contacts */
+/* ===== Dealership Contacts – dividers per manager/POC ===== */
+/* Stronger divider above each Name row */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
+  border-top: 2px solid #bdbdbd;  /* bolder divide */
   padding-top: 12px;
   margin-top: 8px;
+}
+
+/* Additional POC clones: clear divide above each extra POC input */
+#dealership-info .section-block:nth-of-type(2)
+  .checklist-row.integrated-plus input[type="text"] + input[type="text"] {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #bdbdbd;
 }
 
 /* Indented Qs (Post-Training, automated flows, etc.) */
@@ -465,12 +474,28 @@ main {
   justify-content: center;
 }
 
+/* =======================================================
+   POST-TRAINING – divide Champions vs Blockers
+   ======================================================= */
+
+/* Clear divide line between Champion group and Blockers group */
+#post-training .section-block h2
+  + .checklist-row
+  + .checklist-row.integrated-plus
+  + .checklist-row.integrated-plus
+  + .checklist-row.integrated-plus
+  + .checklist-row {
+  border-top: 2px solid #bdbdbd;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
 /* ===== Training TABLES (page 5 & 6) ===== */
 .section { 
   margin-bottom: 40px; 
 }
 
-/* Table Card – remove side padding so header has no white gaps */
+/* Table Card – no side padding so orange header touches edges */
 .table-container {
   width: 100%;
   background: #fff;
@@ -479,7 +504,7 @@ main {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow);
   margin-bottom: 32px;
-  padding: 0;          /* <-- NO horizontal padding so orange header touches edges */
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -488,7 +513,7 @@ main {
   width: 100%;
   overflow-x: auto;
   background: #fff;
-  padding-bottom: 4px; /* vertical only */
+  padding-bottom: 4px;
 }
 
 /* Table */
@@ -602,7 +627,7 @@ main {
   padding: 6px 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;   /* + button on the LEFT now */
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   box-sizing: border-box;
