@@ -1,4 +1,3 @@
-<style>
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
    Unified / Polished Build (with Ticket Labels, Closed Badge,
@@ -42,9 +41,9 @@ html, body {
   padding: 0 40px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   position: fixed;
-  inset: 0 0 auto 0;
+  inset: 0 0 auto 0; /* top:0; left:0; right:0 */
   z-index: 20;
-  border-radius: 0;
+  border-radius: 0; /* straight across, not rounded */
 }
 .topbar-content { 
   display: flex; 
@@ -130,7 +129,7 @@ main {
   display: block; 
 }
 
-/* Page titles */
+/* Page titles: Left aligned with longer orange underline */
 .page-section h1 {
   color: var(--orange);
   margin: 4px 0 8px 4px;
@@ -143,21 +142,21 @@ main {
 .page-section h1::after {
   content: "";
   display: block;
-  width: 360px;
+  width: 360px;             /* longer underline */
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
   border-radius: 2px;
 }
 
-/* Subtitle */
+/* Optional page subtitle under h1 */
 .page-subtitle {
   margin: 4px 0 20px 4px;
   font-size: 13px;
   color: #555;
 }
 
-/* Section headers for tables, etc. */
+/* Section headers used above tables and some grouped content */
 .section-header {
   background: var(--orange);
   color: #fff;
@@ -172,7 +171,7 @@ main {
   gap: 8px;
 }
 
-/* Hide numeric badges in headers */
+/* Hide numeric badges (no numbers in table headers) */
 .section-badge {
   display: none !important;
 }
@@ -209,9 +208,9 @@ main {
   gap: 12px;
   margin-bottom: 14px;
   font-size: 14px;
-  padding-left: 40px;
+  padding-left: 40px;      /* base indent */
   padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
   position: relative;
 }
 .section-block .checklist-row:last-of-type {
@@ -227,12 +226,12 @@ main {
   white-space: normal;
 }
 
-/* Standard indent for sub-questions (matching Welcome text) */
+/* Standard indent for sub-questions (matches Welcome text?) */
 .checklist-row.indent-sub {
   padding-left: 80px !important;
 }
 
-/* Inputs/selects */
+/* Inputs on the RIGHT and smaller */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -240,7 +239,7 @@ main {
 .section-block .checklist-row select {
   flex: 0 0 260px;
   width: 260px;
-  margin-left: auto;
+  margin-left: auto;       /* push to right */
   margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
@@ -249,8 +248,6 @@ main {
   font-size: 13px;
   box-sizing: border-box;
 }
-
-/* Textareas */
 .section-block textarea {
   width: 96%;
   margin: 6px auto 10px;
@@ -263,7 +260,7 @@ main {
   resize: vertical;
 }
 
-/* Focus state */
+/* Focus */
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
@@ -273,33 +270,51 @@ main {
   background: #fff9f5;
 }
 
+/* ===== Dealership Contacts — stronger divider before each Name row ===== */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #bdbdbd;  /* bolder divide */
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
 /* =======================================================
-   Integrated “+” button groups (support tickets + champions)
+   Integrated “+” buttons inside certain inputs
+   Goal:
+   - Total width of [input] == total width of [input][+]
+   - Left edges align with other text boxes
    ======================================================= */
+
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 0;                    /* input and button must touch */
 }
 
+/* Label: same behavior as other rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
 }
 
+/* NORMAL row text boxes are 260px wide.
+   For rows with a + button, we make the textbox narrower so
+   textbox (calc(260px - 38px)) + button (38px) = 260px total.
+   This keeps the outer right edge aligned with normal rows. */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 calc(260px - 38px);
   width: calc(260px - 38px);
   margin-left: auto;
+  margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
+/* Plus button: 38px wide so group width matches 260px */
 .section-block .checklist-row > .add-row {
   background: var(--orange);
   color: #fff;
@@ -321,14 +336,20 @@ main {
   font-size: 18px;
 }
 
+/* Hover */
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
   transform: scale(1.03);
 }
 
 /* =======================================================
-   TABLES (Training Checklist Tables)
+   TABLES
    ======================================================= */
+.section { 
+  margin-bottom: 40px; 
+}
+
+/* Table Card */
 .table-container {
   width: 100%;
   background: #fff;
@@ -347,12 +368,12 @@ main {
   background: #fff;
 }
 
+/* Table */
 .training-table {
   border-collapse: collapse;
   width: 100%;
   min-width: 100%;
 }
-
 .training-table th,
 .training-table td {
   white-space: nowrap;
@@ -363,7 +384,7 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header */
+/* Sticky header — LIGHT ORANGE (including first column header) */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -373,49 +394,95 @@ main {
   z-index: 3;
 }
 
-/* Sticky first column */
+/* Smaller white text for notes inside header cells */
+.training-table thead th .muted-note {
+  font-size: 0.8em;
+  color: #fff;
+}
+
+/* Sticky first column (header centered; body cells white) */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   z-index: 4;
-  width: 270px;
+  width: 270px;                /* name column slightly smaller but roomy */
   min-width: 270px;
+}
+.training-table thead th:first-child { 
+  text-align: center;          /* centered header title */ 
 }
 .training-table td:first-child {
   background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+  margin-right: 10px;          /* more right padding for checkbox */
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  text-align: left;
 }
 
-/* Inputs inside table */
-.training-table select,
-.training-table input[type="text"] {
+/* Column widths to comfortably show longest options */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 205px;                /* User Acceptance — wide enough */
+  min-width: 205px;
+}
+
+/* Inputs/Selects inside table cells */
+.training-table input[type="text"],
+.training-table select {
   width: 100%;
-  min-width: 150px;
-  text-align: center;
+  min-width: 150px;            /* ensure "Not Trained" is fully visible */
+  box-sizing: border-box;
   padding: 6px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
 }
 
-/* Zebra */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+/* Alternating rows */
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
+}
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
+}
 
-/* Table footer (+ button) */
+/* Table footer + "+" button (smaller & round) */
 .table-footer {
+  width: 100%;
   background: #f5f5f5;
-  padding: 6px 10px;
   border-top: 1px solid var(--border);
+  padding: 6px 10px;
   display: flex;
   align-items: center;
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
+  box-sizing: border-box;
 }
-
 .table-footer .add-row {
   background: var(--orange);
   color: #fff;
@@ -426,26 +493,177 @@ main {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  transition: .2s;
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+}
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
+
+/* ===== Scrollbar (horizontal) ===== */
+.scroll-wrapper::-webkit-scrollbar { 
+  height: 8px; 
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
+}
+
+/* ===== Floating PDF button (summary page) ===== */
+.floating-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 16px 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.floating-btn:hover {
+  background: #ff8b42;
+}
+
+/* ===== Footer ===== */
+#footer { 
+  padding: 24px; 
+  text-align: center; 
+  color: #666; 
+  font-size: 13px; 
+}
+
+/* ===== Muted note (for text inside parentheses) ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic !important;   /* override global reset */
 }
 
 /* =======================================================
-   SUPPORT TICKET PAGE
+   DMS PAGE – SPACING & POLISH
    ======================================================= */
+
+/* Overview block spacing */
+.dms-overview-block {
+  margin-bottom: 28px;
+}
+
+/* Legend for DMS */
+.dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Each DMS provider block (no card border, just clean spacing) */
+.dms-provider-block {
+  margin: 20px 0 26px;
+  padding: 12px 0 4px;
+  border: none;
+  box-shadow: none !important;
+}
+
+/* Subtle divider line between providers, but not above the first one */
+.dms-provider-block + .dms-provider-block {
+  border-top: 1px solid #e3e3e3;
+  padding-top: 18px;
+}
+
+/* Provider titles */
+.dms-provider-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Clean 2-column DMS tables */
+.clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky behavior inside the DMS tables only */
+.clean-dms-table th,
+.clean-dms-table td {
+  position: static !important;
+}
+
+/* Left column (labels) */
+.clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #444;
+}
+
+/* Right column (descriptions) */
+.clean-dms-table td {
+  padding: 6px 12px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Slight zebra striping for readability */
+.clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+.clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Muted notes inside DMS tables */
+.clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
+}
+
+/* =======================================================
+   SUPPORT TICKET PAGE – DIVIDE + TICKET LABELS + BADGE
+   ======================================================= */
+
+/* Reset counter per section-block (Open / Closed) */
 #support-ticket .section-block {
   counter-reset: ticket-counter;
 }
 
+/* Base group spacing */
 #support-ticket .ticket-group {
   position: relative;
   padding: 22px 0 6px;
 }
 
+/* Divider between groups */
 #support-ticket .ticket-group + .ticket-group {
   border-top: 2px solid #bdbdbd;
   margin-top: 16px;
   padding-top: 22px;
 }
 
+/* Auto-number label: Ticket 1, Ticket 2, ... */
 #support-ticket .ticket-group::before {
   counter-increment: ticket-counter;
   content: "Ticket " counter(ticket-counter);
@@ -455,11 +673,14 @@ main {
   padding: 2px 10px;
   font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #555;
   background: #f1f1f1;
   border-radius: 999px;
+  border: 1px solid #d0d0d0;
 }
 
-/* Closed badge */
+/* Closed status badge */
 .closed-badge {
   display: inline-block;
   padding: 4px 12px;
@@ -468,6 +689,18 @@ main {
   font-size: 13px;
   font-weight: 600;
   border-radius: 999px;
+  border: 1px solid #c2c2c2;
+  text-align: center;
 }
 
-</style>
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 170px; }
+  main { margin-left: 170px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 16px; }
+}
