@@ -3,16 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- Updated CSS with cache-buster -->
-  <link rel="stylesheet" href="style.css?v=2025A">
+  <!-- Base stylesheet reference (will be replaced by the auto cache-buster) -->
+  <link id="dynamicCSS" rel="stylesheet" href="style.css">
 
-  <!-- PDF JS -->
+  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- Updated JS with cache-buster -->
-  <script src="script.js?v=2025A" defer></script>
+  <!-- Auto Cache-Buster -->
+  <script>
+    // Bust CSS cache
+    const css = document.getElementById("dynamicCSS");
+    css.href = `style.css?v=${Date.now()}`;
+
+    // Bust JS cache
+    const injected = document.createElement("script");
+    injected.src = `script.js?v=${Date.now()}`;
+    injected.defer = true;
+    document.head.appendChild(injected);
+  </script>
 </head>
 <body>
 
