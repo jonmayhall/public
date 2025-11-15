@@ -279,24 +279,29 @@ main {
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button rows (same textbox size & alignment) ===== */
+/* =======================================================
+   Integrated “+” button rows
+   - Text box same size & position as others
+   - Left edges aligned across rows
+   - Button touches input (no gap)
+   ======================================================= */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   display: flex;
   align-items: center;
-  gap: 12px;
-  /* keep same padding-left as normal checklist-row via base class */
+  gap: 0;                    /* we’ll control spacing manually */
 }
 
-/* Label stays exactly like other rows */
+/* Label: manually give gap so input aligns with others */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
+  margin-right: 0;           /* we’ll rely on padding-right for spacing */
 }
 
-/* Textbox: EXACT same size as all others, just with flat right edge */
+/* Textbox: EXACT same size & alignment as normal row */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 260px;           /* same as default */
@@ -309,17 +314,17 @@ main {
   border-bottom-right-radius: 0;
 }
 
-/* Plus button: same vertical size, attached on the right, doesn’t change textbox width */
+/* Plus button: directly attached to textbox, no gap */
 .section-block .checklist-row > .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   cursor: pointer;
 
-  height: 32px;                 /* visually matches input height (7+7+18 line) */
+  height: 32px;                 /* visually matches input height */
   min-width: 32px;
   padding: 0 10px;
-  margin-left: 0;
+  margin-left: 0;               /* TOUCHES input edge */
 
   display: flex;
   align-items: center;
