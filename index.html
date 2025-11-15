@@ -421,79 +421,182 @@
       </div>
     </section>
 
-        <!-- ========================================================= -->
-    <!-- PAGE 4: MONDAY VISIT                                      -->
-    <!-- ========================================================= -->
-    <section id="monday-visit" class="page-section">
-      <h1>Monday Visit</h1>
-      <p class="page-subtitle">
-        Align expectations, confirm MCI process, and identify device gaps on day one.
-      </p>
-      <button class="clear-page-btn">Reset This Page</button>
+      <!-- ========================================= -->
+<!-- ==========   PAGE 4 – MONDAY   ========== -->
+<!-- ========================================= -->
 
-      <div class="section-block">
-        <h2>Dealership Expectations</h2>
-        <div class="checklist-row">
-          <label>Was the dealership prepared for MCI before arrival?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-        </div>
-        <div class="checklist-row">
-          <label>Who is involved in the MCI process?</label>
-          <select>
-            <option></option>
-            <option>Advisors</option>
-            <option>Porters</option>
-            <option>Advisors &amp; Porters</option>
-          </select>
-        </div>
-      </div>
+<div class="page-section" id="monday-visit">
 
-      <div class="section-block">
-        <h2>Additional Comments — Dealership Expectations</h2>
-        <textarea placeholder="Comments for Dealership Expectations …"></textarea>
-      </div>
+  <h1>Monday Visit</h1>
 
-      <div class="section-block">
-        <h2>Scheduled CEM Call</h2>
-        <div class="checklist-row">
-          <label>Did you set up the CEM call for Thursday with SD / SM / PM / BDC <span class="muted-note">(if onsite)</span>?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-        </div>
-      </div>
+  <!-- ============================== -->
+  <!-- Network Review & Systems        -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>Network Review & Systems</h2>
 
-      <div class="section-block">
-        <h2>Additional Comments — Scheduled CEM Call</h2>
-        <textarea placeholder="Comments for CEM Call …"></textarea>
-      </div>
+    <div class="checklist-row">
+      <label>Are the technicians on the correct WiFi?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
 
-      <div class="section-block">
-        <h2>iOS Devices</h2>
-        <div class="checklist-row">
-          <label>Do all technicians have iOS devices?</label>
-          <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-        </div>
+    <div class="checklist-row indent-sub">
+      <label>If no, is IT aware?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
 
-        <div class="checklist-row indent-sub">
-          <label>How many iOS devices are they short?</label>
-          <input type="number">
-        </div>
-      </div>
+    <div class="checklist-row">
+      <label>Is the DMS integrated?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
 
-      <div class="checklist-row">
-        <label>Do all of the advisors have iOS devices?</label>
-        <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-      </div>
+    <div class="checklist-row indent-sub">
+      <label>If no, is a ticket already created?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
 
-      <div class="checklist-row indent-sub">
-        <label>How many iOS devices are they short?</label>
-        <input type="number">
-      </div>
+  </div>
 
-      <div class="section-block">
-        <h2>Additional Comments — iOS Devices</h2>
-        <textarea placeholder="Comments for iOS Devices …"></textarea>
-      </div>
-    </section>
+
+  <!-- ============================== -->
+  <!--        iOS DEVICES CARD        -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>iOS Devices</h2>
+
+    <!-- TECH QUESTIONS -->
+    <div class="checklist-row">
+      <label>Do all technicians have iOS devices?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row indent-sub">
+      <label>How many iOS devices are they short?</label>
+      <input type="number">
+    </div>
+
+    <!-- ADVISOR QUESTIONS (fixed + moved into card) -->
+    <div class="checklist-row">
+      <label>Do all of the advisors have iOS devices?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row indent-sub">
+      <label>How many iOS devices are they short?</label>
+      <input type="number">
+    </div>
+
+  </div>
+  <!-- ============================== -->
+  <!-- COMMENTS FOR iOS DEVICES       -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>Additional Comments — iOS Devices</h2>
+    <textarea placeholder="Comments for iOS Devices …"></textarea>
+  </div>
+  <!-- ============================== -->
+  <!-- TECHNICIAN APP REVIEW          -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>Technician App Review</h2>
+
+    <div class="checklist-row">
+      <label>Are all technicians signed in to the app?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row indent-sub">
+      <label>If no, how many are not signed in?</label>
+      <input type="number">
+    </div>
+
+    <div class="checklist-row">
+      <label>Are all technicians assigned to the correct team?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+  </div>
+  <!-- ============================== -->
+  <!-- ADVISOR APP REVIEW             -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>Advisor App Review</h2>
+
+    <div class="checklist-row">
+      <label>Are all advisors signed in to the app?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row indent-sub">
+      <label>If no, how many advisors are not signed in?</label>
+      <input type="number">
+    </div>
+
+    <div class="checklist-row">
+      <label>Are all advisors assigned to the correct team?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+  </div>
+  <!-- ============================== -->
+  <!-- ADDTIONAL COMMENTS (MONDAY)    -->
+  <!-- ============================== -->
+  <div class="section-block">
+    <h2>Additional Comments</h2>
+    <textarea placeholder="Enter Monday visit comments …"></textarea>
+  </div>
+
+</div>
 
     <!-- ========================================================= -->
     <!-- PAGE 5 : TRAINING CHECKLIST                               -->
