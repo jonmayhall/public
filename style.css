@@ -35,7 +35,6 @@ html, body {
 
 /* ===== TOP BAR ===== */
 #topbar {
-  /* black → orange gradient */
   background: linear-gradient(90deg, #000 0%, var(--orange) 100%);
   height: 70px;
   display: flex;
@@ -45,7 +44,6 @@ html, body {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 20;
-  border-radius: 0;
 }
 .topbar-content { 
   display: flex; 
@@ -79,7 +77,7 @@ html, body {
   overflow-x: hidden; 
 }
 
-/* Darker, more modern sidebar */
+/* ===== SIDEBAR ===== */
 #sidebar {
   background: linear-gradient(180deg, #0b1220 0%, #111827 35%, #020617 100%);
   border-right: 1px solid rgba(15,23,42,0.8);
@@ -97,12 +95,8 @@ html, body {
   gap: 6px; 
 }
 
-/* hide icon span but keep label – "no icons" */
-.nav-icon {
-  display: none;
-}
+.nav-icon { display:none; }
 
-/* MENU BUTTONS – darker, modern, no icons */
 .nav-btn {
   background: transparent;
   border: 1px solid transparent;
@@ -113,41 +107,20 @@ html, body {
   cursor: pointer;
   color: #e5e7eb;
   transition: .18s;
-  position: relative;
-  overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.nav-btn::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 16%;
-  bottom: 16%;
-  width: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to bottom, var(--orange), #22c55e);
-  opacity: 0;
-  transition: opacity .18s;
-}
 .nav-btn:hover {
   background: rgba(15,23,42,0.85);
-  color: #f9fafb;
   border-color: rgba(148,163,184,0.45);
-  box-shadow: 0 2px 8px rgba(15,23,42,0.7);
 }
 .nav-btn.active {
   background: rgba(15,23,42,0.95);
-  color: #f9fafb;
-  font-weight: 600;
   border-color: var(--orange);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.65);
-}
-.nav-btn.active::before {
-  opacity: 1;
+  color: #fff;
 }
 
-/* Clear All: at bottom of sidebar (menu bar) */
+/* ===== CLEAR ALL BUTTON ===== */
 #clearAllBtn {
   position: fixed;
   left: 24px;
@@ -155,54 +128,16 @@ html, body {
   width: calc(230px - 48px);
   padding: 7px 10px;
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   border-radius: 999px;
   border: 1px solid rgba(148,163,184,0.9);
   background: rgba(15,23,42,0.95);
   color: #f9fafb;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  opacity: 0.95;
-  transition: background .16s, transform .16s, opacity .16s, border-color .16s, box-shadow .16s;
-}
-#clearAllBtn:hover {
-  background: linear-gradient(90deg, var(--orange), #22c55e);
-  border-color: #f97316;
-  transform: translateY(-1px);
-  opacity: 1;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.75);
-}
-
-/* per-page clear button – top-right of each card */
-.clear-page-btn {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  padding: 4px 10px;
-  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  border-radius: 999px;
-  border: 1px solid #bbb;
-  background: #f7f7f7;
-  color: #555;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s, color .18s;
-}
-.clear-page-btn:hover {
-  background: #fff;
-  border-color: var(--orange);
-  color: var(--orange);
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.16);
 }
 
+/* ===== MAIN CONTENT ===== */
 main {
   flex: 1;
   margin-left: 230px;
@@ -211,7 +146,7 @@ main {
   box-sizing: border-box;
 }
 
-/* ===== PAGE SECTIONS / CARDS ===== */
+/* ===== PAGE SECTIONS ===== */
 .page-section {
   position: relative;
   display: none;
@@ -220,23 +155,15 @@ main {
   box-shadow: var(--shadow);
   padding: 22px 32px 28px;
   margin: 0 auto 40px;
-  width: 100%;
   max-width: 1100px;
-  box-sizing: border-box;
 }
-.page-section.active { 
-  display: block; 
-}
+.page-section.active { display:block; }
 
-/* Page titles */
 .page-section h1 {
   color: var(--orange);
   margin: 4px 0 8px 4px;
   font-size: 26px;
   font-weight: 700;
-  text-align: left;
-  letter-spacing: .3px;
-  position: relative;
 }
 .page-section h1::after {
   content: "";
@@ -245,683 +172,423 @@ main {
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
-  border-radius: 2px;
 }
 
-/* Optional page subtitle under h1 */
-.page-subtitle {
-  margin: 4px 0 20px 4px;
-  font-size: 13px;
-  color: #555;
-}
-
-/* Section headers */
-.section-header {
-  background: var(--orange);
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  border: 1px solid var(--orange);
-  border-bottom: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.8);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* Section blocks (non-table cards) */
+/* ===== SECTION BLOCKS ===== */
 .section-block {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  padding: 0 22px 14px;
-  margin-bottom: 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
+  background:#fff;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  padding:0 22px 14px;
+  margin-bottom:24px;
 }
 .section-block h2 {
-  margin: 0 0 16px;
-  padding: 10px 16px;
-  background: var(--orange);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  margin-left: -22px;
-  margin-right: -22px;
+  padding:10px 16px;
+  background:var(--orange);
+  color:#fff;
+  font-size:16px;
+  margin:-22px -22px 16px;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-/* ===== NON-TABLE ROWS (Q&A lines) ===== */
+/* ===== FORM ROWS ===== */
 .checklist-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-  font-size: 14px;
-  padding-left: 40px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  padding-left:40px;
+  padding-bottom:10px;
+  border-bottom:1px solid #e0e0e0;
 }
-.section-block .checklist-row:last-of-type {
-  border-bottom: none;
-  margin-bottom: 8px;
-  padding-bottom: 0;
+.checklist-row:last-of-type {
+  border-bottom:none;
 }
 .checklist-row label {
-  flex: 1 1 auto;
-  font-weight: 500;
-  text-align: left;
-  padding-right: 16px;
-  white-space: normal;
+  flex:1;
+  font-weight:500;
+  padding-right:16px;
 }
 
-/* Inputs on the LEFT (aligned column) */
+/* ===== ALL TEXT INPUTS LEFT-ALIGNED ===== */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
 .section-block .checklist-row input[type="date"],
 .section-block .checklist-row select {
-  flex: 0 0 var(--input-width);
-  width: var(--input-width);
-  margin-left: 0;
-  margin-right: 0;
-  padding: 7px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
-  box-sizing: border-box;
-}
-.section-block textarea {
-  width: 96%;
-  margin: 6px auto 10px;
-  display: block;
-  padding: 8px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
-  resize: vertical;
+  flex:0 0 var(--input-width);
+  width:var(--input-width);
+  margin-left:0;
+  padding:7px 10px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:#f7f7f7;
+  font-size:13px;
 }
 
-/* Focus */
+/* ===== TEXTAREA (DETAILED DESCRIPTION ALIGNED) ===== */
+.section-block textarea {
+  width:var(--input-width);     /* SAME WIDTH as all other inputs */
+  margin-left:0;                /* LEFT EDGE aligned */
+  margin-top:6px;
+  margin-bottom:10px;
+  padding:8px 10px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:#f7f7f7;
+  font-size:13px;
+  resize:vertical;
+  display:block;
+}
+/* ===== INPUT FOCUS ===== */
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.35);
-  outline: none;
-  background: #fff9f5;
+  background:#fff9f5;
+  box-shadow:0 0 4px rgba(243,111,33,0.35);
+  outline:none;
 }
 
-/* ===== Dealership Contacts – dividers per manager/POC ===== */
-#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 12px;
-  margin-top: 8px;
-}
+/* ===== INTEGRATED “+” BUTTON ROWS ===== */
 
-/* Extra Additional POC clones – divide above each extra POC input (if present) */
-#dealership-info .section-block:nth-of-type(2)
-  .checklist-row.integrated-plus input[type="text"] + input[type="text"] {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 2px solid #bdbdbd;
-}
-
-/* Indented Qs */
-.indent-sub {
-  padding-left: 60px !important;
-}
-
-/* ===== Integrated “+” button rows ===== */
-/* Make them use flex so they align with other rows, but keep input & button touching */
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
-  display: flex;
-  align-items: stretch;
-  gap: 0; /* no horizontal gap so input and + unify */
+  display:flex;
+  align-items:stretch;
+  gap:0; /* unified control (input + button) */
 }
 
-/* Label behaves like normal rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
-  flex: 1 1 auto;
-  padding-right: 16px;
+  flex:1;
+  padding-right:16px;
 }
 
-/* Text box column: combo width (input + button) == normal input width */
+/* input width = (normal width - button width) */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 calc(var(--input-width) - 34px);
-  width: calc(var(--input-width) - 34px);
-  margin-left: 0;
-  margin-right: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  flex:0 0 calc(var(--input-width) - 34px);
+  width:calc(var(--input-width) - 34px);
+  margin-left:0;
+  border-top-right-radius:0;
+  border-bottom-right-radius:0;
 }
 
-/* Stacked clones: tighten vertical spacing */
+/* tighter vertical spacing between cloned rows */
 .section-block .checklist-row.integrated-plus input[type="text"] + input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] + input[type="text"] {
-  margin-top: 6px;
+  margin-top:6px;
 }
 
-/* Integrated + button – pill on the right, touching the input */
+/* the + button itself */
 .section-block .checklist-row.integrated-plus > .add-row,
 .section-block .checklist-row:has(> .add-row) > .add-row {
-  flex: 0 0 34px;
-  position: relative;
-  margin-left: -1px; /* ensures input & button visually touch */
-  background: var(--orange);
-  color: #fff;
-  border: 1px solid var(--orange);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-  transition: .18s ease-in-out;
-  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  margin-left:-1px; /* fuse input + button */
+  background:var(--orange);
+  color:#fff;
+  border:1px solid var(--orange);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 .section-block .checklist-row.integrated-plus > .add-row:hover,
 .section-block .checklist-row:has(> .add-row) > .add-row:hover {
-  background: #ff8b42;
-  transform: translateY(-1px);
+  background:#ff8b42;
+  transform:translateY(-1px);
 }
 
-/* =======================================================
-   POST-TRAINING – divide Champions vs Blockers
-   ======================================================= */
-
+/* ===== POST-TRAINING GROUP DIVIDERS ===== */
 #post-training .section-block h2
   + .checklist-row
   + .checklist-row.integrated-plus
   + .checklist-row.integrated-plus
   + .checklist-row.integrated-plus
   + .checklist-row {
-  border-top: 2px solid #bdbdbd;
-  margin-top: 12px;
-  padding-top: 12px;
+  border-top:2px solid #bdbdbd;
+  padding-top:12px;
+  margin-top:12px;
 }
 
-/* ===== Training TABLES (page 5 & 6) ===== */
-.section { 
-  margin-bottom: 40px; 
-}
+/* =======================================================
+   TRAINING TABLES
+   ======================================================= */
 
-/* Table Card – no side padding so orange header touches edges */
 .table-container {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  box-shadow: var(--shadow);
-  margin-bottom: 32px;
-  padding: 0;
-  box-sizing: border-box;
+  width:100%;
+  background:#fff;
+  border:1px solid var(--border);
+  border-top:none;
+  border-radius:0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow:var(--shadow);
+  margin-bottom:32px;
 }
 
 .scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  background: #fff;
-  padding-bottom: 4px;
+  width:100%;
+  overflow-x:auto;
+  background:#fff;
+  padding-bottom:4px;
 }
 
-/* Table */
 .training-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 1000px;
+  border-collapse:collapse;
+  width:100%;
+  min-width:1000px;
 }
+
 .training-table th,
 .training-table td {
-  white-space: nowrap;
-  text-align: center;
-  font-size: 13px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 6px 6px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+  padding:6px;
+  font-size:13px;
 }
 
-/* Sticky header — LIGHT ORANGE (edge to edge) */
+/* sticky header */
 .training-table thead th {
-  background: var(--light-orange);
-  color: #fff;
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
+  background:var(--light-orange);
+  color:#fff;
+  font-weight:600;
+  position:sticky;
+  top:0;
+  z-index:3;
 }
 
-/* Smaller white text for notes inside header cells */
-.training-table thead th .muted-note {
-  font-size: 0.8em;
-  color: #fff;
-}
-
-/* Sticky first column */
+/* sticky first col */
 .training-table th:first-child,
 .training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
-  width: 240px;
-  min-width: 240px;
+  position:sticky;
+  left:0;
+  z-index:4;
+  width:240px;
+  min-width:240px;
+  background:#fff;
 }
-.training-table thead th:first-child { 
-  text-align: center;
-}
+
+/* first col layout */
 .training-table td:first-child {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-left:8px;
 }
 .training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.05);
-  margin-right: 8px;
+  transform:scale(1.05);
 }
 .training-table td:first-child input[type="text"] {
-  width: 95%;
-  padding: 7px 8px;
-  font-size: 13px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  text-align: left;
+  width:95%;
+  padding:7px 8px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:#f7f7f7;
 }
 
-/* Column widths */
+/* second column width */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  width: 185px;
-  min-width: 185px;
+  width:185px;
+  min-width:185px;
 }
 
-/* Inputs/Selects inside table cells */
+/* inputs inside table */
 .training-table input[type="text"],
 .training-table select {
-  width: 100%;
-  min-width: 130px;
-  box-sizing: border-box;
-  padding: 5px 5px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  font-size: 13px;
-  text-align: center;
+  width:100%;
+  min-width:130px;
+  padding:5px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:#f7f7f7;
 }
 .training-table input[type="text"]:focus,
 .training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
+  border-color:var(--orange);
+  background:#fff9f5;
 }
 
-/* Alternating rows */
-.training-table tr:nth-child(odd) { 
-  background: #fff; 
-}
-.training-table tr:nth-child(even) { 
-  background: #fafafa; 
-}
+/* zebra rows */
+.training-table tr:nth-child(odd) {background:#fff;}
+.training-table tr:nth-child(even){background:#fafafa;}
 
-/* Table footer + "+" button  */
+/* table footer add button */
 .table-footer {
-  width: 100%;
-  background: #f5f5f5;
-  border-top: 1px solid var(--border);
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;   /* + button on the LEFT */
-  border-bottom-left-radius: var(--radius-lg);
-  border-bottom-right-radius: var(--radius-lg);
-  box-sizing: border-box;
+  width:100%;
+  background:#f5f5f5;
+  border-top:1px solid var(--border);
+  padding:6px 10px;
+  display:flex;
+  border-bottom-left-radius:var(--radius-lg);
+  border-bottom-right-radius:var(--radius-lg);
 }
 .table-footer .add-row {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:22px;
+  height:22px;
+  font-size:14px;
+  cursor:pointer;
 }
 .table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
+  background:#ff8b42;
 }
 
-/* ===== Scrollbar (horizontal) ===== */
-.scroll-wrapper::-webkit-scrollbar, 
-.table-container::-webkit-scrollbar { 
-  height: 8px; 
+/* scrollbar */
+.scroll-wrapper::-webkit-scrollbar {height:8px;}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background:#ccc;
+  border-radius:6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb,
-.table-container::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover,
-.table-container::-webkit-scrollbar-thumb:hover { 
-  background-color: #999; 
-}
-
-/* ===== Floating PDF button (summary page) ===== */
-#training-summary .floating-btn {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  position: absolute;
-  top: 18px;
-  right: 24px;
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-#training-summary .floating-btn:hover {
-  background: #ff8b42;
-}
-
-/* ===== Footer ===== */
-#footer { 
-  padding: 24px; 
-  text-align: center; 
-  color: #666; 
-  font-size: 13px; 
-}
-
-/* ===== Muted note ===== */
-.muted-note {
-  font-size: 0.9em;
-  color: #666;
-  font-style: italic !important;
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background:#999;
 }
 
 /* =======================================================
-   SUPPORT TICKET – clearer Ticket 1 / Ticket 2 groups
+   SUPPORT TICKETS
    ======================================================= */
 
 .ticket-group {
-  margin: 16px 0;
-  padding: 14px 18px 18px;
-  border-radius: 16px;
-  border: 1px solid #e1e1e1;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  margin:16px 0;
+  padding:14px 18px 18px;
+  border-radius:16px;
+  border:1px solid #e1e1e1;
+  background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* “Ticket 1 / Ticket 2” pill */
 .ticket-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--orange), #ff9f50);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.ticket-group .checklist-row:first-of-type {
-  margin-top: 8px;
-}
-
-.ticket-status-row {
-  border-bottom: 1px dashed #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  display:inline-flex;
+  padding:3px 10px;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--orange), #ff9f50);
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  margin-bottom:8px;
 }
 
 /* =======================================================
-   DMS PAGE – CARD MATRIX WITH DOT-ONLY STATUS (CB SAFE)
+   DMS PAGE
    ======================================================= */
 
-/* Overview block spacing */
-.dms-overview-block {
-  margin-bottom: 28px;
-}
+.dms-overview-block { margin-bottom:28px; }
 
-/* Legend for DMS */
 .dms-legend {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 6px 18px;
-  font-size: 13px;
-  margin-top: 8px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:6px 18px;
+  font-size:13px;
+  margin-top:8px;
 }
-
-/* Small colored dot used in the legend and anywhere else */
 .dms-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  margin-right: 6px;
-  flex-shrink: 0;
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  display:inline-block;
+  margin-right:6px;
 }
 
-/* Container for the entire matrix of cards */
-.dms-table-container {
-  margin-top: 18px;
-}
+.dms-table-container { margin-top:18px; }
 
-/* Responsive grid of DMS cards */
 .dms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  padding: 12px 4px 4px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  padding:12px 4px 4px;
 }
 
-/* Individual DMS card */
 .dms-card {
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
-  padding: 14px 16px 12px;
+  background:#fff;
+  border-radius:16px;
+  border:1px solid #e5e7eb;
+  padding:14px 16px;
+  box-shadow:0 4px 10px rgba(15,23,42,0.08);
 }
 
-/* Card header: DMS name + chip (Push-based / Pull-based) */
 .dms-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .dms-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
+  font-size:16px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-/* “Push-Based / Pull-Based” pill */
 .dms-chip {
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  padding:3px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
 }
 
 .dms-chip-push {
-  background: rgba(34, 197, 94, 0.12);
-  color: #15803d;
-  border: 1px solid rgba(34, 197, 94, 0.5);
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.5);
+  color:#15803d;
 }
-
 .dms-chip-pull {
-  background: rgba(59, 130, 246, 0.12);
-  color: #1d4ed8;
-  border: 1px solid rgba(59, 130, 246, 0.5);
+  background:rgba(59,130,246,0.12);
+  border:1px solid rgba(59,130,246,0.5);
+  color:#1d4ed8;
 }
 
-/* List inside each card */
-.dms-list {
-  list-style: none;
-  margin: 0;
-  padding: 4px 0 0;
-}
-
+.dms-list { list-style:none; padding:4px 0 0; }
 .dms-list li {
-  padding: 6px 0 8px;
-  border-top: 1px dashed #e5e7eb;
+  padding:6px 0 8px;
+  border-top:1px dashed #e5e7eb;
 }
+.dms-list li:first-child { border-top:none; }
 
-.dms-list li:first-child {
-  border-top: none;
-}
-
-/* Top line: field name on left, dot on right */
 .dms-row-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 2px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.dms-field {
-  font-weight: 500;
-  font-size: 13px;
-  color: #111827;
-}
-
-/* Dot-only tag on right (no text) */
 .dms-tag {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  padding: 0;
-  margin-left: 8px;
-  overflow: hidden;
-  font-size: 0; /* hides any text inside */
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  font-size:0;
 }
 
-/* No inner white dot */
-.dms-tag::before {
-  content: none !important;
-}
-
-/* COLOR-BLIND SAFE PALETTE */
-
-/* Auto — Green */
-.dms-dot-auto,
-.dms-tag-auto {
-  background: #22c55e;
-}
-
-/* On-Demand — Blue */
-.dms-dot-ondemand,
-.dms-tag-ondemand {
-  background: #3b82f6;
-}
-
-/* With RO — Deep orange (replaces purple) */
-.dms-dot-withro,
-.dms-tag-withro {
-  background: #f97316;
-}
-
-/* Planned — Amber */
-.dms-dot-planned,
-.dms-tag-planned {
-  background: #eab308;
-}
-
-/* N/A — Gray */
-.dms-dot-na,
-.dms-tag-na {
-  background: #9ca3af;
-}
-
-/* Limited — Red for strong contrast */
-.dms-dot-limited,
-.dms-tag-limited {
-  background: #ef4444;
-}
-
-/* Display — Teal */
-.dms-dot-display,
-.dms-tag-display {
-  background: #06b6d4;
-}
-
-/* Description text under each row */
-.dms-list p {
-  margin: 0;
-  font-size: 12px;
-  color: #4b5563;
-  line-height: 1.4;
-}
-
-/* Notes in DMS cards */
-.dms-list .muted-note {
-  display: inline-block;
-  font-size: 0.85em;
-  color: #777;
-}
+/* Color-blind safe statuses */
+.dms-tag-auto, .dms-dot-auto     { background:#22c55e; }
+.dms-tag-ondemand, .dms-dot-ondemand { background:#3b82f6; }
+.dms-tag-withro, .dms-dot-withro { background:#f97316; }
+.dms-tag-planned, .dms-dot-planned { background:#eab308; }
+.dms-tag-na, .dms-dot-na         { background:#9ca3af; }
+.dms-tag-limited, .dms-dot-limited { background:#ef4444; }
+.dms-tag-display, .dms-dot-display { background:#06b6d4; }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 190px; }
-  main { margin-left: 190px; padding: 20px; }
+
+@media (max-width:900px) {
+  #sidebar { width:190px; }
+  main { margin-left:190px; }
 }
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 16px; }
+
+@media (max-width:600px) {
+  #sidebar { display:none; }
+  main { margin-left:0; padding:16px; }
 }
