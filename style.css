@@ -281,56 +281,59 @@ main {
 
 /* =======================================================
    Integrated “+” button rows
-   - Text box same size & position as others
-   - Left edges aligned across rows
-   - Button touches input (no gap)
+   Goal:
+   - Overall width of [input] == overall width of [input][+]
+   - Left edges of all text boxes aligned
    ======================================================= */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   display: flex;
   align-items: center;
-  gap: 0;                    /* we’ll control spacing manually */
+  gap: 0;                    /* input and button must touch */
 }
 
-/* Label: manually give gap so input aligns with others */
+/* Label: same behavior as other rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
-  margin-right: 0;           /* we’ll rely on padding-right for spacing */
 }
 
-/* Textbox: EXACT same size & alignment as normal row */
+/* NORMAL row text boxes are 260px wide.
+   For rows with a + button, we make the textbox narrower so
+   textbox (calc(260px - 38px)) + button (38px) = 260px total.
+   This keeps the outer right edge aligned with normal rows.
+*/
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 260px;           /* same as default */
-  width: 260px;
+  flex: 0 0 calc(260px - 38px);
+  width: calc(260px - 38px);
   margin-left: auto;
   margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
-  border-top-right-radius: 0;   /* straight edge where it meets + */
+  border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* Plus button: directly attached to textbox, no gap */
+/* Plus button: 38px wide so group width matches 260px */
 .section-block .checklist-row > .add-row {
   background: var(--orange);
   color: #fff;
   border: none;
   cursor: pointer;
 
-  height: 32px;                 /* visually matches input height */
-  min-width: 32px;
-  padding: 0 10px;
-  margin-left: 0;               /* TOUCHES input edge */
+  height: 32px;                 /* visually matching input height */
+  width: 38px;
+  padding: 0;
+  margin-left: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;  /* only outer corners rounded */
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   box-shadow: 0 1px 4px rgba(243,111,33,0.25);
   font-weight: 700;
   font-size: 18px;
@@ -617,7 +620,7 @@ main {
 .clean-dms-table tbody tr:nth-child(odd) td {
   background: #ffffff;
 }
-.clean-dms-table tbody tr:nth-child(even) td {
+clean-dms-table tbody tr:nth-child(even) td {
   background: #fafafa;
 }
 
