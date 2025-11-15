@@ -6,25 +6,26 @@
 
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- Base stylesheet reference (will be replaced by the auto cache-buster) -->
+  <!-- Base stylesheet reference (will be overwritten by auto cache-buster) -->
   <link id="dynamicCSS" rel="stylesheet" href="style.css">
 
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- Auto Cache-Buster -->
+  <!-- Auto Cache-Buster (RESTORES your original behavior) -->
   <script>
-    // Bust CSS cache
+    // 🔥 Force fresh CSS every load
     const css = document.getElementById("dynamicCSS");
     css.href = `style.css?v=${Date.now()}`;
 
-    // Bust JS cache
+    // 🔥 Force fresh JS every load
     const injected = document.createElement("script");
     injected.src = `script.js?v=${Date.now()}`;
     injected.defer = true;
     document.head.appendChild(injected);
   </script>
 </head>
+
 <body>
 
 <header id="topbar">
