@@ -1,7 +1,7 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Modern UI
    Brand: myKaarma orange + lime green
-   NOTE: Training tables (page 5 & 6) styles kept intact.
+   TABLES: reverted to stable, working version
    ======================================================= */
 
 :root {
@@ -364,8 +364,7 @@ main {
 }
 
 /* =======================================================
-   TABLES (Training Checklist / Opcodes & Pricing)
-   NOTE: These are kept from your previous design.
+   TABLES – STABLE VERSION (Training Checklist / Opcodes)
    ======================================================= */
 
 .section {
@@ -427,7 +426,7 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header — LIGHT ORANGE (including first column header) */
+/* Sticky header — LIGHT ORANGE */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -437,13 +436,12 @@ main {
   z-index: 3;
 }
 
-/* Smaller white text for notes inside header cells */
 .training-table thead th .muted-note {
   font-size: 0.8em;
   color: #fff;
 }
 
-/* Sticky first column (header centered; body cells white) */
+/* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
@@ -452,7 +450,7 @@ main {
   width: 270px;
   min-width: 270px;
 }
-.training-table thead th:first-child {
+.training-table thead th:first-child { 
   text-align: center;
 }
 .training-table td:first-child {
@@ -507,11 +505,11 @@ main {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) {
-  background: #fff;
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
 }
-.training-table tr:nth-child(even) {
-  background: #fafafa;
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
 }
 
 /* Table footer + "+" button */
@@ -545,15 +543,15 @@ main {
 }
 
 /* Scrollbar */
-.scroll-wrapper::-webkit-scrollbar {
-  height: 8px;
+.scroll-wrapper::-webkit-scrollbar { 
+  height: 8px; 
 }
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
+.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
 }
 
 /* =======================================================
