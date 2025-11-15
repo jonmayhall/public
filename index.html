@@ -421,19 +421,21 @@
       </div>
     </section>
 
-      <!-- ========================================= -->
-<!-- ==========   PAGE 4 – MONDAY   ========== -->
-<!-- ========================================= -->
-
-<div class="page-section" id="monday-visit">
-
+ <!-- ========================================================= -->
+<!-- PAGE 4: MONDAY VISIT                                      -->
+<!-- ========================================================= -->
+<section id="monday-visit" class="page-section">
   <h1>Monday Visit</h1>
+  <p class="page-subtitle">
+    Align expectations, confirm MCI process, and identify device gaps on day one.
+  </p>
+  <button class="clear-page-btn">Reset This Page</button>
 
   <!-- ============================== -->
-  <!-- Network Review & Systems        -->
+  <!-- Network Review & Systems       -->
   <!-- ============================== -->
   <div class="section-block">
-    <h2>Network Review & Systems</h2>
+    <h2>Network Review &amp; Systems</h2>
 
     <div class="checklist-row">
       <label>Are the technicians on the correct WiFi?</label>
@@ -455,6 +457,23 @@
       </select>
     </div>
 
+    <!-- NEW: WiFi dead spots question -->
+    <div class="checklist-row">
+      <label>During your WiFi test, were there any dead spots in the shop or drive?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row indent-sub integrated-plus">
+      <label>If yes, where are the dead spots?</label>
+      <input type="text" placeholder="Location (e.g., back shop, service drive)">
+      <button class="add-row" type="button">+</button>
+    </div>
+
     <div class="checklist-row">
       <label>Is the DMS integrated?</label>
       <select>
@@ -474,17 +493,15 @@
         <option>N/A</option>
       </select>
     </div>
-
   </div>
 
-
   <!-- ============================== -->
-  <!--        iOS DEVICES CARD        -->
+  <!-- iOS Devices                    -->
   <!-- ============================== -->
   <div class="section-block">
     <h2>iOS Devices</h2>
 
-    <!-- TECH QUESTIONS -->
+    <!-- Techs -->
     <div class="checklist-row">
       <label>Do all technicians have iOS devices?</label>
       <select>
@@ -500,7 +517,7 @@
       <input type="number">
     </div>
 
-    <!-- ADVISOR QUESTIONS (fixed + moved into card) -->
+    <!-- Advisors -->
     <div class="checklist-row">
       <label>Do all of the advisors have iOS devices?</label>
       <select>
@@ -515,17 +532,15 @@
       <label>How many iOS devices are they short?</label>
       <input type="number">
     </div>
-
   </div>
-  <!-- ============================== -->
-  <!-- COMMENTS FOR iOS DEVICES       -->
-  <!-- ============================== -->
+
   <div class="section-block">
     <h2>Additional Comments — iOS Devices</h2>
     <textarea placeholder="Comments for iOS Devices …"></textarea>
   </div>
+
   <!-- ============================== -->
-  <!-- TECHNICIAN APP REVIEW          -->
+  <!-- Technician App Review          -->
   <!-- ============================== -->
   <div class="section-block">
     <h2>Technician App Review</h2>
@@ -554,10 +569,10 @@
         <option>N/A</option>
       </select>
     </div>
-
   </div>
+
   <!-- ============================== -->
-  <!-- ADVISOR APP REVIEW             -->
+  <!-- Advisor App Review             -->
   <!-- ============================== -->
   <div class="section-block">
     <h2>Advisor App Review</h2>
@@ -586,17 +601,16 @@
         <option>N/A</option>
       </select>
     </div>
-
   </div>
+
   <!-- ============================== -->
-  <!-- ADDTIONAL COMMENTS (MONDAY)    -->
+  <!-- Additional Comments (Monday)   -->
   <!-- ============================== -->
   <div class="section-block">
     <h2>Additional Comments</h2>
     <textarea placeholder="Enter Monday visit comments …"></textarea>
   </div>
-
-</div>
+</section>
 
     <!-- ========================================================= -->
     <!-- PAGE 5 : TRAINING CHECKLIST                               -->
