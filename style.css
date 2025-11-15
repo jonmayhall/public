@@ -1,17 +1,18 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Light Modern UI
+   Option 1: Light Modern Cards
    Brand: softer myKaarma orange + lime accent
-   Tables: simple, full-content, non-sticky (unchanged structure)
+   Tables: structure unchanged (Training + Opcodes)
    ======================================================= */
 
 :root {
   /* Softer, less-neon orange + warm light orange */
-  --orange: #e86628;       /* slightly darker / less neon */
-  --light-orange: #f5b489;
-  --lime: #c9dc3f;
+  --orange: #e05b22;       /* softer than neon */
+  --light-orange: #f3b28a;
+  --lime: #c5d838;
 
-  --app-bg-top: #f5f7fb;
-  --app-bg-bottom: #e3e6f0;
+  --app-bg-top: #f7f8fc;
+  --app-bg-bottom: #e7ecf7;
 
   --card-bg: #ffffff;
   --border: #d7d7e0;
@@ -20,7 +21,7 @@
   --radius-lg: 18px;  /* cards */
   --radius-sm: 14px;  /* inputs / buttons */
 
-  --shadow-soft: 0 2px 10px rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 2px 8px rgba(15, 23, 42, 0.10);
 }
 
 /* ===== BASE ===== */
@@ -39,7 +40,7 @@ html, body {
 
 /* ===== TOP BAR ===== */
 #topbar {
-  background: linear-gradient(90deg, #111827 0%, #222742 40%, #111827 100%);
+  background: linear-gradient(90deg, #141827 0%, #252b3f 45%, #141827 100%);
   height: 70px;
   display: flex;
   align-items: center;
@@ -169,7 +170,7 @@ main {
   top: -70px;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle at center, rgba(232,102,40,0.09), transparent 70%);
+  background: radial-gradient(circle at center, rgba(224,91,34,0.08), transparent 70%);
   opacity: 0.9;
 }
 .page-section.active {
@@ -255,7 +256,7 @@ main {
   color: #111827;
 }
 
-/* Indented sub-questions */
+/* Indented sub-questions (all match each other) */
 .checklist-row.indent-sub {
   padding-left: 60px;
 }
@@ -289,12 +290,12 @@ main {
   resize: vertical;
 }
 
-/* Focus */
+/* Focus state */
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(232,102,40,0.22);
+  box-shadow: 0 0 0 3px rgba(224,91,34,0.22);
   outline: none;
   background: #fff;
 }
@@ -347,7 +348,7 @@ main {
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 1px 5px rgba(232,102,40,0.3);
+  box-shadow: 0 1px 5px rgba(224,91,34,0.3);
   transition: background 0.18s ease, transform 0.12s ease;
 }
 .section-block .checklist-row > .add-row:hover {
@@ -419,9 +420,9 @@ main {
   padding: 8px 10px;
 }
 
-/* Header row – non-sticky now */
+/* Header row – non-sticky, softer gradient */
 .training-table thead th {
-  background: linear-gradient(180deg, var(--light-orange), #f3a96a);
+  background: linear-gradient(180deg, #f6c19a, #f3a66a);
   color: #fff;
   font-weight: 600;
 }
@@ -430,7 +431,7 @@ main {
   color: #fefce8;
 }
 
-/* First column – non-sticky now */
+/* First column – non-sticky but styled nicely */
 .training-table th:first-child,
 .training-table td:first-child {
   width: 270px;
@@ -481,7 +482,7 @@ main {
 .training-table input[type="text"]:focus,
 .training-table select:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(232,102,40,0.2);
+  box-shadow: 0 0 0 3px rgba(224,91,34,0.2);
   outline: none;
   background: #ffffff;
 }
@@ -518,7 +519,7 @@ main {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.18s ease, transform 0.12s ease;
-  box-shadow: 0 2px 6px rgba(232,102,40,0.4);
+  box-shadow: 0 2px 6px rgba(224,91,34,0.4);
 }
 .table-footer .add-row:hover {
   background: #f1813d;
