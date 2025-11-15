@@ -33,7 +33,7 @@ html, body {
 
 /* ===== TOP BAR ===== */
 #topbar {
-  /* CHANGED: black → orange gradient */
+  /* black → orange gradient */
   background: linear-gradient(90deg, #000 0%, var(--orange) 100%);
   height: 70px;
   display: flex;
@@ -55,55 +55,61 @@ html, body {
   height: 42px; 
   object-fit: contain; 
 }
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 #dealershipNameDisplay { 
   color:#fff; 
-  font-size:18px; 
+  font-size:22px;     /* bigger to visually match logo */
   font-weight:600; 
   letter-spacing:.5px; 
 }
 
-/* small, subtle Clear All button in header if present */
+/* Clear All: subtle text-style pill in header */
 #clearAllBtn {
-  margin-left: 16px;
-  padding: 4px 10px;
+  padding: 3px 9px;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.7);
-  background: rgba(0,0,0,0.15);
-  color: #fff;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: transparent;
+  color: #f9fafb;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s;
+  box-shadow: none;
+  opacity: 0.9;
+  transition: background .16s, transform .16s, opacity .16s, border-color .16s;
 }
 #clearAllBtn:hover {
-  background: rgba(0,0,0,0.32);
+  background: rgba(0,0,0,0.22);
   border-color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+  opacity: 1;
 }
 
-/* per-page clear button (if you have one in each section) */
+/* per-page clear button – top-right of each card */
 .clear-page-btn {
-  margin: 0 0 10px auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  position: absolute;
+  top: 16px;
+  right: 24px;
   padding: 4px 10px;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   border-radius: 999px;
   border: 1px solid #bbb;
   background: #f7f7f7;
-  color: #444;
+  color: #555;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s;
+  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s, color .18s;
 }
 .clear-page-btn:hover {
   background: #fff;
@@ -125,8 +131,8 @@ html, body {
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(6px);
   border-right: 1px solid var(--border);
-  width: 210px;
-  padding: 20px 10px;
+  width: 230px;
+  padding: 20px 12px;
   box-shadow: var(--shadow);
   position: fixed;
   top: 70px;
@@ -144,26 +150,28 @@ html, body {
   display: none;
 }
 
-/* MENU BUTTONS – slightly more "premium" but same structure */
+/* MENU BUTTONS – more modern, less "boxy" */
 .nav-btn {
-  background: linear-gradient(90deg, #f5f5f5 0%, #fdfdfd 100%);
-  border: 1px solid rgba(0,0,0,0.04);
-  padding: 9px 12px;
-  font-size: 13px;
+  background: #f9fafb;
+  border: 1px solid rgba(148,163,184,0.45);
+  padding: 8px 12px;
+  font-size: 12px;
   text-align: left;
-  border-radius: 999px;  /* pill */
+  border-radius: 10px;
   cursor: pointer;
-  color: #555;
+  color: #475569;
   transition: .18s;
   position: relative;
   overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 .nav-btn::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 15%;
-  bottom: 15%;
+  top: 10%;
+  bottom: 10%;
   width: 3px;
   border-radius: 999px;
   background: linear-gradient(to bottom, var(--orange), #22c55e);
@@ -171,17 +179,17 @@ html, body {
   transition: opacity .18s;
 }
 .nav-btn:hover {
-  background: #fff8f3;
-  color: var(--orange);
-  border-color: rgba(0,0,0,0.08);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: #fff;
+  color: #111827;
+  border-color: rgba(148,163,184,0.9);
+  box-shadow: 0 2px 6px rgba(148,163,184,0.45);
 }
 .nav-btn.active {
-  background: #fff3eb;
-  color: var(--orange);
+  background: #fff;
+  color: #111827;
   font-weight: 600;
-  border-color: rgba(0,0,0,0.1);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  border-color: var(--orange);
+  box-shadow: 0 3px 8px rgba(243,111,33,0.25);
 }
 .nav-btn.active::before {
   opacity: 1;
@@ -189,7 +197,7 @@ html, body {
 
 main {
   flex: 1;
-  margin-left: 210px;
+  margin-left: 230px;
   padding: 30px 40px;
   background: var(--gray-bg);
   box-sizing: border-box;
@@ -197,6 +205,7 @@ main {
 
 /* ===== PAGE SECTIONS / CARDS ===== */
 .page-section {
+  position: relative;    /* for Clear page & PDF buttons */
   display: none;
   background: var(--card-bg);
   border-radius: var(--radius-lg);
@@ -439,12 +448,12 @@ main {
   justify-content: center;
 }
 
-/* ===== Training TABLES (keep content, fix right edge feel) ===== */
+/* ===== Training TABLES (keep content, fix right crowding) ===== */
 .section { 
   margin-bottom: 40px; 
 }
 
-/* Table Card */
+/* Table Card – add side padding so it doesn't feel glued to edge */
 .table-container {
   width: 100%;
   background: #fff;
@@ -453,7 +462,8 @@ main {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow);
   margin-bottom: 40px;
-  overflow-x: auto;         /* make the whole card scrollable if needed */
+  padding: 0 10px 10px;      /* <-- breathing room on left/right */
+  box-sizing: border-box;
 }
 
 .scroll-wrapper {
@@ -461,12 +471,13 @@ main {
   width: 100%;
   overflow-x: auto;
   background: #fff;
+  padding-bottom: 6px;
 }
 
 /* Table */
 .training-table {
   border-collapse: collapse;
-  width: max(100%, 1200px); /* allow scroll when wide, but not shrink too small */
+  width: max(100%, 1150px); /* scroll when needed, but not smashed */
 }
 .training-table th,
 .training-table td {
@@ -475,7 +486,7 @@ main {
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
+  padding: 6px 8px;          /* slightly smaller to reduce crowding */
 }
 
 /* Sticky header — LIGHT ORANGE (including first column header) */
@@ -500,8 +511,8 @@ main {
   position: sticky;
   left: 0;
   z-index: 4;
-  width: 270px;                /* name column slightly smaller but roomy */
-  min-width: 270px;
+  width: 260px;                /* slightly narrower */
+  min-width: 260px;
 }
 .training-table thead th:first-child { 
   text-align: center;          /* centered header title */ 
@@ -532,17 +543,17 @@ main {
 /* Column widths to comfortably show longest options */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  width: 205px;                /* User Acceptance — wide enough */
-  min-width: 205px;
+  width: 195px;                /* User Acceptance a bit smaller */
+  min-width: 195px;
 }
 
 /* Inputs/Selects inside table cells */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 150px;            /* ensure "Not Trained" is fully visible */
+  min-width: 140px;            /* adjust down to free space */
   box-sizing: border-box;
-  padding: 6px 8px;
+  padding: 6px 6px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -573,6 +584,7 @@ main {
   padding: 6px 10px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   box-sizing: border-box;
@@ -611,8 +623,8 @@ main {
 }
 
 /* ===== Floating PDF button (summary page) ===== */
-/* inline, pill-shaped, orange, right side of card */
-.floating-btn {
+/* top-right of the final page card */
+#training-summary .floating-btn {
   background: var(--orange);
   color: #fff;
   border: none;
@@ -622,13 +634,15 @@ main {
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  margin: 8px 0 16px;
-  float: right;              /* right side of the card */
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.floating-btn:hover {
+#training-summary .floating-btn:hover {
   background: #ff8b42;
 }
 
@@ -688,7 +702,7 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – SPACING & POLISH (unchanged base)
+   DMS PAGE – SPACING & POLISH
    ======================================================= */
 
 /* Overview block spacing */
@@ -784,8 +798,8 @@ main {
    RESPONSIVE
    ======================================================= */
 @media (max-width: 900px) {
-  #sidebar { width: 170px; }
-  main { margin-left: 170px; padding: 20px; }
+  #sidebar { width: 190px; }
+  main { margin-left: 190px; padding: 20px; }
 }
 @media (max-width: 600px) {
   #sidebar { display: none; }
