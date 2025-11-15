@@ -1,488 +1,820 @@
-/* =============== ROOT + GLOBAL ================= */
+/* =======================================================
+   myKaarma Interactive Training Checklist – FULL CSS
+   Refined Build (cards, darker sidebar, fixed tables)
+   ======================================================= */
 
 :root {
-  --bg: #0b0c10;
-  --bg-page: #111827;
-  --bg-card: #ffffff;
-  --bg-card-alt: #f9fafb;
-  --accent: #f97316; /* orange */
-  --accent-soft: #fed7aa;
-  --accent-dark: #ea580c;
-  --accent-border: #fb923c;
-  --header-grad-left: #000000;
-  --header-grad-right: #f97316;
-  --text-main: #111827;
-  --text-subtle: #4b5563;
-  --border: #e5e7eb;
-  --border-strong: #d1d5db;
-  --radius-lg: 14px;
-  --radius-md: 10px;
-  --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.25);
-  --shadow-card: 0 12px 24px rgba(15, 23, 42, 0.16);
-  --nav-height: 56px;
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --card-bg: #fff;
+  --border: #dcdcdc;
+  --ink: #222;
+
+  --radius-lg: 18px;       /* cards */
+  --radius-sm: 14px;       /* inputs / buttons */
+
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
+
+  --input-width: 260px;    /* single source of truth for text-box width */
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
+/* ===== BASE ===== */
+html, body {
   margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top left, #111827, #020617 50%, #000);
-  color: var(--text-main);
-  min-height: 100%;
+  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-/* =============== LAYOUT ================= */
-
-body {
-  display: flex;
-  flex-direction: column;
+/* no italics anywhere by default */
+*, em, i { 
+  font-style: normal !important;
 }
 
-.page-header {
-  background: linear-gradient(
-    90deg,
-    var(--header-grad-left),
-    var(--header-grad-right)
-  );
-  color: #f9fafb;
-  padding: 18px 32px 20px;
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.6);
-  position: sticky;
-  top: 0;
-  z-index: 40;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+/* ===== TOP BAR ===== */
+#topbar {
+  /* black → orange gradient */
+  background: linear-gradient(90deg, #000 0%, var(--orange) 100%);
+  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  border-radius: 0;
+}
+.topbar-content { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
+}
+.top-logo { 
+  height: 42px; 
+  object-fit: contain; 
 }
 
-.header-logo-block {
+.topbar-right {
   display: flex;
   align-items: center;
-  gap: 16px;
-  min-width: 0;
+  gap: 10px;
 }
 
-.header-logo {
-  height: 42px;
-  width: auto;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+#dealershipNameDisplay { 
+  color:#fff; 
+  font-size:22px;
+  font-weight:600; 
+  letter-spacing:.5px; 
 }
 
-.header-title-text h1 {
-  margin: 0;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+/* ===== LAYOUT ===== */
+#app { 
+  display: flex; 
+  min-height: 100vh; 
+  margin-top: 70px; 
+  overflow-x: hidden; 
 }
 
-.header-title-text p {
-  margin: 2px 0 0;
-  font-size: 13px;
-  opacity: 0.85;
+/* Darker, more modern sidebar */
+#sidebar {
+  background: linear-gradient(180deg, #0b1220 0%, #111827 35%, #020617 100%);
+  border-right: 1px solid rgba(15,23,42,0.8);
+  width: 230px;
+  padding: 20px 12px 60px;
+  box-shadow: 0 0 18px rgba(15,23,42,0.6);
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  overflow-y: auto;
+}
+#sidebar-nav { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
 }
 
-.header-dealer-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  min-width: 220px;
-}
-
-.header-dealer-block label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-.header-dealer-block input {
-  width: 100%;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(249, 250, 251, 0.6);
-  background: rgba(17, 24, 39, 0.25);
-  color: #f9fafb;
-  font-size: 13px;
-  outline: none;
-}
-
-.header-dealer-block input::placeholder {
-  color: rgba(249, 250, 251, 0.7);
-}
-
-.header-dealer-block input:focus {
-  border-color: #fee2e2;
-  box-shadow: 0 0 0 1px rgba(254, 226, 226, 0.7);
-}
-
-/* =============== TOP NAV (BLACK BAR) ================= */
-
-.top-nav {
-  height: var(--nav-height);
-  background: #000000;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  position: sticky;
-  top: 82px; /* header height approx */
-  z-index: 39;
-}
-
-.top-nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top left,
-    rgba(249, 115, 22, 0.25),
-    transparent 55%
-  );
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.top-nav > * {
-  position: relative;
-  z-index: 1;
-}
-
-.nav-left,
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-.nav-left {
-  flex: 1;
-  max-width: 950px;
-  padding-left: 16px;
-  gap: 6px;
-}
-
-.nav-right {
-  padding-right: 16px;
-}
-
-/* Menu buttons */
-
-.nav-button {
-  border: none;
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: transparent;
-  color: #e5e7eb;
-  cursor: pointer;
-  position: relative;
-  white-space: nowrap;
-  transition: background 0.12s ease, color 0.12s ease, transform 0.1s ease;
-}
-
-.nav-button::after {
-  content: "";
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: -6px;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #f97316, #facc15);
-  opacity: 0;
-  transform: scaleX(0.4);
-  transform-origin: center;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.nav-button:hover {
-  background: rgba(148, 163, 184, 0.12);
-  color: #f9fafb;
-  transform: translateY(-1px);
-}
-
-.nav-button.active {
-  background: rgba(248, 250, 252, 0.06);
-  color: #f97316;
-}
-
-.nav-button.active::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-/* Clear All button in menu bar */
-
-.clear-all-btn {
-  border-radius: 999px;
-  border: 1px solid var(--accent-border);
-  background: linear-gradient(
-    135deg,
-    rgba(248, 250, 252, 0.03),
-    rgba(248, 250, 252, 0.1)
-  );
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #fed7aa;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.6),
-    0 10px 18px rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(8px);
-  transition: background 0.12s ease, transform 0.08s ease, box-shadow 0.12s ease;
-}
-
-.clear-all-btn:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(248, 250, 252, 0.09),
-    rgba(248, 250, 252, 0.16)
-  );
-  transform: translateY(-1px);
-  box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.8),
-    0 12px 22px rgba(15, 23, 42, 0.7);
-}
-
-.clear-all-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.8),
-    0 6px 10px rgba(15, 23, 42, 0.85);
-}
-
-/* =============== MAIN CONTENT ================= */
-
-.page-main {
-  flex: 1;
-  padding: 22px 16px 40px;
-}
-
-.page-section {
-  max-width: 1200px;
-  margin: 0 auto;
+/* hide icon span but keep label – "no icons" */
+.nav-icon {
   display: none;
 }
 
-.page-section.is-active {
-  display: block;
-}
-
-/* =============== CARD STYLE ================= */
-
-.card {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
+/* MENU BUTTONS – darker, modern, no icons */
+.nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 9px 12px;
+  font-size: 12px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #e5e7eb;
+  transition: .18s;
+  position: relative;
   overflow: hidden;
-  margin-bottom: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nav-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16%;
+  bottom: 16%;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--orange), #22c55e);
+  opacity: 0;
+  transition: opacity .18s;
+}
+.nav-btn:hover {
+  background: rgba(15,23,42,0.85);
+  color: #f9fafb;
+  border-color: rgba(148,163,184,0.45);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.7);
+}
+.nav-btn.active {
+  background: rgba(15,23,42,0.95);
+  color: #f9fafb;
+  font-weight: 600;
+  border-color: var(--orange);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.65);
+}
+.nav-btn.active::before {
+  opacity: 1;
 }
 
-.card-header {
-  background: linear-gradient(90deg, #f97316, #fb923c);
-  color: #fefce8;
+/* Clear All: at bottom of sidebar (menu bar) */
+#clearAllBtn {
+  position: fixed;
+  left: 24px;
+  bottom: 18px;
+  width: calc(230px - 48px);
+  padding: 7px 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.9);
+  background: rgba(15,23,42,0.95);
+  color: #f9fafb;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  opacity: 0.95;
+  transition: background .16s, transform .16s, opacity .16s, border-color .16s, box-shadow .16s;
+}
+#clearAllBtn:hover {
+  background: linear-gradient(90deg, var(--orange), #22c55e);
+  border-color: #f97316;
+  transform: translateY(-1px);
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.75);
+}
+
+/* per-page clear button – top-right of each card */
+.clear-page-btn {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  padding: 4px 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  border: 1px solid #bbb;
+  background: #f7f7f7;
+  color: #555;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s, color .18s;
+}
+.clear-page-btn:hover {
+  background: #fff;
+  border-color: var(--orange);
+  color: var(--orange);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+}
+
+main {
+  flex: 1;
+  margin-left: 230px;
+  padding: 30px 32px;
+  background: var(--gray-bg);
+  box-sizing: border-box;
+}
+
+/* ===== PAGE SECTIONS / CARDS ===== */
+.page-section {
+  position: relative;
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 22px 32px 28px;
+  margin: 0 auto 40px;
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+}
+.page-section.active { 
+  display: block; 
+}
+
+/* Page titles */
+.page-section h1 {
+  color: var(--orange);
+  margin: 4px 0 8px 4px;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  letter-spacing: .3px;
+  position: relative;
+}
+.page-section h1::after {
+  content: "";
+  display: block;
+  width: 320px;
+  height: 4px;
+  background: var(--orange);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Optional page subtitle under h1 */
+.page-subtitle {
+  margin: 4px 0 20px 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Section headers */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
   padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
-.card-header h2 {
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.card-body {
-  padding: 16px 16px 18px;
-  background: radial-gradient(
-      circle at top left,
-      rgba(249, 115, 22, 0.05),
-      transparent 60%
-    ),
-    var(--bg-card-alt);
-}
-
-/* =============== FIELDS ================= */
-
-.field-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px 18px;
-}
-
-.field-grid .full {
-  grid-column: 1 / -1;
-}
-
-.field label {
-  display: block;
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.8);
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-subtle);
-  margin-bottom: 4px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  font-size: 13px;
-  padding: 7px 9px;
-  border-radius: 8px;
-  border: 1px solid var(--border-strong);
-  background: #ffffff;
-  color: var(--text-main);
-  outline: none;
-}
-
-.field textarea {
-  resize: vertical;
-  min-height: 72px;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.35);
-}
-
-/* =============== TABLES ================= */
-
-.table-scroll {
-  border-radius: var(--radius-md);
+/* Section blocks (non-table cards) */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: #ffffff;
-  overflow: auto;
-  max-height: 420px;
+  box-shadow: var(--shadow);
+  padding: 0 22px 14px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.section-block h2 {
+  margin: 0 0 16px;
+  padding: 10px 16px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-left: -22px;
+  margin-right: -22px;
 }
 
-.checklist-table {
-  width: 100%;
-  border-collapse: collapse;
+/* ===== NON-TABLE ROWS (Q&A lines) ===== */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  padding-left: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.section-block .checklist-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+.checklist-row label {
+  flex: 1 1 auto;
+  font-weight: 500;
+  text-align: left;
+  padding-right: 16px;
+  white-space: normal;
+}
+
+/* Inputs on the RIGHT (base) */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"],
+.section-block .checklist-row input[type="date"],
+.section-block .checklist-row select {
+  flex: 0 0 var(--input-width);
+  width: var(--input-width);
+  margin-left: auto;
+  margin-right: 0;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
   font-size: 13px;
+  box-sizing: border-box;
+}
+.section-block textarea {
+  width: 96%;
+  margin: 6px auto 10px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  resize: vertical;
 }
 
-.checklist-table thead {
+/* Focus */
+.section-block input:focus,
+.section-block select:focus,
+.section-block textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* ===== Dealership Contacts – dividers per manager/POC ===== */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #bdbdbd;
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+/* Extra Additional POC clones – divide above each extra POC input (if present) */
+#dealership-info .section-block:nth-of-type(2)
+  .checklist-row.integrated-plus input[type="text"] + input[type="text"] {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #bdbdbd;
+}
+
+/* Indented Qs */
+.indent-sub {
+  padding-left: 60px !important;
+}
+
+/* ===== Integrated “+” button rows ===== */
+/* Make them use flex so they align with other rows:
+   [label..............] [input same width][+ button touching] */
+
+.section-block .checklist-row.integrated-plus,
+.section-block .checklist-row:has(> .add-row) {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+/* Label behaves like normal rows */
+.section-block .checklist-row.integrated-plus label,
+.section-block .checklist-row:has(> .add-row) label {
+  flex: 1 1 auto;
+  padding-right: 16px;
+}
+
+/* Text box column: same width as other text boxes, right-aligned */
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  flex: 0 0 var(--input-width);
+  width: var(--input-width);
+  margin-left: 0;
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Integrated + button – pill on the right, touching the input */
+.section-block .checklist-row.integrated-plus > .add-row,
+.section-block .checklist-row:has(> .add-row) > .add-row {
+  flex: 0 0 34px;
+  position: relative;
+  margin-left: -1px; /* ensures input & button visually touch */
+  background: var(--orange);
+  color: #fff;
+  border: 1px solid var(--orange);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: .18s ease-in-out;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-block .checklist-row.integrated-plus > .add-row:hover,
+.section-block .checklist-row:has(> .add-row) > .add-row:hover {
+  background: #ff8b42;
+  transform: translateY(-1px);
+}
+
+/* =======================================================
+   POST-TRAINING – divide Champions vs Blockers
+   ======================================================= */
+
+/* Strong line between Champion group and Blockers group */
+#post-training .section-block h2
+  + .checklist-row
+  + .checklist-row.integrated-plus
+  + .checklist-row.integrated-plus
+  + .checklist-row.integrated-plus
+  + .checklist-row {
+  border-top: 2px solid #bdbdbd;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+/* ===== Training TABLES (page 5 & 6) ===== */
+.section { 
+  margin-bottom: 40px; 
+}
+
+/* Table Card – no side padding so orange header touches edges */
+.table-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  padding-bottom: 4px;
+}
+
+/* Table */
+.training-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 1000px;
+}
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 6px;
+}
+
+/* Sticky header — LIGHT ORANGE (edge to edge) */
+.training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
+  font-weight: 600;
   position: sticky;
   top: 0;
-  background: #0f172a;
-  color: #e5e7eb;
-  z-index: 1;
+  z-index: 3;
 }
 
-.checklist-table th,
-.checklist-table td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #e5e7eb;
+/* Smaller white text for notes inside header cells */
+.training-table thead th .muted-note {
+  font-size: 0.8em;
+  color: #fff;
+}
+
+/* Sticky first column */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  width: 240px;
+  min-width: 240px;
+}
+.training-table thead th:first-child { 
+  text-align: center;
+}
+.training-table td:first-child {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.05);
+  margin-right: 8px;
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 8px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
   text-align: left;
 }
 
-.checklist-table th {
+/* Column widths */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 185px;
+  min-width: 185px;
+}
+
+/* Inputs/Selects inside table cells */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  min-width: 130px;
+  box-sizing: border-box;
+  padding: 5px 5px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* Alternating rows */
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
+}
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
+}
+
+/* Table footer + "+" button  */
+.table-footer {
+  width: 100%;
+  background: #f5f5f5;
+  border-top: 1px solid var(--border);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* + button on the LEFT */
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  box-sizing: border-box;
+}
+.table-footer .add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+}
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
+}
+
+/* ===== Scrollbar (horizontal) ===== */
+.scroll-wrapper::-webkit-scrollbar, 
+.table-container::-webkit-scrollbar { 
+  height: 8px; 
+}
+.scroll-wrapper::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover,
+.table-container::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
+}
+
+/* ===== Floating PDF button (summary page) ===== */
+#training-summary .floating-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  cursor: pointer;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#training-summary .floating-btn:hover {
+  background: #ff8b42;
+}
+
+/* ===== Footer ===== */
+#footer { 
+  padding: 24px; 
+  text-align: center; 
+  color: #666; 
+  font-size: 13px; 
+}
+
+/* ===== Muted note ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic !important;
+}
+
+/* =======================================================
+   SUPPORT TICKET – clearer Ticket 1 / Ticket 2 groups
+   ======================================================= */
+
+.ticket-group {
+  margin: 16px 0;
+  padding: 14px 18px 18px;
+  border-radius: 16px;
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* “Ticket 1 / Ticket 2” pill */
+.ticket-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), #ff9f50);
+  color: #fff;
   font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.checklist-table tbody tr:nth-child(odd) {
+.ticket-group .checklist-row:first-of-type {
+  margin-top: 8px;
+}
+
+.ticket-status-row {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* =======================================================
+   DMS PAGE – VERTICAL CARDS (brought back)
+   ======================================================= */
+
+/* Overview block spacing */
+.dms-overview-block {
+  margin-bottom: 28px;
+}
+
+/* Legend for DMS */
+.dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Each DMS provider is a vertical card */
+.dms-provider-block {
+  margin: 18px 0;
+  padding: 16px 18px 14px;
+  border-radius: 16px;
+  border: 1px solid #e1e1e1;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(15,23,42,0.08);
+}
+
+/* subtle separation between cards */
+.dms-provider-block + .dms-provider-block {
+  margin-top: 20px;
+}
+
+/* Provider titles */
+.dms-provider-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Clean 2-column DMS tables inside each card */
+.clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky behavior inside DMS tables */
+.clean-dms-table th,
+.clean-dms-table td {
+  position: static !important;
+}
+
+/* Left column (labels) */
+.clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
   background: #f9fafb;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #374151;
 }
 
-.checklist-table tbody tr:nth-child(even) {
+/* Right column (descriptions) */
+.clean-dms-table td {
+  padding: 6px 10px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Slight zebra striping */
+.clean-dms-table tbody tr:nth-child(odd) td {
   background: #ffffff;
 }
-
-.checklist-table select,
-.checklist-table input[type="text"] {
-  width: 100%;
-  font-size: 12px;
-  padding: 5px 7px;
-  border-radius: 6px;
-  border: 1px solid var(--border-strong);
+.clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
 }
 
-/* =============== FOOTER ================= */
-
-.page-footer {
-  padding: 10px 16px 18px;
-  text-align: center;
-  font-size: 11px;
-  color: #9ca3af;
+/* Muted notes inside DMS tables */
+.clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
 }
 
-/* =============== RESPONSIVE ================= */
-
-@media (max-width: 960px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header-dealer-block {
-    align-items: flex-start;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .top-nav {
-    height: auto;
-    flex-wrap: wrap;
-    padding: 4px 10px 6px;
-  }
-
-  .nav-left {
-    flex-wrap: wrap;
-    padding-left: 0;
-    justify-content: center;
-  }
-
-  .nav-right {
-    width: 100%;
-    justify-content: center;
-    padding: 4px 0 0;
-  }
-
-  .field-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 190px; }
+  main { margin-left: 190px; padding: 20px; }
 }
-
-@media (max-width: 640px) {
-  .field-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .page-main {
-    padding-inline: 10px;
-  }
-
-  .card-body {
-    padding-inline: 12px;
-  }
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 16px; }
 }
