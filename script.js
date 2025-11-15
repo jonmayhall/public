@@ -1,6 +1,6 @@
 // =======================================================
 // myKaarma Interactive Training Checklist – FULL JS
-// Stable + Support Ticket logic + Clear Page
+// Nav, Training Tables, Support Tickets, Clear Page, Clear All, PDF
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -112,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* === CLEAR PAGE BUTTONS === */
+  /* === CLEAR PAGE BUTTONS (per-page reset) === */
   document.querySelectorAll('.clear-page-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const page = btn.closest('.page-section');
@@ -121,7 +121,6 @@ window.addEventListener('DOMContentLoaded', () => {
       const confirmReset = window.confirm(
         'This will clear all fields on this page. This cannot be undone. Continue?'
       );
-
       if (!confirmReset) return;
 
       // Clear all inputs
@@ -158,6 +157,56 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* === CLEAR ALL BUTTON (global reset with double confirmation) === */
+  const clearAllBtn = document.getElementById('clearAllBtn');
+  if (clearAllBtn) {
+    clearAllBtn.addEventListener('click', () => {
+      const first = window.confirm(
+        'This will clear ALL fields on ALL pages of this checklist. This cannot be undone. Continue?'
+      );
+      if (!first) return;
+
+      const second = window.confirm(
+        'Last check: Are you sure you want to erase EVERYTHING on all pages?'
+      );
+      if (!second) return;
+
+      // 1) Clear every input
+      document.querySelectorAll('input').forEach(input => {
+        if (input.type === 'checkbox') {
+          input.checked = false;
+        } else {
+          input.value = '';
+        }
+      });
+
+      // 2) Clear every select
+      document.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+      });
+
+      // 3) Clear every textarea
+      document.querySelectorAll('textarea').forEach(area => {
+        area.value = '';
+      });
+
+      // 4) Support ticket groups – keep only the first ticket-group per block
+      const supportPage = document.getElementById('support-ticket');
+      if (supportPage) {
+        const blocks = supportPage.querySelectorAll('.section-block');
+        blocks.forEach(block => {
+          const groups = block.querySelectorAll('.ticket-group');
+          groups.forEach((group, index) => {
+            if (index > 0) group.remove();
+          });
+        });
+      }
+
+      // NOTE: We are NOT removing extra rows in training tables –
+      // we only clear their content to avoid breaking structure.
+    });
+  }
 
   /* === SAVE AS PDF (Training Summary Page) === */
   const saveBtn = document.getElementById('savePDF');
