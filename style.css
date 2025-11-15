@@ -1,7 +1,7 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Light UI
    Brand: myKaarma orange + lime accent
-   Tables: stable, full-width, nothing hidden
+   Tables: simple, full-content, non-sticky
    ======================================================= */
 
 :root {
@@ -264,7 +264,6 @@ main {
 }
 
 /* ===== Integrated “+” button – side-by-side block ===== */
-/* For rows that have [text box][+] on the right */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
@@ -315,7 +314,7 @@ main {
 
 /* =======================================================
    TABLES – TRAINING CHECKLIST & OPCODES
-   (stable, full-content)
+   Simple, non-sticky, full content visible
    ======================================================= */
 
 .section {
@@ -377,34 +376,24 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header row */
+/* Header row – non-sticky now */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 3;
 }
 .training-table thead th .muted-note {
   font-size: 0.8em;
   color: #fff;
 }
 
-/* Sticky first column */
+/* First column – non-sticky now */
 .training-table th:first-child,
 .training-table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 4;
   width: 270px;
   min-width: 270px;
 }
-.training-table thead th:first-child {
-  text-align: center;
-}
 .training-table td:first-child {
-  background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
