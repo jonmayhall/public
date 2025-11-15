@@ -330,7 +330,7 @@ main {
   white-space: normal;
 }
 
-/* Inputs on the RIGHT (base) */
+/* Inputs on the LEFT (aligned column) */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -338,7 +338,7 @@ main {
 .section-block .checklist-row select {
   flex: 0 0 var(--input-width);
   width: var(--input-width);
-  margin-left: auto;
+  margin-left: 0;
   margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
@@ -405,12 +405,12 @@ main {
   padding-right: 16px;
 }
 
-/* Text box column: same width as other text boxes, right-aligned, unified with + */
+/* Text box column: combo width (input + button) == normal input width */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 var(--input-width);
-  width: var(--input-width);
-  margin-left: auto;  /* aligns with normal right-aligned inputs */
+  flex: 0 0 calc(var(--input-width) - 34px);
+  width: calc(var(--input-width) - 34px);
+  margin-left: 0;
   margin-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -850,7 +850,7 @@ main {
   font-size: 0; /* hides any text inside */
 }
 
-/* No inner white dot anymore */
+/* No inner white dot */
 .dms-tag::before {
   content: none !important;
 }
