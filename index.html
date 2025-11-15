@@ -1388,49 +1388,24 @@
   </div>
 </section>
 
-    <!-- ========================================================= -->
-<!-- PAGE 9: POST-TRAINING CHECKLIST                          -->
+ <!-- ========================================================= -->
+<!-- PAGE 9: POST-TRAINING CHECKLIST – CUSTOM LIST + SUBITEMS -->
 <!-- ========================================================= -->
 <section id="post-training" class="page-section">
   <h1>Post-Training Checklist</h1>
+  <p class="page-subtitle">
+    Trainer follow-up checklist using your custom questions.
+  </p>
 
-  <!-- Post-Training Follow-Up -->
-  <div class="section-block">
-    <h2>Post-Training Follow-Up</h2>
-    <div class="checklist-row">
-      <label>Has the dealership implemented all recommended workflows?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Have all users completed their final training verification?</label>
-      <select><option></option><option>Yes</option><option>No</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Are notification rules <span class="muted-note">(ServiceConnect)</span> active and tested?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Are parts pricing rules verified across common opcodes?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-    </div>
-    <div class="checklist-row">
-      <label>Is the scheduler operating as expected <span class="muted-note">(capacity, teams, routing)</span>?</label>
-      <select><option></option><option>Yes</option><option>No</option><option>Partially</option></select>
-    </div>
-  </div>
-
-  <div class="section-block">
-    <h2>Additional Comments — Post-Training Follow-Up</h2>
-    <textarea placeholder="Comments or notes related to Post-Training Follow-Up …"></textarea>
-  </div>
-
-  <!-- Champions & Blockers -->
+  <!-- ===================================================== -->
+  <!-- CHAMPIONS & BLOCKERS (TOP OF PAGE)                    -->
+  <!-- ===================================================== -->
   <div class="section-block">
     <h2>Champions &amp; Blockers</h2>
 
-    <!-- Champion group -->
+    <!-- Champions -->
     <div class="checklist-row">
-      <label>Champion</label>
+      <label><strong>Champions</strong></label>
     </div>
 
     <div class="checklist-row integrated-plus" style="padding-left:60px;">
@@ -1451,9 +1426,9 @@
       <button class="add-row" type="button">+</button>
     </div>
 
-    <!-- Blockers group -->
+    <!-- Blockers -->
     <div class="checklist-row" style="margin-top:16px;">
-      <label>Blockers</label>
+      <label><strong>Blockers</strong></label>
     </div>
 
     <div class="checklist-row integrated-plus" style="padding-left:60px;">
@@ -1477,7 +1452,150 @@
 
   <div class="section-block">
     <h2>Additional Comments — Champions &amp; Blockers</h2>
-    <textarea placeholder="Comments related to champions and blockers …"></textarea>
+    <textarea placeholder="Comments related to champions, blockers, and what the CEM should know going forward …"></textarea>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- MAIN POST-TRAINING QUESTIONS                          -->
+  <!-- ===================================================== -->
+  <div class="section-block">
+    <h2>Post-Training Questions</h2>
+
+    <!-- Automated Messages (NO DROPDOWN) -->
+    <div class="checklist-row">
+      <label>Are automated messages activated and functioning correctly?</label>
+      <!-- intentionally left blank: NO DROPDOWN -->
+    </div>
+
+    <!-- INDENTED SUB-QUESTIONS WITH DROPDOWNS -->
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Welcome text?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Appointment reminder?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>MPI?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Tech video?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Payment request?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>Follow-up text?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row" style="padding-left:60px;">
+      <label>ServiceConnect?</label>
+      <select>
+        <option></option>
+        <option>Yes</option>
+        <option>No</option>
+        <option>N/A</option>
+      </select>
+    </div>
+
+    <!-- ================================================= -->
+    <!-- REMAINING TOP-LEVEL QUESTIONS                    -->
+    <!-- ================================================= -->
+
+    <div class="checklist-row">
+      <label>Are advisors fully using myKaarma for communication?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Are techs completing MPIs end-to-end inside myKaarma?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Is the scheduler functioning correctly (capacity, teams, routing, opcodes)?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Are parts pricing and labor opcodes showing correct values during MPI approval?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Are all communications (texts, calls, video messages) working without errors?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Do managers understand how to monitor usage and performance in myKaarma?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+    <div class="checklist-row">
+      <label>Are all known issues documented and submitted as support tickets?</label>
+      <select>
+        <option></option><option>Yes</option><option>No</option><option>N/A</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="section-block">
+    <h2>Additional Comments — Post-Training</h2>
+    <textarea placeholder="Your notes, follow-ups, and anything the CEM should know …"></textarea>
   </div>
 </section>
 
