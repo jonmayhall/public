@@ -1,6 +1,6 @@
 // =======================================================
 // myKaarma Interactive Training Checklist – FULL JS
-// Stable + Support Ticket logic + Status Auto-Move & Badge
+// Stable + Support Ticket logic + Clear Page
 // =======================================================
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -54,19 +54,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* === SUPPORT TICKET PAGE – GROUP SETUP === */
   const supportSection = document.getElementById('support-ticket');
-  let openTicketsBlock = null;
-  let closedTicketsBlock = null;
-
   if (supportSection) {
-    openTicketsBlock = supportSection.querySelector('#open-ticket-block');
-    closedTicketsBlock = supportSection.querySelector('#closed-ticket-block');
-
+    // For each section-block (Open / Closed), wrap its ticket fields into a .ticket-group
     const ticketBlocks = supportSection.querySelectorAll('.section-block');
     ticketBlocks.forEach(block => {
       // Avoid double-wrapping if already processed
       if (block.querySelector('.ticket-group')) return;
 
-      // Wrap everything except <h2> into a ticket-group
       const children = Array.from(block.children).filter(el => !el.matches('h2'));
       if (!children.length) return;
 
@@ -79,17 +73,12 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   /* === ADDITIONAL TRAINERS / POC / CHAMPIONS / SUPPORT TICKETS === */
-  // Use event delegation so cloned "+" buttons also work
-  document.querySelectorAll('.section-block').forEach(sectionBlock => {
-    sectionBlock.addEventListener('click', (event) => {
-      const btn = event.target.closest('.add-row');
-      if (!btn || !sectionBlock.contains(btn)) return;
-
-      // SPECIAL: Support Ticket page → clone whole ticket group
+  document.querySelectorAll('.section-block .add-row').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // If this "+" is on the Support Ticket page, clone the FULL ticket group
       if (btn.closest('#support-ticket')) {
         const block = btn.closest('.section-block');
         if (!block) return;
-
         const group = btn.closest('.ticket-group');
         if (!group) return;
 
@@ -100,22 +89,13 @@ window.addEventListener('DOMContentLoaded', () => {
           el.value = '';
         });
 
-        // If this is in the OPEN block, we should have a dropdown status
-        if (openTicketsBlock && openTicketsBlock.contains(block)) {
-          const statusSelect = newGroup.querySelector('.ticket-status');
-          if (statusSelect) {
-            statusSelect.disabled = false;
-            statusSelect.value = 'Open';
-          }
-        }
-
-        // If in the CLOSED block, keep the closed badge as-is
         block.appendChild(newGroup);
         return;
       }
 
-      // DEFAULT: other integrated-plus buttons just clone a text input
-      const parent = btn.closest('.checklist-row, .section-block');
+      // Default behavior for other integrated-plus buttons:
+      // clone the associated text input inside that section-block.
+      const parent = btn.closest('.section-block');
       if (!parent) return;
 
       // Prefer the input immediately before the button
@@ -128,38 +108,56 @@ window.addEventListener('DOMContentLoaded', () => {
       const clone = input.cloneNode(true);
       clone.value = '';
       clone.style.marginTop = '6px';
-
-      btn.parentNode.insertBefore(clone, btn);
+      parent.insertBefore(clone, btn);
     });
   });
 
-  /* === STATUS CHANGE HANDLER – MOVE CLOSED TICKETS === */
-  if (supportSection && openTicketsBlock && closedTicketsBlock) {
-    supportSection.addEventListener('change', (e) => {
-      const select = e.target;
-      if (!select.classList.contains('ticket-status')) return;
+  /* === CLEAR PAGE BUTTONS === */
+  document.querySelectorAll('.clear-page-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const page = btn.closest('.page-section');
+      if (!page) return;
 
-      const group = select.closest('.ticket-group');
-      if (!group) return;
+      const confirmReset = window.confirm(
+        'This will clear all fields on this page. This cannot be undone. Continue?'
+      );
 
-      const isInOpen = openTicketsBlock.contains(group);
+      if (!confirmReset) return;
 
-      // If a ticket in the Open block is set to "Closed" → move it and show badge
-      if (isInOpen && select.value === 'Closed') {
-        const statusRow = select.closest('.checklist-row');
+      // Clear all inputs
+      page.querySelectorAll('input').forEach(input => {
+        if (input.type === 'checkbox') {
+          input.checked = false;
+        } else {
+          input.value = '';
+        }
+      });
 
-        // Create and insert badge
-        const badge = document.createElement('span');
-        badge.className = 'closed-badge';
-        badge.textContent = 'Closed';
+      // Clear all selects
+      page.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+      });
 
-        select.replaceWith(badge);
+      // Clear all textareas
+      page.querySelectorAll('textarea').forEach(area => {
+        area.value = '';
+      });
 
-        // Move entire group to the Closed Tickets block
-        closedTicketsBlock.appendChild(group);
+      // Special handling for Support Ticket page:
+      // keep only the first .ticket-group in each section-block
+      if (page.id === 'support-ticket') {
+        const blocks = page.querySelectorAll('.section-block');
+        blocks.forEach(block => {
+          const groups = block.querySelectorAll('.ticket-group');
+          groups.forEach((group, index) => {
+            if (index > 0) {
+              group.remove();
+            }
+          });
+        });
       }
     });
-  }
+  });
 
   /* === SAVE AS PDF (Training Summary Page) === */
   const saveBtn = document.getElementById('savePDF');
