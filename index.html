@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>myKaarma Interactive Training Checklist</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
+  <title>myKaarma Interactive Training Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Auto cache-buster for CSS + JS -->
-    <script>
-      (function () {
-        var cacheBuster = Date.now();
+  <!-- Auto cache-buster for CSS + JS -->
+  <script>
+    (function () {
+      var cacheBuster = Date.now();
 
-        function addCSS(href) {
-          var link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = href + "?v=" + cacheBuster;
-          document.head.appendChild(link);
-        }
+      function addCSS(href) {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = href + "?v=" + cacheBuster;
+        document.head.appendChild(link);
+      }
 
-        function addJS(src) {
-          var script = document.createElement("script");
-          script.src = src + "?v=" + cacheBuster;
-          script.defer = true;
-          document.head.appendChild(script);
-        }
+      function addJS(src) {
+        var script = document.createElement("script");
+        script.src = src + "?v=" + cacheBuster;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
 
-        addCSS("styles.css");
-        addJS("app.js");
-      })();
-    </script>
+      addCSS("styles.css");
+      addJS("app.js");
+    })();
+  </script>
 
-    <noscript>
-      <link rel="stylesheet" href="styles.css" />
-      <script src="app.js" defer></script>
-    </noscript>
-  </head>
+  <noscript>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </noscript>
+</head>
 
   <body>
     <!-- =====================================================
