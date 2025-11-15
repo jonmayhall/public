@@ -1,318 +1,769 @@
-    <!-- ========================================================= -->
-    <!-- PAGE 8: DMS INTEGRATION – OPTION A VERTICAL CARDS         -->
-    <!-- ========================================================= -->
-    <section id="dms-integration" class="page-section">
-      <h1>DMS Integration</h1>
-      <p class="page-subtitle">
-        How customers, vehicles, appointments, ROs, invoices, pricing, and history flow between myKaarma and each DMS.
-      </p>
-      <button class="clear-page-btn">Reset This Page</button>
+/* =======================================================
+   DMS Integration – vertical cards + dot legend (Option A)
+   ======================================================= */
 
-      <!-- OVERVIEW -->
-      <div class="section-block dms-overview-block">
-        <h2>Integration Overview</h2>
-        <ul class="dms-legend-dotlist">
-          <li>
-            <span class="dms-dot pull"></span>
-            <span class="dms-legend-label"><strong>Pull:</strong> myKaarma pulls data from the DMS on a schedule.</span>
-          </li>
-          <li>
-            <span class="dms-dot push"></span>
-            <span class="dms-legend-label"><strong>Push:</strong> myKaarma pushes data into the DMS.</span>
-          </li>
-          <li>
-            <span class="dms-dot hybrid"></span>
-            <span class="dms-legend-label"><strong>Hybrid:</strong> Mix of pull and push behavior.</span>
-          </li>
-          <li>
-            <span class="dms-dot unsupported"></span>
-            <span class="dms-legend-label"><strong>Unsupported:</strong> Not supported for this DMS today.</span>
-          </li>
-        </ul>
-      </div>
+/* Overview block – standard white card */
+#dms-integration .dms-overview-block {
+  margin-bottom: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
 
-      <!-- PROVIDER CARDS (VERTICAL) -->
-      <div class="section">
-        <div class="section-header">
-          <span>DMS Integration Matrix</span>
-        </div>
+/* Dot legend list */
+#dms-integration .dms-legend-dotlist {
+  list-style: none;
+  margin: 8px 4px 10px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
 
-        <!-- REYNOLDS -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            Reynolds
-            <span class="dms-tag">
-              <span class="dms-dot push"></span> Push
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Customer updates push automatically as part of standard workflows.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle information is included with RO and customer pushes.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pushes from myKaarma when generated or updated
-                  <span class="muted-note">(if appointments are scheduled)</span>.
-                </td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>ROs push from ServiceCart, Check-In, or configured workflow triggers.</td>
-              </tr>
-              <tr>
-                <th>Parts / Invoices</th>
-                <td>Can push automatically when workflows support parts invoice generation.</td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>History syncs via RO traffic and labor codes.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+#dms-integration .dms-legend-dotlist li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #333;
+}
 
-        <!-- AUTOMATE -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            Automate
-            <span class="dms-tag">
-              <span class="dms-dot push"></span> Push
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Customers push automatically into Automate.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle updates flow with RO traffic.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Limited appointment update support; details may vary by store.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td><span class="muted-note">No RO write-back path from myKaarma.</span></td>
-              </tr>
-              <tr>
-                <th>Parts</th>
-                <td><span class="muted-note">No parts invoice push supported.</span></td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Primarily presentation only, with limited push traffic.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+.dms-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
 
-        <!-- CDK -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            CDK
-            <span class="dms-tag">
-              <span class="dms-dot pull"></span> Pull
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Pull every 15 minutes; historical lookup available on-demand.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle information comes with RO records.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pull every 15 minutes; myKaarma can request additional refreshes.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>Pull every 5 minutes; write-back is on-demand.</td>
-              </tr>
-              <tr>
-                <th>Parts &amp; Pricing</th>
-                <td>Invoices pull every 15 minutes; on-demand pricing available in ServiceCart.</td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Nightly sync of RO and F&amp;I history
-                  <span class="muted-note">(≈2 years)</span>.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+/* Option A colors */
+.dms-dot.pull        { background: #22c55e; }  /* green */
+.dms-dot.push        { background: #f97316; }  /* orange */
+.dms-dot.hybrid      { background: #0ea5e9; }  /* teal/blue */
+.dms-dot.unsupported { background: #ef4444; }  /* red */
 
-        <!-- Dealertrack / Arkona -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            Dealertrack / Arkona
-            <span class="dms-tag">
-              <span class="dms-dot pull"></span> Pull
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Pull every 5 minutes; historical requests supported.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle lookup on-demand; also comes with RO data.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pull every 15 minutes.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>Pull every 2 minutes; write-back is on-demand.</td>
-              </tr>
-              <tr>
-                <th>Parts &amp; Pricing</th>
-                <td>Parts invoices pull every 15 minutes.</td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Nightly sync for RO and customer history.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+.dms-legend-label {
+  font-size: 13px;
+}
 
-        <!-- Lightyear / Dealerbuilt -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            Lightyear / Dealerbuilt
-            <span class="dms-tag">
-              <span class="dms-dot pull"></span> Pull
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Pull every 5 minutes.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Loaded with RO activity.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pull every 5 minutes.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>Pull every 2 minutes; on-demand write-back.</td>
-              </tr>
-              <tr>
-                <th>Parts</th>
-                <td>Parts invoices pull every 5 minutes
-                  <span class="muted-note">(varies by store)</span>.
-                </td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Nightly RO history sync; on-demand refresh supported.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+/* DMS tags in card headers */
+#dms-integration .dms-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-left: 8px;
+  background: #f3f4f6;
+  color: #374151;
+}
+#dms-integration .dms-tag .dms-dot {
+  width: 8px;
+  height: 8px;
+}
 
-        <!-- PBS -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            PBS
-            <span class="dms-tag">
-              <span class="dms-dot pull"></span> Pull
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Customer pulls are limited; relies heavily on RO activity.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle sync is primarily RO-related.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pull every 5 minutes; some push may vary by workflow.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>Pull every 2 minutes; write-back is on-demand.</td>
-              </tr>
-              <tr>
-                <th>Parts</th>
-                <td>Parts invoice pulling is not universal.</td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Nightly RO history sync.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+/* Each DMS provider as a vertical white card */
+#dms-integration .dms-provider-block {
+  margin: 18px 0;
+  padding: 16px 18px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
 
-        <!-- Tekion -->
-        <div class="section-block dms-provider-block">
-          <h2 class="dms-provider-title">
-            Tekion
-            <span class="dms-tag">
-              <span class="dms-dot pull"></span> Pull
-            </span>
-          </h2>
-          <table class="clean-dms-table">
-            <tbody>
-              <tr>
-                <th>Customers</th>
-                <td>Customers arrive with the RO; no independent customer pull.</td>
-              </tr>
-              <tr>
-                <th>Vehicles</th>
-                <td>Vehicle flow is attached to RO updates.</td>
-              </tr>
-              <tr>
-                <th>Appointments</th>
-                <td>Pull every 5 minutes; some write-back is planned.</td>
-              </tr>
-              <tr>
-                <th>ROs</th>
-                <td>Pull every 5 minutes; write-back enabled per store.</td>
-              </tr>
-              <tr>
-                <th>Parts &amp; Pricing</th>
-                <td><span class="muted-note">Planned and supported on the roadmap.</span></td>
-              </tr>
-              <tr>
-                <th>History</th>
-                <td>Historical RO load is available during deployment.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+/* Gap between cards */
+#dms-integration .dms-provider-block + .dms-provider-block {
+  margin-top: 20px;
+}
 
-      <!-- NOTES -->
-      <div class="section-block">
-        <h2>Integration Notes</h2>
-        <textarea placeholder="Type integration notes here …"></textarea>
-      </div>
-    </section>
+/* Provider titles */
+#dms-integration .dms-provider-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Clean 2-column DMS tables inside each card */
+#dms-integration .clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky behavior inside DMS tables */
+#dms-integration .clean-dms-table th,
+#dms-integration .clean-dms-table td {
+  position: static !important;
+}
+
+/* Left column (labels) */
+#dms-integration .clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: #f7f7f7;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #333;
+}
+
+/* Right column (descriptions) */
+#dms-integration .clean-dms-table td {
+  padding: 6px 10px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+}
+
+/* Light zebra striping */
+#dms-integration .clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+#dms-integration .clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Muted notes inside DMS tables (if any) */
+#dms-integration .clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
+}
+
+/* =======================================================
+   myKaarma – Interactive Training Checklist
+   MAIN STYLES
+   ======================================================= */
+
+/* ------------------------------
+   Root + Base
+   ------------------------------ */
+
+:root {
+  --bg: #f3f4f6;
+  --bg-elevated: #ffffff;
+  --border: #e5e7eb;
+  --border-subtle: #e5e5e5;
+  --text-main: #111827;
+  --text-subtle: #4b5563;
+  --text-muted: #6b7280;
+  --accent: #f97316;
+  --accent-soft: #fff7ed;
+  --accent-strong: #ea580c;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+  --sidebar-width: 260px;
+  --topbar-height: 60px;
+  --transition-fast: 150ms ease-out;
+  --transition-med: 220ms ease;
+  --input-bg: #f9fafb;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-main);
+  background: radial-gradient(circle at top left, #fef9c3 0, #f3f4f6 32%, #e5e7eb 100%);
+}
+
+/* Remove default button/inputs ugliness */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* ------------------------------
+   Topbar
+   ------------------------------ */
+
+#topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--topbar-height);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.8);
+}
+
+.topbar-content {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-logo {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#dealershipNameDisplay {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-subtle);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f3f4f6;
+}
+
+#clearAllBtn {
+  border: none;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #fee2e2;
+  color: #b91c1c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+#clearAllBtn:hover {
+  background: #fecaca;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(248, 113, 113, 0.35);
+}
+
+/* ------------------------------
+   App Layout
+   ------------------------------ */
+
+#app {
+  max-width: 1440px;
+  margin: 12px auto 32px;
+  padding: 0 16px;
+  display: flex;
+  gap: 18px;
+}
+
+/* Sidebar */
+#sidebar {
+  width: var(--sidebar-width);
+  min-width: 220px;
+  max-width: 260px;
+  align-self: flex-start;
+  position: sticky;
+  top: calc(var(--topbar-height) + 10px);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #e5e7eb;
+  box-shadow: var(--shadow-soft);
+  padding: 10px 10px 10px 10px;
+}
+
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Sidebar buttons */
+.nav-btn {
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.nav-btn::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  margin-right: 8px;
+  background: #4b5563;
+  flex-shrink: 0;
+}
+
+.nav-btn:hover {
+  background: rgba(55, 65, 81, 0.95);
+  transform: translateX(1px);
+}
+
+.nav-btn.active {
+  background: #f97316;
+  color: #111827;
+  font-weight: 600;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.16),
+    0 15px 25px rgba(249, 115, 22, 0.45);
+}
+
+.nav-btn.active::before {
+  background: #111827;
+}
+
+/* Content */
+#content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ------------------------------
+   Page Sections
+   ------------------------------ */
+
+.page-section {
+  display: none;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  padding: 20px 22px 26px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(209, 213, 219, 0.9);
+}
+
+.page-section.active {
+  display: block;
+}
+
+.page-section h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.clear-page-btn {
+  margin: 4px 0 14px;
+  border-radius: 999px;
+  border: 1px solid #fee2e2;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.clear-page-btn:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(248, 113, 113, 0.25);
+}
+
+/* ------------------------------
+   Sections & Blocks
+   ------------------------------ */
+
+.section {
+  margin-top: 18px;
+}
+
+.section-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  padding: 4px 0 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-block {
+  margin-top: 16px;
+  padding: 14px 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.section-block h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ------------------------------
+   Form Rows
+   ------------------------------ */
+
+.checklist-row {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.checklist-row label {
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+.checklist-row .muted-note {
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+/* Nesting / indentation */
+.indent-sub {
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.indent-sub label::before {
+  content: "↳ ";
+  color: #9ca3af;
+}
+
+/* Inputs / selects / textareas */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  border-radius: 9px;
+  border: 1px solid var(--border-subtle);
+  padding: 6px 8px;
+  font-size: 13px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.35);
+  background: #ffffff;
+  transform: translateY(-0.5px);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Checkbox + text in same cell */
+td > input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+/* Muted note (global) */
+.muted-note {
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Integrated "+" Buttons
+   ------------------------------ */
+
+/* Row where + is attached to the text input */
+.integrated-plus {
+  grid-template-columns: 200px minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.integrated-plus input[type="text"] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+/* Small pill button used for inline plus and table footers */
+.add-row {
+  border: none;
+  border-radius: 0 999px 999px 0;
+  padding: 0 10px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--accent);
+  color: #111827;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(249, 115, 22, 0.45);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.add-row:hover {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(249, 115, 22, 0.6);
+}
+
+/* When the + is not directly attached to an input (e.g., table-footer), make it circular */
+.table-footer .add-row,
+.ticket-group .add-row:not(.inline) {
+  border-radius: 999px;
+  padding: 0;
+  width: 32px;
+}
+
+/* ------------------------------
+   Tables (Training, Opcodes, etc.)
+   ------------------------------ */
+
+.table-container {
+  margin-top: 10px;
+}
+
+.scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+/* Scrollbar styling */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5f5;
+  border-radius: 999px;
+}
+
+/* Training-style tables */
+.training-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  font-size: 12px;
+}
+
+.training-table thead {
+  background: #f9fafb;
+}
+
+.training-table th,
+.training-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.training-table th {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f9fafb;
+}
+
+.training-table td {
+  background: #ffffff;
+}
+
+/* Zebra striping */
+.training-table tbody tr:nth-child(even) td {
+  background: #f9fafb;
+}
+
+/* Inputs inside table cells */
+.training-table input[type="text"],
+.training-table input[type="number"],
+.training-table select {
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+/* Name column: checkbox + text */
+.training-table td:first-child {
+  min-width: 180px;
+}
+
+/* Table footer (+ button row) */
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* ------------------------------
+   Support Ticket Page
+   ------------------------------ */
+
+.ticket-group {
+  margin-top: 8px;
+  padding: 10px 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed #d1d5db;
+  background: #f9fafb;
+}
+
+.ticket-group + .ticket-group {
+  margin-top: 10px;
+}
+
+.ticket-group textarea {
+  margin-top: 6px;
+}
+
+/* ------------------------------
+   Floating "Save as PDF" Button
+   ------------------------------ */
+
+#savePDF.floating-btn {
+  position: sticky;
+  top: 10px;
+  float: right;
+  margin-top: -4px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  border: none;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #111827;
+  color: #f9fafb;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.5);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+#savePDF.floating-btn:hover {
+  background: #020617;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.7);
+}
+
+/* ------------------------------
+   Responsive
+   ------------------------------ */
+
+@media (max-width: 1024px) {
+  #app {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  #content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    padding: 14px 12px 18px;
+    border-radius: 18px;
+  }
+
+  .checklist-row,
+  .integrated-plus {
+    grid-template-columns: 1fr;
+  }
+
+  .integrated-plus input[type="text"] {
+    border-radius: 9px;
+    border-right: 1px solid var(--border-subtle);
+  }
+
+  .integrated-plus .add-row {
+    margin-left: auto;
+    border-radius: 999px;
+    width: 32px;
+    margin-top: 4px;
+  }
+
+  .scroll-wrapper {
+    border-radius: 10px;
+  }
+}
