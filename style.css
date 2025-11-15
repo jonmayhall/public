@@ -1,828 +1,793 @@
-/* =========================================================
-   ROOT + GLOBAL
-========================================================= */
+/* =======================================================
+   myKaarma Interactive Training Checklist – FULL CSS
+   Unified / Refined Build (light UI with cards)
+   ======================================================= */
 
 :root {
-  --bg-main: #0b1220;
-  --bg-elevated: rgba(15, 23, 42, 0.96);
-  --bg-elevated-soft: rgba(15, 23, 42, 0.9);
+  --orange: #f36f21;
+  --light-orange: #f8b17b;
+  --gray-bg: #d7d7d7;
+  --card-bg: #fff;
+  --border: #dcdcdc;
+  --ink: #222;
 
-  --border-subtle: rgba(148, 163, 184, 0.25);
-  --border-strong: rgba(15, 118, 110, 0.7);
+  --radius-lg: 18px;       /* cards */
+  --radius-sm: 14px;       /* inputs / buttons */
 
-  --text-main: #f9fafb;
-  --text-muted: #94a3b8;
-  --text-soft: #cbd5f5;
-
-  --accent-orange: #f97316;   /* myKaarma orange */
-  --accent-orange-soft: #fed7aa;
-  --accent-green: #22c55e;    /* myKaarma green */
-
-  --nav-bg: #020617;
-  --nav-active-bg: rgba(15, 23, 42, 0.98);
-
-  --card-radius: 18px;
-  --card-radius-lg: 20px;
-
-  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
-  --shadow-subtle: 0 10px 30px rgba(15, 23, 42, 0.7);
-
-  --transition-fast: 0.18s ease-out;
-  --transition-med: 0.25s ease;
-
-  --input-height: 40px;
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Segoe UI", sans-serif;
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
+/* ===== BASE ===== */
+html, body {
   margin: 0;
-  padding: 0;
-  height: 100%;
+  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  background: var(--gray-bg);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-body {
-  font-family: var(--font-body);
-  background: radial-gradient(circle at top, #020617 0%, #020617 40%, #020617 100%);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
+/* no italics anywhere by default */
+*, em, i { 
+  font-style: normal !important;
 }
 
-/* =========================================================
-   LAYOUT: TOPBAR + APP SHELL
-========================================================= */
-
+/* ===== TOP BAR ===== */
 #topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: linear-gradient(90deg, #020617 0%, #111827 40%, var(--accent-orange) 100%);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.65);
-  border-bottom: 1px solid rgba(249, 250, 251, 0.12);
-}
-
-.topbar-content {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0.7rem 2rem;
+  /* CHANGED: black → orange gradient */
+  background: linear-gradient(90deg, #000 0%, var(--orange) 100%);
+  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.2rem;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  position: fixed;
+  inset: 0 0 auto 0; /* top:0; left:0; right:0 */
+  z-index: 20;
+  border-radius: 0; /* straight across, not rounded */
+}
+.topbar-content { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
+}
+.top-logo { 
+  height: 42px; 
+  object-fit: contain; 
+}
+#dealershipNameDisplay { 
+  color:#fff; 
+  font-size:18px; 
+  font-weight:600; 
+  letter-spacing:.5px; 
 }
 
-.top-logo {
-  height: 32px;
-  width: auto;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.7));
-}
-
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-#dealershipNameDisplay {
-  font-size: 0.95rem;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--accent-orange-soft);
-}
-
-/* MUCH smaller + subtle Clear All button */
+/* small, subtle Clear All button in header if present */
 #clearAllBtn {
-  border: 1px solid rgba(248, 250, 252, 0.4);
-  background: rgba(15, 23, 42, 0.45);
-  color: #e5e7eb;
-  font-size: 0.7rem;
-  padding: 0.18rem 0.6rem;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
+  margin-left: 16px;
+  padding: 4px 10px;
+  font-size: 11px;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.15);
+  color: #fff;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast),
-    box-shadow var(--transition-fast), border-color var(--transition-fast);
+  gap: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s;
 }
-
 #clearAllBtn:hover {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(248, 250, 252, 0.9);
+  background: rgba(0,0,0,0.32);
+  border-color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
 }
 
-/* Main app layout */
-
-#app {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  max-width: 1320px;
-  margin: 1.25rem auto 2rem;
-  gap: 1.25rem;
-  padding: 0 1.5rem;
+/* per-page clear button (if you have one in each section) */
+.clear-page-btn {
+  margin: 0 0 10px auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  border: 1px solid #bbb;
+  background: #f7f7f7;
+  color: #444;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background .18s, transform .18s, box-shadow .18s, border-color .18s;
+}
+.clear-page-btn:hover {
+  background: #fff;
+  border-color: var(--orange);
+  color: var(--orange);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.16);
 }
 
-/* =========================================================
-   SIDEBAR / MENU BAR – “HIM” VERSION, NO ICONS
-========================================================= */
+/* ===== LAYOUT ===== */
+#app { 
+  display: flex; 
+  min-height: 100vh; 
+  margin-top: 70px; 
+  overflow-x: hidden; 
+}
 
 #sidebar {
-  background: radial-gradient(circle at top left, #020617 0%, #020617 45%, #020617 100%);
-  border-radius: var(--card-radius-lg);
-  padding: 1rem;
-  border: 1px solid rgba(148, 163, 184, 0.32);
-  box-shadow: var(--shadow-soft);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(6px);
+  border-right: 1px solid var(--border);
+  width: 210px;
+  padding: 20px 10px;
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  overflow-y: auto;
+}
+#sidebar-nav { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
 }
 
-#sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-/* hide any stray icon span if present */
-.nav-btn .nav-icon {
+/* hide icon span but keep label – "no icons" */
+.nav-icon {
   display: none;
 }
 
-/* PRETTY menu pills */
+/* MENU BUTTONS – slightly more "premium" but same structure */
 .nav-btn {
-  width: 100%;
-  border: 0;
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.92));
-  color: var(--text-soft);
-  border-radius: 999px;
-  padding: 0.55rem 0.85rem;
+  background: linear-gradient(90deg, #f5f5f5 0%, #fdfdfd 100%);
+  border: 1px solid rgba(0,0,0,0.04);
+  padding: 9px 12px;
+  font-size: 13px;
   text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.6rem;
-  font-size: 0.84rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  border-radius: 999px;  /* pill */
   cursor: pointer;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #555;
+  transition: .18s;
   position: relative;
   overflow: hidden;
-  transition: background var(--transition-med), border-color var(--transition-med),
-    color var(--transition-med), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
-
 .nav-btn::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-    rgba(249, 115, 22, 0) 0%,
-    rgba(249, 115, 22, 0.22) 40%,
-    rgba(34, 197, 94, 0.26) 100%);
-  opacity: 0;
-  transition: opacity var(--transition-med);
-}
-
-.nav-btn .nav-label {
-  position: relative;
-  z-index: 1;
-}
-
-/* small vertical accent bar for “him” look */
-.nav-btn::after {
-  content: "";
-  position: absolute;
-  left: 0.4rem;
-  top: 16%;
-  bottom: 16%;
-  width: 2px;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
   border-radius: 999px;
-  background: linear-gradient(to bottom, var(--accent-orange), var(--accent-green));
-  opacity: 0.2;
-  transition: opacity var(--transition-med), height var(--transition-med);
+  background: linear-gradient(to bottom, var(--orange), #22c55e);
+  opacity: 0;
+  transition: opacity .18s;
 }
-
 .nav-btn:hover {
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.98));
-  border-color: rgba(249, 115, 22, 0.8);
-  color: #fefce8;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.9);
+  background: #fff8f3;
+  color: var(--orange);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
-
-.nav-btn:hover::before {
-  opacity: 1;
-}
-
-.nav-btn:hover::after {
-  opacity: 0.9;
-}
-
 .nav-btn.active {
-  background: radial-gradient(circle at top left, #111827, #020617);
-  color: #fefce8;
-  border-color: rgba(249, 115, 22, 0.9);
-  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.18), 0 20px 35px rgba(15, 23, 42, 0.9);
+  background: #fff3eb;
+  color: var(--orange);
+  font-weight: 600;
+  border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
-
 .nav-btn.active::before {
   opacity: 1;
 }
 
-.nav-btn.active::after {
-  opacity: 1;
+main {
+  flex: 1;
+  margin-left: 210px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   MAIN CONTENT / PAGES
-========================================================= */
-
-#content {
-  min-height: 0;
-}
-
+/* ===== PAGE SECTIONS / CARDS ===== */
 .page-section {
   display: none;
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.99));
-  border-radius: var(--card-radius-lg);
-  padding: 1.4rem 1.6rem 1.6rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-subtle);
-  backdrop-filter: blur(16px);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 22px 32px 28px;
+  margin: 0 auto 50px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+}
+.page-section.active { 
+  display: block; 
 }
 
-.page-section.active {
-  display: block;
-}
-
+/* Page titles: Left aligned with longer orange underline */
 .page-section h1 {
-  font-size: 1.45rem;
-  margin: 0 0 0.35rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #e5e7eb;
-}
-
-.page-subtitle {
-  margin: 0 0 0.9rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-/* per-page Reset */
-.clear-page-btn {
-  margin-bottom: 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  background: rgba(15, 23, 42, 0.7);
-  padding: 0.25rem 0.8rem;
-  font-size: 0.75rem;
-  color: #e5e7eb;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  cursor: pointer;
-  transition: background var(--transition-fast), border-color var(--transition-fast),
-    transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.clear-page-btn:hover {
-  background: rgba(15, 23, 42, 0.95);
-  border-color: rgba(249, 250, 251, 0.9);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.9);
-}
-
-/* Generic section/card block */
-
-.section-block,
-.section {
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
-  border-radius: var(--card-radius);
-  padding: 1rem 1.1rem 1.05rem;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.7);
-  margin-bottom: 0.9rem;
-}
-
-.section-header {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-  margin-bottom: 0.7rem;
-}
-
-/* =========================================================
-   FORM ELEMENTS
-========================================================= */
-
-.checklist-row {
-  display: grid;
-  grid-template-columns: minmax(0, 270px) minmax(0, 1fr);
-  gap: 0.7rem;
-  align-items: center;
-  margin-bottom: 0.6rem;
-}
-
-.checklist-row label {
-  font-size: 0.85rem;
-  color: var(--text-soft);
-}
-
-.checklist-row input[type="text"],
-.checklist-row input[type="number"],
-.checklist-row input[type="email"],
-.checklist-row select {
-  height: var(--input-height);
-  border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.55);
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
-  color: var(--text-main);
-  padding: 0 0.7rem;
-  font-size: 0.85rem;
-  outline: none;
-  width: 100%;
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.8);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
-    background var(--transition-fast), transform var(--transition-fast);
-}
-
-.checklist-row select {
-  padding-right: 1.6rem;
-}
-
-.checklist-row input:focus,
-.checklist-row select:focus {
-  border-color: rgba(249, 115, 22, 0.9);
-  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.8);
-  background: radial-gradient(circle at top left, #020617, #020617);
-  transform: translateY(-1px);
-}
-
-textarea {
-  width: 100%;
-  min-height: 80px;
-  border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.55);
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
-  color: var(--text-main);
-  padding: 0.6rem 0.75rem;
-  font-size: 0.85rem;
-  resize: vertical;
-  outline: none;
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.9);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
-    background var(--transition-fast), transform var(--transition-fast);
-}
-
-textarea:focus {
-  border-color: rgba(34, 197, 94, 0.85);
-  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.8);
-  background: #020617;
-  transform: translateY(-1px);
-}
-
-.muted-note {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-/* Indented questions (Post Training, etc.) */
-.indent-sub {
-  padding-left: 1.8rem;
-}
-
-/* ensure all indented labels are consistent */
-.indent-sub label {
+  color: var(--orange);
+  margin: 4px 0 8px 4px;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  letter-spacing: .3px;
   position: relative;
 }
-
-.indent-sub label::before {
-  content: "•";
-  position: absolute;
-  left: -1.1rem;
-  color: rgba(148, 163, 184, 0.75);
+.page-section h1::after {
+  content: "";
+  display: block;
+  width: 360px;             /* longer underline */
+  height: 4px;
+  background: var(--orange);
+  margin-top: 8px;
+  border-radius: 2px;
 }
 
-/* =========================================================
-   ADD / PLUS BUTTONS – INTEGRATED WITH FIELDS
-========================================================= */
-
-.integrated-plus {
-  grid-template-columns: minmax(0, 270px) minmax(0, 1fr) auto;
+/* Optional page subtitle under h1 */
+.page-subtitle {
+  margin: 4px 0 20px 4px;
+  font-size: 13px;
+  color: #555;
 }
 
-/* text field + button row alignment fix */
-.integrated-plus input[type="text"],
-.integrated-plus input[type="number"] {
+/* Section headers used above tables and some grouped content */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.8);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Section blocks (non-table cards) */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 0 22px 14px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.section-block h2 {
+  margin: 0 0 16px;
+  padding: 10px 16px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-left: -22px;
+  margin-right: -22px;
+}
+
+/* ===== NON-TABLE ROWS (Q&A lines) ===== */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  padding-left: 40px;      /* ~about an inch visual indent */
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
+}
+.section-block .checklist-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+.checklist-row label {
+  flex: 1 1 auto;
+  font-weight: 500;
+  text-align: left;
+  padding-right: 16px;
+  white-space: normal;
+}
+
+/* Inputs on the RIGHT and smaller */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"],
+.section-block .checklist-row input[type="date"],
+.section-block .checklist-row select {
+  flex: 0 0 260px;
+  width: 260px;
+  margin-left: auto;       /* push to right */
+  margin-right: 0;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+.section-block textarea {
+  width: 96%;
+  margin: 6px auto 10px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  resize: vertical;
+}
+
+/* Focus */
+.section-block input:focus,
+.section-block select:focus,
+.section-block textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
+  outline: none;
+  background: #fff9f5;
+}
+
+/* stronger divider before each Name row in contacts */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #bdbdbd;  /* bolder divide */
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+/* Indented Qs (Post-Training, automated flows, etc.) */
+.indent-sub {
+  padding-left: 60px !important;
+}
+
+/* ===== Integrated “+” button rows ===== */
+.section-block .checklist-row.integrated-plus,
+.section-block .checklist-row:has(> .add-row) { 
+  position: relative; 
+}
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  flex: 0 0 260px;
+  width: 260px;
+  padding-right: 0; /* base padding; button will be in its own column now */
+}
+
+/* aligned layout: [label] [input][+ button] */
+.section-block .checklist-row.integrated-plus {
+  display: grid;
+  grid-template-columns: 1fr 260px auto;
+  align-items: stretch;
+}
+.section-block .checklist-row.integrated-plus label {
+  padding-right: 24px;
+}
+.section-block .checklist-row.integrated-plus input[type="text"] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* pill-style + button touching text box, slightly smaller */
-.add-row {
-  height: var(--input-height);
-  padding: 0 0.7rem;
-  border-radius: 0 999px 999px 0;
-  border: 1px solid rgba(249, 115, 22, 0.9);
-  border-left: 0;
-  background: radial-gradient(circle at top left, #f97316, #ea580c);
-  color: #fefce8;
-  font-size: 1.1rem;
-  font-weight: 600;
+/* pill button touching right side of text box */
+.section-block .checklist-row.integrated-plus > .add-row {
+  position: static;
+  margin-left: -1px; /* touch input edge */
+  background: var(--orange);
+  color: #fff;
+  border: 1px solid var(--orange);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;  /* right pill */
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
   cursor: pointer;
-  display: inline-flex;
+  transition: .18s ease-in-out;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.2rem;
-  margin-left: -1px; /* ensures no gap between input & button */
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.55);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-    background var(--transition-fast);
+}
+.section-block .checklist-row.integrated-plus > .add-row:hover {
+  background: #ff8b42;
+  transform: translateY(-1px);
 }
 
-/* for table footer + buttons we still want the plus, but it can be a bit larger */
-.table-footer .add-row {
-  border-radius: 999px;
-  padding: 0.25rem 0.9rem;
-  height: auto;
-  min-width: 0;
+/* also apply same pattern when we use :has(> .add-row) without explicit integrated-plus class */
+.section-block .checklist-row:has(> .add-row):not(.integrated-plus) {
+  display: grid;
+  grid-template-columns: 1fr 260px auto;
+}
+.section-block .checklist-row:has(> .add-row):not(.integrated-plus) input[type="text"] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.section-block .checklist-row:has(> .add-row):not(.integrated-plus) > .add-row {
+  position: static;
+  margin-left: -1px;
+  background: var(--orange);
+  color: #fff;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  width: 34px;
+  height: 34px;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.add-row:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 16px 28px rgba(249, 115, 22, 0.7);
-  background: radial-gradient(circle at top left, #fb923c, #f97316);
+/* ===== Training TABLES (keep content, fix right edge feel) ===== */
+.section { 
+  margin-bottom: 40px; 
 }
 
-/* Make sure rows with integrated plus align with other rows */
-.checklist-row.integrated-plus {
-  align-items: stretch;
-}
-
-/* =========================================================
-   TABLES – FIX PAGE 5 & 6 OVERFLOW
-========================================================= */
-
+/* Table Card */
 .table-container {
   width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+  overflow-x: auto;         /* make the whole card scrollable if needed */
 }
 
 .scroll-wrapper {
+  display: block;
   width: 100%;
   overflow-x: auto;
-  padding-bottom: 0.4rem;
+  background: #fff;
 }
 
-/* This keeps the tables from forcing the whole page wider */
+/* Table */
 .training-table {
-  width: 100%;
-  min-width: 1200px; /* enough to avoid squishing but contained in scroll wrapper */
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.78rem;
-  color: var(--text-soft);
+  border-collapse: collapse;
+  width: max(100%, 1200px); /* allow scroll when wide, but not shrink too small */
 }
-
-.training-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, #020617, #020617);
-}
-
 .training-table th,
 .training-table td {
-  border: 1px solid rgba(51, 65, 85, 0.8);
-  padding: 0.35rem 0.45rem;
-  text-align: left;
   white-space: nowrap;
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
 }
 
-.training-table th {
+/* Sticky header — LIGHT ORANGE (including first column header) */
+.training-table thead th {
+  background: var(--light-orange);
+  color: #fff;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.72rem;
-  color: var(--accent-orange-soft);
+  position: sticky;
+  top: 0;
+  z-index: 3;
 }
 
-.training-table tbody tr:nth-child(even) td {
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
+/* Smaller white text for notes inside header cells */
+.training-table thead th .muted-note {
+  font-size: 0.8em;
+  color: #fff;
 }
 
+/* Sticky first column (header centered; body cells white) */
+.training-table th:first-child,
+.training-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  width: 270px;                /* name column slightly smaller but roomy */
+  min-width: 270px;
+}
+.training-table thead th:first-child { 
+  text-align: center;          /* centered header title */ 
+}
+.training-table td:first-child {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.1);
+  margin-right: 10px;          /* more right padding for checkbox */
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  text-align: left;
+}
+
+/* Column widths to comfortably show longest options */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 205px;                /* User Acceptance — wide enough */
+  min-width: 205px;
+}
+
+/* Inputs/Selects inside table cells */
 .training-table input[type="text"],
 .training-table select {
-  font-size: 0.76rem;
-  padding: 0 0.4rem;
-  height: 32px;
+  width: 100%;
+  min-width: 150px;            /* ensure "Not Trained" is fully visible */
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  font-size: 13px;
+  text-align: center;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(243,111,33,0.4);
+  outline: none;
+  background: #fff9f5;
 }
 
-/* name cell: keep checkbox + text from blowing width */
-.training-table td:first-child {
-  min-width: 190px;
+/* Alternating rows */
+.training-table tr:nth-child(odd) { 
+  background: #fff; 
+}
+.training-table tr:nth-child(even) { 
+  background: #fafafa; 
 }
 
+/* Table footer + "+" button (smaller & round) */
 .table-footer {
+  width: 100%;
+  background: #f5f5f5;
+  border-top: 1px solid var(--border);
+  padding: 6px 10px;
   display: flex;
-  justify-content: flex-end;
-  padding-top: 0.45rem;
+  align-items: center;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  box-sizing: border-box;
+}
+.table-footer .add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
+}
+.table-footer .add-row:hover {
+  background: #ff8b42;
+  transform: scale(1.05);
 }
 
-/* =========================================================
-   SUPPORT TICKETS – CLEANER "TICKET 1" AREA
-========================================================= */
+/* ===== Scrollbar (horizontal) ===== */
+.scroll-wrapper::-webkit-scrollbar, 
+.table-container::-webkit-scrollbar { 
+  height: 8px; 
+}
+.scroll-wrapper::-webkit-scrollbar-thumb,
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover,
+.table-container::-webkit-scrollbar-thumb:hover { 
+  background-color: #999; 
+}
+
+/* ===== Floating PDF button (summary page) ===== */
+/* inline, pill-shaped, orange, right side of card */
+.floating-btn {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 16px;
+  float: right;              /* right side of the card */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.floating-btn:hover {
+  background: #ff8b42;
+}
+
+/* ===== Footer ===== */
+#footer { 
+  padding: 24px; 
+  text-align: center; 
+  color: #666; 
+  font-size: 13px; 
+}
+
+/* ===== Muted note (for text inside parentheses) ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic !important;   /* override global reset */
+}
+
+/* =======================================================
+   SUPPORT TICKET – clearer Ticket 1 / Ticket 2 groups
+   ======================================================= */
 
 .ticket-group {
-  position: relative;
-  margin-bottom: 1rem;
-  padding: 1rem 1rem 1.1rem;
+  margin: 16px 0;
+  padding: 14px 18px 18px;
   border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* if you have a "Ticket 1" label somewhere at top, this gives it space */
-.ticket-group > .ticket-label,
-.ticket-group > .ticket-title,
-.ticket-group > h3 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent-orange-soft);
-  margin: -0.15rem 0 0.55rem;
-}
-
-/* Generic pill if you want to wrap Ticket 1, Ticket 2, etc. */
+/* if you wrap "Ticket 1" in a span/h3 with this class */
 .ticket-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.12rem 0.6rem;
+  padding: 3px 10px;
   border-radius: 999px;
-  background: radial-gradient(circle at top left, #f97316, #ea580c);
-  color: #fefce8;
-  font-size: 0.65rem;
+  background: linear-gradient(90deg, var(--orange), #ff9f50);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  box-shadow: 0 8px 16px rgba(249, 115, 22, 0.6);
+  margin-bottom: 8px;
 }
 
-/* Make the first row (ticket number) breathe a bit more */
+/* ensure first checklist row inside ticket has a bit of space below label/pill */
 .ticket-group .checklist-row:first-of-type {
-  margin-top: 0.2rem;
+  margin-top: 8px;
 }
 
-/* Open vs Closed sections spacing */
-#support-ticket .section-block h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+/* make the "Status" dropdown row (if you have one) feel slightly separated */
+.ticket-status-row {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-#support-ticket .section-block h2::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, rgba(148, 163, 184, 0.6), transparent);
-}
+/* =======================================================
+   DMS PAGE – SPACING & POLISH (unchanged base)
+   ======================================================= */
 
-/* =========================================================
-   DMS INTEGRATION CARDS
-========================================================= */
-
+/* Overview block spacing */
 .dms-overview-block {
-  margin-bottom: 0.9rem;
+  margin-bottom: 28px;
 }
 
+/* Legend for DMS */
 .dms-legend {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: var(--text-soft);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
 }
 
-.dms-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  margin-right: 0.5rem;
+/* Each DMS provider block (no card border, just clean spacing) */
+.dms-provider-block {
+  margin: 20px 0 26px;
+  padding: 12px 0 4px;
+  border: none;
+  box-shadow: none !important;
 }
 
-.dms-dot-auto {
-  background: #22c55e;
-}
-.dms-dot-ondemand {
-  background: #f97316;
-}
-.dms-dot-withro {
-  background: #38bdf8;
-}
-.dms-dot-planned {
-  background: #eab308;
-}
-.dms-dot-na {
-  background: #6b7280;
-}
-.dms-dot-limited {
-  background: #f97316;
-}
-.dms-dot-display {
-  background: #a855f7;
+/* Subtle divider line between providers, but not above the first one */
+.dms-provider-block + .dms-provider-block {
+  border-top: 1px solid #e3e3e3;
+  padding-top: 18px;
 }
 
-.dms-table-container {
-  margin-top: 0.4rem;
-}
-
-.dms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 0.8rem;
-}
-
-.dms-card {
-  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
-  border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
-  padding: 0.8rem 0.9rem;
-}
-
-.dms-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.4rem;
-}
-
-.dms-name {
-  font-size: 0.9rem;
+/* Provider titles */
+.dms-provider-title {
+  margin: 0 0 8px;
+  font-size: 16px;
   font-weight: 600;
+  color: #333;
 }
 
-.dms-chip {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 999px;
-  padding: 0.12rem 0.5rem;
-  border: 1px solid rgba(148, 163, 184, 0.7);
+/* Clean 2-column DMS tables */
+.clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
 }
 
-.dms-chip-pull {
-  color: #bfdbfe;
-  border-color: #60a5fa;
-}
-.dms-chip-push {
-  color: #fed7aa;
-  border-color: #fb923c;
+/* Turn off sticky behavior inside the DMS tables only */
+.clean-dms-table th,
+.clean-dms-table td {
+  position: static !important;
 }
 
-.dms-list {
-  list-style: none;
-  margin: 0;
-  padding: 0.1rem 0 0;
+/* Left column (labels) */
+.clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #444;
 }
 
-.dms-list li + li {
-  margin-top: 0.5rem;
+/* Right column (descriptions) */
+.clean-dms-table td {
+  padding: 6px 12px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.dms-row-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.4rem;
-  margin-bottom: 0.05rem;
+/* Slight zebra striping for readability */
+.clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+.clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
 }
 
-.dms-field {
-  font-size: 0.8rem;
-  color: #e5e7eb;
+/* Muted notes inside DMS tables */
+.clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
 }
 
-.dms-tag {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: 999px;
-  padding: 0.1rem 0.55rem;
-  border: 1px solid transparent;
-}
-
-.dms-tag-auto {
-  border-color: #22c55e;
-  color: #bbf7d0;
-}
-.dms-tag-ondemand {
-  border-color: #f97316;
-  color: #fed7aa;
-}
-.dms-tag-withro {
-  border-color: #38bdf8;
-  color: #e0f2fe;
-}
-.dms-tag-planned {
-  border-color: #eab308;
-  color: #fef9c3;
-}
-.dms-tag-na {
-  border-color: #6b7280;
-  color: #e5e7eb;
-}
-.dms-tag-limited {
-  border-color: #f97316;
-  color: #fed7aa;
-}
-.dms-tag-display {
-  border-color: #a855f7;
-  color: #e9d5ff;
-}
-
-.dms-list p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   SAVE AS PDF BUTTON
-========================================================= */
-
-.floating-btn {
-  border-radius: 999px;
-  border: 1px solid rgba(249, 250, 251, 0.45);
-  background: radial-gradient(circle at top left, #f97316, #22c55e);
-  color: #fefce8;
-  padding: 0.35rem 0.95rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  cursor: pointer;
-  float: right;
-  margin-bottom: 1rem;
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.8);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-    filter var(--transition-fast);
-}
-
-.floating-btn:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-  filter: brightness(1.03);
-}
-
-/* =========================================================
+/* =======================================================
    RESPONSIVE
-========================================================= */
-
-@media (max-width: 1100px) {
-  #app {
-    grid-template-columns: 240px minmax(0, 1fr);
-  }
-
-  .checklist-row {
-    grid-template-columns: 1fr;
-  }
-
-  .integrated-plus {
-    grid-template-columns: 1fr auto;
-  }
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 170px; }
+  main { margin-left: 170px; padding: 20px; }
 }
-
-@media (max-width: 860px) {
-  #app {
-    grid-template-columns: 1fr;
-  }
-
-  #sidebar {
-    order: -1;
-  }
-
-  .topbar-content {
-    padding-inline: 1rem;
-  }
-
-  #app {
-    padding-inline: 1rem;
-  }
-
-  .training-table {
-    min-width: 1000px;
-  }
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 16px; }
 }
