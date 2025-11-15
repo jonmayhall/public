@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Unified / Refined Build (light UI with cards)
+   Refined Build (cards, darker sidebar, fixed tables)
    ======================================================= */
 
 :root {
@@ -69,7 +69,7 @@ html, body {
   letter-spacing:.5px; 
 }
 
-/* Clear All: subtle text-style pill in header */
+/* Clear All: small pill, top-right in header */
 #clearAllBtn {
   padding: 3px 9px;
   font-size: 11px;
@@ -127,13 +127,13 @@ html, body {
   overflow-x: hidden; 
 }
 
+/* Darker, more modern sidebar */
 #sidebar {
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(6px);
-  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, #0b1220 0%, #111827 35%, #020617 100%);
+  border-right: 1px solid rgba(15,23,42,0.8);
   width: 230px;
   padding: 20px 12px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 18px rgba(15,23,42,0.6);
   position: fixed;
   top: 70px;
   bottom: 0;
@@ -150,16 +150,16 @@ html, body {
   display: none;
 }
 
-/* MENU BUTTONS – more modern, less "boxy" */
+/* MENU BUTTONS – darker, modern, no icons */
 .nav-btn {
-  background: #f9fafb;
-  border: 1px solid rgba(148,163,184,0.45);
-  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 9px 12px;
   font-size: 12px;
   text-align: left;
   border-radius: 10px;
   cursor: pointer;
-  color: #475569;
+  color: #e5e7eb;
   transition: .18s;
   position: relative;
   overflow: hidden;
@@ -170,8 +170,8 @@ html, body {
   content: "";
   position: absolute;
   left: 0;
-  top: 10%;
-  bottom: 10%;
+  top: 16%;
+  bottom: 16%;
   width: 3px;
   border-radius: 999px;
   background: linear-gradient(to bottom, var(--orange), #22c55e);
@@ -179,17 +179,17 @@ html, body {
   transition: opacity .18s;
 }
 .nav-btn:hover {
-  background: #fff;
-  color: #111827;
-  border-color: rgba(148,163,184,0.9);
-  box-shadow: 0 2px 6px rgba(148,163,184,0.45);
+  background: rgba(15,23,42,0.85);
+  color: #f9fafb;
+  border-color: rgba(148,163,184,0.45);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.7);
 }
 .nav-btn.active {
-  background: #fff;
-  color: #111827;
+  background: rgba(15,23,42,0.95);
+  color: #f9fafb;
   font-weight: 600;
   border-color: var(--orange);
-  box-shadow: 0 3px 8px rgba(243,111,33,0.25);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.65);
 }
 .nav-btn.active::before {
   opacity: 1;
@@ -198,7 +198,7 @@ html, body {
 main {
   flex: 1;
   margin-left: 230px;
-  padding: 30px 40px;
+  padding: 30px 32px;
   background: var(--gray-bg);
   box-sizing: border-box;
 }
@@ -211,9 +211,9 @@ main {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   padding: 22px 32px 28px;
-  margin: 0 auto 50px;
+  margin: 0 auto 40px;
   width: 100%;
-  max-width: 1250px;
+  max-width: 1100px;   /* tightened so tables don't feel too far right */
   box-sizing: border-box;
 }
 .page-section.active { 
@@ -233,7 +233,7 @@ main {
 .page-section h1::after {
   content: "";
   display: block;
-  width: 360px;             /* longer underline */
+  width: 320px;
   height: 4px;
   background: var(--orange);
   margin-top: 8px;
@@ -305,9 +305,9 @@ main {
   gap: 12px;
   margin-bottom: 14px;
   font-size: 14px;
-  padding-left: 40px;      /* ~about an inch visual indent */
+  padding-left: 40px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0; /* light gray divider between questions */
+  border-bottom: 1px solid #e0e0e0;
 }
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
@@ -322,7 +322,7 @@ main {
   white-space: normal;
 }
 
-/* Inputs on the RIGHT and smaller */
+/* Inputs on the RIGHT */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -330,7 +330,7 @@ main {
 .section-block .checklist-row select {
   flex: 0 0 260px;
   width: 260px;
-  margin-left: auto;       /* push to right */
+  margin-left: auto;
   margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
@@ -363,7 +363,7 @@ main {
 
 /* stronger divider before each Name row in contacts */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;  /* bolder divide */
+  border-top: 2px solid #bdbdbd;
   padding-top: 12px;
   margin-top: 8px;
 }
@@ -382,7 +382,7 @@ main {
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 260px;
   width: 260px;
-  padding-right: 0; /* base padding; button will be in its own column now */
+  padding-right: 0;
 }
 
 /* aligned layout: [label] [input][+ button] */
@@ -402,11 +402,11 @@ main {
 /* pill button touching right side of text box */
 .section-block .checklist-row.integrated-plus > .add-row {
   position: static;
-  margin-left: -1px; /* touch input edge */
+  margin-left: -1px;
   background: var(--orange);
   color: #fff;
   border: 1px solid var(--orange);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;  /* right pill */
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   width: 34px;
   height: 34px;
   font-size: 18px;
@@ -424,7 +424,7 @@ main {
   transform: translateY(-1px);
 }
 
-/* also apply same pattern when we use :has(> .add-row) without explicit integrated-plus class */
+/* also apply same pattern when we use :has(> .add-row) without explicit class */
 .section-block .checklist-row:has(> .add-row):not(.integrated-plus) {
   display: grid;
   grid-template-columns: 1fr 260px auto;
@@ -448,12 +448,12 @@ main {
   justify-content: center;
 }
 
-/* ===== Training TABLES (keep content, fix right crowding) ===== */
+/* ===== Training TABLES (page 5 & 6) ===== */
 .section { 
   margin-bottom: 40px; 
 }
 
-/* Table Card – add side padding so it doesn't feel glued to edge */
+/* Table Card – padding so it doesn't feel glued to right */
 .table-container {
   width: 100%;
   background: #fff;
@@ -461,8 +461,8 @@ main {
   border-top: none;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   box-shadow: var(--shadow);
-  margin-bottom: 40px;
-  padding: 0 10px 10px;      /* <-- breathing room on left/right */
+  margin-bottom: 32px;
+  padding: 0 8px 8px;
   box-sizing: border-box;
 }
 
@@ -471,13 +471,13 @@ main {
   width: 100%;
   overflow-x: auto;
   background: #fff;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
 }
 
 /* Table */
 .training-table {
   border-collapse: collapse;
-  width: max(100%, 1150px); /* scroll when needed, but not smashed */
+  width: max(100%, 1000px); /* narrower than before so less "too far right" */
 }
 .training-table th,
 .training-table td {
@@ -486,10 +486,10 @@ main {
   font-size: 13px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 6px 8px;          /* slightly smaller to reduce crowding */
+  padding: 6px 6px;
 }
 
-/* Sticky header — LIGHT ORANGE (including first column header) */
+/* Sticky header — LIGHT ORANGE */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -505,34 +505,34 @@ main {
   color: #fff;
 }
 
-/* Sticky first column (header centered; body cells white) */
+/* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
   position: sticky;
   left: 0;
   z-index: 4;
-  width: 260px;                /* slightly narrower */
-  min-width: 260px;
+  width: 240px;
+  min-width: 240px;
 }
 .training-table thead th:first-child { 
-  text-align: center;          /* centered header title */ 
+  text-align: center;
 }
 .training-table td:first-child {
   background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .training-table td:first-child input[type="checkbox"] {
   flex-shrink: 0;
-  transform: scale(1.1);
-  margin-right: 10px;          /* more right padding for checkbox */
+  transform: scale(1.05);
+  margin-right: 8px;
 }
 .training-table td:first-child input[type="text"] {
   width: 95%;
-  padding: 7px 10px;
+  padding: 7px 8px;
   font-size: 13px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
@@ -540,20 +540,20 @@ main {
   text-align: left;
 }
 
-/* Column widths to comfortably show longest options */
+/* Column widths */
 .training-table th:nth-child(2),
 .training-table td:nth-child(2) {
-  width: 195px;                /* User Acceptance a bit smaller */
-  min-width: 195px;
+  width: 185px;
+  min-width: 185px;
 }
 
 /* Inputs/Selects inside table cells */
 .training-table input[type="text"],
 .training-table select {
   width: 100%;
-  min-width: 140px;            /* adjust down to free space */
+  min-width: 130px;
   box-sizing: border-box;
-  padding: 6px 6px;
+  padding: 5px 5px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
@@ -576,7 +576,7 @@ main {
   background: #fafafa; 
 }
 
-/* Table footer + "+" button (smaller & round) */
+/* Table footer + "+" button  */
 .table-footer {
   width: 100%;
   background: #f5f5f5;
@@ -654,11 +654,11 @@ main {
   font-size: 13px; 
 }
 
-/* ===== Muted note (for text inside parentheses) ===== */
+/* ===== Muted note ===== */
 .muted-note {
   font-size: 0.9em;
   color: #666;
-  font-style: italic !important;   /* override global reset */
+  font-style: italic !important;
 }
 
 /* =======================================================
@@ -674,7 +674,7 @@ main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* if you wrap "Ticket 1" in a span/h3 with this class */
+/* optional badge like "Ticket 1" */
 .ticket-pill {
   display: inline-flex;
   align-items: center;
@@ -689,12 +689,10 @@ main {
   margin-bottom: 8px;
 }
 
-/* ensure first checklist row inside ticket has a bit of space below label/pill */
 .ticket-group .checklist-row:first-of-type {
   margin-top: 8px;
 }
 
-/* make the "Status" dropdown row (if you have one) feel slightly separated */
 .ticket-status-row {
   border-bottom: 1px dashed #ddd;
   padding-bottom: 10px;
@@ -702,7 +700,7 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – SPACING & POLISH
+   DMS PAGE – VERTICAL CARDS RESTORED
    ======================================================= */
 
 /* Overview block spacing */
@@ -719,29 +717,30 @@ main {
   margin-top: 8px;
 }
 
-/* Each DMS provider block (no card border, just clean spacing) */
+/* Each DMS provider as its own vertical card */
 .dms-provider-block {
-  margin: 20px 0 26px;
-  padding: 12px 0 4px;
-  border: none;
-  box-shadow: none !important;
+  margin: 18px 0;
+  padding: 16px 18px 14px;
+  border-radius: 16px;
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  box-shadow: 0 3px 9px rgba(0,0,0,0.08);
 }
 
-/* Subtle divider line between providers, but not above the first one */
+/* subtle separation between cards */
 .dms-provider-block + .dms-provider-block {
-  border-top: 1px solid #e3e3e3;
-  padding-top: 18px;
+  margin-top: 20px;
 }
 
 /* Provider titles */
 .dms-provider-title {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-size: 16px;
   font-weight: 600;
   color: #333;
 }
 
-/* Clean 2-column DMS tables */
+/* Clean 2-column DMS tables inside each card */
 .clean-dms-table {
   width: 100%;
   border-collapse: collapse;
@@ -749,7 +748,7 @@ main {
   font-size: 13px;
 }
 
-/* Turn off sticky behavior inside the DMS tables only */
+/* Turn off sticky behavior inside DMS tables */
 .clean-dms-table th,
 .clean-dms-table td {
   position: static !important;
@@ -759,19 +758,19 @@ main {
 .clean-dms-table th {
   width: 190px;
   min-width: 190px;
-  padding: 6px 12px;
+  padding: 6px 10px;
   text-align: left;
   vertical-align: top;
   font-weight: 600;
-  background: transparent;
+  background: #f9fafb;
   border: none;
   border-right: 1px solid #e1e1e1;
-  color: #444;
+  color: #374151;
 }
 
 /* Right column (descriptions) */
 .clean-dms-table td {
-  padding: 6px 12px 8px;
+  padding: 6px 10px 8px;
   text-align: left;
   white-space: normal;
   line-height: 1.45;
@@ -779,7 +778,7 @@ main {
   border-bottom: 1px solid #f0f0f0;
 }
 
-/* Slight zebra striping for readability */
+/* Slight zebra striping */
 .clean-dms-table tbody tr:nth-child(odd) td {
   background: #ffffff;
 }
