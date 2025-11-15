@@ -1,7 +1,8 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Trendy UI
    Light, modern, product-style SaaS look
-   Brand: myKaarma orange + green, flatter + cleaner
+   Brand: myKaarma orange + green
+   Version: Option 2 + DMS Cards
    ======================================================= */
 
 :root {
@@ -10,18 +11,18 @@
   --orange-soft: #ffe5d6;
   --lime: #b9d94a;         /* soft lime accent */
 
-  /* Background */
-  --app-bg-top: #f6f7fb;
-  --app-bg-bottom: #edf1fb;
+  /* Background – slightly darker overall but not black */
+  --app-bg-top: #e5e7f0;
+  --app-bg-bottom: #d2d7f3;
 
-  --card-bg: #ffffff;
+  --card-bg: #f9fafb;
   --border: #dadde7;
   --ink: #111827;
 
   --radius-lg: 18px;
   --radius-sm: 14px;
 
-  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 /* ===== BASE ===== */
@@ -42,12 +43,12 @@ html, body {
 
 /* ===== TOP BAR ===== */
 #topbar {
-  background: linear-gradient(90deg, #020617 0%, #111827 45%, #020617 100%);
+  background: linear-gradient(90deg, #111827 0%, #020617 50%, #111827 100%);
   height: 70px;
   display: flex;
   align-items: center;
   padding: 0 40px;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.45);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.55);
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 20;
@@ -79,12 +80,12 @@ html, body {
 
 /* SIDEBAR – pill nav, trendy */
 #sidebar {
-  background: rgba(248,250,252,0.96);
+  background: rgba(15,23,42,0.93);
   backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(148,163,184,0.45);
+  border-right: 1px solid rgba(148,163,184,0.65);
   width: 220px;
   padding: 18px 12px 20px;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.65);
   position: fixed;
   top: 70px;
   bottom: 0;
@@ -104,7 +105,7 @@ html, body {
   text-align: left;
   border-radius: 999px;
   cursor: pointer;
-  color: #111827;
+  color: #e5e7eb;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -115,34 +116,23 @@ html, body {
     transform 0.12s ease,
     box-shadow 0.18s ease;
 }
-.nav-btn-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  background: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-}
 .nav-btn .nav-icon {
   font-size: 15px;
 }
 .nav-btn:hover {
-  background: #e5edff;
+  background: rgba(249,250,251,0.14);
   color: var(--orange);
   transform: translateX(1px);
-  box-shadow: 0 1px 3px rgba(148,163,184,0.35);
+  box-shadow: 0 1px 3px rgba(15,23,42,0.7);
 }
 .nav-btn.active {
   background: #fff6ef;
   color: var(--orange);
   font-weight: 600;
-  box-shadow: 0 4px 10px rgba(148,163,184,0.55);
+  box-shadow: 0 6px 14px rgba(15,23,42,0.85);
 }
-.nav-btn.active .nav-btn-icon {
-  background: var(--orange-soft);
-  color: var(--orange);
+.nav-btn.active .nav-icon {
+  filter: drop-shadow(0 1px 2px rgba(15,23,42,0.6));
 }
 
 main {
@@ -187,7 +177,7 @@ main {
 }
 .page-section:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(15,23,42,0.12);
+  box-shadow: 0 20px 48px rgba(15,23,42,0.18);
 }
 
 /* Page titles */
@@ -225,7 +215,7 @@ main {
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid rgba(226,232,240,0.9);
-  box-shadow: 0 8px 18px rgba(148,163,184,0.25);
+  box-shadow: 0 8px 18px rgba(15,23,42,0.22);
   padding: 0 20px 14px;
   margin-bottom: 18px;
   box-sizing: border-box;
@@ -696,82 +686,185 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – spacing & polish
+   DMS PAGE – CARD-BASED INTEGRATION MATRIX
    ======================================================= */
 
 .dms-overview-block {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .dms-legend {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 6px 18px;
   font-size: 13px;
   margin-top: 8px;
+  color: #4b5563;
 }
 
-.dms-provider-block {
-  margin: 18px 0 22px;
-  padding: 10px 0 4px;
-  border: none;
-  box-shadow: none !important;
-}
-.dms-provider-block + .dms-provider-block {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 16px;
-}
-.dms-provider-title {
-  margin: 0 0 6px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #111827;
-}
-
-/* Clean 2-column DMS tables */
-.clean-dms-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 4px;
-  font-size: 13px;
-}
-
-/* Turn off sticky in DMS tables */
-.clean-dms-table th,
-.clean-dms-table td {
-  position: static !important;
-}
-
-.clean-dms-table th {
-  width: 190px;
-  min-width: 190px;
-  padding: 6px 12px;
-  text-align: left;
-  vertical-align: top;
-  font-weight: 600;
-  background: transparent;
-  border: none;
-  border-right: 1px solid #e5e7eb;
-  color: #111827;
-}
-.clean-dms-table td {
-  padding: 6px 12px 8px;
-  text-align: left;
-  white-space: normal;
-  line-height: 1.45;
-  border: none;
-  border-bottom: 1px solid #edf0f5;
-}
-.clean-dms-table tbody tr:nth-child(odd) td {
-  background: #ffffff;
-}
-.clean-dms-table tbody tr:nth-child(even) td {
-  background: #f9fafb;
-}
-.clean-dms-table .muted-note {
+.dms-dot {
   display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+/* legend chip colors */
+.dms-dot-auto      { background: #22c55e; }
+.dms-dot-ondemand  { background: #0ea5e9; }
+.dms-dot-withro    { background: #f97316; }
+.dms-dot-planned   { background: #eab308; }
+.dms-dot-na        { background: #9ca3af; }
+
+/* Grid of cards inside the “table-container” wrapper */
+.dms-table-container {
+  border-radius: 0 0 18px 18px;
+  border: 1px solid #e0e4f0;
+  box-shadow: 0 10px 26px rgba(148,163,184,0.25);
+  padding: 12px 14px 14px;
+  background: #f3f4f6;
+}
+
+.dms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* Individual DMS cards */
+.dms-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 6px 16px rgba(148,163,184,0.25);
+}
+
+.dms-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dms-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* Card-level chips (push / pull) */
+.dms-chip {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.dms-chip-push {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fed7aa;
+}
+
+.dms-chip-pull {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+/* Inner list */
+.dms-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.dms-list li + li {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.dms-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.dms-field {
+  font-weight: 500;
+  color: #111827;
+}
+
+/* mini tags for each data type inside cards */
+.dms-tag {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* status colors */
+.dms-tag-auto {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+.dms-tag-ondemand {
+  background: #e0f2fe;
+  color: #075985;
+  border-color: #bae6fd;
+}
+.dms-tag-withro {
+  background: #ffedd5;
+  color: #9a3412;
+  border-color: #fed7aa;
+}
+.dms-tag-planned {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+.dms-tag-na {
+  background: #e5e7eb;
+  color: #374151;
+  border-color: #d1d5db;
+}
+.dms-tag-limited {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.dms-tag-display {
+  background: #e0e7ff;
+  color: #3730a3;
+  border-color: #c7d2fe;
+}
+
+.dms-list p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.35;
+}
+
+/* keep muted-note consistent in DMS */
+.dms-list .muted-note {
   font-size: 0.85em;
   color: #6b7280;
+  font-style: italic !important;
 }
 
 /* =======================================================
