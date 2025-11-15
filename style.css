@@ -1,7 +1,7 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Trendy UI
    Brand: myKaarma orange + green
-   Version: Option 2 + DMS Cards + Clear Page
+   Version: Option 2 + DMS Cards + Clear Page + Clear All
    ======================================================= */
 
 :root {
@@ -67,6 +67,35 @@ html, body {
   font-size:17px;
   font-weight:600;
   letter-spacing:.5px;
+}
+
+/* Optional wrapper if you group dealership name + clear-all button */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Global Clear All button */
+#clearAllBtn {
+  background: transparent;
+  color: #fecaca;
+  border: 1px solid #fca5a5;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: all 0.18s ease;
+}
+#clearAllBtn:hover {
+  background: #b91c1c;
+  color: #fef2f2;
+  border-color: #fee2e2;
+  box-shadow: 0 4px 10px rgba(185,28,28,0.58);
 }
 
 /* ===== LAYOUT ===== */
@@ -646,7 +675,7 @@ main {
    PDF BUTTON (Training Summary) + CLEAR PAGE BUTTON
    ======================================================= */
 
-/* Save as PDF – top-right of card */
+/* Save as PDF – top-right of summary card */
 .floating-btn {
   position: absolute;
   top: 16px;
@@ -671,7 +700,7 @@ main {
   transform: translateY(-1px) scale(1.03);
 }
 
-/* Reset This Page button – secondary, also top-right when used */
+/* Reset This Page button – secondary, per-page */
 .clear-page-btn {
   position: absolute;
   top: 16px;
