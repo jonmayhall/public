@@ -3,16 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>myKaarma – Interactive Training Checklist</title>
 
-  <!-- CSS with your original version tag -->
-  <link rel="stylesheet" href="style.css?v=20251112K">
+  <!-- Auto-Cache-Busted CSS -->
+  <script>
+    // Append timestamp to CSS to force reload on each deploy
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "style.css?v=" + new Date().getTime();
+    document.head.appendChild(css);
+  </script>
 
-  <!-- jsPDF -->
+  <!-- jsPDF (static CDN, no cache busting needed) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- Main JS with your original version tag -->
-  <script src="script.js?v=20251107C" defer></script>
+  <!-- Auto-Cache-Busted JavaScript -->
+  <script>
+    // Append timestamp to JS file to force reload
+    const js = document.createElement("script");
+    js.src = "script.js?v=" + new Date().getTime();
+    js.defer = true;
+    document.head.appendChild(js);
+  </script>
 </head>
 <body>
   <header id="topbar">
