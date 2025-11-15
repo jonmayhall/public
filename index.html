@@ -1,2005 +1,1100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>myKaarma Interactive Training Checklist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>myKaarma – Interactive Training Checklist</title>
+    <!-- Auto cache-buster for CSS + JS -->
+    <script>
+      (function () {
+        var cacheBuster = Date.now();
 
-  <!-- Auto-Cache-Busted CSS -->
-  <script>
-    // Append timestamp to CSS to force reload on each deploy
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "style.css?v=" + new Date().getTime();
-    document.head.appendChild(css);
-  </script>
+        function addCSS(href) {
+          var link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = href + "?v=" + cacheBuster;
+          document.head.appendChild(link);
+        }
 
-  <!-- jsPDF (static CDN, no cache busting needed) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        function addJS(src) {
+          var script = document.createElement("script");
+          script.src = src + "?v=" + cacheBuster;
+          script.defer = true;
+          document.head.appendChild(script);
+        }
 
-  <!-- Auto-Cache-Busted JavaScript -->
-  <script>
-    // Append timestamp to JS file to force reload
-    const js = document.createElement("script");
-    js.src = "script.js?v=" + new Date().getTime();
-    js.defer = true;
-    document.head.appendChild(js);
-  </script>
-</head>
-<body>
-  <header id="topbar">
-    <div class="topbar-content">
-      <img src="mykaarma_logo.png" alt="myKaarma logo" class="top-logo" />
-      <div class="topbar-right">
-        <div id="dealershipNameDisplay">Dealership Name</div>
-        <button id="clearAllBtn">Clear All</button>
+        addCSS("styles.css");
+        addJS("app.js");
+      })();
+    </script>
+
+    <noscript>
+      <link rel="stylesheet" href="styles.css" />
+      <script src="app.js" defer></script>
+    </noscript>
+  </head>
+
+  <body>
+    <!-- =====================================================
+         MAIN HEADER (LOGO + DEALERSHIP)
+    ====================================================== -->
+    <header class="page-header">
+      <div class="header-inner">
+        <div class="header-logo-block">
+          <img
+            src="assets/mykaarma-logo.svg"
+            alt="myKaarma logo"
+            class="header-logo"
+          />
+          <div class="header-title-text">
+            <h1>Interactive Training Checklist</h1>
+            <p>Onsite Implementation Playbook</p>
+          </div>
+        </div>
+
+        <div class="header-dealer-block">
+          <label for="dealershipName">Dealership</label>
+          <input
+            id="dealershipName"
+            type="text"
+            placeholder="Harrison Ford of Mankato"
+          />
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div id="app">
-    <!-- SIDEBAR -->
-    <aside id="sidebar">
-      <nav id="sidebar-nav">
-        <button class="nav-btn active" data-target="onsite-trainers">
-          <span class="nav-label">Onsite Trainers &amp; CEM</span>
+    <!-- =====================================================
+         TOP NAV (BLACK MENU BAR + CLEAR ALL)
+    ====================================================== -->
+    <nav class="top-nav">
+      <div class="nav-left">
+        <button class="nav-button active" data-target="pretraining">
+          Pre-Training
         </button>
-        <button class="nav-btn" data-target="dealership-info">
-          <span class="nav-label">Dealership Information</span>
+        <button class="nav-button" data-target="dealership-info">
+          Dealership Info
         </button>
-        <button class="nav-btn" data-target="pretraining">
-          <span class="nav-label">Pre-Training Checklist</span>
+        <button class="nav-button" data-target="training-checklist">
+          Training Checklist
         </button>
-        <button class="nav-btn" data-target="monday-visit">
-          <span class="nav-label">Monday Visit</span>
+        <button class="nav-button" data-target="opcodes-pricing">
+          Opcodes &amp; Pricing
         </button>
-        <button class="nav-btn" data-target="training-checklist">
-          <span class="nav-label">Training Checklist</span>
+        <button class="nav-button" data-target="dms-integration">
+          DMS Integration
         </button>
-        <button class="nav-btn" data-target="opcodes-pricing">
-          <span class="nav-label">Opcodes &amp; Pricing</span>
+        <button class="nav-button" data-target="workflow-notifications">
+          Workflow &amp; Alerts
         </button>
-        <button class="nav-btn" data-target="support-ticket">
-          <span class="nav-label">Support Ticket</span>
+        <button class="nav-button" data-target="summary">
+          Training Summary
         </button>
-        <button class="nav-btn" data-target="dms-integration">
-          <span class="nav-label">DMS Integration</span>
-        </button>
-        <button class="nav-btn" data-target="post-training">
-          <span class="nav-label">Post Training Verification</span>
-        </button>
-        <button class="nav-btn" data-target="training-summary">
-          <span class="nav-label">Training Summary</span>
-        </button>
-      </nav>
-    </aside>
+      </div>
 
-    <!-- MAIN CONTENT -->
-    <main id="content">
-      <!-- ========================================================= -->
-      <!-- PAGE 1: ONSITE TRAINERS & CEM -->
-      <!-- ========================================================= -->
-      <section id="onsite-trainers" class="page-section active">
-        <h1>Onsite Trainers &amp; CEM</h1>
-        <p class="page-subtitle">
-          Capture who is onsite, who owns follow-up, and how training will be supported.
-        </p>
+      <div class="nav-right">
+        <button
+          id="clearAllBtn"
+          class="clear-all-btn"
+          type="button"
+          title="Clear all fields in this checklist"
+        >
+          Clear All
+        </button>
+      </div>
+    </nav>
 
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <div class="section-block">
-          <h2>Trainer Information</h2>
-          <div class="checklist-row">
-            <label>Lead Trainer</label>
-            <input type="text" placeholder="Lead Trainer Name">
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="page-main">
+      <!-- ==============================================
+           SECTION: PRE-TRAINING
+      =============================================== -->
+      <section id="pretraining" class="page-section is-active">
+        <div class="card">
+          <div class="card-header">
+            <h2>Pre-Training Readiness</h2>
           </div>
-          <div class="checklist-row integrated-plus">
-            <label>Additional Trainers</label>
-            <input type="text" placeholder="Additional Trainer Name">
-            <button class="add-row" type="button">+</button>
-          </div>
-        </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field">
+                <label for="kickoffDate">Kickoff Call Date</label>
+                <input type="date" id="kickoffDate" />
+              </div>
 
-        <div class="section-block">
-          <h2>Customer Engagement Manager</h2>
-          <div class="checklist-row">
-            <label>CEM Assigned to Store</label>
-            <input type="text" placeholder="CEM Name">
-          </div>
-        </div>
+              <div class="field">
+                <label for="goLiveDate">Target Go-Live Date</label>
+                <input type="date" id="goLiveDate" />
+              </div>
 
-        <div class="section-block">
-          <h2>Additional Comments — Onsite Trainers &amp; CEM</h2>
-          <textarea placeholder="Notes regarding trainers and CEM …"></textarea>
+              <div class="field">
+                <label for="onsiteStartDate">Onsite Start</label>
+                <input type="date" id="onsiteStartDate" />
+              </div>
+
+              <div class="field">
+                <label for="onsiteEndDate">Onsite End</label>
+                <input type="date" id="onsiteEndDate" />
+              </div>
+
+              <div class="field">
+                <label for="trainingDays">Total Training Days</label>
+                <input
+                  type="number"
+                  id="trainingDays"
+                  min="0"
+                  placeholder="3"
+                />
+              </div>
+
+              <div class="field">
+                <label for="remoteFollowup">Remote Follow-Up Plan</label>
+                <input
+                  type="text"
+                  id="remoteFollowup"
+                  placeholder="30-day &amp; 60-day remote follow-up"
+                />
+              </div>
+
+              <div class="field full">
+                <label for="pretrainingRisks">Risks / Constraints</label>
+                <textarea
+                  id="pretrainingRisks"
+                  rows="3"
+                  placeholder="Scheduling conflict with Top Loader, limited technician coverage, other projects in-flight, etc."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="pretrainingGoals">Primary Goals</label>
+                <textarea
+                  id="pretrainingGoals"
+                  rows="3"
+                  placeholder="Example: Stabilize scheduler, standardize MPI usage, clean payment workflows, etc."
+                ></textarea>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- PAGE 2: DEALERSHIP INFORMATION -->
-      <!-- ========================================================= -->
+      <!-- ==============================================
+           SECTION: DEALERSHIP INFO
+      =============================================== -->
       <section id="dealership-info" class="page-section">
-        <h1>Dealership Information</h1>
-        <p class="page-subtitle">
-          Confirm core dealership details, key contacts, and layout before training.
-        </p>
+        <div class="card">
+          <div class="card-header">
+            <h2>Dealership Information</h2>
+          </div>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field">
+                <label for="dealerGroup">Dealer Group</label>
+                <input
+                  type="text"
+                  id="dealerGroup"
+                  placeholder="Dealer Group Name (if applicable)"
+                />
+              </div>
 
-        <button class="clear-page-btn">Reset This Page</button>
+              <div class="field">
+                <label for="oemBrand">OEM / Franchise</label>
+                <input type="text" id="oemBrand" placeholder="Ford" />
+              </div>
 
-        <!-- General Info -->
-        <div class="section-block">
-          <h2>General Info</h2>
+              <div class="field">
+                <label for="dealerCity">City / State</label>
+                <input
+                  type="text"
+                  id="dealerCity"
+                  placeholder="Mankato, MN"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Dealer Group</label>
-            <input type="text" placeholder="Dealer Group (if applicable)">
-          </div>
+              <div class="field">
+                <label for="serviceBuildings">Service Buildings</label>
+                <input
+                  type="number"
+                  id="serviceBuildings"
+                  min="1"
+                  placeholder="1"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Dealership Name</label>
-            <input type="text" placeholder="Dealership Name">
-          </div>
+              <div class="field">
+                <label for="serviceLanes">Service Lanes</label>
+                <input
+                  type="number"
+                  id="serviceLanes"
+                  min="0"
+                  placeholder="4"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Training Type</label>
-            <select>
-              <option></option>
-              <option>New Dealership</option>
-              <option>Upgrade</option>
-              <option>Retraining</option>
-              <option>Additional Training</option>
-            </select>
-          </div>
+              <div class="field">
+                <label for="loanerFleet">Loaner / Rental Fleet Size</label>
+                <input
+                  type="number"
+                  id="loanerFleet"
+                  min="0"
+                  placeholder="10"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>DMS</label>
-            <input type="text" placeholder="DMS Provider">
-          </div>
+              <div class="field">
+                <label for="techCount">Technicians</label>
+                <input
+                  type="number"
+                  id="techCount"
+                  min="0"
+                  placeholder="16"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Time Zone</label>
-            <input type="text" placeholder="Time Zone">
-          </div>
+              <div class="field">
+                <label for="advisorCount">Service Advisors</label>
+                <input
+                  type="number"
+                  id="advisorCount"
+                  min="0"
+                  placeholder="6"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Total Buildings or Service Departments</label>
-            <input type="number" placeholder="Number of buildings / drives">
-          </div>
+              <div class="field">
+                <label for="partsReps">Parts Reps / Counter Staff</label>
+                <input
+                  type="number"
+                  id="partsReps"
+                  min="0"
+                  placeholder="4"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Are all buildings on one campus?</label>
-            <select>
-              <option></option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-        </div>
+              <div class="field">
+                <label for="bdcAgents">BDC / Call Center Agents</label>
+                <input
+                  type="number"
+                  id="bdcAgents"
+                  min="0"
+                  placeholder="3"
+                />
+              </div>
 
-        <div class="section-block">
-          <h2>Additional Comments — General Info</h2>
-          <textarea placeholder="Notes specific to General Info …"></textarea>
-        </div>
+              <div class="field">
+                <label for="cashiers">Cashiers</label>
+                <input
+                  type="number"
+                  id="cashiers"
+                  min="0"
+                  placeholder="2"
+                />
+              </div>
 
-        <!-- Dealership Contacts -->
-        <div class="section-block">
-          <h2>Dealership Contacts</h2>
+              <div class="field">
+                <label for="serviceManagers">Service Leaders</label>
+                <input
+                  type="number"
+                  id="serviceManagers"
+                  min="0"
+                  placeholder="2 (Manager, Director, etc.)"
+                />
+              </div>
 
-          <div class="checklist-row">
-            <label>Service Manager</label>
-            <input type="text" placeholder="Name">
-          </div>
-          <div class="checklist-row">
-            <label>Cell</label>
-            <input type="text" placeholder="Cell">
-          </div>
-          <div class="checklist-row">
-            <label>Email</label>
-            <input type="email" placeholder="Email">
-          </div>
+              <div class="field full">
+                <label for="dealerWorkflowNotes">Workflow / Layout Notes</label>
+                <textarea
+                  id="dealerWorkflowNotes"
+                  rows="3"
+                  placeholder="Multiple service buildings, separate Quick Lane, shared BDC across rooftops, etc."
+                ></textarea>
+              </div>
 
-          <div class="checklist-row">
-            <label>Parts Manager</label>
-            <input type="text" placeholder="Name">
+              <div class="field full">
+                <label for="dealerOtherSystems">Other Systems in Play</label>
+                <textarea
+                  id="dealerOtherSystems"
+                  rows="3"
+                  placeholder="Top Loader, Xtime, other schedulers, separate texting tools, etc."
+                ></textarea>
+              </div>
+            </div>
           </div>
-          <div class="checklist-row">
-            <label>Cell</label>
-            <input type="text" placeholder="Cell">
-          </div>
-          <div class="checklist-row">
-            <label>Email</label>
-            <input type="email" placeholder="Email">
-          </div>
-
-          <div class="checklist-row">
-            <label>General Manager</label>
-            <input type="text" placeholder="Name">
-          </div>
-          <div class="checklist-row">
-            <label>Cell</label>
-            <input type="text" placeholder="Cell">
-          </div>
-          <div class="checklist-row">
-            <label>Email</label>
-            <input type="email" placeholder="Email">
-          </div>
-
-          <div class="checklist-row integrated-plus">
-            <label>Additional POC</label>
-            <input type="text" placeholder="Name">
-            <button class="add-row" type="button">+</button>
-          </div>
-          <div class="checklist-row">
-            <label>Cell</label>
-            <input type="text" placeholder="Cell">
-          </div>
-          <div class="checklist-row">
-            <label>Email</label>
-            <input type="email" placeholder="Email">
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Dealership Contacts</h2>
-          <textarea placeholder="Notes specific to Contacts …"></textarea>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- PAGE 3: PRE-TRAINING CHECKLIST -->
-      <!-- ========================================================= -->
-      <section id="pretraining" class="page-section">
-        <h1>Pre-Training Checklist</h1>
-        <p class="page-subtitle">
-          Validate integrations, Salesforce notes, and readiness before arriving onsite.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <!-- Salesforce Notes -->
-        <div class="section-block">
-          <h2>Salesforce Notes</h2>
-          <div class="checklist-row">
-            <label>Have you reviewed the following Salesforce notes?</label>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>ServiceCart Notes</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Scheduler Notes</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Deployment Notes</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Remote Training Note</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Sales Notes</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Dealership Contract</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Salesforce Notes</h2>
-          <textarea placeholder="Comments for Salesforce Notes …"></textarea>
-        </div>
-
-        <!-- Communications -->
-        <div class="section-block">
-          <h2>Communications</h2>
-          <div class="checklist-row">
-            <label>Is integration functioning properly?
-              <span class="muted-note">(historic pull, customer information, etc.)</span>
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are texts and calls reaching the end user?
-              <span class="muted-note">(no errors)</span>
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Communications</h2>
-          <textarea placeholder="Comments for Communications …"></textarea>
-        </div>
-
-        <!-- Payments -->
-        <div class="section-block">
-          <h2>Payments</h2>
-          <div class="checklist-row">
-            <label>Is integration working correctly?
-              <span class="muted-note">(dollar amount, descriptions, etc.)</span>
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Do customer invoices appear correctly?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Payments</h2>
-          <textarea placeholder="Comments for Payments …"></textarea>
-        </div>
-
-        <!-- ServiceCart -->
-        <div class="section-block">
-          <h2>ServiceCart</h2>
-          <div class="checklist-row">
-            <label>Does integration appear to be working correctly?
-              <span class="muted-note">(ROs pull, parts, etc.)</span>
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>How many workflows is the dealership using?</label>
-            <input type="number">
-          </div>
-
-          <div class="checklist-row">
-            <label>How many MPI forms is the dealership using?</label>
-            <input type="number">
-          </div>
-
-          <div class="checklist-row">
-            <label>Are creation and prevention rules in place?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are there assignment rules?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Is there parts integration?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — ServiceCart</h2>
-          <textarea placeholder="Comments for ServiceCart …"></textarea>
-        </div>
-
-        <!-- Scheduler -->
-        <div class="section-block">
-          <h2>Scheduler</h2>
-          <div class="checklist-row">
-            <label>Are appointments pulling over correctly?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are the correct opcodes uploaded to correspond with the inspection?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Is the shop divided by teams?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Does the scheduler setup look correct?
-              <span class="muted-note">(hours, capacity, opcodes, labor codes, etc.)</span>
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are there capacity rules?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Scheduler</h2>
-          <textarea placeholder="Comments for Scheduler …"></textarea>
-        </div>
-
-        <!-- ServiceConnect -->
-        <div class="section-block">
-          <h2>ServiceConnect</h2>
-          <div class="checklist-row">
-            <label>Are the automation rules set up and activated?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — ServiceConnect</h2>
-          <textarea placeholder="Comments for ServiceConnect …"></textarea>
-        </div>
-      </section>
-
-      <!-- ========================================================= -->
-      <!-- PAGE 4: MONDAY VISIT -->
-      <!-- ========================================================= -->
-      <section id="monday-visit" class="page-section">
-        <h1>Monday Visit</h1>
-        <p class="page-subtitle">
-          Align expectations, confirm MCI process, and identify device gaps on day one.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <div class="section-block">
-          <h2>Dealership Expectations</h2>
-          <div class="checklist-row">
-            <label>Was the dealership prepared for MCI before arrival?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Who is involved in the MCI process?</label>
-            <select>
-              <option></option>
-              <option>Advisors</option>
-              <option>Porters</option>
-              <option>Advisors &amp; Porters</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Dealership Expectations</h2>
-          <textarea placeholder="Comments for Dealership Expectations …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Scheduled CEM Call</h2>
-          <div class="checklist-row">
-            <label>Did you set up the CEM call for Thursday with SD / SM / PM / BDC
-              <span class="muted-note">(if onsite)</span>?
-            </label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Scheduled CEM Call</h2>
-          <textarea placeholder="Comments for CEM Call …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>iOS Devices</h2>
-          <div class="checklist-row">
-            <label>Do all technicians have iOS devices?</label>
-            <select>
-              <option></option><option>Yes</option><option>No</option><option>N/A</option>
-            </select>
-          </div>
-          <div class="checklist-row indent-sub">
-            <label>How many iOS devices are they short?</label>
-            <input type="number">
-          </div>
-        </div>
-
-        <div class="checklist-row">
-          <label>Do all of the advisors have iOS devices?</label>
-          <select>
-            <option></option><option>Yes</option><option>No</option><option>N/A</option>
-          </select>
-        </div>
-        <div class="checklist-row indent-sub">
-          <label>How many iOS devices are they short?</label>
-          <input type="number">
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — iOS Devices</h2>
-          <textarea placeholder="Comments for iOS Devices …"></textarea>
-        </div>
-      </section>
-
-      <!-- ========================================================= -->
-      <!-- PAGE 5 : TRAINING CHECKLIST -->
-      <!-- ========================================================= -->
+      <!-- ==============================================
+           SECTION: TRAINING CHECKLIST
+      =============================================== -->
       <section id="training-checklist" class="page-section">
-        <h1>Training Checklist</h1>
-        <p class="page-subtitle">
-          Track adoption by role and ensure every user can work confidently in myKaarma.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <!-- Technicians – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>Technicians – Checklist</span>
+        <!-- TECHNICIANS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Checklist &mdash; Technicians</h2>
           </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>DMS ID</th>
-                    <th>Logged In</th>
-                    <th>Mobile App</th>
-                    <th>Search</th>
-                    <th>RO Assignment</th>
-                    <th>DMS History</th>
-                    <th>Dispatch</th>
-                    <th>RO History</th>
-                    <th>Prev. Declines</th>
-                    <th>Workflow</th>
-                    <th>OCR</th>
-                    <th>ShopChat</th>
-                    <th>Media</th>
-                    <th>Status Change</th>
-                    <th>Notifications</th>
-                    <th>Filters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Row 1 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Technician Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-
-                  <!-- Row 2 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Technician Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-
-                  <!-- Row 3 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Technician Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Technicians</h2>
-          <textarea placeholder="Comments related to technician training and adoption …"></textarea>
-        </div>
-
-        <!-- Service Advisors – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>Service Advisors – Checklist</span>
-          </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>DMS ID</th>
-                    <th>Logged In</th>
-                    <th>Search</th>
-                    <th>RO Assignment</th>
-                    <th>DMS History</th>
-                    <th>Prev. Declines</th>
-                    <th>Workflow</th>
-                    <th>Status Change</th>
-                    <th>OCR</th>
-                    <th>Additional Lines</th>
-                    <th>ShopChat</th>
-                    <th>Sending MPI</th>
-                    <th>Sending Video</th>
-                    <th>MCI</th>
-                    <th>Mobile App</th>
-                    <th>Filters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Row 1 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Advisor Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-
-                  <!-- Row 2 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Advisor Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-
-                  <!-- Row 3 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Advisor Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Service Advisors</h2>
-          <textarea placeholder="Comments related to advisor training and adoption …"></textarea>
-        </div>
-
-        <!-- Parts Representatives – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>Parts Representatives – Checklist</span>
-          </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>DMS ID</th>
-                    <th>Logged In</th>
-                    <th>Search</th>
-                    <th>Workflow</th>
-                    <th>Status Change</th>
-                    <th>OCR</th>
-                    <th>Take</th>
-                    <th>Parts Estimate</th>
-                    <th>DMS History</th>
-                    <th>Prev. Declines</th>
-                    <th>ShopChat</th>
-                    <th>SOP</th>
-                    <th>Notifications</th>
-                    <th>Filters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Row 1 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Parts Rep Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-
-                  <!-- Row 2 -->
-                  <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Parts Rep Name">
-                    </td>
-                    <td>
-                      <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
-                      </select>
-                    </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Parts Representatives</h2>
-          <textarea placeholder="Comments related to parts training and adoption …"></textarea>
-        </div>
-
-        <!-- BDC / Scheduler – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>BDC / Scheduler – Checklist</span>
-          </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>DMS ID</th>
-                    <th>Login</th>
-                    <th>Scheduler</th>
-                    <th>Declined Services</th>
-                    <th>ServiceConnect</th>
-                    <th>Routing</th>
+                    <th style="width: 40%">Training Topic</th>
+                    <th style="width: 20%">Audience</th>
+                    <th style="width: 20%">Status</th>
+                    <th style="width: 20%">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="BDC Name">
-                    </td>
+                    <td>Clock-in / Clock-out from myKaarma</td>
+                    <td>All Techs</td>
                     <td>
                       <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
                       </select>
                     </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Digital MPI workflow (create, complete, submit)</td>
+                    <td>All Techs</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Photo / video best practices</td>
+                    <td>All Techs</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Handling declined lines / reinspection</td>
+                    <td>All Techs</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Tablet / device login process</td>
+                    <td>All Techs</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
           </div>
         </div>
 
-        <div class="section-block">
-          <h2>Additional Comments — BDC / Scheduler</h2>
-          <textarea placeholder="Comments related to BDC / Scheduler …"></textarea>
-        </div>
-
-        <!-- Drivers – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>Drivers – Checklist</span>
+        <!-- SERVICE ADVISORS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Checklist &mdash; Service Advisors</h2>
           </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>Logged In</th>
-                    <th>Mobile App</th>
-                    <th>Assigned Trips</th>
-                    <th>Trip Navigation</th>
+                    <th>Training Topic</th>
+                    <th>Audience</th>
+                    <th>Status</th>
                     <th>Notes</th>
-                    <th>Communication</th>
-                    <th>Notifications</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Driver Name">
-                    </td>
+                    <td>Scheduler rules (Teams, capacity, Top Loader overlap)</td>
+                    <td>All Advisors</td>
                     <td>
                       <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
                       </select>
                     </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Texting / communication best practices</td>
+                    <td>All Advisors</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Reviewing MPI results with customers</td>
+                    <td>All Advisors</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Payment flows (CDK One Pay vs. myKaarma)</td>
+                    <td>Advisors / Cashiers</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Status changes &amp; notifications (Advisor Review, etc.)</td>
+                    <td>All Advisors</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
           </div>
         </div>
 
-        <div class="section-block">
-          <h2>Additional Comments — Drivers</h2>
-          <textarea placeholder="Comments related to Drivers …"></textarea>
-        </div>
-
-        <!-- Dispatcher – Checklist -->
-        <div class="section">
-          <div class="section-header">
-            <span>Dispatcher – Checklist</span>
+        <!-- PARTS REPS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Checklist &mdash; Parts Reps</h2>
           </div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>User Acceptance</th>
-                    <th>Trip Creation</th>
-                    <th>Vehicles</th>
-                    <th>Adding Drivers</th>
-                    <th>Global Map</th>
-                    <th>Notifications</th>
-                    <th>Mobile App</th>
-                    <th>Drivers View</th>
+                    <th>Training Topic</th>
+                    <th>Audience</th>
+                    <th>Status</th>
+                    <th>Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      <input type="checkbox">
-                      <input type="text" placeholder="Dispatcher Name">
-                    </td>
+                    <td>Receiving MPI parts requests</td>
+                    <td>All Counter Reps</td>
                     <td>
                       <select>
-                        <option></option>
-                        <option>Fully Adopted</option>
-                        <option>Mostly Adopted</option>
-                        <option>Neutral / Mixed</option>
-                        <option>Needs Support</option>
-                        <option>Not Accepted</option>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
                       </select>
                     </td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
-                    <td><select><option></option><option>Yes</option><option>No</option><option>Not Trained</option><option>N/A</option></select></td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Understanding pricing fields (Price 6, list, matrix)</td>
+                    <td>All Counter Reps</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Battery pricing / special fields</td>
+                    <td>All Counter Reps</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Communicating backorder or NLA in myKaarma</td>
+                    <td>All Counter Reps</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
 
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
+        <!-- BDC -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Checklist &mdash; BDC / Call Center</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
+                <thead>
+                  <tr>
+                    <th>Training Topic</th>
+                    <th>Audience</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Booking appointments into myKaarma scheduler</td>
+                    <td>All BDC Agents</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Using templates / canned responses</td>
+                    <td>All BDC Agents</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Rescheduling / canceling in myKaarma vs. DMS</td>
+                    <td>All BDC Agents</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <div class="section-block">
-          <h2>Additional Comments — Dispatcher</h2>
-          <textarea placeholder="Comments related to Dispatcher …"></textarea>
+        <!-- MANAGERS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Checklist &mdash; Managers / Admins</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
+                <thead>
+                  <tr>
+                    <th>Training Topic</th>
+                    <th>Audience</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Scheduler rule set (teams, capacities, buffers)</td>
+                    <td>Service Manager / Admin</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Reporting &amp; dashboards</td>
+                    <td>Managers</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>User management / access control</td>
+                    <td>Managers / Admin</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Escalation path &amp; support expectations</td>
+                    <td>Managers</td>
+                    <td>
+                      <select>
+                        <option value=""></option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Complete</option>
+                      </select>
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- PAGE 6: OPCODES & PRICING -->
-      <!-- ========================================================= -->
+      <!-- ==============================================
+           SECTION: OPCODES & PRICING
+      =============================================== -->
       <section id="opcodes-pricing" class="page-section">
-        <h1>Opcodes &amp; Pricing</h1>
-        <p class="page-subtitle">
-          Verify opcodes, pricing, and parts margins support accurate inspections and MPIs.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <!-- Labor Opcodes -->
-        <div class="section">
-          <div class="section-header">Labor Opcodes</div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
+        <div class="card">
+          <div class="card-header">
+            <h2>Opcodes &amp; Pricing &mdash; Core Setup</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
                 <thead>
                   <tr>
-                    <th>Opcode</th>
-                    <th>Description</th>
-                    <th>Labor Charged</th>
-                    <th>Set Parts Charged</th>
-                    <th>Preselected Opcode</th>
+                    <th style="width: 20%">Opcode</th>
+                    <th style="width: 35%">Description</th>
+                    <th style="width: 25%">Pricing Rule / Source</th>
+                    <th style="width: 20%">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="text" placeholder="Opcode"></td>
-                    <td><input type="text" placeholder="Description"></td>
+                    <td>DIAG</td>
+                    <td>Diagnostic Charge</td>
                     <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
+                      <input
+                        type="text"
+                        placeholder="Forced $ amount, menu, or matrix"
+                      />
                     </td>
-                    <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
-                    </td>
-                    <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
-                    </td>
+                    <td><input type="text" /></td>
                   </tr>
                   <tr>
-                    <td><input type="text" placeholder="Opcode"></td>
-                    <td><input type="text" placeholder="Description"></td>
+                    <td>BATTERY</td>
+                    <td>Battery Replacement (Standard)</td>
                     <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
+                      <input
+                        type="text"
+                        placeholder="Price 6, list, or custom"
+                      />
                     </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>ALIGN</td>
+                    <td>4-Wheel Alignment</td>
                     <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
+                      <input
+                        type="text"
+                        placeholder="Menu price or matrix"
+                      />
                     </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>BRAKEF</td>
+                    <td>Front Brake Service</td>
                     <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
+                      <input
+                        type="text"
+                        placeholder="Menu / Flat price / Matrix"
+                      />
                     </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>BRAKER</td>
+                    <td>Rear Brake Service</td>
+                    <td>
+                      <input type="text" placeholder="Same as above" />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>TIREPKG</td>
+                    <td>Tire Package / Install</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Per tire vs. package logic"
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>OILCHG</td>
+                    <td>Oil Change / LOF</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Menu pricing vs. DMS"
+                      />
+                    </td>
+                    <td><input type="text" /></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
+            <div class="field-grid" style="margin-top: 16px">
+              <div class="field full">
+                <label for="opcodeNotes">Opcode / Pricing Notes</label>
+                <textarea
+                  id="opcodeNotes"
+                  rows="4"
+                  placeholder="Where are opcodes maintained (DMS vs. myKaarma)? Any exceptions or custom packages to be aware of?"
+                ></textarea>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Labor Opcodes</h2>
-          <textarea placeholder="Notes specific to labor opcodes …"></textarea>
-        </div>
-
-        <!-- Parts Pricing Verification -->
-        <div class="section">
-          <div class="section-header">Parts Pricing Verification</div>
-
-          <div class="table-container">
-            <div class="scroll-wrapper">
-              <table class="training-table">
-                <thead>
-                  <tr>
-                    <th>Part Number</th>
-                    <th>Description</th>
-                    <th>List Price</th>
-                    <th>Cost</th>
-                    <th>Markup %</th>
-                    <th>Verified?</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><input type="text" placeholder="Part #"></td>
-                    <td><input type="text" placeholder="Description"></td>
-                    <td><input type="text" placeholder="$0.00"></td>
-                    <td><input type="text" placeholder="$0.00"></td>
-                    <td><input type="number" placeholder="%"></td>
-                    <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" placeholder="Part #"></td>
-                    <td><input type="text" placeholder="Description"></td>
-                    <td><input type="text" placeholder="$0.00"></td>
-                    <td><input type="text" placeholder="$0.00"></td>
-                    <td><input type="number" placeholder="%"></td>
-                    <td>
-                      <select><option></option><option>Yes</option><option>No</option></select>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="table-footer">
-              <button class="add-row" type="button">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Parts Pricing Verification</h2>
-          <textarea placeholder="Notes specific to parts pricing verification …"></textarea>
-        </div>
-      </section>
-
-      <!-- ========================================================= -->
-      <!-- PAGE 7: SUPPORT TICKET -->
-      <!-- ========================================================= -->
-      <section id="support-ticket" class="page-section">
-        <h1>Support Ticket</h1>
-        <p class="page-subtitle">
-          Track open and closed support tickets related to this dealership and training rollout.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <!-- Open Support Tickets -->
-        <div class="section-block">
-          <h2>Open Support Tickets</h2>
-          <div class="ticket-group">
-            <div class="checklist-row integrated-plus">
-              <label>Support Ticket Number</label>
-              <input type="text" placeholder="Ticket #">
-              <button class="add-row" type="button">+</button>
-            </div>
-
-            <div class="checklist-row">
-              <label>Issue Summary</label>
-              <input type="text" placeholder="Short summary of the issue">
-            </div>
-
-            <div class="checklist-row">
-              <label>Ticket Status</label>
-              <select>
-                <option></option>
-                <option>Open</option>
-                <option>Tier Two</option>
-                <option>Closed</option>
-              </select>
-            </div>
-
-            <div class="checklist-row">
-              <label>Detailed Description</label>
-            </div>
-            <textarea placeholder="Full description, steps to reproduce, impact, related users or roles, and any troubleshooting already performed …"></textarea>
-          </div>
-        </div>
-
-        <!-- Closed Support Tickets -->
-        <div class="section-block">
-          <h2>Closed Support Tickets</h2>
-          <div class="ticket-group">
-            <div class="checklist-row">
-              <label>Support Ticket Number</label>
-              <input type="text" placeholder="Ticket #">
-            </div>
-
-            <div class="checklist-row">
-              <label>Issue Summary</label>
-              <input type="text" placeholder="Short summary of the resolved issue">
-            </div>
-
-            <div class="checklist-row">
-              <label>Resolution / Notes</label>
-            </div>
-            <textarea placeholder="Description of the resolution, who handled it, any permanent fixes put in place, and follow-up items …"></textarea>
           </div>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- PAGE 8: DMS INTEGRATION -->
-      <!-- ========================================================= -->
+      <!-- ==============================================
+           SECTION: DMS INTEGRATION
+      =============================================== -->
       <section id="dms-integration" class="page-section">
-        <h1>DMS Integration</h1>
-        <p class="page-subtitle">
-          How customers, vehicles, appointments, ROs, invoices, pricing, and history flow between myKaarma and each DMS.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
         <!-- OVERVIEW -->
-        <div class="section-block dms-overview-block">
-          <h2>Integration Overview</h2>
-          <div class="dms-legend">
-            <div><span class="dms-dot dms-dot-auto"></span><strong>Auto:</strong> Automatic recurring sync.</div>
-            <div><span class="dms-dot dms-dot-ondemand"></span><strong>On-Demand:</strong> Triggered by user or workflow.</div>
-            <div><span class="dms-dot dms-dot-withro"></span><strong>With RO:</strong> Data flows when an RO is created/updated.</div>
-            <div><span class="dms-dot dms-dot-planned"></span><strong>Planned:</strong> Supported, but not yet fully enabled everywhere.</div>
-            <div><span class="dms-dot dms-dot-na"></span><strong>N/A:</strong> Not supported for this DMS.</div>
+        <div class="card">
+          <div class="card-header">
+            <h2>DMS Integration &mdash; Overview</h2>
           </div>
-        </div>
-
-        <!-- DMS CARDS -->
-        <div class="section">
-          <div class="section-header">
-            <span>DMS Integration Matrix</span>
-          </div>
-
-          <div class="dms-table-container">
-            <div class="dms-grid">
-              <!-- REYNOLDS -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">Reynolds</span>
-                  <span class="dms-chip dms-chip-push">Push-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Customer updates push automatically as part of standard workflows.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Vehicle information is included with RO and customer pushes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-ondemand">On-Demand</span>
-                    </div>
-                    <p>Pushes from myKaarma when generated or updated
-                      <span class="muted-note">(if any appointments are scheduled)</span>.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-ondemand">On-Demand</span>
-                    </div>
-                    <p>ROs push from ServiceCart, Check-In, or configured workflow triggers.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts / Invoices</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Can push automatically when workflows support parts invoice generation.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>History syncs via RO traffic and labor codes.</p>
-                  </li>
-                </ul>
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field">
+                <label for="dmsVendor">DMS Vendor</label>
+                <input
+                  type="text"
+                  id="dmsVendor"
+                  placeholder="CDK, Reynolds, Dealertrack, etc."
+                />
               </div>
 
-              <!-- AUTOMATE -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">Automate</span>
-                  <span class="dms-chip dms-chip-push">Push-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Customers push automatically into Automate.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Vehicle updates flow with RO traffic.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-limited">Limited</span>
-                    </div>
-                    <p>Limited appointment update support; details may vary by store.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-na">N/A</span>
-                    </div>
-                    <p>No RO write-back path from myKaarma.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts</span>
-                      <span class="dms-tag dms-tag-na">N/A</span>
-                    </div>
-                    <p>No parts invoice push supported.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-display">Display</span>
-                    </div>
-                    <p>Primarily presentation only with limited push traffic.</p>
-                  </li>
-                </ul>
+              <div class="field">
+                <label for="dmsStoreId">DMS Store ID</label>
+                <input type="text" id="dmsStoreId" placeholder="1234" />
               </div>
 
-              <!-- CDK -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">CDK</span>
-                  <span class="dms-chip dms-chip-pull">Pull-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 15 minutes; historical lookup available on-demand.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Vehicle info comes with RO records.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 15 minutes; myKaarma can request additional refreshes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes; write-back is on-demand.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts &amp; Pricing</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Invoices pull every 15 minutes; on-demand pricing available in ServiceCart.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Nightly sync of RO and F&amp;I history <span class="muted-note">(≈2 years)</span>.</p>
-                  </li>
-                </ul>
+              <div class="field">
+                <label for="dmsIntegrationType">Integration Type</label>
+                <input
+                  type="text"
+                  id="dmsIntegrationType"
+                  placeholder="Certified, File-based, API, etc."
+                />
               </div>
 
-              <!-- Dealertrack / Arkona -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">Dealertrack / Arkona</span>
-                  <span class="dms-chip dms-chip-pull">Pull-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes; historical requests supported.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-ondemand">On-Demand</span>
-                    </div>
-                    <p>Vehicle lookup on-demand; also comes with RO data.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 15 minutes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 2 minutes; write-back is on-demand.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts &amp; Pricing</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Parts invoices pull every 15 minutes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Nightly sync for RO and customer history.</p>
-                  </li>
-                </ul>
+              <div class="field">
+                <label for="partsPriceSource">Parts Price Source</label>
+                <input
+                  type="text"
+                  id="partsPriceSource"
+                  placeholder="Price 6, list, matrix, etc."
+                />
               </div>
 
-              <!-- Lightyear / Dealerbuilt -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">Lightyear / Dealerbuilt</span>
-                  <span class="dms-chip dms-chip-pull">Pull-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Loaded with RO activity.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 2 minutes; on-demand write-back.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Parts invoices pull every 5 minutes
-                      <span class="muted-note">(varies by store)</span>.
-                    </p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Nightly RO history sync; on-demand refresh supported.</p>
-                  </li>
-                </ul>
+              <div class="field">
+                <label for="laborRateSource">Labor Rate Source</label>
+                <input
+                  type="text"
+                  id="laborRateSource"
+                  placeholder="Door rate, op-code rate, etc."
+                />
               </div>
 
-              <!-- PBS -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">PBS</span>
-                  <span class="dms-chip dms-chip-pull">Pull-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-limited">Limited</span>
-                    </div>
-                    <p>Customer pulls limited; relies heavily on RO activity.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Vehicle sync primarily RO-related.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes; some push varies by workflow.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 2 minutes; write-back is on-demand.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts</span>
-                      <span class="dms-tag dms-tag-limited">Limited</span>
-                    </div>
-                    <p>Parts invoice pulling is not universal.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Nightly RO history sync.</p>
-                  </li>
-                </ul>
+              <div class="field">
+                <label for="menuPricingSource">Menu Pricing Source</label>
+                <input
+                  type="text"
+                  id="menuPricingSource"
+                  placeholder="DMS menus, myKaarma menus, or other"
+                />
               </div>
 
-              <!-- Tekion -->
-              <div class="dms-card">
-                <div class="dms-card-header">
-                  <span class="dms-name">Tekion</span>
-                  <span class="dms-chip dms-chip-pull">Pull-Based</span>
-                </div>
-                <ul class="dms-list">
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Customers</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Customers arrive with the RO; no independent customer pull.</p>
-                  </li>
+              <div class="field full">
+                <label for="dmsBatteryNotes">Battery / Special Item Notes</label>
+                <textarea
+                  id="dmsBatteryNotes"
+                  rows="3"
+                  placeholder="Battery price fields (Price 6, Price 4), matrix exceptions, tires handled differently, etc."
+                ></textarea>
+              </div>
 
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Vehicles</span>
-                      <span class="dms-tag dms-tag-withro">With RO</span>
-                    </div>
-                    <p>Vehicle flow attached to RO updates.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Appointments</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes; some write-back planned.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">ROs</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Pull every 5 minutes; write-back enabled per store.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">Parts &amp; Pricing</span>
-                      <span class="dms-tag dms-tag-planned">Planned</span>
-                    </div>
-                    <p>Planned and supported in roadmap.</p>
-                  </li>
-
-                  <li>
-                    <div class="dms-row-top">
-                      <span class="dms-field">History</span>
-                      <span class="dms-tag dms-tag-auto">Auto</span>
-                    </div>
-                    <p>Historical RO load available during deployment.</p>
-                  </li>
-                </ul>
+              <div class="field full">
+                <label for="dmsNotes">Additional DMS Notes</label>
+                <textarea
+                  id="dmsNotes"
+                  rows="3"
+                  placeholder="Any quirks with RO creation, cashiering, tax handling, or store-specific rules."
+                ></textarea>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- NOTES -->
-        <div class="section-block">
-          <h2>Integration Notes</h2>
-          <textarea placeholder="Type integration notes here …"></textarea>
+      <!-- ==============================================
+           SECTION: WORKFLOW & NOTIFICATIONS
+      =============================================== -->
+      <section id="workflow-notifications" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Workflow &amp; Notifications</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-scroll">
+              <table class="checklist-table">
+                <thead>
+                  <tr>
+                    <th style="width: 25%">Status</th>
+                    <th style="width: 25%">Who is Notified?</th>
+                    <th style="width: 25%">How Notified?</th>
+                    <th style="width: 25%">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Advisor Review</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Assigned advisor, team lead, etc."
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Notification panel, email, etc."
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Parts Needed</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Parts counter, dedicated queue"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Status board, notification, etc."
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Waiting for Customer Response</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Assigned advisor, BDC, etc."
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Alert, timer, report, etc."
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Ready for Pickup</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Customer, cashier, BDC"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Text, call, email, etc."
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                    <td>Vehicle Delivered</td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="CSI follow-up owner, etc."
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        placeholder="Text sequence, survey, etc."
+                      />
+                    </td>
+                    <td><input type="text" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="field-grid" style="margin-top: 16px">
+              <div class="field full">
+                <label for="workflowRoutingNotes">Routing / Workflow Notes</label>
+                <textarea
+                  id="workflowRoutingNotes"
+                  rows="3"
+                  placeholder="Multi-building routing, team-based dispatch, special handling for EV or commercial, etc."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="notificationRisks">Notification Risks / Gaps</label>
+                <textarea
+                  id="notificationRisks"
+                  rows="3"
+                  placeholder="Where can ROs get stuck? Who owns monitoring status queues? Any known blind spots?"
+                ></textarea>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- ========================================================= -->
-      <!-- PAGE 9: POST TRAINING VERIFICATION -->
-      <!-- ========================================================= -->
-      <section id="post-training" class="page-section">
-        <h1>Post Training Verification</h1>
-        <p class="page-subtitle">
-          Confirm adoption, automation, and leadership approval before closing out the training.
-        </p>
-
-        <button class="clear-page-btn">Reset This Page</button>
-
-        <!-- Champions & Blockers -->
-        <div class="section-block">
-          <h2>Champions &amp; Blockers</h2>
-
-          <div class="checklist-row">
-            <label>Champion – Advisors</label>
-            <input type="text" placeholder="Advisor Champion">
+      <!-- ==============================================
+           SECTION: TRAINING SUMMARY
+      =============================================== -->
+      <section id="summary" class="page-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Training Summary &amp; Follow-Up</h2>
           </div>
-          <div class="checklist-row">
-            <label>Champion – Techs</label>
-            <input type="text" placeholder="Tech Champion">
+          <div class="card-body">
+            <div class="field-grid">
+              <div class="field full">
+                <label for="wins">Biggest Wins</label>
+                <textarea
+                  id="wins"
+                  rows="3"
+                  placeholder="Top 3 improvements from this implementation..."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="risks">Open Risks / Follow-Ups</label>
+                <textarea
+                  id="risks"
+                  rows="3"
+                  placeholder="Schedulers, pricing, process gaps, training refresh needs..."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="actionItems">Action Items</label>
+                <textarea
+                  id="actionItems"
+                  rows="4"
+                  placeholder="Who owns what by when..."
+                ></textarea>
+              </div>
+
+              <div class="field full">
+                <label for="nextCheckIn">Next Check-In Plan</label>
+                <textarea
+                  id="nextCheckIn"
+                  rows="3"
+                  placeholder="Example: 30-day remote review, 60-day KPI review, 90-day onsite booster if needed."
+                ></textarea>
+              </div>
+            </div>
           </div>
-          <div class="checklist-row">
-            <label>Champion – Parts Reps</label>
-            <input type="text" placeholder="Parts Champion">
-          </div>
-
-          <div class="checklist-row">
-            <label>Blocker – Advisors</label>
-            <input type="text" placeholder="Advisor Blocker">
-          </div>
-          <div class="checklist-row">
-            <label>Blocker – Techs</label>
-            <input type="text" placeholder="Tech Blocker">
-          </div>
-          <div class="checklist-row">
-            <label>Blocker – Parts Reps</label>
-            <input type="text" placeholder="Parts Blocker">
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Champions &amp; Blockers</h2>
-          <textarea placeholder="Comments related to champions and blockers …"></textarea>
-        </div>
-
-        <!-- Post Training Verification Questions -->
-        <div class="section-block">
-          <h2>Post Training Verification</h2>
-
-          <div class="checklist-row">
-            <label>Are advisors fully using myKaarma for communication?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are techs completing MPIs end-to-end inside myKaarma?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Is the scheduler functioning correctly
-              <span class="muted-note">(capacity, teams, routing, opcodes)</span>?
-            </label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are parts pricing and labor opcodes showing correct values during MPI approval?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are all communications (texts, calls, video messages) working without errors?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Do managers understand how to monitor usage and performance in myKaarma?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Are all known issues documented and submitted as support tickets?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Post Training Verification</h2>
-          <textarea placeholder="Comments related to overall post training verification …"></textarea>
-        </div>
-
-        <!-- Manager Approval -->
-        <div class="section-block">
-          <h2>Manager Approval</h2>
-
-          <div class="checklist-row">
-            <label>Did the Service Manager walk the shop and service drive with you on the final day?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Did you receive approval for a successful training from the Service Manager?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row">
-            <label>Did you receive approval for a successful training from the Parts Manager?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Manager Approval</h2>
-          <textarea placeholder="Comments related to manager approval …"></textarea>
-        </div>
-
-        <!-- Automated Messages -->
-        <div class="section-block">
-          <h2>Automated Messages</h2>
-
-          <div class="checklist-row">
-            <label>Are automated customer messages active and configured correctly?</label>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Welcome text?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Appointment reminder?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>MPI?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Tech video?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Payment request?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>Follow-up text?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-
-          <div class="checklist-row indent-sub">
-            <label>ServiceConnect?</label>
-            <select><option></option><option>Yes</option><option>No</option><option>N/A</option></select>
-          </div>
-        </div>
-
-        <div class="section-block">
-          <h2>Additional Comments — Automated Messages</h2>
-          <textarea placeholder="Comments related to automated messages and notifications …"></textarea>
-        </div>
-      </section>
-
-      <!-- ========================================================= -->
-      <!-- PAGE 10: TRAINING SUMMARY -->
-      <!-- ========================================================= -->
-      <section id="training-summary" class="page-section">
-        <h1>Training Summary</h1>
-        <button id="savePDF" class="floating-btn">Save as PDF</button>
-
-        <div class="section-block">
-          <h2>Training Summary</h2>
-          <textarea placeholder="Summary of overall training progress …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Information for CEM</h2>
-          <textarea placeholder="Information to share with CEM …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Champions &amp; Blockers</h2>
-          <textarea placeholder="Champions and blockers info …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Pre-Training &amp; Monday Visit Notes</h2>
-          <textarea placeholder="Pre-Training and Monday notes …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>End-of-Day Summary – Tuesday</h2>
-          <textarea placeholder="Tuesday notes …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>End-of-Day Summary – Wednesday</h2>
-          <textarea placeholder="Wednesday notes …"></textarea>
-        </div>
-
-        <div class="section-block">
-          <h2>Opcode, Pricing &amp; Integration Notes</h2>
-          <textarea placeholder="Autofill from Opcodes and DMS Integration notes …"></textarea>
         </div>
       </section>
     </main>
-  </div> <!-- #app -->
-</body>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="page-footer">
+      <span>myKaarma &bull; Internal Training Use Only</span>
+    </footer>
+  </body>
 </html>
