@@ -1,17 +1,636 @@
 /* =======================================================
+   myKaarma – Interactive Training Checklist
+   Global Layout + Components + DMS Integration (Option A)
+   ======================================================= */
+
+/* -------- CSS Variables -------- */
+:root {
+  --bg: #0b1017;
+  --bg-elevated: #151b26;
+  --bg-elevated-soft: #1b2230;
+  --card: #ffffff;
+  --card-soft: #f8fafc;
+  --accent: #f97316;
+  --accent-soft: rgba(249, 115, 22, 0.1);
+  --accent-strong: #ea580c;
+  --accent-muted: #fed7aa;
+  --border: #d0d7e2;
+  --border-soft: #e2e8f0;
+  --border-subtle: #edf2f7;
+  --text: #0f172a;
+  --text-soft: #4b5563;
+  --text-muted: #6b7280;
+  --nav-bg: #050816;
+  --nav-border: #1f2937;
+  --nav-active: #111827;
+  --nav-active-border: #f97316;
+  --nav-hover: #0b1220;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.24);
+  --shadow-subtle: 0 6px 18px rgba(15, 23, 42, 0.14);
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.18);
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-border-focus: #f97316;
+  --input-shadow-focus: 0 0 0 1px rgba(249, 115, 22, 0.25);
+}
+
+/* -------- Base -------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 52%, #000 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------- Topbar -------- */
+
+#topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.92),
+      rgba(15, 23, 42, 0.96)
+    ),
+    radial-gradient(circle at top, rgba(249, 115, 22, 0.28), transparent 55%);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.75);
+}
+
+.topbar-content {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-logo {
+  height: 32px;
+  width: auto;
+  filter: drop-shadow(0 8px 14px rgba(15, 23, 42, 0.7));
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#dealershipNameDisplay {
+  color: #e5e7eb;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+}
+
+#clearAllBtn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px dashed rgba(248, 250, 252, 0.4);
+  background: linear-gradient(
+    120deg,
+    rgba(248, 250, 252, 0.14),
+    rgba(148, 163, 184, 0.12)
+  );
+  color: #f9fafb;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.17s ease, transform 0.17s ease,
+    border-color 0.17s ease, box-shadow 0.17s ease;
+}
+
+#clearAllBtn:hover {
+  background: rgba(248, 250, 252, 0.18);
+  border-color: rgba(249, 115, 22, 0.85);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.36),
+    0 18px 30px rgba(15, 23, 42, 0.8);
+  transform: translateY(-0.5px);
+}
+
+/* -------- App Layout -------- */
+
+#app {
+  max-width: 1320px;
+  margin: 22px auto 30px;
+  padding: 0 18px 18px;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 18px;
+}
+
+/* -------- Sidebar -------- */
+
+#sidebar {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(31, 41, 55, 0.95);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.8);
+  padding: 14px 10px 16px;
+  position: sticky;
+  top: 76px;
+  align-self: flex-start;
+}
+
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-btn {
+  border: 1px solid rgba(31, 41, 55, 0.9);
+  background: radial-gradient(circle at top left, #020617 0, #020617 35%, #000 100%);
+  color: #e5e7eb;
+  border-radius: 999px;
+  padding: 8px 12px 8px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.nav-btn::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.6);
+  margin-right: 8px;
+  box-shadow: 0 0 0 1px rgba(31, 41, 55, 0.8);
+}
+
+.nav-btn .nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-btn:hover {
+  background: radial-gradient(
+      circle at top,
+      rgba(249, 115, 22, 0.32),
+      rgba(15, 23, 42, 1)
+    ),
+    #020617;
+  border-color: rgba(249, 115, 22, 0.9);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.95);
+  transform: translateY(-0.5px);
+}
+
+.nav-btn.active {
+  background: radial-gradient(circle at top, #f97316 0, #c2410c 34%, #111827 100%);
+  border-image: linear-gradient(
+      120deg,
+      #f97316,
+      #fed7aa,
+      #22d3ee,
+      #0ea5e9,
+      #f97316
+    )
+    1;
+  border-width: 1px;
+  color: #0b1120;
+  text-shadow: 0 0 10px rgba(248, 250, 252, 0.55);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+}
+
+.nav-btn.active::before {
+  background: #f97316;
+  box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.75),
+    0 0 12px rgba(249, 115, 22, 0.8);
+}
+
+/* -------- Main Content / Sections -------- */
+
+#content {
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.95);
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+  padding: 18px 18px 24px;
+  color: #e5e7eb;
+}
+
+.page-section {
+  display: none;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.page-section.active {
+  display: block;
+}
+
+.page-section h1 {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  color: #f9fafb;
+}
+
+.page-subtitle {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: #9ca3af;
+  max-width: 720px;
+}
+
+/* Buttons in-page */
+.clear-page-btn,
+.floating-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: radial-gradient(
+      circle at top,
+      rgba(148, 163, 184, 0.14),
+      rgba(15, 23, 42, 0.9)
+    ),
+    #020617;
+  color: #e5e7eb;
+  padding: 7px 13px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.17s ease;
+}
+
+.clear-page-btn:hover,
+.floating-btn:hover {
+  border-color: rgba(249, 115, 22, 0.9);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.3),
+    0 18px 40px rgba(15, 23, 42, 0.8);
+  transform: translateY(-0.5px);
+}
+
+.floating-btn {
+  float: right;
+  margin-top: -10px;
+}
+
+/* Section blocks / cards */
+.section-block,
+.section {
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+  border: 1px solid rgba(31, 41, 55, 0.95);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.85);
+  padding: 12px 14px 14px;
+}
+
+.section-block h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f9fafb;
+}
+
+/* Section header for tables */
+.section-header {
+  margin: -2px -2px 10px;
+  padding: 6px 10px 7px;
+  border-radius: 10px;
+  background: linear-gradient(
+    120deg,
+    rgba(248, 250, 252, 0.02),
+    rgba(148, 163, 184, 0.18),
+    rgba(248, 250, 252, 0.01)
+  );
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.9);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Rows / Inputs */
+.checklist-row {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 8px 14px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.checklist-row > label {
+  color: #e5e7eb;
+  font-size: 13px;
+}
+
+.integrated-plus {
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr) auto;
+}
+
+.indent-sub {
+  padding-left: 16px;
+}
+
+.muted-note {
+  display: inline-block;
+  font-size: 11px;
+  color: #9ca3af;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+/* Inputs / selects / textareas */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 13px;
+  border-radius: 9px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: radial-gradient(circle at top, #020617 0, #020617 60%, #020617 100%);
+  color: #e5e7eb;
+  padding: 6px 9px;
+  outline: none;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease,
+    background 0.16s ease, transform 0.08s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}
+
+select {
+  padding-right: 26px;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+  background-position: calc(100% - 13px) 9px, calc(100% - 9px) 9px;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+}
+
+textarea {
+  min-height: 68px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4),
+    0 16px 30px rgba(15, 23, 42, 0.9);
+  transform: translateY(-0.25px);
+}
+
+/* Thin checkbox style in tables */
+table input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+}
+
+/* -------- Table Styling (Training, Opcodes, Parts, etc.) -------- */
+
+.table-container {
+  margin-top: 4px;
+}
+
+.scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(55, 65, 81, 0.95);
+  background: radial-gradient(circle at top left, #020617 0, #020617 45%, #020617 100%);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.85);
+}
+
+/* Custom scrollbar */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 7px;
+}
+.scroll-wrapper::-webkit-scrollbar-track {
+  background: #020617;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #4b5563, #9ca3af);
+  border-radius: 999px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #6b7280, #d1d5db);
+}
+
+.training-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+.training-table thead {
+  background: linear-gradient(
+    120deg,
+    rgba(31, 41, 55, 0.9),
+    rgba(55, 65, 81, 0.9)
+  );
+}
+
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.training-table th {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: #e5e7eb;
+}
+
+.training-table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.training-table tbody tr:nth-child(odd) {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.training-table tbody tr:hover {
+  background: radial-gradient(
+    circle at top left,
+    rgba(249, 115, 22, 0.12),
+    rgba(15, 23, 42, 0.98)
+  );
+}
+
+/* Inputs inside table cells */
+.training-table td input[type="text"],
+.training-table td input[type="number"],
+.training-table td select {
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 7px;
+}
+
+/* Table footer (add row button) */
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.table-footer .add-row {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: radial-gradient(
+      circle at top,
+      rgba(249, 115, 22, 0.16),
+      rgba(15, 23, 42, 0.9)
+    ),
+    #020617;
+  color: #f9fafb;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.9);
+  transition: all 0.16s ease;
+}
+
+.table-footer .add-row:hover,
+.integrated-plus .add-row:hover {
+  border-color: rgba(249, 115, 22, 0.9);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.3),
+    0 20px 40px rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+
+.integrated-plus .add-row {
+  width: 26px;
+  height: 26px;
+  margin-left: 6px;
+}
+
+/* -------- Support Ticket page specifics -------- */
+
+.ticket-group textarea {
+  margin-top: 4px;
+}
+
+/* =======================================================
    DMS Integration – vertical cards + dot legend (Option A)
    ======================================================= */
 
-/* Overview block – standard white card */
+/* Overview block – uses card styling but white background to stand out */
 #dms-integration .dms-overview-block {
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+  padding: 14px 16px 12px;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: #ffffff;
-  box-shadow: var(--shadow);
+  border: 1px solid rgba(148, 163, 184, 0.65);
+  background: radial-gradient(circle at top left, #f3f4f6 0, #ffffff 55%, #f9fafb 100%);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.35);
+  color: var(--text);
 }
 
-/* Dot legend list */
+#dms-integration .dms-overview-block h2 {
+  color: #0f172a;
+}
+
+/* Legend row with inline dot explanations */
+#dms-integration .dms-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+#dms-integration .dms-legend > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Small colored dots used in legend */
+.dms-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08);
+}
+
+.dms-dot-auto {
+  background: #16a34a;
+}
+.dms-dot-ondemand {
+  background: #0ea5e9;
+}
+.dms-dot-withro {
+  background: #6366f1;
+}
+.dms-dot-planned {
+  background: #facc15;
+}
+.dms-dot-na {
+  background: #9ca3af;
+}
+
+/* (Optional) dot list version, if ever needed */
 #dms-integration .dms-legend-dotlist {
   list-style: none;
   margin: 8px 4px 10px;
@@ -29,113 +648,217 @@
   color: #333;
 }
 
-.dms-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  display: inline-block;
+/* -------- DMS Cards Grid -------- */
+
+.dms-table-container {
+  margin-top: 10px;
 }
 
-/* Option A colors */
-.dms-dot.pull        { background: #22c55e; }  /* green */
-.dms-dot.push        { background: #f97316; }  /* orange */
-.dms-dot.hybrid      { background: #0ea5e9; }  /* teal/blue */
-.dms-dot.unsupported { background: #ef4444; }  /* red */
-
-.dms-legend-label {
-  font-size: 13px;
+.dms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
 }
 
-/* DMS tags in card headers */
-#dms-integration .dms-tag {
-  display: inline-flex;
+/* Individual DMS card */
+.dms-card {
+  border-radius: 14px;
+  background: radial-gradient(
+      circle at top,
+      rgba(15, 23, 42, 0.1),
+      rgba(15, 23, 42, 0.92)
+    ),
+    #020617;
+  border: 1px solid rgba(55, 65, 81, 0.95);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.9);
+  padding: 10px 11px 9px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card header: DMS name + chip */
+.dms-card-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  margin-left: 8px;
-  background: #f3f4f6;
-  color: #374151;
-}
-#dms-integration .dms-tag .dms-dot {
-  width: 8px;
-  height: 8px;
+  margin-bottom: 8px;
 }
 
-/* Each DMS provider as a vertical white card */
-#dms-integration .dms-provider-block {
-  margin: 18px 0;
-  padding: 16px 18px 14px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* Gap between cards */
-#dms-integration .dms-provider-block + .dms-provider-block {
-  margin-top: 20px;
-}
-
-/* Provider titles */
-#dms-integration .dms-provider-title {
-  margin: 0 0 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-}
-
-/* Clean 2-column DMS tables inside each card */
-#dms-integration .clean-dms-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 4px;
+.dms-name {
   font-size: 13px;
-}
-
-/* Turn off sticky behavior inside DMS tables */
-#dms-integration .clean-dms-table th,
-#dms-integration .clean-dms-table td {
-  position: static !important;
-}
-
-/* Left column (labels) */
-#dms-integration .clean-dms-table th {
-  width: 190px;
-  min-width: 190px;
-  padding: 6px 10px;
-  text-align: left;
-  vertical-align: top;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f9fafb;
   font-weight: 600;
-  background: #f7f7f7;
-  border: none;
-  border-right: 1px solid #e1e1e1;
-  color: #333;
 }
 
-/* Right column (descriptions) */
-#dms-integration .clean-dms-table td {
-  padding: 6px 10px 8px;
-  text-align: left;
-  white-space: normal;
-  line-height: 1.45;
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-  color: #444;
+/* Push / Pull chip */
+.dms-chip {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
 }
 
-/* Light zebra striping */
-#dms-integration .clean-dms-table tbody tr:nth-child(odd) td {
-  background: #ffffff;
+.dms-chip-push {
+  border-color: rgba(52, 211, 153, 0.7);
+  background: rgba(6, 95, 70, 0.95);
 }
-#dms-integration .clean-dms-table tbody tr:nth-child(even) td {
-  background: #fafafa;
+.dms-chip-pull {
+  border-color: rgba(59, 130, 246, 0.75);
+  background: rgba(30, 64, 175, 0.95);
 }
 
-/* Muted notes inside DMS tables */
-#dms-integration .clean-dms-table .muted-note {
-  display: inline-block;
-  font-size: 0.85em;
-  color: #777;
+/* List inside each card */
+.dms-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.dms-list li + li {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(55, 65, 81, 0.8);
+}
+
+/* Row top: field + tag */
+.dms-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.dms-field {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e5e7eb;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Tag for mode (Auto / On-Demand / With RO / etc.) */
+.dms-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(15, 23, 42, 0.9);
+  white-space: nowrap;
+}
+
+/* Tag color variants */
+.dms-tag-auto {
+  border-color: rgba(34, 197, 94, 0.9);
+  background: rgba(5, 46, 22, 0.98);
+  color: #bbf7d0;
+}
+.dms-tag-ondemand {
+  border-color: rgba(59, 130, 246, 0.9);
+  background: rgba(30, 64, 175, 0.98);
+  color: #bfdbfe;
+}
+.dms-tag-withro {
+  border-color: rgba(129, 140, 248, 0.9);
+  background: rgba(55, 48, 163, 0.98);
+  color: #e0e7ff;
+}
+.dms-tag-planned {
+  border-color: rgba(234, 179, 8, 0.9);
+  background: rgba(113, 63, 18, 0.98);
+  color: #fef9c3;
+}
+.dms-tag-na {
+  border-color: rgba(148, 163, 184, 0.9);
+  background: rgba(31, 41, 55, 0.98);
+  color: #e5e7eb;
+}
+.dms-tag-limited {
+  border-color: rgba(245, 158, 11, 0.9);
+  background: rgba(120, 53, 15, 0.98);
+  color: #fed7aa;
+}
+.dms-tag-display {
+  border-color: rgba(56, 189, 248, 0.9);
+  background: rgba(8, 47, 73, 0.98);
+  color: #bae6fd;
+}
+
+/* Paragraph under each row */
+.dms-list p {
+  margin: 0;
+  color: #e5e7eb;
+  font-size: 11.5px;
+}
+
+/* Slightly lighter note inside DMS descriptions */
+#dms-integration .muted-note {
+  color: #9ca3af;
+}
+
+/* -------- Integration Notes textarea -------- */
+
+#dms-integration textarea {
+  background: radial-gradient(circle at top, #020617 0, #020617 60%, #020617 100%);
+}
+
+/* =======================================================
+   Animations & Responsive
+   ======================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 960px) {
+  #app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #sidebar {
+    position: static;
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 8px;
+  }
+
+  #sidebar-nav {
+    flex-direction: row;
+  }
+
+  .nav-btn {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 720px) {
+  .checklist-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .integrated-plus {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .floating-btn {
+    float: none;
+    display: inline-flex;
+    margin-top: 8px;
+  }
 }
