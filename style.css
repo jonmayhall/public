@@ -1,7 +1,7 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Modern UI
-   Brand: myKaarma orange + lime green
-   TABLES: reverted to stable, working version
+   myKaarma Interactive Training Checklist – Hybrid UI
+   Option 2 (glass panels) + Option 4 (bold ribbons)
+   Tables (Training Checklist & Opcodes) kept stable.
    ======================================================= */
 
 :root {
@@ -9,36 +9,49 @@
   --light-orange: #f8b17b;
   --lime: #c9dc3f;
 
-  --gray-bg: #0f172a;
   --shell-bg: #020617;
+  --body-bg: #0f172a;
+
+  --panel-glass: rgba(15, 23, 42, 0.55);
+  --panel-border: rgba(148, 163, 184, 0.6);
+  --panel-inner: rgba(15, 23, 42, 0.25);
+
   --card-bg: #ffffff;
   --border: #dcdcdc;
-  --ink: #111827;
+  --ink: #f9fafb;
+  --ink-dark: #111827;
 
+  --radius-xl: 26px;
   --radius-lg: 20px;
   --radius-sm: 14px;
 
-  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.24);
+  --shadow-shell: 0 24px 60px rgba(0, 0, 0, 0.8);
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.38);
 }
 
-/* ===== BASE ===== */
+/* =======================================================
+   BASE
+   ======================================================= */
+
 html, body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background:
-    radial-gradient(circle at top left, #1f2937 0, #020617 55%, #000 100%);
+    radial-gradient(circle at top left, #1f2937 0, #020617 50%, #000 100%);
   color: var(--ink);
   overflow-x: hidden;
 }
 
-/* kill stray italics */
 *, em, i {
   font-style: normal !important;
   box-sizing: border-box;
 }
 
-/* ===== TOP BAR ===== */
+/* =======================================================
+   TOP BAR
+   ======================================================= */
+
 #topbar {
   background:
     radial-gradient(circle at top left, rgba(243,111,33,0.35), transparent 55%),
@@ -47,23 +60,26 @@ html, body {
   display: flex;
   align-items: center;
   padding: 0 32px;
-  box-shadow: 0 18px 40px rgba(15,23,42,0.6);
+  box-shadow: var(--shadow-shell);
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 40;
   border-bottom: 1px solid rgba(148,163,184,0.4);
 }
+
 .topbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
+
 .top-logo {
   height: 44px;
   object-fit: contain;
   filter: drop-shadow(0 6px 18px rgba(0,0,0,0.55));
 }
+
 #dealershipNameDisplay {
   color:#e5e7eb;
   font-size:16px;
@@ -76,7 +92,10 @@ html, body {
   border:1px solid rgba(148,163,184,0.45);
 }
 
-/* ===== LAYOUT ===== */
+/* =======================================================
+   LAYOUT
+   ======================================================= */
+
 #app {
   display: flex;
   min-height: 100vh;
@@ -84,18 +103,20 @@ html, body {
 }
 
 /* SIDEBAR */
+
 #sidebar {
   background:
     linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.96) 40%, rgba(15,23,42,0.94) 100%);
   border-right: 1px solid rgba(148,163,184,0.4);
   width: 220px;
   padding: 18px 14px 24px;
-  box-shadow: 18px 0 40px rgba(15,23,42,0.7);
+  box-shadow: 18px 0 40px rgba(0,0,0,0.85);
   position: fixed;
   top: 72px;
   bottom: 0;
   overflow-y: auto;
 }
+
 #sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -120,20 +141,23 @@ html, body {
     transform 0.12s ease,
     box-shadow 0.2s ease;
 }
+
 .nav-icon { font-size: 16px; }
 .nav-label { flex: 1; }
 
 .nav-btn:hover {
-  background: radial-gradient(circle at left, rgba(243,111,33,0.15), transparent 55%);
+  background: radial-gradient(circle at left, rgba(243,111,33,0.18), transparent 55%);
   transform: translateX(1px);
 }
+
 .nav-btn.active {
   background: linear-gradient(90deg, var(--orange) 0%, #f97316 35%, var(--lime) 100%);
   color: #111827;
   font-weight: 600;
-  box-shadow: 0 12px 26px rgba(248,113,22,0.55);
+  box-shadow: 0 12px 26px rgba(248,113,22,0.65);
   position: relative;
 }
+
 .nav-btn.active::before {
   content:"";
   position:absolute;
@@ -143,130 +167,155 @@ html, body {
 }
 
 /* MAIN */
+
 main {
   flex: 1;
   margin-left: 220px;
   padding: 26px 32px 32px;
   background:
-    radial-gradient(circle at top left, rgba(248,250,252,0.04), transparent 55%),
+    radial-gradient(circle at top left, rgba(248,250,252,0.08), transparent 55%),
     radial-gradient(circle at bottom right, rgba(201,220,63,0.08), transparent 55%),
-    linear-gradient(135deg, #020617 0, #020617 55%, #020617 100%);
+    linear-gradient(135deg, #020617 0, #020617 60%, #020617 100%);
 }
 
-/* ===== PAGE SECTIONS ===== */
+/* =======================================================
+   PAGE SECTIONS (no more big “cards”)
+   ======================================================= */
+
 .page-section {
   display: none;
-  background:
-    radial-gradient(circle at top left, #ffffff 0, #f3f4f6 55%, #e5e7eb 100%);
-  border-radius: 26px;
-  box-shadow: var(--shadow-soft);
-  padding: 22px 28px 28px;
-  margin: 0 auto 36px;
+  margin: 0 auto 32px;
   width: 100%;
   max-width: 1320px;
   box-sizing: border-box;
-  border: 1px solid rgba(209,213,219,0.9);
 }
-.page-section.active { display: block; }
+
+.page-section.active {
+  display: block;
+}
+
+/* Ribbon-style page title */
 
 .page-section h1 {
-  color: #111827;
-  margin: 2px 0 10px 4px;
-  font-size: 26px;
+  margin: 0 0 8px 0;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
-  position: relative;
+  color: #e5e7eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.page-section h1::before {
+  content: "";
+  width: 6px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--orange), var(--lime));
+}
+
 .page-section h1::after {
   content:"";
-  display:block;
-  width:260px;
-  height:3px;
-  background: linear-gradient(90deg, var(--orange) 0%, var(--lime) 55%, transparent 100%);
-  margin-top:10px;
-  border-radius:999px;
-}
-.page-subtitle {
-  margin: 0 0 20px 4px;
-  font-size: 13px;
-  color: #6b7280;
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--lime) 40%, transparent 100%);
 }
 
-/* ===== SECTION BLOCKS (non-table) ===== */
-.section-block {
-  background: #f9fafb;
-  border-radius: 20px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 14px 30px rgba(15,23,42,0.08);
-  padding: 0 20px 14px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  position: relative;
+.page-subtitle {
+  margin: 2px 0 18px 0;
+  font-size: 13px;
+  color: #9ca3af;
 }
+
+/* =======================================================
+   SECTION BLOCKS – glass panels + bold ribbon header
+   ======================================================= */
+
+.section-block {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 14px 18px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background:
+    linear-gradient(135deg, rgba(15,23,42,0.92), rgba(15,23,42,0.86));
+  box-shadow: var(--shadow-soft);
+}
+
+/* full-width ribbon header */
 .section-block h2 {
-  margin: 0 0 14px;
-  padding: 9px 16px;
+  margin: -16px -18px 10px;
+  padding: 8px 16px;
   background: linear-gradient(90deg, var(--orange) 0%, #fb923c 40%, var(--lime) 100%);
   color: #111827;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: .05em;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  border-radius: 20px 20px 16px 16px;
-  margin-left: -20px;
-  margin-right: -20px;
-  box-shadow: 0 10px 24px rgba(248,113,22,0.35);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 10px 24px rgba(248,113,22,0.45);
 }
 
-/* ===== CHECKLIST ROWS ===== */
+/* =======================================================
+   CHECKLIST ROWS – glassy, inline, with indents
+   ======================================================= */
+
 .checklist-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 14px;
-  padding: 9px 0 10px 34px;
+  padding: 8px 0 9px 28px;
   border-bottom: 1px dashed rgba(148,163,184,0.55);
   position: relative;
 }
+
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
-  margin-bottom: 6px;
-  padding-bottom: 4px;
+  margin-bottom: 4px;
+  padding-bottom: 2px;
 }
+
 .checklist-row::before {
   content:"";
   position:absolute;
-  left:16px;
+  left:12px;
   top:50%;
   transform:translateY(-50%);
   width:6px;
   height:6px;
   border-radius:999px;
   background: radial-gradient(circle, var(--orange) 0, var(--lime) 100%);
-  opacity:0.85;
+  opacity:0.9;
 }
+
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
   text-align: left;
   padding-right: 16px;
-  color:#111827;
+  color:#e5e7eb;
 }
 
-/* indented sub-questions */
+/* indented sub questions (Option 2 style glass, but aligned) */
+
 .checklist-row.indent-sub {
-  padding-left: 60px;
+  padding-left: 54px;
 }
+
 .checklist-row.indent-sub::before {
-  left: 40px;
+  left: 34px;
   width:4px;
   height:4px;
   background:#9ca3af;
 }
 
-/* inputs & selects */
+/* Inputs & selects inside glass panels */
+
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -279,42 +328,55 @@ main {
   padding: 7px 10px;
   border-radius: 12px;
   border: 1px solid rgba(148,163,184,0.9);
-  background: #f9fafb;
+  background: rgba(15,23,42,0.8);
   font-size: 13px;
+  color:#f9fafb;
   box-sizing: border-box;
 }
+
+.section-block .checklist-row select {
+  background-image: linear-gradient(180deg, rgba(15,23,42,0.8), rgba(15,23,42,0.95));
+}
+
+/* Textareas */
+
 .section-block textarea {
-  width: 96%;
-  margin: 8px auto 10px;
+  width: 100%;
+  margin: 8px 0 6px;
   display: block;
   padding: 8px 10px;
   border-radius: 14px;
   border: 1px solid rgba(148,163,184,0.9);
-  background: #f9fafb;
+  background: rgba(15,23,42,0.86);
   font-size: 13px;
+  color:#f9fafb;
   resize: vertical;
 }
 
-/* focus */
+/* Focus states */
+
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
   box-shadow:
-    0 0 0 1px rgba(243,111,33,0.45),
-    0 0 0 6px rgba(243,111,33,0.10);
+    0 0 0 1px rgba(243,111,33,0.65),
+    0 0 0 5px rgba(243,111,33,0.18);
   outline: none;
-  background: #fefce8;
 }
 
 /* Dealership Contacts – stronger divider before each Name row */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
+  border-top: 2px solid rgba(148,163,184,0.9);
   padding-top: 12px;
   margin-top: 8px;
 }
 
-/* ===== Integrated “+” button groups (Champions, Support, POC) ===== */
+/* =======================================================
+   “INTEGRATED PLUS” GROUPS (Champions, Support, POC)
+   Keep the tight input+button look
+   ======================================================= */
+
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   display: flex;
@@ -328,7 +390,7 @@ main {
   padding-right: 16px;
 }
 
-/* keep total width = 260px (input + button) */
+/* total width = 260px: input + 40px button */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 calc(260px - 40px);
@@ -339,7 +401,8 @@ main {
   border-radius: 12px 0 0 12px;
 }
 
-/* pill + button flush to the right edge */
+/* pill add button flush to right edge */
+
 .section-block .checklist-row > .add-row {
   flex: 0 0 40px;
   width: 40px;
@@ -354,17 +417,19 @@ main {
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(248,113,22,0.65);
+  box-shadow: 0 10px 24px rgba(248,113,22,0.7);
   transition: transform .12s ease, box-shadow .16s ease, filter .16s ease;
 }
+
 .section-block .checklist-row > .add-row:hover {
   transform: translateY(-1px) scale(1.03);
-  filter: brightness(1.03);
-  box-shadow: 0 16px 30px rgba(248,113,22,0.9);
+  filter: brightness(1.04);
+  box-shadow: 0 16px 30px rgba(248,113,22,0.95);
 }
 
 /* =======================================================
-   TABLES – STABLE VERSION (Training Checklist / Opcodes)
+   TABLES – STABLE TRAINING CHECKLIST & OPCODES
+   (same behavior / layout you had working)
    ======================================================= */
 
 .section {
@@ -383,20 +448,13 @@ main {
   overflow: hidden;
 }
 
-.scroll-wrapper {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  background: #fff;
-}
-
-/* Section headers used above tables */
+/* Header ribbon above table – now glass style */
 .section-header {
-  background: var(--orange);
-  color: #fff;
+  background: linear-gradient(90deg, var(--orange) 0%, #fb923c 40%, var(--lime) 100%);
+  color: #111827;
   font-weight: 600;
   padding: 10px 16px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border: 1px solid var(--orange);
   border-bottom: none;
@@ -408,6 +466,13 @@ main {
 /* hide numeric badges */
 .section-badge {
   display: none !important;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
 }
 
 /* Table */
@@ -435,7 +500,6 @@ main {
   top: 0;
   z-index: 3;
 }
-
 .training-table thead th .muted-note {
   font-size: 0.8em;
   color: #fff;
@@ -450,7 +514,7 @@ main {
   width: 270px;
   min-width: 270px;
 }
-.training-table thead th:first-child { 
+.training-table thead th:first-child {
   text-align: center;
 }
 .training-table td:first-child {
@@ -505,12 +569,8 @@ main {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) { 
-  background: #fff; 
-}
-.training-table tr:nth-child(even) { 
-  background: #fafafa; 
-}
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
 /* Table footer + "+" button */
 .table-footer {
@@ -542,16 +602,16 @@ main {
   transform: scale(1.05);
 }
 
-/* Scrollbar */
-.scroll-wrapper::-webkit-scrollbar { 
-  height: 8px; 
+/* Scrollbar for tables */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
 }
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 6px;
 }
-.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
-  background-color: #999; 
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
 }
 
 /* =======================================================
@@ -567,7 +627,7 @@ main {
   padding: 22px 0 6px;
 }
 #support-ticket .ticket-group + .ticket-group {
-  border-top: 2px solid #bdbdbd;
+  border-top: 2px solid rgba(148,163,184,0.9);
   margin-top: 16px;
   padding-top: 22px;
 }
@@ -576,7 +636,7 @@ main {
   content: "Ticket " counter(ticket-counter);
   position: absolute;
   top: 4px;
-  left: 12px;
+  left: 10px;
   padding: 2px 10px;
   font-size: 11px;
   font-weight: 600;
@@ -607,6 +667,7 @@ main {
 /* =======================================================
    PDF button – Training Summary
    ======================================================= */
+
 .floating-btn {
   background: linear-gradient(90deg, var(--orange) 0%, var(--lime) 100%);
   color: #111827;
@@ -619,7 +680,7 @@ main {
   font-weight: 600;
   letter-spacing: .05em;
   text-transform: uppercase;
-  margin: 10px 0 18px 4px;
+  margin: 10px 0 18px 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -628,7 +689,10 @@ main {
   transform: translateY(-1px) scale(1.02);
 }
 
-/* ===== Footer ===== */
+/* =======================================================
+   FOOTER & NOTES
+   ======================================================= */
+
 #footer {
   padding: 24px;
   text-align: center;
@@ -636,23 +700,24 @@ main {
   font-size: 12px;
 }
 
-/* ===== Muted note ===== */
 .muted-note {
   font-size: 0.9em;
-  color: #6b7280;
+  color: #9ca3af;
   font-style: italic !important;
 }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
+
 @media (max-width: 900px) {
   #sidebar { display:none; }
   main { margin-left:0; padding:20px 16px 24px; }
-  .page-section { padding:18px 16px 22px; border-radius:22px; }
 }
+
 @media (max-width: 600px) {
   #topbar { padding-inline:16px; }
   .top-logo { height:38px; }
   #dealershipNameDisplay { display:none; }
 }
+
