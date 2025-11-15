@@ -1,6 +1,6 @@
-// ================== SECTION NAVIGATION ==================
-
 document.addEventListener("DOMContentLoaded", function () {
+  // ================== SECTION NAVIGATION ==================
+
   const navButtons = document.querySelectorAll(".nav-button");
   const sections = document.querySelectorAll(".page-section");
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ================== CLEAR ALL ==================
+  // ================== CLEAR ALL (entire checklist) ==================
 
   const clearAllBtn = document.getElementById("clearAllBtn");
 
@@ -31,9 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       if (!ok) return;
 
-      const inputs = document.querySelectorAll(
-        "input, textarea, select"
-      );
+      const inputs = document.querySelectorAll("input, textarea, select");
 
       inputs.forEach((el) => {
         const tag = el.tagName.toLowerCase();
@@ -48,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // Optional: clear only our own keys, if you choose to use them
+      // Optional: clear only our own keys, if used
       const keysToClear = ["mk_dealer_name"];
       keysToClear.forEach((key) => localStorage.removeItem(key));
     });
