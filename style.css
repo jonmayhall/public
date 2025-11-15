@@ -791,3 +791,104 @@ main {
   #sidebar { display: none; }
   main { margin-left: 0; padding: 16px; }
 }
+/* =======================================================
+   DMS Integration – restore light vertical cards
+   ======================================================= */
+
+/* Overview block – light card like other sections */
+#dms-integration .dms-overview-block {
+  margin-bottom: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+/* Legend in normal dark text */
+#dms-integration .dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+#dms-integration .dms-legend div {
+  color: #444;
+}
+
+/* Each DMS provider as a vertical white card */
+#dms-integration .dms-provider-block {
+  margin: 18px 0;
+  padding: 16px 18px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Small gap between cards */
+#dms-integration .dms-provider-block + .dms-provider-block {
+  margin-top: 20px;
+}
+
+/* Provider titles */
+#dms-integration .dms-provider-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Clean 2-column DMS tables inside each card */
+#dms-integration .clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky behavior inside DMS tables */
+#dms-integration .clean-dms-table th,
+#dms-integration .clean-dms-table td {
+  position: static !important;
+}
+
+/* Left column (labels) */
+#dms-integration .clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: #f7f7f7;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #333;
+}
+
+/* Right column (descriptions) */
+#dms-integration .clean-dms-table td {
+  padding: 6px 10px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+}
+
+/* Light zebra striping */
+#dms-integration .clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+#dms-integration .clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Muted notes inside DMS tables */
+#dms-integration .clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
+}
