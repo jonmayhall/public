@@ -390,9 +390,6 @@ main {
 }
 
 /* ===== Integrated “+” button rows ===== */
-/* Make them use flex so they align with other rows:
-   [label..............] [input same width][+ button touching] */
-
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   display: flex;
@@ -400,7 +397,6 @@ main {
   gap: 12px;
 }
 
-/* Label behaves like normal rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
@@ -423,7 +419,7 @@ main {
 .section-block .checklist-row:has(> .add-row) > .add-row {
   flex: 0 0 34px;
   position: relative;
-  margin-left: -1px; /* ensures input & button visually touch */
+  margin-left: -1px;
   background: var(--orange);
   color: #fff;
   border: 1px solid var(--orange);
@@ -450,7 +446,6 @@ main {
    POST-TRAINING – divide Champions vs Blockers
    ======================================================= */
 
-/* Strong line between Champion group and Blockers group */
 #post-training .section-block h2
   + .checklist-row
   + .checklist-row.integrated-plus
@@ -514,7 +509,6 @@ main {
   z-index: 3;
 }
 
-/* Smaller white text for notes inside header cells */
 .training-table thead th .muted-note {
   font-size: 0.8em;
   color: #fff;
@@ -599,7 +593,7 @@ main {
   padding: 6px 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* + button on the LEFT */
+  justify-content: flex-start;
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
   box-sizing: border-box;
@@ -688,7 +682,6 @@ main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* “Ticket 1 / Ticket 2” pill */
 .ticket-pill {
   display: inline-flex;
   align-items: center;
@@ -714,7 +707,7 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – CARD MATRIX WITH COLOR DOT LEGEND
+   DMS PAGE – CARD MATRIX WITH DOT-ONLY STATUS (CB SAFE)
    ======================================================= */
 
 /* Overview block spacing */
@@ -739,42 +732,6 @@ main {
   border-radius: 999px;
   margin-right: 6px;
   flex-shrink: 0;
-}
-
-/* COLOR MAPPING – legend dots + row tags share these */
-.dms-dot-auto,
-.dms-tag-auto {
-  background: #22c55e; /* green */
-}
-
-.dms-dot-ondemand,
-.dms-tag-ondemand {
-  background: #3b82f6; /* blue */
-}
-
-.dms-dot-withro,
-.dms-tag-withro {
-  background: #8b5cf6; /* purple */
-}
-
-.dms-dot-planned,
-.dms-tag-planned {
-  background: #eab308; /* amber */
-}
-
-.dms-dot-na,
-.dms-tag-na {
-  background: #9ca3af; /* gray */
-}
-
-.dms-dot-limited,
-.dms-tag-limited {
-  background: #f97316; /* orange */
-}
-
-.dms-dot-display,
-.dms-tag-display {
-  background: #06b6d4; /* teal */
 }
 
 /* Container for the entire matrix of cards */
@@ -856,7 +813,7 @@ main {
   border-top: none;
 }
 
-/* Top line: field name on left, colored tag on right */
+/* Top line: field name on left, dot on right */
 .dms-row-top {
   display: flex;
   align-items: center;
@@ -871,28 +828,65 @@ main {
   color: #111827;
 }
 
-/* Colored tag (shares colors with legend via .dms-tag-* classes) */
+/* Dot-only tag on right (no text) */
 .dms-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 8px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ffffff;
+  padding: 0;
+  margin-left: 8px;
+  overflow: hidden;
+  font-size: 0; /* hides any text inside */
 }
 
-/* Tiny white dot inside the tag to mimic the legend dot */
+/* No inner white dot anymore */
 .dms-tag::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  margin-right: 4px;
+  content: none !important;
+}
+
+/* COLOR-BLIND SAFE PALETTE */
+
+/* Auto — Green */
+.dms-dot-auto,
+.dms-tag-auto {
+  background: #22c55e;
+}
+
+/* On-Demand — Blue */
+.dms-dot-ondemand,
+.dms-tag-ondemand {
+  background: #3b82f6;
+}
+
+/* With RO — Deep orange (replaces purple) */
+.dms-dot-withro,
+.dms-tag-withro {
+  background: #f97316;
+}
+
+/* Planned — Amber */
+.dms-dot-planned,
+.dms-tag-planned {
+  background: #eab308;
+}
+
+/* N/A — Gray */
+.dms-dot-na,
+.dms-tag-na {
+  background: #9ca3af;
+}
+
+/* Limited — Red for strong contrast */
+.dms-dot-limited,
+.dms-tag-limited {
+  background: #ef4444;
+}
+
+/* Display — Teal */
+.dms-dot-display,
+.dms-tag-display {
+  background: #06b6d4;
 }
 
 /* Description text under each row */
@@ -903,7 +897,7 @@ main {
   line-height: 1.4;
 }
 
-/* Muted notes inside DMS cards */
+/* Notes in DMS cards */
 .dms-list .muted-note {
   font-size: 0.85em;
   color: #777;
