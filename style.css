@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
-   Refined Build (cards, darker sidebar, fixed tables)
+   Refined Build w/ vertical DMS cards + fixed + inputs
    ======================================================= */
 
 :root {
@@ -16,7 +16,7 @@
 
   --shadow: 0 2px 8px rgba(0,0,0,0.10);
 
-  --input-width: 260px;    /* single source of truth for text-box width */
+  --input-width: 260px;    /* standard text-box width */
 }
 
 /* ===== BASE ===== */
@@ -390,46 +390,49 @@ main {
 }
 
 /* ===== Integrated “+” button rows ===== */
-/* Make them use flex so they align with other rows:
-   [label..............] [input same width][+ button touching] */
+/* EXACT behavior:
+   [label.......................................] [input part][+]
+   - input part + button together = var(--input-width)
+   - right edge aligns with other input rows
+   - input and button touch
+*/
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 12px;
 }
 
-/* Label behaves like normal rows */
+/* label column – same as other rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
 }
 
-/* Text box column: same width as other text boxes, right-aligned */
+/* input part – take (input-width - buttonWidth) so combo = input-width */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
-  flex: 0 0 var(--input-width);
-  width: var(--input-width);
-  margin-left: 0;
+  flex: 0 0 calc(var(--input-width) - 36px);
+  width: calc(var(--input-width) - 36px);
+  margin-left: auto; /* pushes input+button group to right edge */
   margin-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* Integrated + button – pill on the right, touching the input */
+/* + button – 36px, attached to input */
 .section-block .checklist-row.integrated-plus > .add-row,
 .section-block .checklist-row:has(> .add-row) > .add-row {
-  flex: 0 0 34px;
-  position: relative;
-  margin-left: -1px; /* ensures input & button visually touch */
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-left: -1px; /* visually removes gap so they touch */
   background: var(--orange);
   color: #fff;
   border: 1px solid var(--orange);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  width: 34px;
-  height: 34px;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
@@ -450,7 +453,6 @@ main {
    POST-TRAINING – divide Champions vs Blockers
    ======================================================= */
 
-/* Strong line between Champion group and Blockers group */
 #post-training .section-block h2
   + .checklist-row
   + .checklist-row.integrated-plus
@@ -467,7 +469,7 @@ main {
   margin-bottom: 40px; 
 }
 
-/* Table Card – no side padding so orange header touches edges */
+/* Table Card */
 .table-container {
   width: 100%;
   background: #fff;
@@ -676,7 +678,7 @@ main {
 }
 
 /* =======================================================
-   SUPPORT TICKET – clearer Ticket 1 / Ticket 2 groups
+   SUPPORT TICKET – Ticket cards
    ======================================================= */
 
 .ticket-group {
@@ -714,7 +716,7 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – VERTICAL CARDS (brought back)
+   DMS PAGE – VERTICAL CARDS (back as requested)
    ======================================================= */
 
 /* Overview block spacing */
@@ -733,17 +735,12 @@ main {
 
 /* Each DMS provider is a vertical card */
 .dms-provider-block {
-  margin: 18px 0;
-  padding: 16px 18px 14px;
-  border-radius: 16px;
-  border: 1px solid #e1e1e1;
+  margin: 18px 0 20px;
+  padding: 16px 20px 14px;
+  border-radius: 18px;
+  border: 1px solid #d6d6d6;
   background: #ffffff;
-  box-shadow: 0 4px 10px rgba(15,23,42,0.08);
-}
-
-/* subtle separation between cards */
-.dms-provider-block + .dms-provider-block {
-  margin-top: 20px;
+  box-shadow: 0 6px 16px rgba(15,23,42,0.12);
 }
 
 /* Provider titles */
