@@ -1,7 +1,7 @@
 /* =======================================================
-   myKaarma Interactive Training Checklist – Hybrid UI
-   Option 2 (glass panels) + Option 4 (bold ribbons)
-   Tables (Training Checklist & Opcodes) kept stable.
+   myKaarma Interactive Training Checklist – Light UI
+   Brand: myKaarma orange + lime accent
+   Tables: stable, full-width, nothing hidden
    ======================================================= */
 
 :root {
@@ -9,114 +9,82 @@
   --light-orange: #f8b17b;
   --lime: #c9dc3f;
 
-  --shell-bg: #020617;
-  --body-bg: #0f172a;
-
-  --panel-glass: rgba(15, 23, 42, 0.55);
-  --panel-border: rgba(148, 163, 184, 0.6);
-  --panel-inner: rgba(15, 23, 42, 0.25);
-
+  --gray-bg: #d7d7d7;
   --card-bg: #ffffff;
   --border: #dcdcdc;
-  --ink: #f9fafb;
-  --ink-dark: #111827;
+  --ink: #222222;
 
-  --radius-xl: 26px;
-  --radius-lg: 20px;
-  --radius-sm: 14px;
+  --radius-lg: 18px;  /* cards */
+  --radius-sm: 14px;  /* inputs / buttons */
 
-  --shadow-shell: 0 24px 60px rgba(0, 0, 0, 0.8);
-  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.38);
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
-/* =======================================================
-   BASE
-   ======================================================= */
-
+/* ===== BASE ===== */
 html, body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background:
-    radial-gradient(circle at top left, #1f2937 0, #020617 50%, #000 100%);
+  font-family: "Roboto","Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  background: var(--gray-bg);
   color: var(--ink);
   overflow-x: hidden;
 }
 
+/* no italics anywhere by default */
 *, em, i {
   font-style: normal !important;
-  box-sizing: border-box;
 }
 
-/* =======================================================
-   TOP BAR
-   ======================================================= */
-
+/* ===== TOP BAR ===== */
 #topbar {
-  background:
-    radial-gradient(circle at top left, rgba(243,111,33,0.35), transparent 55%),
-    linear-gradient(90deg, #020617 0%, #020617 55%, #030712 100%);
-  height: 72px;
+  background: linear-gradient(90deg, #000 0%, #333 100%);
+  height: 70px;
   display: flex;
   align-items: center;
-  padding: 0 32px;
-  box-shadow: var(--shadow-shell);
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 40;
-  border-bottom: 1px solid rgba(148,163,184,0.4);
+  z-index: 20;
+  border-radius: 0;
 }
-
 .topbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-
 .top-logo {
-  height: 44px;
+  height: 42px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.55));
 }
-
 #dealershipNameDisplay {
-  color:#e5e7eb;
-  font-size:16px;
+  color:#fff;
+  font-size:18px;
   font-weight:600;
-  letter-spacing:.06em;
-  text-transform: uppercase;
-  padding:6px 14px;
-  border-radius:999px;
-  background:rgba(15,23,42,0.55);
-  border:1px solid rgba(148,163,184,0.45);
+  letter-spacing:.5px;
 }
 
-/* =======================================================
-   LAYOUT
-   ======================================================= */
-
+/* ===== LAYOUT ===== */
 #app {
   display: flex;
   min-height: 100vh;
-  margin-top: 72px;
+  margin-top: 70px;
+  overflow-x: hidden;
 }
 
 /* SIDEBAR */
-
 #sidebar {
-  background:
-    linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.96) 40%, rgba(15,23,42,0.94) 100%);
-  border-right: 1px solid rgba(148,163,184,0.4);
-  width: 220px;
-  padding: 18px 14px 24px;
-  box-shadow: 18px 0 40px rgba(0,0,0,0.85);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(6px);
+  border-right: 1px solid var(--border);
+  width: 210px;
+  padding: 20px 10px;
+  box-shadow: var(--shadow);
   position: fixed;
-  top: 72px;
+  top: 70px;
   bottom: 0;
   overflow-y: auto;
 }
-
 #sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -124,198 +92,132 @@ html, body {
 }
 
 .nav-btn {
-  background: transparent;
+  background: none;
   border: none;
   padding: 9px 12px;
-  font-size: 13px;
+  font-size: 14px;
   text-align: left;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  color: #e5e7eb;
+  color: var(--ink);
   display: flex;
   align-items: center;
   gap: 8px;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    transform 0.12s ease,
-    box-shadow 0.2s ease;
+  transition: .2s;
 }
-
-.nav-icon { font-size: 16px; }
-.nav-label { flex: 1; }
-
-.nav-btn:hover {
-  background: radial-gradient(circle at left, rgba(243,111,33,0.18), transparent 55%);
-  transform: translateX(1px);
-}
-
+.nav-btn:hover,
 .nav-btn.active {
-  background: linear-gradient(90deg, var(--orange) 0%, #f97316 35%, var(--lime) 100%);
-  color: #111827;
+  background: #fff3eb;
+  color: var(--orange);
   font-weight: 600;
-  box-shadow: 0 12px 26px rgba(248,113,22,0.65);
-  position: relative;
 }
-
-.nav-btn.active::before {
-  content:"";
-  position:absolute;
-  inset:2px;
-  border-radius:999px;
-  border:1px solid rgba(249,250,251,0.75);
-}
-
-/* MAIN */
 
 main {
   flex: 1;
-  margin-left: 220px;
-  padding: 26px 32px 32px;
-  background:
-    radial-gradient(circle at top left, rgba(248,250,252,0.08), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(201,220,63,0.08), transparent 55%),
-    linear-gradient(135deg, #020617 0, #020617 60%, #020617 100%);
-}
-
-/* =======================================================
-   PAGE SECTIONS (no more big “cards”)
-   ======================================================= */
-
-.page-section {
-  display: none;
-  margin: 0 auto 32px;
-  width: 100%;
-  max-width: 1320px;
+  margin-left: 210px;
+  padding: 30px 40px;
+  background: var(--gray-bg);
   box-sizing: border-box;
 }
 
+/* ===== PAGE SECTIONS / CARDS ===== */
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 22px 32px 28px;
+  margin: 0 auto 50px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+}
 .page-section.active {
   display: block;
 }
 
-/* Ribbon-style page title */
-
+/* Page titles */
 .page-section h1 {
-  margin: 0 0 8px 0;
-  font-size: 24px;
+  color: var(--orange);
+  margin: 4px 0 8px 4px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  color: #e5e7eb;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.page-section h1::before {
-  content: "";
-  width: 6px;
-  height: 26px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--orange), var(--lime));
-}
-
-.page-section h1::after {
-  content:"";
-  flex: 1;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--orange) 0%, var(--lime) 40%, transparent 100%);
-}
-
-.page-subtitle {
-  margin: 2px 0 18px 0;
-  font-size: 13px;
-  color: #9ca3af;
-}
-
-/* =======================================================
-   SECTION BLOCKS – glass panels + bold ribbon header
-   ======================================================= */
-
-.section-block {
+  text-align: left;
+  letter-spacing: .3px;
   position: relative;
-  margin-bottom: 20px;
-  padding: 14px 18px 12px;
-  border-radius: 18px;
-  border: 1px solid var(--panel-border);
-  background:
-    linear-gradient(135deg, rgba(15,23,42,0.92), rgba(15,23,42,0.86));
-  box-shadow: var(--shadow-soft);
+}
+.page-section h1::after {
+  content: "";
+  display: block;
+  width: 360px;
+  height: 4px;
+  background: var(--orange);
+  margin-top: 8px;
+  border-radius: 2px;
 }
 
-/* full-width ribbon header */
+/* Optional page subtitle under h1 */
+.page-subtitle {
+  margin: 4px 0 20px 4px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* ===== SECTION BLOCKS (non-table cards) ===== */
+.section-block {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 0 22px 14px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
 .section-block h2 {
-  margin: -16px -18px 10px;
-  padding: 8px 16px;
-  background: linear-gradient(90deg, var(--orange) 0%, #fb923c 40%, var(--lime) 100%);
-  color: #111827;
-  font-size: 14px;
+  margin: 0 0 16px;
+  padding: 10px 16px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 10px 24px rgba(248,113,22,0.45);
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-left: -22px;
+  margin-right: -22px;
 }
 
-/* =======================================================
-   CHECKLIST ROWS – glassy, inline, with indents
-   ======================================================= */
-
+/* ===== NON-TABLE ROWS (Q&A lines) ===== */
 .checklist-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-size: 14px;
-  padding: 8px 0 9px 28px;
-  border-bottom: 1px dashed rgba(148,163,184,0.55);
-  position: relative;
+  padding-left: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
 }
-
 .section-block .checklist-row:last-of-type {
   border-bottom: none;
-  margin-bottom: 4px;
-  padding-bottom: 2px;
+  margin-bottom: 8px;
+  padding-bottom: 0;
 }
-
-.checklist-row::before {
-  content:"";
-  position:absolute;
-  left:12px;
-  top:50%;
-  transform:translateY(-50%);
-  width:6px;
-  height:6px;
-  border-radius:999px;
-  background: radial-gradient(circle, var(--orange) 0, var(--lime) 100%);
-  opacity:0.9;
-}
-
 .checklist-row label {
   flex: 1 1 auto;
   font-weight: 500;
   text-align: left;
   padding-right: 16px;
-  color:#e5e7eb;
+  white-space: normal;
 }
 
-/* indented sub questions (Option 2 style glass, but aligned) */
-
+/* Indented sub-questions */
 .checklist-row.indent-sub {
-  padding-left: 54px;
+  padding-left: 60px;
 }
 
-.checklist-row.indent-sub::before {
-  left: 34px;
-  width:4px;
-  height:4px;
-  background:#9ca3af;
-}
-
-/* Inputs & selects inside glass panels */
-
+/* Inputs on the RIGHT and smaller */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -326,56 +228,43 @@ main {
   margin-left: auto;
   margin-right: 0;
   padding: 7px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(148,163,184,0.9);
-  background: rgba(15,23,42,0.8);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
   font-size: 13px;
-  color:#f9fafb;
   box-sizing: border-box;
 }
-
-.section-block .checklist-row select {
-  background-image: linear-gradient(180deg, rgba(15,23,42,0.8), rgba(15,23,42,0.95));
-}
-
-/* Textareas */
-
 .section-block textarea {
-  width: 100%;
-  margin: 8px 0 6px;
+  width: 96%;
+  margin: 6px auto 10px;
   display: block;
   padding: 8px 10px;
-  border-radius: 14px;
-  border: 1px solid rgba(148,163,184,0.9);
-  background: rgba(15,23,42,0.86);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #f7f7f7;
   font-size: 13px;
-  color:#f9fafb;
   resize: vertical;
 }
 
-/* Focus states */
-
+/* Focus */
 .section-block input:focus,
 .section-block select:focus,
 .section-block textarea:focus {
   border-color: var(--orange);
-  box-shadow:
-    0 0 0 1px rgba(243,111,33,0.65),
-    0 0 0 5px rgba(243,111,33,0.18);
+  box-shadow: 0 0 4px rgba(243,111,33,0.35);
   outline: none;
+  background: #fff9f5;
 }
 
-/* Dealership Contacts – stronger divider before each Name row */
+/* ===== Dealership Contacts divider ===== */
 #dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid rgba(148,163,184,0.9);
+  border-top: 2px solid #bdbdbd;
   padding-top: 12px;
   margin-top: 8px;
 }
 
-/* =======================================================
-   “INTEGRATED PLUS” GROUPS (Champions, Support, POC)
-   Keep the tight input+button look
-   ======================================================= */
+/* ===== Integrated “+” button – side-by-side block ===== */
+/* For rows that have [text box][+] on the right */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
@@ -390,7 +279,7 @@ main {
   padding-right: 16px;
 }
 
-/* total width = 260px: input + 40px button */
+/* Make input + button total width = 260px (same as other inputs) */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 calc(260px - 40px);
@@ -398,42 +287,59 @@ main {
   margin-left: auto;
   margin-right: 0;
   padding: 7px 10px;
-  border-radius: 12px 0 0 12px;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
-/* pill add button flush to right edge */
-
+/* pill-like + button flush to the right edge */
 .section-block .checklist-row > .add-row {
   flex: 0 0 40px;
   width: 40px;
   height: 32px;
-  background: linear-gradient(135deg, var(--orange) 0%, var(--lime) 100%);
-  color: #111827;
+  background: var(--orange);
+  color: #fff;
   border: none;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(248,113,22,0.7);
-  transition: transform .12s ease, box-shadow .16s ease, filter .16s ease;
+  box-shadow: 0 1px 4px rgba(243,111,33,0.25);
+  transition: .18s ease-in-out;
 }
-
 .section-block .checklist-row > .add-row:hover {
-  transform: translateY(-1px) scale(1.03);
-  filter: brightness(1.04);
-  box-shadow: 0 16px 30px rgba(248,113,22,0.95);
+  background: #ff8b42;
+  transform: translateY(-1px);
 }
 
 /* =======================================================
-   TABLES – STABLE TRAINING CHECKLIST & OPCODES
-   (same behavior / layout you had working)
+   TABLES – TRAINING CHECKLIST & OPCODES
+   (stable, full-content)
    ======================================================= */
 
 .section {
   margin-bottom: 40px;
+}
+
+/* Table header ribbon */
+.section-header {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--orange);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* remove numbers in training headers */
+.section-badge {
+  display: none !important;
 }
 
 /* Table Card */
@@ -443,29 +349,9 @@ main {
   border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: var(--shadow);
   margin-bottom: 40px;
   overflow: hidden;
-}
-
-/* Header ribbon above table – now glass style */
-.section-header {
-  background: linear-gradient(90deg, var(--orange) 0%, #fb923c 40%, var(--lime) 100%);
-  color: #111827;
-  font-weight: 600;
-  padding: 10px 16px;
-  font-size: 15px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  border: 1px solid var(--orange);
-  border-bottom: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* hide numeric badges */
-.section-badge {
-  display: none !important;
 }
 
 .scroll-wrapper {
@@ -491,7 +377,7 @@ main {
   padding: 8px 10px;
 }
 
-/* Sticky header — LIGHT ORANGE */
+/* Sticky header row */
 .training-table thead th {
   background: var(--light-orange);
   color: #fff;
@@ -569,8 +455,12 @@ main {
 }
 
 /* Alternating rows */
-.training-table tr:nth-child(odd) { background: #fff; }
-.training-table tr:nth-child(even) { background: #fafafa; }
+.training-table tr:nth-child(odd) {
+  background: #fff;
+}
+.training-table tr:nth-child(even) {
+  background: #fafafa;
+}
 
 /* Table footer + "+" button */
 .table-footer {
@@ -615,19 +505,18 @@ main {
 }
 
 /* =======================================================
-   SUPPORT TICKET PAGE – ticket groups & badge
+   SUPPORT TICKET PAGE – ticket group divider/badge
    ======================================================= */
 
 #support-ticket .section-block {
   counter-reset: ticket-counter;
 }
-
 #support-ticket .ticket-group {
   position: relative;
   padding: 22px 0 6px;
 }
 #support-ticket .ticket-group + .ticket-group {
-  border-top: 2px solid rgba(148,163,184,0.9);
+  border-top: 2px solid #bdbdbd;
   margin-top: 16px;
   padding-top: 22px;
 }
@@ -636,7 +525,7 @@ main {
   content: "Ticket " counter(ticket-counter);
   position: absolute;
   top: 4px;
-  left: 10px;
+  left: 12px;
   padding: 2px 10px;
   font-size: 11px;
   font-weight: 600;
@@ -648,7 +537,7 @@ main {
   border: 1px solid #cbd5e1;
 }
 
-/* closed badge (Closed tickets section) */
+/* Closed badge (Closed tickets section) */
 .closed-badge {
   display: inline-flex;
   align-items: center;
@@ -667,57 +556,127 @@ main {
 /* =======================================================
    PDF button – Training Summary
    ======================================================= */
-
 .floating-btn {
-  background: linear-gradient(90deg, var(--orange) 0%, var(--lime) 100%);
-  color: #111827;
+  background: var(--orange);
+  color: #fff;
   border: none;
-  padding: 7px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
-  box-shadow: 0 12px 30px rgba(248,113,22,0.7);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  margin: 10px 0 18px 0;
+  margin: 8px 0 16px 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 .floating-btn:hover {
-  transform: translateY(-1px) scale(1.02);
+  background: #ff8b42;
 }
 
-/* =======================================================
-   FOOTER & NOTES
-   ======================================================= */
-
+/* ===== Footer ===== */
 #footer {
   padding: 24px;
   text-align: center;
-  color: #9ca3af;
-  font-size: 12px;
+  color: #666;
+  font-size: 13px;
 }
 
+/* ===== Muted note ===== */
 .muted-note {
   font-size: 0.9em;
-  color: #9ca3af;
+  color: #666;
   font-style: italic !important;
+}
+
+/* =======================================================
+   DMS PAGE – spacing & polish
+   ======================================================= */
+
+.dms-overview-block {
+  margin-bottom: 28px;
+}
+
+.dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.dms-provider-block {
+  margin: 20px 0 26px;
+  padding: 12px 0 4px;
+  border: none;
+  box-shadow: none !important;
+}
+.dms-provider-block + .dms-provider-block {
+  border-top: 1px solid #e3e3e3;
+  padding-top: 18px;
+}
+.dms-provider-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Clean 2-column DMS tables */
+.clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky in DMS tables */
+.clean-dms-table th,
+.clean-dms-table td {
+  position: static !important;
+}
+
+.clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #444;
+}
+.clean-dms-table td {
+  padding: 6px 12px 8px;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+.clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+.clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+.clean-dms-table .muted-note {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777;
 }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
-
 @media (max-width: 900px) {
-  #sidebar { display:none; }
-  main { margin-left:0; padding:20px 16px 24px; }
+  #sidebar { width: 170px; }
+  main { margin-left: 170px; padding: 20px; }
 }
-
 @media (max-width: 600px) {
-  #topbar { padding-inline:16px; }
-  .top-logo { height:38px; }
-  #dealershipNameDisplay { display:none; }
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 16px; }
 }
-
