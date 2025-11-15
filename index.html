@@ -1215,318 +1215,46 @@
       </div>
     </section>
 
-      <!-- ========================================================= -->
-<!-- PAGE 8: DMS INTEGRATION                                   -->
-<!-- ========================================================= -->
-<section id="dms-integration" class="page-section">
-  <h1>DMS Integration</h1>
-  <p class="page-subtitle">
-    How customers, vehicles, appointments, ROs, invoices, pricing, and history flow between myKaarma and each DMS.
-  </p>
-  <button class="clear-page-btn">Reset This Page</button>
+       <!-- ========================================================= -->
+    <!-- PAGE 8: DMS INTEGRATION                                   -->
+    <!-- ========================================================= -->
+    <section id="dms-integration" class="page-section">
+      <h1>DMS Integration</h1>
+      <p class="page-subtitle">
+        How customers, vehicles, appointments, ROs, invoices, pricing, and history flow between myKaarma and each DMS.
+      </p>
+      <button class="clear-page-btn">Reset This Page</button>
 
-  <!-- OVERVIEW -->
-  <div class="section-block dms-overview-block">
-    <h2>Integration Overview</h2>
-    <ul class="dms-legend-dotlist">
-      <li>
-        <span class="dms-dot pull"></span>
-        <span class="dms-legend-label"><strong>Pull:</strong> myKaarma pulls data from the DMS on a schedule.</span>
-      </li>
-      <li>
-        <span class="dms-dot push"></span>
-        <span class="dms-legend-label"><strong>Push:</strong> myKaarma pushes data into the DMS.</span>
-      </li>
-      <li>
-        <span class="dms-dot hybrid"></span>
-        <span class="dms-legend-label"><strong>Hybrid:</strong> Mix of pull and push behavior.</span>
-      </li>
-      <li>
-        <span class="dms-dot unsupported"></span>
-        <span class="dms-legend-label"><strong>Unsupported:</strong> Not supported for this DMS today.</span>
-      </li>
-    </ul>
-  </div>
+      <!-- OVERVIEW -->
+      <div class="section-block dms-overview-block">
+        <h2>Integration Overview</h2>
+        <div class="dms-legend">
+          <div><span class="dms-dot dms-dot-auto"></span><strong>Auto:</strong> Automatic recurring sync.</div>
+          <div><span class="dms-dot dms-dot-ondemand"></span><strong>On-Demand:</strong> Triggered by user or workflow.</div>
+          <div><span class="dms-dot dms-dot-withro"></span><strong>With RO:</strong> Data flows when an RO is created/updated.</div>
+          <div><span class="dms-dot dms-dot-planned"></span><strong>Planned:</strong> Supported, but not yet fully enabled everywhere.</div>
+          <div><span class="dms-dot dms-dot-na"></span><strong>N/A:</strong> Not supported for this DMS.</div>
+        </div>
+      </div>
 
-  <!-- PROVIDER CARDS -->
-  <div class="section">
-    <div class="section-header">
-      <span>DMS Integration Matrix</span>
-    </div>
+      <!-- DMS CARDS -->
+      <div class="section">
+        <div class="section-header">
+          <span>DMS Integration Matrix</span>
+        </div>
+        <div class="dms-table-container">
+          <div class="dms-grid">
+            <!-- existing .dms-card stuff -->
+          </div>
+        </div>
+      </div>
 
-    <!-- REYNOLDS -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        Reynolds
-        <span class="dms-tag">
-          <span class="dms-dot push"></span> Push
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Customer updates push automatically as part of standard workflows.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle information is included with RO and customer pushes.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pushes from myKaarma when generated or updated <span class="muted-note">(if appointments are scheduled)</span>.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>ROs push from ServiceCart, Check-In, or configured workflow triggers.</td>
-          </tr>
-          <tr>
-            <th>Parts / Invoices</th>
-            <td>Can push automatically when workflows support parts invoice generation.</td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>History syncs via RO traffic and labor codes.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- AUTOMATE -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        Automate
-        <span class="dms-tag">
-          <span class="dms-dot push"></span> Push
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Customers push automatically into Automate.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle updates flow with RO traffic.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Limited appointment update support; details may vary by store.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td><span class="muted-note">No RO write-back path from myKaarma.</span></td>
-          </tr>
-          <tr>
-            <th>Parts</th>
-            <td><span class="muted-note">No parts invoice push supported.</span></td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Primarily presentation only, with limited push traffic.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- CDK -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        CDK
-        <span class="dms-tag">
-          <span class="dms-dot pull"></span> Pull
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Pull every 15 minutes; historical lookup available on-demand.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle information comes with RO records.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pull every 15 minutes; myKaarma can request additional refreshes.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>Pull every 5 minutes; write-back is on-demand.</td>
-          </tr>
-          <tr>
-            <th>Parts &amp; Pricing</th>
-            <td>Invoices pull every 15 minutes; on-demand pricing available in ServiceCart.</td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Nightly sync of RO and F&amp;I history <span class="muted-note">(≈2 years)</span>.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Dealertrack / Arkona -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        Dealertrack / Arkona
-        <span class="dms-tag">
-          <span class="dms-dot pull"></span> Pull
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Pull every 5 minutes; historical requests supported.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle lookup on-demand; also comes with RO data.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pull every 15 minutes.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>Pull every 2 minutes; write-back is on-demand.</td>
-          </tr>
-          <tr>
-            <th>Parts &amp; Pricing</th>
-            <td>Parts invoices pull every 15 minutes.</td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Nightly sync for RO and customer history.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Lightyear / Dealerbuilt -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        Lightyear / Dealerbuilt
-        <span class="dms-tag">
-          <span class="dms-dot pull"></span> Pull
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Pull every 5 minutes.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Loaded with RO activity.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pull every 5 minutes.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>Pull every 2 minutes; on-demand write-back.</td>
-          </tr>
-          <tr>
-            <th>Parts</th>
-            <td>Parts invoices pull every 5 minutes <span class="muted-note">(varies by store)</span>.</td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Nightly RO history sync; on-demand refresh supported.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- PBS -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        PBS
-        <span class="dms-tag">
-          <span class="dms-dot pull"></span> Pull
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Customer pulls are limited; relies heavily on RO activity.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle sync is primarily RO-related.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pull every 5 minutes; some push may vary by workflow.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>Pull every 2 minutes; write-back is on-demand.</td>
-          </tr>
-          <tr>
-            <th>Parts</th>
-            <td>Parts invoice pulling is not universal.</td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Nightly RO history sync.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Tekion -->
-    <div class="section-block dms-provider-block">
-      <h2 class="dms-provider-title">
-        Tekion
-        <span class="dms-tag">
-          <span class="dms-dot pull"></span> Pull
-        </span>
-      </h2>
-      <table class="clean-dms-table">
-        <tbody>
-          <tr>
-            <th>Customers</th>
-            <td>Customers arrive with the RO; no independent customer pull.</td>
-          </tr>
-          <tr>
-            <th>Vehicles</th>
-            <td>Vehicle flow is attached to RO updates.</td>
-          </tr>
-          <tr>
-            <th>Appointments</th>
-            <td>Pull every 5 minutes; some write-back is planned.</td>
-          </tr>
-          <tr>
-            <th>ROs</th>
-            <td>Pull every 5 minutes; write-back enabled per store.</td>
-          </tr>
-          <tr>
-            <th>Parts &amp; Pricing</th>
-            <td><span class="muted-note">Planned and supported on the roadmap.</span></td>
-          </tr>
-          <tr>
-            <th>History</th>
-            <td>Historical RO load is available during deployment.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- NOTES -->
-  <div class="section-block">
-    <h2>Integration Notes</h2>
-    <textarea placeholder="Type integration notes here …"></textarea>
-  </div>
-</section>
+      <!-- NOTES -->
+      <div class="section-block">
+        <h2>Integration Notes</h2>
+        <textarea placeholder="Type integration notes here …"></textarea>
+      </div>
+    </section>
 
     <!-- ========================================================= -->
     <!-- PAGE 9: POST TRAINING VERIFICATION                         -->
