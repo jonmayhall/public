@@ -1,3 +1,4 @@
+<style>
 /* =======================================================
    myKaarma Interactive Training Checklist – FULL CSS
    Unified / Polished Build (with Ticket Labels, Closed Badge,
@@ -171,7 +172,7 @@ main {
   gap: 8px;
 }
 
-/* Hide numeric badges in headers (remove numbers from training tables) */
+/* Hide numeric badges in headers */
 .section-badge {
   display: none !important;
 }
@@ -226,12 +227,12 @@ main {
   white-space: normal;
 }
 
-/* Standard indent for sub-questions (e.g., automated sub-items) */
+/* Standard indent for sub-questions (matching Welcome text) */
 .checklist-row.indent-sub {
-  padding-left: 80px;
+  padding-left: 80px !important;
 }
 
-/* Inputs/selects on the right */
+/* Inputs/selects */
 .section-block .checklist-row input[type="text"],
 .section-block .checklist-row input[type="number"],
 .section-block .checklist-row input[type="email"],
@@ -272,52 +273,33 @@ main {
   background: #fff9f5;
 }
 
-/* Strong divider in Dealership Contacts */
-#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
-  border-top: 2px solid #bdbdbd;
-  padding-top: 12px;
-  margin-top: 8px;
-}
-
 /* =======================================================
-   Integrated “+” button rows
-   Goal:
-   - Overall width of [input] == overall width of [input][+]
-   - Left edges of all text boxes aligned
+   Integrated “+” button groups (support tickets + champions)
    ======================================================= */
-
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) { 
   display: flex;
   align-items: center;
-  gap: 0;                    /* input and button must touch */
+  gap: 0;
 }
 
-/* Label: same behavior as other rows */
 .section-block .checklist-row.integrated-plus label,
 .section-block .checklist-row:has(> .add-row) label {
   flex: 1 1 auto;
   padding-right: 16px;
 }
 
-/* NORMAL row text boxes are 260px wide.
-   For rows with a + button, we make the textbox narrower so
-   textbox (calc(260px - 38px)) + button (38px) = 260px total.
-   This keeps the outer right edge aligned with normal rows.
-*/
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 calc(260px - 38px);
   width: calc(260px - 38px);
   margin-left: auto;
-  margin-right: 0;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* Plus button: 38px wide so group width matches 260px */
 .section-block .checklist-row > .add-row {
   background: var(--orange);
   color: #fff;
@@ -339,19 +321,14 @@ main {
   font-size: 18px;
 }
 
-/* Hover */
 .section-block .checklist-row > .add-row:hover {
   background: #ff8b42;
   transform: scale(1.03);
 }
 
 /* =======================================================
-   TABLES
+   TABLES (Training Checklist Tables)
    ======================================================= */
-.section { 
-  margin-bottom: 40px; 
-}
-
 .table-container {
   width: 100%;
   background: #fff;
@@ -396,11 +373,6 @@ main {
   z-index: 3;
 }
 
-.training-table thead th .muted-note {
-  font-size: 0.8em;
-  color: #fff;
-}
-
 /* Sticky first column */
 .training-table th:first-child,
 .training-table td:first-child {
@@ -410,80 +382,40 @@ main {
   width: 270px;
   min-width: 270px;
 }
-.training-table thead th:first-child { 
-  text-align: center;
-}
 .training-table td:first-child {
   background: #fff;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.training-table td:first-child input[type="checkbox"] {
-  flex-shrink: 0;
-  transform: scale(1.1);
-  margin-right: 10px;
-}
-.training-table td:first-child input[type="text"] {
-  width: 95%;
-  padding: 7px 10px;
-  font-size: 13px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: #f7f7f7;
-  text-align: left;
-}
-
-/* Wider User Acceptance column */
-.training-table th:nth-child(2),
-.training-table td:nth-child(2) {
-  width: 205px;
-  min-width: 205px;
 }
 
 /* Inputs inside table */
-.training-table input[type="text"],
-.training-table select {
+.training-table select,
+.training-table input[type="text"] {
   width: 100%;
   min-width: 150px;
-  box-sizing: border-box;
+  text-align: center;
   padding: 6px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #f7f7f7;
-  font-size: 13px;
-  text-align: center;
-}
-.training-table input[type="text"]:focus,
-.training-table select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 4px rgba(243,111,33,0.4);
-  outline: none;
-  background: #fff9f5;
 }
 
-/* Zebra rows */
-.training-table tr:nth-child(odd) { 
-  background: #fff; 
-}
-.training-table tr:nth-child(even) { 
-  background: #fafafa; 
-}
+/* Zebra */
+.training-table tr:nth-child(odd) { background: #fff; }
+.training-table tr:nth-child(even) { background: #fafafa; }
 
-/* Table footer */
+/* Table footer (+ button) */
 .table-footer {
-  width: 100%;
   background: #f5f5f5;
-  border-top: 1px solid var(--border);
   padding: 6px 10px;
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   border-bottom-left-radius: var(--radius-lg);
   border-bottom-right-radius: var(--radius-lg);
-  box-sizing: border-box;
 }
+
 .table-footer .add-row {
   background: var(--orange);
   color: #fff;
@@ -494,165 +426,26 @@ main {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  transition: .2s;
-  box-shadow: 0 1px 3px rgba(243,111,33,0.25);
-}
-.table-footer .add-row:hover {
-  background: #ff8b42;
-  transform: scale(1.05);
-}
-
-/* Scrollbar */
-.scroll-wrapper::-webkit-scrollbar { 
-  height: 8px; 
-}
-.scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover { 
-  background-color: #999; 
-}
-
-/* ===== Floating PDF button ===== */
-.floating-btn {
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 16px 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.floating-btn:hover {
-  background: #ff8b42;
-}
-
-/* Footer text */
-#footer { 
-  padding: 24px; 
-  text-align: center; 
-  color: #666; 
-  font-size: 13px; 
-}
-
-/* Muted note */
-.muted-note {
-  font-size: 0.9em;
-  color: #666;
-  font-style: italic !important;
 }
 
 /* =======================================================
-   DMS PAGE – SPACING & POLISH
+   SUPPORT TICKET PAGE
    ======================================================= */
-.dms-overview-block {
-  margin-bottom: 28px;
-}
-
-.dms-legend {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 6px 18px;
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-.dms-provider-block {
-  margin: 20px 0 26px;
-  padding: 12px 0 4px;
-  border: none;
-  box-shadow: none !important;
-}
-
-.dms-provider-block + .dms-provider-block {
-  border-top: 1px solid #e3e3e3;
-  padding-top: 18px;
-}
-
-.dms-provider-title {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.clean-dms-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 4px;
-  font-size: 13px;
-}
-
-.clean-dms-table th,
-.clean-dms-table td {
-  position: static !important;
-}
-
-.clean-dms-table th {
-  width: 190px;
-  min-width: 190px;
-  padding: 6px 12px;
-  text-align: left;
-  vertical-align: top;
-  font-weight: 600;
-  background: transparent;
-  border: none;
-  border-right: 1px solid #e1e1e1;
-  color: #444;
-}
-
-.clean-dms-table td {
-  padding: 6px 12px 8px;
-  text-align: left;
-  white-space: normal;
-  line-height: 1.45;
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.clean-dms-table tbody tr:nth-child(odd) td {
-  background: #ffffff;
-}
-.clean-dms-table tbody tr:nth-child(even) td {
-  background: #fafafa;
-}
-
-.clean-dms-table .muted-note {
-  display: inline-block;
-  font-size: 0.85em;
-  color: #777;
-}
-
-/* =======================================================
-   SUPPORT TICKET PAGE – DIVIDE + TICKET LABELS + BADGE
-   ======================================================= */
-
-/* Reset counter per section-block (Open / Closed) */
 #support-ticket .section-block {
   counter-reset: ticket-counter;
 }
 
-/* Base group spacing */
 #support-ticket .ticket-group {
   position: relative;
   padding: 22px 0 6px;
 }
 
-/* Divider between groups */
 #support-ticket .ticket-group + .ticket-group {
   border-top: 2px solid #bdbdbd;
   margin-top: 16px;
   padding-top: 22px;
 }
 
-/* Auto-number label: Ticket 1, Ticket 2, ... */
 #support-ticket .ticket-group::before {
   counter-increment: ticket-counter;
   content: "Ticket " counter(ticket-counter);
@@ -662,14 +455,11 @@ main {
   padding: 2px 10px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.2px;
-  color: #555;
   background: #f1f1f1;
   border-radius: 999px;
-  border: 1px solid #d0d0d0;
 }
 
-/* Closed status badge */
+/* Closed badge */
 .closed-badge {
   display: inline-block;
   padding: 4px 12px;
@@ -678,18 +468,6 @@ main {
   font-size: 13px;
   font-weight: 600;
   border-radius: 999px;
-  border: 1px solid #c2c2c2;
-  text-align: center;
 }
 
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 900px) {
-  #sidebar { width: 170px; }
-  main { margin-left: 170px; padding: 20px; }
-}
-@media (max-width: 600px) {
-  #sidebar { display: none; }
-  main { margin-left: 0; padding: 16px; }
-}
+</style>
