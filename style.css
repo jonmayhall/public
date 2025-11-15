@@ -1,199 +1,141 @@
 /* =======================================================
-   DMS Integration – Cards (matches current HTML)
+   DMS Integration – vertical cards + dot legend (Option A)
    ======================================================= */
 
-/* Overview block */
+/* Overview block – standard white card */
 #dms-integration .dms-overview-block {
-  margin-bottom: 24px;
-  padding: 16px 18px;
+  margin-bottom: 28px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: #ffffff;
   box-shadow: var(--shadow);
 }
 
-/* Legend row at top */
-#dms-integration .dms-legend {
+/* Dot legend list */
+#dms-integration .dms-legend-dotlist {
+  list-style: none;
+  margin: 8px 4px 10px;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  font-size: 13px;
-  color: #374151;
+  gap: 8px 24px;
 }
 
-#dms-integration .dms-legend > div {
+#dms-integration .dms-legend-dotlist li {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  font-size: 13px;
+  color: #333;
 }
 
-/* Dots in legend and tags */
-#dms-integration .dms-dot {
+.dms-dot {
   width: 10px;
   height: 10px;
   border-radius: 999px;
   display: inline-block;
 }
 
-/* Legend dot colors */
-#dms-integration .dms-dot-auto     { background: #22c55e; } /* green */
-#dms-integration .dms-dot-ondemand { background: #0ea5e9; } /* blue */
-#dms-integration .dms-dot-withro   { background: #6366f1; } /* indigo */
-#dms-integration .dms-dot-planned  { background: #f97316; } /* orange */
-#dms-integration .dms-dot-na       { background: #9ca3af; } /* gray */
+/* Option A colors */
+.dms-dot.pull        { background: #22c55e; }  /* green */
+.dms-dot.push        { background: #f97316; }  /* orange */
+.dms-dot.hybrid      { background: #0ea5e9; }  /* teal/blue */
+.dms-dot.unsupported { background: #ef4444; }  /* red */
 
-/* Wrapper around cards */
-#dms-integration .dms-table-container {
-  margin-top: 12px;
-}
-
-#dms-integration .dms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-/* Individual DMS card */
-#dms-integration .dms-card {
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  padding: 14px 16px 12px;
-}
-
-/* Card header */
-#dms-integration .dms-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-#dms-integration .dms-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
-}
-
-/* Chips (Push-Based / Pull-Based) */
-#dms-integration .dms-chip {
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-weight: 500;
-  border: 1px solid transparent;
-}
-
-#dms-integration .dms-chip-push {
-  background: #f97316;
-  border-color: #ea580c;
-  color: #fff;
-}
-
-#dms-integration .dms-chip-pull {
-  background: #0ea5e9;
-  border-color: #0284c7;
-  color: #fff;
-}
-
-/* List inside each card */
-#dms-integration .dms-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.dms-legend-label {
   font-size: 13px;
 }
 
-#dms-integration .dms-list li + li {
-  margin-top: 8px;
-  padding-top: 6px;
-  border-top: 1px dashed #e5e7eb;
-}
-
-/* Row top: field name + tag */
-#dms-integration .dms-row-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 2px;
-}
-
-#dms-integration .dms-field {
-  font-weight: 600;
-  color: #111827;
-}
-
-/* Small pill tags (Auto, On-Demand, etc.) */
+/* DMS tags in card headers */
 #dms-integration .dms-tag {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 999px;
+  gap: 4px;
   padding: 2px 8px;
+  border-radius: 999px;
   font-size: 11px;
-  line-height: 1.2;
-  border: 1px solid transparent;
-}
-
-/* Tag color mapping */
-#dms-integration .dms-tag-auto {
-  background: #dcfce7;
-  border-color: #22c55e;
-  color: #166534;
-}
-
-#dms-integration .dms-tag-ondemand {
-  background: #e0f2fe;
-  border-color: #0ea5e9;
-  color: #075985;
-}
-
-#dms-integration .dms-tag-withro {
-  background: #e0e7ff;
-  border-color: #6366f1;
-  color: #312e81;
-}
-
-#dms-integration .dms-tag-planned {
-  background: #ffedd5;
-  border-color: #f97316;
-  color: #7c2d12;
-}
-
-#dms-integration .dms-tag-na {
+  margin-left: 8px;
   background: #f3f4f6;
-  border-color: #9ca3af;
-  color: #4b5563;
+  color: #374151;
+}
+#dms-integration .dms-tag .dms-dot {
+  width: 8px;
+  height: 8px;
 }
 
-#dms-integration .dms-tag-limited {
-  background: #fef3c7;
-  border-color: #facc15;
-  color: #92400e;
+/* Each DMS provider as a vertical white card */
+#dms-integration .dms-provider-block {
+  margin: 18px 0;
+  padding: 16px 18px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-#dms-integration .dms-tag-display {
-  background: #f5f3ff;
-  border-color: #8b5cf6;
-  color: #4c1d95;
+/* Gap between cards */
+#dms-integration .dms-provider-block + .dms-provider-block {
+  margin-top: 20px;
 }
 
-/* Description text under each row */
-#dms-integration .dms-list p {
-  margin: 0;
-  color: #4b5563;
+/* Provider titles */
+#dms-integration .dms-provider-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Clean 2-column DMS tables inside each card */
+#dms-integration .clean-dms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Turn off sticky behavior inside DMS tables */
+#dms-integration .clean-dms-table th,
+#dms-integration .clean-dms-table td {
+  position: static !important;
+}
+
+/* Left column (labels) */
+#dms-integration .clean-dms-table th {
+  width: 190px;
+  min-width: 190px;
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 600;
+  background: #f7f7f7;
+  border: none;
+  border-right: 1px solid #e1e1e1;
+  color: #333;
+}
+
+/* Right column (descriptions) */
+#dms-integration .clean-dms-table td {
+  padding: 6px 10px 8px;
+  text-align: left;
+  white-space: normal;
   line-height: 1.45;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
 }
 
-/* Muted helper text */
-#dms-integration .muted-note {
+/* Light zebra striping */
+#dms-integration .clean-dms-table tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
+#dms-integration .clean-dms-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Muted notes inside DMS tables */
+#dms-integration .clean-dms-table .muted-note {
+  display: inline-block;
   font-size: 0.85em;
-  color: #6b7280;
-}
-
-/* Notes section at bottom of DMS page */
-#dms-integration .section-block textarea {
-  min-height: 120px;
+  color: #777;
 }
