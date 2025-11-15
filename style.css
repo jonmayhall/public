@@ -1,6 +1,6 @@
 /* =======================================================
    myKaarma – Interactive Training Checklist
-   FULL STYLESHEET
+   FULL STYLESHEET – Light, clean look + table format kept
    ======================================================= */
 
 /* ------------------------------
@@ -21,10 +21,10 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
-  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
-  --shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 6px 16px rgba(15, 23, 42, 0.06);
+  --shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
   --sidebar-width: 260px;
-  --topbar-height: 60px;
+  --topbar-height: 56px;
   --transition-fast: 150ms ease-out;
   --transition-med: 220ms ease;
   --input-bg: #f9fafb;
@@ -48,7 +48,7 @@ body {
   font-size: 14px;
   line-height: 1.4;
   color: var(--text-main);
-  background: radial-gradient(circle at top left, #fef9c3 0, #f3f4f6 32%, #e5e7eb 100%);
+  background: var(--bg);
 }
 
 /* Remove default button/inputs ugliness */
@@ -68,9 +68,8 @@ textarea {
   top: 0;
   z-index: 40;
   height: var(--topbar-height);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(209, 213, 219, 0.8);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(209, 213, 219, 0.9);
 }
 
 .topbar-content {
@@ -105,24 +104,27 @@ textarea {
 }
 
 #clearAllBtn {
-  border: none;
+  border: 1px solid #fecaca;
   border-radius: 999px;
-  padding: 7px 14px;
+  padding: 6px 12px;
   font-size: 12px;
   font-weight: 500;
-  background: #fee2e2;
+  background: #fef2f2;
   color: #b91c1c;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 #clearAllBtn:hover {
-  background: #fecaca;
+  background: #fee2e2;
   transform: translateY(-1px);
-  box-shadow: 0 6px 12px rgba(248, 113, 113, 0.35);
+  box-shadow: 0 4px 10px rgba(248, 113, 113, 0.35);
 }
 
 /* ------------------------------
@@ -131,10 +133,10 @@ textarea {
 
 #app {
   max-width: 1440px;
-  margin: 12px auto 32px;
+  margin: 14px auto 32px;
   padding: 0 16px;
   display: flex;
-  gap: 18px;
+  gap: 16px;
 }
 
 /* Sidebar */
@@ -144,12 +146,13 @@ textarea {
   max-width: 260px;
   align-self: flex-start;
   position: sticky;
-  top: calc(var(--topbar-height) + 10px);
-  border-radius: 18px;
-  background: rgba(15, 23, 42, 0.96);
-  color: #e5e7eb;
+  top: calc(var(--topbar-height) + 12px);
+  border-radius: 16px;
+  background: #ffffff;
+  color: #111827;
   box-shadow: var(--shadow-soft);
-  padding: 10px 10px 10px 10px;
+  padding: 10px 10px 12px;
+  border: 1px solid #e5e7eb;
 }
 
 #sidebar-nav {
@@ -163,16 +166,19 @@ textarea {
   border: none;
   width: 100%;
   text-align: left;
-  padding: 8px 10px;
+  padding: 7px 10px;
   border-radius: 999px;
   background: transparent;
-  color: #e5e7eb;
+  color: #374151;
   font-size: 13px;
   display: flex;
   align-items: center;
   cursor: pointer;
   position: relative;
-  transition: background var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .nav-btn::before {
@@ -181,24 +187,24 @@ textarea {
   height: 6px;
   border-radius: 999px;
   margin-right: 8px;
-  background: #4b5563;
+  background: #d1d5db;
   flex-shrink: 0;
 }
 
 .nav-btn:hover {
-  background: rgba(55, 65, 81, 0.95);
+  background: #f3f4f6;
   transform: translateX(1px);
 }
 
 .nav-btn.active {
-  background: #f97316;
-  color: #111827;
+  background: var(--accent-soft);
+  color: #7c2d12;
   font-weight: 600;
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.16), 0 15px 25px rgba(249, 115, 22, 0.45);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.35);
 }
 
 .nav-btn.active::before {
-  background: #111827;
+  background: var(--accent);
 }
 
 /* Content */
@@ -213,9 +219,9 @@ textarea {
 
 .page-section {
   display: none;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 22px;
-  padding: 20px 22px 26px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 24px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(209, 213, 219, 0.9);
 }
@@ -239,19 +245,22 @@ textarea {
 .clear-page-btn {
   margin: 4px 0 14px;
   border-radius: 999px;
-  border: 1px solid #fee2e2;
-  background: #fef2f2;
-  color: #b91c1c;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #374151;
   font-size: 11px;
   padding: 4px 10px;
   cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .clear-page-btn:hover {
-  background: #fee2e2;
+  background: #e5e7eb;
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(248, 113, 113, 0.25);
+  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
 }
 
 /* ------------------------------
@@ -278,10 +287,10 @@ textarea {
 .section-block {
   margin-top: 16px;
   padding: 14px 14px 16px;
-  border-radius: 16px;
+  border-radius: 14px;
   border: 1px solid var(--border);
   background: #ffffff;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
 }
 
 .section-block h2 {
@@ -330,13 +339,17 @@ input[type="email"],
 select,
 textarea {
   width: 100%;
-  border-radius: 9px;
+  border-radius: 8px;
   border: 1px solid var(--border-subtle);
   padding: 6px 8px;
   font-size: 13px;
   background: var(--input-bg);
   color: var(--text-main);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 input[type="text"]:focus,
@@ -371,7 +384,6 @@ td > input[type="checkbox"] {
    Integrated "+" Buttons
    ------------------------------ */
 
-/* Row where + is attached to the text input */
 .integrated-plus {
   grid-template-columns: 200px minmax(0, 1fr) auto;
   align-items: center;
@@ -388,8 +400,8 @@ td > input[type="checkbox"] {
   border: none;
   border-radius: 0 999px 999px 0;
   padding: 0 10px;
-  height: 32px;
-  min-width: 32px;
+  height: 30px;
+  min-width: 30px;
   background: var(--accent);
   color: #111827;
   font-weight: 600;
@@ -399,22 +411,25 @@ td > input[type="checkbox"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 18px rgba(249, 115, 22, 0.45);
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 4px 10px rgba(249, 115, 22, 0.4);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .add-row:hover {
   background: var(--accent-strong);
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(249, 115, 22, 0.6);
+  box-shadow: 0 7px 16px rgba(249, 115, 22, 0.5);
 }
 
-/* When the + is not directly attached to an input (e.g., table-footer), make it circular */
+/* Circular when used alone (table footers, etc.) */
 .table-footer .add-row,
 .ticket-group .add-row:not(.inline) {
   border-radius: 999px;
   padding: 0;
-  width: 32px;
+  width: 30px;
 }
 
 /* ------------------------------
@@ -429,7 +444,7 @@ td > input[type="checkbox"] {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   background: #ffffff;
 }
@@ -438,18 +453,16 @@ td > input[type="checkbox"] {
 .scroll-wrapper::-webkit-scrollbar {
   height: 8px;
 }
-
 .scroll-wrapper::-webkit-scrollbar-track {
   background: #f3f4f6;
   border-radius: 999px;
 }
-
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background: #cbd5f5;
   border-radius: 999px;
 }
 
-/* Training-style tables */
+/* Training-style tables (format preserved) */
 .training-table {
   width: 100%;
   border-collapse: collapse;
@@ -484,6 +497,7 @@ td > input[type="checkbox"] {
   background: #ffffff;
 }
 
+/* Zebra striping */
 .training-table tbody tr:nth-child(even) td {
   background: #f9fafb;
 }
@@ -494,7 +508,7 @@ td > input[type="checkbox"] {
 .training-table select {
   font-size: 11px;
   padding: 4px 6px;
-  border-radius: 8px;
+  border-radius: 7px;
 }
 
 /* Name column: checkbox + text */
@@ -516,7 +530,7 @@ td > input[type="checkbox"] {
 .ticket-group {
   margin-top: 8px;
   padding: 10px 10px 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px dashed #d1d5db;
   background: #f9fafb;
 }
@@ -525,13 +539,13 @@ td > input[type="checkbox"] {
   margin-top: 10px;
 }
 
-/* Ensure support ticket textareas span full width row */
 .ticket-group textarea {
   margin-top: 6px;
 }
 
 /* ------------------------------
-   DMS Integration – Option A (Vertical Cards + Dot Legend)
+   DMS Integration – Option A
+   (Vertical Cards + Dot Legend)
    ------------------------------ */
 
 /* Overview card */
@@ -568,7 +582,7 @@ td > input[type="checkbox"] {
   display: inline-block;
 }
 
-/* Option A legend colors */
+/* Legend colors */
 .dms-dot.pull        { background: #22c55e; }  /* green */
 .dms-dot.push        { background: #f97316; }  /* orange */
 .dms-dot.hybrid      { background: #0ea5e9; }  /* teal/blue */
@@ -603,7 +617,7 @@ td > input[type="checkbox"] {
   border-radius: 16px;
   border: 1px solid var(--border);
   background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 /* Gap between cards */
@@ -691,14 +705,17 @@ td > input[type="checkbox"] {
   background: #111827;
   color: #f9fafb;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.5);
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.45);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 #savePDF.floating-btn:hover {
   background: #020617;
   transform: translateY(-1px);
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.7);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.65);
 }
 
 /* ------------------------------
@@ -714,7 +731,7 @@ td > input[type="checkbox"] {
     position: static;
     width: 100%;
     max-width: 100%;
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
   #content {
@@ -725,7 +742,7 @@ td > input[type="checkbox"] {
 @media (max-width: 768px) {
   .page-section {
     padding: 14px 12px 18px;
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
   .checklist-row,
@@ -734,14 +751,14 @@ td > input[type="checkbox"] {
   }
 
   .integrated-plus input[type="text"] {
-    border-radius: 9px;
+    border-radius: 8px;
     border-right: 1px solid var(--border-subtle);
   }
 
   .integrated-plus .add-row {
     margin-left: auto;
     border-radius: 999px;
-    width: 32px;
+    width: 30px;
     margin-top: 4px;
   }
 
