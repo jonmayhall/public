@@ -35,7 +35,6 @@ html, body {
 
 /* ===== TOP BAR ===== */
 #topbar {
-  /* black → orange gradient */
   background: linear-gradient(90deg, #000 0%, var(--orange) 100%);
   height: 70px;
   display: flex;
@@ -390,14 +389,13 @@ main {
 }
 
 /* ===== Integrated “+” button rows ===== */
-/* Make them use flex so they align with other rows:
-   [label..............] [input same width][+ button touching] */
+/* [label..............] [input][+ button] – fused; same total width as normal input */
 
 .section-block .checklist-row.integrated-plus,
 .section-block .checklist-row:has(> .add-row) {
   display: flex;
   align-items: stretch;
-  gap: 12px;
+  gap: 0; /* no space between input and button */
 }
 
 /* Label behaves like normal rows */
@@ -407,7 +405,7 @@ main {
   padding-right: 16px;
 }
 
-/* Text box column: same width as other text boxes, right-aligned */
+/* Text box column: width = (normal width - button width) */
 .section-block .checklist-row.integrated-plus input[type="text"],
 .section-block .checklist-row:has(> .add-row) input[type="text"] {
   flex: 0 0 calc(var(--input-width) - 34px);
@@ -416,6 +414,12 @@ main {
   margin-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+/* Each extra cloned input (created by +) sits under the first with a little margin */
+.section-block .checklist-row.integrated-plus input[type="text"] + input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] + input[type="text"] {
+  margin-top: 6px;
 }
 
 /* Integrated + button – pill on the right, touching the input */
@@ -676,7 +680,7 @@ main {
 }
 
 /* =======================================================
-   SUPPORT TICKET – clearer Ticket 1 / Ticket 2 groups
+   SUPPORT TICKET – clearer Ticket groups
    ======================================================= */
 
 .ticket-group {
@@ -688,7 +692,7 @@ main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-/* “Ticket 1 / Ticket 2” pill */
+/* “Ticket 1 / Ticket 2” pill (if you use it) */
 .ticket-pill {
   display: inline-flex;
   align-items: center;
@@ -714,10 +718,9 @@ main {
 }
 
 /* =======================================================
-   DMS PAGE – CARD MATRIX WITH DOT-ONLY STATUS (CB SAFE)
+   DMS PAGE – CARD MATRIX WITH DOT-ONLY STATUS
    ======================================================= */
 
-/* Overview block spacing */
 .dms-overview-block {
   margin-bottom: 28px;
 }
@@ -852,8 +855,7 @@ main {
   content: none !important;
 }
 
-/* COLOR-BLIND SAFE PALETTE */
-
+/* Color-blind–friendly palette */
 /* Auto — Green */
 .dms-dot-auto,
 .dms-tag-auto {
