@@ -1,5 +1,908 @@
 /* =======================================================
    myKaarma Interactive Training Checklist – Trendy UI
+   Brand: myKaarma orange + green
+   Version: Option 2 + DMS Cards + Clear Page
+   ======================================================= */
+
+:root {
+  /* Brand + accents */
+  --orange: #e46327;       /* warm, modern orange */
+  --orange-soft: #ffe5d6;
+  --lime: #b9d94a;         /* soft lime accent */
+
+  /* Background – slightly darker overall but not black */
+  --app-bg-top: #e5e7f0;
+  --app-bg-bottom: #d2d7f3;
+
+  --card-bg: #f9fafb;
+  --border: #dadde7;
+  --ink: #111827;
+
+  --radius-lg: 18px;
+  --radius-sm: 14px;
+
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ===== BASE ===== */
+html, body {
+  margin: 0;
+  font-family: "Inter","Roboto",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left, #fef3c7 0, transparent 45%),
+    linear-gradient(135deg, var(--app-bg-top), var(--app-bg-bottom));
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* no italics anywhere by default */
+*, em, i {
+  font-style: normal !important;
+}
+
+/* ===== TOP BAR ===== */
+#topbar {
+  background: linear-gradient(90deg, #111827 0%, #020617 50%, #111827 100%);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.55);
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+}
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.top-logo {
+  height: 40px;
+  object-fit: contain;
+}
+#dealershipNameDisplay {
+  color:#e5e7eb;
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+/* ===== LAYOUT ===== */
+#app {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px;
+  overflow-x: hidden;
+}
+
+/* SIDEBAR – iconless, pill nav */
+#sidebar {
+  background: rgba(15,23,42,0.93);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(148,163,184,0.65);
+  width: 220px;
+  padding: 18px 12px 20px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.65);
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+#sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  padding: 9px 14px;
+  font-size: 13px;
+  text-align: left;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease,
+    box-shadow 0.18s ease;
+}
+
+.nav-btn .nav-label {
+  font-weight: 500;
+}
+
+.nav-btn:hover {
+  background: rgba(249,250,251,0.14);
+  color: var(--orange);
+  transform: translateX(1px);
+  box-shadow: 0 1px 3px rgba(15,23,42,0.7);
+}
+
+.nav-btn.active {
+  background: #fff6ef;
+  color: var(--orange);
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(15,23,42,0.85);
+}
+
+main {
+  flex: 1;
+  margin-left: 220px;
+  padding: 30px 38px;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* ===== PAGE SECTIONS / CARDS ===== */
+.page-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: 22px;
+  border: 1px solid rgba(226,232,240,0.9);
+  box-shadow: var(--shadow-soft);
+  padding: 22px 30px 26px;
+  margin: 0 auto 32px;
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.page-section::before {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 200px;
+  height: 200px;
+  background:
+    radial-gradient(circle at center,
+      rgba(250,250,251,0.9),
+      transparent 65%);
+  opacity: 1;
+}
+.page-section.active {
+  display: block;
+}
+.page-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 48px rgba(15,23,42,0.18);
+}
+
+/* Page titles */
+.page-section h1 {
+  color: var(--orange);
+  margin: 4px 0 8px 4px;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: left;
+  letter-spacing: .3px;
+  position: relative;
+  z-index: 1;
+}
+.page-section h1::after {
+  content: "";
+  display: block;
+  width: 240px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--lime));
+  margin-top: 7px;
+  border-radius: 999px;
+}
+
+/* Page subtitle */
+.page-subtitle {
+  margin: 4px 0 18px 4px;
+  font-size: 13px;
+  color: #6b7280;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SECTION BLOCKS (non-table cards) ===== */
+.section-block {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(226,232,240,0.9);
+  box-shadow: 0 8px 18px rgba(15,23,42,0.22);
+  padding: 0 20px 14px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.section-block h2 {
+  margin: 0 0 14px;
+  padding: 9px 17px;
+  background: linear-gradient(90deg, var(--orange), #f3924a);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  margin-left: -20px;
+  margin-right: -20px;
+  position: relative;
+}
+.section-block h2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.35),
+      rgba(255,255,255,0)
+  );
+  pointer-events: none;
+}
+
+/* ===== NON-TABLE ROWS (Q&A lines) ===== */
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  padding-left: 40px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7f0;
+}
+.section-block .checklist-row:last-of-type {
+  border-bottom: none;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+.checklist-row label {
+  flex: 1 1 auto;
+  font-weight: 500;
+  text-align: left;
+  padding-right: 16px;
+  white-space: normal;
+  color: #111827;
+}
+
+/* Indented sub-questions (all match) */
+.checklist-row.indent-sub {
+  padding-left: 60px;
+}
+
+/* Inputs on the RIGHT */
+.section-block .checklist-row input[type="text"],
+.section-block .checklist-row input[type="number"],
+.section-block .checklist-row input[type="email"],
+.section-block .checklist-row input[type="date"],
+.section-block .checklist-row select {
+  flex: 0 0 260px;
+  width: 260px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d3dae6;
+  background: #f9fafb;
+  font-size: 13px;
+  box-sizing: border-box;
+  box-shadow:
+      inset 0 1px 1px rgba(15,23,42,0.04),
+      0 1px 2px rgba(148,163,184,0.25);
+  transition: all 0.2s ease;
+}
+.section-block textarea {
+  width: 96%;
+  margin: 6px auto 10px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d3dae6;
+  background: #f9fafb;
+  font-size: 13px;
+  resize: vertical;
+  box-shadow:
+      inset 0 1px 1px rgba(15,23,42,0.04),
+      0 1px 2px rgba(148,163,184,0.25);
+  transition: all 0.2s ease;
+}
+
+/* Focus state */
+.section-block input[type="text"]:focus,
+.section-block input[type="number"]:focus,
+.section-block input[type="email"]:focus,
+.section-block input[type="date"]:focus,
+.section-block select:focus,
+.section-block textarea:focus {
+  background: #ffffff;
+  border-color: var(--orange);
+  box-shadow:
+      0 0 0 2px rgba(228,99,39,0.22),
+      0 4px 10px rgba(228,99,39,0.20);
+  outline: none;
+}
+
+/* ===== Dealership Contacts divider ===== */
+#dealership-info .section-block:nth-of-type(2) .checklist-row:has(input[placeholder="Name"]) {
+  border-top: 2px solid #cbd5e1;
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+/* ===== Integrated “+” button – input + button block ===== */
+.section-block .checklist-row.integrated-plus,
+.section-block .checklist-row:has(> .add-row) {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.section-block .checklist-row.integrated-plus label,
+.section-block .checklist-row:has(> .add-row) label {
+  flex: 1 1 auto;
+  padding-right: 16px;
+}
+
+/* Input + button total width = 260px */
+.section-block .checklist-row.integrated-plus input[type="text"],
+.section-block .checklist-row:has(> .add-row) input[type="text"] {
+  flex: 0 0 calc(260px - 40px);
+  width: calc(260px - 40px);
+  margin-left: auto;
+  margin-right: 0;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+/* + button flush right */
+.section-block .checklist-row > .add-row {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 32px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(228,99,39,0.35);
+  transition: all 0.15s ease;
+}
+.section-block .checklist-row > .add-row:hover {
+  background: #f07434;
+  box-shadow: 0 4px 12px rgba(228,99,39,0.45);
+  transform: translateY(-1px) scale(1.03);
+}
+
+/* =======================================================
+   TABLES – TRAINING CHECKLIST & OPCODES
+   ======================================================= */
+
+.section {
+  margin-bottom: 32px;
+}
+
+/* Table header ribbon */
+.section-header {
+  background: linear-gradient(90deg, var(--orange), #f29a4a);
+  color: #fff;
+  font-weight: 600;
+  padding: 9px 18px;
+  font-size: 14px;
+  border-radius: 18px 18px 0 0;
+  border: 1px solid rgba(248, 180, 133, 0.6);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* remove numbers in training headers */
+.section-badge {
+  display: none !important;
+}
+
+/* Table card */
+.table-container {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e4f0;
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 10px 26px rgba(148,163,184,0.35);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.scroll-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+}
+
+/* Table */
+.training-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 100%;
+}
+.training-table th,
+.training-table td {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid #e5e7f0;
+  border-bottom: 1px solid #e5e7f0;
+  padding: 7px 9px;
+}
+
+/* Header row */
+.training-table thead th {
+  background: linear-gradient(
+      180deg,
+      #f8d5b7,
+      #f2a667
+  );
+  color: #fff;
+  font-weight: 600;
+  position: relative;
+}
+.training-table thead th::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0; right: 0;
+  height: 36%;
+  background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.45),
+      rgba(255,255,255,0)
+  );
+}
+.training-table thead th .muted-note {
+  font-size: 0.8em;
+  color: #fefce8;
+}
+
+/* First column */
+.training-table th:first-child,
+.training-table td:first-child {
+  width: 270px;
+  min-width: 270px;
+}
+.training-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.training-table td:first-child input[type="checkbox"] {
+  flex-shrink: 0;
+  transform: scale(1.05);
+  margin-right: 8px;
+}
+.training-table td:first-child input[type="text"] {
+  width: 95%;
+  padding: 6px 9px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  text-align: left;
+}
+
+/* Column widths */
+.training-table th:nth-child(2),
+.training-table td:nth-child(2) {
+  width: 205px;
+  min-width: 205px;
+}
+
+/* Inputs/Selects inside table cells */
+.training-table input[type="text"],
+.training-table select {
+  width: 100%;
+  min-width: 150px;
+  box-sizing: border-box;
+  padding: 6px 7px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cfd3d9;
+  background: #f9fafb;
+  font-size: 13px;
+  text-align: center;
+  box-shadow:
+      inset 0 1px 1px rgba(15,23,42,0.04),
+      0 1px 2px rgba(148,163,184,0.25);
+  transition: all .18s ease;
+}
+.training-table input[type="text"]:focus,
+.training-table select:focus {
+  background: #ffffff;
+  border-color: var(--orange);
+  box-shadow:
+      0 0 0 2px rgba(228,99,39,0.22),
+      0 4px 10px rgba(228,99,39,0.24);
+  outline: none;
+}
+
+/* Alternating rows */
+.training-table tr:nth-child(odd) {
+  background: #ffffff;
+}
+.training-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+/* Table footer + "+" button */
+.table-footer {
+  width: 100%;
+  background: #f3f4f8;
+  border-top: 1px solid #e2e4f0;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  box-sizing: border-box;
+}
+.table-footer .add-row {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow:
+      0 2px 8px rgba(228,99,39,0.35);
+}
+.table-footer .add-row:hover {
+  background: #f07434;
+  box-shadow:
+      0 4px 14px rgba(228,99,39,0.45);
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Scrollbar for tables */
+.scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 6px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+/* =======================================================
+   SUPPORT TICKET PAGE – ticket group divider/badge
+   ======================================================= */
+
+#support-ticket .section-block {
+  counter-reset: ticket-counter;
+}
+#support-ticket .ticket-group {
+  position: relative;
+  padding: 18px 0 6px;
+}
+#support-ticket .ticket-group + .ticket-group {
+  border-top: 2px solid #e2e8f0;
+  margin-top: 14px;
+  padding-top: 18px;
+}
+#support-ticket .ticket-group::before {
+  counter-increment: ticket-counter;
+  content: "Ticket " counter(ticket-counter);
+  position: absolute;
+  top: 2px;
+  left: 12px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #0f172a;
+  background: #e5edff;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Closed badge */
+.closed-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ecfdf3;
+  box-shadow: 0 8px 16px rgba(22,163,74,0.65);
+}
+
+/* =======================================================
+   PDF BUTTON (Training Summary) + CLEAR PAGE BUTTON
+   ======================================================= */
+
+/* Save as PDF – top-right of card */
+.floating-btn {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  background: #111827;
+  color: #f9fafb;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.45);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+}
+.floating-btn:hover {
+  background: #020617;
+  box-shadow: 0 4px 14px rgba(15,23,42,0.6);
+  transform: translateY(-1px) scale(1.03);
+}
+
+/* Reset This Page button – secondary, also top-right when used */
+.clear-page-btn {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.10);
+}
+.clear-page-btn:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+  box-shadow: 0 3px 8px rgba(185,28,28,0.25);
+}
+
+/* ===== Footer ===== */
+#footer {
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* ===== Muted note ===== */
+.muted-note {
+  font-size: 0.9em;
+  color: #6b7280;
+  font-style: italic !important;
+}
+
+/* =======================================================
+   DMS PAGE – CARD-BASED INTEGRATION MATRIX
+   ======================================================= */
+
+.dms-overview-block {
+  margin-bottom: 22px;
+}
+
+.dms-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 6px 18px;
+  font-size: 13px;
+  margin-top: 8px;
+  color: #4b5563;
+}
+
+.dms-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+/* legend chip colors */
+.dms-dot-auto      { background: #22c55e; }
+.dms-dot-ondemand  { background: #0ea5e9; }
+.dms-dot-withro    { background: #f97316; }
+.dms-dot-planned   { background: #eab308; }
+.dms-dot-na        { background: #9ca3af; }
+
+/* Grid of cards inside the “table-container” wrapper */
+.dms-table-container {
+  border-radius: 0 0 18px 18px;
+  border: 1px solid #e0e4f0;
+  box-shadow: 0 10px 26px rgba(148,163,184,0.25);
+  padding: 12px 14px 14px;
+  background: #f3f4f6;
+}
+
+.dms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* Individual DMS cards */
+.dms-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 6px 16px rgba(148,163,184,0.25);
+}
+
+.dms-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dms-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* Card-level chips (push / pull) */
+.dms-chip {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.dms-chip-push {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fed7aa;
+}
+
+.dms-chip-pull {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+/* Inner list */
+.dms-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.dms-list li + li {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.dms-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.dms-field {
+  font-weight: 500;
+  color: #111827;
+}
+
+/* mini tags for each data type inside cards */
+.dms-tag {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* status colors */
+.dms-tag-auto {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+.dms-tag-ondemand {
+  background: #e0f2fe;
+  color: #075985;
+  border-color: #bae6fd;
+}
+.dms-tag-withro {
+  background: #ffedd5;
+  color: #9a3412;
+  border-color: #fed7aa;
+}
+.dms-tag-planned {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+.dms-tag-na {
+  background: #e5e7eb;
+  color: #374151;
+  border-color: #d1d5db;
+}
+.dms-tag-limited {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.dms-tag-display {
+  background: #e0e7ff;
+  color: #3730a3;
+  border-color: #c7d2fe;
+}
+
+.dms-list p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.35;
+}
+
+/* keep muted-note consistent in DMS */
+.dms-list .muted-note {
+  font-size: 0.85em;
+  color: #6b7280;
+  font-style: italic !important;
+}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 900px) {
+  #sidebar { width: 190px; }
+  main { margin-left: 190px; padding: 20px; }
+}
+@media (max-width: 600px) {
+  #sidebar { display: none; }
+  main { margin-left: 0; padding: 16px; }
+}
+/* =======================================================
+   myKaarma Interactive Training Checklist – Trendy UI
    Light, modern, product-style SaaS look
    Brand: myKaarma orange + green
    Version: Option 2 + DMS Cards
